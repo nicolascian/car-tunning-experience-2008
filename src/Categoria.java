@@ -10,7 +10,7 @@
  * 
  * @version	1.0
  */
-public class Categoria{
+public abstract class Categoria{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
