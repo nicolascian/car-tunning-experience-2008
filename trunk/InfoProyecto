@@ -1,0 +1,29 @@
+Informacion del Proyecto
+
+la pagina del proyecto es:
+http://code.google.com/p/car-tunning-experience-2008/
+
+estamos usando SVN (Subversion)
+
+el repositorio en google es:
+https://car-tunning-experience-2008.googlecode.com/svn
+--->usar trunk
+
+MANUAL para instalar el plugin SUBCLIPSE que necesita el eclipse:
+http://subclipse.tigris.org/install.html
+
+pagina de SUBCLIPSE:
+http://subclipse.tigris.org/
+
+Manual para configurar el SVN en eclipse
+http://blog.msbbc.co.uk/2007/06/using-googles-free-svn-repository-with.html
+
+
+hice un banner
+/* ****************************************************************************
+ *                         Car-Tunnig-Experience-2008                         *
+ *                                                                            *
+ *                   Algoritmos y Programacion III - 75.07                    *
+ *                        Catedra Ing. Carlos Fontela                         *
+ *            Facultad de Ingenieria - Universidad de Buenos Aires            *
+ ******************************************************************************/
