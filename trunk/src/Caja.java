@@ -5,12 +5,13 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+
 /**
  * Documentacion
  * 
  * @version	1.0
  */
-public class Caja{
+public abstract class Caja{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**

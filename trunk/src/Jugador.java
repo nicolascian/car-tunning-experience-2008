@@ -10,7 +10,7 @@
  * 
  * @version	1.0
  */
-public class Jugador{
+public abstract class Jugador{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
