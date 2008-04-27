@@ -25,6 +25,16 @@ public abstract class Componente{
 
 	private double Peso;
 	
+	private Auto auto;
+	
+	public Auto getAuto() {
+		return auto;
+	}
+
+	public void setAuto(Auto auto) {
+		this.auto = auto;
+	}
+
 	public abstract double getPrecio();
 	
 	public abstract void desgastar(double porcentaje);

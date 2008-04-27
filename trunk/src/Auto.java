@@ -27,7 +27,16 @@ public class Auto{
 	
 	private Alimentacion alimentacion;
 	
+	private Combustible combustible;
 	
+	public Combustible getCombustible() {
+		return combustible;
+	}
+
+	public void setCombustible(Combustible combustible) {
+		this.combustible = combustible;
+	}
+
 	public Inyeccion getInyeccion() {
 		return inyeccion;
 	}
@@ -36,30 +45,20 @@ public class Auto{
 		this.inyeccion = inyeccion;
 	}
 
-	/**
-	 * Documentacion
-	 */
+
 	public void setCaja(Caja caja){
 		this.caja = caja;
 	}
 	
-	/**
-	 * Documentacion
-	 */
+
 	public Caja getCaja(){
 		return this.caja;
 	}
 
-	/**
-	 * Documentacion
-	 */
 	public void setMotor(Motor motor){
 		this.motor = motor;
 	}
 	
-	/**
-	 * Documentacion
-	 */
 	public Motor getMotor(){
 		return this.motor;
 	}
