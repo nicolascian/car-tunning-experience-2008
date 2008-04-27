@@ -10,7 +10,7 @@
  * 
  * @version	1.0
  */
-public class Inyeccion extendes Alimentacion{
+public class Inyeccion extends Alimentacion{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
