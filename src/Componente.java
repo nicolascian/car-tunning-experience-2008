@@ -16,13 +16,16 @@ public abstract class Componente{
 	/**
 	 * Documentacion
 	 */
-	@SuppressWarnings("unused")	
 	private String Nombre;
-	@SuppressWarnings("unused")
+
 	private double Estado ;
-	@SuppressWarnings("unused")	
+
 	private double Peso;
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public abstract double getPrecio();
 	
 	public abstract void desgastar(double porcentaje);

@@ -10,33 +10,12 @@
  * 
  * @version	1.0
  */
-public class Carburador extends Alimentacion{
+public class Combustible{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
 	 * Documentacion
-	 * 
-	 * Carburador depende del clima, pues mezcla combustible con aire.
-	 * 
-	 * el Carburador es un sis de alimentacion que consume ineficientemente 
-	 * el combustible en mayor cantidad, por ciclo, pero provee mayor potencia.
 	 */
-	public void consumirCombustible(){
-		/* ponderar Auto.Motor.getCilindrada
-		 *          Auto.Combustible.Capacidad
-		 *          Pista.Clima
-		 *          
-		 *          y pasar el valor ponderado
-		 */         
-		//Auto.Combustible.Desgastar(valor ponderado);
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public double obtenerPotencia(){
-		
-	}
+	private String nombre;
 	
 }

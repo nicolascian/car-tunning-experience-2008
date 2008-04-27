@@ -16,6 +16,6 @@ public abstract class Alimentacion{
 	/**
 	 * Documentacion
 	 */
-	public void consumirCombustible(){}
+	public abstract void consumirCombustible();
 	
 }

@@ -16,6 +16,8 @@ public class Inyeccion extends Alimentacion{
 	/**
 	 * Documentacion
 	 */
-	private String nombre;
+	public void consumirCombustible(){
+//		Auto.Combustible.Desgastar(Auto.Motor.getCilindrada / Auto.Combustible.Capacidad);
+	}
 	
 }
