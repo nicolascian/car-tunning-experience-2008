@@ -32,11 +32,13 @@ public class Carburador extends Alimentacion{
 	}
 	
 	/**
+	 * La potencia de la carburador es el 98% de la potencia del combustible 
 	 * 
 	 * @return
 	 */
 	public double obtenerPotencia(){
-		
+		/* depende del tipo de combustible */
+		return ( Auto.Combustible.obtenerPotencia() *98 )/100;
 	}
 	
 }
