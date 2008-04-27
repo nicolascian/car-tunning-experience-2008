@@ -16,6 +16,22 @@ public abstract class Componente{
 	/**
 	 * Documentacion
 	 */
+	
 	private String nombre;
+
+	private double Estado;
+	
+	private double Peso;
+	
+	public abstract double getPrecio();
+	
+	public abstract void desgastar(double porcentaje);
+	
+	public abstract void reparar(double porcentaje);
+	
+	public abstract double obtenerPotencia();
+	
+	public abstract double getPeso();
+	
 	
 }
