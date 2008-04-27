@@ -16,11 +16,11 @@ public abstract class Componente{
 	/**
 	 * Documentacion
 	 */
-	
-	private String nombre;
-
-	private double Estado;
-	
+	@SuppressWarnings("unused")	
+	private String Nombre;
+	@SuppressWarnings("unused")
+	private double Estado ;
+	@SuppressWarnings("unused")	
 	private double Peso;
 	
 	public abstract double getPrecio();
