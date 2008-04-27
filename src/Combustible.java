@@ -16,6 +16,18 @@ public class Combustible{
 	/**
 	 * Documentacion
 	 */
-	private String nombre;
+	private double indiceDeCombustion;
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public double obtenerPotencia(){
+		return indiceDeCombustion * 100;
+	}
+	
+	public void setIndiceDeCombustion(double indice){
+		this.indiceDeCombustion = indice;
+	}
 	
 }
