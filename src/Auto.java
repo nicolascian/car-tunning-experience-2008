@@ -23,6 +23,19 @@ public class Auto{
 	 */
 	private Motor motor;
 	
+	private Inyeccion inyeccion;
+	
+	private Alimentacion alimentacion;
+	
+	
+	public Inyeccion getInyeccion() {
+		return inyeccion;
+	}
+
+	public void setInyeccion(Inyeccion inyeccion) {
+		this.inyeccion = inyeccion;
+	}
+
 	/**
 	 * Documentacion
 	 */
@@ -49,6 +62,14 @@ public class Auto{
 	 */
 	public Motor getMotor(){
 		return this.motor;
+	}
+
+	public Alimentacion getAlimentacion() {
+		return alimentacion;
+	}
+
+	public void setAlimentacion(Alimentacion alimentacion) {
+		this.alimentacion = alimentacion;
 	}
 	
 }
