@@ -15,16 +15,31 @@ public class Motor extends Componente{
 	
 	private double Cilindrada;
 	
-	private int CantidadCilindros;
-	
+	private int CantidadCilindros;	
+
 	/**
-	 * las revoluciones maximas se calculan segun la cantidad
-	 * de cilindros y la cilindrada
+	 * estas revoluciones indicadas para cada cambio
+	 * especifican cuando hay que hacer un cambio
 	 * 
 	 * un motor de 8 cilindros, con cilindrada 4.0
 	 * tiene maximas revoluciones de 6400 rpm
 	 */
+	private double revolucionesOptimas;
+	
+	/**
+	 * las revoluciones maximas se calculan segun las revolucionesOptimas
+	 * y se toma en cuenta el cambio actual
+	 * 
+	 * si las revolucionesOptimas son 6400
+	 * entonces las revolucionesMaximas son:
+	 * primera = 8060
+	 * segunda = 8120
+	 * tercera = 8180
+	 * cuarta  = 8240
+	 * etc...
+	 */
 	private double revolucionesMaximas;
+	
 	
 	/**
 	 * contador de las revoluciones del motor
@@ -41,7 +56,8 @@ public class Motor extends Componente{
 		CantidadCilindros = cantidadCilindros;
 		Cilindrada = cilindrada;
 		
-		revolucionesMaximas = CantidadCilindros * Cilindrada * 200;
+		revolucionesOptimas = CantidadCilindros * Cilindrada * 200;
+		revolucionesMaximas = (5/4)*revolucionesOptimas;
 	}
 	
 	/**
@@ -49,7 +65,7 @@ public class Motor extends Componente{
 	 */
 	public void desgastar(){
 		/* pasarce de revolucionesMaximas es perjudicial */
-		this.setEstado(Estado - RPM/revolucionesMaximas - 1/1000000000);
+		this.setEstado(Estado - (RPM/revolucionesMaximas)*10 - 1/1000000000);
 	}
 	
 	public double obtenerPotencia(){
@@ -57,14 +73,17 @@ public class Motor extends Componente{
 		
 	}
 	
+	
+	
+	public void setRPM(double rpm) {
+		RPM = rpm;
+		revolucionesMaximas = (5/4)*revolucionesOptimas + (auto.getCaja().getCambio() * 60);
+	}
+	
 	/* setters y getters */
 
 	public double getRPM() {
 		return RPM;
-	}
-
-	public void setRPM(double rpm) {
-		RPM = rpm;
 	}
 
 	public int getCantidadCilindros() {
@@ -77,6 +96,14 @@ public class Motor extends Componente{
 
 	public double getRevolucionesMaximas() {
 		return revolucionesMaximas;
+	}
+
+	public double getRevolucionesOptimas() {
+		return revolucionesOptimas;
+	}
+
+	public void setRevolucionesMaximas(double revolucionesMaximas) {
+		this.revolucionesMaximas = revolucionesMaximas;
 	}
 	
 }

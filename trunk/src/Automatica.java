@@ -15,14 +15,24 @@
 public class Automatica extends Caja{
 	/* comentario acerca de la implementacion de la clase */
 	
-	public void siguiente(){
+	public void Chequear(){
+		if ( (auto.getMotor().getRevolucionesOptimas() - auto.getMotor().getRPM()) == 200 ){
+			if (/*ESTA ACELERANDO*/){
+				this.siguiente();
+			}else/*ESTA FRENANDO*/{
+				this.anterior();
+			}
+		}
+	}
+	
+	private void siguiente(){
 		if ( Cambio < CantidadCambios ){
 			this.setCambio(Cambio + 1);
 			this.desgastar();
 		}
 	}
 	
-	public void anterior(){
+	private void anterior(){
 		if ( Cambio > 0 ){
 			this.setCambio(Cambio - 1);
 			this.desgastar();
