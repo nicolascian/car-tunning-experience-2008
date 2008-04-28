@@ -14,7 +14,9 @@ public abstract class Alimentacion extends Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
-	 * este atributo es modificado por el Clima, cuando hace Auto.afectar
+	 * este atributo es modificado por el Clima, 
+	 * cuando hace auto.Afectar; es un numero
+	 * ponderando la Temperatura del clima.
 	 * 
 	 * es un indice cercano a 1 para condiciones optimas
 	 */
@@ -24,6 +26,7 @@ public abstract class Alimentacion extends Componente{
 	 * Documentacion
 	 */
 	public abstract double CombustibleAConsumir();
+	
 	
 	
 	/* setters y getters */
