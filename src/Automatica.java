@@ -17,7 +17,7 @@ public class Automatica extends Caja{
 	
 	public void Chequear(){
 		if ( (auto.getMotor().getRevolucionesOptimas() - auto.getMotor().getRPM()) == 200 ){
-			if (/*ESTA ACELERANDO*/){
+			if (true/*ESTA ACELERANDO*/){
 				this.siguiente();
 			}else/*ESTA FRENANDO*/{
 				this.anterior();

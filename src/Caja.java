@@ -5,7 +5,6 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-
 /**
  * Documentacion
  * 
@@ -29,7 +28,7 @@ public abstract class Caja extends Componente{
 
 	public void setCambio(int cambio) {
 		Cambio = cambio;
-		auto.getMotor().setRevolucionesMaximas( (5/4)*auto.getMotor().getRevolucionesOptimas() + Cambio * 60) );
+		auto.getMotor().setRevolucionesMaximas( (5/4)*auto.getMotor().getRevolucionesOptimas() + Cambio * 60 );
 	}
 	
 }

@@ -1,4 +1,14 @@
-Informacion del Proyecto
+## Hay que hacer ##
+
+Caja - Automatica
+metodo Chequear, para que pase los cambios sola
+
+Clima, Superficie
+metodo Constructor, auto.Afectar()
+
+
+
+## Informacion del Proyecto ##
 
 la pagina del proyecto es:
 http://code.google.com/p/car-tunning-experience-2008/
@@ -19,7 +29,6 @@ Manual para configurar el SVN en eclipse
 http://blog.msbbc.co.uk/2007/06/using-googles-free-svn-repository-with.html
 
 
-hice un banner
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
