@@ -29,6 +29,22 @@ public class Auto{
 	
 	private Combustible combustible;
 	
+	private Carroceria carroceria;
+	
+	private Suspension suspension;
+	
+	private Escape escape;
+	
+	private Llanta LlantaDelanteraIzquierda;
+	private Llanta LlantaDelanteraDerecha;
+	private Llanta LlantaTraceraIzquierda;
+	private Llanta LlantaTraceraDerecha;
+	
+	private Neumatico NeumaticoDelanteraIzquierda;
+	private Neumatico NeumaticoDelanteraDerecha;
+	private Neumatico NeumaticoTraceraIzquierda;
+	private Neumatico NeumaticoTraceraDerecha;
+	
 	/**
 	 * 
 	 *
