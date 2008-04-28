@@ -5,31 +5,37 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-
 /**
  * Documentacion
  * 
+ * en una caja secuencial podemos pasar los cambios;
+ * como siguiente, y anterior.
+ * 
  * @version	1.0
  */
-public abstract class Caja extends Componente{
+public class Secuencial extends Caja{
 	/* comentario acerca de la implementacion de la clase */
 	
-	/**
-	 * Representa la posicion de la Caja de Cambios o Caja
-	 * de Velocidades
-	 */
-	protected int Cambio;
-
-	protected int CantidadCambios;
+	public void siguiente(){
+		if ( Cambio < CantidadCambios ){
+			this.setCambio(Cambio + 1);
+			this.desgastar();
+		}
+	}
 	
-	
-	public int getCambio() {
-		return Cambio;
+	public void anterior(){
+		if ( Cambio > 0 ){
+			this.setCambio(Cambio - 1);
+			this.desgastar();
+		}
 	}
 
-	public void setCambio(int cambio) {
-		Cambio = cambio;
-		auto.getMotor().setRevolucionesMaximas( (5/4)*auto.getMotor().getRevolucionesOptimas() + Cambio * 60) );
+	
+	public void desgastar(){}
+	
+	public double obtenerPotencia(){
+		return 0;
+		
 	}
 	
 }
