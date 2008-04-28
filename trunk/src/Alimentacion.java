@@ -14,8 +14,22 @@ public abstract class Alimentacion extends Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
+	 * este atributo es modificado por el Clima, cuando hace Auto.afectar
+	 */
+	private double EfectoClimatico;
+	
+	/**
 	 * Documentacion
 	 */
-	public abstract void consumirCombustible();
+	public abstract double CombustibleAConsumir();
+
+	public double getEfectoClimatico() {
+		return EfectoClimatico;
+	}
+
+	public void setEfectoClimatico(double efectoClimatico) {
+		EfectoClimatico = efectoClimatico;
+	}
+	
 	
 }

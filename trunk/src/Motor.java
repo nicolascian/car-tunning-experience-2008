@@ -17,6 +17,17 @@ public class Motor{
 	 * Documentacion
 	 */
 	private double Cilindrada;
+	
+	private double RPM;
+
+	
+	public double getRPM() {
+		return RPM;
+	}
+
+	public void setRPM(double rpm) {
+		RPM = rpm;
+	}
 
 	public double getCilindrada() {
 		return Cilindrada;

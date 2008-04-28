@@ -49,7 +49,9 @@ public abstract class Componente{
 		this.setEstado(this.getEstado() - porcentaje); 
 	}
 	
-	public abstract void reparar(double porcentaje);
+	public void reparar(double porcentaje){
+		this.setEstado(this.getEstado() + porcentaje);
+	}
 	
 	public abstract double obtenerPotencia();
 	
