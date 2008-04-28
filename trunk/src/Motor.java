@@ -15,7 +15,11 @@ public class Motor extends Componente{
 	
 	private double Cilindrada;
 	
-	private int CantidadCilindros;	
+	private int CantidadCilindros;
+	
+	private double TemperaturaCritica;
+	private double TemperaturaOptima;
+	private double TemperaturaExterna;
 
 	/**
 	 * estas revoluciones indicadas para cada cambio
@@ -58,6 +62,9 @@ public class Motor extends Componente{
 		
 		revolucionesOptimas = CantidadCilindros * Cilindrada * 200;
 		revolucionesMaximas = (5/4)*revolucionesOptimas;
+		TemperaturaCritica = 500; //°C
+		TemperaturaOptima = 120; //°C
+		TemperaturaExterna = 0; //°C
 	}
 	
 	/**
@@ -65,24 +72,30 @@ public class Motor extends Componente{
 	 */
 	public void desgastar(){
 		/* pasarce de revolucionesMaximas es perjudicial */
-		this.setEstado(Estado - (RPM/revolucionesMaximas)*10 - 1/1000000000);
+		this.setEstado( Estado - (RPM/revolucionesMaximas)*10 - 
+				        1/1000000000 - (Temperatura-TemperaturaCritica)/TemperaturaOptima );
 	}
 	
 	public double obtenerPotencia(){
 		
 		return ( RPM + Estado + Cilindrada + CantidadCilindros + 
+				(Temperatura-TemperaturaCritica)/TemperaturaOptima +
 				 // Caja
 				 auto.getCaja().obtenerPotencia() +
 				 // Alimentacion.obtenerPotencias hace: Combustible.obtenerPotencia
 				 auto.getAlimentacion().obtenerPotencia() ); 
 	}
 	
-	
-	
+	/**
+	 * cada vez que cambiamos las RPM, cambian la Temperatura del motor
+	 * 
+	 * @param rpm
+	 */
 	public void setRPM(double rpm) {
 		RPM = rpm;
-		revolucionesMaximas = (5/4)*revolucionesOptimas + (auto.getCaja().getCambio() * 60);
+		Temperatura = ( RPM/6000 + TemperaturaExterna );
 	}
+	
 	
 	/* setters y getters */
 
@@ -108,6 +121,10 @@ public class Motor extends Componente{
 
 	public void setRevolucionesMaximas(double revolucionesMaximas) {
 		this.revolucionesMaximas = revolucionesMaximas;
+	}
+
+	public void setTemperaturaExterna(double temperaturaExterna) {
+		TemperaturaExterna = temperaturaExterna;
 	}
 	
 }
