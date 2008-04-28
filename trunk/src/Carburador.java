@@ -12,11 +12,7 @@
  */
 public class Carburador extends Alimentacion{
 	/* comentario acerca de la implementacion de la clase */
-	
-	public void desgastar(){
-		 this.setEstado(this.getEstado() - (this.getEfectoClimatico()/10000) - 1/1000000000 );
-	}
-	
+		
 	/**
 	 * Documentacion
 	 * 
@@ -31,7 +27,14 @@ public class Carburador extends Alimentacion{
 
 		double valor = this.getAuto().getMotor().getCilindrada() * this.getAuto().getMotor().getRPM();
 		
-		return (valor * this.getEfectoClimatico() * (1/this.getEstado()) );
+		return (valor * EfectoClimatico * (1/Estado) );
+	}
+	
+	/**
+	 * el efecto climatico afecta al carburador
+	 */
+	public void desgastar(){
+		 Estado = (Estado - (EfectoClimatico/10000) - 1/1000000000 );
 	}
 	
 	/**
@@ -44,7 +47,7 @@ public class Carburador extends Alimentacion{
 	 */
 	public double obtenerPotencia(){
 	
-		return ((this.getAuto().getCombustible().obtenerPotencia() *98) /100) * this.getEfectoClimatico() * this.getEstado();
+		return ((this.getAuto().getCombustible().obtenerPotencia() *98) /100) * EfectoClimatico * Estado;
 	}
 	
 }

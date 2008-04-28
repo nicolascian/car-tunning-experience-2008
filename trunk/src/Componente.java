@@ -14,6 +14,7 @@ public abstract class Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
 	private String Nombre;
+	
 	/**
 	 * El estado indica el porcentaje de integridad de un componente.
 	 * Toma valores entre 0 y 100.
@@ -21,13 +22,13 @@ public abstract class Componente{
 	 * 100 corresponde a totalmente integro.
 	 * Un auto no puede funcionar si alguno de sus elementos tiene Estado = 0.
 	 */
-	private double Estado;
+	protected double Estado;
 	
-	private double Peso;
+	protected double Peso;
 	
-	private Auto auto;
+	protected Auto auto;
 	
-	private AlgoPesos precio;
+	protected AlgoPesos precio;
 	
 
 	public abstract void desgastar(); 

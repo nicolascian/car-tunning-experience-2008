@@ -18,7 +18,7 @@ public abstract class Caja extends Componente{
 	 * Representa la posicion de la Caja de Cambios o Caja
 	 * de Velocidades
 	 */
-	private int Cambio;
+	protected int Cambio;
 
 	
 }
