@@ -43,12 +43,6 @@ public abstract class Componente{
 	
 	public abstract double obtenerPotencia();
 	
-	public abstract double getPeso();
-	
-	public double getEstado(){
-		return Estado;
-	}
-
 	public String getNombre() {
 		return Nombre;
 	}
@@ -56,11 +50,19 @@ public abstract class Componente{
 	public void setNombre(String nombre) {
 		Nombre = nombre;
 	}
-
+	
+	public double getEstado(){
+		return Estado;
+	}
+	
 	public void setEstado(double estado) {
 		Estado = estado;
 	}
-
+	
+	public double getPeso() {
+		return Peso;
+	}
+	
 	public void setPeso(double peso) {
 		Peso = peso;
 	}
