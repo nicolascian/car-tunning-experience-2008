@@ -53,6 +53,22 @@ public class Clima{
 		//Auto.afectar(this);
 	}
 	
+	/**
+	 * constructor con parametros de clima
+	 * 
+	 * @param temperatura
+	 * @param humedad
+	 * @param presion
+	 */
+	Clima(double temperatura, double humedad, double presion){
+		Temperatura = temperatura; //°C
+		Humedad = humedad; //%
+		Presion = presion; //hPa
+		
+		//Auto.afectar(this);
+	}
+	
+	
 	
 	/* setters y getters */
 	
@@ -78,14 +94,6 @@ public class Clima{
 
 	public void setTemperatura(double temperatura) {
 		Temperatura = temperatura;
-	}
-
-	Clima(double temperatura, double humedad, double presion){
-		Temperatura = temperatura; //°C
-		Humedad = humedad; //%
-		Presion = presion; //hPa
-		
-		//Auto.afectar(this);
 	}
 	
 }
