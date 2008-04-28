@@ -8,19 +8,27 @@
 /**
  * Documentacion
  * 
+ * una caja auomatica hace los cambios sola, y de manera secuencial
+ * 
  * @version	1.0
  */
 public class Automatica extends Caja{
 	/* comentario acerca de la implementacion de la clase */
 	
-	public int getCambio(){
-		return Cambio;
+	public void siguiente(){
+		if ( Cambio < CantidadCambios ){
+			this.setCambio(Cambio + 1);
+			this.desgastar();
+		}
+	}
+	
+	public void anterior(){
+		if ( Cambio > 0 ){
+			this.setCambio(Cambio - 1);
+			this.desgastar();
+		}
 	}
 
-	public void setCambio(int cambio){
-		Cambio = cambio;
-		this.desgastar();
-	}
 	
 	public void desgastar(){}
 	

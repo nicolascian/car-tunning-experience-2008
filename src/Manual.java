@@ -8,14 +8,14 @@
 /**
  * Documentacion
  * 
+ * en una caja manual, podemos pasar de cambio directamente
+ * haciendo setCambio(cambioNuevo) sin importar cual era el
+ * cambio anterior
+ * 
  * @version	1.0
  */
 public class Manual extends Caja{
 	/* comentario acerca de la implementacion de la clase */
-
-	public int getCambio(){
-		return Cambio;
-	}
 
 	public void setCambio(int cambio){
 		Cambio = cambio;

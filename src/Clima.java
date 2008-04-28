@@ -9,6 +9,9 @@
 /**
  * Documentacion
  * 
+ * cada vez que se crea un clima nuevo, este se encarga de afectar 
+ * al auto, en su constructor llama a auto.afectar(this);
+ * 
  * @version	1.0
  */
 public class Clima{
