@@ -20,9 +20,16 @@ public class Inyeccion extends Alimentacion{
 		/* se consume combustible segun la Cilindrada, el tipo de combustible
 		 * y se afecta segun efectoclimatico y el Estado */         
 
-		double valor = ( this.getAuto().getMotor().getCilindrada() * this.getAuto().getMotor().getRPM() ) / this.getAuto().getCombustible().getCapacidad();
+		double valor = this.getAuto().getMotor().getCilindrada() * this.getAuto().getMotor().getRPM();
 			
-		return (valor * this.getEfectoClimatico() * this.getEstado());
+		return (valor * (1/this.getEstado()) * (this.getEfectoClimatico()/10)  );
+	}
+	
+	/**
+	 * a la inyeccion el clima, lo afecta en menor medida
+	 */
+	public void desgastar(){
+		this.setEstado(this.getEstado() - (this.getEfectoClimatico()/10000000) - 1/1000000000 );
 	}
 	
 	/**

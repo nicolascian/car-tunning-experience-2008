@@ -15,6 +15,8 @@ public abstract class Alimentacion extends Componente{
 	
 	/**
 	 * este atributo es modificado por el Clima, cuando hace Auto.afectar
+	 * 
+	 * es un indice cercano a 1 para condiciones optimas
 	 */
 	private double EfectoClimatico;
 	
