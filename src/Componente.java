@@ -13,7 +13,6 @@
 public abstract class Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
-	private String Nombre;
 	/**
 	 * El estado indica el porcentaje de integridad de un componente.
 	 * Toma valores entre 0 y 100.
@@ -22,12 +21,27 @@ public abstract class Componente{
 	 * Un auto no puede funcionar si alguno de sus elementos tiene Estado = 0.
 	 */
 	private double Estado;
-
+	
 	private double Peso;
 	
 	private Auto auto;
 	
 	private AlgoPesos precio;
+	
+
+	public abstract void desgastar(); 
+
+	public abstract double obtenerPotencia();
+	
+	
+	public void reparar(double porcentaje){
+		this.setEstado(this.getEstado() + porcentaje);
+	}
+	
+
+	
+	
+	/* Setters y Getters */
 	
 	public AlgoPesos getPrecio() {
 		return precio;
@@ -44,15 +58,6 @@ public abstract class Componente{
 	public void setAuto(Auto auto) {
 		this.auto = auto;
 	}
-
-	public abstract void desgastar(); 
-
-	
-	public void reparar(double porcentaje){
-		this.setEstado(this.getEstado() + porcentaje);
-	}
-	
-	public abstract double obtenerPotencia();
 	
 	public String getNombre() {
 		return Nombre;

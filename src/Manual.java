@@ -12,10 +12,12 @@
  */
 public class Manual extends Caja{
 	/* comentario acerca de la implementacion de la clase */
-	
-	/**
-	 * Documentacion
-	 */
-	private String nombre;
-	
+
+	public int getCambio() {
+		return this.getCambio();
+	}
+
+	public void setCambio(int cambio) {
+		this.setCambio(cambio);
+	}
 }

@@ -13,9 +13,12 @@
 public class Automatica extends Caja{
 	/* comentario acerca de la implementacion de la clase */
 	
-	/**
-	 * Documentacion
-	 */
-	private String nombre;
+	public int getCambio() {
+		return Cambio;
+	}
+
+	public void setCambio(int cambio) {
+		Cambio = cambio;
+	}
 	
 }
