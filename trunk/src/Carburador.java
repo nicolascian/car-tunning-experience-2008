@@ -33,18 +33,20 @@ public class Carburador extends Alimentacion{
 		 *          
 		 *          y pasar el valor ponderado
 		 */         
-		//Auto.Combustible.Desgastar(valor ponderado);
+		this.getAuto().getCombustible().Desgastar(valor ponderado);
 	}
 	
 	/**
 	 * La potencia de la carburador es el 98% de la potencia del combustible 
 	 * y ademas es afectado por el multiplicador "efectoClimatico"
 	 * 
+	 * depende del tipo de combustible
+	 * 
 	 * @return
 	 */
 	public double obtenerPotencia(){
-		/* depende del tipo de combustible */
-		return ( ( Auto.Combustible.obtenerPotencia() *98 )/100 ) * efectoClimatico;
+	
+		return ((this.getAuto().getCombustible().obtenerPotencia() *98) /100) *efectoClimatico *getEstado();
 	}
 	
 }

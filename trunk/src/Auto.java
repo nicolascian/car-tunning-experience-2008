@@ -29,6 +29,15 @@ public class Auto{
 	
 	private Combustible combustible;
 	
+	/**
+	 * 
+	 *
+	 */
+	public void Desgastar(){
+		//para todos los componentes, hacer:. componente.desgastar(); excepto para Combustible
+	}
+	
+	
 	public Combustible getCombustible() {
 		return combustible;
 	}

@@ -10,7 +10,7 @@
  * 
  * @version	1.0
  */
-public abstract class Alimentacion{
+public abstract class Alimentacion extends Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
