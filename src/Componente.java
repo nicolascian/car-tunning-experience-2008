@@ -24,6 +24,9 @@ public abstract class Componente{
 	 */
 	protected double Estado;
 	
+	/** Temperatura interna del componente */
+	protected double Temperatura;
+	
 	protected double Peso;
 	
 	protected Auto auto;

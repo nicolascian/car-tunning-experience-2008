@@ -37,6 +37,20 @@ public class Auto{
 		//para todos los componentes, hacer:. componente.desgastar(); excepto para Combustible
 	}
 	
+	public void afectar(Clima clima){
+		
+	}
+	
+	/**
+	 * 
+	 * @param superficie
+	 */
+	public void afectar(Superficie superficie){
+		
+	}
+	
+	
+	/* setters y getters */
 	
 	public Combustible getCombustible() {
 		return combustible;
