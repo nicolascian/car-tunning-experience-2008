@@ -11,12 +11,14 @@
  * 
  * @version	1.0
  */
-public abstract class Caja{
+public abstract class Caja extends Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
-	 * Documentacion
+	 * Representa la posicion de la Caja de Cambios o Caja
+	 * de Velocidades
 	 */
-	private String nombre;
+	private int Cambio;
+
 	
 }
