@@ -19,6 +19,7 @@ public class Manual extends Caja{
 
 	public void setCambio(int cambio){
 		Cambio = cambio;
+		this.desgastar();
 	}
 	
 	public void desgastar(){}
