@@ -57,6 +57,16 @@ public class Auto{
 	 * se afectan los componentes del auto por el clima
 	 * - esta sobrecargada con Superficie
 	 * 
+	 * componentes afectados por el clima:
+	 * alimentacion -humedad
+	 * carroceria -humedad
+	 * escape -presion, humedad
+	 * llantas -presion
+	 * caja -temperatura
+	 * motor -temperatura
+	 * suspencion -temperatura
+	 * neumaticos -temperatura
+	 *
 	 * @param clima
 	 */
 	public void afectar(Clima clima){
@@ -69,12 +79,20 @@ public class Auto{
 		// entonces el efecto climatico queda en 1 si es optimo
 		// si es mas de eso el efecto es maypr a 1
 		
+
 		
 	}
 	
 	/**
 	 * se afectan los componentes del auto por la superficie
 	 * - esta sobrecargada con Clima
+	 * 
+	 * componentes afectados por la superficie:
+	 * carroceria
+	 * suspension
+	 * escape
+	 * llanta
+	 * neumaticos
 	 * 
 	 * @param superficie
 	 */
@@ -102,11 +120,9 @@ public class Auto{
 		this.inyeccion = inyeccion;
 	}
 
-
 	public void setCaja(Caja caja){
 		this.caja = caja;
 	}
-	
 
 	public Caja getCaja(){
 		return this.caja;
