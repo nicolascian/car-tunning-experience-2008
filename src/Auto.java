@@ -37,15 +37,33 @@ public class Auto{
 		//para todos los componentes, hacer:. componente.desgastar(); excepto para Combustible
 	}
 	
+	/**
+	 * se afectan los componentes del auto por el clima
+	 * - esta sobrecargada con Superficie
+	 * 
+	 * @param clima
+	 */
 	public void afectar(Clima clima){
+		
+		/* la alimentacion se ve afectada por el clima
+		 * supongamos que la humedad optima para la
+		 * alimentacion es 30% 
+		 */
+		alimentacion.setEfectoClimatico(clima.getHumedad()/ 30);
+		// entonces el efecto climatico queda en 1 si es optimo
+		// si es mas de eso el efecto es maypr a 1
+		
 		
 	}
 	
 	/**
+	 * se afectan los componentes del auto por la superficie
+	 * - esta sobrecargada con Clima
 	 * 
 	 * @param superficie
 	 */
 	public void afectar(Superficie superficie){
+		
 		
 	}
 	

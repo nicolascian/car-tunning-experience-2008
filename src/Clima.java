@@ -47,15 +47,42 @@ public class Clima{
 		Humedad = 50; //%
 		Presion = 1013; //hPa
 		
-		Auto.afectar(this);
+		//Auto.afectar(this);
 	}
 	
+	
+	/* setters y getters */
+	
+	public double getHumedad() {
+		return Humedad;
+	}
+
+	public void setHumedad(double humedad) {
+		Humedad = humedad;
+	}
+
+	public double getPresion() {
+		return Presion;
+	}
+
+	public void setPresion(double presion) {
+		Presion = presion;
+	}
+
+	public double getTemperatura() {
+		return Temperatura;
+	}
+
+	public void setTemperatura(double temperatura) {
+		Temperatura = temperatura;
+	}
+
 	Clima(double temperatura, double humedad, double presion){
 		Temperatura = temperatura; //°C
 		Humedad = humedad; //%
 		Presion = presion; //hPa
 		
-		Auto.afectar(this);
+		//Auto.afectar(this);
 	}
 	
 }
