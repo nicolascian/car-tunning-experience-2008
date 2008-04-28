@@ -21,12 +21,22 @@ public abstract class Componente{
 	 * 100 corresponde a totalmente integro.
 	 * Un auto no puede funcionar si alguno de sus elementos tiene Estado = 0.
 	 */
-	private double Estado ;
+	private double Estado;
 
 	private double Peso;
 	
 	private Auto auto;
 	
+	private AlgoPesos precio;
+	
+	public AlgoPesos getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(AlgoPesos precio) {
+		this.precio = precio;
+	}
+
 	public Auto getAuto() {
 		return auto;
 	}
@@ -35,8 +45,6 @@ public abstract class Componente{
 		this.auto = auto;
 	}
 
-	public abstract double getPrecio();
-	
 	public abstract void desgastar(double porcentaje);
 	
 	public abstract void reparar(double porcentaje);
