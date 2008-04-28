@@ -13,14 +13,11 @@
 public class Carburador extends Alimentacion{
 	/* comentario acerca de la implementacion de la clase */
 	
-	/**
-	 * este atributo es modificado por el Clima, cuando hace Auto.afectar
-	 */
-	private double efectoClimatico;
 	
 	public void desgastar(double porcentaje){
 		 this.setEstado(this.getEstado() - porcentaje);
 	}
+	
 	
 	/**
 	 * Documentacion
@@ -30,13 +27,13 @@ public class Carburador extends Alimentacion{
 	 * el Carburador es un sis de alimentacion que consume ineficientemente 
 	 * el combustible en mayor cantidad, por ciclo, pero provee mayor potencia.
 	 */
-	public void consumirCombustible(){
+	public double CombustibleAConsumir(){
 		/* se consume combustible segun la Cilindrada, el tipo de combustible
 		 * y se afecta segun efectoclimatico y el Estado */         
 
-		double valor = this.getAuto().getMotor().getCilindrada() / this.getAuto().getCombustible().getCapacidad();
+		double valor = this.getAuto().getMotor().getCilindrada() * this.getAuto().getMotor().getRPM() / this.getAuto().getCombustible().getCapacidad();
 		
-		this.getAuto().getCombustible().desgastar(valor *efectoClimatico *this.getEstado());
+		return (valor * this.getEfectoClimatico() * this.getEstado());
 	}
 	
 	/**
@@ -49,7 +46,7 @@ public class Carburador extends Alimentacion{
 	 */
 	public double obtenerPotencia(){
 	
-		return ((this.getAuto().getCombustible().obtenerPotencia() *98) /100) *efectoClimatico *getEstado();
+		return ((this.getAuto().getCombustible().obtenerPotencia() *98) /100) * this.getEfectoClimatico() * this.getEstado();
 	}
 	
 }

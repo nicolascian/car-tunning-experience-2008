@@ -16,8 +16,13 @@ public class Inyeccion extends Alimentacion{
 	/**
 	 * La inyeccion consume menos combustible pero provee menos potencia
 	 */
-	public void consumirCombustible(){
-//		Auto.Combustible.Desgastar(Auto.Motor.getCilindrada / Auto.Combustible.Capacidad);
+	public double CombustibleAConsumir(){
+		/* se consume combustible segun la Cilindrada, el tipo de combustible
+		 * y se afecta segun efectoclimatico y el Estado */         
+
+		double valor = ( this.getAuto().getMotor().getCilindrada() * this.getAuto().getMotor().getRPM() ) / this.getAuto().getCombustible().getCapacidad();
+			
+		return (valor * this.getEfectoClimatico() * this.getEstado());
 	}
 	
 	/**
@@ -26,6 +31,6 @@ public class Inyeccion extends Alimentacion{
 	 * @return
 	 */
 	public double obtenerPotencia(){
-		return ( Auto.Combustible.obtenerPotencia() * 94 )/100;
+		return ((this.getAuto().getCombustible().obtenerPotencia() *94) /100) * this.getEfectoClimatico() * this.getEstado();
 	}
 }
