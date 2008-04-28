@@ -45,5 +45,24 @@ public abstract class Componente{
 	
 	public abstract double getPeso();
 	
+	public double getEstado(){
+		return Estado;
+	}
+
+	public String getNombre() {
+		return Nombre;
+	}
+
+	public void setNombre(String nombre) {
+		Nombre = nombre;
+	}
+
+	public void setEstado(double estado) {
+		Estado = estado;
+	}
+
+	public void setPeso(double peso) {
+		Peso = peso;
+	}
 	
 }
