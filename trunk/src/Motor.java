@@ -69,8 +69,12 @@ public class Motor extends Componente{
 	}
 	
 	public double obtenerPotencia(){
-		return 0;
 		
+		return ( RPM + Estado + Cilindrada + CantidadCilindros + 
+				 // Caja
+				 auto.getCaja().obtenerPotencia() +
+				 // Alimentacion.obtenerPotencias hace: Combustible.obtenerPotencia
+				 auto.getAlimentacion().obtenerPotencia() ); 
 	}
 	
 	

@@ -13,21 +13,13 @@
 public class Auto{
 	/* comentario acerca de la implementacion de la clase */
 	
-	/**
-	 * Documentacion
-	 */
-	private Caja caja;
-	
-	/**
-	 * Documentacion
-	 */
 	private Motor motor;
 	
-	private Inyeccion inyeccion;
+	private Caja caja;
+
+	private Combustible combustible;
 	
 	private Alimentacion alimentacion;
-	
-	private Combustible combustible;
 	
 	private Carroceria carroceria;
 	
@@ -44,13 +36,20 @@ public class Auto{
 	private Neumatico NeumaticoDelanteraDerecha;
 	private Neumatico NeumaticoTraceraIzquierda;
 	private Neumatico NeumaticoTraceraDerecha;
-	
+
 	/**
+	 * para cada instante puede decirnos cuales
+	 * es la potencia final del automovil
 	 * 
-	 *
+	 * @return
 	 */
-	public void Desgastar(){
-		//para todos los componentes, hacer:. componente.desgastar(); excepto para Combustible
+	public double getPotenciaTotal(){
+		//recorremos los componentes pertinentes, y hacemos:
+		// componente.obtenerPotencia();
+		return ( motor.obtenerPotencia() +   /* de aca salen: Caja, Alimentacion, Combustible*/
+		         carroceria.obtenerPotencia() +
+		         suspension.obtenerPotencia() +
+		         escape.obtenerPotencia()           );
 	}
 	
 	/**
@@ -100,6 +99,39 @@ public class Auto{
 		
 		
 	}
+	
+	
+	/**
+	 * es invocado en cada ciclo durante la carrera, se encarga
+	 * de deteriorar los componentes del auto
+	 */
+	public void Desgastar(){
+		//para todos los componentes, hacer: componente.desgastar();
+		
+		//hay que arreglar esto, con algo de Polimorfismo e iteracion
+		//una lista de Componentes que se recorre
+		caja.desgastar();
+		motor.desgastar();
+		inyeccion.desgastar();
+		alimentacion.desgastar();
+		combustible.desgastar();
+		carroceria.desgastar();
+		suspension.desgastar();
+		escape.desgastar();
+		
+		LlantaDelanteraIzquierda.desgastar();
+		LlantaDelanteraDerecha.desgastar();
+		LlantaTraceraIzquierda.desgastar();
+		LlantaTraceraDerecha.desgastar();
+	
+		NeumaticoDelanteraIzquierda.desgastar();
+		NeumaticoDelanteraDerecha.desgastar();
+		NeumaticoTraceraIzquierda.desgastar();
+		NeumaticoTraceraDerecha.desgastar();
+	}
+	
+	
+	
 	
 	
 	/* setters y getters */

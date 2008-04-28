@@ -27,18 +27,37 @@ public abstract class Componente{
 	/** Temperatura interna del componente */
 	protected double Temperatura;
 	
+	/** Peso especifico del componente */
 	protected double Peso;
 	
 	protected Auto auto;
 	
 	protected AlgoPesos precio;
 	
-
+	/**
+	 * es invocado por el auto
+	 * tiene por objetivo deteriorar el estado de cada componente
+	 * esto hace que los componentes pierdan la eficiencia, y den 
+	 * menos potencia
+	 */
 	public abstract void desgastar(); 
 
+	/**
+	 * nos dice la potencia del componente en cualquier momento
+	 * dependiendo del estado del componete y de los factores
+	 * que influyen en su funcionamiento
+	 * 
+	 * @return
+	 */
 	public abstract double obtenerPotencia();
 	
-	
+	/**
+	 * en funcion de la disposicion del unidades monetarias, y
+	 * tomando el cuenta el precio de cada componente, podemos
+	 * restaurar el estado de la pieza.
+	 * 
+	 * @param porcentaje
+	 */
 	public void reparar(double porcentaje){
 		Estado += porcentaje;
 	}
