@@ -20,6 +20,10 @@ public class Combustible extends Componente{
 	
 	private double capacidad;
 	
+	public void desgastar(double porcentaje){
+		this.setEstado(this.getEstado() - porcentaje); 
+	}
+	
 	public double getCapacidad() {
 		return capacidad;
 	}

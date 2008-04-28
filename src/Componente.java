@@ -45,7 +45,9 @@ public abstract class Componente{
 		this.auto = auto;
 	}
 
-	public abstract void desgastar(double porcentaje);
+	public void desgastar(double porcentaje){
+		this.setEstado(this.getEstado() - porcentaje); 
+	}
 	
 	public abstract void reparar(double porcentaje);
 	

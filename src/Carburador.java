@@ -18,6 +18,10 @@ public class Carburador extends Alimentacion{
 	 */
 	private double efectoClimatico;
 	
+	public void desgastar(double porcentaje){
+		 this.setEstado(this.getEstado() - porcentaje);
+	}
+	
 	/**
 	 * Documentacion
 	 * 
@@ -32,7 +36,7 @@ public class Carburador extends Alimentacion{
 
 		double valor = this.getAuto().getMotor().getCilindrada() / this.getAuto().getCombustible().getCapacidad();
 		
-		this.getAuto().getCombustible().desgastar(valor *efectoClimatico *Estado);
+		this.getAuto().getCombustible().desgastar(valor *efectoClimatico *this.getEstado());
 	}
 	
 	/**
