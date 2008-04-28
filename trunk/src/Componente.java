@@ -40,7 +40,7 @@ public abstract class Componente{
 	
 	
 	public void reparar(double porcentaje){
-		this.setEstado(this.getEstado() + porcentaje);
+		Estado += porcentaje;
 	}
 	
 

@@ -10,12 +10,12 @@
  * 
  * @version	1.0
  */
-public abstract class Jugador{
+public class Llanta extends Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
-	/**
-	 * Documentacion
-	 */
-	protected Auto auto;
+	public void desgastar(){}
 	
+	public double obtenerPotencia(){
+		return 0;
+	}
 }
