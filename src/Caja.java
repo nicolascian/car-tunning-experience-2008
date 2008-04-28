@@ -25,7 +25,12 @@ public abstract class Caja extends Componente{
 	public int getCambio() {
 		return Cambio;
 	}
-
+	
+	/**
+	 * cada vez que hacemos un Cambio, se altera las revolucionesMaximas del Motor
+	 * 
+	 * @param cambio
+	 */
 	public void setCambio(int cambio) {
 		Cambio = cambio;
 		auto.getMotor().setRevolucionesMaximas( (5/4)*auto.getMotor().getRevolucionesOptimas() + Cambio * 60 );

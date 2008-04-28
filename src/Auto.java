@@ -78,6 +78,7 @@ public class Auto{
 		// entonces el efecto climatico queda en 1 si es optimo
 		// si es mas de eso el efecto es maypr a 1
 		
+		motor.setTemperaturaExterna(clima.getTemperatura());
 
 		
 	}
@@ -112,7 +113,6 @@ public class Auto{
 		//una lista de Componentes que se recorre
 		caja.desgastar();
 		motor.desgastar();
-		inyeccion.desgastar();
 		alimentacion.desgastar();
 		combustible.desgastar();
 		carroceria.desgastar();
@@ -142,14 +142,6 @@ public class Auto{
 
 	public void setCombustible(Combustible combustible) {
 		this.combustible = combustible;
-	}
-
-	public Inyeccion getInyeccion() {
-		return inyeccion;
-	}
-
-	public void setInyeccion(Inyeccion inyeccion) {
-		this.inyeccion = inyeccion;
 	}
 
 	public void setCaja(Caja caja){
