@@ -13,6 +13,7 @@
 public abstract class Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
+	private String Nombre;
 	/**
 	 * El estado indica el porcentaje de integridad de un componente.
 	 * Toma valores entre 0 y 100.
