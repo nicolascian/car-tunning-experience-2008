@@ -27,13 +27,12 @@ public class Carburador extends Alimentacion{
 	 * el combustible en mayor cantidad, por ciclo, pero provee mayor potencia.
 	 */
 	public void consumirCombustible(){
-		/* ponderar Auto.Motor.getCilindrada
-		 *          Auto.Combustible.Capacidad
-		 *          Pista.Clima
-		 *          
-		 *          y pasar el valor ponderado
-		 */         
-		this.getAuto().getCombustible().Desgastar(valor ponderado);
+		/* se consume combustible segun la Cilindrada, el tipo de combustible
+		 * y se afecta segun efectoclimatico y el Estado */         
+
+		double valor = this.getAuto().getMotor().getCilindrada() / this.getAuto().getCombustible().getCapacidad();
+		
+		this.getAuto().getCombustible().desgastar(valor *efectoClimatico *Estado);
 	}
 	
 	/**

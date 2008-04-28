@@ -16,6 +16,14 @@ public class Motor{
 	/**
 	 * Documentacion
 	 */
-	private String nombre;
+	private double Cilindrada;
+
+	public double getCilindrada() {
+		return Cilindrada;
+	}
+
+	public void setCilindrada(double cilindrada) {
+		Cilindrada = cilindrada;
+	}
 	
 }
