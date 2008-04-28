@@ -25,7 +25,7 @@ public class Carburador extends Alimentacion{
 		/* se consume combustible segun la Cilindrada, el tipo de combustible
 		 * y se afecta segun efectoclimatico y el Estado */         
 
-		double valor = this.getAuto().getMotor().getCilindrada() * this.getAuto().getMotor().getRPM();
+		double valor = auto.getMotor().getCilindrada() * auto.getMotor().getRPM();
 		
 		return (valor * EfectoClimatico * (1/Estado) );
 	}
@@ -47,7 +47,7 @@ public class Carburador extends Alimentacion{
 	 */
 	public double obtenerPotencia(){
 	
-		return ((this.getAuto().getCombustible().obtenerPotencia() *98) /100) * EfectoClimatico * Estado;
+		return ((auto.getCombustible().obtenerPotencia() *98) /100) * EfectoClimatico * Estado;
 	}
 	
 }
