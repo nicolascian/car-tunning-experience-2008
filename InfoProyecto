@@ -7,6 +7,10 @@ Clima, Superficie
 metodo Constructor, auto.Afectar()
 
 
+hay 3 tipos de Caja: automatica : pasa los cambios sola, metodo Chequear
+                         manual : pasa los cambios en cualquier orden
+                     secuencial : pasa los cambios de siguiente y anterior
+
 
 ## Informacion del Proyecto ##
 

@@ -19,4 +19,6 @@ public class Pista{
 	 */
 	private Clima clima;
 	
+	private Superficie superficie;
+	
 }
