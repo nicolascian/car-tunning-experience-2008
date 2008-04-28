@@ -20,5 +20,15 @@ public abstract class Caja extends Componente{
 	 */
 	protected int Cambio;
 
+	protected int CantidadCambios;
+	
+	
+	public int getCambio() {
+		return Cambio;
+	}
+
+	public void setCambio(int cambio) {
+		Cambio = cambio;
+	}
 	
 }
