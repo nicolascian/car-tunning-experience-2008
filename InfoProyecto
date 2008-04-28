@@ -3,8 +3,6 @@
 Caja - Automatica
 metodo Chequear, para que pase los cambios sola
 
-Clima, Superficie
-metodo Constructor, auto.Afectar()
 
 
 hay 3 tipos de Caja: automatica : pasa los cambios sola, metodo Chequear

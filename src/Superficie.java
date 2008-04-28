@@ -16,13 +16,12 @@
 public class Superficie{
 	/* comentario acerca de la implementacion de la clase */
 	
-
+	private String nombre;
+	
 	private double coeficiente;
 	
 	Superficie(){
-		
-		
-		//Auto.afectar(this);
+
 	}
 	
 }

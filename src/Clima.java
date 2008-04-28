@@ -49,8 +49,6 @@ public class Clima{
 		Temperatura = 25; //°C
 		Humedad = 50; //%
 		Presion = 1013; //hPa
-		
-		//Auto.afectar(this);
 	}
 	
 	/**
@@ -64,8 +62,6 @@ public class Clima{
 		Temperatura = temperatura; //°C
 		Humedad = humedad; //%
 		Presion = presion; //hPa
-		
-		//Auto.afectar(this);
 	}
 	
 	
