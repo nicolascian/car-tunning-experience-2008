@@ -10,7 +10,7 @@
  * 
  * @version	1.0
  */
-public class Combustible{
+public class Combustible extends Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
@@ -18,6 +18,20 @@ public class Combustible{
 	 */
 	private double indiceDeCombustion;
 	
+	private double capacidad;
+	
+	public double getCapacidad() {
+		return capacidad;
+	}
+
+	public void setCapacidad(double capacidad) {
+		this.capacidad = capacidad;
+	}
+
+	public double getIndiceDeCombustion() {
+		return indiceDeCombustion;
+	}
+
 	/**
 	 * 
 	 * @return
