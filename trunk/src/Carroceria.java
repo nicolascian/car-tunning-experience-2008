@@ -8,14 +8,19 @@
 /**
  * Documentacion
  * 
+ * se ve afectada por la Humedad del clima, la superficie
+ * 
  * @version	1.0
  */
 public class Carroceria extends Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
-	public void desgastar(){}
+	public void desgastar(){
+		//tener en cuenta la humedad, y superficie
+	}
 	
 	public double obtenerPotencia(){
+		//tener en cuenta la humedad y superficie
 		return 0;
 	}
 }

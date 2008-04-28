@@ -8,14 +8,20 @@
 /**
  * Documentacion
  * 
+ * se afecta por la presion del clima
+ * y la superficie
+ * 
  * @version	1.0
  */
 public class Llanta extends Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
-	public void desgastar(){}
+	public void desgastar(){
+		//tener en cuenta Presion y superficie
+	}
 	
 	public double obtenerPotencia(){
+		//tener en cuenta Presion y superficie
 		return 0;
 	}
 }

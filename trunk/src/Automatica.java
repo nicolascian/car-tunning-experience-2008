@@ -40,9 +40,12 @@ public class Automatica extends Caja{
 	}
 
 	
-	public void desgastar(){}
+	public void desgastar(){
+//		tener en cuenta la temperatura del clima
+	}
 	
 	public double obtenerPotencia(){
+//		tener en cuenta la temperatura del clima
 		return 0;
 		
 	}

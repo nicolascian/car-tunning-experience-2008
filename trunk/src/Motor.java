@@ -8,6 +8,8 @@
 /**
  * Documentacion
  * 
+ * se ve afectado por la temperatura del clima
+ * 
  * @version	1.0
  */
 public class Motor extends Componente{
