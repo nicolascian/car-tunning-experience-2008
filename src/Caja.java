@@ -8,6 +8,8 @@
 /**
  * Documentacion
  * 
+ * se ve afectada por la temperatura del clima
+ * 
  * @version	1.0
  */
 public abstract class Caja extends Componente{
