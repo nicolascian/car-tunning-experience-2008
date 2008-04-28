@@ -22,14 +22,14 @@ public class Inyeccion extends Alimentacion{
 
 		double valor = this.getAuto().getMotor().getCilindrada() * this.getAuto().getMotor().getRPM();
 			
-		return (valor * (1/this.getEstado()) * (this.getEfectoClimatico()/10)  );
+		return (valor * (1/Estado) * (EfectoClimatico/10)  );
 	}
 	
 	/**
-	 * a la inyeccion el clima, lo afecta en menor medida
+	 * a la inyeccion, el clima, lo afecta en menor medida
 	 */
 	public void desgastar(){
-		this.setEstado(this.getEstado() - (this.getEfectoClimatico()/10000000) - 1/1000000000 );
+		this.setEstado(Estado - (EfectoClimatico/10000000) - 1/1000000000 );
 	}
 	
 	/**
@@ -38,6 +38,6 @@ public class Inyeccion extends Alimentacion{
 	 * @return
 	 */
 	public double obtenerPotencia(){
-		return ((this.getAuto().getCombustible().obtenerPotencia() *94) /100) * this.getEfectoClimatico() * this.getEstado();
+		return ((this.getAuto().getCombustible().obtenerPotencia() *94) /100) * EfectoClimatico * Estado;
 	}
 }

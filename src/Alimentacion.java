@@ -18,12 +18,15 @@ public abstract class Alimentacion extends Componente{
 	 * 
 	 * es un indice cercano a 1 para condiciones optimas
 	 */
-	private double EfectoClimatico;
+	protected double EfectoClimatico;
 	
 	/**
 	 * Documentacion
 	 */
 	public abstract double CombustibleAConsumir();
+	
+	
+	/* setters y getters */
 
 	public double getEfectoClimatico() {
 		return EfectoClimatico;

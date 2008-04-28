@@ -13,12 +13,12 @@
 public class Automatica extends Caja{
 	/* comentario acerca de la implementacion de la clase */
 	
-	public int getCambio() {
-		return this.getCambio();
+	public int getCambio(){
+		return Cambio;
 	}
 
-	public void setCambio(int cambio) {
-		this.setCambio(cambio);
+	public void setCambio(int cambio){
+		Cambio = cambio;
 	}
 	
 	public void desgastar(){}
