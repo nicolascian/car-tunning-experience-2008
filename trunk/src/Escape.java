@@ -13,7 +13,8 @@
  * 
  * @version	1.0
  */
-public class Escape extends Componente{
+public class Escape extends Componente
+implements AfectablePorClima, AfectablePorSuperficie{
 	/* comentario acerca de la implementacion de la clase */
 	
 	private double HumedadOptima = 50;
