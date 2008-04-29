@@ -10,7 +10,7 @@
  * 
  * @version	1.0
  */
-public class Experto extends Categoria{
+public class Experto extends Habilidad{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**

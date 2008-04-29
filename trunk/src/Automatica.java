@@ -15,14 +15,16 @@
 public class Automatica extends Caja{
 	/* comentario acerca de la implementacion de la clase */
 	
-	public void Chequear(){
-		if ( (auto.getMotor().getRevolucionesOptimas() - auto.getMotor().getRPM()) == 200 ){
-			if (true/*ESTA ACELERANDO*/){
-				this.siguiente();
-			}else/*ESTA FRENANDO*/{
-				this.anterior();
-			}
-		}
+	public void Chequear(double variacion){
+		//revolucionesOptimas - revolucionesActuales
+		double relacion = auto.getMotor().getRevolucionesOptimas() - auto.getMotor().getRPM(); 
+		
+		/*SI ESTA ACLERANDO*/
+		if ((variacion > 0)&&(relacion <= 300)){ this.siguiente(); }
+		
+		/*SI ESTA FRENANDO*/
+		if ((variacion < 0)&&(relacion >= 1200)){ this.anterior(); }
+		
 	}
 	
 	private void siguiente(){

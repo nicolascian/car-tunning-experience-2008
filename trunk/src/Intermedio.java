@@ -10,7 +10,7 @@
  * 
  * @version	1.0
  */
-public class Intermedio extends Categoria{
+public class Intermedio extends Habilidad{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**

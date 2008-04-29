@@ -38,7 +38,7 @@ public class Combustible extends Componente{
 	}
 
 	/**
-	 * 
+	 * la potencia esta dada por el indice de combustion
 	 * @return
 	 */
 	public double obtenerPotencia(){
@@ -48,5 +48,11 @@ public class Combustible extends Componente{
 	public void setIndiceDeCombustion(double indice){
 		this.indiceDeCombustion = indice;
 	}
+	
+	/** el clima no afecta al combustible */
+	public void afectar(Clima clima){}
+	
+	/** la superficie no afecta al combustible */
+	public void afectar(Superficie superficie){}
 	
 }

@@ -24,4 +24,14 @@ public class Llanta extends Componente{
 		//tener en cuenta Presion y superficie
 		return 0;
 	}
+	
+	/** el clima afecta a las llantas */
+	public void afectar(Clima clima){
+		
+	}
+	
+	/** la superficie afecta a las llantas */
+	public void afectar(Superficie superficie){
+		
+	}
 }

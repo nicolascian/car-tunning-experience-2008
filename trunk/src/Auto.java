@@ -13,19 +13,18 @@
 public class Auto{
 	/* comentario acerca de la implementacion de la clase */
 	
+	private double Velocidad; // integral de Aaceleracion
+	private double Aceleracion; // = Potencia de las RPM
+	private double Posicion; // dstancia recorrida
+	
 	private Motor motor;
-	
 	private Caja caja;
-
 	private Combustible combustible;
-	
 	private Alimentacion alimentacion;
-	
 	private Carroceria carroceria;
-	
-	private Suspension suspension;
-	
+	private Suspension suspension;	
 	private Escape escape;
+	private Turbo turbo;
 	
 	private Llanta LlantaDelanteraIzquierda;
 	private Llanta LlantaDelanteraDerecha;
@@ -38,7 +37,26 @@ public class Auto{
 	private Neumatico NeumaticoTraceraDerecha;
 
 	/**
-	 * para cada instante puede decirnos cuales
+	 * constructor
+	 *
+	 */
+	Auto(){
+		
+		
+	}
+	
+	public double getVelocidad(){
+		Velocidad = this.getAceleracion() * 100;
+		return Velocidad;
+	}
+	
+	public double getAceleracion(){
+		Aceleracion = this.getPotenciaTotal() /10;
+		return Aceleracion;
+	}
+	
+	/**
+	 * para cada instante puede decirnos cual
 	 * es la potencia final del automovil
 	 * 
 	 * @return
@@ -49,56 +67,58 @@ public class Auto{
 		return ( motor.obtenerPotencia() +   /* de aca salen: Caja, Alimentacion, Combustible*/
 		         carroceria.obtenerPotencia() +
 		         suspension.obtenerPotencia() +
-		         escape.obtenerPotencia()           );
+		         escape.obtenerPotencia()     
+		         /*ETC...*/    );
 	}
 	
 	/**
 	 * se afectan los componentes del auto por el clima
 	 * - esta sobrecargada con Superficie
-	 * 
-	 * componentes afectados por el clima:
-	 * alimentacion -humedad
-	 * carroceria -humedad
-	 * escape -presion, humedad
-	 * llantas -presion
-	 * caja -temperatura
-	 * motor -temperatura
-	 * suspencion -temperatura
-	 * neumaticos -temperatura
 	 *
 	 * @param clima
 	 */
 	public void afectar(Clima clima){
 		
-		/* la alimentacion se ve afectada por el clima
-		 * supongamos que la humedad optima para la
-		 * alimentacion es 30% 
-		 */
-		alimentacion.setEfectoClimatico(clima.getHumedad()/ 30);
-		// entonces el efecto climatico queda en 1 si es optimo
-		// si es mas de eso el efecto es maypr a 1
+		alimentacion.afectar(clima); //humedad
+		carroceria.afectar(clima); //humedad
+		escape.afectar(clima); //presion, humedad
+		caja.afectar(clima); //temperatura
+		motor.afectar(clima); //temperatura
+		suspension.afectar(clima); //temperatura
+		turbo.afectar(clima); //humedad
 		
-		motor.setTemperaturaExterna(clima.getTemperatura());
-
+		NeumaticoDelanteraIzquierda.afectar(clima); //temperatura
+		NeumaticoDelanteraDerecha.afectar(clima);
+		NeumaticoTraceraIzquierda.afectar(clima);
+		NeumaticoTraceraDerecha.afectar(clima);
 		
+		LlantaDelanteraIzquierda.afectar(clima); //presion
+		LlantaDelanteraDerecha.afectar(clima);
+		LlantaTraceraIzquierda.afectar(clima);
+		LlantaTraceraDerecha.afectar(clima);
 	}
 	
 	/**
 	 * se afectan los componentes del auto por la superficie
 	 * - esta sobrecargada con Clima
 	 * 
-	 * componentes afectados por la superficie:
-	 * carroceria
-	 * suspension
-	 * escape
-	 * llanta
-	 * neumaticos
-	 * 
 	 * @param superficie
 	 */
 	public void afectar(Superficie superficie){
 		
+		carroceria.afectar(superficie);
+		escape.afectar(superficie);
+		suspension.afectar(superficie);
 		
+		NeumaticoDelanteraIzquierda.afectar(superficie);
+		NeumaticoDelanteraDerecha.afectar(superficie);
+		NeumaticoTraceraIzquierda.afectar(superficie);
+		NeumaticoTraceraDerecha.afectar(superficie);
+		
+		LlantaDelanteraIzquierda.afectar(superficie);
+		LlantaDelanteraDerecha.afectar(superficie);
+		LlantaTraceraIzquierda.afectar(superficie);
+		LlantaTraceraDerecha.afectar(superficie);
 	}
 	
 	
@@ -118,6 +138,7 @@ public class Auto{
 		carroceria.desgastar();
 		suspension.desgastar();
 		escape.desgastar();
+		turbo.desgastar();
 		
 		LlantaDelanteraIzquierda.desgastar();
 		LlantaDelanteraDerecha.desgastar();
@@ -166,6 +187,10 @@ public class Auto{
 
 	public void setAlimentacion(Alimentacion alimentacion) {
 		this.alimentacion = alimentacion;
+	}
+
+	public double getPosicion() {
+		return Posicion;
 	}
 	
 }

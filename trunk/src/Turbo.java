@@ -8,18 +8,29 @@
 /**
  * Documentacion
  * 
+ * se ve afectado por la humedad del clima
+ * 
  * @version	1.0
  */
-public class Usuario extends Jugador{
+public class Turbo extends Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
-	/**
-	 * Documentacion
-	 */
-	private String nombre;
-	
-	Usuario(Auto auto){
-		this.auto = auto;
+	public void desgastar(){
+//		tener en cuenta la humedad del clima
 	}
 	
+	public double obtenerPotencia(){
+//		tener en cuenta la humedad del clima
+		return 0;
+	}
+	
+	/** el clima afecta al turbo */
+	public void afectar(Clima clima){
+		
+	}
+	
+	/** la superficie afecta al turbo */
+	public void afectar(Superficie superficie){
+		
+	}
 }

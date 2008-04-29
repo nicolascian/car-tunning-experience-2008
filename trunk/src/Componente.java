@@ -35,6 +35,18 @@ public abstract class Componente{
 	protected AlgoPesos precio;
 	
 	/**
+	 * este atributo es modificado por el Clima, 
+	 * cuando hace auto.Afectar
+	 */
+	protected double EfectoClimatico;
+	
+	/**
+	 * este atributo es modificado por la superficie, 
+	 * cuando hace auto.Afectar
+	 */
+	protected double EfectoSuperficie;
+	
+	/**
 	 * es invocado por el auto
 	 * tiene por objetivo deteriorar el estado de cada componente
 	 * esto hace que los componentes pierdan la eficiencia, y den 
@@ -62,8 +74,8 @@ public abstract class Componente{
 		Estado += porcentaje;
 	}
 	
-
-	
+	public abstract void afectar(Clima clima);
+	public abstract void afectar(Superficie superficie);
 	
 	/* Setters y Getters */
 	

@@ -90,13 +90,29 @@ public class Motor extends Componente{
 	
 	/**
 	 * cada vez que cambiamos las RPM, cambian la Temperatura del motor
+	 * ademas le avisa a la Caja que hubo un cambio de revoluciones y en este
+	 * caso le envia la variacion con repecto al cambio anterior
 	 * 
 	 * @param rpm
 	 */
 	public void setRPM(double rpm) {
+		double anterior = RPM;
+		
 		RPM = rpm;
+		
+		auto.getCaja().Chequear(RPM - anterior);
+		
 		Temperatura = ( RPM/6000 + TemperaturaExterna );
 	}
+	
+	/** el clima afecta al motor */
+	public void afectar(Clima clima){
+		TemperaturaExterna = clima.getTemperatura();
+	}
+	
+	/** la superficie no afecta al motor */
+	public void afectar(Superficie superficie){}
+	
 	
 	
 	/* setters y getters */
@@ -123,10 +139,6 @@ public class Motor extends Componente{
 
 	public void setRevolucionesMaximas(double revolucionesMaximas) {
 		this.revolucionesMaximas = revolucionesMaximas;
-	}
-
-	public void setTemperaturaExterna(double temperaturaExterna) {
-		TemperaturaExterna = temperaturaExterna;
 	}
 	
 }
