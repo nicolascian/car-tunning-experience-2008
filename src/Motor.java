@@ -12,7 +12,7 @@
  * 
  * @version	1.0
  */
-public class Motor extends Componente{
+public class Motor extends Componente implements AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
 	
 	private double Cilindrada;
@@ -109,11 +109,6 @@ public class Motor extends Componente{
 	public void afectar(Clima clima){
 		TemperaturaExterna = clima.getTemperatura();
 	}
-	
-	/** la superficie no afecta al motor */
-	public void afectar(Superficie superficie){}
-	
-	
 	
 	/* setters y getters */
 

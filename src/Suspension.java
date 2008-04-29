@@ -12,7 +12,8 @@
  * 
  * @version	1.0
  */
-public class Suspension extends Componente{
+public class Suspension extends Componente
+implements AfectablePorSuperficie, AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
 	
 	public void desgastar(){

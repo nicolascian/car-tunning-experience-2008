@@ -12,7 +12,8 @@
  * 
  * @version	1.0
  */
-public class Carroceria extends Componente{
+public class Carroceria extends Componente 
+	implements AfectablePorClima, AfectablePorSuperficie{
 	/* comentario acerca de la implementacion de la clase */
 	
 	public void desgastar(){

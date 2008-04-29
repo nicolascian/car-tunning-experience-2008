@@ -13,7 +13,7 @@
  * 
  * @version	1.0
  */
-public class Llanta extends Componente{
+public class Llanta extends Componente implements AfectablePorSuperficie{
 	/* comentario acerca de la implementacion de la clase */
 	
 	public void desgastar(){
@@ -25,10 +25,6 @@ public class Llanta extends Componente{
 		return 0;
 	}
 	
-	/** el clima afecta a las llantas */
-	public void afectar(Clima clima){
-		
-	}
 	
 	/** la superficie afecta a las llantas */
 	public void afectar(Superficie superficie){
