@@ -23,4 +23,15 @@ public class Neumatico extends Componente{
 		//tener en cuenta la temperatura del clima y superficie
 		return 0;
 	}
+	
+	/** el clima afecta a los neumaticos */
+	public void afectar(Clima clima){
+		
+	}
+	
+	/** la superficie afecta a los neumaticos */
+	public void afectar(Superficie superficie){
+		
+	}
+	
 }

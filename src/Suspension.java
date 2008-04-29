@@ -23,4 +23,14 @@ public class Suspension extends Componente{
 //		tener en cuenta la temperatura del clima y superficie
 		return 0;
 	}
+	
+	/** el clima afecta a la suspension */
+	public void afectar(Clima clima){
+		
+	}
+	
+	/** la superficie afecta a la suspension */
+	public void afectar(Superficie superficie){
+		
+	}
 }

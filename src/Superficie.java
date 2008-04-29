@@ -23,5 +23,13 @@ public class Superficie{
 	Superficie(){
 
 	}
+
+	public double getCoeficiente() {
+		return coeficiente;
+	}
+
+	public void setCoeficiente(double coeficiente) {
+		this.coeficiente = coeficiente;
+	}
 	
 }

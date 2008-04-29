@@ -8,9 +8,11 @@
 /**
  * Documentacion
  * 
+ * es la habilidad de conduccion del jugador virtual (PC)
+ * 
  * @version	1.0
  */
-public abstract class Categoria{
+public abstract class Habilidad{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**

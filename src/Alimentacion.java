@@ -14,30 +14,23 @@ public abstract class Alimentacion extends Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
-	 * este atributo es modificado por el Clima, 
-	 * cuando hace auto.Afectar; es un numero
-	 * ponderando la Temperatura del clima.
-	 * 
-	 * es un indice cercano a 1 para condiciones optimas
-	 */
-	protected double EfectoClimatico;
-	
-	/**
 	 * Documentacion
 	 */
 	public abstract double CombustibleAConsumir();
 	
-	
-	
-	/* setters y getters */
-
-	public double getEfectoClimatico() {
-		return EfectoClimatico;
+	/** el clima afecta a la alimentacion */
+	public void afectar(Clima clima){
+		/* la alimentacion se ve afectada por el clima
+		 * supongamos que la humedad optima para la
+		 * alimentacion es 30% 
+		 */
+		EfectoClimatico = (clima.getHumedad()/ 30);
+		// entonces el efecto climatico queda en 1 si es optimo
+		// si es mas de eso el efecto es maypr a 1
 	}
-
-	public void setEfectoClimatico(double efectoClimatico) {
-		EfectoClimatico = efectoClimatico;
-	}
 	
+	/** la superficie no afecta la alimentacion */
+	public void afectar(Superficie superficie){}
+		
 	
 }

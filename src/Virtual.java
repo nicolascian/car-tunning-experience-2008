@@ -16,6 +16,19 @@ public class Virtual extends Jugador{
 	/**
 	 * Documentacion
 	 */
-	private Categoria categoria;
+	private Habilidad habilidad;
+	
+	Virtual(Auto auto, Habilidad habilidad){
+		this.auto = auto;
+		this.habilidad = habilidad;
+	}
+
+	public Habilidad getHabilidad() {
+		return habilidad;
+	}
+
+	public void setHabilidad(Habilidad habilidad) {
+		this.habilidad = habilidad;
+	}
 	
 }

@@ -34,7 +34,7 @@ public class Carburador extends Alimentacion{
 	 * el efecto climatico afecta al carburador
 	 */
 	public void desgastar(){
-		 Estado = (Estado - (EfectoClimatico/10000) - 1/1000000000 );
+		 Estado = (Estado - EfectoClimatico - 1/1000000000 );
 	}
 	
 	/**

@@ -23,4 +23,14 @@ public class Carroceria extends Componente{
 		//tener en cuenta la humedad y superficie
 		return 0;
 	}
+	
+	/** el clima afecta a la carroceria */
+	public void afectar(Clima clima){
+		
+	}
+	
+	/** la superficie  afecta a la carroceria */
+	public void afectar(Superficie superficie){
+		
+	}
 }

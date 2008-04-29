@@ -23,6 +23,7 @@ public abstract class Caja extends Componente{
 
 	protected int CantidadCambios;
 	
+	public abstract void Chequear(double variacion);
 	
 	public int getCambio() {
 		return Cambio;
@@ -37,5 +38,13 @@ public abstract class Caja extends Componente{
 		Cambio = cambio;
 		auto.getMotor().setRevolucionesMaximas( (5/4)*auto.getMotor().getRevolucionesOptimas() + Cambio * 60 );
 	}
+	
+	/** el clima afecta a la caja*/
+	public void afectar(Clima clima){
+		
+	}
+	
+	/** la superficie no afecta a la caja*/
+	public void afectar(Superficie superficie){}
 	
 }
