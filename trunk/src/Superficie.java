@@ -61,5 +61,29 @@ public class Superficie{
 	public void setRugosidad(double rugosidad) {
 		this.rugosidad = rugosidad;
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public double getParticulasSueltas() {
+		return particulasSueltas;
+	}
+
+	public void setParticulasSueltas(double particulasSueltas) {
+		this.particulasSueltas = particulasSueltas;
+	}
+
+	public double getViscosidad() {
+		return viscosidad;
+	}
+
+	public void setViscosidad(double viscosidad) {
+		this.viscosidad = viscosidad;
+	}
 	
 }
