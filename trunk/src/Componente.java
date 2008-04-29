@@ -74,8 +74,6 @@ public abstract class Componente{
 		Estado += porcentaje;
 	}
 	
-	public abstract void afectar(Clima clima);
-	public abstract void afectar(Superficie superficie);
 	
 	/* Setters y Getters */
 	

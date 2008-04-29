@@ -19,6 +19,28 @@ public class Superficie{
 	private String nombre;
 	
 	private double coeficiente;
+	/**
+	 * El valor minimo de rugosidad es 0 y corresponde a 
+	 * una superficie totalmente plana, sin desnivel alguno.
+	 * Un mayor nivel de rugosidad de la superficie aumentara los daños
+	 * en aquellas partes del auto que interactuen directamente con el suelo.
+	 */
+	private double rugosidad;
+	
+	/**
+	 * Las particulas sueltas representan aquellos elementos de volumen
+	 * por unidad de superficie considerables que dañan al auto. 
+	 */
+	private double particulasSueltas;
+	
+	/**
+	 * La viscosidad es una caracteristica que representa la oposicion
+	 * del terreno al deslizamiento del vehiculo sobre el
+	 * viscosidad = 0 implica que la superficie es totalmente resbaladiza
+	 * viscosidad = 1 implica la maxima adherencia posible entre el vehiculo
+	 * y la superficie    
+	 */
+	private double viscosidad;
 	
 	Superficie(){
 
@@ -30,6 +52,14 @@ public class Superficie{
 
 	public void setCoeficiente(double coeficiente) {
 		this.coeficiente = coeficiente;
+	}
+
+	public double getRugosidad() {
+		return rugosidad;
+	}
+
+	public void setRugosidad(double rugosidad) {
+		this.rugosidad = rugosidad;
 	}
 	
 }

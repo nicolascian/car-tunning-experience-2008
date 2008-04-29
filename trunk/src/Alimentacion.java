@@ -10,7 +10,7 @@
  * 
  * @version	1.0
  */
-public abstract class Alimentacion extends Componente{
+public abstract class Alimentacion extends Componente implements AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
@@ -28,9 +28,6 @@ public abstract class Alimentacion extends Componente{
 		// entonces el efecto climatico queda en 1 si es optimo
 		// si es mas de eso el efecto es maypr a 1
 	}
-	
-	/** la superficie no afecta la alimentacion */
-	public void afectar(Superficie superficie){}
 		
 	
 }

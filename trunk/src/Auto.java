@@ -10,7 +10,7 @@
  * 
  * @version	1.0
  */
-public class Auto{
+public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	/* comentario acerca de la implementacion de la clase */
 	
 	private double Velocidad; // integral de Aaceleracion
@@ -82,7 +82,6 @@ public class Auto{
 		alimentacion.afectar(clima); //humedad
 		carroceria.afectar(clima); //humedad
 		escape.afectar(clima); //presion, humedad
-		caja.afectar(clima); //temperatura
 		motor.afectar(clima); //temperatura
 		suspension.afectar(clima); //temperatura
 		turbo.afectar(clima); //humedad
@@ -92,10 +91,6 @@ public class Auto{
 		NeumaticoTraceraIzquierda.afectar(clima);
 		NeumaticoTraceraDerecha.afectar(clima);
 		
-		LlantaDelanteraIzquierda.afectar(clima); //presion
-		LlantaDelanteraDerecha.afectar(clima);
-		LlantaTraceraIzquierda.afectar(clima);
-		LlantaTraceraDerecha.afectar(clima);
 	}
 	
 	/**

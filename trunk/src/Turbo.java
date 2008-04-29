@@ -12,7 +12,7 @@
  * 
  * @version	1.0
  */
-public class Turbo extends Componente{
+public class Turbo extends Componente implements AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
 	
 	public void desgastar(){
@@ -29,8 +29,4 @@ public class Turbo extends Componente{
 		
 	}
 	
-	/** la superficie afecta al turbo */
-	public void afectar(Superficie superficie){
-		
-	}
 }

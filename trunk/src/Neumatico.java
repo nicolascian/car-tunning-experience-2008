@@ -12,7 +12,8 @@
  * 
  * @version	1.0
  */
-public class Neumatico extends Componente{
+public class Neumatico extends Componente
+implements AfectablePorClima, AfectablePorSuperficie{
 	/* comentario acerca de la implementacion de la clase */
 	
 	public void desgastar(){
