@@ -12,6 +12,11 @@
  */
 import java.util.*;
 
+/**
+ * Documentacion
+ * 
+ * @version 1.0
+ */
 public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	/* comentario acerca de la implementacion de la clase */
 	

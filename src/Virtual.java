@@ -18,11 +18,16 @@ public class Virtual extends Jugador{
 	 */
 	private Habilidad habilidad;
 	
+	private Auto auto;
+	
+	
 	Virtual(Auto auto, Habilidad habilidad){
 		this.auto = auto;
 		this.habilidad = habilidad;
 	}
 
+
+	
 	public Habilidad getHabilidad() {
 		return habilidad;
 	}
@@ -30,5 +35,6 @@ public class Virtual extends Jugador{
 	public void setHabilidad(Habilidad habilidad) {
 		this.habilidad = habilidad;
 	}
+
 	
 }
