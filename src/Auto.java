@@ -10,6 +10,8 @@
  * 
  * @version	1.0
  */
+import java.util.*;
+
 public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	/* comentario acerca de la implementacion de la clase */
 	
@@ -26,6 +28,11 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private Escape escape;
 	private Turbo turbo;
 	
+	/*
+	 * NO TENDRIA QUE HABER UNA SOLA REFERENCIA A NEUMATICOS Y LLANTAS??
+	 * O PUEDE TENER MAS DE UN TIPO DE NEUMATICOS / LLANTAS EN EL MISMO
+	 * AUTO???
+	 */
 	private Llanta LlantaDelanteraIzquierda;
 	private Llanta LlantaDelanteraDerecha;
 	private Llanta LlantaTraceraIzquierda;
@@ -43,6 +50,48 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	Auto(){
 		
 		
+	}
+	/*
+	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
+	 */
+	public LinkedList<Componente> obtenerComponentes(){
+		
+		LinkedList<Componente> lista =  new LinkedList<Componente>();
+		lista.add(this.alimentacion);
+		lista.add(this.caja);
+		lista.add(this.carroceria);
+		lista.add(this.combustible);
+		lista.add(this.escape);
+		lista.add(this.motor);
+		lista.add(this.suspension);
+		lista.add(this.turbo);
+
+		return lista;
+	}
+	/*
+	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
+	 */
+	public LinkedList<AfectablePorClima> obtenerAfectablesPorClima(){
+		LinkedList<AfectablePorClima> lista = new LinkedList<AfectablePorClima>();
+		lista.add(this.alimentacion);
+		lista.add(this.carroceria);
+		lista.add(this.escape);
+		lista.add(this.motor);
+		lista.add(this.suspension);
+		lista.add(this.turbo);
+		
+		return lista;
+	}
+	/*
+	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
+	 */
+	public LinkedList<AfectablePorSuperficie> obtenerAfectablesPorSup(){
+		LinkedList<AfectablePorSuperficie> lista = new LinkedList<AfectablePorSuperficie>();
+		lista.add(this.carroceria);
+		lista.add(this.escape);
+		lista.add(this.suspension);
+		
+		return lista;
 	}
 	
 	public double getVelocidad(){
@@ -78,19 +127,11 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @param clima
 	 */
 	public void afectar(Clima clima){
-		
-		alimentacion.afectar(clima); //humedad
-		carroceria.afectar(clima); //humedad
-		escape.afectar(clima); //presion, humedad
-		motor.afectar(clima); //temperatura
-		suspension.afectar(clima); //temperatura
-		turbo.afectar(clima); //humedad
-		
-		NeumaticoDelanteraIzquierda.afectar(clima); //temperatura
-		NeumaticoDelanteraDerecha.afectar(clima);
-		NeumaticoTraceraIzquierda.afectar(clima);
-		NeumaticoTraceraDerecha.afectar(clima);
-		
+		LinkedList<AfectablePorClima> lista = this.obtenerAfectablesPorClima();
+		Iterator<AfectablePorClima> it = lista.iterator();
+		while (it.hasNext()){
+			it.next().afectar(clima);
+		}
 	}
 	
 	/**
@@ -100,20 +141,11 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @param superficie
 	 */
 	public void afectar(Superficie superficie){
-		
-		carroceria.afectar(superficie);
-		escape.afectar(superficie);
-		suspension.afectar(superficie);
-		
-		NeumaticoDelanteraIzquierda.afectar(superficie);
-		NeumaticoDelanteraDerecha.afectar(superficie);
-		NeumaticoTraceraIzquierda.afectar(superficie);
-		NeumaticoTraceraDerecha.afectar(superficie);
-		
-		LlantaDelanteraIzquierda.afectar(superficie);
-		LlantaDelanteraDerecha.afectar(superficie);
-		LlantaTraceraIzquierda.afectar(superficie);
-		LlantaTraceraDerecha.afectar(superficie);
+		LinkedList<AfectablePorSuperficie> lista = this.obtenerAfectablesPorSup();
+		Iterator<AfectablePorSuperficie> it = lista.iterator();
+		while (it.hasNext()){
+			it.next().afectar(superficie);
+		}
 	}
 	
 	
@@ -122,34 +154,14 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * de deteriorar los componentes del auto
 	 */
 	public void Desgastar(){
-		//para todos los componentes, hacer: componente.desgastar();
-		
-		//hay que arreglar esto, con algo de Polimorfismo e iteracion
-		//una lista de Componentes que se recorre
-		caja.desgastar();
-		motor.desgastar();
-		alimentacion.desgastar();
-		combustible.desgastar();
-		carroceria.desgastar();
-		suspension.desgastar();
-		escape.desgastar();
-		turbo.desgastar();
-		
-		LlantaDelanteraIzquierda.desgastar();
-		LlantaDelanteraDerecha.desgastar();
-		LlantaTraceraIzquierda.desgastar();
-		LlantaTraceraDerecha.desgastar();
-	
-		NeumaticoDelanteraIzquierda.desgastar();
-		NeumaticoDelanteraDerecha.desgastar();
-		NeumaticoTraceraIzquierda.desgastar();
-		NeumaticoTraceraDerecha.desgastar();
+		LinkedList<Componente> lista = this.obtenerComponentes();
+		Iterator<Componente> it = lista.iterator();
+		while (it.hasNext()){
+			it.next().desgastar();
+		}
 	}
 	
-	
-	
-	
-	
+		
 	/* setters y getters */
 	
 	public Combustible getCombustible() {
