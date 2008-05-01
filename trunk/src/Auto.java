@@ -34,9 +34,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private Turbo turbo;
 	
 	/*
-	 * NO TENDRIA QUE HABER UNA SOLA REFERENCIA A NEUMATICOS Y LLANTAS??
-	 * O PUEDE TENER MAS DE UN TIPO DE NEUMATICOS / LLANTAS EN EL MISMO
-	 * AUTO???
+	 * HAY Q IMPLEMENTAR LOS EJES O VER COMO RESOLVEMOS LO DE LAS LLANTAS 
+	 * Y NEUMATICOS
 	 */
 	private Llanta LlantaDelanteraIzquierda;
 	private Llanta LlantaDelanteraDerecha;
