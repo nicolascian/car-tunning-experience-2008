@@ -16,7 +16,8 @@
 public class Escape extends Componente
 implements AfectablePorClima, AfectablePorSuperficie{
 	/* comentario acerca de la implementacion de la clase */
-	
+	private double EfectoSuperficie;
+	private double EfectoClimatico;
 	private double HumedadOptima = 50;
 	private double PresionOptima = 1013;
 	
