@@ -10,9 +10,9 @@
  * 
  * @version	1.0
  */
-public class Carburador extends Alimentacion{
+public class Carburador extends Alimentacion implements AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
-		
+	private double EfectoClimatico;		
 	/**
 	 * Documentacion
 	 * 
@@ -30,6 +30,16 @@ public class Carburador extends Alimentacion{
 		return (valor * EfectoClimatico * (1/Estado) );
 	}
 	
+	/** el clima afecta a la inyeccion */
+	public void afectar(Clima clima){
+		/* la alimentacion se ve afectada por el clima
+		 * supongamos que la humedad optima para la
+		 * alimentacion es 30% 
+		 */
+		EfectoClimatico = (clima.getHumedad()/ 30);
+		// entonces el efecto climatico queda en 1 si es optimo
+		// si es mas de eso el efecto es maypr a 1
+	}
 	/**
 	 * el efecto climatico afecta al carburador
 	 */

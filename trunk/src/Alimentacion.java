@@ -10,7 +10,7 @@
  * 
  * @version	1.0
  */
-public abstract class Alimentacion extends Componente implements AfectablePorClima{
+public abstract class Alimentacion extends Componente {
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
@@ -18,16 +18,6 @@ public abstract class Alimentacion extends Componente implements AfectablePorCli
 	 */
 	public abstract double CombustibleAConsumir();
 	
-	/** el clima afecta a la alimentacion */
-	public void afectar(Clima clima){
-		/* la alimentacion se ve afectada por el clima
-		 * supongamos que la humedad optima para la
-		 * alimentacion es 30% 
-		 */
-		EfectoClimatico = (clima.getHumedad()/ 30);
-		// entonces el efecto climatico queda en 1 si es optimo
-		// si es mas de eso el efecto es maypr a 1
-	}
-		
+	
 	
 }

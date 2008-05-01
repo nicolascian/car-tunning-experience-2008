@@ -10,6 +10,8 @@
  * 
  * @version	1.0
  */
+import java.util.*;
+
 public abstract class Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
@@ -33,18 +35,6 @@ public abstract class Componente{
 	protected Auto auto;
 	
 	protected AlgoPesos precio;
-	
-	/**
-	 * este atributo es modificado por el Clima, 
-	 * cuando hace auto.Afectar
-	 */
-	protected double EfectoClimatico;
-	
-	/**
-	 * este atributo es modificado por la superficie, 
-	 * cuando hace auto.Afectar
-	 */
-	protected double EfectoSuperficie;
 	
 	/**
 	 * es invocado por el auto
@@ -73,8 +63,25 @@ public abstract class Componente{
 	public void reparar(double porcentaje){
 		Estado += porcentaje;
 	}
+	/**
+	 * Metodo que recibe una lista de elementos afectables por clima, 
+	 * y que agrega el componente a dicha lista si este es una instancia 
+	 * de AfectablePorClima
+	 * @param listaAC
+	 */
+	public void agregarAListaAfecClima(LinkedList<AfectablePorClima> lista){
+		if (this instanceof AfectablePorClima) lista.add((AfectablePorClima)this);
+	}
 	
-	
+	/**
+	 * Metodo que recibe una lista de elementos afectables por superficie, 
+	 * y que agrega el componente a dicha lista si este es una instancia 
+	 * de AfectablePorSuperficie
+	 * @param listaAS
+	 */
+	public void agregarAListaAfecSuperficie(LinkedList<AfectablePorSuperficie> lista){
+		if (this instanceof AfectablePorSuperficie) lista.add((AfectablePorSuperficie)this);
+	}
 	/* Setters y Getters */
 	
 	public AlgoPesos getPrecio() {

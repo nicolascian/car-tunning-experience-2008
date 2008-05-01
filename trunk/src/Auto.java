@@ -76,27 +76,28 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	/*
 	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
 	 */
-	public LinkedList<AfectablePorClima> obtenerAfectablesPorClima(){
-		LinkedList<AfectablePorClima> lista = new LinkedList<AfectablePorClima>();
-		lista.add(this.alimentacion);
-		lista.add(this.carroceria);
-		lista.add(this.escape);
-		lista.add(this.motor);
-		lista.add(this.suspension);
-		lista.add(this.turbo);
-		
-		return lista;
-	}
+
 	/*
 	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
 	 */
 	public LinkedList<AfectablePorSuperficie> obtenerAfectablesPorSup(){
-		LinkedList<AfectablePorSuperficie> lista = new LinkedList<AfectablePorSuperficie>();
-		lista.add(this.carroceria);
-		lista.add(this.escape);
-		lista.add(this.suspension);
-		
-		return lista;
+		LinkedList<AfectablePorSuperficie> listaAS = new LinkedList<AfectablePorSuperficie>();
+		LinkedList<Componente> listaComp = this.obtenerComponentes();
+		Iterator<Componente> it = listaComp.iterator();
+		while (it.hasNext()){
+			it.next().agregarAListaAfecSuperficie(listaAS);
+		}
+		return listaAS;
+	}
+	
+	public LinkedList<AfectablePorClima> obtenerAfectablesPorClima(){
+		LinkedList<AfectablePorClima> listaAC = new LinkedList<AfectablePorClima>();
+		LinkedList<Componente> listaComp = this.obtenerComponentes();
+		Iterator<Componente> it = listaComp.iterator();
+		while (it.hasNext()){
+			it.next().agregarAListaAfecClima(listaAC);
+		}
+		return listaAC;
 	}
 	
 	public double getVelocidad(){
