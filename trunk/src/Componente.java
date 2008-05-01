@@ -5,13 +5,13 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+import java.util.*;
+
 /**
  * Documentacion
  * 
- * @version	1.0
+ * @version 1.0
  */
-import java.util.*;
-
 public abstract class Componente{
 	/* comentario acerca de la implementacion de la clase */
 	

@@ -1,17 +1,26 @@
-## Hay que hacer ##
+/* ****************************************************************************
+ *                         Car-Tunnig-Experience-2008                         *
+ *                                                                            *
+ *                   Algoritmos y Programacion III - 75.07                    *
+ *            Facultad de Ingenieria - Universidad de Buenos Aires            *
+ ******************************************************************************/
 
+## Hay que hacer ##
 
 el Source Level es 6
 
-hay 3 tipos de Caja: automatica : pasa los cambios sola, metodo Chequear
-                         manual : pasa los cambios en cualquier orden
-                     secuencial : pasa los cambios de siguiente y anterior
+
+modelo MVC, modelo, vista, control
+
+
+
 
 
 ## Informacion del Proyecto ##
 
-la pagina del proyecto es:
+la pagina oficial del proyecto es:
 http://code.google.com/p/car-tunning-experience-2008/
+
 
 estamos usando SVN (Subversion)
 
@@ -29,9 +38,3 @@ Manual para configurar el SVN en eclipse
 http://blog.msbbc.co.uk/2007/06/using-googles-free-svn-repository-with.html
 
 
-/* ****************************************************************************
- *                         Car-Tunnig-Experience-2008                         *
- *                                                                            *
- *                   Algoritmos y Programacion III - 75.07                    *
- *            Facultad de Ingenieria - Universidad de Buenos Aires            *
- ******************************************************************************/
