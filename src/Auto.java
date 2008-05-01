@@ -55,6 +55,47 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		
 		
 	}
+
+	
+	public double getVelocidad(){
+		Velocidad = this.getAceleracion() * 100;
+		return Velocidad;
+	}
+	
+	public double getAceleracion(){
+		Aceleracion = this.getPotenciaTotal() /10;
+		return Aceleracion;
+	}
+
+	/**
+	 * para cada instante puede decirnos cual
+	 * es la potencia final del automovil
+	 * 
+	 * @return
+	 */
+	public double getPotenciaTotal(){
+		//recorremos los componentes pertinentes, y hacemos:
+		// componente.obtenerPotencia();
+		return ( motor.obtenerPotencia() +   /* de aca salen: Caja, Alimentacion, Combustible*/
+		         carroceria.obtenerPotencia() +
+		         suspension.obtenerPotencia() +
+		         escape.obtenerPotencia()     
+		         /*ETC...*/    );
+	}
+
+	
+	/**
+	 * es invocado en cada ciclo durante la carrera, se encarga
+	 * de deteriorar los componentes del auto
+	 */
+	public void Desgastar(){
+		LinkedList<Componente> lista = this.obtenerComponentes();
+		Iterator<Componente> it = lista.iterator();
+		while (it.hasNext()){
+			it.next().desgastar();
+		}
+	}
+	
 	/*
 	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
 	 */
@@ -72,9 +113,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 
 		return lista;
 	}
-	/*
-	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
-	 */
 
 	/*
 	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
@@ -89,6 +127,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		return listaAS;
 	}
 	
+	/*
+	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
+	 */
 	public LinkedList<AfectablePorClima> obtenerAfectablesPorClima(){
 		LinkedList<AfectablePorClima> listaAC = new LinkedList<AfectablePorClima>();
 		LinkedList<Componente> listaComp = this.obtenerComponentes();
@@ -97,32 +138,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 			it.next().agregarAListaAfecClima(listaAC);
 		}
 		return listaAC;
-	}
-	
-	public double getVelocidad(){
-		Velocidad = this.getAceleracion() * 100;
-		return Velocidad;
-	}
-	
-	public double getAceleracion(){
-		Aceleracion = this.getPotenciaTotal() /10;
-		return Aceleracion;
-	}
-	
-	/**
-	 * para cada instante puede decirnos cual
-	 * es la potencia final del automovil
-	 * 
-	 * @return
-	 */
-	public double getPotenciaTotal(){
-		//recorremos los componentes pertinentes, y hacemos:
-		// componente.obtenerPotencia();
-		return ( motor.obtenerPotencia() +   /* de aca salen: Caja, Alimentacion, Combustible*/
-		         carroceria.obtenerPotencia() +
-		         suspension.obtenerPotencia() +
-		         escape.obtenerPotencia()     
-		         /*ETC...*/    );
 	}
 	
 	/**
@@ -153,18 +168,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		}
 	}
 	
-	
-	/**
-	 * es invocado en cada ciclo durante la carrera, se encarga
-	 * de deteriorar los componentes del auto
-	 */
-	public void Desgastar(){
-		LinkedList<Componente> lista = this.obtenerComponentes();
-		Iterator<Componente> it = lista.iterator();
-		while (it.hasNext()){
-			it.next().desgastar();
-		}
-	}
+
 	
 		
 	/* setters y getters */
