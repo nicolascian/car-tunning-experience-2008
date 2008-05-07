@@ -116,6 +116,17 @@ public class Motor extends Componente implements AfectablePorClima{
 		return RPM;
 	}
 
+	public void disminuirRpmDesdeCaja(double porcentaje){
+	   if(porcentaje>20){
+		  if(porcentaje<80)	
+	   		 setRPM(getRPM()-getRPM()*porcentaje/100);
+		  else
+			 setRPM(getRPM()-getRPM()*0.8); 
+       }
+	   else
+		   setRPM(getRPM()-getRPM()*0.2);
+	}
+	
 	public int getCantidadCilindros() {
 		return CantidadCilindros;
 	}
