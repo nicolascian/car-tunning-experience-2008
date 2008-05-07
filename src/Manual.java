@@ -17,22 +17,26 @@
 public class Manual extends Caja{
 	/* comentario acerca de la implementacion de la clase */
 
-	public void setCambio(int cambio){
-		Cambio = cambio;
-		this.desgastar();
-	}
 	
+	
+	public Manual(Auto auto, int cantidadCambios) {
+		super(auto, cantidadCambios);
+		
+	}
+
 	/* Como esta caja no es automatica, no hace nada */
 	public void Chequear(double variacion){}
 	
 	public void desgastar(){
-//		tener en cuenta la temperatura del clima
+    //tener en cuenta la temperatura del clima
 		this.setEstado(Estado - 1/1000000000);
 	}
 	
 	public double obtenerPotencia(){
-//		tener en cuenta la temperatura del clima
+    //tener en cuenta la temperatura del clima
 		return 0;
 		
 	}
+	
+	
 }
