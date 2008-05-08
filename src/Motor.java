@@ -18,19 +18,30 @@
  * 
  * @version	1.0
  */
+
 public class Motor extends Componente implements AfectablePorClima{
 		
 	private double cilindrada;//en centimetros cúbicos
 	
 	private int cantidadCilindros;
 	
-	private double temperaturaCritica;//en ºC
-	
-	private double temperaturaOptima;//en ºC
+	private long horaDeEncendido;
 		
-	private double temperaturaExterna;//en ºC
-
-	private double potenciaMaxima;//en hp
+	private boolean encendido;
+	
+	protected boolean acelerando;
+	
+	protected final static double TEMPERATURA_CRITICA=200;//en ºC
+	
+	protected final static double TEMPERATURA_OPTIMA=95;//en ºC
+	
+	protected long tiempoCaracteristicoAceleracion;//en milisegundos
+	
+	private long horaDeInicioFinAceleracion;//en milisegundos
+	
+	private long tiempoDeInicioFinCurvaAceleracion;//en milisegundos
+	
+	protected double temperaturaExterna;//en ºC
 	
 	//revoluciones maximas del motor
 	private double revolucionesMaximas;//en rpm
@@ -42,7 +53,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * contador de las revoluciones del motor
 	 */
 	private double RPM;//en rpm
-
+		
 	/**
 	 * @Pre: 
 	 * @Post: Se ha creado una instancia de la clase, inicializandola segun los parametros.
@@ -50,34 +61,84 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * @param cilindrada en centimetros cubicos
 	 * @param revolucionesMaximas revoluciones maximas del motor en rpm
 	*/
-	Motor(int cantidadCilindros,double cilindrada, double revolucionesMaximas){
+	public Motor(int cantidadCilindros,double cilindrada, double revolucionesMaximas){
 		setCantidadCilindros(cantidadCilindros);
 		setCilindrada(cilindrada);
 		setRevolucionesMaximas(revolucionesMaximas);
 		setRevolucionesMaximasCambio(revolucionesMaximas);
-		setTemperaturaCritica(500); //Â°C
-		setTemperaturaOptima(120); //Â°C
-		setTemperaturaExterna(0); //Â°C
-		setPotenciaMaxima(120*getCilindrada()*getCantidadCilindros()/getRevolucionesMaximas());
+		setRPM(0);
+		setTemperaturaExterna(25); //Â°C
+		setHoraDeEncendido(0);
+		setEncendido(false);
+		setAcelerando(false);
+		setHoraDeInicioFinAceleracion(0);
+		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*0.25));
+	}
+	
+	public void encender(){
+		if(!isEncendido()){
+			setEncendido(true);
+			setHoraDeEncendido(System.currentTimeMillis());
+			setRPM(getRevolucionesMaximas()*0.08);
+			setAcelerando(false);
+		}
+	}
+		
+	public void apagar(){
+		if(isEncendido()){
+			setEncendido(false);
+			setHoraDeEncendido(0);
+			setRPM(0);
+			setAcelerando(false);
+		}
+	}
+	
+	private void actualizarRpm(){
+	  if(RPM<getRevolucionesMaximas()){
+		 double rpm;
+	     if(isAcelerando()){	
+		     rpm=getRevolucionesMaximas()*Math.sin(getTiempoDeInicioFinCurvaAceleracion()*Math.PI/
+		    	 (2*getTiempoCaracteristicoAceleracion()));
+	  
+	     }else{
+	    	 rpm=getRevolucionesMaximas()*Math.cos(getTiempoDeInicioFinCurvaAceleracion()*Math.PI/
+			    	 (2*getTiempoCaracteristicoAceleracion()));
+         }
+	     setRPM(rpm);
+	  }
+	}
+	
+	public void acelerar(){
+		if(isEncendido())
+		  if(!isAcelerando()){
+			setAcelerando(true);
+			this.setHoraDeInicioFinAceleracion(System.currentTimeMillis());
+			setTiempoDeInicioFinCurvaAceleracion(System.currentTimeMillis()-getHoraDeInicioFinAceleracion()
+					  +Math.round(getTiempoCaracteristicoAceleracion()*Math.asin(getRevolucionesMaximas()/RPM)/(Math.PI/2)));
+			actualizarRpm();
+		  }
+	}
+	
+	public void desacelerar(){
+		if(isEncendido())
+	       if(isAcelerando()){
+		      setAcelerando(false);
+		      this.setHoraDeInicioFinAceleracion(System.currentTimeMillis());
+		      setTiempoDeInicioFinCurvaAceleracion(System.currentTimeMillis()-getHoraDeInicioFinAceleracion()
+						  +Math.round(getTiempoCaracteristicoAceleracion()*Math.acos(getRevolucionesMaximas()/RPM)/(Math.PI/2)));
+			  actualizarRpm();
+		   }
 	}
 	
 	/**
 	 * pasarce de revoluciones es perjudicial
 	*/
 	public void desgastar(){
-		/* pasarce de revolucionesMaximas es perjudicial */
-		this.setEstado( getEstado() - (getRPM()/revolucionesMaximas)/10 - 1/1000000000 - 
-				        (getTemperatura()-getTemperaturaCritica())/getTemperaturaOptima() );
 	}	
 	
 	public double obtenerPotencia(){
-		
-		return ( RPM + getEstado() + getCilindrada() + getCantidadCilindros() + 
-				(getTemperatura()-getTemperaturaCritica())/getTemperaturaOptima() +
-				 // Caja
-				 auto.getCaja().obtenerPotencia() +
-				 // Alimentacion.obtenerPotencias hace: Combustible.obtenerPotencia
-				 auto.getAlimentacion().obtenerPotencia() ); 
+		actualizarRpm();
+		return (calcularPotenciaInterna()*0.05); 
 	}
 	
 	/**
@@ -88,13 +149,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * @param rpm
 	*/
 	public void setRPM(double rpm) {
-		double anterior = RPM;
-		
-		RPM = rpm;
-		
-		auto.getCaja().Chequear(RPM - anterior);
-		
-		setTemperatura(RPM/6000 + getTemperaturaExterna() );
+		this.RPM=rpm;
 	}
 	
 	/** el clima afecta al motor */
@@ -105,6 +160,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	/* setters y getters */
 
 	public double getRPM() {
+		actualizarRpm();
 		return RPM;
 	}
 	
@@ -123,39 +179,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	public void setRevolucionesMaximasCambio(double revoluciones) {
 		this.revolucionesMaximasCambio = revoluciones;
 	}
-		
-	public void acelerar(){
-		
-	}
-
-	/**
-	 * @return the temperaturaCritica
-	 */
-	public double getTemperaturaCritica() {
-		return temperaturaCritica;
-	}
-
-	/**
-	 * @param temperaturaCritica the temperaturaCritica to set
-	 */
-	public void setTemperaturaCritica(double temperaturaCritica) {
-		this.temperaturaCritica = temperaturaCritica;
-	}
-
-	/**
-	 * @return the temperaturaOptima
-	 */
-	public double getTemperaturaOptima() {
-		return temperaturaOptima;
-	}
-
-	/**
-	 * @param temperaturaOptima the temperaturaOptima to set
-	 */
-	public void setTemperaturaOptima(double temperaturaOptima) {
-		this.temperaturaOptima = temperaturaOptima;
-	}
-
+			
 	/**
 	 * @return the temperaturaExterna
 	 */
@@ -198,18 +222,103 @@ public class Motor extends Componente implements AfectablePorClima{
 		this.cantidadCilindros = cantidadCilindros;
 	}
 
-	/**
-	 * @return the potenciaMaxima
-	 */
-	public double getPotenciaMaxima() {
-		return potenciaMaxima;
+	public double calcularPotenciaInterna(){
+		double potenciaInterna=0;
+		if(getRPM()>0){
+			//potencia sin ser afectada por elementos
+			potenciaInterna=120*getCilindrada()*getCantidadCilindros()/getRPM();
+			//calculo de potencia afectada por elementos
+			
+		}
+		return potenciaInterna;
 	}
 
 	/**
-	 * @param potenciaMaxima the potenciaMaxima to set
+	 * @return the horaDeEncendido
 	 */
-	public void setPotenciaMaxima(double potenciaMaxima) {
-		this.potenciaMaxima = potenciaMaxima;
+	protected long getHoraDeEncendido() {
+		return horaDeEncendido;
 	}
+
+	/**
+	 * @param horaDeEncendido the horaDeEncendido to set
+	 */
+	protected void setHoraDeEncendido(long horaDeEncendido) {
+		this.horaDeEncendido = horaDeEncendido;
+	}
+
+	/**
+	 * @return the encendido
+	 */
+	protected boolean isEncendido() {
+		return encendido;
+	}
+
+	/**
+	 * @param encendido the encendido to set
+	 */
+	protected void setEncendido(boolean encendido) {
+		this.encendido = encendido;
+	}
+
+	/**
+	 * @return the acelerando
+	 */
+	protected boolean isAcelerando() {
+		return acelerando;
+	}
+
+	/**
+	 * @param acelerando the acelerando to set
+	 */
+	protected void setAcelerando(boolean acelerando) {
+		this.acelerando = acelerando;
+	}
+
+	/**
+	 * @return the horaDeInicioFinAceleracion
+	 */
+	protected long getHoraDeInicioFinAceleracion() {
+		return horaDeInicioFinAceleracion;
+	}
+
+	/**
+	 * @param horaDeInicioFinAceleracion the horaDeInicioFinAceleracion to set
+	 */
+	protected void setHoraDeInicioFinAceleracion(long horaDeInicioFinAceleracion) {
+		this.horaDeInicioFinAceleracion = horaDeInicioFinAceleracion;
+	}
+
+	/**
+	 * @return the tiempoCaracteristicoAceleracion
+	 */
+	protected long getTiempoCaracteristicoAceleracion() {
+		return tiempoCaracteristicoAceleracion;
+	}
+
+	/**
+	 * @param tiempoCaracteristicoAceleracion the tiempoCaracteristicoAceleracion to set
+	 */
+	protected void setTiempoCaracteristicoAceleracion(
+			long tiempoCaracteristicoAceleracion) {
+		this.tiempoCaracteristicoAceleracion = tiempoCaracteristicoAceleracion;
+	}
+
+	/**
+	 * @return the tiempoDeInicioFinCurvaAceleracion
+	 */
+	protected long getTiempoDeInicioFinCurvaAceleracion() {
+		return tiempoDeInicioFinCurvaAceleracion;
+	}
+
+	/**
+	 * @param tiempoDeInicioFinCurvaAceleracion the tiempoDeInicioFinCurvaAceleracion to set
+	 */
+	protected void setTiempoDeInicioFinCurvaAceleracion(
+			long tiempoDeInicioFinCurvaAceleracion) {
+		this.tiempoDeInicioFinCurvaAceleracion = tiempoDeInicioFinCurvaAceleracion;
+	}
+
 	
+		
 }
