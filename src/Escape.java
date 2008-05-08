@@ -33,12 +33,12 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	
 	public void desgastar(){
 		//tener en cuenta Humedad, presion y superficie
-		this.setEstado(Estado - EfectoClimatico - EfectoSuperficie/100 - 1/1000000000);
+		this.setEstado(getEstado() - EfectoClimatico - EfectoSuperficie/100 - 1/1000000000);
 	}
 	
 	public double obtenerPotencia(){
 		//tener en cuenta Humedad, presion y Estado
-		return (HumedadOptima*PresionOptima*EfectoClimatico/100) * Estado;
+		return (HumedadOptima*PresionOptima*EfectoClimatico/100) * getEstado();
 	}
 	
 	/** el clima afecta al escape */

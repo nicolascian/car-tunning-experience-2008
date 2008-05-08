@@ -27,7 +27,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 
 		double valor = auto.getMotor().getCilindrada() * auto.getMotor().getRPM();
 		
-		return (valor * EfectoClimatico * (1/Estado) );
+		return (valor * EfectoClimatico * (1/getEstado()) );
 	}
 	
 	/** el clima afecta a la inyeccion */
@@ -44,7 +44,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	 * el efecto climatico afecta al carburador
 	 */
 	public void desgastar(){
-		 Estado = (Estado - EfectoClimatico - 1/1000000000 );
+		 setEstado(getEstado() - EfectoClimatico - 1/1000000000 );
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	 */
 	public double obtenerPotencia(){
 	
-		return ((auto.getCombustible().obtenerPotencia() *98) /100) * EfectoClimatico * Estado;
+		return ((auto.getCombustible().obtenerPotencia() *98) /100) * EfectoClimatico * getEstado();
 	}
 	
 }

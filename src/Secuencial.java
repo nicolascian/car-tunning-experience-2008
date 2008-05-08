@@ -24,10 +24,21 @@ public class Secuencial extends Caja{
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
 	*/
-	public Secuencial(Auto auto, int cantidadCambios){
-		super(auto, cantidadCambios);
+	public Secuencial(Auto auto, int cantidadCambios,AlgoPesos precio){
+		super(auto, cantidadCambios,precio);
 	}
 
+	/**
+	 * @Pre: 
+	 * @Post: Se han generado las relaciones de caja correspondientes.
+	 * 
+	*/
+	protected void generarRelacionesDeCaja(){
+		for(int cursor=1;cursor<=cantidadCambios;cursor++)
+			   relacionDeCambio[cursor]=15/(cursor-0.15)-9/(cantidadCambios*cantidadCambios);
+	}	
+	
+	
 	/* Como esta caja no es automatica, no hace nada */
 	public void Chequear(double variacion){}
 	

@@ -16,9 +16,7 @@ import java.lang.Thread;
  */
 public class Automatica extends Caja{
 	/* comentario acerca de la implementacion de la clase */
-	
-	protected long latencia;
-	
+			
 	public void Chequear(double variacion){
 	  try{	
 		//revolucionesOptimas - revolucionesActuales
@@ -39,25 +37,30 @@ public class Automatica extends Caja{
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
 	*/
-	public Automatica(Auto auto, int cantidadCambios){
-		super(auto,cantidadCambios);
+	public Automatica(Auto auto, int cantidadCambios, AlgoPesos precio){
+		super(auto,cantidadCambios, precio);
 	}
 		
+	protected void generarRelacionesDeCaja(){
+		for(int cursor=1;cursor<=cantidadCambios;cursor++)
+			   relacionDeCambio[cursor]=15/(cursor-0.3)-9/(cantidadCambios*cantidadCambios);
+	}	
 	
 	public void desgastar(){
-    //tener en cuenta la temperatura del clima
+       //tener en cuenta la temperatura del clima
+	    	
 	}
 		
 	/**
 	 * @Pre: Se ha creado una instancia de la Automatica segun los parametros.
 	 * @Post: Se ha obtenido la potencia entregada por la caja a una cantidad
 	 * de Rpm y cambios dado, teniendo en cuenta una fuerza de rodamiento de
-	 * 136N con una rueda de 1.872 metros de circunferencia.
+	 * 120N con una rueda de 1.872 metros de circunferencia.
 	 * 
 	*/
 	public double obtenerPotencia(){
     //tener en cuenta la temperatura del clima
-		double potencia=obtenerRpm()*1.872*136;
+		double potencia=obtenerRpm()*1.872*120;
 		return potencia;
 	}
 }

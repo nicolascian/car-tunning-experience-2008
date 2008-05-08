@@ -69,7 +69,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 
 	/**
 	 * para cada instante puede decirnos cual
-	 * es la potencia final del automovil
+	 * es la potencia final del automovil en HP ---> 1 HP = 746W
+
 	 * 
 	 * @return
 	 */
@@ -208,5 +209,23 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public double getPosicion() {
 		return Posicion;
 	}
+
+
+	/**
+	 * @return the carroceria
+	 */
+	public Carroceria getCarroceria() {
+		return carroceria;
+	}
+
+
+	/**
+	 * @param carroceria the carroceria to set
+	 */
+	public void setCarroceria(Carroceria carroceria) {
+		this.carroceria = carroceria;
+	}
+	
+	
 	
 }
