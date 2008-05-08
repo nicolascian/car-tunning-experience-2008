@@ -56,10 +56,8 @@ public class Manual extends Caja{
 	*/
 	public double obtenerPotencia(){
     //tener en cuenta la temperatura del clima
-		double potencia=getAuto().getMotor().getPotenciaMaxima();
-		potencia=potencia+obtenerRpm()*1.872*136/getRelacionDeCambio();
+		Motor motor=getAuto().getMotor();
+		double potencia=obtenerRpm()*motor.calcularPotenciaInterna()/motor.getRPM();
 		return potencia;
 	}
-	
-	
 }
