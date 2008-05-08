@@ -15,7 +15,7 @@
 public class Neumatico extends Componente
 implements AfectablePorClima, AfectablePorSuperficie{
 	
-	private double radio;
+	
 			
 	/* comentario acerca de la implementacion de la clase */
 	
@@ -38,14 +38,6 @@ implements AfectablePorClima, AfectablePorSuperficie{
 		
 	}
 
-	public double getRadio() {
-		return radio;
-	}
-
-	public void setRadio(double radio) {
-		this.radio = radio;
-	}
-	
 	
 	
 }

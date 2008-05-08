@@ -17,8 +17,14 @@
 public class Manual extends Caja{
 	/* comentario acerca de la implementacion de la clase */
 
-	
-	
+	/**
+	 * @Pre:
+	 * @Post: Se ha creado una instancia de la clase derivada de la clase Manual segun los parametros
+	 * detallados a continuación.
+	 * @param auto: auto que contiene a la instancia.  
+	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
+	 * muerto. Debe entre 4 y 8.
+	*/	
 	public Manual(Auto auto, int cantidadCambios) {
 		super(auto, cantidadCambios);
 		
