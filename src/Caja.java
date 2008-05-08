@@ -25,7 +25,7 @@ public abstract class Caja extends Componente{
 	protected double[] relacionDeCambio;//
 	
 	protected int cantidadCambios;
-				
+	
 	public abstract void Chequear(double variacion);
 	
 	/**
@@ -34,13 +34,13 @@ public abstract class Caja extends Componente{
 	 * detallados a continuación.
 	 * @param auto: auto que contiene a la instancia.  
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
-	 * muerto. Debe ser mayor que cuatro, y para trabajar en un entorno real se recomienda que sea
-	 * menor o igual que 8.
+	 * muerto. Debe entre 4 y 8.
 	*/
 	public Caja(Auto auto, int cantidadCambios){
 		this.cantidadCambios=cantidadCambios;
 		relacionDeCambio=new double[cantidadCambios];
 		setAuto(auto);
+		cambio=0;
 		generarRelacionesDeCaja();
 	}
 	
@@ -68,7 +68,10 @@ public abstract class Caja extends Componente{
 		   throw new ExceptionCambioNoValido();
 	}
 	
-	
+	/**
+	 * @Pre: Se ha creado la instancia de la clase derivada de la clase Caja.
+	 * @Post: Se ha obtenido el cambio actual.
+	*/
 	public int getCambio(){
 		 return cambio;
 	}
@@ -84,22 +87,56 @@ public abstract class Caja extends Componente{
 	/**
 	 * @Pre: La instancia ha sido creada.
 	 * @Post:Se ha seteado el cambio. Cada vez que hacemos un Cambio, se altera las 
-	 * revolucionesMaximas del Motor
+	 * revolucionesMaximas del Motor.
 	 * @param cambio: cambio que se desea validad.
 	 * @throws ExceptionCambioNoValido en caso de que el cambio no sea valido.
 	*/
-	public void setCambio(int cambio) throws ExceptionCambioNoValido {
+	protected void setCambio(int cambio) throws ExceptionCambioNoValido {
 		if(cambioValido(cambio)){
 		 if(cambio!=getCambio()){  
+		   double porcentaje;
+		   Motor motor=getAuto().getMotor();
 		   if(getCambio()<cambio)
-			 getAuto().getMotor().disminuirRpmDesdeCaja(77-cambio*30/getCantidadCambios());
+			 porcentaje=77-cambio*30/getCantidadCambios();
 		   else
-			 getAuto().getMotor().disminuirRpmDesdeCaja(77-cambio*50/getCantidadCambios());
-		   setCambio(cambio);	
-		 }
-		}
+			 porcentaje=77-cambio*50/getCantidadCambios();
+		   setCambio(cambio);
+		   //evaluación de como modificar RPM motor
+		   if(porcentaje>20){
+		     if(porcentaje<80)	
+		    	 motor.setRPM(motor.getRPM()-motor.getRPM()*porcentaje/100);
+			 else
+				 motor.setRPM(motor.getRPM()-motor.getRPM()*0.8); 
+		   }
+		   else
+			   motor.setRPM(motor.getRPM()-motor.getRPM()*0.2);
+		   //cambio de revoluciones Maximas del motor segun el cambio
+		   motor.setRevolucionesMaximasCambio(getRelacionDeCambio()*motor.getRevolucionesMaximas()+
+				                        motor.getRevolucionesMaximas());
+		 }//fin cambio!=cambio instancia
+		}//fin cambio valido
+	}
+
+	/**
+	 * @Pre: La instancia ha sido creada.
+	 * @Post:Se ha subido un cambio. Cada vez que hacemos un Cambio, se altera las 
+	 * revolucionesMaximas del Motor.
+	 * @throws ExceptionCambioNoValido en caso de que no se pueda subir un cambio.
+	*/
+	public void siguiente() throws ExceptionCambioNoValido{
+		setCambio(getCambio()+1);
 	}
 	
+	/**
+	 * @Pre: La instancia ha sido creada.
+	 * @Post:Se ha bajado un cambio. Cada vez que hacemos un Cambio, se altera las 
+	 * revolucionesMaximas del Motor.
+	 * @throws ExceptionCambioNoValido en caso de que bajar un cambio.
+	*/
+	public void anterior() throws ExceptionCambioNoValido{
+		setCambio(getCambio()-1);
+	}
+		
 	/**
 	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.
 	 * @Post: Se retorna la cantidad de cambios que tiene la instancia.

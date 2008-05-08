@@ -16,18 +16,16 @@
 public class Secuencial extends Caja{
 	/* comentario acerca de la implementacion de la clase */
 	
-	public void siguiente(){
-		if ( Cambio < CantidadCambios ){
-			this.setCambio(Cambio + 1);
-			this.desgastar();
-		}
-	}
-	
-	public void anterior(){
-		if ( Cambio > 0 ){
-			this.setCambio(Cambio - 1);
-			this.desgastar();
-		}
+	/**
+	 * @Pre:
+	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
+	 * detallados a continuación.
+	 * @param auto: auto que contiene a la instancia.  
+	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
+	 * muerto. Debe entre 4 y 8.
+	*/
+	public Secuencial(Auto auto, int cantidadCambios){
+		super(auto, cantidadCambios);
 	}
 
 	/* Como esta caja no es automatica, no hace nada */

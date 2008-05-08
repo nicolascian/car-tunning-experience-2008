@@ -13,60 +13,43 @@
  * @version	1.0
  */
 public class Motor extends Componente implements AfectablePorClima{
-	/* comentario acerca de la implementacion de la clase */
+		
+	private double cilindrada;
 	
-	private double Cilindrada;
+	private int cantidadCilindros;
 	
-	private int CantidadCilindros;
+	private double temperaturaCritica;
 	
-	private double TemperaturaCritica;
-	private double TemperaturaOptima;
-	private double TemperaturaExterna;
+	private double temperaturaOptima;
+		
+	private double temperaturaExterna;
 
-	/**
-	 * estas revoluciones indicadas para cada cambio
-	 * especifican cuando hay que hacer un cambio
-	 * 
-	 * un motor de 8 cilindros, con cilindrada 4.0
-	 * tiene maximas revoluciones de 6400 rpm
-	 */
-	private double revolucionesOptimas;
-	
-	/**
-	 * las revoluciones maximas se calculan segun las revolucionesOptimas
-	 * y se toma en cuenta el cambio actual
-	 * 
-	 * si las revolucionesOptimas son 6400
-	 * entonces las revolucionesMaximas son:
-	 * primera = 8060
-	 * segunda = 8120
-	 * tercera = 8180
-	 * cuarta  = 8240
-	 * etc...
-	 */
+	//revoluciones maximas del motor
 	private double revolucionesMaximas;
 	
-	
+	//revoluciones maximas para un cambio dado
+	private double revolucionesMaximasCambio;
+		
 	/**
 	 * contador de las revoluciones del motor
 	 */
 	private double RPM;
 
 	/**
-	 * constructor de Motor
-	 * 
-	 * @param cantidadCilindros
+	 * @Pre: 
+	 * @Post: Se ha creado una instancia de la clase, inicializandola segun los parametros.
+	 * @param cantidadCilindros 
 	 * @param cilindrada
+	 * @param revolucionesMaximas revoluciones maximas del motor
 	 */
-	Motor(int cantidadCilindros,double cilindrada){
-		CantidadCilindros = cantidadCilindros;
-		Cilindrada = cilindrada;
-		
-		revolucionesOptimas = CantidadCilindros * Cilindrada * 200;
-		revolucionesMaximas = (5/4)*revolucionesOptimas;
-		TemperaturaCritica = 500; //°C
-		TemperaturaOptima = 120; //°C
-		TemperaturaExterna = 0; //°C
+	Motor(int cantidadCilindros,double cilindrada, double revolucionesMaximas){
+		setCantidadCilindros(cantidadCilindros);
+		setCilindrada(cilindrada);
+		setRevolucionesMaximas(revolucionesMaximas);
+		setRevolucionesMaximasCambio(revolucionesMaximas);
+		setTemperaturaCritica(500); //°C
+		setTemperaturaOptima(120); //°C
+		setTemperaturaExterna(0); //°C
 	}
 	
 	/**
@@ -75,13 +58,13 @@ public class Motor extends Componente implements AfectablePorClima{
 	public void desgastar(){
 		/* pasarce de revolucionesMaximas es perjudicial */
 		this.setEstado( Estado - (RPM/revolucionesMaximas)*10 - 
-				        1/1000000000 - (Temperatura-TemperaturaCritica)/TemperaturaOptima );
-	}
+				        1/1000000000 - (Temperatura-getTemperaturaCritica())/getTemperaturaOptima() );
+	}	
 	
 	public double obtenerPotencia(){
 		
-		return ( RPM + Estado + Cilindrada + CantidadCilindros + 
-				(Temperatura-TemperaturaCritica)/TemperaturaOptima +
+		return ( RPM + Estado + getCilindrada() + getCantidadCilindros() + 
+				(Temperatura-getTemperaturaCritica())/getTemperaturaOptima() +
 				 // Caja
 				 auto.getCaja().obtenerPotencia() +
 				 // Alimentacion.obtenerPotencias hace: Combustible.obtenerPotencia
@@ -94,7 +77,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * caso le envia la variacion con repecto al cambio anterior
 	 * 
 	 * @param rpm
-	 */
+	*/
 	public void setRPM(double rpm) {
 		double anterior = RPM;
 		
@@ -102,12 +85,12 @@ public class Motor extends Componente implements AfectablePorClima{
 		
 		auto.getCaja().Chequear(RPM - anterior);
 		
-		Temperatura = ( RPM/6000 + TemperaturaExterna );
+		setTemperatura(RPM/6000 + getTemperaturaExterna() );
 	}
 	
 	/** el clima afecta al motor */
 	public void afectar(Clima clima){
-		TemperaturaExterna = clima.getTemperatura();
+		setTemperaturaExterna(clima.getTemperatura());
 	}
 	
 	/* setters y getters */
@@ -115,36 +98,95 @@ public class Motor extends Componente implements AfectablePorClima{
 	public double getRPM() {
 		return RPM;
 	}
-
-	public void disminuirRpmDesdeCaja(double porcentaje){
-	   if(porcentaje>20){
-		  if(porcentaje<80)	
-	   		 setRPM(getRPM()-getRPM()*porcentaje/100);
-		  else
-			 setRPM(getRPM()-getRPM()*0.8); 
-       }
-	   else
-		   setRPM(getRPM()-getRPM()*0.2);
-	}
 	
-	public int getCantidadCilindros() {
-		return CantidadCilindros;
-	}
-	
-	public double getCilindrada() {
-		return Cilindrada;
-	}
-
 	public double getRevolucionesMaximas() {
 		return revolucionesMaximas;
 	}
-
-	public double getRevolucionesOptimas() {
-		return revolucionesOptimas;
-	}
-
-	public void setRevolucionesMaximas(double revolucionesMaximas) {
-		this.revolucionesMaximas = revolucionesMaximas;
+	
+	public void setRevolucionesMaximas(double revoluciones) {
+		this.revolucionesMaximas = revoluciones;
 	}
 	
+	public double getRevolucionesMaximasCambio() {
+		return revolucionesMaximasCambio;
+	}
+	
+	public void setRevolucionesMaximasCambio(double revoluciones) {
+		this.revolucionesMaximasCambio = revoluciones;
+	}
+		
+	public void acelerar(){
+		
+	}
+
+	/**
+	 * @return the temperaturaCritica
+	 */
+	public double getTemperaturaCritica() {
+		return temperaturaCritica;
+	}
+
+	/**
+	 * @param temperaturaCritica the temperaturaCritica to set
+	 */
+	public void setTemperaturaCritica(double temperaturaCritica) {
+		this.temperaturaCritica = temperaturaCritica;
+	}
+
+	/**
+	 * @return the temperaturaOptima
+	 */
+	public double getTemperaturaOptima() {
+		return temperaturaOptima;
+	}
+
+	/**
+	 * @param temperaturaOptima the temperaturaOptima to set
+	 */
+	public void setTemperaturaOptima(double temperaturaOptima) {
+		this.temperaturaOptima = temperaturaOptima;
+	}
+
+	/**
+	 * @return the temperaturaExterna
+	 */
+	public double getTemperaturaExterna() {
+		return temperaturaExterna;
+	}
+
+	/**
+	 * @param temperaturaExterna the temperaturaExterna to set
+	 */
+	public void setTemperaturaExterna(double temperaturaExterna) {
+		this.temperaturaExterna = temperaturaExterna;
+	}
+
+	/**
+	 * @param cilindrada the cilindrada to set
+	 */
+	public void setCilindrada(double cilindrada) {
+		this.cilindrada = cilindrada;
+	}
+	
+	/**
+	 * @return the cilindrada
+	 */
+	public double getCilindrada() {
+		return cilindrada;
+	}
+
+	/**
+	 * @return the cantidadCilindros
+	 */
+	public int getCantidadCilindros() {
+		return cantidadCilindros;
+	}
+
+	/**
+	 * @param cantidadCilindros the cantidadCilindros to set
+	 */
+	public void setCantidadCilindros(int cantidadCilindros) {
+		this.cantidadCilindros = cantidadCilindros;
+	}
+
 }
