@@ -25,23 +25,40 @@ public class Manual extends Caja{
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
 	*/	
-	public Manual(Auto auto, int cantidadCambios) {
-		super(auto, cantidadCambios);
+	public Manual(Auto auto, int cantidadCambios,AlgoPesos precio) {
+		super(auto, cantidadCambios,precio);
 		
 	}
 
+	/**
+	 * @Pre: 
+	 * @Post: Se han generado las relaciones de caja correspondientes.
+	 * 
+	*/
+	protected void generarRelacionesDeCaja(){
+		for(int cursor=1;cursor<=cantidadCambios;cursor++)
+			   relacionDeCambio[cursor]=15/cursor-9/(cantidadCambios*cantidadCambios);
+	}
+	
 	/* Como esta caja no es automatica, no hace nada */
 	public void Chequear(double variacion){}
 	
 	public void desgastar(){
     //tener en cuenta la temperatura del clima
-		this.setEstado(Estado - 1/1000000000);
+		this.setEstado(getEstado() - 1/1000000000);
 	}
 	
+	/**
+	 * @Pre: Se ha creado una instancia de la Automatica segun los parametros.
+	 * @Post: Se ha obtenido la potencia entregada por la caja a una cantidad
+	 * de Rpm y cambios dado, teniendo en cuenta una fuerza de rodamiento de
+	 * 136N con una rueda de 1.872 metros de circunferencia.
+	*/
 	public double obtenerPotencia(){
     //tener en cuenta la temperatura del clima
-		return 0;
-		
+		double potencia=getAuto().getMotor().getPotenciaMaxima();
+		potencia=potencia+obtenerRpm()*1.872*136/getRelacionDeCambio();
+		return potencia;
 	}
 	
 	

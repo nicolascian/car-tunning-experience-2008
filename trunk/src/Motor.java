@@ -6,7 +6,13 @@
  ******************************************************************************/
 
 /**
- * Documentacion
+ * @Documentacion: Esta clase modela el motor de un auto. El motor tiene una cierta potencia
+ * maxima dada su cilindrada, cantidad de cilindros y revoluciones maximas que puede alcanzar.
+ * El motor transfiere la mayor parte de su pontecia a la caja, por lo cual solo un 10% es
+ * obtenible asumiendolo como componente.
+ * El motor gira a una determinada cantidad de revoluciones que podra ir variando con los
+ * metodos correspientes, o al pasar un cambio de la caja, la cual lo modificara en forma
+ * adecuada.
  * 
  * se ve afectado por la temperatura del clima
  * 
@@ -14,34 +20,36 @@
  */
 public class Motor extends Componente implements AfectablePorClima{
 		
-	private double cilindrada;
+	private double cilindrada;//en centimetros cúbicos
 	
 	private int cantidadCilindros;
 	
-	private double temperaturaCritica;
+	private double temperaturaCritica;//en ºC
 	
-	private double temperaturaOptima;
+	private double temperaturaOptima;//en ºC
 		
-	private double temperaturaExterna;
+	private double temperaturaExterna;//en ºC
 
+	private double potenciaMaxima;//en hp
+	
 	//revoluciones maximas del motor
-	private double revolucionesMaximas;
+	private double revolucionesMaximas;//en rpm
 	
 	//revoluciones maximas para un cambio dado
-	private double revolucionesMaximasCambio;
+	private double revolucionesMaximasCambio;//en rpm
 		
 	/**
 	 * contador de las revoluciones del motor
 	 */
-	private double RPM;
+	private double RPM;//en rpm
 
 	/**
 	 * @Pre: 
 	 * @Post: Se ha creado una instancia de la clase, inicializandola segun los parametros.
 	 * @param cantidadCilindros 
-	 * @param cilindrada
-	 * @param revolucionesMaximas revoluciones maximas del motor
-	 */
+	 * @param cilindrada en centimetros cubicos
+	 * @param revolucionesMaximas revoluciones maximas del motor en rpm
+	*/
 	Motor(int cantidadCilindros,double cilindrada, double revolucionesMaximas){
 		setCantidadCilindros(cantidadCilindros);
 		setCilindrada(cilindrada);
@@ -50,21 +58,22 @@ public class Motor extends Componente implements AfectablePorClima{
 		setTemperaturaCritica(500); //Â°C
 		setTemperaturaOptima(120); //Â°C
 		setTemperaturaExterna(0); //Â°C
+		setPotenciaMaxima(120*getCilindrada()*getCantidadCilindros()/getRevolucionesMaximas());
 	}
 	
 	/**
 	 * pasarce de revoluciones es perjudicial
-	 */
+	*/
 	public void desgastar(){
 		/* pasarce de revolucionesMaximas es perjudicial */
-		this.setEstado( Estado - (RPM/revolucionesMaximas)*10 - 
-				        1/1000000000 - (Temperatura-getTemperaturaCritica())/getTemperaturaOptima() );
+		this.setEstado( getEstado() - (getRPM()/revolucionesMaximas)/10 - 1/1000000000 - 
+				        (getTemperatura()-getTemperaturaCritica())/getTemperaturaOptima() );
 	}	
 	
 	public double obtenerPotencia(){
 		
-		return ( RPM + Estado + getCilindrada() + getCantidadCilindros() + 
-				(Temperatura-getTemperaturaCritica())/getTemperaturaOptima() +
+		return ( RPM + getEstado() + getCilindrada() + getCantidadCilindros() + 
+				(getTemperatura()-getTemperaturaCritica())/getTemperaturaOptima() +
 				 // Caja
 				 auto.getCaja().obtenerPotencia() +
 				 // Alimentacion.obtenerPotencias hace: Combustible.obtenerPotencia
@@ -189,4 +198,18 @@ public class Motor extends Componente implements AfectablePorClima{
 		this.cantidadCilindros = cantidadCilindros;
 	}
 
+	/**
+	 * @return the potenciaMaxima
+	 */
+	public double getPotenciaMaxima() {
+		return potenciaMaxima;
+	}
+
+	/**
+	 * @param potenciaMaxima the potenciaMaxima to set
+	 */
+	public void setPotenciaMaxima(double potenciaMaxima) {
+		this.potenciaMaxima = potenciaMaxima;
+	}
+	
 }

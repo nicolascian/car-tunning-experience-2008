@@ -15,7 +15,7 @@ import java.util.*;
 public abstract class Componente{
 	/* comentario acerca de la implementacion de la clase */
 	
-	private String Nombre;
+	private String nombre;
 	
 	/**
 	 * El estado indica el porcentaje de integridad de un componente.
@@ -24,13 +24,13 @@ public abstract class Componente{
 	 * 100 corresponde a totalmente integro.
 	 * Un auto no puede funcionar si alguno de sus elementos tiene Estado = 0.
 	 */
-	protected double Estado;
+	protected double estado;
 	
 	/** Temperatura interna del componente */
-	protected double Temperatura;
+	protected double temperatura;
 	
 	/** Peso especifico del componente */
-	protected double Peso;
+	protected double peso;
 	
 	protected Auto auto;
 	
@@ -61,8 +61,13 @@ public abstract class Componente{
 	 * @param porcentaje
 	 */
 	public void reparar(double porcentaje){
-		Estado += porcentaje;
+		estado += porcentaje;
 	}
+	
+	public AlgoPesos getPrecioAmortizado(){
+		return new AlgoPesos( getEstado()*100/getPrecio().getValor());
+	}
+	
 	/**
 	 * Metodo que recibe una lista de elementos afectables por clima, 
 	 * y que agrega el componente a dicha lista si este es una instancia 
@@ -101,27 +106,44 @@ public abstract class Componente{
 	}
 	
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.nombre = nombre;
 	}
 	
 	public double getEstado(){
-		return Estado;
+		return estado;
 	}
 	
 	public void setEstado(double estado) {
-		Estado = estado;
+		if(estado<0)
+		  this.estado = 0;
+		else
+		  this.estado=estado;
 	}
 	
 	public double getPeso() {
-		return Peso;
+		return this.peso;
 	}
 	
 	public void setPeso(double peso) {
-		Peso = peso;
+		this.peso = peso;
 	}
-	
+
+	/**
+	 * @return the temperatura
+	 */
+	public double getTemperatura() {
+		return temperatura;
+	}
+
+	/**
+	 * @param temperatura the temperatura to set
+	 */
+	public void setTemperatura(double temperatura) {
+		this.temperatura = temperatura;
+	}
+		
 }

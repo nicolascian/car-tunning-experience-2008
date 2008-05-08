@@ -36,12 +36,14 @@ public abstract class Caja extends Componente{
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
 	*/
-	public Caja(Auto auto, int cantidadCambios){
+	public Caja(Auto auto, int cantidadCambios,AlgoPesos precio){
 		this.cantidadCambios=cantidadCambios;
 		relacionDeCambio=new double[cantidadCambios];
 		setAuto(auto);
 		cambio=0;
 		generarRelacionesDeCaja();
+		setPrecio(precio);
+		setEstado(100);
 	}
 	
 	/**
@@ -49,10 +51,7 @@ public abstract class Caja extends Componente{
 	 * @Post: Se han generado las relaciones de caja correspondientes.
 	 * 
 	*/
-	private void generarRelacionesDeCaja(){
-		for(int cursor=1;cursor<=cantidadCambios;cursor++)
-			   relacionDeCambio[cursor]=15/cursor-9/(cantidadCambios*cantidadCambios);
-	}
+	abstract protected void generarRelacionesDeCaja();
 		
 	/**
 	 * @Pre: Se ha creado la instancia de la clase derivada de la clase Caja.
@@ -152,5 +151,6 @@ public abstract class Caja extends Componente{
 	public double obtenerRpm() {
 		return (getAuto().getMotor().getRPM()/getRelacionDeCambio());
 	}
+	
 	
 }

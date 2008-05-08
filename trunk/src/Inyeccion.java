@@ -22,14 +22,14 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 
 		double valor = auto.getMotor().getCilindrada() * auto.getMotor().getRPM();
 			
-		return (valor * (1/Estado) * (EfectoClimatico/10)  );
+		return (valor * (1/getEstado()) * (EfectoClimatico/10)  );
 	}
 	
 	/**
 	 * a la inyeccion, el clima, lo afecta en menor medida
 	 */
 	public void desgastar(){
-		Estado = (Estado - (EfectoClimatico/10000000) - 1/1000000000 );
+		setEstado((getEstado() - (EfectoClimatico/10000000) - 1/1000000000 ));
 	}
 	
 	/** el clima afecta a la inyeccion */
@@ -49,6 +49,6 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	 * @return
 	 */
 	public double obtenerPotencia(){
-		return ((auto.getCombustible().obtenerPotencia() *94) /100) * EfectoClimatico * Estado;
+		return ((auto.getCombustible().obtenerPotencia() *94) /100) * EfectoClimatico * getEstado();
 	}
 }
