@@ -24,16 +24,16 @@ public class Motor extends Componente implements AfectablePorClima{
 	private double cilindrada;//en centimetros cúbicos
 	
 	private int cantidadCilindros;
+				
+	private boolean encendido;//indica si el motor se encuentra encendido
 	
-	private long horaDeEncendido;
-		
-	private boolean encendido;
-	
-	protected boolean acelerando;
+	protected boolean acelerando;//indica si el motor esta acelerendo
 	
 	protected final static double TEMPERATURA_CRITICA=200;//en ºC
 	
 	protected final static double TEMPERATURA_OPTIMA=95;//en ºC
+	
+	private long horaDeEncendido;//en milisengundos
 	
 	protected long tiempoCaracteristicoAceleracion;//en milisegundos
 	
@@ -79,7 +79,7 @@ public class Motor extends Componente implements AfectablePorClima{
 		if(!isEncendido()){
 			setEncendido(true);
 			setHoraDeEncendido(System.currentTimeMillis());
-			setRPM(getRevolucionesMaximas()*0.08);
+			setRPM(getRevolucionesMaximas()*0.08);//se coloca las revoluciones a un 8% de las maximas
 			setAcelerando(false);
 		}
 	}
@@ -108,6 +108,9 @@ public class Motor extends Componente implements AfectablePorClima{
 	  }
 	}
 	
+	/**
+	 *  
+	*/
 	public void acelerar(){
 		if(isEncendido())
 		  if(!isAcelerando()){
@@ -160,6 +163,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	/* setters y getters */
 
 	public double getRPM() {
+		//actualizacion de RPM en caso de estar acelerando o desacelerendo
 		actualizarRpm();
 		return RPM;
 	}
@@ -222,6 +226,11 @@ public class Motor extends Componente implements AfectablePorClima{
 		this.cantidadCilindros = cantidadCilindros;
 	}
 
+	/**
+	 * @Pre: La instancia ha sido creada.
+	 * @Pos: Se ha obtenido el calculo de la potencia interna del motor retornando en Hp.
+	 * @return potencia interna del motor en Hp.
+	*/
 	public double calcularPotenciaInterna(){
 		double potenciaInterna=0;
 		if(getRPM()>0){
