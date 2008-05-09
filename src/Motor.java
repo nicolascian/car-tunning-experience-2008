@@ -21,6 +21,16 @@
 
 public class Motor extends Componente implements AfectablePorClima{
 		
+    //constantes
+	
+	protected final static double TEMPERATURA_CRITICA=200;//en ºC
+	
+	protected final static double TEMPERATURA_OPTIMA=95;//en ºC
+	
+	protected final static double COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO=0.25;
+		
+	protected final static double PORCENTAJE_RPM_ENCENDIDO=0.08;
+	
 	private double cilindrada;//en centimetros cúbicos
 	
 	private int cantidadCilindros;
@@ -28,11 +38,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	private boolean encendido;//indica si el motor se encuentra encendido
 	
 	protected boolean acelerando;//indica si el motor esta acelerendo
-	
-	protected final static double TEMPERATURA_CRITICA=200;//en ºC
-	
-	protected final static double TEMPERATURA_OPTIMA=95;//en ºC
-	
+		
 	private long horaDeEncendido;//en milisengundos
 	
 	protected long tiempoCaracteristicoAceleracion;//en milisegundos
@@ -41,7 +47,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	private long tiempoDeInicioFinCurvaAceleracion;//en milisegundos
 	
-	protected double temperaturaExterna;//en ºC
+	protected double temperaturaAire;//en ºC
 	
 	//revoluciones maximas del motor
 	private double revolucionesMaximas;//en rpm
@@ -72,14 +78,14 @@ public class Motor extends Componente implements AfectablePorClima{
 		setEncendido(false);
 		setAcelerando(false);
 		setHoraDeInicioFinAceleracion(0);
-		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*0.25));
+		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
 	}
 	
 	public void encender(){
 		if(!isEncendido()){
 			setEncendido(true);
 			setHoraDeEncendido(System.currentTimeMillis());
-			setRPM(getRevolucionesMaximas()*0.08);//se coloca las revoluciones a un 8% de las maximas
+			setRPM(getRevolucionesMaximas()*PORCENTAJE_RPM_ENCENDIDO);
 			setAcelerando(false);
 		}
 	}
@@ -137,6 +143,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * pasarce de revoluciones es perjudicial
 	*/
 	public void desgastar(){
+	
 	}	
 	
 	public double obtenerPotencia(){
@@ -157,11 +164,9 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	/** el clima afecta al motor */
 	public void afectar(Clima clima){
-		setTemperaturaExterna(clima.getTemperatura());
+		setTemperaturaAire(clima.getTemperatura());
 	}
-	
-	/* setters y getters */
-
+		
 	public double getRPM() {
 		//actualizacion de RPM en caso de estar acelerando o desacelerendo
 		actualizarRpm();
@@ -185,17 +190,17 @@ public class Motor extends Componente implements AfectablePorClima{
 	}
 			
 	/**
-	 * @return the temperaturaExterna
+	 * @return the temperaturaAire
 	 */
-	public double getTemperaturaExterna() {
-		return temperaturaExterna;
+	public double getTemperaturaAire() {
+		return temperaturaAire;
 	}
 
 	/**
-	 * @param temperaturaExterna the temperaturaExterna to set
+	 * @param temperaturaExterna the temperaturaAire to set
 	 */
-	public void setTemperaturaExterna(double temperaturaExterna) {
-		this.temperaturaExterna = temperaturaExterna;
+	public void setTemperaturaAire(double temperatura) {
+		this.temperaturaAire = temperatura;
 	}
 
 	/**
@@ -327,7 +332,4 @@ public class Motor extends Componente implements AfectablePorClima{
 			long tiempoDeInicioFinCurvaAceleracion) {
 		this.tiempoDeInicioFinCurvaAceleracion = tiempoDeInicioFinCurvaAceleracion;
 	}
-
-	
-		
 }
