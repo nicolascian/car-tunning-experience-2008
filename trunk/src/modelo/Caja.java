@@ -43,13 +43,12 @@ public abstract class Caja extends Componente{
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa que en 
 	 * esta implementación no existe y punto muerto. Debe entre 4 y 8.
 	*/
-	public Caja(Auto auto, int cantidadCambios,AlgoPesos precio){
+	public Caja(Auto auto, int cantidadCambios){
 		this.cantidadCambios=cantidadCambios;
 		relacionDeCambio=new double[cantidadCambios+1];
 		setAuto(auto);
 		cambio=0;
 		generarRelacionesDeCaja();
-		setPrecio(precio);
 		setEstado(100);
 	}
 	
