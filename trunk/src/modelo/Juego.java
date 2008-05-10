@@ -32,8 +32,10 @@ public class Juego{
 		
 		while(!finCarrera){
 			
+			//Control1.acelerando ? true
+			jugador1.jugar();
 			
-			
+			jugador2.jugar();
 			
 			double Long = pista.getLongitud();
 			
