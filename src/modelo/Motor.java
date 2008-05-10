@@ -89,9 +89,10 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * @param cilindrada en centimetros cubicos
 	 * @param revolucionesMaximas revoluciones maximas del motor en rpm
 	*/
-	public Motor(int cantidadCilindros,double cilindrada, double revolucionesMaximas){
+	public Motor(int cantidadCilindros,double cilindrada, double revolucionesMaximas,Auto auto){
 		setCantidadCilindros(cantidadCilindros);
 		setCilindrada(cilindrada);
+		setAuto(auto);
 		//inicializacion de revoluciones
 		setRevolucionesMaximas(revolucionesMaximas);
 		setRevolucionesMaximasCambio(revolucionesMaximas);

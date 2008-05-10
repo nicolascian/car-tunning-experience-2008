@@ -53,7 +53,15 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * constructor
 	 *
 	 */
-	Auto(){
+	public Auto(){
+		
+		//creacion de componentes
+		listoParaCarrera=false;
+		setMotor(new Motor(4,1600,8000,this));
+		setCaja(new Manual(this,5));
+		setCarroceria(new Carroceria(2.4,this));
+		
+		
 		
 		
 	}

@@ -26,8 +26,8 @@ public class Manual extends Caja{
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
 	*/	
-	public Manual(Auto auto, int cantidadCambios,AlgoPesos precio) {
-		super(auto, cantidadCambios,precio);
+	public Manual(Auto auto, int cantidadCambios) {
+		super(auto, cantidadCambios);
 		
 	}
 

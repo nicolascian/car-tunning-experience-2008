@@ -20,9 +20,11 @@ public class Carroceria extends Componente
 	
 	private double arrastre;//coeficiente de arrastre del aire
 	
-	private double superficieFrontal;
+	private double superficieFrontal;//en metros cuadrados
 	
 	private final static double TEMPERATURAOPTIMA=25;
+	
+	private final static double COEFICIENTE_ARRASTRE=0.38;
 	
 	private double coeficienteDeOxidacionPorParticulas;
 	
@@ -43,11 +45,9 @@ public class Carroceria extends Componente
 	 * @param superficieFrontal: seccion delantera del auto que se vera afectada por la pared
 	 * de aire que enfrente el auto al desplazarse. 
 	*/
-	public Carroceria(double arrastre, double superficieFrontal,Auto auto,AlgoPesos precio){
-		setPrecio(precio);
+	public Carroceria(double superficieFrontal,Auto auto){
 		setEstado(100);
 		setSuperficieFrontal(superficieFrontal);
-		setArrastre(arrastre);
 		setCoeficienteDeOxidacionPorHumedad(0);
 		setCoeficienteDeOxidacionPorParticulas(0);
 	}
@@ -61,7 +61,7 @@ public class Carroceria extends Componente
 	 * y por lo tanto obteniendose una menor potencia de arrastre. 	 
 	*/
 	public double obtenerPotencia(){
-		double coeficiente=getArrastre()-TEMPERATURAOPTIMA/(getTemperatura()*10);
+		double coeficiente=COEFICIENTE_ARRASTRE-TEMPERATURAOPTIMA/(getTemperatura()*10);
 		return (getAuto().getVelocidad()*coeficiente*getSuperficieFrontal()*0.0001862);
 	}
 	
@@ -75,21 +75,7 @@ public class Carroceria extends Componente
 	public void afectar(Superficie superficie){
 		setCoeficienteDeOxidacionPorParticulas(superficie.getParticulasSueltas()/10000);
 	}
-
-	/**
-	 * @return the arrastre
-	 */
-	public double getArrastre() {
-		return arrastre;
-	}
-
-	/**
-	 * @param arrastre the arrastre to set
-	 */
-	public void setArrastre(double arrastre) {
-		this.arrastre = arrastre;
-	}
-
+	
 	/**
 	 * @return the superficieFrontal
 	 */
