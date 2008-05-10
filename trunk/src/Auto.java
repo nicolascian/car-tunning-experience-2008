@@ -23,6 +23,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private double Velocidad; // integral de Aaceleracion
 	private double Aceleracion; // = Potencia de las RPM
 	private double Posicion; // dstancia recorrida
+	private boolean listoParaCarrera;
 	
 	private Motor motor;
 	private Caja caja;
@@ -224,6 +225,24 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 */
 	public void setCarroceria(Carroceria carroceria) {
 		this.carroceria = carroceria;
+	}
+
+
+	/**
+	 * @return the listoParaCarrera
+	 */
+	protected boolean isListoParaCarrera() {
+		return listoParaCarrera;
+	}
+
+
+	/**
+	 * @Pre: La instancia de la clase Auto ha sido creada.
+	 * @Post: Se verifica si la instancia se encuentra lista para correr y en
+	 * ese caso setea como lista para carrera.
+	 */
+	public void actualizarListoParaCarrera(){
+		
 	}
 	
 	

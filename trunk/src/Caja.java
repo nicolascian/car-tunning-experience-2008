@@ -26,8 +26,10 @@ public abstract class Caja extends Componente{
 	
 	protected int cantidadCambios;
 	
-	public abstract void Chequear(double variacion);
+	protected final static double COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM=1;
 	
+	public abstract void Chequear(double variacion);
+		
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
@@ -61,7 +63,7 @@ public abstract class Caja extends Componente{
 	 * @throws ExceptionCambioNoValido en caso de que el cambio no sea valido.
 	*/
 	protected boolean cambioValido(int cambio) throws ExceptionCambioNoValido{
-		if(cambio<=getCantidadCambios())	
+		if((cambio>=0)&&(cambio<=getCantidadCambios()))	
 		   return (true);
 		else
 		   throw new ExceptionCambioNoValido();
@@ -93,22 +95,12 @@ public abstract class Caja extends Componente{
 	protected void setCambio(int cambio) throws ExceptionCambioNoValido {
 		if(cambioValido(cambio)){
 		 if(cambio!=getCambio()){  
-		   double porcentaje;
-		   Motor motor=getAuto().getMotor();
-		   if(getCambio()<cambio)
-			 porcentaje=77-cambio*30/getCantidadCambios();
-		   else
-			 porcentaje=77-cambio*50/getCantidadCambios();
-		   setCambio(cambio);
-		   //evaluación de como modificar RPM motor
-		   if(porcentaje>20){
-		     if(porcentaje<80)	
-		    	 motor.setRPM(motor.getRPM()-motor.getRPM()*porcentaje/100);
-			 else
-				 motor.setRPM(motor.getRPM()-motor.getRPM()*0.8); 
-		   }
-		   else
-			   motor.setRPM(motor.getRPM()-motor.getRPM()*0.2);
+		   Motor motor=auto.getMotor();
+		   double relacionRpm=Math.abs(obtenerRpm()/motor.getRevolucionesMaximas()-1); 
+		   double rpm=motor.getRevolucionesMaximas()*relacionRpm;
+		   if(rpm<motor.getRevolucionesMinimasEncendido())
+			   rpm=motor.getRevolucionesMinimasEncendido();
+		   motor.modificarRpmDesdeCaja(rpm-motor.getRPM());
 		   //cambio de revoluciones Maximas del motor segun el cambio
 		   motor.setRevolucionesMaximasCambio(getRelacionDeCambio()*motor.getRevolucionesMaximas()+
 				                        motor.getRevolucionesMaximas());
@@ -151,6 +143,39 @@ public abstract class Caja extends Componente{
 	public double obtenerRpm() {
 		return (getAuto().getMotor().getRPM()/getRelacionDeCambio());
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see Componente#isListoParaCarrera()
+	 */
+	@Override
+	public boolean isListoParaCarrera() {
+		return listoParaCarrera;
+	}
+
+	/* (non-Javadoc)
+	 * @see Componente#actualizarListoParaCarrera()
+	 */
+	@Override
+	public void actualizarListoParaCarrera() {
+		if(getAuto()!=null)
+		  listoParaCarrera=true;
+		else
+		  listoParaCarrera=false;
+	}
+
+	/**
+	 * @Pre: Se ha creado una instancia de la Automatica segun los parametros.
+	 * @Post: Se ha obtenido la potencia entregada por la caja a una cantidad
+	 * de Rpm y cambios dado, teniendo en cuenta una fuerza de rodamiento de
+	 * 120N con una rueda de 1.872 metros de circunferencia.
+	 * 
+	*/
+	public double obtenerPotencia(){
+		double potencia=0;
+		for(int cursor=0;cursor<getCambio();cursor++)	
+			potencia=potencia+getAuto().getMotor().getRevolucionesMaximas()*COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM/relacionDeCambio[cursor];
+		potencia=potencia+obtenerRpm()*COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM;
+		return potencia;
+	}
 	
 }

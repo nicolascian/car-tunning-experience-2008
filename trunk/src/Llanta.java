@@ -30,4 +30,25 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 	public void afectar(Superficie superficie){
 		
 	}
+
+	/* (non-Javadoc)
+	 * @see Componente#isListoParaCarrera()
+	 */
+	@Override
+	public boolean isListoParaCarrera() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see Componente#actualizarListoParaCarrera()
+	 */
+	@Override
+	public void actualizarListoParaCarrera() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
 }

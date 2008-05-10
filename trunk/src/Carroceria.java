@@ -132,4 +132,24 @@ public class Carroceria extends Componente
 			double coeficienteDeOxidacionPorHumedad) {
 		this.coeficienteDeOxidacionPorHumedad = coeficienteDeOxidacionPorHumedad;
 	}
+
+	/* (non-Javadoc)
+	 * @see Componente#isListoParaCarrera()
+	 */
+	@Override
+	public boolean isListoParaCarrera() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see Componente#actualizarListoParaCarrera()
+	 */
+	@Override
+	public void actualizarListoParaCarrera() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

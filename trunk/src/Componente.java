@@ -36,6 +36,8 @@ public abstract class Componente{
 	
 	protected AlgoPesos precio;
 	
+	protected boolean listoParaCarrera;
+	
 	/**
 	 * es invocado por el auto
 	 * tiene por objetivo deteriorar el estado de cada componente
@@ -145,5 +147,20 @@ public abstract class Componente{
 	public void setTemperatura(double temperatura) {
 		this.temperatura = temperatura;
 	}
+
+	/**
+	 * @Pre: La instancia de la clase derivada de componente ha sido creada.
+	 * @Post: Se verifica si la instancia se encuentra lista para correr y en
+	 * ese caso retorna true, en caso contrario false.
+	 * @return the listoParaCarrera
+	 */
+	abstract public boolean isListoParaCarrera();
+
+	/**
+	 * @Pre: La instancia de la clase derivada de componente ha sido creada.
+	 * @Post: Se verifica si la instancia se encuentra lista para correr y en
+	 * ese caso setea como lista para carrera.
+	 */
+	abstract public void actualizarListoParaCarrera();
 		
 }
