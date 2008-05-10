@@ -11,7 +11,7 @@ package modelo;
  * 
  * @version	1.0
  */
-public abstract class Jugador{
+public abstract class Jugador throws AutoApagadoException{
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
@@ -21,7 +21,27 @@ public abstract class Jugador{
 	
 	public void jugar(){
 		
+		//SI ENCENDIDO:
+		if (auto.getMotor().isEncendido()){
+			
+			//SI ACELERA
+			auto.getMotor().acelerar(true);
 		
+			//NO ACELERA
+			auto.getMotor().acelerar(false);
+		
+			//SI SECUENCIAL
+				
+				//SI SUBE CAMBIO
+				auto.getCaja().siguiente();
+			
+				//SI BAJA CAMBIO
+				auto.getCaja().anterior();
+			
+		}else{
+			throw new AutoApagadoException();
+		}
+			
 	}
 	
 	public Auto getAuto() {
