@@ -16,16 +16,17 @@ package modelo;
 public class Automatica extends Caja{
 	/* comentario acerca de la implementacion de la clase */
 			
-	public void Chequear(double variacion){
+	public void Chequear(){
+	
 	  try{	
 		//revolucionesOptimas - revolucionesActuales
 		double relacion = auto.getMotor().getRevolucionesMaximas() - auto.getMotor().getRPM(); 
 		
 		/*SI ESTA ACLERANDO*/
-		if ((variacion > 0)&&(relacion <= 300)){ this.siguiente(); }
+		if ((auto.getMotor().isAcelerando())&&(relacion <= 300)){ this.siguiente(); }
 		
 		/*SI ESTA FRENANDO*/
-		if ((variacion < 0)&&(relacion >= 1200)){ this.anterior(); }
+		if ((!auto.getMotor().isAcelerando())&&(relacion >= 1200)){ this.anterior(); }
 	  }catch(ExceptionCambioNoValido e){};
 	}
 	
@@ -36,8 +37,8 @@ public class Automatica extends Caja{
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
 	*/
-	public Automatica(Auto auto, int cantidadCambios, AlgoPesos precio){
-		super(auto,cantidadCambios, precio);
+	public Automatica(Auto auto, int cantidadCambios){
+		super(auto,cantidadCambios);
 	}
 		
 	protected void generarRelacionesDeCaja(){

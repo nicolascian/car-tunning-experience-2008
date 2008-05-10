@@ -42,7 +42,7 @@ public class Manual extends Caja{
 	}
 	
 	/* Como esta caja no es automatica, no hace nada */
-	public void Chequear(double variacion){}
+	public void Chequear(){}
 	
 	public void desgastar(){
     //tener en cuenta la temperatura del clima

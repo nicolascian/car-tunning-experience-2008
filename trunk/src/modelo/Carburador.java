@@ -13,7 +13,13 @@ package modelo;
  */
 public class Carburador extends Alimentacion implements AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
-	private double EfectoClimatico;		
+	
+	private double EfectoClimatico;
+	
+	public  Carburador(){
+		
+	}
+	
 	/**
 	 * Documentacion
 	 * 

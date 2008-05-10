@@ -13,6 +13,9 @@ package modelo;
  */
 public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
+	public Inyeccion(){
+		
+	}
 	private double EfectoClimatico;
 	/**
 	 * La inyeccion consume menos combustible pero provee menos potencia

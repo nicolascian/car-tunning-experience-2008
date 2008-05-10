@@ -21,8 +21,10 @@ public class Combustible extends Componente{
 	
 	private double capacidad;
 	
-	public Combustible(){
-		
+	public Combustible(double capacidad, double indiceDeCombustion){
+		setCapacidad(capacidad);
+		setEstado(capacidad);
+		setIndiceDeCombustion(indiceDeCombustion);
 	}
 	
 	public void desgastar(){

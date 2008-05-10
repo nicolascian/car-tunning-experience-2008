@@ -31,7 +31,7 @@ public abstract class Caja extends Componente{
 	
 	protected final static double PORCENTAJE_ESTANDAR_REVOLUCIONES_MINIMAS_PARA_CAMBIO=0.6;
 	
-	public abstract void Chequear(double variacion);
+	public abstract void Chequear();
 	
 	
 	
