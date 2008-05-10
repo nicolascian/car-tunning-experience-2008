@@ -5,8 +5,6 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-import java.lang.Thread; 
-
 /**
  * Documentacion
  * 
@@ -42,25 +40,15 @@ public class Automatica extends Caja{
 	}
 		
 	protected void generarRelacionesDeCaja(){
-		for(int cursor=1;cursor<=cantidadCambios;cursor++)
-			   relacionDeCambio[cursor]=15/(cursor-0.3)-9/(cantidadCambios*cantidadCambios);
+		for(int cursor=0;cursor<=cantidadCambios;cursor++)
+		  if(cursor==0)	   
+			relacionDeCambio[cursor]=15/(cursor-0.3)-9/(cantidadCambios*cantidadCambios);
+		  else
+			relacionDeCambio[cursor]=1;  
 	}	
 	
 	public void desgastar(){
        //tener en cuenta la temperatura del clima
 	    	
-	}
-		
-	/**
-	 * @Pre: Se ha creado una instancia de la Automatica segun los parametros.
-	 * @Post: Se ha obtenido la potencia entregada por la caja a una cantidad
-	 * de Rpm y cambios dado, teniendo en cuenta una fuerza de rodamiento de
-	 * 120N con una rueda de 1.872 metros de circunferencia.
-	 * 
-	*/
-	public double obtenerPotencia(){
-    //tener en cuenta la temperatura del clima
-		double potencia=obtenerRpm()*1.872*120;
-		return potencia;
 	}
 }

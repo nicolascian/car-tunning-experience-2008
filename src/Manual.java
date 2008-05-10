@@ -48,16 +48,4 @@ public class Manual extends Caja{
 		this.setEstado(getEstado() - 1/1000000000);
 	}
 	
-	/**
-	 * @Pre: Se ha creado una instancia de la Automatica segun los parametros.
-	 * @Post: Se ha obtenido la potencia entregada por la caja a una cantidad
-	 * de Rpm y cambios dado, teniendo en cuenta una fuerza de rodamiento de
-	 * 136N con una rueda de 1.872 metros de circunferencia.
-	*/
-	public double obtenerPotencia(){
-    //tener en cuenta la temperatura del clima
-		Motor motor=getAuto().getMotor();
-		double potencia=obtenerRpm()*motor.calcularPotenciaInterna()/motor.getRPM();
-		return potencia;
-	}
 }

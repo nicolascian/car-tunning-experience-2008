@@ -59,5 +59,26 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	
 		return ((auto.getCombustible().obtenerPotencia() *98) /100) * EfectoClimatico * getEstado();
 	}
+
+	/* (non-Javadoc)
+	 * @see Componente#isListoParaCarrera()
+	 */
+	@Override
+	public boolean isListoParaCarrera() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see Componente#actualizarListoParaCarrera()
+	 */
+	@Override
+	public void actualizarListoParaCarrera() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
 	
 }

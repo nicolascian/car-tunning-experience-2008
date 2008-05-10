@@ -46,10 +46,4 @@ public class Secuencial extends Caja{
 		//tener en cuenta la temperatura del clima
 	}
 	
-	public double obtenerPotencia(){
-		//tener en cuenta la temperatura del clima
-		return 0;
-		
-	}
-	
 }
