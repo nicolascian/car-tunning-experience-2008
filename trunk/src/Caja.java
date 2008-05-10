@@ -23,24 +23,28 @@ public abstract class Caja extends Componente{
 	protected int cambio;
 		
 	protected double[] relacionDeCambio;//
-	
+		
 	protected int cantidadCambios;
 	
-	protected final static double COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM=1;
+	protected final static double COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM=0.015;
+	
+	protected final static double PORCENTAJE_ESTANDAR_REVOLUCIONES_MINIMAS_PARA_CAMBIO=0.6;
 	
 	public abstract void Chequear(double variacion);
-		
+	
+	
+	
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
 	 * detallados a continuación.
 	 * @param auto: auto que contiene a la instancia.  
-	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
-	 * muerto. Debe entre 4 y 8.
+	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa que en 
+	 * esta implementación no existe y punto muerto. Debe entre 4 y 8.
 	*/
 	public Caja(Auto auto, int cantidadCambios,AlgoPesos precio){
 		this.cantidadCambios=cantidadCambios;
-		relacionDeCambio=new double[cantidadCambios];
+		relacionDeCambio=new double[cantidadCambios+1];
 		setAuto(auto);
 		cambio=0;
 		generarRelacionesDeCaja();
@@ -95,15 +99,18 @@ public abstract class Caja extends Componente{
 	protected void setCambio(int cambio) throws ExceptionCambioNoValido {
 		if(cambioValido(cambio)){
 		 if(cambio!=getCambio()){  
-		   Motor motor=auto.getMotor();
+		   Motor motor=getAuto().getMotor();
+		   this.cambio=cambio;
 		   double relacionRpm=Math.abs(obtenerRpm()/motor.getRevolucionesMaximas()-1); 
 		   double rpm=motor.getRevolucionesMaximas()*relacionRpm;
 		   if(rpm<motor.getRevolucionesMinimasEncendido())
 			   rpm=motor.getRevolucionesMinimasEncendido();
 		   motor.modificarRpmDesdeCaja(rpm-motor.getRPM());
 		   //cambio de revoluciones Maximas del motor segun el cambio
-		   motor.setRevolucionesMaximasCambio(getRelacionDeCambio()*motor.getRevolucionesMaximas()+
-				                        motor.getRevolucionesMaximas());
+		   rpm=motor.getRevolucionesMaximas()*(1-1/getRelacionDeCambio());
+		   if(rpm<=(motor.getRevolucionesMaximas()*0.65))
+			   
+		   motor.setRevolucionesMaximasCambio(rpm);
 		 }//fin cambio!=cambio instancia
 		}//fin cambio valido
 	}

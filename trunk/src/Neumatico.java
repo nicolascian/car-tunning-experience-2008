@@ -12,13 +12,13 @@
  * 
  * @version	1.0
  */
-public class Neumatico extends Componente
+public abstract class Neumatico extends Componente
 implements AfectablePorClima, AfectablePorSuperficie{
 	
 	
-			
-	/* comentario acerca de la implementacion de la clase */
-	
+	public Neumatico(){		
+	this.setEstado(100);
+	}
 	public void desgastar(){
 		//tener en cuenta la temperatura del clima y superficie
 	}
@@ -30,7 +30,7 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	
 	/** el clima afecta a los neumaticos */
 	public void afectar(Clima clima){
-		
+	
 	}
 	
 	/** la superficie afecta a los neumaticos */
@@ -44,7 +44,7 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	@Override
 	public boolean isListoParaCarrera() {
 		// TODO Auto-generated method stub
-		return false;
+	return listoParaCarrera;
 	}
 
 	/* (non-Javadoc)
@@ -53,7 +53,11 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	@Override
 	public void actualizarListoParaCarrera() {
 		// TODO Auto-generated method stub
-		
+		if (getEstado()> 0)
+			listoParaCarrera= true;
+		else 
+			listoParaCarrera=false;
+			
 	}
 
 	
