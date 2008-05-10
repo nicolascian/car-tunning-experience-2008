@@ -28,14 +28,27 @@ public class Juego{
 		
 		Pista pista = new Pista(jugador1, jugador2, 100);
 		
+		jugador1.getAuto().getMotor().encender();
+		jugador2.getAuto().getMotor().encender();
+		
 		boolean finCarrera = false;
 		
 		while(!finCarrera){
 			
 			//Control1.acelerando ? true
-			jugador1.jugar();
+			try{
+				jugador1.jugar();
+				
+			}catch (Exception e){
+				finCarrera=true;
+			}
 			
-			jugador2.jugar();
+			try{
+				jugador2.jugar();
+				
+			}catch (Exception e){
+				finCarrera=true;
+			}
 			
 			double Long = pista.getLongitud();
 			
