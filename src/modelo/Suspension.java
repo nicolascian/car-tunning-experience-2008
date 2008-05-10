@@ -16,7 +16,9 @@ package modelo;
 public class Suspension extends Componente
 implements AfectablePorSuperficie, AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
-	
+	public Suspension(){
+		
+	}
 	public void desgastar(){
 //		tener en cuenta la temperatura del clima y superficie
 	}

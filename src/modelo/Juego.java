@@ -58,7 +58,7 @@ public class Juego{
 			}
 		}
 		
-		System.out.print("finCarrera");
+		System.out.print("Finalizó la carrera");
 		
 	}
 	

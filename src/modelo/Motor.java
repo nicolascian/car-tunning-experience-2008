@@ -275,6 +275,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	*/
 	protected void setRPM(double rpm) {
 		this.RPM=rpm;
+		auto.getCaja().Chequear();
 	}
 	
 	/**

@@ -11,7 +11,7 @@ package modelo;
  * 
  * @version	1.0
  */
-public abstract class Jugador throws AutoApagadoException{
+public abstract class Jugador {
 	/* comentario acerca de la implementacion de la clase */
 	
 	/**
@@ -19,19 +19,20 @@ public abstract class Jugador throws AutoApagadoException{
 	 */
 	protected Auto auto;
 	
-	public void jugar(){
+	public void jugar() throws ExceptionAutoApagado{
 		
 		//SI ENCENDIDO:
 		if (auto.getMotor().isEncendido()){
 			
-			//SI ACELERA
+			//SI ESTA ACELERANDO
 			auto.getMotor().acelerar(true);
 		
-			//NO ACELERA
+			//SI NO ESTA ACELERA
 			auto.getMotor().acelerar(false);
 		
-			//SI SECUENCIAL
-				
+			//SI CAJA SECUENCIAL
+			//ver sintaxis*****
+			//	auto.getCaja().isInstanceOf(Secuencial);
 				//SI SUBE CAMBIO
 				auto.getCaja().siguiente();
 			
@@ -39,7 +40,8 @@ public abstract class Jugador throws AutoApagadoException{
 				auto.getCaja().anterior();
 			
 		}else{
-			throw new AutoApagadoException();
+		
+			throw new ExceptionAutoApagado();
 		}
 			
 	}

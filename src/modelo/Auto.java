@@ -50,23 +50,62 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private Neumatico NeumaticoTraceraDerecha;
 
 	/**
-	 * constructor
+	 * constructor por defecto
 	 *
 	 */
 	public Auto(){
 		
 		//creacion de componentes
-		listoParaCarrera=false;
+		
 		setMotor(new Motor(4,1600,8000,this));
 		setCaja(new Manual(this,5));
+		setCombustible(new Combustible(50.0,0.4));
 		setCarroceria(new Carroceria(2.4,this));
+		setAlimentacion(new Carburador());
+		setSuspension(new Suspension());
+		setEscape(new Escape());
+		setTurbo(new Turbo());
+		listoParaCarrera=true;
+	}
+	
+	/**
+	 * constructor
+	 *
+	 */
+	public Auto(Motor motor,Caja caja,Combustible combustible,
+			Carroceria carroceria,Alimentacion alimentacion,
+			Suspension suspension,Escape escape,Turbo turbo){
+
 		
-		
-		
-		
+		setMotor(motor);
+		setCaja(caja);
+		setCombustible(combustible);
+		setCarroceria(carroceria);
+		setAlimentacion(alimentacion);
+		setSuspension(suspension);
+		setEscape(escape);
+		setTurbo(turbo);
+		listoParaCarrera=true;
 	}
 
 	
+	
+	/**
+	 * @return the suspension
+	 */
+	public Suspension getSuspension() {
+		return suspension;
+	}
+
+
+	/**
+	 * @param suspension the suspension to set
+	 */
+	public void setSuspension(Suspension suspension) {
+		this.suspension = suspension;
+	}
+
+
 	public double getVelocidad(){
 		Velocidad = this.getAceleracion() * 100;
 		return Velocidad;
@@ -87,11 +126,15 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public double getPotenciaTotal(){
 		//recorremos los componentes pertinentes, y hacemos:
 		// componente.obtenerPotencia();
-		return ( motor.obtenerPotencia() +   /* de aca salen: Caja, Alimentacion, Combustible*/
+		return ( motor.obtenerPotencia() +   /* de aca salen: Alimentacion, Combustible*/
 		         carroceria.obtenerPotencia() +
+		         caja.obtenerPotencia() +
 		         suspension.obtenerPotencia() +
-		         escape.obtenerPotencia()     
-		         /*ETC...*/    );
+		         escape.obtenerPotencia() +
+		         ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteris
+		         ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
+		         turbo.obtenerPotencia();
+		            );
 	}
 
 	
@@ -252,6 +295,38 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 */
 	public void actualizarListoParaCarrera(){
 		
+	}
+
+
+	/**
+	 * @return the escape
+	 */
+	public Escape getEscape() {
+		return escape;
+	}
+
+
+	/**
+	 * @param escape the escape to set
+	 */
+	public void setEscape(Escape escape) {
+		this.escape = escape;
+	}
+
+
+	/**
+	 * @return the turbo
+	 */
+	public Turbo getTurbo() {
+		return turbo;
+	}
+
+
+	/**
+	 * @param turbo the turbo to set
+	 */
+	public void setTurbo(Turbo turbo) {
+		this.turbo = turbo;
 	}
 	
 	

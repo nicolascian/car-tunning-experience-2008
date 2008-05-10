@@ -15,7 +15,9 @@ package modelo;
  */
 public class Turbo extends Componente implements AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
-	
+	public Turbo(){
+		
+	}
 	public void desgastar(){
 //		tener en cuenta la humedad del clima
 	}
