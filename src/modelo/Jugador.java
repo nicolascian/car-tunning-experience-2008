@@ -19,6 +19,10 @@ public abstract class Jugador{
 	 */
 	protected Auto auto;
 	
+	public void jugar(){
+		
+		
+	}
 	
 	public Auto getAuto() {
 		return auto;
