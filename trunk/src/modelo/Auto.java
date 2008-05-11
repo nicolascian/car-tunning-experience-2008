@@ -37,19 +37,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private Escape escape;
 	private Turbo turbo;
 	
-	/*
-	 * HAY Q IMPLEMENTAR LOS EJES O VER COMO RESOLVEMOS LO DE LAS LLANTAS 
-	 * Y NEUMATICOS
-	 */
-	private Llanta LlantaDelanteraIzquierda;
-	private Llanta LlantaDelanteraDerecha;
-	private Llanta LlantaTraceraIzquierda;
-	private Llanta LlantaTraceraDerecha;
+	private Eje ejeDelantero;
+	private Eje ejeTracero;
 	
-	private Neumatico NeumaticoDelanteraIzquierda;
-	private Neumatico NeumaticoDelanteraDerecha;
-	private Neumatico NeumaticoTraceraIzquierda;
-	private Neumatico NeumaticoTraceraDerecha;
 
 	/**
 	 * constructor por defecto
@@ -67,6 +57,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setSuspension(new Suspension());
 		setEscape(new Escape());
 		setTurbo(new Turbo());
+		
+		setEjeDelantero(new Eje());
+		setEjeTracero(new Eje());
 		
 		listoParaCarrera=true;
 	}
@@ -89,6 +82,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setEscape(escape);
 		setTurbo(turbo);
 
+		setEjeDelantero(new Eje());
+		setEjeTracero(new Eje());
+		
 		listoParaCarrera=true;
 	}
 
@@ -341,6 +337,22 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		}
 		
 		return Estado;
+	}
+
+	public Eje getEjeDelantero() {
+		return ejeDelantero;
+	}
+
+	public void setEjeDelantero(Eje ejeDelantero) {
+		this.ejeDelantero = ejeDelantero;
+	}
+
+	public Eje getEjeTracero() {
+		return ejeTracero;
+	}
+
+	public void setEjeTracero(Eje ejeTracero) {
+		this.ejeTracero = ejeTracero;
 	}
 	
 	
