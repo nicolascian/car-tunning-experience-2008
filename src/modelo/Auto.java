@@ -21,8 +21,10 @@ import java.util.*;
 public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	/* comentario acerca de la implementacion de la clase */
 	
+	private double CNTE_ACELERACION_POTENCIA = 0.000003;
+	
 	private double Velocidad; // integral de Aaceleracion
-	private double Aceleracion; // = Potencia de las RPM
+	private double Aceleracion; // = Potencia de las RPM cuadrado y algo mas
 	private double Posicion; // dstancia recorrida
 	private boolean listoParaCarrera;
 	
@@ -65,6 +67,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setSuspension(new Suspension());
 		setEscape(new Escape());
 		setTurbo(new Turbo());
+		
 		listoParaCarrera=true;
 	}
 	
@@ -85,6 +88,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setSuspension(suspension);
 		setEscape(escape);
 		setTurbo(turbo);
+
 		listoParaCarrera=true;
 	}
 
@@ -107,13 +111,18 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 
 
 	public double getVelocidad(){
-		Velocidad = this.getAceleracion() * 100;
+		
+		Velocidad = this.getAceleracion() * 20;
+		
 		return Velocidad;
 	}
 	
 	public double getAceleracion(){
-		Aceleracion = this.getPotenciaTotal() /10;
+		
+		Aceleracion = CNTE_ACELERACION_POTENCIA * (getPotenciaTotal()*getPotenciaTotal());
+		
 		return Aceleracion;
+		
 	}
 
 	/**
@@ -320,7 +329,19 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public void setTurbo(Turbo turbo) {
 		this.turbo = turbo;
 	}
-	
+
+	public double getEstado() {
+		
+		double Estado = 0;
+		
+		LinkedList<Componente> lista = this.obtenerComponentes();
+		Iterator<Componente> it = lista.iterator();
+		while (it.hasNext()){
+			Estado = Estado + it.next().getEstado();
+		}
+		
+		return Estado;
+	}
 	
 	
 }
