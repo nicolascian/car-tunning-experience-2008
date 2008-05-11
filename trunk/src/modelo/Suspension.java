@@ -16,26 +16,39 @@ package modelo;
 public class Suspension extends Componente
 implements AfectablePorSuperficie, AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
+	
+	private double EfectoClimatico;
+	private double EfectoSuperficie;
+	
+	private double rigidez;
+	
 	public Suspension(){
-		
+		setEstado(100);
 	}
+	
+	public Suspension(double rigidez){
+		this.rigidez = rigidez;
+		setEstado(100);
+	}
+	
 	public void desgastar(){
 //		tener en cuenta la temperatura del clima y superficie
+		this.setEstado(getEstado() - EfectoClimatico - EfectoSuperficie/100 - 1/1000000000);
 	}
 	
 	public double obtenerPotencia(){
 //		tener en cuenta la temperatura del clima y superficie
-		return 0;
+		return (EfectoSuperficie*EfectoClimatico/100) * rigidez/10 * getEstado();
 	}
 	
 	/** el clima afecta a la suspension */
 	public void afectar(Clima clima){
-		
+		EfectoClimatico = clima.getTemperatura()/100;
 	}
 	
 	/** la superficie afecta a la suspension */
 	public void afectar(Superficie superficie){
-		
+		EfectoSuperficie = superficie.getCoeficiente();
 	}
 
 	/* (non-Javadoc)

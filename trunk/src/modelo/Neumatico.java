@@ -18,19 +18,19 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	
 		
 	private double DeterioroPorRozamiento;
-	
 	private double CoeficienteDeDesgastePorTemperatura;
 	
 	public Neumatico(){		
-	this.setEstado(100);
+		this.setEstado(100);
 	}
+	
 	public void desgastar(){
 		setEstado(getEstado()-(getCoeficienteDeDesgastePorTemperatura()+ getDeterioroPorRozamiento()));
 	}
 	
 	public double obtenerPotencia(){
 		//tener en cuenta la temperatura del clima y superficie
-		return 0;
+		return (DeterioroPorRozamiento*CoeficienteDeDesgastePorTemperatura) * getEstado();
 	}
 	
 	/** el clima afecta a los neumaticos */
