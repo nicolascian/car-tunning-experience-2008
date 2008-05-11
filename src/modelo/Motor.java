@@ -24,11 +24,11 @@ public class Motor extends Componente implements AfectablePorClima{
 		
     //----------------------      constantes   ---------------------------------
 	
-	protected final static double TEMPERATURA_CRITICA=200;//temperatura critica del circuito de agua en ºC
+	protected final static double TEMPERATURA_CRITICA=200;//temperatura critica del circuito de agua en ï¿½C
 	
-	protected final static double TEMPERATURA_OPTIMA=95;//temperatura optima del circuito de agua en ºC
+	protected final static double TEMPERATURA_OPTIMA=95;//temperatura optima del circuito de agua en ï¿½C
 	
-	protected final static double TEMPERATURA_INICIAL=80;//temperatura inicial del circuito de agua en ºC
+	protected final static double TEMPERATURA_INICIAL=80;//temperatura inicial del circuito de agua en ï¿½C
 	
 	protected final static double TEMPERATURA_MEDIANA_AIRE=15;//temperatura del aire la cual si se sobrepasa se 
 												//se disminuye la potencia del motor, y si se opera por debajo
@@ -47,13 +47,13 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	protected final static double COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES=0.000001;
 	
-	//---------------------     atributos básicos de motor   -------------------
+	//---------------------     atributos bï¿½sicos de motor   -------------------
 	
-	private double cilindrada;//en centimetros cúbicos
+	private double cilindrada;//en centimetros cï¿½bicos
 	
 	private int cantidadCilindros;
 	
-	private double revolucionesMaximas;//revoluciones máximas que el motor puede alcanzar segun su cilindrada 
+	private double revolucionesMaximas;//revoluciones mï¿½ximas que el motor puede alcanzar segun su cilindrada 
 	                                   //y cantidad de cilindros en rpm.
 			
 	private double RPM;//revoluciones a las que se encuentra trabajando el motor, en rpm.
@@ -72,7 +72,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	private long tiempoDeUltimoDesgaste;//en milisegundos
 	
-	protected double temperaturaAire;//temperatura del aire que ingresa al motor en ºC
+	protected double temperaturaAire;//temperatura del aire que ingresa al motor en ï¿½C
 	
 	protected double revolucionesMaximasCambio;//revoluciones maximas que el motor puede alcanzar 
 											 //al encontrarse en un cambio dado, en rpm.
@@ -91,10 +91,9 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * @param cilindrada en centimetros cubicos
 	 * @param revolucionesMaximas revoluciones maximas del motor en rpm
 	*/
-	public Motor(int cantidadCilindros,double cilindrada, double revolucionesMaximas,Auto auto){
+	public Motor(int cantidadCilindros,double cilindrada, double revolucionesMaximas){
 		setCantidadCilindros(cantidadCilindros);
 		setCilindrada(cilindrada);
-		setAuto(auto);
 		//inicializacion de revoluciones
 		setRevolucionesMaximas(revolucionesMaximas);
 		setRevolucionesMaximasCambio(revolucionesMaximas);
@@ -148,7 +147,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	/**
 	 *	@Pre: La instancia ha sido creada y se encuentra en estado encendido.
 	 *  @Post: Si la instancia se encontraba acelerando se actualizan las rpm. Tambien se actualiza la temperatura 
-	 *  de acuerdo a la variación de las revoluciones.    
+	 *  de acuerdo a la variaciï¿½n de las revoluciones.    
 	*/
 	private void actualizarRpm(){
 	 if(isEncendido())	
@@ -180,7 +179,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	/**
 	 *	@Pre: La instancia ha sido creada y se encuentra en estado encendido.
-	 *  @Post: Se actualiza la temperatura de acuerdo a la variación de las revoluciones.    
+	 *  @Post: Se actualiza la temperatura de acuerdo a la variaciï¿½n de las revoluciones.    
 	*/
 	private void actualizarTemperaturaPorCambioDeRpm(double rpmInicial,double rpmFinal,long diferenciaDeTiempo){
 		double variacion;
@@ -310,7 +309,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	/**
 	 * @Pre: La instancia ha sido creada.
-	 * @Post: Se ha obtenido las Rpm maximas que puede alcanzar la instancia segun su configuración.
+	 * @Post: Se ha obtenido las Rpm maximas que puede alcanzar la instancia segun su configuraciï¿½n.
 	*/
 	public double getRevolucionesMaximas() {
 		return revolucionesMaximas;

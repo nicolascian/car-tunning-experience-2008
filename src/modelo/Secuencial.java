@@ -25,8 +25,8 @@ public class Secuencial extends Caja{
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
 	*/
-	public Secuencial(Auto auto, int cantidadCambios){
-		super(auto, cantidadCambios);
+	public Secuencial(int cantidadCambios){
+		super(cantidadCambios);
 	}
 
 	/**
@@ -63,9 +63,6 @@ public class Secuencial extends Caja{
 	/* Como esta caja no es automatica, no hace nada */
 	public void Chequear(){}
 	
-	public void desgastar(){
-		this.setEstado(getEstado() -  0.000000000001);
-	}
 
 	
 }

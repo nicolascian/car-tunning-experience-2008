@@ -26,9 +26,8 @@ public class Manual extends Caja{
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
 	*/	
-	public Manual(Auto auto, int cantidadCambios) {
-		super(auto, cantidadCambios);
-		
+	public Manual(int cantidadCambios) {
+		super(cantidadCambios);
 	}
 
 	/**
@@ -45,14 +44,8 @@ public class Manual extends Caja{
 	}
 	
 	/* Como esta caja no es automatica, no hace nada */
-	public void Chequear(){
-		
-	}
-	
-	public void desgastar(){
-    //tener en cuenta la temperatura del clima
-		setEstado(getEstado() - 1/1000000000);
-	}
+	public void Chequear(){}
+
 	
 	public void setCambio(int cambio){
 		super.setCambio(cambio);

@@ -45,7 +45,7 @@ public class Carroceria extends Componente
 	 * @param superficieFrontal: seccion delantera del auto que se vera afectada por la pared
 	 * de aire que enfrente el auto al desplazarse. 
 	*/
-	public Carroceria(double superficieFrontal,Auto auto){
+	public Carroceria(double superficieFrontal){
 		setEstado(100);
 		setSuperficieFrontal(superficieFrontal);
 		setCoeficienteDeOxidacionPorHumedad(0);
@@ -57,7 +57,7 @@ public class Carroceria extends Componente
 	 * cual se refiere el atributo esta clase ha sido creada.
 	 * @Post: Se ha obtenido la potencia en Hp de acuerdo a la velocidad y el clima.
 	 * @Nota: La carroceria retorna una potencia negativa, y a mayor velocidad mayor sera
-	 * esta potencia en modulo.Una mejor carroceria será aquella que tenga un arrastre menor
+	 * esta potencia en modulo.Una mejor carroceria serï¿½ aquella que tenga un arrastre menor
 	 * y por lo tanto obteniendose una menor potencia de arrastre. 	 
 	*/
 	public double obtenerPotencia(){

@@ -45,8 +45,8 @@ public class Automatica extends Caja{
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
 	*/
-	public Automatica(Auto auto, int cantidadCambios){
-		super(auto,cantidadCambios);
+	public Automatica(int cantidadCambios){
+		super(cantidadCambios);
 	}
 		
 	protected void generarRelacionesDeCaja(){
@@ -56,12 +56,5 @@ public class Automatica extends Caja{
 		  else
 			relacionDeCambio[cursor]=1/60;  
 	}	
-	
-	public void desgastar(){
-	  if((System.currentTimeMillis()-getTiempoDeUltimoDesgaste())>=TIEMPO_MINIMO_ENTRE_DESGASTES){	
-		
-	  }  	
-	}
-
 	
 }

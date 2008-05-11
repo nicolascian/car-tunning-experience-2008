@@ -16,9 +16,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	
 	private double EfectoClimatico;
 	
-	public  Carburador(){
-		
-	}
+	public  Carburador(){}
 	
 	/**
 	 * Documentacion
