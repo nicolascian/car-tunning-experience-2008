@@ -21,7 +21,7 @@ public class Manual extends Caja{
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Manual segun los parametros
-	 * detallados a continuación.
+	 * detallados a continuaciï¿½n.
 	 * @param auto: auto que contiene a la instancia.  
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
@@ -54,9 +54,11 @@ public class Manual extends Caja{
 		setEstado(getEstado() - 1/1000000000);
 	}
 	
-	public void colocarCambio(int cambio){
-		setCambio(cambio);
+	public void setCambio(int cambio){
+		super.setCambio(cambio);
 	}
 
+	
+	
 	
 }
