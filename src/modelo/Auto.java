@@ -263,14 +263,12 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		return Posicion;
 	}
 
-
 	/**
 	 * @return the carroceria
 	 */
 	public Carroceria getCarroceria() {
 		return carroceria;
 	}
-
 
 	/**
 	 * @param carroceria the carroceria to set
@@ -279,14 +277,12 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		this.carroceria = carroceria;
 	}
 
-
 	/**
 	 * @return the listoParaCarrera
 	 */
 	protected boolean isListoParaCarrera() {
 		return listoParaCarrera;
 	}
-
 
 	/**
 	 * @Pre: La instancia de la clase Auto ha sido creada.
@@ -297,14 +293,12 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		
 	}
 
-
 	/**
 	 * @return the escape
 	 */
 	public Escape getEscape() {
 		return escape;
 	}
-
 
 	/**
 	 * @param escape the escape to set
@@ -313,14 +307,12 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		this.escape = escape;
 	}
 
-
 	/**
 	 * @return the turbo
 	 */
 	public Turbo getTurbo() {
 		return turbo;
 	}
-
 
 	/**
 	 * @param turbo the turbo to set
