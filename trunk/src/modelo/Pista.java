@@ -38,6 +38,10 @@ public class Pista{
 		
 		auto1 = jugador1.getAuto();
 		auto2 = jugador2.getAuto();
+		
+		
+		
+		
 	}
 
 	public double getLongitud() {
