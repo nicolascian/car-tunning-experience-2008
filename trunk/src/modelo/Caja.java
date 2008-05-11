@@ -9,11 +9,11 @@ package modelo;
 /**
  * @Documentacion
  * Esta clase modela la caja de velocidades de un vehiculo. Puede tener una cantidad de cambios 
- * determinada, que una vez creada no puede ser cambiada. Cada cambio tiene una relación de velocidad
- * o de cambio, que es un factor númerico el cual determinara la forma en la que caja entrega potencia
- * de a cuerdo a encontrarse en un cambio dado. Se toma como convención que a mayor número de cambio
+ * determinada, que una vez creada no puede ser cambiada. Cada cambio tiene una relaciï¿½n de velocidad
+ * o de cambio, que es un factor nï¿½merico el cual determinara la forma en la que caja entrega potencia
+ * de a cuerdo a encontrarse en un cambio dado. Se toma como convenciï¿½n que a mayor nï¿½mero de cambio
  * menor relacionDeCambio. Esta clase es suceptible de ser afectada por la temperatura del clima.
- * @Nota1: La mayoria de los métodos retornan una exception de tipo ExceptionCambioNoValido al
+ * @Nota1: La mayoria de los mï¿½todos retornan una exception de tipo ExceptionCambioNoValido al
  * intentar acceder a un cambio que no existe.
  * @Nota2: Al pasar de cambio la caja disminuye en un porcentaje la cantidad de rpm del
  * motor del auto.
@@ -46,14 +46,17 @@ public abstract class Caja extends Componente implements AfectablePorClima{
 	protected long tiempoDeUltimoDesgaste;//tiempo del ultimo desgaste en milisegundos
 	
 	public abstract void Chequear();
+	
+	
 		
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
-	 * detallados a continuación.
-	 * @param auto: auto que contiene a la instancia.  
+	 * detallados a continuaciï¿½n.
+	 * @param auto: auto que contiene a 
+	 * la instancia.  
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa que en 
-	 * esta implementación no existe y punto muerto. Debe entre 4 y 8.
+	 * esta implementaciï¿½n no existe y punto muerto. Debe entre 4 y 8.
 	*/
 	public Caja(Auto auto, int cantidadCambios){
 		this.cantidadCambios=cantidadCambios;
@@ -77,7 +80,7 @@ public abstract class Caja extends Componente implements AfectablePorClima{
 		
 	/**
 	 * @Pre: Se ha creado la instancia de la clase derivada de la clase Caja.
-	 * @Post: Se ha validado el cambio pasado por parametro según la codificación siguiente.
+	 * @Post: Se ha validado el cambio pasado por parametro segï¿½n la codificaciï¿½n siguiente.
 	 * @param cambio: cambio que se desea validad.
 	 * @return "true" en caso de que el cambio sea valido y "false" en caso contrario.
 	*/
@@ -175,10 +178,15 @@ public abstract class Caja extends Componente implements AfectablePorClima{
 	 * 
 	*/
 	public double obtenerPotencia(){
+		
 		double potencia=0;
+		
 		for(int cursor=0;cursor<getCambio();cursor++)	
-			potencia=potencia+getAuto().getMotor().getRevolucionesMaximas()*COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM/relacionDeCambio[cursor];
-		potencia=potencia+obtenerRpm()*COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM;
+			potencia = potencia+getAuto().getMotor().getRevolucionesMaximas()*
+			COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM/relacionDeCambio[cursor];
+		
+		potencia = potencia+obtenerRpm()*COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM;
+		
 		return potencia;
 	}
 	
