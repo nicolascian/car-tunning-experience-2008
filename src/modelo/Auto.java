@@ -26,7 +26,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private double Velocidad; // integral de Aaceleracion
 	private double Aceleracion; // = Potencia de las RPM cuadrado y algo mas
 	private double Posicion; // dstancia recorrida
-	private boolean listoParaCarrera;
 	
 	private Motor motor;
 	private Caja caja;
@@ -61,7 +60,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setEjeDelantero(new Eje());
 		setEjeTracero(new Eje());
 		
-		listoParaCarrera=true;
+
 	}
 	
 	/**
@@ -89,7 +88,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	}
 
 	
-	
 	/**
 	 * @return the suspension
 	 */
@@ -105,7 +103,11 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		this.suspension = suspension;
 	}
 
-
+	/*
+	 * ESTO HAY Q CAMBIARLOOOOOOOOOOOOO!!!!!!!!!
+	 * !!!!!!!!!!!!!!!!!!!!!!!!1
+	 * !!!!!!!!!!!!!!!!!!!!!!!!
+	 */
 	public double getVelocidad(){
 		
 		Velocidad = this.getAceleracion() * 20;
@@ -155,9 +157,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		}
 	}
 	
-	/*
-	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
-	 */
 	public LinkedList<Componente> obtenerComponentes(){
 		
 		LinkedList<Componente> lista =  new LinkedList<Componente>();
@@ -169,13 +168,21 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		lista.add(this.motor);
 		lista.add(this.suspension);
 		lista.add(this.turbo);
+		lista.add(this.ejeDelantero);
+		lista.add(this.ejeDelantero.getLlantaDerecha());
+		lista.add(this.ejeDelantero.getLlantaIzquierda());
+		lista.add(this.ejeDelantero.getNeumaticoDerecho());
+		lista.add(this.ejeDelantero.getNeumaticoIzquierdo());
+		lista.add(this.ejeTracero.getLlantaDerecha());
+		lista.add(this.ejeTracero.getLlantaIzquierda());
+		lista.add(this.ejeTracero.getNeumaticoDerecho());
+		lista.add(this.ejeTracero.getNeumaticoIzquierdo());
+		lista.add(this.ejeTracero);
 
 		return lista;
 	}
 
-	/*
-	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
-	 */
+	
 	public LinkedList<AfectablePorSuperficie> obtenerAfectablesPorSup(){
 		LinkedList<AfectablePorSuperficie> listaAS = new LinkedList<AfectablePorSuperficie>();
 		LinkedList<Componente> listaComp = this.obtenerComponentes();
@@ -186,9 +193,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		return listaAS;
 	}
 	
-	/*
-	 * FALTAN AGREGAR LAS LLANTAS Y LOS NEUMATICOS
-	 */
+	
 	public LinkedList<AfectablePorClima> obtenerAfectablesPorClima(){
 		LinkedList<AfectablePorClima> listaAC = new LinkedList<AfectablePorClima>();
 		LinkedList<Componente> listaComp = this.obtenerComponentes();
