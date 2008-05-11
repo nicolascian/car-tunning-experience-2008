@@ -10,6 +10,8 @@ implements AfectablePorSuperficie{
 	private double DesgastePorRugosidad;
 	private double DesgastePorParticulas;
 	
+	
+	
 	public void Eje(){
 		this.setEstado(100);
 	}
@@ -52,6 +54,7 @@ implements AfectablePorSuperficie{
 	}
 
 	public void setLlantaDerecha(Llanta llantaDerecha) {
+		llantaDerecha.instalar(this.getAuto());
 		LlantaDerecha = llantaDerecha;
 	}
 
@@ -60,6 +63,7 @@ implements AfectablePorSuperficie{
 	}
 
 	public void setLlantaIzquierda(Llanta llantaIzquierda) {
+		llantaIzquierda.instalar(this.getAuto());
 		LlantaIzquierda = llantaIzquierda;
 	}
 
@@ -68,6 +72,7 @@ implements AfectablePorSuperficie{
 	}
 
 	public void setNeumaticoDerecho(Neumatico neumaticoDerecho) {
+		neumaticoDerecho.instalar(this.getAuto());
 		NeumaticoDerecho = neumaticoDerecho;
 	}
 
@@ -76,6 +81,7 @@ implements AfectablePorSuperficie{
 	}
 
 	public void setNeumaticoIzquierdo(Neumatico neumaticoIzquierdo) {
+		neumaticoIzquierdo.instalar(this.getAuto());
 		NeumaticoIzquierdo = neumaticoIzquierdo;
 	}
 

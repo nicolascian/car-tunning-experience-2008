@@ -19,7 +19,7 @@ package modelo;
  * motor del auto.
  * @version	3.2
  */
-public abstract class Caja extends Componente implements AfectablePorClima{
+public abstract class Caja extends Componente{
 		
 	protected int cambio;
 		
@@ -27,23 +27,7 @@ public abstract class Caja extends Componente implements AfectablePorClima{
 		
 	protected int cantidadCambios;
 	
-	protected final static long TIEMPO_MINIMO_ENTRE_DESGASTES=3000;//tiempo minimo transurrido entre
-															       //dos desgastes consecutivos
 	protected final static double COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM=0.015;
-	
-	protected final static double COEFICIENTE_DE_DESGASTE_POR_TEMPERATURA_INICIAL=0.000000001;
-	
-	protected final static double COEFICIENTE_DE_OBTENCION_DE_TEMPERATURA_SEGUN_RPM_INICIAL=0.00000001;
-		
-	protected double TEMPERATURA_AIRE_OPTIMA=18;
-	
-	protected double TEMPERATURA_CAJA_OPTIMA=90;
-	
-	protected double coeficienteDeDesgastePorTemperatura;
-	
-	protected double coeficienteDeObtencionDeTemperaturaSegunRpm;
-		
-	protected long tiempoDeUltimoDesgaste;//tiempo del ultimo desgaste en milisegundos
 	
 	public abstract void Chequear();
 	
@@ -58,17 +42,12 @@ public abstract class Caja extends Componente implements AfectablePorClima{
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa que en 
 	 * esta implementaci�n no existe y punto muerto. Debe entre 4 y 8.
 	*/
-	public Caja(Auto auto, int cantidadCambios){
+	public Caja(int cantidadCambios){
 		this.cantidadCambios=cantidadCambios;
 		relacionDeCambio=new double[cantidadCambios+1];
-		setAuto(auto);
 		cambio=0;
 		generarRelacionesDeCaja();
 		setEstado(100);
-		setTiempoDeUltimoDesgaste(System.currentTimeMillis());
-		setTemperatura(TEMPERATURA_CAJA_OPTIMA);
-		setCoeficienteDeDesgastePorTemperatura(COEFICIENTE_DE_DESGASTE_POR_TEMPERATURA_INICIAL);
-		setCoeficienteDeObtencionDeTemperaturaSegunRpm(COEFICIENTE_DE_OBTENCION_DE_TEMPERATURA_SEGUN_RPM_INICIAL);
 	}
 	
 	/**
@@ -132,11 +111,6 @@ public abstract class Caja extends Componente implements AfectablePorClima{
 		}//fin cambio valido
 	}
 		
-	protected void actualizarTemperatura(){
-		double varicacionTemperatura=obtenerRpm()*getCoeficienteDeObtencionDeTemperaturaSegunRpm();
-		setTemperatura(getTemperatura()+varicacionTemperatura);
-	}
-	
 	/**
 	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.
 	 * @Post: Se retorna la cantidad de cambios que tiene la instancia.
@@ -172,57 +146,8 @@ public abstract class Caja extends Componente implements AfectablePorClima{
 		return potencia;
 	}
 	
-	/**
-	 * @return the tiempoDeUltimoDesgaste
-	 */
-	protected long getTiempoDeUltimoDesgaste() {
-		return tiempoDeUltimoDesgaste;
-	}
-
-	/**
-	 * @param tiempoDeUltimoDesgaste the tiempoDeUltimoDesgaste to set
-	 */
-	protected void setTiempoDeUltimoDesgaste(long tiempoDeUltimoDesgaste) {
-		this.tiempoDeUltimoDesgaste = tiempoDeUltimoDesgaste;
-	}
-
-	/**
-	 * @return the coeficienteDeDesgastePorTemperatura
-	 */
-	protected double getCoeficienteDeDesgastePorTemperatura() {
-		return coeficienteDeDesgastePorTemperatura;
-	}
-
-	/**
-	 * @param coeficienteDeDesgastePorTemperatura the coeficienteDeDesgastePorTemperatura to set
-	 */
-	protected void setCoeficienteDeDesgastePorTemperatura(
-			double coeficienteDeDesgastePorTemperatura) {
-		this.coeficienteDeDesgastePorTemperatura = coeficienteDeDesgastePorTemperatura;
-	}
-
-	/**
-	 * @return the coeficienteDeObtencionDeTemperaturaSegunRpm
-	 */
-	protected double getCoeficienteDeObtencionDeTemperaturaSegunRpm() {
-		return coeficienteDeObtencionDeTemperaturaSegunRpm;
-	}
-
-	/**
-	 * @param coeficienteDeObtencionDeTemperaturaSegunRpm the coeficienteDeObtencionDeTemperaturaSegunRpm to set
-	 */
-	protected void setCoeficienteDeObtencionDeTemperaturaSegunRpm(
-			double coeficienteDeObtencionDeTemperaturaSegunRpm) {
-		this.coeficienteDeObtencionDeTemperaturaSegunRpm = coeficienteDeObtencionDeTemperaturaSegunRpm;
+	public void desgastar(){
+		this.setEstado(getEstado() -  0.000000000001);
 	}
 		
-	/* (non-Javadoc)
-	 * @see modelo.AfectablePorClima#afectar(modelo.Clima)
-	 */
-	@Override
-	public void afectar(Clima clima) {
-		double temperatura=clima.getTemperatura();
-		double relacion=temperatura/TEMPERATURA_AIRE_OPTIMA-1;
-		this.setCoeficienteDeObtencionDeTemperaturaSegunRpm(COEFICIENTE_DE_OBTENCION_DE_TEMPERATURA_SEGUN_RPM_INICIAL*(1-relacion));
-	}
 }

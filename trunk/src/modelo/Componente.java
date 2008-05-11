@@ -90,6 +90,16 @@ public abstract class Componente {
 	public void agregarAListaAfecSuperficie(LinkedList<AfectablePorSuperficie> lista){
 		if (this instanceof AfectablePorSuperficie) lista.add((AfectablePorSuperficie)this);
 	}
+	
+	/**
+	 * se usa para que cada componente conozca su auto 
+	 * 
+	 * @param auto
+	 */
+	public void instalar(Auto auto){
+		this.setAuto(auto);
+	}
+	
 	/* Setters y Getters */
 	
 	public AlgoPesos getPrecio() {

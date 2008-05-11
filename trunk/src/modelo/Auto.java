@@ -48,10 +48,10 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		
 		//creacion de componentes
 		
-		setMotor(new Motor(4,1600,8000,this));
-		setCaja(new Manual(this,5));
+		setMotor(new Motor(4,1600,8000));
+		setCaja(new Manual(5));
 		setCombustible(new Combustible(50.0,0.4));
-		setCarroceria(new Carroceria(2.4,this));
+		setCarroceria(new Carroceria(2.4));
 		setAlimentacion(new Carburador());
 		setSuspension(new Suspension());
 		setEscape(new Escape());
@@ -242,10 +242,12 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	}
 
 	public void setCombustible(Combustible combustible) {
+		combustible.instalar(this);
 		this.combustible = combustible;
 	}
 
 	public void setCaja(Caja caja){
+		caja.instalar(this);
 		this.caja = caja;
 	}
 
@@ -254,6 +256,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	}
 
 	public void setMotor(Motor motor){
+		motor.instalar(this);
 		this.motor = motor;
 	}
 	
@@ -266,6 +269,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	}
 
 	public void setAlimentacion(Alimentacion alimentacion) {
+		alimentacion.instalar(this);
 		this.alimentacion = alimentacion;
 	}
 
@@ -284,15 +288,15 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @param carroceria the carroceria to set
 	 */
 	public void setCarroceria(Carroceria carroceria) {
+		carroceria.instalar(this);
 		this.carroceria = carroceria;
 	}
 
 	/**
 	 * @return the listoParaCarrera
 	 */
-	public boolean comprobarComponentes() 
+	public void comprobarComponentes() 
 	  throws ExceptionComponenteFaltante, ExceptionComponenteDesgastado{
-		boolean listo = true;
 		LinkedList<Componente> lista = this.obtenerComponentes();
 		Iterator<Componente> it = lista.iterator();
 		while (it.hasNext()){
@@ -300,7 +304,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 			if( aux == null) throw new ExceptionComponenteFaltante(aux.getClass().getName());
 			if(aux.getEstado()==0)throw new ExceptionComponenteDesgastado(aux.getClass().getName());
 		}
-		return listo;
 	}
 	
 	
@@ -334,6 +337,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @param escape the escape to set
 	 */
 	public void setEscape(Escape escape) {
+		escape.instalar(this);
 		this.escape = escape;
 	}
 
@@ -348,6 +352,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @param turbo the turbo to set
 	 */
 	public void setTurbo(Turbo turbo) {
+		turbo.instalar(this);
 		this.turbo = turbo;
 	}
 
@@ -369,6 +374,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	}
 
 	public void setEjeDelantero(Eje ejeDelantero) {
+		ejeDelantero.instalar(this);
 		this.ejeDelantero = ejeDelantero;
 	}
 
@@ -377,6 +383,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	}
 
 	public void setEjeTracero(Eje ejeTracero) {
+		ejeTracero.instalar(this);
 		this.ejeTracero = ejeTracero;
 	}
 	
