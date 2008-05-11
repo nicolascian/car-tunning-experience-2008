@@ -16,12 +16,16 @@ package modelo;
 public abstract class Neumatico extends Componente
 implements AfectablePorClima, AfectablePorSuperficie{
 	
+		
+	private double DeterioroPorRozamiento;
+	
+	private double CoeficienteDeDesgastePorTemperatura;
 	
 	public Neumatico(){		
 	this.setEstado(100);
 	}
 	public void desgastar(){
-		//tener en cuenta la temperatura del clima y superficie
+		setEstado(getEstado()-(getCoeficienteDeDesgastePorTemperatura()+ getDeterioroPorRozamiento()));
 	}
 	
 	public double obtenerPotencia(){
@@ -31,14 +35,36 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	
 	/** el clima afecta a los neumaticos */
 	public void afectar(Clima clima){
-	
+		setTemperatura(clima.getTemperatura());
+		setCoeficienteDeDesgastePorTemperatura(clima.getTemperatura()/8000);
 	}
 	
 	/** la superficie afecta a los neumaticos */
 	public void afectar(Superficie superficie){
-		
+		setDeterioroPorRozamiento(superficie.getrugosidad() + superficie.getparticulasSueltas());
 	}
-
+	
+	
+	public void setDeterioroPorRozamiento(double DeterioroPorRozamiento){
+		this.DeterioroPorRozamiento= DeterioroPorRozamiento;
+	}
+	
+	
+	
+	public void setCoeficienteDeDesgastePorTemperatura (double CoeficienteDeDesgastePorTemperatura){
+		this.CoeficienteDeDesgastePorTemperatura = CoeficienteDeDesgastePorTemperatura;
+	}
+	
+	
+	public double getDeterioroPorRozamiento(){
+		return DeterioroPorRozamiento;
+	}
+	
+	
+	
+	public double getCoeficienteDeDesgastePorTemperatura(){
+		return CoeficienteDeDesgastePorTemperatura;
+	}
 	/* (non-Javadoc)
 	 * @see Componente#isListoParaCarrera()
 	 */
