@@ -296,7 +296,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		Iterator<Componente> it = lista.iterator();
 		while (it.hasNext()){
 			Componente aux = it.next();
-			if( aux == null) throw new ExceptionComponenteFaltante
+			if( aux == null) throw new ExceptionComponenteFaltante()
 			
 		}
 		return listo;
