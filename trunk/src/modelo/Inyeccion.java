@@ -55,24 +55,5 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	public double obtenerPotencia(){
 		return ((auto.getCombustible().obtenerPotencia() *94) /100) * EfectoClimatico * getEstado();
 	}
-
-	/* (non-Javadoc)
-	 * @see Componente#isListoParaCarrera()
-	 */
-	@Override
-	public boolean isListoParaCarrera() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	/* (non-Javadoc)
-	 * @see Componente#actualizarListoParaCarrera()
-	 */
-	@Override
-	public void actualizarListoParaCarrera() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 }
