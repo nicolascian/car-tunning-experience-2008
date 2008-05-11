@@ -131,9 +131,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		         caja.obtenerPotencia() +
 		         suspension.obtenerPotencia() +
 		         escape.obtenerPotencia() +
-		         ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteris
-		         ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
-		         turbo.obtenerPotencia();
+		         //ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteris
+		         //ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
+		         turbo.obtenerPotencia()
 		            );
 	}
 

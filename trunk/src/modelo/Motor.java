@@ -98,7 +98,7 @@ public class Motor extends Componente implements AfectablePorClima{
 		//inicializacion de revoluciones
 		setRevolucionesMaximas(revolucionesMaximas);
 		setRevolucionesMaximasCambio(revolucionesMaximas);
-		setRPM(0);
+		RPM=0;
 		//inicializacion de temperaturas
 		setTemperaturaAire(25); //°C
 		setTemperatura(TEMPERATURA_INICIAL);
