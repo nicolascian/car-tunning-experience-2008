@@ -290,14 +290,26 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	/**
 	 * @return the listoParaCarrera
 	 */
-	protected boolean estaListoParaCarrera() {
+	public boolean comprobarComponentes() throws ExceptionComponenteFaltante{
 		boolean listo = true;
 		LinkedList<Componente> lista = this.obtenerComponentes();
 		Iterator<Componente> it = lista.iterator();
 		while (it.hasNext()){
-			try{
-				if (it.next().getEstado())
-			}
+			Componente aux = it.next();
+			if( aux == null) throw new ExceptionComponenteFaltante
+			
+		}
+		return listo;
+	}
+	
+	
+	public boolean estaListoParaCarrera() {
+		boolean listo = true;
+		LinkedList<Componente> lista = this.obtenerComponentes();
+		Iterator<Componente> it = lista.iterator();
+		while (it.hasNext()){
+			if (it.next().getEstado())
+			
 		}
 		return listo;
 	}
