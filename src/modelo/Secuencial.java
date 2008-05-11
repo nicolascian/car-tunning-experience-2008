@@ -30,21 +30,42 @@ public class Secuencial extends Caja{
 	}
 
 	/**
+	 * @Pre: La instancia ha sido creada.
+	 * @Post:Se ha subido un cambio. Cada vez que hacemos un Cambio, se altera las 
+	 * revolucionesMaximas del Motor.
+	*/
+	public void siguiente(){
+		setCambio(getCambio()+1);
+	}
+	
+	/**
+	 * @Pre: La instancia ha sido creada.
+	 * @Post:Se ha bajado un cambio. Cada vez que hacemos un Cambio, se altera las 
+	 * revolucionesMaximas del Motor.
+	*/
+	public void anterior(){
+		setCambio(getCambio()-1);
+	}
+		
+	/**
 	 * @Pre: 
 	 * @Post: Se han generado las relaciones de caja correspondientes.
 	 * 
 	*/
 	protected void generarRelacionesDeCaja(){
 		for(int cursor=1;cursor<=cantidadCambios;cursor++)
-			   relacionDeCambio[cursor]=15/(cursor-0.15)-9/(cantidadCambios*cantidadCambios);
+	     if(cursor!=0)		    
+			relacionDeCambio[cursor]=15/(cursor-0.15)-9/(cantidadCambios*cantidadCambios);
+	     else
+	    	relacionDeCambio[cursor]=1/60;   
 	}	
-	
-	
+		
 	/* Como esta caja no es automatica, no hace nada */
 	public void Chequear(){}
 	
 	public void desgastar(){
-		//tener en cuenta la temperatura del clima
+		
 	}
+
 	
 }

@@ -14,7 +14,7 @@ package modelo;
  * cambio anterior
  * 
  * @version	1.0
- */
+*/
 public class Manual extends Caja{
 	/* comentario acerca de la implementacion de la clase */
 
@@ -38,15 +38,25 @@ public class Manual extends Caja{
 	*/
 	protected void generarRelacionesDeCaja(){
 		for(int cursor=1;cursor<=cantidadCambios;cursor++)
-			   relacionDeCambio[cursor]=15/cursor-9/(cantidadCambios*cantidadCambios);
+			if(cursor!=0)		 
+			  relacionDeCambio[cursor]=15/cursor-9/(cantidadCambios*cantidadCambios);
+			else
+			  relacionDeCambio[cursor]=1/60;  
 	}
 	
 	/* Como esta caja no es automatica, no hace nada */
-	public void Chequear(){}
+	public void Chequear(){
+		
+	}
 	
 	public void desgastar(){
     //tener en cuenta la temperatura del clima
-		this.setEstado(getEstado() - 1/1000000000);
+		setEstado(getEstado() - 1/1000000000);
 	}
+	
+	public void colocarCambio(int cambio){
+		setCambio(cambio);
+	}
+
 	
 }
