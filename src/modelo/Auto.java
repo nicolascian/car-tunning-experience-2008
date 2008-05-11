@@ -290,14 +290,15 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	/**
 	 * @return the listoParaCarrera
 	 */
-	public boolean comprobarComponentes() throws ExceptionComponenteFaltante{
+	public boolean comprobarComponentes() 
+	  throws ExceptionComponenteFaltante, ExceptionComponenteDesgastado{
 		boolean listo = true;
 		LinkedList<Componente> lista = this.obtenerComponentes();
 		Iterator<Componente> it = lista.iterator();
 		while (it.hasNext()){
 			Componente aux = it.next();
-			if( aux == null) throw new ExceptionComponenteFaltante()
-			
+			if( aux == null) throw new ExceptionComponenteFaltante(aux.getClass().getName());
+			if(aux.getEstado()==0)throw new ExceptionComponenteDesgastado(aux.getClass().getName());
 		}
 		return listo;
 	}
@@ -305,11 +306,10 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	
 	public boolean estaListoParaCarrera() {
 		boolean listo = true;
-		LinkedList<Componente> lista = this.obtenerComponentes();
-		Iterator<Componente> it = lista.iterator();
-		while (it.hasNext()){
-			if (it.next().getEstado())
-			
+		try{
+			comprobarComponentes();
+		}catch (Exception e){
+			return false;
 		}
 		return listo;
 	}
