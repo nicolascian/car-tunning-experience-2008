@@ -41,7 +41,7 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	
 	/** la superficie afecta a los neumaticos */
 	public void afectar(Superficie superficie){
-		setDeterioroPorRozamiento(superficie.getrugosidad() + superficie.getparticulasSueltas());
+		setDeterioroPorRozamiento(superficie.getRugosidad() + superficie.getParticulasSueltas());
 	}
 	
 	
