@@ -105,7 +105,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 
 	/*
 	 * ESTO HAY Q CAMBIARLOOOOOOOOOOOOO!!!!!!!!!
-	 * !!!!!!!!!!!!!!!!!!!!!!!!1
+	 * !!!!!!!!!!!!!!!!!!!!!!!!
 	 * !!!!!!!!!!!!!!!!!!!!!!!!
 	 */
 	public double getVelocidad(){
