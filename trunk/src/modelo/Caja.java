@@ -64,13 +64,12 @@ public abstract class Caja extends Componente{
 	 * @Post: Se ha validado el cambio pasado por parametro según la codificación siguiente.
 	 * @param cambio: cambio que se desea validad.
 	 * @return "true" en caso de que el cambio sea valido y "false" en caso contrario.
-	 * @throws ExceptionCambioNoValido en caso de que el cambio no sea valido.
 	*/
-	protected boolean cambioValido(int cambio) throws ExceptionCambioNoValido{
+	protected boolean cambioValido(int cambio){
 		if((cambio>=0)&&(cambio<=getCantidadCambios()))	
 		   return (true);
 		else
-		   throw new ExceptionCambioNoValido();
+		   return false;
 	}
 	
 	/**

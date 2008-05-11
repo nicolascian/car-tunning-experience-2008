@@ -70,6 +70,8 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	private long tiempoDeControlCurvaAceleracion;//en milisegundos
 	
+	private long tiempoDeUltimoDesgaste;//en milisegundos
+	
 	protected double temperaturaAire;//temperatura del aire que ingresa al motor en ºC
 	
 	protected double revolucionesMaximasCambio;//revoluciones maximas que el motor puede alcanzar 
@@ -123,6 +125,7 @@ public class Motor extends Componente implements AfectablePorClima{
 			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*PORCENTAJE_RPM_ENCENDIDO/100);
 			setRPM(getRevolucionesMinimasEncendido());
 			setAcelerando(false);
+			setTiempoDeUltimoDesgaste(System.currentTimeMillis());
 		}
 	}
 	
@@ -519,4 +522,19 @@ public class Motor extends Componente implements AfectablePorClima{
 	protected void setCoeficienteDeDisipacionCalorico(double coeficienteDeDisipacionCalorico) {
 		this.coeficienteDeDisipacionCalorico = coeficienteDeDisipacionCalorico;
 	}
+
+	/**
+	 * @return the tiempoDeUltimoDesgaste
+	 */
+	protected long getTiempoDeUltimoDesgaste() {
+		return tiempoDeUltimoDesgaste;
+	}
+
+	/**
+	 * @param tiempoDeUltimoDesgaste the tiempoDeUltimoDesgaste to set
+	 */
+	protected void setTiempoDeUltimoDesgaste(long tiempoDeUltimoDesgaste) {
+		this.tiempoDeUltimoDesgaste = tiempoDeUltimoDesgaste;
+	}
+	
 }
