@@ -26,11 +26,11 @@ public class Pista{
 	
 	private double Longitud;
 	
-	private Clima clima;
+	private ArrayList<Tramo> Tramos;
 	
-	private Superficie superficie;
 	
 	Pista(Jugador player1, Jugador player2, double longitud){
+		
 		Longitud = longitud;
 		
 		jugador1 = player1;
