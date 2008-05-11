@@ -84,7 +84,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setEjeDelantero(new Eje());
 		setEjeTracero(new Eje());
 		
-		listoParaCarrera=true;
+
 	}
 
 	
