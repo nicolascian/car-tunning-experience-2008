@@ -118,6 +118,7 @@ public abstract class Caja extends Componente implements AfectablePorClima{
 		 if(cambio!=getCambio()){  
 		   Motor motor=getAuto().getMotor();
 		   this.cambio=cambio;
+		   this.desgastar();
 		   double relacionRpm=Math.abs(obtenerRpm()/motor.getRevolucionesMaximas()-1); 
 		   double rpm=motor.getRevolucionesMaximas()*relacionRpm;
 		   //cambio de revoluciones actuales

@@ -20,7 +20,7 @@ public class Secuencial extends Caja{
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
-	 * detallados a continuación.
+	 * detallados a continuaciï¿½n.
 	 * @param auto: auto que contiene a la instancia.  
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
@@ -64,7 +64,7 @@ public class Secuencial extends Caja{
 	public void Chequear(){}
 	
 	public void desgastar(){
-		
+		this.setEstado(getEstado() -  0.000000000001);
 	}
 
 	

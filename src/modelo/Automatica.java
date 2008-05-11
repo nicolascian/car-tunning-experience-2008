@@ -15,41 +15,32 @@ package modelo;
  */
 public class Automatica extends Caja{
 	/* comentario acerca de la implementacion de la clase */
-	/*		
-	public void Chequear(){
-		  
-		//revolucionesOptimas - revolucionesActuales
-		double relacion = auto.getMotor().getRevolucionesMaximas() - auto.getMotor().getRPM(); 
-		
-		//SI ESTA ACLERANDO
-		if ((auto.getMotor().isAcelerando())&&(relacion <= 300)) 
-			this.siguiente(); 
-		
-		//SI ESTA FRENANDO
-		if ((!auto.getMotor().isAcelerando())&&(relacion >= 1200)) 
-			this.anterior();
-	  
-	}
-	*/
-	
+
+
 	/**
+	 * cada vez que el motor cambia sus revoluciones, se invoca este metodo
 	 * 
-	*/	
+	 *  si se esta acelerando el motor, y las revoluciones alcanzan cierto nivel, 
+	 *  la caja sube un cambio
+	 *  
+	 *  si no se esta acelerando el motor, y las rpm bajan de cierto nivel,
+	 *  la caja baja un cambio
+	 */	
 	public void Chequear(){
 		double rpm=getAuto().getMotor().getRPM();
 		Motor motor=getAuto().getMotor();
 		if(motor.isAcelerando()){
-			if(rpm<=motor.getRevolucionesMaximasCambio())
+			if(rpm>=motor.getRevolucionesMaximasCambio())
 				setCambio(getCambio()+1);
 		}
 		else
-			if(rpm<=motor.getRevolucionesMinimasEncendido())
+			if(rpm<motor.getRevolucionesMinimasEncendido())
 				setCambio(getCambio()-1);
 	}	
 	
 	/**
 	 * @Pre:
-	 * @Post: Se ha creado una instancia de la clase Automatica segun los parametros detallados a continuación.
+	 * @Post: Se ha creado una instancia de la clase Automatica segun los parametros detallados a continuaciï¿½n.
 	 * @param auto: auto que contiene a la instancia.  
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
 	 * muerto. Debe entre 4 y 8.
