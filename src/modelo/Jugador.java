@@ -34,10 +34,10 @@ public abstract class Jugador {
 			//ver sintaxis*****
 			//	auto.getCaja().isInstanceOf(Secuencial);
 				//SI SUBE CAMBIO
-				auto.getCaja().siguiente();
+				//auto.getCaja().siguiente();
 			
 				//SI BAJA CAMBIO
-				auto.getCaja().anterior();
+				//auto.getCaja().anterior();
 			
 		}else{
 		
