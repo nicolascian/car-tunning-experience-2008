@@ -1,6 +1,6 @@
 package modelo;
 
-public abstract class Eje extends Componente
+public class Eje extends Componente
 implements AfectablePorSuperficie{ 
 	
 	private Llanta LlantaDerecha;
@@ -15,7 +15,7 @@ implements AfectablePorSuperficie{
 	}
 	
 	public double obtenerPotencia() {
-		return (5*this.getEstado()/100);
+		return ((5*this.getEstado()/100)+ LlantaDerecha.obtenerPotencia()+ LlantaIzquierda.obtenerPotencia() + NeumaticoDerecho.obtenerPotencia()+ NeumaticoIzquierdo.obtenerPotencia());
 	}
 	
 	public void desgastar(){
@@ -29,37 +29,7 @@ implements AfectablePorSuperficie{
 		this.setDesgastePorRugosidad(superficie.getRugosidad());
 	}
 
-	public Llanta getLDerecha() {
-		return LlantaDerecha;
-	}
-
-	public void setLDerecha(Llanta derecha) {
-		LlantaDerecha = derecha;
-	}
-
-	public Llanta getLIzquierda() {
-		return LlantaIzquierda;
-	}
-
-	public void setLIzquierda(Llanta izquierda) {
-		LlantaIzquierda = izquierda;
-	}
-
-	public Neumatico getNDerecho() {
-		return NeumaticoDerecho;
-	}
-
-	public void setNDerecho(Neumatico derecho) {
-		NeumaticoDerecho = derecho;
-	}
-
-	public Neumatico getNIzquierdo() {
-		return NeumaticoIzquierdo;
-	}
-
-	public void setNIzquierdo(Neumatico izquierdo) {
-		NeumaticoIzquierdo = izquierdo;
-	}
+	
 
 	public double getDesgastePorRugosidad() {
 		return DesgastePorRugosidad;
@@ -75,6 +45,38 @@ implements AfectablePorSuperficie{
 
 	public void setDesgastePorParticulas(double desgastePorParticulas) {
 		DesgastePorParticulas = desgastePorParticulas;
+	}
+
+	public Llanta getLlantaDerecha() {
+		return LlantaDerecha;
+	}
+
+	public void setLlantaDerecha(Llanta llantaDerecha) {
+		LlantaDerecha = llantaDerecha;
+	}
+
+	public Llanta getLlantaIzquierda() {
+		return LlantaIzquierda;
+	}
+
+	public void setLlantaIzquierda(Llanta llantaIzquierda) {
+		LlantaIzquierda = llantaIzquierda;
+	}
+
+	public Neumatico getNeumaticoDerecho() {
+		return NeumaticoDerecho;
+	}
+
+	public void setNeumaticoDerecho(Neumatico neumaticoDerecho) {
+		NeumaticoDerecho = neumaticoDerecho;
+	}
+
+	public Neumatico getNeumaticoIzquierdo() {
+		return NeumaticoIzquierdo;
+	}
+
+	public void setNeumaticoIzquierdo(Neumatico neumaticoIzquierdo) {
+		NeumaticoIzquierdo = neumaticoIzquierdo;
 	}
 
 	

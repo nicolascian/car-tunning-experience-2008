@@ -152,25 +152,6 @@ public abstract class Caja extends Componente implements AfectablePorClima{
 		return (getAuto().getMotor().getRPM()/getRelacionDeCambio());
 	}
 
-	/* (non-Javadoc)
-	 * @see Componente#isListoParaCarrera()
-	 */
-	@Override
-	public boolean isListoParaCarrera() {
-		return listoParaCarrera;
-	}
-
-	/* (non-Javadoc)
-	 * @see Componente#actualizarListoParaCarrera()
-	 */
-	@Override
-	public void actualizarListoParaCarrera() {
-		if(getAuto()!=null)
-		  listoParaCarrera=true;
-		else
-		  listoParaCarrera=false;
-	}
-
 	/**
 	 * @Pre: Se ha creado una instancia de la Automatica segun los parametros.
 	 * @Post: Se ha obtenido la potencia entregada por la caja a una cantidad

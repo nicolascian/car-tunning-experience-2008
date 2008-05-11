@@ -65,30 +65,5 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	public double getCoeficienteDeDesgastePorTemperatura(){
 		return CoeficienteDeDesgastePorTemperatura;
 	}
-	/* (non-Javadoc)
-	 * @see Componente#isListoParaCarrera()
-	 */
-	@Override
-	public boolean isListoParaCarrera() {
-		// TODO Auto-generated method stub
-	return listoParaCarrera;
-	}
 
-	/* (non-Javadoc)
-	 * @see Componente#actualizarListoParaCarrera()
-	 */
-	@Override
-	public void actualizarListoParaCarrera() {
-		// TODO Auto-generated method stub
-		if (getEstado()> 0)
-			listoParaCarrera= true;
-		else 
-			listoParaCarrera=false;
-			
-	}
-
-	
-
-	
-	
 }

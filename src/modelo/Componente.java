@@ -149,19 +149,5 @@ public abstract class Componente {
 		this.temperatura = temperatura;
 	}
 
-	/**
-	 * @Pre: La instancia de la clase derivada de componente ha sido creada.
-	 * @Post: Se verifica si la instancia se encuentra lista para correr y en
-	 * ese caso retorna true, en caso contrario false.
-	 * @return the listoParaCarrera
-	 */
-	abstract public boolean isListoParaCarrera();
-
-	/**
-	 * @Pre: La instancia de la clase derivada de componente ha sido creada.
-	 * @Post: Se verifica si la instancia se encuentra lista para correr y en
-	 * ese caso setea como lista para carrera.
-	 */
-	abstract public void actualizarListoParaCarrera();
-		
+	
 }

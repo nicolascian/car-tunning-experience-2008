@@ -469,25 +469,6 @@ public class Motor extends Componente implements AfectablePorClima{
 		this.tiempoDeControlCurvaAceleracion = tiempoDeControlCurvaAceleracion;
 	}
 
-	/* (non-Javadoc)
-	 * @see Componente#isListoParaCarrera()
-	 */
-	@Override
-	public boolean isListoParaCarrera() {
-		return(listoParaCarrera);
-	}
-
-	/* (non-Javadoc)
-	 * @see Componente#setListoParaCarrera(boolean)
-	 */
-	@Override
-	public void actualizarListoParaCarrera() {
-		if(getAuto()!=null){
-			listoParaCarrera=true;
-		}
-		else
-		    listoParaCarrera=false;
-	}
 	/**
 	 * @return the revolucionesMinimasEncendido
 	 */
