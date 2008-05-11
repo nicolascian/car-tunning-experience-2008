@@ -35,9 +35,9 @@ public class Motor extends Componente implements AfectablePorClima{
 												//de esa temperatura aumenta el rendimiento.
 	protected final static double COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO=0.25;
 	
-	protected final static double PORCENTAJE_RPM_ENCENDIDO=8;// 8%
+	protected final static double COEFICIENTE_RPM_ENCENDIDO=0.08;// 8%
 	
-	protected final static double PORCENTAJE_POTENCIA_A_OBTENER=5;// 5%
+	protected final static double COEFICIENTE_POTENCIA_A_OBTENER=0.05;// 5%
 	
 	protected final static double COEFICIENTE_DE_ABSORCION_CALORICO_INICIAL=0.0015;
 	
@@ -122,7 +122,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	public void encender(){
 		if((isListoParaCarrera())&&(!isEncendido())){
 			setEncendido(true);
-			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*PORCENTAJE_RPM_ENCENDIDO/100);
+			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 			setRPM(getRevolucionesMinimasEncendido());
 			setAcelerando(false);
 			setTiempoDeUltimoDesgaste(System.currentTimeMillis());
@@ -140,6 +140,8 @@ public class Motor extends Componente implements AfectablePorClima{
 			setRPM(0);
 			setTemperatura(0);
 			setAcelerando(false);
+			setRevolucionesMinimasEncendido(0);
+			setTiempoDeUltimoDesgaste(0);
 		}
 	}
 	
@@ -171,6 +173,8 @@ public class Motor extends Componente implements AfectablePorClima{
 	    	 //actualizacion de temperatura
 	    	 actualizarTemperaturaPorCambioDeRpm(rpmInicial, RPM, diferenciaDeTiempoReal);
            }
+		 //desgaste
+		 desgastar();
 	  }
 	}
 	
@@ -219,6 +223,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * actual y segun la temperatura a la que se encuentra el agua del motor.    
 	*/
 	public void desgastar(){
+	 if((System.currentTimeMillis()-this.getTiempoDeUltimoDesgaste())>=1000){
 		//si se supera la temperatura critica el motor se funde y su
 		//estado se torna 0
 		if(getTemperatura()>=TEMPERATURA_CRITICA)
@@ -233,6 +238,8 @@ public class Motor extends Componente implements AfectablePorClima{
 		     desgaste=desgaste+(rpm/getRevolucionesMaximasCambio())*COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES;
 		   setEstado(getEstado()-desgaste);
 		}
+		setTiempoDeUltimoDesgaste(System.currentTimeMillis());
+	 }
 	}	
 	
 	/**
@@ -266,7 +273,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	public double obtenerPotencia(){
 		if(isEncendido()){
 		  actualizarRpm();
-		  return (calcularPotenciaInterna()*PORCENTAJE_POTENCIA_A_OBTENER/100);
+		  return (calcularPotenciaInterna()*COEFICIENTE_POTENCIA_A_OBTENER);
 		}
 		else
 			return 0;

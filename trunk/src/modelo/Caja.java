@@ -29,7 +29,7 @@ public abstract class Caja extends Componente{
 	
 	protected final static double COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM=0.015;
 	
-	protected final static double PORCENTAJE_ESTANDAR_REVOLUCIONES_MINIMAS_PARA_CAMBIO=0.6;
+	protected final static double COEFICIENTE_ESTANDAR_REVOLUCIONES_MAXIMAS_PARA_CAMBIO=0.6;
 	
 	public abstract void Chequear();
 	
@@ -93,9 +93,8 @@ public abstract class Caja extends Componente{
 	 * @Post:Se ha seteado el cambio. Cada vez que hacemos un Cambio, se altera las 
 	 * revolucionesMaximas del Motor.
 	 * @param cambio: cambio que se desea validad.
-	 * @throws ExceptionCambioNoValido en caso de que el cambio no sea valido.
 	*/
-	protected void setCambio(int cambio) throws ExceptionCambioNoValido {
+	protected void setCambio(int cambio){
 		if(cambioValido(cambio)){
 		 if(cambio!=getCambio()){  
 		   Motor motor=getAuto().getMotor();
@@ -107,8 +106,8 @@ public abstract class Caja extends Componente{
 		   motor.modificarRpmDesdeCaja(rpm-motor.getRPM());
 		   //cambio de revoluciones Maximas del motor segun el cambio
 		   rpm=motor.getRevolucionesMaximas()*(1-1/getRelacionDeCambio());
-		   if(rpm<=(motor.getRevolucionesMaximas()*0.65))
-			   
+		   if(rpm<=0)
+			  rpm=motor.getRevolucionesMaximas()*COEFICIENTE_ESTANDAR_REVOLUCIONES_MAXIMAS_PARA_CAMBIO; 
 		   motor.setRevolucionesMaximasCambio(rpm);
 		 }//fin cambio!=cambio instancia
 		}//fin cambio valido
@@ -118,9 +117,8 @@ public abstract class Caja extends Componente{
 	 * @Pre: La instancia ha sido creada.
 	 * @Post:Se ha subido un cambio. Cada vez que hacemos un Cambio, se altera las 
 	 * revolucionesMaximas del Motor.
-	 * @throws ExceptionCambioNoValido en caso de que no se pueda subir un cambio.
 	*/
-	public void siguiente() throws ExceptionCambioNoValido{
+	public void siguiente(){
 		setCambio(getCambio()+1);
 	}
 	
@@ -128,9 +126,8 @@ public abstract class Caja extends Componente{
 	 * @Pre: La instancia ha sido creada.
 	 * @Post:Se ha bajado un cambio. Cada vez que hacemos un Cambio, se altera las 
 	 * revolucionesMaximas del Motor.
-	 * @throws ExceptionCambioNoValido en caso de que bajar un cambio.
 	*/
-	public void anterior() throws ExceptionCambioNoValido{
+	public void anterior(){
 		setCambio(getCambio()-1);
 	}
 		

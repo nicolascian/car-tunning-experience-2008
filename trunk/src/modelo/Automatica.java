@@ -18,16 +18,18 @@ public class Automatica extends Caja{
 			
 	public void Chequear(){
 	
-	  try{	
+	  
 		//revolucionesOptimas - revolucionesActuales
 		double relacion = auto.getMotor().getRevolucionesMaximas() - auto.getMotor().getRPM(); 
 		
 		/*SI ESTA ACLERANDO*/
-		if ((auto.getMotor().isAcelerando())&&(relacion <= 300)){ this.siguiente(); }
+		if ((auto.getMotor().isAcelerando())&&(relacion <= 300)) 
+			this.siguiente(); 
 		
 		/*SI ESTA FRENANDO*/
-		if ((!auto.getMotor().isAcelerando())&&(relacion >= 1200)){ this.anterior(); }
-	  }catch(ExceptionCambioNoValido e){};
+		if ((!auto.getMotor().isAcelerando())&&(relacion >= 1200)) 
+			this.anterior();
+	  
 	}
 	
 	/**
