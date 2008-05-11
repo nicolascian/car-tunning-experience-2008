@@ -13,7 +13,7 @@ import java.util.*;
  * 
  * @version 1.0
  */
-public abstract class Componente{
+public abstract class Componente {
 	/* comentario acerca de la implementacion de la clase */
 	
 	private String nombre;

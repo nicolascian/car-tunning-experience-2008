@@ -23,14 +23,18 @@ public class Superficie{
 	/**
 	 * El valor minimo de rugosidad es 0 y corresponde a 
 	 * una superficie totalmente plana, sin desnivel alguno.
-	 * Un mayor nivel de rugosidad de la superficie aumentara los daï¿½os
+	 * Un valor de rugosidad igual a 100 corresponde a una superficie
+	 * totalmente dañada.
+	 * Un mayor nivel de rugosidad de la superficie aumentara los daños
 	 * en aquellas partes del auto que interactuen directamente con el suelo.
 	 */
 	private double rugosidad;
 	
 	/**
 	 * Las particulas sueltas representan aquellos elementos de volumen
-	 * por unidad de superficie considerables que daï¿½an al auto. 
+	 * por unidad de superficie considerables que dañan al auto.
+	 * 0 corresponde a ninguna particula suelta
+	 * 100 corresponde al maximo de particulas sueltas 
 	 */
 	private double particulasSueltas;
 	
