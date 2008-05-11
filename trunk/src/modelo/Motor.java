@@ -172,7 +172,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	    	 setRPM(rpm);
 	    	 //actualizacion de temperatura
 	    	 actualizarTemperaturaPorCambioDeRpm(rpmInicial, RPM, diferenciaDeTiempoReal);
-           }
+         }
 		 //desgaste
 		 desgastar();
 	  }
@@ -234,7 +234,7 @@ public class Motor extends Componente implements AfectablePorClima{
 			  desgaste=(getTemperatura()/TEMPERATURA_OPTIMA)*COEFICIENTE_DE_DESGASTE_POR_TEMPERATURA;
 		   }
 		   double rpm=getRPM();
-		   if(rpm>=getRevolucionesMaximasCambio())
+		   if(rpm>getRevolucionesMaximasCambio())
 		     desgaste=desgaste+(rpm/getRevolucionesMaximasCambio())*COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES;
 		   setEstado(getEstado()-desgaste);
 		}

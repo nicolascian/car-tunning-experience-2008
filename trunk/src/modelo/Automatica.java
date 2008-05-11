@@ -15,22 +15,37 @@ package modelo;
  */
 public class Automatica extends Caja{
 	/* comentario acerca de la implementacion de la clase */
-			
+	/*		
 	public void Chequear(){
-	
-	  
+		  
 		//revolucionesOptimas - revolucionesActuales
 		double relacion = auto.getMotor().getRevolucionesMaximas() - auto.getMotor().getRPM(); 
 		
-		/*SI ESTA ACLERANDO*/
+		//SI ESTA ACLERANDO
 		if ((auto.getMotor().isAcelerando())&&(relacion <= 300)) 
 			this.siguiente(); 
 		
-		/*SI ESTA FRENANDO*/
+		//SI ESTA FRENANDO
 		if ((!auto.getMotor().isAcelerando())&&(relacion >= 1200)) 
 			this.anterior();
 	  
 	}
+	*/
+	
+	/**
+	 * 
+	*/	
+	public void Chequear(){
+		double rpm=getAuto().getMotor().getRPM();
+		Motor motor=getAuto().getMotor();
+		if(motor.isAcelerando()){
+			if(rpm<=motor.getRevolucionesMaximasCambio())
+				setCambio(getCambio()+1);
+		}
+		else
+			if(rpm<=motor.getRevolucionesMinimasEncendido())
+				setCambio(getCambio()-1);
+	}	
 	
 	/**
 	 * @Pre:
@@ -45,14 +60,17 @@ public class Automatica extends Caja{
 		
 	protected void generarRelacionesDeCaja(){
 		for(int cursor=0;cursor<=cantidadCambios;cursor++)
-		  if(cursor==0)	   
+		  if(cursor!=0)	   
 			relacionDeCambio[cursor]=15/(cursor-0.3)-9/(cantidadCambios*cantidadCambios);
 		  else
-			relacionDeCambio[cursor]=1;  
+			relacionDeCambio[cursor]=1/60;  
 	}	
 	
 	public void desgastar(){
-       //tener en cuenta la temperatura del clima
-	    	
+	  if((System.currentTimeMillis()-getTiempoDeUltimoDesgaste())>=TIEMPO_MINIMO_ENTRE_DESGASTES){	
+		
+	  }  	
 	}
+
+	
 }

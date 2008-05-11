@@ -19,7 +19,7 @@ package modelo;
  * motor del auto.
  * @version	3.2
  */
-public abstract class Caja extends Componente{
+public abstract class Caja extends Componente implements AfectablePorClima{
 		
 	protected int cambio;
 		
@@ -27,14 +27,26 @@ public abstract class Caja extends Componente{
 		
 	protected int cantidadCambios;
 	
+	protected final static long TIEMPO_MINIMO_ENTRE_DESGASTES=3000;//tiempo minimo transurrido entre
+															       //dos desgastes consecutivos
 	protected final static double COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM=0.015;
 	
-	protected final static double COEFICIENTE_ESTANDAR_REVOLUCIONES_MAXIMAS_PARA_CAMBIO=0.6;
+	protected final static double COEFICIENTE_DE_DESGASTE_POR_TEMPERATURA_INICIAL=0.000000001;
+	
+	protected final static double COEFICIENTE_DE_OBTENCION_DE_TEMPERATURA_SEGUN_RPM_INICIAL=0.00000001;
+		
+	protected double TEMPERATURA_AIRE_OPTIMA=18;
+	
+	protected double TEMPERATURA_CAJA_OPTIMA=90;
+	
+	protected double coeficienteDeDesgastePorTemperatura;
+	
+	protected double coeficienteDeObtencionDeTemperaturaSegunRpm;
+		
+	protected long tiempoDeUltimoDesgaste;//tiempo del ultimo desgaste en milisegundos
 	
 	public abstract void Chequear();
-	
-	
-	
+		
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
@@ -50,6 +62,10 @@ public abstract class Caja extends Componente{
 		cambio=0;
 		generarRelacionesDeCaja();
 		setEstado(100);
+		setTiempoDeUltimoDesgaste(System.currentTimeMillis());
+		setTemperatura(TEMPERATURA_CAJA_OPTIMA);
+		setCoeficienteDeDesgastePorTemperatura(COEFICIENTE_DE_DESGASTE_POR_TEMPERATURA_INICIAL);
+		setCoeficienteDeObtencionDeTemperaturaSegunRpm(COEFICIENTE_DE_OBTENCION_DE_TEMPERATURA_SEGUN_RPM_INICIAL);
 	}
 	
 	/**
@@ -101,36 +117,22 @@ public abstract class Caja extends Componente{
 		   this.cambio=cambio;
 		   double relacionRpm=Math.abs(obtenerRpm()/motor.getRevolucionesMaximas()-1); 
 		   double rpm=motor.getRevolucionesMaximas()*relacionRpm;
+		   //cambio de revoluciones actuales
 		   if(rpm<motor.getRevolucionesMinimasEncendido())
 			   rpm=motor.getRevolucionesMinimasEncendido();
 		   motor.modificarRpmDesdeCaja(rpm-motor.getRPM());
 		   //cambio de revoluciones Maximas del motor segun el cambio
 		   rpm=motor.getRevolucionesMaximas()*(1-1/getRelacionDeCambio());
-		   if(rpm<=0)
-			  rpm=motor.getRevolucionesMaximas()*COEFICIENTE_ESTANDAR_REVOLUCIONES_MAXIMAS_PARA_CAMBIO; 
 		   motor.setRevolucionesMaximasCambio(rpm);
 		 }//fin cambio!=cambio instancia
 		}//fin cambio valido
 	}
-
-	/**
-	 * @Pre: La instancia ha sido creada.
-	 * @Post:Se ha subido un cambio. Cada vez que hacemos un Cambio, se altera las 
-	 * revolucionesMaximas del Motor.
-	*/
-	public void siguiente(){
-		setCambio(getCambio()+1);
+		
+	protected void actualizarTemperatura(){
+		double varicacionTemperatura=obtenerRpm()*getCoeficienteDeObtencionDeTemperaturaSegunRpm();
+		setTemperatura(getTemperatura()+varicacionTemperatura);
 	}
 	
-	/**
-	 * @Pre: La instancia ha sido creada.
-	 * @Post:Se ha bajado un cambio. Cada vez que hacemos un Cambio, se altera las 
-	 * revolucionesMaximas del Motor.
-	*/
-	public void anterior(){
-		setCambio(getCambio()-1);
-	}
-		
 	/**
 	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.
 	 * @Post: Se retorna la cantidad de cambios que tiene la instancia.
@@ -169,8 +171,7 @@ public abstract class Caja extends Componente{
 	/**
 	 * @Pre: Se ha creado una instancia de la Automatica segun los parametros.
 	 * @Post: Se ha obtenido la potencia entregada por la caja a una cantidad
-	 * de Rpm y cambios dado, teniendo en cuenta una fuerza de rodamiento de
-	 * 120N con una rueda de 1.872 metros de circunferencia.
+	 * de Rpm y cambios dado.
 	 * 
 	*/
 	public double obtenerPotencia(){
@@ -181,4 +182,57 @@ public abstract class Caja extends Componente{
 		return potencia;
 	}
 	
+	/**
+	 * @return the tiempoDeUltimoDesgaste
+	 */
+	protected long getTiempoDeUltimoDesgaste() {
+		return tiempoDeUltimoDesgaste;
+	}
+
+	/**
+	 * @param tiempoDeUltimoDesgaste the tiempoDeUltimoDesgaste to set
+	 */
+	protected void setTiempoDeUltimoDesgaste(long tiempoDeUltimoDesgaste) {
+		this.tiempoDeUltimoDesgaste = tiempoDeUltimoDesgaste;
+	}
+
+	/**
+	 * @return the coeficienteDeDesgastePorTemperatura
+	 */
+	protected double getCoeficienteDeDesgastePorTemperatura() {
+		return coeficienteDeDesgastePorTemperatura;
+	}
+
+	/**
+	 * @param coeficienteDeDesgastePorTemperatura the coeficienteDeDesgastePorTemperatura to set
+	 */
+	protected void setCoeficienteDeDesgastePorTemperatura(
+			double coeficienteDeDesgastePorTemperatura) {
+		this.coeficienteDeDesgastePorTemperatura = coeficienteDeDesgastePorTemperatura;
+	}
+
+	/**
+	 * @return the coeficienteDeObtencionDeTemperaturaSegunRpm
+	 */
+	protected double getCoeficienteDeObtencionDeTemperaturaSegunRpm() {
+		return coeficienteDeObtencionDeTemperaturaSegunRpm;
+	}
+
+	/**
+	 * @param coeficienteDeObtencionDeTemperaturaSegunRpm the coeficienteDeObtencionDeTemperaturaSegunRpm to set
+	 */
+	protected void setCoeficienteDeObtencionDeTemperaturaSegunRpm(
+			double coeficienteDeObtencionDeTemperaturaSegunRpm) {
+		this.coeficienteDeObtencionDeTemperaturaSegunRpm = coeficienteDeObtencionDeTemperaturaSegunRpm;
+	}
+		
+	/* (non-Javadoc)
+	 * @see modelo.AfectablePorClima#afectar(modelo.Clima)
+	 */
+	@Override
+	public void afectar(Clima clima) {
+		double temperatura=clima.getTemperatura();
+		double relacion=temperatura/TEMPERATURA_AIRE_OPTIMA-1;
+		this.setCoeficienteDeObtencionDeTemperaturaSegunRpm(COEFICIENTE_DE_OBTENCION_DE_TEMPERATURA_SEGUN_RPM_INICIAL*(1-relacion));
+	}
 }
