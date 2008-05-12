@@ -23,12 +23,16 @@ Nico M: 	Neumatico,
 			Superficie <-----------Listo
 			(Faltan todas las pruebas)
 			
+			VER NOTA IMPORTANTE ABAJO DE TODO
+			
 Rafa:		Motor
 			Caja 
 			Automatica
 			Secuencial 
 			Manual
 			Auto
+			
+			VER NOTA IMPORTANTE ABAJO DE TODO
 			
 Lucas:		Desgastar y ObtenerPotencia
 			(Eje,Escape,Neumatico,Carroceria,Carburador
@@ -38,6 +42,8 @@ Lucas:		Desgastar y ObtenerPotencia
 			eje <------------Listo
 			Carroceria<------Listo
 			Excepciones<-----Listo
+			
+			VER NOTA IMPORTANTE ABAJO DE TODO
 
 Nico C:		Doc. Dificultad
 			Clima <----------------Listo
@@ -51,6 +57,8 @@ Nico C:		Doc. Dificultad
 			Alimentacion <---------Listo
 			  Carburador <---------Listo
 			  Inyeccion <----------Listo
+			  
+			  VER NOTA IMPORTANTE ABAJO DE TODO
 			
 Maxi:		Suspension
 			Combustible
@@ -58,7 +66,33 @@ Maxi:		Suspension
 			Turbo
 			AlgoPesos
 			Llanta
+			
+			VER NOTA IMPORTANTE ABAJO DE TODO
+ 
+--------------------------             NOTA IMPORTANTE              -------------------------------
 
+Nota Importante!!! (Rafael): Hice cuentas teniendo en cuenta un procesador de 3 Ghz , 
+
+teniendo en cuenta el tiempoPorCiclo de 0.00001 que ya tenemos puesto en Constante, llegue 
+a la siguiente ecuacion: 
+	
+	TiempoDeDuracionDeComponente=0.0033/constanteDeDesgaste  
+	
+	
+	-->TiempoDeDuracionDeComponente: en segundos
+	-->constanteDeDesgaste: seria el desgaste en cada componente que ustedes le den a cada clase
+	          5E-6<= constanteDeDesgaste <=9E-6
+	
+  Con la siguiente Ecuacion de desgaste:
+
+public void Desgastar(){  
+  setEstado(getEstado()-tiempoPorCiclo*constanteDeDesgaste
+}  
+
+Con estos calculos un componente con una constante de 5E-6 deberia durar 5 carreras
+de 2 minutos (120 segundos )cada una.
+
+----------------------------------------------------------------------------------------------------
 
 
 ## Informacion del Proyecto ##
