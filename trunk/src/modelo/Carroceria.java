@@ -49,8 +49,7 @@ public class Carroceria extends Componente
 	 * @Post: La carroceria desgastada.
 	 */
 	public void desgastar(){
-		double desgaste=0;
-		desgaste = (getCoeficienteDeOxidacionPorParticulas()+
+		double desgaste = (getCoeficienteDeOxidacionPorParticulas()+
 				  getCoeficienteDeOxidacionPorHumedad())*Constantes.tiempoPorCiclo;
 		setEstado(getEstado()-desgaste);
 	}
