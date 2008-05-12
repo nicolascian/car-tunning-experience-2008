@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,10 +5,17 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * Documentacion
+ * La inyección de combustible es un sistema de alimentación de motores de combustión 
+ * interna, alternativo al carburador, que es el que usan prácticamente todos los 
+ * automóviles europeos desde 1993, debido a la obligación de reducir las emisiones 
+ * contaminantes y para que sea posible y duradero el uso del catalizador.
  * 
  * @version	1.0
+ * @see modelo.Alimentacion Alimentacion
+ * @see <a href="http://es.wikipedia.org/wiki/Inyecci%C3%B3n_de_combustible">Inyeccion - Wikipedia</a>
  */
 public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */

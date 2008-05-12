@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,19 +5,42 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * Documentacion
+ * Clase Habilidad
  * 
- * es la habilidad de conduccion del jugador virtual (PC)
+ * Es la capacidad de conduccion del jugador virtual (PC)
+ * Se entiende por jugador virtual a aquel que es manejado por la computadora.
+ * 
+ * Esta es una clase abstracta de la cual heredan: Principiante, Intermedio y Experto.
+ * 
+ * No tiene sentido la existencia de Habilidad si no existe un Jugador Virtual, 
+ * es por eso que esta clase es parte de la clase Virtual.
  * 
  * @version	1.0
+ * @see  modelo.Principiante  Principiante
+ * @see  modelo.Intermedio  Intermedio
+ * @see  modelo.Experto  Experto
  */
 public abstract class Habilidad{
-	/* comentario acerca de la implementacion de la clase */
+	/* simple uso de polimorfismo */
+	
+	protected Auto auto;
 	
 	/**
-	 * Documentacion
+	 * Metodo Jugar
+	 * 
+	 * este metodo permite desarrollar los cambios durante una carrera,
+	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
+	 * 
+	 * es Abstracta, asi que cualquier heredero esta obligado a implementarla
 	 */
-	private String nombre;
+	public abstract void jugar();
+	
+	
+	public void setAuto(Auto auto) {
+		this.auto = auto;
+	}
 	
 }

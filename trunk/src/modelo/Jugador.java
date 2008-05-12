@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,46 +5,43 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * Documentacion
+ * Clase Jugador (es una clase abstracta)
+ * 
+ * Un jugador puede ser "humano" (lo llamaremos Usuario) o "computadora" (lo llamaremos Virtual).
+ * 
+ * Humano = Usuario
+ * Computadora = Virtual
  * 
  * @version	1.0
+ * @see  modelo.Virtual  Virtual 
+ * @see  modelo.Usuario  Usuario
  */
 public abstract class Jugador {
-	/* comentario acerca de la implementacion de la clase */
+	/* implementacion basada en polimorfismo */
 	
 	/**
-	 * Documentacion
+	 * Todo jugador consta de un Auto para poder competir
 	 */
 	protected Auto auto;
 	
-	public void jugar() throws ExceptionAutoApagado{
-		
-		//SI ENCENDIDO:
-		if (auto.getMotor().isEncendido()){
-			
-			//SI ESTA ACELERANDO
-			auto.getMotor().acelerar(true);
-		
-			//SI NO ESTA ACELERA
-			auto.getMotor().acelerar(false);
-		
-			//SI CAJA SECUENCIAL
-			//ver sintaxis*****
-			//	auto.getCaja().isInstanceOf(Secuencial);
-				//SI SUBE CAMBIO
-				//auto.getCaja().siguiente();
-			
-				//SI BAJA CAMBIO
-				//auto.getCaja().anterior();
-			
-		}else{
-		
-			throw new ExceptionAutoApagado();
-		}
-		
-		
-			
+	/**
+	 * Metodo Jugar
+	 * 
+	 * este metodo permite desarrollar los cambios durante una carrera,
+	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
+	 * 
+	 * @throws ExceptionAutoApagado
+	 */
+	public abstract void jugar() throws ExceptionAutoApagado;
+	
+	
+	/* setters y getters */
+	
+	public void setAuto(Auto auto){
+		this.auto = auto;
 	}
 	
 	public Auto getAuto() {
