@@ -9,13 +9,11 @@ package modelo;
 /**
  * @Documentacion
  * Esta clase modela la caja de velocidades de un vehiculo. Puede tener una cantidad de cambios 
- * determinada, que una vez creada no puede ser cambiada. Cada cambio tiene una relaci�n de velocidad
- * o de cambio, que es un factor n�merico el cual determinara la forma en la que caja entrega potencia
- * de a cuerdo a encontrarse en un cambio dado. Se toma como convenci�n que a mayor n�mero de cambio
- * menor relacionDeCambio. Esta clase es suceptible de ser afectada por la temperatura del clima.
- * @Nota1: La mayoria de los m�todos retornan una exception de tipo ExceptionCambioNoValido al
- * intentar acceder a un cambio que no existe.
- * @Nota2: Al pasar de cambio la caja disminuye en un porcentaje la cantidad de rpm del
+ * determinada, que una vez creada no puede ser cambiada. Cada cambio tiene una relacion de velocidad
+ * o de cambio, que es un factor numerico el cual determinara la forma en la que caja entrega potencia
+ * de a cuerdo a encontrarse en un cambio dado. Se toma como convencion que a mayor numero de cambio
+ * menor relacionDeCambio. 
+ * @Nota: Al pasar de cambio la caja disminuye en un porcentaje la cantidad de rpm del
  * motor del auto.
  * @version	3.2
  */
@@ -54,7 +52,6 @@ public abstract class Caja extends Componente{
 	/**
 	 * @Pre: 
 	 * @Post: Se han generado las relaciones de caja correspondientes.
-	 * 
 	*/
 	abstract protected void generarRelacionesDeCaja();
 		
@@ -91,7 +88,6 @@ public abstract class Caja extends Componente{
 	 * @Pre: La instancia ha sido creada.
 	 * @Post:Se ha seteado el cambio. Cada vez que hacemos un Cambio, se altera las 
 	 * revolucionesMaximas del Motor.
-	 * @param cambio: cambio que se desea validad.
 	*/
 	protected void setCambio(int cambio){
 		if(cambioValido(cambio)){
@@ -147,6 +143,10 @@ public abstract class Caja extends Componente{
 		return potencia;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see modelo.Componente#desgastar()
+	*/
 	public void desgastar(){
 		setEstado(getEstado()-tiempoPorCiclo*COEFICIENTE_DE_DESGASTE);
 	}
