@@ -6,13 +6,16 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-/**
- * Documentacion
- */
-public interface AfectablePorSuperficie{
 	/**
-	 * Interfaz que deberan implementar todas aquellas clases que
-	 * sean afectables por la superficie
+	 * Interfaz que deberan implementar todas aquellas clases que sean
+	 * afectables de alguna manera por la superficie.
+	 */
+public interface AfectablePorSuperficie{
+
+	/**
+	 * El metodo expuesto recibe como parametros una superficie,y la clase
+	 * que implementa esta interfaz sera la encargada de determinar la
+	 * interaccion entre ambas clases. 
 	 * @param superficie
 	 */
 	public void afectar(Superficie superficie);
