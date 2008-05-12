@@ -1,5 +1,5 @@
 package test;
-
+import modelo.Manual;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -7,28 +7,29 @@ import org.junit.Test;
 
 public class TestManual {
 
+	Manual manual;
+	
 	@Before
 	public void setUp() throws Exception {
+	
 	}
-
+	
+	@Test
+	public void Manual(){
+		
+		for(int cambios=1;cambios<=8;cambios++)
+			manual=new Manual(cambios);
+		
+	}
+	
 	@Test
 	public void testChequear() {
-		System.out.print("Hoola");
-	}
-
-	@Test
-	public void testGenerarRelacionesDeCaja() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	public void testSetCambio() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testManual() {
-		fail("Not yet implemented");
+		
 	}
 
 }
