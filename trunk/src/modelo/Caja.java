@@ -150,5 +150,19 @@ public abstract class Caja extends Componente{
 	public void desgastar(){
 		setEstado(getEstado()-tiempoPorCiclo*COEFICIENTE_DE_DESGASTE);
 	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String cadena="Caja de "+getCantidadCambios()+" cambios. Relaciones De Cambio: ";
+		for(int cambio=0;cambio<=getCantidadCambios();cambio++)
+			cadena=cadena+"("+cambio+")"+relacionDeCambio[cambio]+" ";
+		cadena=cadena+"Estado "+getEstado()+"%";
+		return cadena;
+	}
+
 		
 }
