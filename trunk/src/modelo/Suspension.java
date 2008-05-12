@@ -48,7 +48,7 @@ implements AfectablePorSuperficie, AfectablePorClima{
 	
 	/** la superficie afecta a la suspension */
 	public void afectar(Superficie superficie){
-		EfectoSuperficie = superficie.getCoeficiente();
+
 	}
 
 	
