@@ -90,7 +90,7 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	 * @return Potencia
 	 */
 	public double obtenerPotencia(){
-		
+		/* es una relacion matematica */
 		return ((auto.getCombustible().obtenerPotencia() *
 				 CTE_RELACION_POTENCIA) /100) * 
 				  EfectoClimatico * getEstado();
