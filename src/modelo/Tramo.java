@@ -21,11 +21,15 @@ public class Tramo {
 	public Tramo(){
 		posInicial = 0;
 		posFinal= 100;
-		
 		clima = new Clima();
 		superficie = new Superficie();
 	}
-
+	public Tramo (double largo){
+		posInicial = 0;
+		posFinal = largo;
+		clima = new Clima();
+		superficie = new Superficie();
+	}
 	public boolean estaAutoEnTramo(Auto auto){
 		
 		return (auto.getPosicion() < posFinal);
