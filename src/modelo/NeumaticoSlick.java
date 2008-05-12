@@ -13,7 +13,33 @@ public class NeumaticoSlick extends Neumatico
 	private double humedadEnPista;
 	
 	private double viscosidadSuperficie;
-	
+	/**
+	 * El relieve en la superficie esta dado por la rugosidad y la
+	 * cantidad de particulas sueltas en la misma.
+	 */
 	private double relieveSuperficie;
+	
+	public double calcularAdherencia(){
+		
+	}
+	
+	public double getHumedadEnPista() {
+		return humedadEnPista;
+	}
+	public void setHumedadEnPista(double humedadEnPista) {
+		this.humedadEnPista = humedadEnPista;
+	}
+	public double getViscosidadSuperficie() {
+		return viscosidadSuperficie;
+	}
+	public void setViscosidadSuperficie(double viscosidadSuperficie) {
+		this.viscosidadSuperficie = viscosidadSuperficie;
+	}
+	public double getRelieveSuperficie() {
+		return relieveSuperficie;
+	}
+	public void setRelieveSuperficie(double relieveSuperficie) {
+		this.relieveSuperficie = relieveSuperficie;
+	}
 	
 }
