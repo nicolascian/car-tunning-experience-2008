@@ -31,23 +31,57 @@ public class Virtual extends Jugador{
 	/**
 	 * Constructor de jugador Virtual con 1 parametro
 	 *  
+	 * por default el nombre es: PC_DEFAULT_NAME
+	 *  
 	 * Al ejecutar este constructor, el Virtual se crea un
 	 * Auto para ser utilizado por el mismo 
+	 * 
+	 * @param habilidad recibe su habiidad para jugar
 	 */
 	public Virtual(Habilidad habilidad){
+		super(PC_DEFAULT_NAME);
 		/* se crea un auto por defecto para el */
 		setAuto(new Auto());
 		setHabilidad(habilidad);
 	}
+
+	/**
+	 * Constructor de Virtual con 3 parametros
+	 * 
+	 * @param nombre recibe el nombre con el cual se identifica
+	 * @param habilidad recibe su habilidad
+	 * @param auto recibe el auto con el cual competira
+	 */
+	public Virtual(String nombre, Habilidad habilidad, Auto auto){
+		super(nombre);
+		setAuto(auto);
+		setHabilidad(habilidad);
+	}
 	
 	/**
-	 * Constructor de jugador Virtual con 2 parametros 
+	 * Constructor de jugador Virtual con 2 parametros
 	 * 
+	 * por default el nombre es: PC_DEFAULT_NAME
+	 * 
+	 * @param habilidad recibe una habilidad para jugar
 	 * @param auto recibe el auto con el cual competira
+	 */
+	public Virtual(Habilidad habilidad, Auto auto){
+		super(PC_DEFAULT_NAME);
+		setAuto(auto);
+		setHabilidad(habilidad);
+	}
+	
+	/**
+	 * Constructor de jugador Virtual con 2 parametros
+	 * 
+	 * @param nombre recibe el nombre con el cual se identifica
 	 * @param habilidad recibe una habilidad para jugar
 	 */
-	public Virtual(Auto auto, Habilidad habilidad){
-		setAuto(auto);
+	public Virtual(String nombre, Habilidad habilidad){
+		super(nombre);
+		/* se crea un auto por defecto para el */
+		setAuto(new Auto());
 		setHabilidad(habilidad);
 	}
 

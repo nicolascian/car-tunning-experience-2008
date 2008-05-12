@@ -27,6 +27,16 @@ public abstract class Jugador {
 	 */
 	protected Auto auto;
 	
+	/** Un jugador tiene nombre */
+	protected String nombre;
+	
+	/* Constantes de Nombres */
+	
+	/** Es el nombre por defecto para un Usuario */
+	protected final static String USER_DEFAULT_NAME = "Humano";
+	/** Es el nombre por defecto para un Virtual */
+	protected final static String PC_DEFAULT_NAME = "Computador";
+	
 	/**
 	 * Metodo Jugar
 	 * 
@@ -37,6 +47,15 @@ public abstract class Jugador {
 	 */
 	public abstract void jugar() throws ExceptionAutoApagado;
 	
+	/**
+	 * Constructor con nombre de Jugador
+	 * 
+	 * @param nombre recibe el nombre con el cual se identifica
+	 */
+	public Jugador(String nombre){
+		setNombre(nombre);
+	}
+	
 	
 	/* setters y getters */
 	
@@ -46,6 +65,14 @@ public abstract class Jugador {
 	
 	public Auto getAuto() {
 		return auto;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	
