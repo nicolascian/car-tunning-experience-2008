@@ -71,26 +71,13 @@ Maxi:		Suspension
  
 --------------------------             NOTA IMPORTANTE              -------------------------------
 
-Nota Importante!!! (Rafael): Hice cuentas teniendo en cuenta un procesador de 3 Ghz , 
-
-teniendo en cuenta el tiempoPorCiclo de 0.00001 que ya tenemos puesto en Constante, llegue 
-a la siguiente ecuacion: 
-	
-	TiempoDeDuracionDeComponente=0.0033/constanteDeDesgaste  
-	
-	
-	-->TiempoDeDuracionDeComponente: en segundos
-	-->constanteDeDesgaste: seria el desgaste en cada componente que ustedes le den a cada clase
-	          5E-6<= constanteDeDesgaste <=9E-6
-	
-  Con la siguiente Ecuacion de desgaste:
-
-public void Desgastar(){  
-  setEstado(getEstado()-tiempoPorCiclo*constanteDeDesgaste
-}  
-
-Con estos calculos un componente con una constante de 5E-6 deberia durar 5 carreras
-de 2 minutos (120 segundos )cada una.
+Nota Importante!!! 
+  
+   coeficiente de desgaste en 1 y 10
+   
+   tiempoDeDuracionDeComponente= 5555.55/CteDeDesgaste
+   
+   un componente de CteDeDesgaste 10 duraria 555.55 duraria 4 carreraas de 2 minutos
 
 ----------------------------------------------------------------------------------------------------
 
