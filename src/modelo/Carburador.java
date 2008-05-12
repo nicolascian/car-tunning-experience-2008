@@ -23,14 +23,24 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	
 	private double EfectoClimatico;
 	
+	/* no tienen setter pues son constantes */
 	private double CTE_HUMEDAD_OPTIMA = 30; // %
-	
 	private double CTE_RELACION_POTENCIA = 98; // %
 	
 	/**
 	 * Constructor de Carburador por defecto.
 	 */
-	public  Carburador(){}
+	public Carburador(){}
+	
+	/**
+	 * Constructor de Carburador con parametros.
+	 */
+	public Carburador(double cte_humedad_optima, 
+						double cte_relacion_potencia){
+		
+		this.CTE_HUMEDAD_OPTIMA = cte_humedad_optima;
+		this.CTE_RELACION_POTENCIA = cte_relacion_potencia;
+	}
 	
 	/**
 	 * Nos dice el combustible que necesita la alimentacion segun la Cilindrada 
