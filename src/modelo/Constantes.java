@@ -15,8 +15,8 @@ public abstract class Constantes {
 		
 		-->TiempoDeDuracionDeComponente: en segundos
 		-->constanteDeDesgaste: seria el desgaste en cada componente que ustedes le den a cada clase
-		          5E-6<= constanteDeDesgaste <=9E-6
-		
+		         5E-6<= constanteDeDesgaste <=9E-6
+			
 	  Con la siguiente Ecuacion de desgaste:
 
 	public void Desgastar(){  
