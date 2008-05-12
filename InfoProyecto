@@ -17,11 +17,11 @@ ObtenerPotencia de los componentes tira MAXIMO 50 HP
 
 
 Nico M: 	Neumatico, 
-			Pista, 
-			Tramo, 
-			interfaces Afectable
-			Superficie
-
+			Pista <----------------Listo 
+			Tramo <----------------Listo (solo faltan comentarios) 
+			interfaces Afectable <-Listo (solo faltan comentarios)
+			Superficie <-----------Listo
+			(Faltan todas las pruebas)
 Rafa:		Motor, 
 			Caja, 
 			Automatica, 
