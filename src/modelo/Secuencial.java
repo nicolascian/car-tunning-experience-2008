@@ -53,11 +53,11 @@ public class Secuencial extends Caja{
 	 * 
 	*/
 	protected void generarRelacionesDeCaja(){
-		for(int cursor=1;cursor<=cantidadCambios;cursor++)
+		for(int cursor=0;cursor<=cantidadCambios;cursor++)
 	     if(cursor!=0)		    
-			relacionDeCambio[cursor]=15/(cursor-0.15)-9/(cantidadCambios*cantidadCambios);
+			relacionDeCambio[cursor]=15.0/(cursor-0.15)-9.0/(cantidadCambios*cantidadCambios);
 	     else
-	    	relacionDeCambio[cursor]=1/60;   
+	    	relacionDeCambio[cursor]=60.0;   
 	}	
 	
 	/* Como esta caja no es automatica, no hace nada */

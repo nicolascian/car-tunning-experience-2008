@@ -53,7 +53,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	private int cantidadCilindros;
 	
-	private double revolucionesMaximas;//revoluciones m�ximas que el motor puede alcanzar segun su cilindrada 
+	private double revolucionesMaximas;//revoluciones maximas que el motor puede alcanzar segun su cilindrada 
 	                                   //y cantidad de cilindros en rpm.
 			
 	private double RPM;//revoluciones a las que se encuentra trabajando el motor, en rpm.
