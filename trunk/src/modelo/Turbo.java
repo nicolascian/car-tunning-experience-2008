@@ -20,7 +20,7 @@ public class Turbo extends Componente implements AfectablePorClima{
 	private static double presionInterna=500;/* en HectoPascales*/
 	private final static double coeficienteClimaticoNormal=3545500; //surge de la multiplicacion de ....
 	private double coeficienteDeObtencionDePotencia;
-	private static double constanteDeDesgaste=0.0000005;
+	private static double constanteDeDesgaste=3;
 	private static double coeficienteInicial=0.16;
 	
 	
@@ -34,13 +34,22 @@ public class Turbo extends Componente implements AfectablePorClima{
 	
 	public double obtenerPotencia(){
 		return presionInterna*getCoeficienteDeObtencionDePotencia();
+	
 	}
 	
 	/** el clima afecta al turbo */
 	public void afectar(Clima clima){
-		double relacion=Math.abs((clima.getPresion()*clima.getTemperatura()*clima.getHumedad())/coeficienteClimaticoNormal);
+		double relacion;
+		try{
+		relacion=(coeficienteClimaticoNormal /clima.getPresion()*clima.getTemperatura()*clima.getHumedad());
+		}catch (Exception e){
+		relacion=0.5;
+		}
 		coeficienteDeObtencionDePotencia=coeficienteInicial*Math.abs(1- relacion);
+		
+		
 	}
+
 		
 	/**
 	 * @param presionInterna the presionInterna to set
