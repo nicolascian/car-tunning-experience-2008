@@ -19,61 +19,73 @@ package modelo;
  * @see <a href="http://es.wikipedia.org/wiki/Carburador">Carburador - Wikipedia</a>
  */
 public class Carburador extends Alimentacion implements AfectablePorClima{
-	/* comentario acerca de la implementacion de la clase */
+	/* implementado con muchas multiplicaciones */
 	
 	private double EfectoClimatico;
 	
+	private double CTE_HUMEDAD_OPTIMA = 30; // %
+	
+	private double CTE_RELACION_POTENCIA = 98; // %
+	
+	/**
+	 * Constructor de Carburador por defecto.
+	 */
 	public  Carburador(){}
 	
 	/**
-	 * Documentacion
+	 * Nos dice el combustible que necesita la alimentacion segun la Cilindrada 
+	 * del Motor y las RPM.
 	 * 
-	 * Carburador depende del clima, pues mezcla combustible con aire.
+	 * El Carburador depende del clima, pues mezcla combustible con aire, entonces
+	 * tenemos en cuenta el Efecto Climatico en las cuentas.
 	 * 
-	 * el Carburador es un sis de alimentacion que consume ineficientemente 
+	 * El Carburador es un sistema de alimentacion que consume ineficientemente 
 	 * el combustible en mayor cantidad, por ciclo, pero provee mayor potencia.
+	 * 
+	 * @see modelo.Inyeccion#CombustibleAConsumir() Inyeccion.CombustibleAConsumir
 	 */
 	public double CombustibleAConsumir(){
 		/* se consume combustible segun la Cilindrada, el tipo de combustible
 		 * y se afecta segun efectoclimatico y el Estado */         
-
 		double valor = auto.getMotor().getCilindrada() * auto.getMotor().getRPM();
-		
-		return (valor * EfectoClimatico * (1/getEstado()) );
+		return (valor * EfectoClimatico * (1/(getEstado()+0.1)) );
 	}
 	
-	/** el clima afecta a la inyeccion */
+	/** 
+	 * El clima afecta al Carburador, pues mezcla combustible con aire. 
+	 */
 	public void afectar(Clima clima){
 		/* la alimentacion se ve afectada por el clima
 		 * supongamos que la humedad optima para la
-		 * alimentacion es 30% 
+		 * alimentacion es CTE_HUMEDAD_OPTIMA 
 		 */
-		EfectoClimatico = (clima.getHumedad()/ 30);
+		EfectoClimatico = (clima.getHumedad()/ CTE_HUMEDAD_OPTIMA);
 		// entonces el efecto climatico queda en 1 si es optimo
 		// si es mas de eso el efecto es maypr a 1
 	}
+	
 	/**
-	 * el efecto climatico afecta al carburador
+	 * El efecto climatico afecta al carburador y hace que se desgaste.
 	 */
 	public void desgastar(){
-		 setEstado(getEstado() - EfectoClimatico - 1/1000000000 );
+		
+		 setEstado(getEstado() - EfectoClimatico - 0.00000001 );
 	}
 	
 	/**
-	 * La potencia de la carburador es el 98% de la potencia del combustible 
-	 * y ademas es afectado por el multiplicador "efectoClimatico"
+	 * La potencia del carburador es el CTE_RELACION_POTENCIA por ciento de 
+	 * la potencia del combustible y ademas es afectado por el 
+	 * Efecto Climatico.
 	 * 
-	 * depende del tipo de combustible
+	 * Depende del tipo de combustible.
 	 * 
-	 * @return
+	 * @return Potencia
 	 */
 	public double obtenerPotencia(){
 	
-		return ((auto.getCombustible().obtenerPotencia() *98) /100) * EfectoClimatico * getEstado();
+		return ((auto.getCombustible().obtenerPotencia() *
+				 CTE_RELACION_POTENCIA) /100) * 
+				  EfectoClimatico * getEstado();
 	}
-
-
-	
-	
 	
 }
