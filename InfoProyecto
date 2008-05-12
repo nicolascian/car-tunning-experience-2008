@@ -31,11 +31,13 @@ Rafa:		Motor
 			Auto
 			
 Lucas:		Desgastar y ObtenerPotencia
-			Componente 
-			Eje
-			Juego
-			Carroceria
-			Excepciones
+			(Eje,Escape,Neumatico,Carroceria,Carburador
+			Inyeccion,Suspencion,
+			Faltan : Llantas, motor,caja,Combustible)
+			Componente<------Listo
+			eje <------------Listo
+			Carroceria<------Listo
+			Excepciones<-----Listo
 
 Nico C:		Doc. Dificultad
 			Clima <----------------Listo
