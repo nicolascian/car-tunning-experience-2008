@@ -7,15 +7,18 @@ package modelo;
  ******************************************************************************/
 
 /**
- * Documentacion
- * 
- * @version 1.0
+ * Un tramo es un sector de la pista a lo largo del cual se mantienen las
+ * mismas condiciones tanto climaticas como de superficie.
+ * Posee un largo caracteristico dado por la posicion inicial y final dentro
+ * de la pista.
  */
 public class Tramo {
 	
 	private Superficie superficie;
 	private Clima clima;
+	/**posInicial indica la posicion incial del tramo dentro de la pista*/
 	private double posInicial;
+	/**posFinal indica la posicion final del tramo dentro de la pista*/
 	private double posFinal;
 	
 	public Tramo(){

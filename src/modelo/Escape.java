@@ -51,7 +51,7 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	
 	/** la superficie afecta al escape */
 	public void afectar(Superficie superficie){
-		EfectoSuperficie = superficie.getCoeficiente();
+
 	}
 
 	/* setters y getters */
