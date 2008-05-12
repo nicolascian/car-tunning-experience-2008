@@ -39,7 +39,7 @@ public class Superficie{
 	 * La viscosidad es una caracteristica que representa la oposicion
 	 * del terreno al deslizamiento del vehiculo sobre el
 	 * viscosidad = 0 implica que la superficie es totalmente resbaladiza
-	 * viscosidad = 1 implica la maxima adherencia posible entre el vehiculo
+	 * viscosidad = 100 implica la maxima adherencia posible entre el vehiculo
 	 * y la superficie    
 	 */
 	private double viscosidad;
