@@ -60,6 +60,10 @@ public class Pista{
 		tramoActual[1]= Tramos.get(1);
 		tramoActual[2]= Tramos.get(1);
 		cantJugadores = 2;
+		for (int i = 0; i<cantJugadores; i++){
+			Jugador[i].getAuto().afectar(tramoActual[i].getClima());
+			Jugador[i].getAuto().afectar(tramoActual[i].getSuperficie());
+		}
 	}
 	/**
 	 * Metodo que se encarga de actualizar el tramo en el que debe estar cada uno de
@@ -68,6 +72,8 @@ public class Pista{
 	 * post: quedan modificados los tramos actuales de todos los autos
 	 * 	Si algun auto esta en una posicion mayor a la longitud de la pista,
 	 *  se lanza la excepcion "ExceptionFinPista". 
+	 *  Si se realiza un cambio de tramo, se afecta al auto correspondiente
+	 *  por clima y por superficie.
 	 * @throws ExceptionFinPista
 	 */
 	public void actualizarPosiciones() throws ExceptionFinPista{
@@ -80,6 +86,8 @@ public class Pista{
 					throw e;
 				}
 			this.setTramoActual(i,aux);
+			this.getJugador(i).getAuto().afectar(aux.getClima());
+			this.getJugador(i).getAuto().afectar(aux.getSuperficie());
 			}
 		}
 	}

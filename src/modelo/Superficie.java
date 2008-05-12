@@ -7,8 +7,6 @@ package modelo;
  ******************************************************************************/
 
 /**
- * Documentacion
- * 
  * cada vez que se crea una superficie nueva, esta se encarga de afectar 
  * al auto, en su constructor llama a auto.afectar(this);
  * 
@@ -19,7 +17,6 @@ public class Superficie{
 	
 	private String nombre;
 	
-	private double coeficiente;
 	/**
 	 * El valor minimo de rugosidad es 0 y corresponde a 
 	 * una superficie totalmente plana, sin desnivel alguno.
@@ -47,20 +44,29 @@ public class Superficie{
 	 */
 	private double viscosidad;
 	
+	/**
+	 * Constructor por defecto. Inicializa todos los coeficientes con valor
+	 * nulo.
+	 * post: Queda creada una instancia de superficie.
+	 */
 	Superficie(){
-
+		rugosidad = 0;
+		particulasSueltas = 0;
+		viscosidad = 0;
 	}
 
+	/**
+	 * Constructor con parametros. Inicializa los coeficientes con los valores
+	 * segun los parametros
+	 * post: Queda creada una instancia de superficie con los valores indicados.
+	 */
+	Superficie(double indicerugosidad, double indiceparticulas, double indiceviscosidad){
+		rugosidad = indicerugosidad;
+		particulasSueltas = indiceparticulas;
+		viscosidad = indiceviscosidad;
+	}
 	
 	/* setters y getters */
-	
-	public double getCoeficiente() {
-		return coeficiente;
-	}
-
-	public void setCoeficiente(double coeficiente) {
-		this.coeficiente = coeficiente;
-	}
 
 	public double getRugosidad() {
 		return rugosidad;
