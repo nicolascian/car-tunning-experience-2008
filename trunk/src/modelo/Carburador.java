@@ -92,7 +92,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	 * @return Potencia
 	 */
 	public double obtenerPotencia(){
-	
+	    /* es una operacion matematica */
 		return ((auto.getCombustible().obtenerPotencia() *
 				 CTE_RELACION_POTENCIA) /100) * 
 				  EfectoClimatico * getEstado();
