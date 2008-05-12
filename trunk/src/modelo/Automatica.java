@@ -8,25 +8,25 @@
 package modelo;
 
 /**
- * Documentacion
- * 
- * una caja auomatica hace los cambios sola, y de manera secuencial
+ * @Documentacion: Una instancia de la clase caja Automatica modela una caja automatica de un auto,
+ * como tal efectua los cambios en forma automatizada de acuerdo a las revoluciones del motor,
+ * siempre controlando si se esta acelerando o no.
  * 
  * @version	1.0
  */
 public class Automatica extends Caja{
-	/* comentario acerca de la implementacion de la clase */
-
 
 	/**
-	 * cada vez que el motor cambia sus revoluciones, se invoca este metodo
-	 * 
-	 *  si se esta acelerando el motor, y las revoluciones alcanzan cierto nivel, 
+	 * @Pre: La instancia de la clase Automatica ha sido creada, y su atributo auto tiene una instancia de la 
+	 * clase Auto la cual es no nula y se encuentra listo para carrera.
+	 * @Post: Se podrucen los siguientes estados finales:
+	 *  
+	 *  1)Si se esta acelerando el motor, y las revoluciones alcanzan cierto nivel, 
 	 *  la caja sube un cambio
 	 *  
-	 *  si no se esta acelerando el motor, y las rpm bajan de cierto nivel,
+	 *  2) Si no se esta acelerando el motor, y las rpm bajan de cierto nivel,
 	 *  la caja baja un cambio
-	 */	
+	*/	
 	public void Chequear(){
 		double rpm=getAuto().getMotor().getRPM();
 		Motor motor=getAuto().getMotor();
@@ -49,13 +49,18 @@ public class Automatica extends Caja{
 	public Automatica(int cantidadCambios){
 		super(cantidadCambios);
 	}
-		
+	
+	/**
+	 * @Pre: 
+	 * @Post: Se han generado las relaciones de caja correspondientes.
+	*/
 	protected void generarRelacionesDeCaja(){
 		for(int cursor=0;cursor<=cantidadCambios;cursor++)
 		  if(cursor!=0)	   
 			relacionDeCambio[cursor]=15/(cursor-0.3)-9/(cantidadCambios*cantidadCambios);
 		  else
 			relacionDeCambio[cursor]=1/60;  
-	}	
+	}
+
 	
 }

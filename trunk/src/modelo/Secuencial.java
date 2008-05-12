@@ -59,10 +59,7 @@ public class Secuencial extends Caja{
 	     else
 	    	relacionDeCambio[cursor]=1/60;   
 	}	
-		
+	
 	/* Como esta caja no es automatica, no hace nada */
 	public void Chequear(){}
-	
-
-	
 }

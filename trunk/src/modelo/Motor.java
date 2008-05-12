@@ -172,6 +172,8 @@ public class Motor extends Componente implements AfectablePorClima{
 	    	 //actualizacion de temperatura
 	    	 actualizarTemperaturaPorCambioDeRpm(rpmInicial, RPM, diferenciaDeTiempoReal);
          }
+		 //chequeo para compatibilidad con caja automatica
+		 getAuto().getCaja().Chequear();
 		 //desgaste
 		 desgastar();
 	  }
@@ -304,7 +306,7 @@ public class Motor extends Componente implements AfectablePorClima{
 		   actualizarRpm();
 		   return RPM;
 		}else
-			return 0;
+		   return 0;
 	}
 	
 	/**

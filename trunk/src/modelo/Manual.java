@@ -47,11 +47,13 @@ public class Manual extends Caja{
 	public void Chequear(){}
 
 	
+	/**
+	 * @Pre: La instancia ha sido creada.
+	 * @Post:Se ha seteado el cambio. Cada vez que hacemos un Cambio, se altera las 
+	 * revolucionesMaximas del Motor.
+	*/
 	public void setCambio(int cambio){
 		super.setCambio(cambio);
 	}
 
-	
-	
-	
 }
