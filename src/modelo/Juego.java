@@ -76,7 +76,11 @@ public class Juego{
 			}
 			
 			/* verifica el tramo de cada auto */
-			//pista.chequearPosicion();
+			try{
+			pista.actualizarPosiciones();
+			}catch (Exception e){
+				finCarrera=true;
+			}
 			
 		}//FIN CICLO
 		
