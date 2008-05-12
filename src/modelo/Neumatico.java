@@ -6,17 +6,16 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-/**
- * Documentacion
- * 
- * se ve afectado por la temperatura del clima y superficie
- * 
- * @version	1.0
- */
+	/**
+	 * El neumatico es aquel componente del auto que interactua en forma
+	 * directa con la superficie. Por lo tanto, es el encargado de transmitir
+	 * la pontecia del auto al movimiento.
+	 * Al estar en contacto directo con el suelo es afectable por la superficie, 
+	 * tanto como por el clima.
+	 */
 public abstract class Neumatico extends Componente
 	implements AfectablePorClima, AfectablePorSuperficie{
 	
-		
 	private double DeterioroPorRozamiento;
 	private double CoeficienteDeDesgastePorTemperatura;
 	
@@ -30,7 +29,7 @@ public abstract class Neumatico extends Componente
 	
 	public double obtenerPotencia(){
 		//tener en cuenta la temperatura del clima y superficie
-		return (DeterioroPorRozamiento*CoeficienteDeDesgastePorTemperatura) * getEstado();
+		return 4*getEstado();
 	}
 	/**
 	 * Metodo que a partir del estado del neumatico y de las condiciones climaticas
