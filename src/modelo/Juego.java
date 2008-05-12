@@ -56,9 +56,13 @@ public class Juego{
 				 (auto2.getPosicion() == Long) ){
 				finCarrera = true;
 			}
-		}
+			
+			/* verifica el tramo de cada auto */
+			pista.chequearPosicion();
+			
+		}//FIN CICLO
 		
-		System.out.print("Finalizó la carrera");
+		System.out.print("Finalizï¿½ la carrera");
 		
 	}
 	

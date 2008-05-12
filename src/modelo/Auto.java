@@ -276,6 +276,11 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public double getPosicion() {
 		return Posicion;
 	}
+	
+	private void setPosicion(double posicion) {
+		Posicion = posicion;
+		
+	}
 
 	/**
 	 * @return the carroceria
