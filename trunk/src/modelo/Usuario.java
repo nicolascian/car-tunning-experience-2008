@@ -35,6 +35,12 @@ public class Usuario extends Jugador{
 		super(USER_DEFAULT_NAME);
 		/* se crea un auto por defecto para el */
 		setAuto(new Auto());
+		
+	/* ------------------------------------------------------------------------------------------ */
+		acelerador = new control.Acelerador();  
+		palanca = new control.Palanca();
+	/* ------------------------------------------------------------------------------------------ */
+		
 	}
 	
 	/**
@@ -46,6 +52,11 @@ public class Usuario extends Jugador{
 	public Usuario(String nombre, Auto auto){
 		super(nombre);
 		setAuto(auto);
+		
+		/* ------------------------------------------------------------------------------------------ */
+		acelerador = new control.Acelerador();  
+		palanca = new control.Palanca();
+	/* ------------------------------------------------------------------------------------------ */
 	}
 	
 	/**
@@ -58,6 +69,11 @@ public class Usuario extends Jugador{
 	public Usuario(Auto auto){
 		super(USER_DEFAULT_NAME);
 		setAuto(auto);
+		
+		/* ------------------------------------------------------------------------------------------ */
+		acelerador = new control.Acelerador();  
+		palanca = new control.Palanca();
+	/* ------------------------------------------------------------------------------------------ */
 	}
 	
 	/**
@@ -68,6 +84,11 @@ public class Usuario extends Jugador{
 	public Usuario(String nombre){
 		super(nombre);
 		setAuto(new Auto());
+		
+		/* ------------------------------------------------------------------------------------------ */
+		acelerador = new control.Acelerador();  
+		palanca = new control.Palanca();
+	/* ------------------------------------------------------------------------------------------ */
 	}
 	
 	

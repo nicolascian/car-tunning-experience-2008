@@ -21,6 +21,12 @@ public class Principiante extends Habilidad{
 	/* comentario acerca de la implementacion de la clase */
 	
 	
-	public void jugar(){}
+	public void jugar(){
+		
+		
+		
+		
+		
+	}
 	
 }
