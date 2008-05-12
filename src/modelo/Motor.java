@@ -62,6 +62,8 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	private boolean acelerando;//indica si el motor esta acelerendo
 		
+	private double temperatura;//temperatura en ºC del motor
+	
 	//----------------------  atributos secundarios    ----------------------------
 	
 	protected long tiempoCaracteristicoAceleracion;//en milisegundos
@@ -81,6 +83,7 @@ public class Motor extends Componente implements AfectablePorClima{
 												//se haya encendido.
 	
 	protected double coeficienteDeAbsorcionCalorico;
+	
 	
 	protected double coeficienteDeDisipacionCalorico;
 	
@@ -108,6 +111,34 @@ public class Motor extends Componente implements AfectablePorClima{
 		setAcelerando(false);
 		setTiempoDeControlAceleracion(0);
 		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
+	}
+	
+	/**
+	 * @Pre: -
+	 * @Post: Se ha creado una instancia de la clase, inicializandola segun los parametros
+	 * siguientes valores por defecto:
+	 *	4 cilindros
+	 *	1600 centimetros cubicos
+	 *  8000 rpm como maximo
+	*/
+	public Motor(){
+		setCantidadCilindros(4);
+		setCilindrada(1600);
+		//inicializacion de revoluciones
+		setRevolucionesMaximas(8000);
+		setRevolucionesMaximasCambio(8000);
+		RPM=0;
+		//inicializacion de temperaturas
+		setTemperaturaAire(25); //Â°C
+		setTemperatura(TEMPERATURA_INICIAL);
+		//inicilizacion de coeficientes
+		setCoeficienteDeAbsorcionCalorico(COEFICIENTE_DE_ABSORCION_CALORICO_INICIAL);
+		setCoeficienteDeDisipacionCalorico(COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL);
+		setEncendido(false);
+		setAcelerando(false);
+		setTiempoDeControlAceleracion(0);
+		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*
+				                  COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
 	}
 	
 	/**
@@ -532,5 +563,20 @@ public class Motor extends Componente implements AfectablePorClima{
 	public void instalar(Auto auto) {
 		setAuto(auto);
 	}
+
+	/**
+	 * @return the temperatura
+	 */
+	public double getTemperatura() {
+		return temperatura;
+	}
+
+	/**
+	 * @param temperatura the temperatura to set
+	 */
+	public void setTemperatura(double temperatura) {
+		this.temperatura = temperatura;
+	}
+	
 	
 }

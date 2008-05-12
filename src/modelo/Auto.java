@@ -47,7 +47,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		
 		//creacion de componentes
 		
-		setMotor(new Motor(4,1600,8000));
+		setMotor(new Motor(4,1600,8000)); 
 		setCaja(new Manual(5));
 		setCombustible(new Combustible(50.0,0.4));
 		setCarroceria(new Carroceria(2.4));
@@ -97,6 +97,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 */
 	public void setSuspension(Suspension suspension) {
 		this.suspension = suspension;
+		suspension.instalar(this);
 	}
 
 	/*
@@ -303,8 +304,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 			if(aux.getEstado()==0)throw new ExceptionComponenteDesgastado(aux.getClass().getName());
 		}
 	}
-	
-	
+		
 	public boolean estaListoParaCarrera() {
 		boolean listo = true;
 		try{
@@ -314,16 +314,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		}
 		return listo;
 	}
-
-	/**
-	 * @Pre: La instancia de la clase Auto ha sido creada.
-	 * @Post: Se verifica si la instancia se encuentra lista para correr y en
-	 * ese caso setea como lista para carrera.
-	 */
-	public void actualizarListoParaCarrera(){
-		
-	}
-
+	
 	/**
 	 * @return the escape
 	 */
@@ -407,8 +398,17 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		getMotor().acelerar(valor);
 	}
 	
+	public boolean isAutomatica(){
+		return(getCaja().getClass().isInstance(Automatica.class));
+	}
+		
+	public boolean isManual(){
+		return(getCaja().getClass().isInstance(Manual.class));
+	}
 	
-	
+	public boolean isSecuencial(){
+		return(getCaja().getClass().isInstance(Secuencial.class));
+	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
