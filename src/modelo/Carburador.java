@@ -69,9 +69,15 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 		 * supongamos que la humedad optima para la
 		 * alimentacion es CTE_HUMEDAD_OPTIMA 
 		 */
-		EfectoClimatico = (clima.getHumedad()/ CTE_HUMEDAD_OPTIMA);
+		double EfectoClimaticoAUX = (clima.getHumedad()/ CTE_HUMEDAD_OPTIMA);
 		// entonces el efecto climatico queda en 1 si es optimo
 		// si es mas de eso el efecto es maypr a 1
+		
+		/* como no puede superar 10 */
+		if (EfectoClimaticoAUX > 10){ EfectoClimaticoAUX =10 ;}
+		
+		/* lo asigno */
+		EfectoClimatico = EfectoClimaticoAUX;
 	}
 	
 	/**
@@ -79,7 +85,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	 */
 	public void desgastar(){
 		
-		 setEstado(getEstado() - EfectoClimatico - 0.00000001 );
+		setEstado(getEstado() - tiempoPorCiclo * EfectoClimatico);
 	}
 	
 	/**
