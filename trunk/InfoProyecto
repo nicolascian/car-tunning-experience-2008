@@ -22,10 +22,11 @@ Nico M: 	Neumatico,
 			interfaces Afectable <-Listo (solo faltan comentarios)
 			Superficie <-----------Listo
 			(Faltan todas las pruebas)
-Rafa:		Motor, 
-			Caja, 
-			Automatica, 
-			Secuencial, 
+			
+Rafa:		Motor
+			Caja 
+			Automatica
+			Secuencial 
 			Manual
 			Auto
 			
@@ -50,8 +51,8 @@ Nico C:		Doc. Dificultad
 			  Inyeccion <----------Listo
 			
 Maxi:		Suspension
-			Combustible, 
-			Escape, 
+			Combustible
+			Escape
 			Turbo
 			AlgoPesos
 			Llanta
