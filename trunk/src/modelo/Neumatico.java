@@ -21,6 +21,6 @@ public abstract class Neumatico extends Componente{
 	 * Devuelve un valor entre 0 y 1. 1 corresponde a una adherencia del 100%, y 
 	 * 0 a una adherencia de 0%.
 	 */
-	public abstract double calcuarAdherencia();
+	public abstract double calcularAdherencia();
 
 }
