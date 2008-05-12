@@ -29,7 +29,7 @@ public abstract class Caja extends Componente{
 	
 	protected final static double COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM=0.015;
 	
-	protected final static double COEFICIENTE_DE_DESGASTE=0.0000002;
+	protected final static double COEFICIENTE_DE_DESGASTE=0.000005;
 	
 	public abstract void Chequear();
 	
@@ -148,7 +148,7 @@ public abstract class Caja extends Componente{
 	}
 	
 	public void desgastar(){
-		this.setEstado(getEstado()-0.0);
+		setEstado(getEstado()-tiempoPorCiclo*COEFICIENTE_DE_DESGASTE);
 	}
 		
 }
