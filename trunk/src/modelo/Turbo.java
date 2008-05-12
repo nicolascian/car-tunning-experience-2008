@@ -41,9 +41,7 @@ public class Turbo extends Componente implements AfectablePorClima{
 		double relacion=Math.abs((clima.getPresion()*clima.getTemperatura()*clima.getHumedad())/coeficienteClimaticoNormal);
 		coeficienteDeObtencionDePotencia=coeficienteInicial*Math.abs(1- relacion);
 	}
-	
 		
-	
 	/**
 	 * @param presionInterna the presionInterna to set
 	 */
