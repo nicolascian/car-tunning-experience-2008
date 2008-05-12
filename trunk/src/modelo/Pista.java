@@ -21,8 +21,9 @@ public class Pista{
 	private int cantJugadores;
 	/**
 	 * La pista esta compuesta por una serie de tramos, cada uno con 
-	 * distintascaracteristicas (superficie, clima) cuya longitud suma
+	 * distintas caracteristicas (superficie, clima) cuya longitud suma
 	 * la longitud total.
+	 * Los tramos deben estar en orden dentro de la lista.
 	 */
 	private double Longitud;
 	private ArrayList<Tramo> Tramos;
