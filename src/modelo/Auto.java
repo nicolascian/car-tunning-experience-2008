@@ -38,8 +38,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	
 	private Eje ejeDelantero;
 	private Eje ejeTracero;
-	
-
+			
 	/**
 	 * constructor por defecto
 	 *
@@ -56,11 +55,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setSuspension(new Suspension());
 		setEscape(new Escape());
 		setTurbo(new Turbo());
-		
 		setEjeDelantero(new Eje());
 		setEjeTracero(new Eje());
-		
-
+		setEncendido(false);
 	}
 	
 	/**
@@ -80,10 +77,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setSuspension(suspension);
 		setEscape(escape);
 		setTurbo(turbo);
-
 		setEjeDelantero(new Eje());
 		setEjeTracero(new Eje());
-		
+		setEncendido(false);
 
 	}
 
@@ -209,7 +205,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * - esta sobrecargada con Superficie
 	 *
 	 * @param clima
-	 */
+	*/
 	public void afectar(Clima clima){
 		LinkedList<AfectablePorClima> lista = this.obtenerAfectablesPorClima();
 		Iterator<AfectablePorClima> it = lista.iterator();
@@ -231,10 +227,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 			it.next().afectar(superficie);
 		}
 	}
-	
-
-	
-		
+			
 	/* setters y getters */
 	
 	public Combustible getCombustible() {
@@ -391,6 +384,42 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		ejeTracero.instalar(this);
 		this.ejeTracero = ejeTracero;
 	}
+
+	/**
+	 * @return the encendido
+	 */
+	public boolean isEncendido() {
+		if(getMotor()!=null)
+			return(getMotor().isEncendido());
+		else
+			return(false);
+	}
+
+	/**
+	 * @param encedido the encendido to set
+	 */
+	public void setEncendido(boolean encendido) {
+		if(getMotor()!=null)
+			getMotor().setEncendido(encendido);
+	}
+
+	public void acelerar(boolean valor){
+		getMotor().acelerar(valor);
+	}
+	
+	
+	
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		
+		return super.toString();
+	}
+	
+	
 	
 	
 }

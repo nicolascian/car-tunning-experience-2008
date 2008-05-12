@@ -40,8 +40,6 @@ public abstract class Componente extends Constantes {
 	
 	protected AlgoPesos precio;
 	
-	protected boolean listoParaCarrera;
-	
 	/**
 	 * es invocado por el auto
 	 * tiene por objetivo deteriorar el estado de cada componente
