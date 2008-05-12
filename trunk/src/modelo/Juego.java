@@ -33,7 +33,7 @@ public class Juego{
  * de habilidad y dificualtad para con el jugador que utilice el usuario.
  */		
 		Jugador jugador1 = new Usuario(auto1);
-		Jugador jugador2 = new Virtual(auto2, habilidad);
+		Jugador jugador2 = new Virtual(habilidad, auto2);
 /**
  * Se crea la pista con los jugadores y su longitud.
  */		
