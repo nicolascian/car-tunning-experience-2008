@@ -14,7 +14,7 @@ package modelo;
  * 
  * @version	1.0
  */
-public class Llanta extends Componente implements AfectablePorSuperficie,AfectablePorClima{
+public class Llanta extends Componente implements AfectablePorSuperficie{
 	/** comentario acerca de la implementacion de la clase */
 	private static double  potenciaNormal=15;  /** en hp*/
 	
