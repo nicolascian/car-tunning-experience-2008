@@ -27,6 +27,6 @@ public abstract class Constantes {
 	de 2 minutos (120 segundos )cada una.
 */	
 	
-	public static double tiempoPorCiclo = (0.00001);
+	public static double tiempoPorCiclo = (0.0000000001);
 
 }
