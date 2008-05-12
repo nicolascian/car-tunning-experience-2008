@@ -72,7 +72,7 @@ public class Carroceria extends Componente
 	*/
 	public void afectar(Clima clima){
 		setTemperatura(clima.getTemperatura());
-		setCoeficienteDeOxidacionPorHumedad(clima.getHumedad()* 0.0001);
+		setCoeficienteDeOxidacionPorHumedad(clima.getHumedad()* 0.01);
 	}
 	
 	/** la superficie  afecta a la carroceria 
@@ -80,7 +80,7 @@ public class Carroceria extends Componente
 	 *que esta atravesando. 
 	*/ 
 	public void afectar(Superficie superficie){
-		setCoeficienteDeOxidacionPorParticulas(superficie.getParticulasSueltas()*0.0001);
+		setCoeficienteDeOxidacionPorParticulas(superficie.getParticulasSueltas()*0.011);
 	}
 	
 	/**
