@@ -15,22 +15,67 @@ package modelo;
  */
 public class Turbo extends Componente implements AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
+	
+	
+	private static double presionInterna=500;/* en HectoPascales*/
+	private final static double coeficienteClimaticoNormal=3545500; //surge de la multiplicacion de ....
+	private double coeficienteDeObtencionDePotencia;
+	private static double constanteDeDesgaste=0.0000005;
+	private static double coeficienteInicial=0.16;
+	
+	
 	public Turbo(){
-		
-	}
+		this.setCoeficienteDeObtencionDePotencia(3);
+		}
+	
 	public void desgastar(){
-//		tener en cuenta la humedad del clima
+		  setEstado(getEstado()-tiempoPorCiclo*constanteDeDesgaste);
 	}
 	
 	public double obtenerPotencia(){
-//		tener en cuenta la humedad del clima
-		return 0;
+		return presionInterna*getCoeficienteDeObtencionDePotencia();
 	}
 	
 	/** el clima afecta al turbo */
 	public void afectar(Clima clima){
-		
+		double relacion=Math.abs((clima.getPresion()*clima.getTemperatura()*clima.getHumedad())/coeficienteClimaticoNormal);
+		coeficienteDeObtencionDePotencia=coeficienteInicial*Math.abs(1- relacion);
 	}
+	
+		
+	
+	/**
+	 * @param presionInterna the presionInterna to set
+	 */
+	public void setPresionInterna(double presionInterna) {
+		this.presionInterna = presionInterna;
+	}
+	/**
+	 * @return the presionInterna
+	 */
+	public double getPresionInterna() {
+		return presionInterna;
+	}
+
+	/**
+	 * @param coeficienteDeObtencionDePotencia the coeficienteDeObtencionDePotencia to set
+	 */
+
+	/**
+	 * @param coeficienteDeObtencionDePotencia the coeficienteDeObtencionDePotencia to set
+	 */
+	public void setCoeficienteDeObtencionDePotencia(
+			double coeficienteDeObtencionDePotencia) {
+		this.coeficienteDeObtencionDePotencia = coeficienteDeObtencionDePotencia;
+	}
+
+	/**
+	 * @return the coeficienteDeObtencionDePotencia
+	 */
+	public double getCoeficienteDeObtencionDePotencia() {
+		return coeficienteDeObtencionDePotencia;
+	}
+
 	
 	
 }

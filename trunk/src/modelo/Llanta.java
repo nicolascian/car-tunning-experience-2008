@@ -16,20 +16,41 @@ package modelo;
  */
 public class Llanta extends Componente implements AfectablePorSuperficie{
 	/* comentario acerca de la implementacion de la clase */
+	private static double  potenciaNormal=15; // en hp
+	private double pesoNormal;//expresado en kg
+
+	
+	public void llanta(){
+		
+	}
+	public void llanta(double pesoNormal){
+		this.setPesoNormal(8);		
+	}
 	
 	public void desgastar(){
 		//tener en cuenta Presion y superficie
 	}
 	
 	public double obtenerPotencia(){
-		//tener en cuenta Presion y superficie
-		return 0;
+		return (this.getPeso()*potenciaNormal / this.getPesoNormal());
 	}
 	
 	
 	/** la superficie afecta a las llantas */
 	public void afectar(Superficie superficie){
 		
+	}
+	/**
+	 * @param pesoNormal the pesoNormal to set
+	 */
+	public void setPesoNormal(double pesoNormal) {
+		this.pesoNormal = pesoNormal;
+	}
+	/**
+	 * @return the pesoNormal
+	 */
+	public double getPesoNormal() {
+		return pesoNormal;
 	}
 	
 }
