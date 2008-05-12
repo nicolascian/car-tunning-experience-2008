@@ -8,15 +8,51 @@
 ## Hay que hacer ##
 
 el Source Level es 6
-
+los test se hacen en JUnit version 3.X.X
 
 modelo MVC, modelo, vista, control
 
-Nico M: 	Pista, Tramo, interfaces Afectable
-Rafa:		Motor, Caja, Auto
-Lucas:		Desgastar y ObtenerPotencia de las demas Clases
-Nico:		Doc. Dificultad
-Maxi:		
+ObtenerPotencia de los componentes tira MAXIMO 50 HP
+		excepto MOTOR TURBO que tiran MAS
+
+
+Nico M: 	Neumatico, 
+			Pista, 
+			Tramo, 
+			interfaces Afectable
+			Superficie
+
+Rafa:		Motor, 
+			Caja, 
+			Automatica, 
+			Secuencial, 
+			Manual
+			Auto
+			
+Lucas:		Desgastar y ObtenerPotencia
+			Componente 
+			Eje
+			Juego
+			Carroceria
+			Excepciones
+
+Nico C:		Doc. Dificultad
+			Experto 
+			Habilidad 
+			Intermedio 
+			Principiante
+			Clima
+			Jugador
+			Usuario
+			Virtual
+			Alimentacion, Carburador, Inyeccion
+			
+Maxi:		Suspension
+			Combustible, 
+			Escape, 
+			Turbo
+			AlgoPesos
+			Llanta
 
 
 
@@ -24,7 +60,6 @@ Maxi:
 
 la pagina oficial del proyecto es:
 http://code.google.com/p/car-tunning-experience-2008/
-
 
 estamos usando SVN (Subversion)
 
