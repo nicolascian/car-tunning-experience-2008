@@ -9,7 +9,10 @@ package modelo;
 import java.util.*;
 
 /**
- * Documentacion
+ * @Documentacion: Clase padre de la cual heredan todos lo elementos
+ * que integraran el auto para poder competir.
+ * un auto no puede funcionar si no esta completo, es decir,
+ * incluye a todos los componentes.
  * 
  * @version 1.0
  */
@@ -52,7 +55,7 @@ public abstract class Componente {
 	 * dependiendo del estado del componete y de los factores
 	 * que influyen en su funcionamiento
 	 * 
-	 * @return
+	 * @return Potencia
 	 */
 	public abstract double obtenerPotencia();
 	
@@ -130,6 +133,7 @@ public abstract class Componente {
 		return estado;
 	}
 	
+	/* Valor minimo de estado posible es 0 */
 	public void setEstado(double estado) {
 		if(estado<0)
 		  this.estado = 0;

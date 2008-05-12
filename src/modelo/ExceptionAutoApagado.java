@@ -6,7 +6,11 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-
+/**
+ * @Documentacion: Clase de una excepcion creada por el programador
+ * la cual hereda de ecxeption, y se produce cuando se intenta realizar
+ * alguna accion con el auto y el mismo se encuentra apagado.
+ */
 public class ExceptionAutoApagado extends Exception {
 	
 	public ExceptionAutoApagado() {
