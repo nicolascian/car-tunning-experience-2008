@@ -14,7 +14,7 @@ package modelo;
  * @version	1.0
  */
 public abstract class Neumatico extends Componente
-implements AfectablePorClima, AfectablePorSuperficie{
+	implements AfectablePorClima, AfectablePorSuperficie{
 	
 		
 	private double DeterioroPorRozamiento;
@@ -32,7 +32,15 @@ implements AfectablePorClima, AfectablePorSuperficie{
 		//tener en cuenta la temperatura del clima y superficie
 		return (DeterioroPorRozamiento*CoeficienteDeDesgastePorTemperatura) * getEstado();
 	}
-	
+	/**
+	 * Metodo que a partir del estado del neumatico y de las condiciones climaticas
+	 * se encarga de calgular la adherencia.
+	 * Devuelve un valor entre 0 y 1. 1 corresponde a una adherencia del 100%, y 
+	 * 0 a una adherencia de 0%.
+	 */
+	public double calcuarAdherencia(){
+		return this.getEstado()/100;
+	}
 	/** el clima afecta a los neumaticos */
 	public void afectar(Clima clima){
 		setTemperatura(clima.getTemperatura());
