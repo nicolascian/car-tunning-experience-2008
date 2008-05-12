@@ -22,8 +22,8 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	
 	private double EfectoClimatico;
 	
+	/* no tienen setter pues son constantes */
 	private double CTE_HUMEDAD_OPTIMA = 40; // %
-	
 	private double CTE_RELACION_POTENCIA = 92; // %
 	
 	/**
@@ -31,6 +31,16 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	 */
 	public Inyeccion(){}
 		
+	/**
+	 * Constructor de Inyeccion con parametros.
+	 */
+	public Inyeccion(double cte_humedad_optima, 
+						double cte_relacion_potencia){
+		
+		this.CTE_HUMEDAD_OPTIMA = cte_humedad_optima;
+		this.CTE_RELACION_POTENCIA = cte_relacion_potencia;
+	}
+	
 	/**
 	 * Nos dice el combustible que necesita la alimentacion segun la Cilindrada 
 	 * del Motor y las RPM.
