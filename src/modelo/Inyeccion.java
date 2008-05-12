@@ -18,48 +18,72 @@ package modelo;
  * @see <a href="http://es.wikipedia.org/wiki/Inyecci%C3%B3n_de_combustible">Inyeccion - Wikipedia</a>
  */
 public class Inyeccion extends Alimentacion implements AfectablePorClima{
-	/* comentario acerca de la implementacion de la clase */
-	public Inyeccion(){
-		
-	}
+	/* implementado con muchas multiplicaciones */
+	
 	private double EfectoClimatico;
+	
+	private double CTE_HUMEDAD_OPTIMA = 40; // %
+	
+	private double CTE_RELACION_POTENCIA = 92; // %
+	
 	/**
-	 * La inyeccion consume menos combustible pero provee menos potencia
+	 * Constructor de Inyeccion por defecto.
+	 */
+	public Inyeccion(){}
+		
+	/**
+	 * Nos dice el combustible que necesita la alimentacion segun la Cilindrada 
+	 * del Motor y las RPM.
+	 * 
+	 * La Inyeccion depende del clima, pues mezcla combustible con aire, entonces
+	 * tenemos en cuenta el Efecto Climatico en las cuentas.
+	 * 
+	 * La Inyeccion consume menos combustible que el Carburador pero provee menos potencia
+	 * 
+	 * @see modelo.Carburador#CombustibleAConsumir() Carburador.CombustibleAConsumir
 	 */
 	public double CombustibleAConsumir(){
 		/* se consume combustible segun la Cilindrada, el tipo de combustible
 		 * y se afecta segun efectoclimatico y el Estado */         
-
 		double valor = auto.getMotor().getCilindrada() * auto.getMotor().getRPM();
-			
 		return (valor * (1/getEstado()) * (EfectoClimatico/10)  );
 	}
 	
-	/**
-	 * a la inyeccion, el clima, lo afecta en menor medida
+	/** 
+	 * El clima afecta a la Inyeccion, pues mezcla combustible con aire. 
 	 */
-	public void desgastar(){
-		setEstado((getEstado() - (EfectoClimatico/10000000) - 1/1000000000 ));
-	}
-	
-	/** el clima afecta a la inyeccion */
 	public void afectar(Clima clima){
 		/* la alimentacion se ve afectada por el clima
 		 * supongamos que la humedad optima para la
 		 * alimentacion es 30% 
 		 */
-		EfectoClimatico = (clima.getHumedad()/ 30);
+		EfectoClimatico = (clima.getHumedad()/ CTE_HUMEDAD_OPTIMA);
 		// entonces el efecto climatico queda en 1 si es optimo
 		// si es mas de eso el efecto es maypr a 1
 	}
 	
 	/**
-	 * La potencia de la inyeccion es el 94% de la potencia del combustible 
+	 * El clima afecta a la Inyeccion, pues mezcla combustible con aire. 
+	 * pero lo afecta en menor medida que al Carburador
+	 */
+	public void desgastar(){
+		setEstado((getEstado() - (EfectoClimatico/10000000) - 0.00000001 ));
+	}
+	
+	/**
+	 * La potencia de la inyeccion es el CTE_RELACION_POTENCIA por ciento de 
+	 * la potencia del combustible y ademas esta afectado por el
+	 * efecto Climatico.
+	 *
+	 * Depende del tipo de combustible.
 	 * 
-	 * @return
+	 * @return Potencia
 	 */
 	public double obtenerPotencia(){
-		return ((auto.getCombustible().obtenerPotencia() *94) /100) * EfectoClimatico * getEstado();
+		
+		return ((auto.getCombustible().obtenerPotencia() *
+				 CTE_RELACION_POTENCIA) /100) * 
+				  EfectoClimatico * getEstado();
 	}
 	
 }

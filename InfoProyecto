@@ -37,15 +37,17 @@ Lucas:		Desgastar y ObtenerPotencia
 			Excepciones
 
 Nico C:		Doc. Dificultad
-			Experto 
-			Habilidad 
-			Intermedio 
-			Principiante
-			Clima
+			Clima <----------------Listo
 			Jugador
-			Usuario
-			Virtual
-			Alimentacion, Carburador, Inyeccion
+			  Usuario
+			  Virtual
+			    Habilidad 
+			      Experto 
+			      Intermedio 
+			      Principiante
+			Alimentacion <---------Listo
+			  Carburador <---------Listo
+			  Inyeccion <----------Listo
 			
 Maxi:		Suspension
 			Combustible, 
