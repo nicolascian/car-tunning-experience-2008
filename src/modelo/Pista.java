@@ -83,7 +83,14 @@ public class Pista{
 		}
 		throw new ExceptionFinPista();
 	}
-	
+	/**
+	 * Metodo que se encarga de verificar si un auto cambio de tramo, es decir
+	 * si se debe desplazar hacia otro tramo distinto de su actual
+	 * pre: El auto correspondiente al numero de jugador pasado como parametro
+	 * debe estar en una tramo valido.
+	 * @param nroJugador
+	 * @return
+	 */
 	public boolean jugadorCambioTramo(int nroJugador){
 		return (this.getJugador(nroJugador).getAuto().getPosicion() 
 				< this.getTramoActual(nroJugador).getPosFinal());
