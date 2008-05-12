@@ -14,24 +14,55 @@ package modelo;
 public class AlgoPesos{
 	/* comentario acerca de la implementacion de la clase */
 	
-	private double valor;
+
+	private int entero;
+	private int decimal;
 	
-	public AlgoPesos(double valor){
-		setValor(valor);
+	
+	
+	public AlgoPesos(int entero, int decimal){
+		setEntero(entero);
+		setDecimal(decimal);
+	}
+	
+	public AlgoPesos sumar( int entero1, int entero2, int decimal1, int decimal2){
+	
+		int enteros= entero1+entero2;
+		int decimales= decimal1+decimal2;
+		if (decimales>99){ 
+		enteros= enteros +1;
+		decimales= decimales -100;
+		}
+		AlgoPesos algoPesos= new AlgoPesos ( enteros, decimales);
+		return algoPesos;
 	}
 	
 	/**
-	 * @return the valor
+	 * @param entero the entero to set
 	 */
-	public double getValor() {
-		return valor;
+	public void setEntero(int entero) {
+		this.entero = entero;
 	}
-	
+
 	/**
-	 * @param valor the valor to set
+	 * @return the entero
 	 */
-	public void setValor(double valor) {
-		this.valor = valor;
+	public int getEntero() {
+		return entero;
+	}
+
+	/**
+	 * @param decimal the decimal to set
+	 */
+	public void setDecimal(int decimal) {
+		this.decimal = decimal;
+	}
+
+	/**
+	 * @return the decimal
+	 */
+	public int getDecimal() {
+		return decimal;
 	}
 	
 }
