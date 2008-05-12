@@ -61,7 +61,15 @@ public class Pista{
 		tramoActual[2]= Tramos.get(1);
 		cantJugadores = 2;
 	}
-
+	/**
+	 * Metodo que se encarga de actualizar el tramo en el que debe estar cada uno de
+	 * los autos.
+	 * pre: los autos deben estar ubicados en tramos validos.
+	 * post: quedan modificados los tramos actuales de todos los autos
+	 * 	Si algun auto esta en una posicion mayor a la longitud de la pista,
+	 *  se lanza la excepcion "ExceptionFinPista". 
+	 * @throws ExceptionFinPista
+	 */
 	public void actualizarPosiciones() throws ExceptionFinPista{
 		for (int i=0;i<this.getCantJugadores();i++){
 			Tramo aux;
@@ -75,6 +83,19 @@ public class Pista{
 			}
 		}
 	}
+	/**
+	 * Metodo que dada la posicion del auto de un determinado jugador se
+	 * encarga de buscar el Tramo en el que deberia estar ubicado.
+	 * pre: la posicion del auto debe ser menor o igual al largo de la pista.
+	 * post: el iterador correspondiente al numero de jugador queda modificado,
+	 *   avanzando hasta el nuevo tramo actual.
+	 *   Se devuelve el tramo en el que se debe posicionar el auto. En caso de 
+	 *   que el auto este en una posicion mayor a la longitud de la pista,
+	 *   se lanza la excepcion "ExceptionFinPista". 
+	 * @param nroJugador
+	 * @return
+	 * @throws ExceptionFinPista
+	 */
 	public Tramo buscarTramoActual(int nroJugador) throws ExceptionFinPista{
 		while (iterador[nroJugador].hasNext()){
 			Tramo aux = iterador[nroJugador].next();
