@@ -1,7 +1,17 @@
 package modelo;
+/* ****************************************************************************
+ *                         Car-Tunnig-Experience-2008                         *
+ *                                                                            *
+ *                   Algoritmos y Programacion III - 75.07                    *
+ *            Facultad de Ingenieria - Universidad de Buenos Aires            *
+ ******************************************************************************/
 
+/**
+ * Documentacion
+ */
 public class Eje extends Componente
 implements AfectablePorSuperficie{ 
+	/* Notas de la implementacion */
 	
 	private Llanta LlantaDerecha;
 	private Llanta LlantaIzquierda;
