@@ -38,7 +38,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie,Afectab
 	}
 	
 	public void desgastar(){
-		setEstado(getEstado()-this.getCoeficienteDeDesgastePorSuperficie()tiempoPorCiclo*constanteDeDesgaste);
+		setEstado(getEstado()-this.getCoeficienteDeDesgastePorSuperficie()*tiempoPorCiclo*constanteDeDesgaste);
 	}
 	
 	public double obtenerPotencia(){
