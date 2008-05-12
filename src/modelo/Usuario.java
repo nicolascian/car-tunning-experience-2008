@@ -20,6 +20,9 @@ package modelo;
 public class Usuario extends Jugador{
 	/* comentario acerca de la implementacion de la clase */
 	
+	private control.Acelerador acelerador;
+	private control.Palanca palanca;
+	
 	/**
 	 * Constructor sin parametros de Usuario
 	 * 
@@ -80,47 +83,16 @@ public class Usuario extends Jugador{
 		
 		/* SI ENCENDIDO: */
 		if (auto.isEncendido()){
-			
-			/* SI ESTA ACELERANDO */
-			if (control.Acelerador.presionado()){
-				auto.acelerar(true);
-				
-			}else{
-			/* SI NO ESTA ACELERANDO */
-				auto.acelerar(false);
-			}
 		
-			/* SI CAJA SECUENCIAL */
-			if (auto.isSecuencial()){
-
-				if (control.Palanca.fuePresionado()){
-				
-					/* SI SUBE CAMBIO */
-					if (control.Palanca.subirCambio()){
-						auto.getCaja().siguiente();
-					}
+			/* vemos que pasa con el acelerador */
+			resolverAcelerador();
 			
-					/* SI BAJA CAMBIO */
-					if (control.Palanca.bajarCambio()){
-						auto.getCaja().anterior();
-					}
-				
-				}
-			
-			}// fin if secuencial
-				
-			/* SI CAJA MANUAL */
-			if (auto.isManual()){
-
-				/* SI HACE UN CAMBIO */
-				if (control.Palanca.fuePresionado()){
-					
-					int Cambio = control.Palanca.cambioPresionado();
-					auto.getCaja().setCambio(Cambio);
-				}
-
-			}// fin if manual
-			
+			/* vemos que pasa con el freno */
+			resolverFrenos();
+		
+			/* SI HACE UN CAMBIO */
+			if (palanca.fuePresionado()){ resolverCambios(); }
+		
 			
 		}else{
 		
@@ -129,5 +101,49 @@ public class Usuario extends Jugador{
 		}//fin if encendido
 		
 	}//fin jugar
+	
+	
+	private void resolverCambios(){
+		
+		/* SI CAJA SECUENCIAL */
+		if (auto.isSecuencial()){
+		
+			/* SI SUBE CAMBIO */
+			if (palanca.subirCambio()){
+				auto.getCaja().siguiente();
+			}
+	
+			/* SI BAJA CAMBIO */
+			if (palanca.bajarCambio()){
+				auto.getCaja().anterior();
+			}
+		}// fin if secuencial
+		
+		/* SI CAJA MANUAL */
+		if (auto.isManual()){
+			
+			int Cambio = palanca.cambioPresionado();
+			auto.getCaja().setCambio(Cambio);
+		}
+		
+	}
+	
+	private void resolverAcelerador(){
+		
+		/* SI ESTA ACELERANDO */
+		if (acelerador.isPresionado()){
+			auto.acelerar(true);
+			
+		}else{
+		/* SI NO ESTA ACELERANDO */
+			auto.acelerar(false);
+		}
+		
+	}
+	
+	private void resolverFrenos(){
+		
+	}
+	
 	
 }
