@@ -29,14 +29,8 @@ public class Carroceria extends Componente
 	private double coeficienteDeOxidacionPorParticulas;
 	
 	private double coeficienteDeOxidacionPorHumedad;
-	
-	/* comentario acerca de la implementacion de la clase */
-	
-	public void desgastar(){
-		setEstado(getEstado()-(getCoeficienteDeOxidacionPorParticulas()+
-				  getCoeficienteDeOxidacionPorHumedad()));
-	}
-	
+
+
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase carroceria, inicializandola segun los
@@ -51,9 +45,17 @@ public class Carroceria extends Componente
 		setCoeficienteDeOxidacionPorHumedad(0);
 		setCoeficienteDeOxidacionPorParticulas(0);
 	}
-	
 	/**
-	 * @Pre: La isntancia de esta clase ha sido creada y la instancia de la clase Auto a la
+	 * @Post: La carroceria desgastada.
+	 */
+	public void desgastar(){
+		double desgaste=0;
+		desgaste = (getCoeficienteDeOxidacionPorParticulas()+
+				  getCoeficienteDeOxidacionPorHumedad())*Constantes.tiempoPorCiclo;
+		setEstado(getEstado()-desgaste);
+	}
+	/**
+	 * @Pre: La instancia de esta clase ha sido creada y la instancia de la clase Auto a la
 	 * cual se refiere el atributo esta clase ha sido creada.
 	 * @Post: Se ha obtenido la potencia en Hp de acuerdo a la velocidad y el clima.
 	 * @Nota: La carroceria retorna una potencia negativa, y a mayor velocidad mayor sera
@@ -65,15 +67,21 @@ public class Carroceria extends Componente
 		return (getAuto().getVelocidad()*coeficiente*getSuperficieFrontal()*0.0001862);
 	}
 	
-	/** el clima afecta a la carroceria */
+	/** el clima afecta a la carroceria
+	 *@Post:Coeficiente modificado teniendo en cuenta la temperatura
+	 *en ese momento en ese clima. 
+	*/
 	public void afectar(Clima clima){
 		setTemperatura(clima.getTemperatura());
-		setCoeficienteDeOxidacionPorHumedad(clima.getHumedad()/10000);
+		setCoeficienteDeOxidacionPorHumedad(clima.getHumedad()* 0.0001);
 	}
 	
-	/** la superficie  afecta a la carroceria */
+	/** la superficie  afecta a la carroceria 
+	 *@Post: Coeficiente modificado en relacion a la superficie
+	 *que esta atravesando. 
+	*/ 
 	public void afectar(Superficie superficie){
-		setCoeficienteDeOxidacionPorParticulas(superficie.getParticulasSueltas()/10000);
+		setCoeficienteDeOxidacionPorParticulas(superficie.getParticulasSueltas()*0.0001);
 	}
 	
 	/**
