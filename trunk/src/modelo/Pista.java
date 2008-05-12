@@ -6,6 +6,7 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+import java.util.*;
 
 /**
  * Documentacion
@@ -28,6 +29,14 @@ public class Pista{
 	
 	private ArrayList<Tramo> Tramos;
 	
+	Tramo tramoActual1;
+	Tramo tramoActual2;
+	
+	Tramo tramo1;
+	Tramo tramo2;
+	
+	Iterator iterador1;
+	Iterator iterador2;
 	
 	Pista(Jugador player1, Jugador player2, double longitud){
 		
@@ -42,6 +51,19 @@ public class Pista{
 		
 		
 		
+	}
+	
+	public void chequearPosicion(){
+		
+		if ( !tramoActual1.estaAutoEnTramo(auto1) ){
+			boolean encontrado=false;
+			
+		}
+		
+		if ( !tramoActual1.estaAutoEnTramo(auto2) ){
+			
+		}
+
 	}
 
 	public double getLongitud() {

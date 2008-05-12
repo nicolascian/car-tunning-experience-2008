@@ -43,6 +43,8 @@ public abstract class Jugador {
 		
 			throw new ExceptionAutoApagado();
 		}
+		
+		
 			
 	}
 	

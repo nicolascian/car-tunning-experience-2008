@@ -26,7 +26,11 @@ public class Tramo {
 		superficie = new Superficie();
 	}
 
-	
+	public boolean estaAutoEnTramo(Auto auto){
+		
+		return (auto.getPosicion() < posFinal);
+		
+	}
 	
 	
 	/* setter y getters */
