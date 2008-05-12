@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,8 +5,10 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * Documentacion
+ * Docume
  * 
  * @version	1.0
  */

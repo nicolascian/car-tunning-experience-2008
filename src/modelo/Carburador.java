@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,10 +5,18 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * Documentacion
+ * El carburador es el dispositivo que hace la mezcla de aire-combustible en 
+ * los motores de gasolina. A fin de que el motor funcione más económicamente y 
+ * obtenga la mayor potencia de salida, es importante que la gasolina esté en las 
+ * mejores condiciones. A fin de hacer una mezcla óptima de aire-combustible, el 
+ * carburador usará varias técnicas.
  * 
  * @version	1.0
+ * @see modelo.Alimentacion Alimentacion
+ * @see <a href="http://es.wikipedia.org/wiki/Carburador">Carburador - Wikipedia</a>
  */
 public class Carburador extends Alimentacion implements AfectablePorClima{
 	/* comentario acerca de la implementacion de la clase */
