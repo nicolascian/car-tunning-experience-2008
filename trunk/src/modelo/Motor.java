@@ -106,7 +106,6 @@ public class Motor extends Componente implements AfectablePorClima{
 		setCoeficienteDeDisipacionCalorico(COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL);
 		setEncendido(false);
 		setAcelerando(false);
-		listoParaCarrera=false;
 		setTiempoDeControlAceleracion(0);
 		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
 	}
@@ -524,6 +523,14 @@ public class Motor extends Componente implements AfectablePorClima{
 	 */
 	protected void setTiempoDeUltimoDesgaste(long tiempoDeUltimoDesgaste) {
 		this.tiempoDeUltimoDesgaste = tiempoDeUltimoDesgaste;
+	}
+
+	/* (non-Javadoc)
+	 * @see modelo.Componente#instalar(modelo.Auto)
+	 */
+	@Override
+	public void instalar(Auto auto) {
+		setAuto(auto);
 	}
 	
 }

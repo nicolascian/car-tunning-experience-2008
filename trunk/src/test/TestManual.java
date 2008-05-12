@@ -15,7 +15,7 @@ public class TestManual {
 	}
 	
 	@Test
-	public void Manual(){
+	public void testManual(){
 		
 		for(int cambios=1;cambios<=8;cambios++)
 			manual=new Manual(cambios);

@@ -150,7 +150,14 @@ public abstract class Caja extends Componente{
 	public void desgastar(){
 		setEstado(getEstado()-tiempoPorCiclo*COEFICIENTE_DE_DESGASTE);
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see modelo.Componente#instalar(modelo.Auto)
+	 */
+	@Override
+	public void instalar(Auto auto) {
+		setAuto(auto);
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
