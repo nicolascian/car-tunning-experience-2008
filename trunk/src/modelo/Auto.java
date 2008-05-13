@@ -63,13 +63,13 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		 * SE CREAN. ESTO LO ESCRIBI POR AHORA PORQUE SINO QUEDABAN NULL
 		 * POINTERS Y NECESITO USAR EL AUTO PARA LAS PRUEBAS
 		 */
-		ejeDelantero.setNeumaticoDerecho(new NeumaticoSlick());
-		ejeDelantero.setNeumaticoIzquierdo(new NeumaticoSlick());
+		ejeDelantero.setNeumaticoDerecho(new NeumaticoMixto());
+		ejeDelantero.setNeumaticoIzquierdo(new NeumaticoMixto());
 		setEjeTrasero(new Eje());
 		ejeTrasero.setLlantaDerecha(new Llanta());
 		ejeTrasero.setLlantaIzquierda(new Llanta());
-		ejeTrasero.setNeumaticoDerecho(new NeumaticoSlick());
-		ejeTrasero.setNeumaticoIzquierdo(new NeumaticoSlick());
+		ejeTrasero.setNeumaticoDerecho(new NeumaticoMixto());
+		ejeTrasero.setNeumaticoIzquierdo(new NeumaticoMixto());
 		setEncendido(false);
 	}
 	

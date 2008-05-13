@@ -12,7 +12,7 @@ public class NeumaticoSlick extends Neumatico
 	
 	/*----------Atributos---------*/
 	
-	/*
+	/**
 	 * La humedad en pista representa la cantidad de agua en la misma.
 	 * Un valor igual a 0 corresponde a la pista seca.
 	 * Un valor igual a 1 corresponde a la pista totalmente mojada.
@@ -28,13 +28,13 @@ public class NeumaticoSlick extends Neumatico
 	 */
 	private double efectoTemperaturaExterna;
 	
-	/*
+	/**
 	 * La viscosidad de la superficie toma un valor entre 0 y 1 e indica
 	 * la oposicion del terreno a resbalar sobre el mismo.
 	 */
 	private double viscosidadSuperficie;
 	
-	/*
+	/**
 	 * El relieve en la superficie esta dado por la rugosidad y la
 	 * cantidad de particulas sueltas en la misma.
 	 * Puede tener un valor entre 0 y 2.
@@ -72,7 +72,7 @@ public class NeumaticoSlick extends Neumatico
 	 */
 	public double calcularAdherencia(){
 		double adherencia;
-		adherencia = 1- (0.4 * this.getHumedadEnPista()) - (0.4* this.getViscosidadSuperficie())
+		adherencia = 1- (0.4 * this.getHumedadEnPista()) - (0.4* (1-this.getViscosidadSuperficie()))
 					- (.01* this.getRelieveSuperficie()) - (.08);
 		return adherencia;
 	}

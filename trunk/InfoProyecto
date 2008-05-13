@@ -15,6 +15,7 @@ TERMINEN TODAS LAS CLASES QUE LES TOCAN ASI SE PUEDEN TERMINAR LAS PRUEBAS
 Y HAGAN LAS PRUEBAS PORQUE SINO VAN A SALTAR DE GOLPE TODOS LOS ERRORES.
 YO ESTOY TRATANDO DE HACER LAS PRUEBAS DE PISTA, Y CADA VEZ Q USO AUTO O JUGADOR
 ME SALTAN EN LA CONSOLA DE PROBLEMAS APARECEN 10MIL COSAS.
+nico m
 
 el Source Level es 6
 los test se hacen en JUnit version 3.X.X
@@ -28,13 +29,13 @@ ObtenerPotencia de los componentes tira MAXIMO 50 HP
 Nico M: 	Neumatico <------------Listo
 				NeumaticoSlick <---Listo
 				NeumaticoTodoTerreno <-Listo
+				NeumaticoMixto <---Listo
 				NeumaticoInvierno
 				NeumaticoLluvia 
-			Pista <----------------Listo 
-			Tramo <----------------Listo (solo faltan comentarios) 
+			Pista <----------------Listo (algunas pruebas hechas)
+			Tramo <----------------Listo (varias pruebas hechas)
 			interfaces Afectable <-Listo 
 			Superficie <-----------Listo
-			(Faltan todas las pruebas)
 			
 			VER NOTA IMPORTANTE ABAJO DE TODO
 			
