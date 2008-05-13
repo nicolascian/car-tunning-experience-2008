@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class TestMotor {
 
-	Motor motor;
+	Motor motor=new Motor();
 	
 	@Before
 	public void setUp() throws Exception {
@@ -15,7 +15,7 @@ public class TestMotor {
 
 	@Test
 	public void testMotor() {
-		motor=new Motor();
+		//motor=new Motor();
 		assert motor.getAuto()!=null;
 		System.out.println(motor.toString());
 	}
