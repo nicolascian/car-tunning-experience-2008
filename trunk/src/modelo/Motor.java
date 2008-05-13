@@ -149,12 +149,12 @@ public class Motor extends Componente implements AfectablePorClima{
 	 *  motor, tal como si estubiese regulando.    
 	*/
 	public void encender(){
-		if(!isEncendido()){
-			this.encendido=true;//setEncendido(true);
+		if((!isEncendido())&&(getAuto()!=null)){
+			setEncendido(true);
 			setTemperatura(TEMPERATURA_INICIAL);
 			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 			setRevolucionesMaximasCambio(getRevolucionesMaximas());
-			//setRPM(getRevolucionesMinimasEncendido());
+			setRPM(getRevolucionesMinimasEncendido());
 			setAcelerando(false);
 		}
 	}
@@ -322,7 +322,8 @@ public class Motor extends Componente implements AfectablePorClima{
 	*/
 	protected void setRPM(double rpm) {
 		this.RPM=rpm;
-		auto.getCaja().Chequear();
+		if(getAuto()!=null)
+			getAuto().getCaja().Chequear();
 	}
 	
 	/**
@@ -510,11 +511,11 @@ public class Motor extends Componente implements AfectablePorClima{
 	public double getRevolucionesMinimasEncendido() {
 		return revolucionesMinimasEncendido;
 	}
+	
 	/**
 	 * @param revolucionesMinimasEncendido the revolucionesMinimasEncendido to set
 	 */
-	protected void setRevolucionesMinimasEncendido(
-			double revolucionesMinimasEncendido) {
+	protected void setRevolucionesMinimasEncendido(double revolucionesMinimasEncendido) {
 		this.revolucionesMinimasEncendido = revolucionesMinimasEncendido;
 	}
 
