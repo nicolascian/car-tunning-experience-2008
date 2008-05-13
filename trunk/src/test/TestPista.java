@@ -33,14 +33,48 @@ public class TestPista extends TestCase{
 	public void testJugador1(){
 		assertNotNull(pista.getJugador(0));
 	}
+	
+	public void testJugador2(){
+		assertNotNull(pista.getJugador(1));
+	}
 		
-	public void testTramoActual2(){
+	public void testTramoActual2()throws Exception{
 		pista.getJugador(0).getAuto().setPosicion(200);
 		try{
 			assertEquals(tramos.get(1), pista.buscarTramoActual(0));
-		}catch (Exception e){};
+		}catch (Exception e){
+			throw e;
+		};
 	}
 
+	public void testTramoActual3()throws Exception{
+		/*Se espera que se lance una excepcion ya que el auto se
+		 *encuentra en una poscion mayor al largo de la pista */
+		pista.getJugador(0).getAuto().setPosicion(400);
+		try{
+			pista.buscarTramoActual(0);
+		}catch (Exception e){
+			assertEquals(ExceptionFinPista.class, e.getClass());
+		};
+	}
+
+	public void testActualizarPosiciones() throws ExceptionFinPista{
+		try{
+			pista.actualizarPosiciones();
+		}catch (ExceptionFinPista e){
+			throw e;
+		}
+	}
+	
+	public void testAcutualizarPosiciones2(){
+		pista.getJugador(1).getAuto().setPosicion(800.23);
+		try{
+			pista.actualizarPosiciones();
+		}catch (Exception e){
+			assertEquals(ExceptionFinPista.class, e.getClass());
+		}
+	}
+	
 	public static Test suite(){
 		return new TestSuite(TestPista.class);
 	}
