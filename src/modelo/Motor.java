@@ -111,6 +111,7 @@ public class Motor extends Componente implements AfectablePorClima{
 		setTiempoDeControlAceleracion(0);
 		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
 		setAuto(null);
+		setEstado(100);
 	}
 	
 	/**
