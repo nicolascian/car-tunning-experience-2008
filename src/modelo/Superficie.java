@@ -49,7 +49,7 @@ public class Superficie{
 	 * nulo.
 	 * post: Queda creada una instancia de superficie.
 	 */
-	Superficie(){
+	public Superficie(){
 		rugosidad = 0;
 		particulasSueltas = 0;
 		viscosidad = 0;
@@ -60,7 +60,7 @@ public class Superficie{
 	 * segun los parametros
 	 * post: Queda creada una instancia de superficie con los valores indicados.
 	 */
-	Superficie(double indicerugosidad, double indiceparticulas, double indiceviscosidad){
+	public Superficie(double indicerugosidad, double indiceparticulas, double indiceviscosidad){
 		rugosidad = indicerugosidad;
 		particulasSueltas = indiceparticulas;
 		viscosidad = indiceviscosidad;
