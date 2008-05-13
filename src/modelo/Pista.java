@@ -47,13 +47,13 @@ public class Pista{
 	 * pre:-
 	 * post: Queda creada una instacia de Pista.
 	 */
-	Pista(Jugador j1,Jugador j2, double longitud){
+	public Pista(Jugador j1,Jugador j2, double longitud){
 		Tramos = new ArrayList<Tramo>();
 		Tramos.add(new Tramo(longitud));
 		Longitud = longitud;
 		Jugador = new Jugador[2];
-		Jugador[1]=j1;
-		Jugador[2]=j2;
+		Jugador[0]=j1;
+		Jugador[1]=j2;
 		iterador = new Iterator[2];
 		iterador[1]= Tramos.iterator();
 		iterador[2]= Tramos.iterator();
@@ -72,7 +72,7 @@ public class Pista{
 	 * tramo debe coincidir con el final del anterior.
 	 * post: Queda creada una instancia de Pista.
 	 */
-	Pista(Jugador[] jugador,ArrayList<Tramo> tramos){
+	public Pista(Jugador[] jugador,ArrayList<Tramo> tramos){
 		Tramos = tramos;
 		Jugador = jugador;
 		cantJugadores = Jugador.length;

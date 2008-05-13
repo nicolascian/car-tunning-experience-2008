@@ -37,7 +37,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private Turbo turbo;
 	
 	private Eje ejeDelantero;
-	private Eje ejeTracero;
+	private Eje ejeTrasero;
 			
 	/**
 	 * constructor por defecto
@@ -46,7 +46,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public Auto(){
 		
 		//creacion de componentes
-		
+
 		setMotor(new Motor(4,1600,8000)); 
 		setCaja(new Manual(5));
 		setCombustible(new Combustible(50.0,0.4));
@@ -56,7 +56,20 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setEscape(new Escape());
 		setTurbo(new Turbo());
 		setEjeDelantero(new Eje());
-		setEjeTracero(new Eje());
+		ejeDelantero.setLlantaDerecha(new Llanta());
+		ejeDelantero.setLlantaIzquierda(new Llanta());
+		/*
+		 * DESPUES HAY QUE CAMBIAR EL TIPO DE NEUMATICOS CON LOS QUE 
+		 * SE CREAN. ESTO LO ESCRIBI POR AHORA PORQUE SINO QUEDABAN NULL
+		 * POINTERS Y NECESITO USAR EL AUTO PARA LAS PRUEBAS
+		 */
+		ejeDelantero.setNeumaticoDerecho(new NeumaticoSlick());
+		ejeDelantero.setNeumaticoIzquierdo(new NeumaticoSlick());
+		setEjeTrasero(new Eje());
+		ejeTrasero.setLlantaDerecha(new Llanta());
+		ejeTrasero.setLlantaIzquierda(new Llanta());
+		ejeTrasero.setNeumaticoDerecho(new NeumaticoSlick());
+		ejeTrasero.setNeumaticoIzquierdo(new NeumaticoSlick());
 		setEncendido(false);
 	}
 	
@@ -76,7 +89,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setEscape(escape);
 		setTurbo(turbo);
 		setEjeDelantero(new Eje());
-		setEjeTracero(new Eje());
+		setEjeTrasero(new Eje());
 		setEncendido(false);
     }
 
@@ -150,11 +163,11 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		lista.add(this.ejeDelantero.getLlantaIzquierda());
 		lista.add(this.ejeDelantero.getNeumaticoDerecho());
 		lista.add(this.ejeDelantero.getNeumaticoIzquierdo());
-		lista.add(this.ejeTracero.getLlantaDerecha());
-		lista.add(this.ejeTracero.getLlantaIzquierda());
-		lista.add(this.ejeTracero.getNeumaticoDerecho());
-		lista.add(this.ejeTracero.getNeumaticoIzquierdo());
-		lista.add(this.ejeTracero);
+		lista.add(this.ejeTrasero.getLlantaDerecha());
+		lista.add(this.ejeTrasero.getLlantaIzquierda());
+		lista.add(this.ejeTrasero.getNeumaticoDerecho());
+		lista.add(this.ejeTrasero.getNeumaticoIzquierdo());
+		lista.add(this.ejeTrasero);
 
 		return lista;
 	}
@@ -363,13 +376,13 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		this.ejeDelantero = ejeDelantero;
 	}
 
-	public Eje getEjeTracero() {
-		return ejeTracero;
+	public Eje getEjeTrasero() {
+		return ejeTrasero;
 	}
 
-	public void setEjeTracero(Eje ejeTracero) {
-		ejeTracero.instalar(this);
-		this.ejeTracero = ejeTracero;
+	public void setEjeTrasero(Eje ejeTrasero) {
+		ejeTrasero.instalar(this);
+		this.ejeTrasero = ejeTrasero;
 	}
 
 	/**
