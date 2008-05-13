@@ -41,6 +41,30 @@ public class NeumaticoTodoTerreno extends Neumatico
 	private double viscosidadSuperficie;
 
 	/*-----------Metodos----------*/
+	
+	public NeumaticoTodoTerreno(Auto auto){
+		this.setNombre("Neumatico Todo Terreno");
+		this.setPotenciaMax(3);
+		this.setEstado(100);
+		this.setPeso(12);//en kilos
+		this.setHumedadEnPista(0);
+		this.setParticulasEnSuperficie(0);
+		this.setRugosidadSuperficie(0);
+		this.setViscosidadSuperficie(0);
+		this.setAuto(auto);
+	}
+
+	public NeumaticoTodoTerreno(){
+		this.setNombre("Neumatico Todo Terreno");
+		this.setPotenciaMax(3);
+		this.setEstado(100);
+		this.setPeso(12);//en kilos
+		this.setHumedadEnPista(0);
+		this.setParticulasEnSuperficie(0);
+		this.setRugosidadSuperficie(0);
+		this.setViscosidadSuperficie(0);
+
+	}
 	/**
 	 * El desgaste de este neumatico esta dado por la rugosidad de la superficie,
 	 * por las particulas en la misma y por el simple uso.
