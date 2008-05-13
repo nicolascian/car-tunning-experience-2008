@@ -23,8 +23,8 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	private double EfectoClimatico;
 	
 	/* no tienen setter pues son constantes */
-	private final static double CTE_HUMEDAD_OPTIMA = 40; // %
-	private final static double CTE_RELACION_POTENCIA = 92; // %
+	private static double CTE_HUMEDAD_OPTIMA = 40; // %
+	private static double CTE_RELACION_POTENCIA = 92; // %
 	
 	/**
 	 * Constructor de Inyeccion por defecto.
