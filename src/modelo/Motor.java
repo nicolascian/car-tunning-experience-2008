@@ -150,11 +150,11 @@ public class Motor extends Componente implements AfectablePorClima{
 	*/
 	public void encender(){
 		if(!isEncendido()){
-			setEncendido(true);
+			this.encendido=true;//setEncendido(true);
 			setTemperatura(TEMPERATURA_INICIAL);
 			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 			setRevolucionesMaximasCambio(getRevolucionesMaximas());
-			setRPM(getRevolucionesMinimasEncendido());
+			//setRPM(getRevolucionesMinimasEncendido());
 			setAcelerando(false);
 		}
 	}
