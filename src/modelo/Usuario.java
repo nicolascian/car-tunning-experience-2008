@@ -123,7 +123,9 @@ public class Usuario extends Jugador{
 		
 	}//fin jugar
 	
-	
+	/**
+	 * se encarga de resolver el tema de los cambios
+	 */
 	private void resolverCambios(){
 		
 		/* SI CAJA SECUENCIAL */
@@ -149,6 +151,9 @@ public class Usuario extends Jugador{
 		
 	}
 	
+	/**
+	 * se encarga de resolver el tema del acelerador
+	 */
 	private void resolverAcelerador(){
 		
 		/* SI ESTA ACELERANDO */
@@ -162,6 +167,9 @@ public class Usuario extends Jugador{
 		
 	}
 	
+	/**
+	 * se encarga de resolver el tema del freno
+	 */
 	private void resolverFrenos(){
 		
 	}
