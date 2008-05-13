@@ -29,8 +29,6 @@ public abstract class Caja extends Componente{
 	
 	protected final static double COEFICIENTE_DE_DESGASTE=4;
 	
-	public abstract void Chequear();
-	
 		
 	/**
 	 * @Pre:
@@ -115,6 +113,13 @@ public abstract class Caja extends Componente{
 	public int getCantidadCambios(){
 		return(cantidadCambios);
 	}
+	
+	/* para hacer uso del polimorfismo
+	 * estos metodos los usa la caja
+	 * heredada Automatica */
+	public void Chequear(){}
+	public void siguiente(){}
+	public void anterior(){}
 
 	/**
 	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.

@@ -21,12 +21,34 @@ public class Principiante extends Habilidad{
 	/* comentario acerca de la implementacion de la clase */
 	
 	
+	private double MARGEN_DE_ERROR;
+	
 	public void jugar(){
 		
+		/* ACELERAR */
+		auto.acelerar(true);
 		
 		
+		double rpm = auto.getMotor().getRPM();
 		
+		Motor motor = auto.getMotor();
+		
+		//MARGEN_DE_ERROR = Aleatorio!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!groso
+		
+		if(motor.isAcelerando()){
+			
+			if( rpm >= (motor.getRevolucionesMaximasCambio() + MARGEN_DE_ERROR) )
+				auto.getCaja().setCambio(auto.getCaja().getCambio()+1);
+		
+		}else{
+		
+			if( rpm < (motor.getRevolucionesMinimasEncendido() + MARGEN_DE_ERROR) )
+				auto.getCaja().setCambio(auto.getCaja().getCambio()-1);
+		}
 		
 	}
+	
+	
+	
 	
 }
