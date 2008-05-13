@@ -71,6 +71,10 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		ejeTrasero.setNeumaticoDerecho(new NeumaticoMixto());
 		ejeTrasero.setNeumaticoIzquierdo(new NeumaticoMixto());
 		setEncendido(false);
+		//inicializacion de aceleracion y velocidad
+		Velocidad=0;
+		Aceleracion=0;
+		
 	}
 	
 	/**
@@ -91,6 +95,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setEjeDelantero(new Eje());
 		setEjeTrasero(new Eje());
 		setEncendido(false);
+		//inicializacion de aceleracion y velocidad
+		Velocidad=0;
+		Aceleracion=0;
     }
 
 	/*
