@@ -14,13 +14,28 @@ package modelo;
 	 * tanto como por el clima.
 	 */
 public abstract class Neumatico extends Componente{
-
+	
+	/**
+	 * Este atributo indica la potencia maxima que podra entregar un neumatico,
+	 * que es baja en relacion con el resto de los componentes.
+	 */
+	private double potenciaMax;
+	
 	/**
 	 * Metodo que a partir del estado del neumatico y de las condiciones climaticas
-	 * se encarga de calgular la adherencia.
+	 * y de la superficie se encarga de calcular la adherencia.
 	 * Devuelve un valor entre 0 y 1. 1 corresponde a una adherencia del 100%, y 
 	 * 0 a una adherencia de 0%.
 	 */
 	public abstract double calcularAdherencia();
+
+
+	public double getPotenciaMax() {
+		return potenciaMax;
+	}
+
+	public void setPotenciaMax(double potenciaMax) {
+		this.potenciaMax = potenciaMax;
+	}
 
 }

@@ -10,7 +10,9 @@ package modelo;
 public class NeumaticoSlick extends Neumatico
 	implements AfectablePorSuperficie, AfectablePorClima{
 	
-	/**
+	/*----------Atributos---------*/
+	
+	/*
 	 * La humedad en pista representa la cantidad de agua en la misma.
 	 * Un valor igual a 0 corresponde a la pista seca.
 	 * Un valor igual a 1 corresponde a la pista totalmente mojada.
@@ -18,27 +20,48 @@ public class NeumaticoSlick extends Neumatico
 	private double humedadEnPista;
 	
 	/**
+	 * Este tipo de neumatico pierde eficacia cuando la temperatura externa
+	 * es inferior a los 7ºC.
+	 * El efectoTemperaturaExterna toma un valor nulo si la temperatura es
+	 * superior a los 7ºC, y en caso de ser inferior toma un valor cercano
+	 * a 1.
+	 */
+	private double efectoTemperaturaExterna;
+	
+	/*
 	 * La viscosidad de la superficie toma un valor entre 0 y 1 e indica
 	 * la oposicion del terreno a resbalar sobre el mismo.
 	 */
 	private double viscosidadSuperficie;
 	
-	/**
+	/*
 	 * El relieve en la superficie esta dado por la rugosidad y la
 	 * cantidad de particulas sueltas en la misma.
 	 * Puede tener un valor entre 0 y 2.
 	 */
 	private double relieveSuperficie;
 	
+	/*-----------Metodos----------*/
+	
+	public NeumaticoSlick(Auto auto){
+		this.setPotenciaMax(5);
+		this.setEfectoTemperaturaExterna(0);
+		this.setEstado(100);
+		this.setHumedadEnPista(0);
+		this.setPeso(10);//en kilos
+		this.setViscosidadSuperficie(0);
+		this.setRelieveSuperficie(0);
+		this.setAuto(auto);
+	}
 	/**
-	 * La adherencia se ve comprometida en un 44% por la cantidad de agua en la
-	 * pista, en otro 44% por la visicosidad de la misma, y en maximo del 2%
-	 * por el relieve.
+	 * La adherencia se ve comprometida en un 40% por la cantidad de agua en la
+	 * pista, en otro 40% por la visicosidad de la misma, en un 8% si la temperatura
+	 * externa es menor a 7ºC y en maximo del 2% por el relieve.
 	 */
 	public double calcularAdherencia(){
 		double adherencia;
-		adherencia = 1- (0.44 * this.getHumedadEnPista()) - (0.44* this.getViscosidadSuperficie())
-					- (.01* this.getRelieveSuperficie());
+		adherencia = 1- (0.4 * this.getHumedadEnPista()) - (0.4* this.getViscosidadSuperficie())
+					- (.01* this.getRelieveSuperficie()) - (.08);
 		return adherencia;
 	}
 	
@@ -63,11 +86,16 @@ public class NeumaticoSlick extends Neumatico
 	}
 
 	/**
-	 * El unico efecto climatico considerado sobre este tipo de neumatico es la
-	 * cantidad de agua presente.
+	 * Los efectos climaticos considerados sobre este tipo de neumatico son
+	 * la cantidad de agua presente y la temperatura exterior.
 	 */
 	public void afectar(Clima clima){
 		this.setHumedadEnPista(clima.getHumedad()/100);
+		if (clima.getTemperatura()<7){
+			double aux = clima.getTemperatura()-100;
+			aux = -.01*aux;
+			this.setEfectoTemperaturaExterna(aux);
+		}else this.setEfectoTemperaturaExterna(0);
 	}
 	
 	/**
@@ -76,7 +104,7 @@ public class NeumaticoSlick extends Neumatico
 	 * En condiciones ideales, entrega una potencia igual a 5.
 	 */
 	public double obtenerPotencia(){
-		return ((this.getEstado()/100) * (5-this.getRelieveSuperficie()));
+		return ((this.getEstado()/100) * (this.getPotenciaMax()-this.getRelieveSuperficie()));
 	}
 	
 	public double getHumedadEnPista() {
@@ -96,6 +124,14 @@ public class NeumaticoSlick extends Neumatico
 	}
 	public void setRelieveSuperficie(double relieveSuperficie) {
 		this.relieveSuperficie = relieveSuperficie;
+	}
+
+	public double getEfectoTemperaturaExterna() {
+		return efectoTemperaturaExterna;
+	}
+
+	public void setEfectoTemperaturaExterna(double temperaturaExterna) {
+		this.efectoTemperaturaExterna = temperaturaExterna;
 	}
 	
 }
