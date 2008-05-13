@@ -6,19 +6,19 @@ public class TestTramo extends TestCase {
 	Tramo t = new Tramo();
 		
 	public void testLongitud(){
-		assert(t.getLongitud() == 100);
+		assertEquals(100.0, t.getLongitud());
 	}
 	
 	public void testInicio(){
 		assertEquals(0.0,t.getPosInicial());
 	}
 	
-	public void testFinla(){
-		assert (t.getPosFinal()==100);
+	public void testFinal(){
+		assertEquals (100.0, t.getPosFinal());
 	}
 	
 	public void testToString(){
-		assert (t.toString() == "Tramo de 100 metros");
+		assertEquals("Tramo de 100.0 metros", t.toString());
 	}
 	
 	public static Test suite(){
