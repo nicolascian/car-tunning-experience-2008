@@ -10,11 +10,15 @@ public class TestTramo extends TestCase {
 	}
 	
 	public void testInicio(){
-		assert (t.getPosInicial() ==0);
+		assertEquals(0.0,t.getPosInicial());
 	}
 	
 	public void testFinla(){
 		assert (t.getPosFinal()==100);
+	}
+	
+	public void testToString(){
+		assert (t.toString() == "Tramo de 100 metros");
 	}
 	
 	public static Test suite(){
