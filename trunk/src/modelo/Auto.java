@@ -67,8 +67,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public Auto(Motor motor,Caja caja,Combustible combustible,
 			Carroceria carroceria,Alimentacion alimentacion,
 			Suspension suspension,Escape escape,Turbo turbo){
-
-		
 		setMotor(motor);
 		setCaja(caja);
 		setCombustible(combustible);
@@ -80,25 +78,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setEjeDelantero(new Eje());
 		setEjeTracero(new Eje());
 		setEncendido(false);
-
-	}
-
-	
-	/**
-	 * @return the suspension
-	 */
-	public Suspension getSuspension() {
-		return suspension;
-	}
-
-
-	/**
-	 * @param suspension the suspension to set
-	 */
-	public void setSuspension(Suspension suspension) {
-		this.suspension = suspension;
-		suspension.instalar(this);
-	}
+    }
 
 	/*
 	 * ESTO HAY Q CAMBIARLOOOOOOOOOOOOO!!!!!!!!!
@@ -228,7 +208,23 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 			it.next().afectar(superficie);
 		}
 	}
-			
+	
+	/**
+	 * @param suspension the suspension to set
+	 */
+	public void setSuspension(Suspension suspension) {
+		this.suspension = suspension;
+		suspension.instalar(this);
+	}
+
+	/**
+	 * @return the suspension
+	 */
+	public Suspension getSuspension() {
+		return suspension;
+	}
+
+	
 	/* setters y getters */
 	
 	public Combustible getCombustible() {
@@ -300,7 +296,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		Iterator<Componente> it = lista.iterator();
 		while (it.hasNext()){
 			Componente aux = it.next();
-			if( aux == null) throw new ExceptionComponenteFaltante(aux.getClass().getName());
+			if( aux == null) throw new ExceptionComponenteFaltante();
 			if(aux.getEstado()==0)throw new ExceptionComponenteDesgastado(aux.getClass().getName());
 		}
 	}
@@ -415,11 +411,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 */
 	@Override
 	public String toString() {
-		
-		return super.toString();
+		String cadena="Auto "+getMotor().toString()+'\n'+getCaja().toString();
+		return(cadena);
 	}
-	
-	
-	
-	
+		
 }

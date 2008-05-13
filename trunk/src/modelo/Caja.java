@@ -164,10 +164,10 @@ public abstract class Caja extends Componente{
 	 */
 	@Override
 	public String toString() {
-		String cadena="Caja de "+getCantidadCambios()+" cambios. Relaciones De Cambio: ";
+		String cadena="Caja de "+getCantidadCambios()+" cambios"+'\n'+"  Relaciones De Cambio: ";
 		for(int cambio=0;cambio<=getCantidadCambios();cambio++)
 			cadena=cadena+"("+cambio+")"+relacionDeCambio[cambio]+" ";
-		cadena=cadena+"Estado "+getEstado()+"%";
+		cadena=cadena+"Estado "+getEstado()+"%"+'\n';
 		return cadena;
 	}
 

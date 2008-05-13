@@ -43,9 +43,11 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	protected final static double COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL=0.003;
 	
-	protected final static double COEFICIENTE_DE_DESGASTE_POR_TEMPERATURA=0.000001;
+	protected final static double COEFICIENTE_DE_DESGASTE_POR_TEMPERATURA=1.5;
 	
-	protected final static double COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES=0.000001;
+	protected final static double COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES=2;
+	
+	protected final static double COEFICIENTE_BASICO_DE_DESGASTE=1.5;
 	
 	//---------------------     atributos bï¿½sicos de motor   -------------------
 	
@@ -72,8 +74,6 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	private long tiempoDeControlCurvaAceleracion;//en milisegundos
 	
-	private long tiempoDeUltimoDesgaste;//en milisegundos
-	
 	protected double temperaturaAire;//temperatura del aire que ingresa al motor en ï¿½C
 	
 	protected double revolucionesMaximasCambio;//revoluciones maximas que el motor puede alcanzar 
@@ -83,8 +83,7 @@ public class Motor extends Componente implements AfectablePorClima{
 												//se haya encendido.
 	
 	protected double coeficienteDeAbsorcionCalorico;
-	
-	
+		
 	protected double coeficienteDeDisipacionCalorico;
 	
 	/**
@@ -111,6 +110,7 @@ public class Motor extends Componente implements AfectablePorClima{
 		setAcelerando(false);
 		setTiempoDeControlAceleracion(0);
 		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
+		setAuto(null);
 	}
 	
 	/**
@@ -130,7 +130,7 @@ public class Motor extends Componente implements AfectablePorClima{
 		RPM=0;
 		//inicializacion de temperaturas
 		setTemperaturaAire(25); //Â°C
-		setTemperatura(TEMPERATURA_INICIAL);
+		setTemperatura(25);
 		//inicilizacion de coeficientes
 		setCoeficienteDeAbsorcionCalorico(COEFICIENTE_DE_ABSORCION_CALORICO_INICIAL);
 		setCoeficienteDeDisipacionCalorico(COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL);
@@ -139,22 +139,23 @@ public class Motor extends Componente implements AfectablePorClima{
 		setTiempoDeControlAceleracion(0);
 		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*
 				                  COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
+		setAuto(null);
 	}
 	
 	/**
 	 *	@Pre: La instancia ha sido creada.
 	 *  @Post: Si la insntancia no se encontraba en estado encendido y ademas estaba lista para la carrera
 	 *  se ha encendido, de manera tal que se setean las las rpm en a un porcentaje de las rpm maximas del
-	 *  motor, tal como si estubiese regulando.
-	 *    
+	 *  motor, tal como si estubiese regulando.    
 	*/
 	public void encender(){
 		if(!isEncendido()){
 			setEncendido(true);
+			setTemperatura(TEMPERATURA_INICIAL);
 			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
+			setRevolucionesMaximasCambio(getRevolucionesMaximas());
 			setRPM(getRevolucionesMinimasEncendido());
 			setAcelerando(false);
-			setTiempoDeUltimoDesgaste(System.currentTimeMillis());
 		}
 	}
 	
@@ -167,10 +168,9 @@ public class Motor extends Componente implements AfectablePorClima{
 		if(isEncendido()){
 			setEncendido(false);
 			setRPM(0);
-			setTemperatura(0);
+			setTemperatura(25);
 			setAcelerando(false);
-			setRevolucionesMinimasEncendido(0);
-			setTiempoDeUltimoDesgaste(0);
+			this.setRevolucionesMaximasCambio(0);
 		}
 	}
 	
@@ -229,6 +229,15 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	/**
 	 *  @Pre: La instancia ha sido creada y se encuentra en estado encendido.
+	 *  @Post: Se ha obtiene la potencia que podria alcanzar la instancia si llegaria al maximo
+	 *  de revoluciones posible.    
+	*/
+	public double obtenerPotenciaMaximaTeorica(){
+		return(getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000);
+	}
+	
+	/**
+	 *  @Pre: La instancia ha sido creada y se encuentra en estado encendido.
 	 *  @Post: Se ha seteado la instancia como acelerando.    
 	*/
 	public void acelerar(boolean valor){
@@ -254,24 +263,21 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * actual y segun la temperatura a la que se encuentra el agua del motor.    
 	*/
 	public void desgastar(){
-	 if((System.currentTimeMillis()-this.getTiempoDeUltimoDesgaste())>=1000){
-		//si se supera la temperatura critica el motor se funde y su
+	  	//si se supera la temperatura critica el motor se funde y su
 		//estado se torna 0
 		if(getTemperatura()>=TEMPERATURA_CRITICA)
 		   setEstado(0);	 
 		else{
-		   double desgaste=0;
+		   double acumulador=COEFICIENTE_BASICO_DE_DESGASTE;
 		   if(getTemperatura()>TEMPERATURA_OPTIMA){
-			  desgaste=(getTemperatura()/TEMPERATURA_OPTIMA)*COEFICIENTE_DE_DESGASTE_POR_TEMPERATURA;
+			  acumulador=acumulador+COEFICIENTE_DE_DESGASTE_POR_TEMPERATURA;
 		   }
-		   double rpm=getRPM();
-		   if(rpm>getRevolucionesMaximasCambio())
-		     desgaste=desgaste+(rpm/getRevolucionesMaximasCambio())*COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES;
-		   setEstado(getEstado()-desgaste);
+		   if(getRPM()>getRevolucionesMaximasCambio())
+		     acumulador=acumulador+COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES;
+		   setEstado(getEstado()-acumulador*tiempoPorCiclo);
 		}
-		setTiempoDeUltimoDesgaste(System.currentTimeMillis());
-	 }
-	}	
+	}
+	 	
 	
 	/**
 	 *  @Pre: La instancia ha sido creada y se encuentra en estado encendido.
@@ -332,11 +338,9 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * @Post: Se ha obtenido las Rpm del motor.
 	*/
 	public double getRPM() {
-		if(isEncendido()){
+		if(isEncendido())
 		   actualizarRpm();
-		   return RPM;
-		}else
-		   return 0;
+		return RPM;
 	}
 	
 	/**
@@ -420,13 +424,13 @@ public class Motor extends Componente implements AfectablePorClima{
 	*/
 	protected double calcularPotenciaInterna(){
 		double potenciaInterna=0;
-		if(isEncendido()){
+		//if(isEncendido()){
 			//potencia sin ser afectada por elementos
-			potenciaInterna=getCilindrada()*getCantidadCilindros()*getRPM()/640000;
+			potenciaInterna=getCilindrada()*getCantidadCilindros()*getRPM()/6400000;
 			//calculo de potencia afectada por la temperatura del aire
 			double relacionTemperaturas=(getTemperaturaAire()/TEMPERATURA_MEDIANA_AIRE)-1;
 			potenciaInterna=potenciaInterna*Math.abs(1-relacionTemperaturas/25);
-		}
+		//}
 		return potenciaInterna;
 	}
 
@@ -542,20 +546,6 @@ public class Motor extends Componente implements AfectablePorClima{
 		this.coeficienteDeDisipacionCalorico = coeficienteDeDisipacionCalorico;
 	}
 
-	/**
-	 * @return the tiempoDeUltimoDesgaste
-	 */
-	protected long getTiempoDeUltimoDesgaste() {
-		return tiempoDeUltimoDesgaste;
-	}
-
-	/**
-	 * @param tiempoDeUltimoDesgaste the tiempoDeUltimoDesgaste to set
-	 */
-	protected void setTiempoDeUltimoDesgaste(long tiempoDeUltimoDesgaste) {
-		this.tiempoDeUltimoDesgaste = tiempoDeUltimoDesgaste;
-	}
-
 	/* (non-Javadoc)
 	 * @see modelo.Componente#instalar(modelo.Auto)
 	 */
@@ -577,6 +567,24 @@ public class Motor extends Componente implements AfectablePorClima{
 	public void setTemperatura(double temperatura) {
 		this.temperatura = temperatura;
 	}
-	
-	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String cadena="Motor de "+getCantidadCilindros()+" cilindros "+obtenerPotenciaMaximaTeorica()+
+		   " Hp a "+getRevolucionesMaximas()+" rpm"+'\n'+"  RPM:"+getRPM()+" rpm ; RPM MaxCambioActual: "+
+		   getRevolucionesMaximasCambio()+"rpm Temperatura: "+getTemperatura()+"ºC ";
+		if(isEncendido())
+			cadena=cadena+"Encendido ";
+		else
+			cadena=cadena+"Apagado ";
+		if(isAcelerando())
+			cadena=cadena+"Acelerando ";
+		else
+			cadena=cadena+"No Acelerando";
+		
+		return(cadena);	
+	}
 }
