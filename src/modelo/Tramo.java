@@ -70,7 +70,8 @@ public class Tramo {
 	 * @return
 	 */
 	public boolean estaAutoEnTramo(Auto auto){
-		return (auto.getPosicion() < posFinal);
+		return (auto.getPosicion()>= this.getPosInicial() &&
+				auto.getPosicion() < this.getPosFinal());
 		
 	}
 	
