@@ -30,6 +30,7 @@ public class Carroceria extends Componente
 	
 	private double coeficienteDeOxidacionPorHumedad;
 
+	private double temperatura;
 
 	/**
 	 * @Pre:
@@ -126,7 +127,19 @@ public class Carroceria extends Componente
 			double coeficienteDeOxidacionPorHumedad) {
 		this.coeficienteDeOxidacionPorHumedad = coeficienteDeOxidacionPorHumedad;
 	}
+	/**
+	 * @return the temperatura
+	 */
+	public double getTemperatura() {
+		return temperatura;
+	}
+	/**
+	 * @param temperatura the temperatura to set
+	 */
+	public void setTemperatura(double temperatura) {
+		this.temperatura = temperatura;
+	}
 
-
+	
 	
 }
