@@ -41,7 +41,7 @@ public class Pista{
 	private Iterator<Tramo>[] iterador;
 	
 	/*---------Metodos---------*/
-	/**
+	/*
 	 * Constructor que recibe como parametros dos jugadores y la longitud
 	 * Genera un solo tramo con condiciones por defecto. 
 	 * pre:-
@@ -58,12 +58,36 @@ public class Pista{
 		iterador[1]= Tramos.iterator();
 		iterador[2]= Tramos.iterator();
 		tramoActual = new Tramo[2];
-		tramoActual[1]= Tramos.get(1);
-		tramoActual[2]= Tramos.get(1);
+		tramoActual[1]= Tramos.get(0);
+		tramoActual[2]= Tramos.get(0);
 		cantJugadores = 2;
 		for (int i = 0; i<cantJugadores; i++){
 			Jugador[i].getAuto().afectar(tramoActual[i].getClima());
 			Jugador[i].getAuto().afectar(tramoActual[i].getSuperficie());
+		}
+	}
+	/*
+	 * Constructor con parametros
+	 * pre: La lista "tramos" debe estar ordenada, y el principio de cada
+	 * tramo debe coincidir con el final del anterior.
+	 * post: Queda creada una instancia de Pista.
+	 */
+	Pista(Jugador[] jugador,ArrayList<Tramo> tramos){
+		Tramos = tramos;
+		Jugador = jugador;
+		cantJugadores = Jugador.length;
+		iterador = new Iterator[cantJugadores];
+		tramoActual = new Tramo[cantJugadores];
+		for (int i=0;i<cantJugadores;i++){
+			iterador[i]= Tramos.iterator();
+			tramoActual[i] = Tramos.get(0);
+			Jugador[i].getAuto().afectar(tramoActual[i].getClima());
+			Jugador[i].getAuto().afectar(tramoActual[i].getSuperficie());
+		}
+		Longitud = 0;
+		Iterator<Tramo> it = Tramos.iterator();
+		while(it.hasNext()){
+			Longitud = it.next().getPosFinal();
 		}
 	}
 	/**
@@ -124,6 +148,12 @@ public class Pista{
 	public boolean jugadorCambioTramo(int nroJugador){
 		return (this.getJugador(nroJugador).getAuto().getPosicion() 
 				< this.getTramoActual(nroJugador).getPosFinal());
+	}
+	
+	public String toString(){
+		String cadena = "Pista de "+this.getLongitud()+ " metros, compuesta por "
+						+ this.getTramos().size() + " tramos.";
+		return cadena;
 	}
 	
 	public double getLongitud() {
