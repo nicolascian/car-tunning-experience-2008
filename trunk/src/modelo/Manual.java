@@ -42,9 +42,6 @@ public class Manual extends Caja{
 			else
 			  relacionDeCambio[cursor]=60.0;  
 	}
-	
-	/* Como esta caja no es automatica, no hace nada */
-	public void Chequear(){}
 
 	
 	/**
