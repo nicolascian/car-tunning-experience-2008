@@ -103,4 +103,15 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 				  EfectoClimatico * getEstado();
 	}
 	
+	/* toString */
+	
+	public String toString() {
+		
+		super.toString();
+		String cadena="  INYECCION: " +'\n' 
+		            + "      Humedad optima: " + CTE_HUMEDAD_OPTIMA +"%";
+
+		return(cadena);
+	}
+	
 }
