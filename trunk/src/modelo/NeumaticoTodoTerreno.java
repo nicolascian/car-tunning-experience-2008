@@ -3,8 +3,7 @@ package modelo;
 	/**
 	 * Los neumaticos todo terreno son utilizados en las superficies mas
 	 * exigentes, proporcionando una mayor adherencia y traccion en terrenos
-	 * con mucho relieve, pero no asi en el asfalto (o superficies planas
-	 * en general).
+	 * con mucho relieve, pero el desgaste es mayor que en un neumatico comun
 	 * Al tener mayor dibujo y grandes tacos drenan mejor el agua.
 	 */
 public class NeumaticoTodoTerreno extends Neumatico
@@ -42,6 +41,15 @@ public class NeumaticoTodoTerreno extends Neumatico
 	private double viscosidadSuperficie;
 
 	/*-----------Metodos----------*/
+	/**
+	 * El desgaste de este neumatico esta dado por la rugosidad de la superficie,
+	 * por las particulas en la misma y por el simple uso.
+	 */
+	public void desgastar(){
+		double desgaste = (1 + this.getParticulasEnSuperficie() + this.getRugosidadSuperficie())
+							* Constantes.tiempoPorCiclo;
+		this.setEstado(this.getEstado()- desgaste);
+	}
 	
 	/**
 	 * La potencia entregada se ve afectada por el estado del neumatico, por
@@ -49,7 +57,8 @@ public class NeumaticoTodoTerreno extends Neumatico
 	 * En condiciones ideales, entrega una potencia igual a 3.
 	 */
 	public double obtenerPotencia(){
-		
+		return ((this.getEstado()/100)* (this.getPotenciaMax()-this.getParticulasEnSuperficie())
+					- this.getRugosidadSuperficie());
 	}
 	
 	/**
