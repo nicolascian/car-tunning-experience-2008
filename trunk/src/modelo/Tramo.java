@@ -54,11 +54,11 @@ public class Tramo {
 	 * pre: el parametro incio debe ser mayor al parametro fin
 	 * post: Queda creada una instancia Tramo.
 	 */
-	public Tramo (double inicio, double fin, Clima clima, Superficie superfice){
+	public Tramo (double inicio, double fin, Clima Pclima, Superficie Psuperficie){
 		posInicial = inicio;
 		posFinal = fin;
-		this.setClima(clima);
-		this.setSuperficie(superficie);
+		this.setClima(Pclima);
+		this.setSuperficie(Psuperficie);
 		
 	}
 	
