@@ -30,11 +30,13 @@ public class TestAuto {
 		assertNotNull(auto.getTurbo());
 		assertFalse(auto.isEncendido());
 		assertFalse(auto.isAutomatica());
-		assertTrue(auto.isManual());
-		//assertFalse(auto.isSecuencial());
-		//assert auto.getVelocidad()==0 : "Igual a Cero";
+		assert auto.isManual() : "Es manual"; if(!auto.isManual()) System.out.println("Manual");
+		assertFalse(auto.isSecuencial());
+		assert auto.getVelocidad()==0 : "Igual a Cero";
 	  }catch(AssertionError a){
-		  System.out.println(a);
+		  a.printStackTrace();
+		  a.getMessage();
+		  System.out.println("testAuto() "+a);
 	  }
 	}
 	
@@ -45,9 +47,9 @@ public class TestAuto {
 			assertNotNull(auto.getCaja());
 			assertNotNull(auto.getMotor());
 			assertFalse(auto.isEncendido());
-			System.out.println(auto.toString());
+			//System.out.println(auto.toString());
 		 }catch(AssertionError a){
-			System.out.println(a);
+			System.out.println("testSetEncendido() "+a);
 		 }
 	}
 	
