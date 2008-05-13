@@ -37,8 +37,8 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	public Inyeccion(double cte_humedad_optima, 
 						double cte_relacion_potencia){
 		
-		this.CTE_HUMEDAD_OPTIMA = cte_humedad_optima;
-		this.CTE_RELACION_POTENCIA = cte_relacion_potencia;
+		CTE_HUMEDAD_OPTIMA = cte_humedad_optima;
+		CTE_RELACION_POTENCIA = cte_relacion_potencia;
 	}
 	
 	/**

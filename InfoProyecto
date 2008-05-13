@@ -60,14 +60,14 @@ Lucas:		Desgastar y ObtenerPotencia
 			VER NOTA IMPORTANTE ABAJO DE TODO
 
 Nico C:		Doc. Dificultad
-			Clima <----------------Listo
-			Jugador
-			  Usuario
-			  Virtual
-			    Habilidad 
-			      Experto 
-			      Intermedio 
-			      Principiante
+			Clima <----------------Listo c/ test
+			Jugador <--------------Listo
+			  Usuario <------------Listo
+			  Virtual <------------Listo
+			    Habilidad <--------Listo
+			      Experto <--------Listo
+			      Intermedio <-----Listo
+			      Principiante <---Listo
 			Alimentacion <---------Listo
 			  Carburador <---------Listo
 			  Inyeccion <----------Listo
