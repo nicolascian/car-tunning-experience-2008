@@ -7,31 +7,48 @@ import org.junit.Test;
 
 public class TestAuto {
 
-	Auto auto;
+	Auto auto=new Auto();
 		
 	@Before
 	public void setUp() throws Exception {
 		
 	}
-
+		
 	@Test
-	public void testAuto() {
-	  try{	
+	public void testAuto(){
+	  try{
 		auto=new Auto();
-		System.out.println(auto.toString());
-	  }catch (Exception e){
-		  System.out.print("Error Auto");
+		assertNotNull(auto.getCaja());
+		assertNotNull(auto.getAlimentacion());
+		assertNotNull(auto.getCarroceria());
+		assertNotNull(auto.getCombustible());
+		assertNotNull(auto.getEjeDelantero());
+		assertNotNull(auto.getEjeTrasero());
+		assertNotNull(auto.getEscape());
+		assertNotNull(auto.getMotor());
+		assertNotNull(auto.getSuspension());
+		assertNotNull(auto.getTurbo());
+		assertFalse(auto.isEncendido());
+		assertFalse(auto.isAutomatica());
+		assertTrue(auto.isManual());
+		//assertFalse(auto.isSecuencial());
+		//assert auto.getVelocidad()==0 : "Igual a Cero";
+	  }catch(AssertionError a){
+		  System.out.println(a);
 	  }
 	}
-			
+	
 	@Test
 	public void testSetEncendido(){
 		try{
-		    auto.setEncendido(true);
-	       	System.out.println(auto.toString());
-		}catch (Exception e){
-			System.out.println(" Error Encendido");
-		}
+			auto.setEncendido(true);
+			assertNotNull(auto.getCaja());
+			assertNotNull(auto.getMotor());
+			assertFalse(auto.isEncendido());
+			System.out.println(auto.toString());
+		 }catch(AssertionError a){
+			System.out.println(a);
+		 }
 	}
 	
 	@Test

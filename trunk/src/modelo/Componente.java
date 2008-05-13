@@ -29,10 +29,7 @@ public abstract class Componente extends Constantes {
 	 * Un auto no puede funcionar si alguno de sus elementos tiene Estado = 0.
 	 */
 	protected double estado;
-	
-	/** Temperatura interna del componente */
-	protected double temperatura;
-	
+			
 	/** Peso especifico del componente */
 	protected double peso;
 	
@@ -69,7 +66,8 @@ public abstract class Componente extends Constantes {
 	}
 	
 	public AlgoPesos getPrecioAmortizado(){
-		return new AlgoPesos( getEstado()*100/getPrecio().getValor());
+		return precio;//( getEstado()*100/getPrecio().getValor());
+		
 	}
 	
 	/**
@@ -146,20 +144,5 @@ public abstract class Componente extends Constantes {
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-
-	/**
-	 * @return the temperatura
-	 */
-	public double getTemperatura() {
-		return temperatura;
-	}
-
-	/**
-	 * @param temperatura the temperatura to set
-	 */
-	public void setTemperatura(double temperatura) {
-		this.temperatura = temperatura;
-	}
-
 	
 }
