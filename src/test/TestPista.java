@@ -21,6 +21,23 @@ public class TestPista extends TestCase{
 	public void testLongitud(){
 		assertEquals(321.89,pista.getLongitud());
 	}
+	
+	public void testTramoActual1(){
+		try{
+		assertEquals(tramos.get(0),pista.buscarTramoActual(0));
+		}catch (Exception e){};
+	}
+	
+	public void testJugador(){
+		assertNotNull(jugador[0]);
+	}
+	
+	public void testTramoActual2(){
+		jugador[0].getAuto().setPosicion(200);
+		try{
+			assertEquals(tramos.get(1), pista.buscarTramoActual(0));
+		}catch (Exception e){};
+	}
 
 	public static Test suite(){
 		return new TestSuite(TestPista.class);
