@@ -30,7 +30,7 @@ public class TestAuto {
 		assertNotNull(auto.getTurbo());
 		assertFalse(auto.isEncendido());
 		assertFalse(auto.isAutomatica());
-		assert auto.isManual() : "Es manual"; if(!auto.isManual()) System.out.println("Manual");
+		assertTrue(auto.isManual());
 		assertFalse(auto.isSecuencial());
 		assert auto.getVelocidad()==0 : "Igual a Cero";
 	  }catch(AssertionError a){
@@ -41,16 +41,27 @@ public class TestAuto {
 	}
 	
 	@Test
-	public void testSetEncendido(){
+	public void testEstaListoParaCarrera(){
 		try{
-			auto.setEncendido(true);
-			assertNotNull(auto.getCaja());
-			assertNotNull(auto.getMotor());
-			assertFalse(auto.isEncendido());
-			//System.out.println(auto.toString());
-		 }catch(AssertionError a){
-			System.out.println("testSetEncendido() "+a);
+			assertTrue(auto.estaListoParaCarrera());
+		}catch(AssertionError a){
+			 a.printStackTrace();
+			 a.getMessage();
+			 System.out.println("testSetEncendido() "+a);
 		 }
+	}
+	
+	@Test
+	public void testSetEncendido(){
+		/*try{
+			auto.setEncendido(true);
+			assertFalse(auto.isEncendido());
+			System.out.println(auto.toString());
+		 }catch(AssertionError a){
+			 a.printStackTrace();
+			 a.getMessage();
+			 System.out.println("testSetEncendido() "+a);
+		 }*/
 	}
 	
 	@Test

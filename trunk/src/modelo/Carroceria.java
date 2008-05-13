@@ -31,6 +31,8 @@ public class Carroceria extends Componente
 	private double coeficienteDeOxidacionPorHumedad;
 
 	private double temperatura;
+	
+	private double velocidad;
 
 	/**
 	 * @Pre:
@@ -46,6 +48,7 @@ public class Carroceria extends Componente
 		setSuperficieFrontal(superficieFrontal);
 		setCoeficienteDeOxidacionPorHumedad(0);
 		setCoeficienteDeOxidacionPorParticulas(0);
+		
 	}
 	/**
 	 * @Post: La carroceria desgastada.
@@ -64,8 +67,8 @@ public class Carroceria extends Componente
 	 * y por lo tanto obteniendose una menor potencia de arrastre. 	 
 	*/
 	public double obtenerPotencia(){
-		double coeficiente=COEFICIENTE_ARRASTRE-TEMPERATURAOPTIMA/(getTemperatura()*10);
-		return (getAuto().getVelocidad()*coeficiente*getSuperficieFrontal()*0.0001862);
+		double coeficiente=Math.abs(COEFICIENTE_ARRASTRE-TEMPERATURAOPTIMA/(getTemperatura()*10));
+		return (getVelocidad()*coeficiente*getSuperficieFrontal()*0.0001862);
 	}
 	
 	/** el clima afecta a la carroceria
@@ -140,7 +143,17 @@ public class Carroceria extends Componente
 	public void setTemperatura(double temperatura) {
 		this.temperatura = temperatura;
 	}
-
-	
+	/**
+	 * @return the velocidad
+	 */
+	public double getVelocidad() {
+		return velocidad;
+	}
+	/**
+	 * @param velocidad the velocidad to set
+	 */
+	public void setVelocidad(double velocidad) {
+		this.velocidad = velocidad;
+	}
 	
 }
