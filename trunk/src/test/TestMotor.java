@@ -16,7 +16,7 @@ public class TestMotor {
 	@Test
 	public void testMotor() {
 		motor=new Motor();
-		assert motor.getAuto()!=null: "Hola";
+		assert motor.getAuto()!=null;
 		System.out.println(motor.toString());
 	}
 	
