@@ -3,8 +3,13 @@ import junit.framework.*;
 import modelo.*;
 
 public class TestTramo extends TestCase {
-	Tramo t = new Tramo(122.59,457.58, new Clima(), new Superficie());
-	Auto auto = new Auto();
+	Tramo t;
+	Auto auto;
+	
+	public void setUp(){
+		t = new Tramo(122.59,457.58, new Clima(), new Superficie());
+		auto = new Auto();
+	}
 	
 	public void testSetFinal(){
 		t.setPosFinal(300.15);
