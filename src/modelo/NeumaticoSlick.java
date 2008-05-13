@@ -44,6 +44,7 @@ public class NeumaticoSlick extends Neumatico
 	/*-----------Metodos----------*/
 	
 	public NeumaticoSlick(Auto auto){
+		this.setNombre("Neumatico Slick");
 		this.setPotenciaMax(5);
 		this.setEfectoTemperaturaExterna(0);
 		this.setEstado(100);
@@ -52,6 +53,17 @@ public class NeumaticoSlick extends Neumatico
 		this.setViscosidadSuperficie(0);
 		this.setRelieveSuperficie(0);
 		this.setAuto(auto);
+	}
+
+	public NeumaticoSlick(){
+		this.setNombre("Neumatico Slick");
+		this.setPotenciaMax(5);
+		this.setEfectoTemperaturaExterna(0);
+		this.setEstado(100);
+		this.setHumedadEnPista(0);
+		this.setPeso(10);//en kilos
+		this.setViscosidadSuperficie(0);
+		this.setRelieveSuperficie(0);
 	}
 	/**
 	 * La adherencia se ve comprometida en un 40% por la cantidad de agua en la

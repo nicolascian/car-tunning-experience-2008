@@ -29,6 +29,10 @@ public abstract class Neumatico extends Componente{
 	 */
 	public abstract double calcularAdherencia();
 
+	public String toString(){
+		String cadena = this.getNombre()+", Estado: "+this.getEstado()+" %.";
+		return cadena;
+	}
 
 	public double getPotenciaMax() {
 		return potenciaMax;
