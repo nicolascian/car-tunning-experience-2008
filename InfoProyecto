@@ -6,22 +6,16 @@
  ******************************************************************************/
 
 ## Hay que hacer ##
-LEER:!!
-MODIFIQUE EL CONSTRUCTOR POR DEFECTO DE AUTO PORQUE NO SE INICIALIZABAN LOS NEUMATICOS NI
-LAS LLANTAS. ES PROVISORIO, ASIQUE AL QUE LE TOQUE QUE LO CORRIJA, PERO LO NECESITABA
-PARA LAS PRUEBAS.
-OTRA COSA, TRASERO ES CON "S", Y NO "TRACERO". YA LO CAMBIE. 
-TERMINEN TODAS LAS CLASES QUE LES TOCAN ASI SE PUEDEN TERMINAR LAS PRUEBAS
-Y HAGAN LAS PRUEBAS PORQUE SINO VAN A SALTAR DE GOLPE TODOS LOS ERRORES.
-YO ESTOY TRATANDO DE HACER LAS PRUEBAS DE PISTA, Y CADA VEZ Q USO AUTO O JUGADOR
-ME SALTAN EN LA CONSOLA DE PROBLEMAS APARECEN 10MIL COSAS.
-nico m
 
 el Source Level es 6
 los test se hacen en JUnit version 3.X.X
 
 modelo MVC, modelo, vista, control
-
+#########################################################################################
+MODIFIQUE LOS setEjeDelantero() y setEjeTrasero PORQUE QUEDABAN COLAGADAS LAS REFERENCIAS
+A LAS LLANTAS Y LOS NEUMATICOS.
+NICO M
+#########################################################################################
 ObtenerPotencia de los componentes tira MAXIMO 50 HP
 		excepto MOTOR TURBO que tiran MAS
 
