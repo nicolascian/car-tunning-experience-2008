@@ -104,4 +104,14 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 				  EfectoClimatico * getEstado();
 	}
 	
+	/* toString */
+	
+	public String toString() {
+		
+		super.toString();
+		String cadena="  CARBURADOR: " +'\n' 
+		            + "      Humedad optima: " + CTE_HUMEDAD_OPTIMA +"%";
+
+		return(cadena);
+	}
 }
