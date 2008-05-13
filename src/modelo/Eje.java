@@ -25,7 +25,7 @@ implements AfectablePorSuperficie{
 	
 	
 	/*Constructor,inicia estado de eje en 100*/
-	public void Eje(){
+	public Eje(){
 		this.setEstado(100);
 	}
 	/**

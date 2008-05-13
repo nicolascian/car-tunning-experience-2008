@@ -11,21 +11,21 @@ public class NeumaticoTodoTerreno extends Neumatico
 	
 	/*----------Atributos---------*/
 	
-	/*
+	/**
 	 * La humedad en pista representa la cantidad de agua en la misma.
 	 * Un valor igual a 0 corresponde a la pista seca.
 	 * Un valor igual a 1 corresponde a la pista totalmente mojada.
 	 */
 	private double humedadEnPista;
 	
-	/*
+	/**
 	 * La rugosidad de la superficie no disminuira la adherencia pero si
 	 * aumentara considerablemente el desgaste del neumatico.
 	 * Toma valores entre 0 y 1.
 	 */
 	private double rugosidadSuperficie;
 	
-	/*
+	/**
 	 * Las particulas sueltas en la superficie son aquellos elementos de 
 	 * volumen sueltos en la pista q aumentaran el daño producido sobre 
 	 * los neumaticos y disminuiran la adherencia aunque no de forma
@@ -34,7 +34,7 @@ public class NeumaticoTodoTerreno extends Neumatico
 	 */
 	private double particulasEnSuperficie;
 	
-	/*
+	/**
 	 * La viscosidad de la superficie toma un valor entre 0 y 1 e indica
 	 * la oposicion del terreno a resbalar sobre el mismo.
 	 */
