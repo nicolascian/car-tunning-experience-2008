@@ -21,5 +21,39 @@ package modelo;
 public class Intermedio extends Habilidad{
 	/* comentario acerca de la implementacion de la clase */
 	
+	private final static double MARGEN_DE_ERROR_INTERMEDIO = 3.5;
+	
+	public void jugar(){
+		
+		/* ACELERAR */
+		auto.acelerar(true);
+		
+		
+		double rpm = auto.getMotor().getRPM();
+		
+		Motor motor = auto.getMotor();
+	
+		/* numeros aleaorios entre 0 y 2.5 incluidos */
+        double x = (rnd.nextDouble() * MARGEN_DE_ERROR_INTERMEDIO);
+        /* nuemero aleatorio entre 0 y 2.5 incluidos */
+        double y = (rnd.nextDouble() * MARGEN_DE_ERROR_INTERMEDIO);
+        /* numero entre -250 y 250 iincluidos */
+        MARGEN_DE_ERROR_RND_MAXIMAS = (x - y)*100;
+        /* numero entre 0 y 250 tomando x e y */
+        MARGEN_DE_ERROR_RND_MINIMAS = ((x + y) - (x + y)/2) *100;
+        
+		
+		if(motor.isAcelerando()){
+			
+			if( rpm >= (motor.getRevolucionesMaximasCambio() + MARGEN_DE_ERROR_RND_MAXIMAS) )
+				auto.getCaja().setCambio(auto.getCaja().getCambio()+1);
+		
+		}else{
+		
+			if( rpm < (motor.getRevolucionesMinimasEncendido() + MARGEN_DE_ERROR_RND_MINIMAS) )
+				auto.getCaja().setCambio(auto.getCaja().getCambio()-1);
+		}
+		
+	}
 	
 }

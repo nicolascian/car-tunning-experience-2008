@@ -6,6 +6,7 @@
  ******************************************************************************/
 
 package modelo;
+import java.util.Random;
 
 /**
  * Clase Principiante
@@ -20,8 +21,7 @@ package modelo;
 public class Principiante extends Habilidad{
 	/* comentario acerca de la implementacion de la clase */
 	
-	
-	private double MARGEN_DE_ERROR;
+	private final static double MARGEN_DE_ERROR_PRINCIPIANTE = 6.0;
 	
 	public void jugar(){
 		
@@ -32,17 +32,25 @@ public class Principiante extends Habilidad{
 		double rpm = auto.getMotor().getRPM();
 		
 		Motor motor = auto.getMotor();
+	
+		/* numeros aleaorios entre 0 y 5 incluidos */
+        double x = (rnd.nextDouble() * MARGEN_DE_ERROR_PRINCIPIANTE);
+        /* nuemero aleatorio entre 0 y 5 incluidos */
+        double y = (rnd.nextDouble() * MARGEN_DE_ERROR_PRINCIPIANTE);
+        /* numero entre -500 y 500 iincluidos */
+        MARGEN_DE_ERROR_RND_MAXIMAS = (x - y)*100;
+        /* numero entre 0 y 250 tomando x e y */
+        MARGEN_DE_ERROR_RND_MINIMAS = ((x + y) - (x + y)/2) *100;
 		
-		//MARGEN_DE_ERROR = Aleatorio!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!groso
-		
+        
 		if(motor.isAcelerando()){
 			
-			if( rpm >= (motor.getRevolucionesMaximasCambio() + MARGEN_DE_ERROR) )
+			if( rpm >= (motor.getRevolucionesMaximasCambio() + MARGEN_DE_ERROR_RND_MAXIMAS) )
 				auto.getCaja().setCambio(auto.getCaja().getCambio()+1);
 		
 		}else{
 		
-			if( rpm < (motor.getRevolucionesMinimasEncendido() + MARGEN_DE_ERROR) )
+			if( rpm < (motor.getRevolucionesMinimasEncendido() + MARGEN_DE_ERROR_RND_MINIMAS) )
 				auto.getCaja().setCambio(auto.getCaja().getCambio()-1);
 		}
 		

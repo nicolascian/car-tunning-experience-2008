@@ -7,6 +7,8 @@
 
 package modelo;
 
+import java.util.Random;
+
 /**
  * Clase Habilidad
  * 
@@ -26,7 +28,15 @@ package modelo;
 public abstract class Habilidad{
 	/* simple uso de polimorfismo */
 	
+	protected Random rnd;
+	protected double MARGEN_DE_ERROR_RND_MAXIMAS;
+	protected double MARGEN_DE_ERROR_RND_MINIMAS;
+	
 	protected Auto auto;
+	
+	public Habilidad(){
+		rnd = new Random();
+	}
 	
 	/**
 	 * Metodo Jugar
