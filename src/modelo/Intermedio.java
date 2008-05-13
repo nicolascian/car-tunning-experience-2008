@@ -23,6 +23,12 @@ public class Intermedio extends Habilidad{
 	
 	private final static double MARGEN_DE_ERROR_INTERMEDIO = 3.5;
 	
+	/**
+	 * Metodo Jugar
+	 * 
+	 * este metodo permite desarrollar los cambios durante una carrera,
+	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
+	 */
 	public void jugar(){
 		
 		/* ACELERAR */

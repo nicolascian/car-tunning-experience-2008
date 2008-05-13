@@ -6,7 +6,6 @@
  ******************************************************************************/
 
 package modelo;
-import java.util.Random;
 
 /**
  * Clase Principiante
@@ -23,6 +22,12 @@ public class Principiante extends Habilidad{
 	
 	private final static double MARGEN_DE_ERROR_PRINCIPIANTE = 6.0;
 	
+	/**
+	 * Metodo Jugar
+	 * 
+	 * este metodo permite desarrollar los cambios durante una carrera,
+	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
+	 */
 	public void jugar(){
 		
 		/* ACELERAR */
