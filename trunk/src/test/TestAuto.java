@@ -41,6 +41,15 @@ public class TestAuto {
 	}
 	
 	@Test
+	public void testComprobarComponentes(){
+	 	try{
+			auto.comprobarComponentes();
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
+	
+	@Test
 	public void testEstaListoParaCarrera(){
 		try{
 			assertTrue(auto.estaListoParaCarrera());
