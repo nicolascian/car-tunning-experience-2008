@@ -26,7 +26,8 @@ public class Tramo {
 	 */
 	private double posFinal;
 	
-	/*Constructor sin parametros
+	/**
+	 * Constructor sin parametros
 	 * pre:-
 	 * post: Queda creada una instancia Tramo.
 	 */
@@ -37,7 +38,7 @@ public class Tramo {
 		superficie = new Superficie();
 	}
 	
-	/*
+	/**
 	 * Constructor con parametros
 	 * pre: el parametro "largo" debe ser mayor a cero
 	 * post: Queda creada una instancia Tramo.
@@ -49,7 +50,7 @@ public class Tramo {
 		superficie = new Superficie();
 	}
 	
-	/*
+	/**
 	 * Constructor con parametros
 	 * pre: el parametro incio debe ser mayor al parametro fin
 	 * post: Queda creada una instancia Tramo.
@@ -79,7 +80,7 @@ public class Tramo {
 		String cadena = "Tramo de "+this.getLongitud()+" metros";
 		return cadena;
 	}
-	/* setter y getters */
+	/* -----setter y getters----- */
 	public double getLongitud(){
 		return (this.getPosFinal()-this.getPosInicial());
 	}
