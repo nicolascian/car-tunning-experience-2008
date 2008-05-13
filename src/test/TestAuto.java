@@ -27,9 +27,8 @@ public class TestAuto {
 	@Test
 	public void testSetEncendido(){
 		try{
-		    //auto.setEncendido(true);
-	        auto.getMotor().encender();
-			System.out.println(auto.toString());
+		    auto.setEncendido(true);
+	       	System.out.println(auto.toString());
 		}catch (Exception e){
 			System.out.println(" Error Encendido");
 		}

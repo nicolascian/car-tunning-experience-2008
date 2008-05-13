@@ -386,7 +386,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @param encedido the encendido to set
 	 */
 	public void setEncendido(boolean encendido) {
-		if(getMotor()!=null)
+		if(estaListoParaCarrera())
 			getMotor().setEncendido(encendido);
 	}
 
@@ -411,7 +411,12 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 */
 	@Override
 	public String toString() {
-		String cadena="Auto "+getMotor().toString()+'\n'+getCaja().toString();
+		String cadena="Auto ";
+		if(estaListoParaCarrera())
+			cadena=cadena+" Esta Listo Para Carrera ";
+		else
+			cadena=cadena+" No Esta Listo Para Carrera ";
+		cadena=cadena+'\n'+getMotor().toString()+getCaja().toString();
 		return(cadena);
 	}
 		
