@@ -41,6 +41,7 @@ public class Carroceria extends Componente
 	 * de aire que enfrente el auto al desplazarse. 
 	*/
 	public Carroceria(double superficieFrontal){
+		setTemperatura(25);
 		setEstado(100);
 		setSuperficieFrontal(superficieFrontal);
 		setCoeficienteDeOxidacionPorHumedad(0);
