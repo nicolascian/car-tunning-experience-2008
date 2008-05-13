@@ -110,7 +110,5 @@ public class Turbo extends Componente implements AfectablePorClima{
 	public double getCoeficienteDeObtencionDePotencia() {
 		return coeficienteDeObtencionDePotencia;
 	}
-
-	
 	
 }

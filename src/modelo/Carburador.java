@@ -30,7 +30,9 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	/**
 	 * Constructor de Carburador por defecto.
 	 */
-	public Carburador(){}
+	public Carburador(){
+		setEstado(100);
+	}
 	
 	/**
 	 * Constructor de Carburador con parametros.
