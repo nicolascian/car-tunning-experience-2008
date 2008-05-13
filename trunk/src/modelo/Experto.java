@@ -55,4 +55,16 @@ public class Experto extends Habilidad{
 		
 	}
 	
+	
+	public Experto(){
+		super();
+	}
+	
+	
+	/* toString */
+	
+	public String toString() {
+		return "Experto";
+	}
+	
 }

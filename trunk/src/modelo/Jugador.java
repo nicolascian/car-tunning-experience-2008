@@ -75,5 +75,14 @@ public abstract class Jugador {
 		this.nombre = nombre;
 	}
 
+	/* toString */
+	
+	public String toString() {
+		
+		String cadena="JUGADOR: " +'\n' 
+		            + "  Nombre: " + getNombre() +'\n' 
+		            + "  Auto: " + getAuto().toString() +'\n' ;
+		return(cadena);
+	}
 	
 }

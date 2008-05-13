@@ -174,5 +174,10 @@ public class Usuario extends Jugador{
 		
 	}
 	
+	/* toString */
+	
+	public String toString() {
+		return super.toString();
+	}
 	
 }

@@ -144,9 +144,9 @@ public class Clima{
 	public String toString() {
 		
 		String cadena="CLIMA: " +'\n' 
-		            + "  Temperatura: " + getTemperatura()+"°C"
-		            + "      Humedad: " + getHumedad()+"%"
-                    + "      Presion: " + getPresion()+" hPa";
+		            + "  Temperatura: " + getTemperatura()+"°C" +'\n'  
+		            + "      Humedad: " + getHumedad()+"%" +'\n' 
+                    + "      Presion: " + getPresion()+" hPa" +'\n' ;
 
 		return(cadena);
 	}
