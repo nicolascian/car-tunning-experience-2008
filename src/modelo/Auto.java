@@ -74,7 +74,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		//inicializacion de aceleracion y velocidad
 		Velocidad=0;
 		Aceleracion=0;
-		
 	}
 	
 	/**
@@ -128,19 +127,23 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @return
 	 */
 	public double getPotenciaTotal(){
-		//recorremos los componentes pertinentes, y hacemos:
-		// componente.obtenerPotencia();
-		return ( motor.obtenerPotencia() +   /* de aca salen: Alimentacion, Combustible*/
-		         carroceria.obtenerPotencia() +
-		         caja.obtenerPotencia() +
-		         suspension.obtenerPotencia() +
-		         escape.obtenerPotencia() +
-		         //ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteris
-		         //ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
-		         turbo.obtenerPotencia()
-		            );
+		double potencia=0;
+		//seteo la velocidad de la carroceria
+		getCarroceria().setVelocidad(Velocidad);		
+		//hay componente que solo aportan potencia al estar encendido el auto
+		if(isEncendido()){
+		   potencia=motor.obtenerPotencia() +   /* de aca salen: Alimentacion, Combustible*/
+		            caja.obtenerPotencia() +
+		            suspension.obtenerPotencia() +
+		            escape.obtenerPotencia() +
+		            //ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteris
+		            //ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
+		            turbo.obtenerPotencia();
+		}
+		//en caso de que el auto se este moviendo la carroceria aporta potencia negativa
+		potencia=potencia+getCarroceria().obtenerPotencia();
+		return(potencia);
 	}
-
 	
 	/**
 	 * es invocado en cada ciclo durante la carrera, se encarga
@@ -416,15 +419,15 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	}
 	
 	public boolean isAutomatica(){
-		return(getCaja().getClass().isInstance(Automatica.class));
+		return(getCaja().getClass().isInstance(new Automatica(5)));
 	}
 		
 	public boolean isManual(){
-		return(getCaja().getClass().isInstance(Manual.class));
+		return(getCaja().getClass().isInstance(new Manual(5)));
 	}
 	
 	public boolean isSecuencial(){
-		return(getCaja().getClass().isInstance(Secuencial.class));
+		return(getCaja().getClass().isInstance(new Secuencial(5)));
 	}
 	
 	/* (non-Javadoc)
