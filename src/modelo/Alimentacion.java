@@ -31,4 +31,11 @@ public abstract class Alimentacion extends Componente {
 	 */
 	public abstract double CombustibleAConsumir();
 	
+	/* toString */
+	
+	public String toString() {
+		
+		return "ALIMENTACION tipo: " +'\n';
+	}
+	
 }
