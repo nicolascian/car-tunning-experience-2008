@@ -57,6 +57,15 @@ public class Principiante extends Habilidad{
 	}
 	
 	
+	public Principiante(){
+		super();
+	}
 	
+	
+	/* toString */
+	
+	public String toString() {
+		return "Principiante";
+	}
 	
 }

@@ -125,4 +125,10 @@ public class Virtual extends Jugador{
 		return habilidad;
 	}
 	
+	/* toString */
+	
+	public String toString() {
+		
+		return super.toString() + "  Habilidad: " +  habilidad.toString() +'\n'; 
+	}
 }

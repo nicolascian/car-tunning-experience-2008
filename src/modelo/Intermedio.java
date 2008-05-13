@@ -56,4 +56,15 @@ public class Intermedio extends Habilidad{
 		
 	}
 	
+	
+	public Intermedio(){
+		super();
+	}
+	
+	
+	/* toString */
+	
+	public String toString() {
+		return "Intermedio";
+	}
 }

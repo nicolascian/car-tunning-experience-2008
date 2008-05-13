@@ -34,6 +34,10 @@ public abstract class Habilidad{
 	
 	protected Auto auto;
 	
+	/**
+	 * el constructor de habilidad
+	 * inicializa los numeros aleatorios
+	 */
 	public Habilidad(){
 		rnd = new Random();
 	}
