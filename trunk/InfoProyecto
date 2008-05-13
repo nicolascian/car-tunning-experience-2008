@@ -16,7 +16,11 @@ ObtenerPotencia de los componentes tira MAXIMO 50 HP
 		excepto MOTOR TURBO que tiran MAS
 
 
-Nico M: 	Neumatico, 
+Nico M: 	Neumatico <------------Listo
+				NeumaticoSlick <---Listo
+				NeumaticoTodoTerreno <-Listo
+				NeumaticoInvierno
+				NeumaticoLluvia 
 			Pista <----------------Listo 
 			Tramo <----------------Listo (solo faltan comentarios) 
 			interfaces Afectable <-Listo (solo faltan comentarios)
