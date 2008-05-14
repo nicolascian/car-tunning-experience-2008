@@ -188,7 +188,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	*/
 	private void actualizarRpm(){
 	 if(isEncendido())
-	  if(isActualizandoRPM()){
+	  if(!isActualizandoRPM()){
 	   setActualizandoRPM(true);
 	   if(RPM<getRevolucionesMaximas())
 		 if(isAcelerando()){
