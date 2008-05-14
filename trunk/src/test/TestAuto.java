@@ -32,7 +32,7 @@ public class TestAuto {
 		assertFalse(auto.isAutomatica());
 		assertTrue(auto.isManual());
 		assertFalse(auto.isSecuencial());
-		assert auto.getVelocidad()==0 : "Igual a Cero";
+		assertTrue(auto.getVelocidad()==0);
 	  }catch(AssertionError a){
 		  a.printStackTrace();
 		  a.getMessage();

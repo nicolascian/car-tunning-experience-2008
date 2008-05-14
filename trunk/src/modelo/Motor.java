@@ -109,9 +109,11 @@ public class Motor extends Componente implements AfectablePorClima{
 		setEncendido(false);
 		setAcelerando(false);
 		setTiempoDeControlAceleracion(0);
-		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
+		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*
+				                           COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
 		setAuto(null);
 		setEstado(100);
+		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 	}
 	
 	/**
@@ -127,11 +129,11 @@ public class Motor extends Componente implements AfectablePorClima{
 		setCilindrada(1600);
 		//inicializacion de revoluciones
 		setRevolucionesMaximas(8000);
-		setRevolucionesMaximasCambio(0);
+		setRevolucionesMaximasCambio(8000);
 		RPM=0;
 		//inicializacion de temperaturas
 		setTemperaturaAire(25); //°C
-		setTemperatura(25);
+		setTemperatura(TEMPERATURA_INICIAL);
 		//inicilizacion de coeficientes
 		setCoeficienteDeAbsorcionCalorico(COEFICIENTE_DE_ABSORCION_CALORICO_INICIAL);
 		setCoeficienteDeDisipacionCalorico(COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL);
@@ -141,6 +143,8 @@ public class Motor extends Componente implements AfectablePorClima{
 		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*
 				                  COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
 		setAuto(null);
+		setEstado(100);
+		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 	}
 	
 	/**
@@ -426,13 +430,11 @@ public class Motor extends Componente implements AfectablePorClima{
 	*/
 	protected double calcularPotenciaInterna(){
 		double potenciaInterna=0;
-		//if(isEncendido()){
-			//potencia sin ser afectada por elementos
-			potenciaInterna=getCilindrada()*getCantidadCilindros()*getRPM()/6400000;
-			//calculo de potencia afectada por la temperatura del aire
-			double relacionTemperaturas=(getTemperaturaAire()/TEMPERATURA_MEDIANA_AIRE)-1;
-			potenciaInterna=potenciaInterna*Math.abs(1-relacionTemperaturas/25);
-		//}
+		//potencia sin ser afectada por elementos
+		potenciaInterna=getCilindrada()*getCantidadCilindros()*getRPM()/6400000;
+		//calculo de potencia afectada por la temperatura del aire
+		double relacionTemperaturas=(getTemperaturaAire()/TEMPERATURA_MEDIANA_AIRE)-1;
+		potenciaInterna=potenciaInterna*Math.abs(1-relacionTemperaturas/25);
 		return potenciaInterna;
 	}
 
