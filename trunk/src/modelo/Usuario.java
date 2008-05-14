@@ -22,6 +22,7 @@ public class Usuario extends Jugador{
 	
 	private control.Acelerador acelerador;
 	private control.Palanca palanca;
+	private control.Llave llave;
 	
 	/**
 	 * Constructor sin parametros de Usuario
@@ -39,6 +40,7 @@ public class Usuario extends Jugador{
 	/* ------------------------------------------------------------------------------------------ */
 		acelerador = new control.Acelerador();  
 		palanca = new control.Palanca();
+		llave = new control.Llave();
 	/* ------------------------------------------------------------------------------------------ */
 		
 	}
@@ -53,9 +55,10 @@ public class Usuario extends Jugador{
 		super(nombre);
 		setAuto(auto);
 		
-		/* ------------------------------------------------------------------------------------------ */
+	/* ------------------------------------------------------------------------------------------ */
 		acelerador = new control.Acelerador();  
 		palanca = new control.Palanca();
+		llave = new control.Llave();
 	/* ------------------------------------------------------------------------------------------ */
 	}
 	
@@ -70,9 +73,10 @@ public class Usuario extends Jugador{
 		super(USER_DEFAULT_NAME);
 		setAuto(auto);
 		
-		/* ------------------------------------------------------------------------------------------ */
+	/* ------------------------------------------------------------------------------------------ */
 		acelerador = new control.Acelerador();  
 		palanca = new control.Palanca();
+		llave = new control.Llave();
 	/* ------------------------------------------------------------------------------------------ */
 	}
 	
@@ -85,9 +89,10 @@ public class Usuario extends Jugador{
 		super(nombre);
 		setAuto(new Auto());
 		
-		/* ------------------------------------------------------------------------------------------ */
+	/* ------------------------------------------------------------------------------------------ */
 		acelerador = new control.Acelerador();  
 		palanca = new control.Palanca();
+		llave = new control.Llave();
 	/* ------------------------------------------------------------------------------------------ */
 	}
 	
@@ -100,10 +105,13 @@ public class Usuario extends Jugador{
 	 * 
 	 * @throws ExceptionAutoApagado
 	 */
-	public void jugar() throws ExceptionAutoApagado{
+	public void jugar(){
 		
-		/* encender el auto */
-		auto.setEncendido(true);
+		/* si gira la llave... */
+		if (llave.fuePresionado()){
+			/* encender el auto */
+			auto.setEncendido(true);
+		}
 		
 		/* SI ENCENDIDO: */
 		if (auto.isEncendido()){
@@ -115,14 +123,8 @@ public class Usuario extends Jugador{
 			resolverFrenos();
 		
 			/* SI HACE UN CAMBIO */
-			if (palanca.fuePresionado()){ resolverCambios(); }
-		
-			
-		}else{
-		
-			throw new ExceptionAutoApagado();
-			
-		}//fin if encendido
+			if (palanca.fuePresionado()){ resolverCambios(); }	
+		}
 		
 	}//fin jugar
 	
