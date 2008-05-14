@@ -1,7 +1,7 @@
 package test;
 
 import modelo.*;
-import org.junit.Test;
+
 import junit.framework.TestCase;
 
 public class TestLlanta extends TestCase{
@@ -11,7 +11,7 @@ public class TestLlanta extends TestCase{
 	public void setUp() throws Exception {
 	}
 	
-	@Test
+	
 	public void testEstado(){
 		Llanta llanta = new Llanta();
 		System.out.println(llanta.toString());
