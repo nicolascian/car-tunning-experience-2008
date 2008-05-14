@@ -23,5 +23,15 @@ public class TestSuspencion extends TestCase{
 		suspension.desgastar();
 		assertEquals(98.9 , this.suspension.getEstado());
 	}
+	@Test
+	public void testAfectarPorClima(){
+		suspension.afectar(new Clima(100,50,50));
+		assertEquals(1.0 , this.suspension.getEfectoClimatico());
+		}
+	@Test
+	public void testAfectarPorSuperficie(){
+		suspension.afectar(new Superficie(50,50,10));
+		assertEquals(0.1 , this.suspension.getEfectoSuperficie());
+		}
 	
 }
