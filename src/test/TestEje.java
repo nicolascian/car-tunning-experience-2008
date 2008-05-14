@@ -1,35 +1,26 @@
 package test;
+import junit.framework.TestCase;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
-import modelo.Eje;
-import modelo.Eje;
 import modelo.Llanta;
-import modelo.Superficie;
-public class TestEje {
+import modelo.Eje;
 
-	
 
-	@Test
-	public void testDesgastar() {
+public class TestEje extends TestCase{
+
+	Llanta llanta = new Llanta();
+ 
+	public void testEstado() {
 		Eje eje= new Eje();
-		eje.setEstado(100);
-		eje.desgastar();
-	
-		assertEquals(100, eje.getEstado());
+		System.out.println(eje.toString());
 	}
 
+	public void testObtenerPotencia(){
+		Eje
+	}
 	
-	public void testObtenerPotencia() {
-		Eje eje= new Eje();
-		eje.setEstado(100);
-		Llanta llanta= new Llanta();
 		
-		assertEquals(65.0, llanta.obtenerPotencia()*4);
 	
-	}
+	
 		
 		
 		

@@ -30,10 +30,7 @@ implements AfectablePorSuperficie{
 	/*Constructor,inicia estado de eje en 100*/
 	public Eje(){
 		this.setEstado(100);
-		LlantaDerecha= new Llanta();
-		LlantaIzquierda= new Llanta();
-		NeumaticoDerecho= new NeumaticoMixto();
-		NeumaticoIzquierdo= new NeumaticoMixto();
+		
 	}
 	
 	/**
@@ -123,6 +120,12 @@ implements AfectablePorSuperficie{
 		NeumaticoIzquierdo = neumaticoIzquierdo;
 	}
 
-	
+	public String toString(){
+		String cadena = this.getNombre()+", Estado: "+this.getEstado()+" %.";
+		return cadena;
+	}
+	public String getNombre(){
+		return "Eje";
+	}
 	
 }
