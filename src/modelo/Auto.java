@@ -55,21 +55,21 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setTurbo(new Turbo());
 		//creacion de ejes
 		//eje delantero
-		try{  
+		 
 		  setEjeDelantero(new Eje());
 		  ejeDelantero.setLlantaDerecha(new Llanta());
 		  ejeDelantero.setLlantaIzquierda(new Llanta());
 		  ejeDelantero.setNeumaticoDerecho(new NeumaticoMixto());
 		  ejeDelantero.setNeumaticoIzquierdo(new NeumaticoMixto());
-		}catch(Exception e){}
+		
 		//eje trasero
-		try{
+		
 		  setEjeTrasero(new Eje());
 		  ejeTrasero.setLlantaDerecha(new Llanta());
 		  ejeTrasero.setLlantaIzquierda(new Llanta());
 		  ejeTrasero.setNeumaticoDerecho(new NeumaticoMixto());
 		  ejeTrasero.setNeumaticoIzquierdo(new NeumaticoMixto());
-		}catch(Exception e){}
+		
 		setEncendido(false);
 		//inicializacion de aceleracion y velocidad
 		Velocidad=0;
@@ -382,14 +382,16 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	}
 
 	public void setEjeDelantero(Eje ejeDelantero) {
-	 try{	
+	 
 		ejeDelantero.instalar(this);
+		try{	
 		ejeDelantero.setLlantaDerecha(this.getEjeDelantero().getLlantaDerecha());
 		ejeDelantero.setLlantaIzquierda(this.getEjeDelantero().getLlantaIzquierda());
 		ejeDelantero.setNeumaticoDerecho(this.getEjeDelantero().getNeumaticoDerecho());
 		ejeDelantero.setNeumaticoIzquierdo(this.getEjeDelantero().getNeumaticoIzquierdo());
+		}catch(Exception e){}
 		this.ejeDelantero = ejeDelantero;
-	 }catch(Exception e){}
+	 
 	}
 
 	public Eje getEjeTrasero() {
@@ -397,14 +399,16 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	}
 
 	public void setEjeTrasero(Eje ejeTrasero) {
-	 try{
+	 
 		ejeTrasero.instalar(this);
+		try{
 		ejeTrasero.setLlantaDerecha(this.getEjeTrasero().getLlantaDerecha());
 		ejeTrasero.setLlantaIzquierda(this.getEjeTrasero().getLlantaIzquierda());
 		ejeTrasero.setNeumaticoDerecho(this.getEjeTrasero().getNeumaticoDerecho());
 		ejeTrasero.setNeumaticoIzquierdo(this.getEjeTrasero().getNeumaticoIzquierdo());
+		}catch(Exception e){}
 		this.ejeTrasero = ejeTrasero;
-	 }catch(Exception e){}
+	 
 	}
 
 	/**
