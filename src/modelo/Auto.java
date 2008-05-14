@@ -21,6 +21,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private double Velocidad; // integral de Aaceleracion
 	private double Aceleracion; // = Potencia de las RPM cuadrado y algo mas
 	private double Posicion; // dstancia recorrida
+	private double tiempo = (0.000000000006);//tiempoPorCiclo;
 	
 	private Motor motor;
 	private Caja caja;
@@ -103,32 +104,32 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
     }
 
 	/**
-	 * getAceleracion
+	 * getAceleracion = a = cteAcPot . ( PotTotal2 + RPM )
 	 * @return
 	 */
 	public double getAceleracion(){
 		
-		Aceleracion = CNTE_ACELERACION_POTENCIA * (getPotenciaTotal()*getPotenciaTotal());
+		Aceleracion = CNTE_ACELERACION_POTENCIA * ( (getPotenciaTotal()*getPotenciaTotal())/* + getMotor().getRPM() */);
 		return Aceleracion;		
 	}
 	
 	/**
-	 * getVelocidad
+	 * getVelocidad = Vo + a.t
 	 * @return
 	 */
 	public double getVelocidad(){
 		
-		Velocidad = this.getAceleracion() * 20;
+		Velocidad = /*velocidadInicial + */ getAceleracion() * tiempo;
 		return Velocidad;
 	}
 	
 	/**
-	 * getPosicion
+	 * getPosicion = V.t + 1/2 a.t2
 	 * @return
 	 */
 	public double getPosicion() {
 		
-		Posicion = getVelocidad() * 
+		Posicion = getVelocidad() * tiempo + (0.5)*(getAceleracion()*(tiempo*tiempo));
 		return Posicion;
 	}
 	
@@ -153,8 +154,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		            caja.obtenerPotencia() +
 		            suspension.obtenerPotencia() +
 		            escape.obtenerPotencia() +
-		            //ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteris
-		            //ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
+		            ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteros
+		            ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
 		            turbo.obtenerPotencia();
 		}
 		//en caso de que el auto se este moviendo la carroceria aporta potencia negativa
@@ -183,6 +184,10 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		try{
 			comprobarComponentes();
 		}catch (Exception e){
+		/*	System.out.println("" +
+	        "No esta listo para carrera "
+		    + e.getClass().getName()  + " " 
+		    + e.getMessage());   */
 			return false;
 		}
 		return listo;
@@ -208,8 +213,15 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @param encendido
 	 */
 	public void setEncendido(boolean encendido) {
-	 	if(estaListoParaCarrera())
-			getMotor().setEncendido(encendido);
+	 	if(estaListoParaCarrera()){
+	 		
+	 		if (encendido ==true){
+	 			getMotor().encender();
+	 		}else{
+	 			getMotor().apagar();
+	 		}
+	 		
+	 	}
 	}
 	
 	/**

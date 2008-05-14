@@ -13,9 +13,19 @@ los test se hacen en JUnit version 3.X.X
 
 modelo MVC, modelo, vista, control
 #########################################################################################
-MODIFIQUE LOS setEjeDelantero() y setEjeTrasero PORQUE QUEDABAN COLAGADAS LAS REFERENCIAS
-A LAS LLANTAS Y LOS NEUMATICOS.
-NICO M
+
+CHE, toque de TODO por TODOS lados, si no hicieron un Update antes de empezar a cambiar 
+algo se joden por boludos.
+
+hice un cambio en Pista: en jugadorCambioTramo(int nroJugador)
+le agregue una negacion ! (espero que este bien)
+
+
+en Auto, getPotenciaTotal; 
+porque esta afuera del if??????????
+potencia=potencia+getCarroceria().obtenerPotencia(); ???
+
+nico
 #########################################################################################
 ObtenerPotencia de los componentes tira MAXIMO 50 HP
 		excepto MOTOR TURBO que tiran MAS

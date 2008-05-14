@@ -32,16 +32,10 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	 * Escape
 	 * 
 	 */
-	
-	
-	
-	
-	
-	
-	public void Escape(){
+	public Escape(){
 		HumedadOptima = 50;
 		PresionOptima = 1013;
-		setEstado(100);
+		this.setEstado(100);
 	}
 	
 	/**
@@ -51,10 +45,10 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	 * @param HumedadOptima
 	 * @param PresionOptima
 	 */
-	public void Escape(double HumedadOptima, double PresionOptima){
+	public Escape(double HumedadOptima, double PresionOptima){
 		this.HumedadOptima = HumedadOptima;
 		this.PresionOptima = PresionOptima;
-		setEstado(100);
+		this.setEstado(100);
 	}
 	/**
 	 * El escape se  va desgastando 
