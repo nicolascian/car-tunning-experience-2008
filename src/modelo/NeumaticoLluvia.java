@@ -56,6 +56,11 @@ public class NeumaticoLluvia extends Neumatico
 		this.setRelieveSuperficie(0);
 	}
 	
+	/**
+	 * La potencia entregada esta dada por el Estado del neumatico y por 
+	 * el relieve de la superficie. Cuanto mas plana sea, mayor potencia
+	 * entregara.
+	 */
 	public double obtenerPotencia(){
 		return ((this.getEstado()/100))*(this.getPotenciaMax()- this.getRelieveSuperficie());
 	}
