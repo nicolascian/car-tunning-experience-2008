@@ -89,7 +89,7 @@ public class TestAutoSecondEdition extends TestCase {
 		/*while( auto.getMotor().getRPM() <= 700){*/
 		
 		int contador =0;
-		while( contador <= 500){
+		while( contador <= 1500){
 
 			/*
 			long tiempo=System.currentTimeMillis()+1000;
@@ -99,11 +99,8 @@ public class TestAutoSecondEdition extends TestCase {
 			System.out.print("Cambio: ");
 			System.out.print(auto.getCaja().getCambio());
 			
-			System.out.print(" RPM: ");
+			System.out.print("  RPM: ");
 			System.out.print((long)auto.getMotor().getRPM());
-			
-			System.out.print(" Estado: ");
-			System.out.print((long)auto.getEstado());
 			
 			System.out.print("  A: ");
 			System.out.print((long)auto.getAceleracion());
@@ -114,7 +111,8 @@ public class TestAutoSecondEdition extends TestCase {
 			System.out.print("  P: ");
 			System.out.println((long)auto.getPosicion());
 			
-			
+			System.out.print("  Estado: ");
+			System.out.print((long)auto.getEstado());
 
 			contador++;
 		}//fin while
