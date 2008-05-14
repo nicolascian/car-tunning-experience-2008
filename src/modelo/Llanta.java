@@ -17,7 +17,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 	
 	
 	// en hp
-	private static double  potenciaNormal=15;  
+	private static double potenciaNormal=15;  
 	
 	//expresado en kg
 	private double pesoNormal=25;
