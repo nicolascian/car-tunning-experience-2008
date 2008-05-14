@@ -1,6 +1,8 @@
 package test;
 
+import junit.framework.Test;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 import modelo.*;
 
 public class TestClima extends TestCase {
@@ -23,7 +25,6 @@ public class TestClima extends TestCase {
 	public void testGetTemperatura() {
 		assertEquals(25.0, clima1.getTemperatura());
 		assertEquals(100.0, clima2.getTemperatura());
-
 	}
 
 
