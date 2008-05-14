@@ -29,8 +29,8 @@ public class TestAuto {
 		assertNotNull(auto.getSuspension());
 		assertNotNull(auto.getTurbo());
 		assertFalse(auto.isEncendido());
-		assertFalse(auto.isAutomatica());
-		assertTrue(auto.isManual());
+		assertTrue(auto.isAutomatica());
+		assertFalse(auto.isManual());
 		assertFalse(auto.isSecuencial());
 		assertTrue(auto.getVelocidad()==0);
 	  }catch(AssertionError a){
