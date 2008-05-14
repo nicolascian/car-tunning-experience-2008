@@ -8,19 +8,12 @@
 package modelo;
 
 /**
- * Constantes
+ * Constantes Globales del programa.
  * 
  */
 public abstract class Constantes {
 	
-	/*
-	 * 
-	 *     coeficiente de desgaste entre 1 y 10
-	 * 
-	 * 
-	 */
-	
-	
-	public static double tiempoPorCiclo = (0.000000000006);
+	public static double tiempoPorCiclo = (0.000000000006);/*multiplicador para
+									el calculo del desgaste de los componentes*/
 
 }
