@@ -109,10 +109,10 @@ public class TestAutoSecondEdition extends TestCase {
 			System.out.print((long)auto.getVelocidad());
 
 			System.out.print("  P: ");
-			System.out.println((long)auto.getPosicion());
+			System.out.print((long)auto.getPosicion());
 			
 			System.out.print("  Estado: ");
-			System.out.print((long)auto.getEstado());
+			System.out.println((long)auto.getEstado());
 
 			contador++;
 		}//fin while
