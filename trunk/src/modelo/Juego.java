@@ -49,17 +49,17 @@ public class Juego{
  */		
 
 		while(!finCarrera){
-			
 			jugador1.jugar();
 			
 			jugador2.jugar();
-			
+
 			/* vemos si alguien llego */
+			/*
 			double Long = pista.getLongitud();
 			if ( (auto1.getPosicion() == Long) ||
 				 (auto2.getPosicion() == Long) ){
 				finCarrera = true;	}
-			
+			*/
 			/* verifica el tramo de cada auto */
 			try{
 				pista.actualizarPosiciones();

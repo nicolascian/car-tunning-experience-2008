@@ -97,7 +97,16 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setEscape(escape);
 		setTurbo(turbo);
 		setEjeDelantero(new Eje());
+		  ejeDelantero.setLlantaDerecha(new Llanta());
+		  ejeDelantero.setLlantaIzquierda(new Llanta());
+		  ejeDelantero.setNeumaticoDerecho(new NeumaticoMixto());
+		  ejeDelantero.setNeumaticoIzquierdo(new NeumaticoMixto());
+
 		setEjeTrasero(new Eje());
+		  ejeTrasero.setLlantaDerecha(new Llanta());
+		  ejeTrasero.setLlantaIzquierda(new Llanta());
+		  ejeTrasero.setNeumaticoDerecho(new NeumaticoMixto());
+		  ejeTrasero.setNeumaticoIzquierdo(new NeumaticoMixto());
 		setEncendido(false);
 		//inicializacion de aceleracion y velocidad
 		Velocidad=0;
