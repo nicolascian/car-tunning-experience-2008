@@ -64,21 +64,23 @@ public class TestAuto {
 	public void testSetEncendido(){
 		try{
 			auto.setEncendido(true);
-			assertTrue(auto.isEncendido());
-			 System.out.println(auto.toString());	 
+			assertTrue("Error Encendido Auto",auto.isEncendido());
+			assertTrue("Error Encendido Motor",auto.getMotor().isEncendido());
 		}catch(AssertionError a){
 			 a.printStackTrace();
 			 a.getMessage();
 			 System.out.println("testSetEncendido() "+a);
-		 }
+		}
 	}
 	
 	@Test
 	public void testAcelerar(){
 	  try{	 
 		  auto.acelerar(true);
-		  //assertTrue("Error acelerando auto",auto.isAcelerando());
-		  //assertTrue("Error acelerando motor",auto.getMotor().isAcelerando());
+		  auto.getMotor().acelerar(true);
+		  if(auto.getMotor().isAcelerando()) System.out.println("acelera");
+		// assertTrue("Error acelerando auto",auto.isAcelerando());
+		  assertTrue("Error acelerando motor",auto.getMotor().isAcelerando());
 		  assertTrue("Error Encendido motor",auto.getMotor().isEncendido());
 	  }catch (AssertionError a){
 		  System.out.println("Error Acelerar "+a);
@@ -91,7 +93,6 @@ public class TestAuto {
 		  long tiempo=System.currentTimeMillis()+1000;
 		  auto.getCaja().siguiente();
 		  while(System.currentTimeMillis()<tiempo);
-		 // System.out.println(auto.toString());	  
 	  }catch (Exception e){
 		  System.out.println("Error Acelerar");
 	  }

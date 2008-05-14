@@ -231,13 +231,12 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * desgastados completamente.
 	*/
 	public void setEncendido(boolean encendido) {
-	 	if(estaListoParaCarrera()){
-	 		if (encendido==true){
-	 			getMotor().encender();
-	 		}else{
-	 			getMotor().apagar();
-	 		}
-	 	}
+      if(motor!=null){	
+		if(encendido)
+	  		getMotor().encender();
+        else
+	 		getMotor().apagar();
+      }
 	}
 	
 	/**
@@ -245,7 +244,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @Post: Retorna true en caso de que el auto se encuentre encendido.
 	*/
 	public boolean isEncendido() {
-		if(estaListoParaCarrera())
+		if(motor!=null)
 			return(getMotor().isEncendido());
 		else
 			return(false);
@@ -256,8 +255,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @Post: En caso de que la instancia se encuentre lista para carrera se enciende la instancia.
 	*/
     public void acelerar(boolean valor){
-		if(estaListoParaCarrera())
-			getMotor().acelerar(valor);
+	   	if(getMotor()!=null)
+		   getMotor().acelerar(valor);
+	  
 	}
 	
 	/**
@@ -265,9 +265,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @Post: Se retorna true en caso de que la instancia se encuentre acelerando.
 	*/
 	public boolean isAcelerando(){
-		if(estaListoParaCarrera())
+		if(getMotor()!=null){
 		   return(getMotor().isAcelerando());
-		else
+		}else
 		   return false;
 	}
 	
