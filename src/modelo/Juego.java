@@ -48,7 +48,6 @@ public class Juego{
  * lo que marcaria la finalizacion de la carrera y el ganador.
  */		
 		while(!finCarrera){
-			//Control1.acelerando ? true
 			
 			jugador1.jugar();
 			
@@ -62,7 +61,7 @@ public class Juego{
 			
 			/* verifica el tramo de cada auto */
 			try{
-			pista.actualizarPosiciones();
+				pista.actualizarPosiciones();
 			}catch (Exception e){
 				finCarrera=true;
 			}
