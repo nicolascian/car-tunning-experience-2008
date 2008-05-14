@@ -78,7 +78,7 @@ public class NeumaticoLluvia extends Neumatico
 	 * y en hasta un 40% por el relieve de la misma.
 	 */
 	public double calcularAdherencia(){
-		return (1- 0.4*this.getViscosidadSuperficie() - 0.2* this.getRelieveSuperficie());
+		return (1- 0.4*(1-this.getViscosidadSuperficie()) - 0.2* this.getRelieveSuperficie());
 	}
 	
 	/**

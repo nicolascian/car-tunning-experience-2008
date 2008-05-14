@@ -18,7 +18,7 @@ public class TestNeumatico extends TestCase{
 		clima1 = new Clima(35,5,900);
 		clima2 = new Clima(0,95,1020);
 		sup1 = new Superficie(5,5,95);
-		sup2 = new Superficie (80,70,80);
+		sup2 = new Superficie (80,100,80);
 		NI = new NeumaticoInvierno();
 		NL = new NeumaticoLluvia();
 		NM = new NeumaticoMixto();
@@ -51,37 +51,88 @@ public class TestNeumatico extends TestCase{
 		assertTrue(NS.getEstado()>0);
 		assertTrue(NTT.getEstado()>0);
 		
-		System.out.println(NI.getEstado());
-		System.out.println(NL.getEstado());
-		System.out.println(NM.getEstado());
-		System.out.println(NS.getEstado());
-		System.out.println(NTT.getEstado());
-		
 	}
 	
 	public void testObtenerPotencia(){
 		this.testDesgastar();
-		System.out.println(NI.obtenerPotencia());
+	
 		assertTrue(NI.obtenerPotencia()>0);
 		assertTrue(NI.obtenerPotencia()<=3);
-		System.out.println(NL.obtenerPotencia());
+		
 		assertTrue(NL.obtenerPotencia()>0);
 		assertTrue(NL.obtenerPotencia()<=2);
-		System.out.println(NM.obtenerPotencia());
+		
 		assertTrue(NM.obtenerPotencia()>0);
 		assertTrue(NM.obtenerPotencia()<=1);
-		System.out.println(NS.obtenerPotencia());
+		
 		assertTrue(NS.obtenerPotencia()>0);
 		assertTrue(NS.obtenerPotencia()<=5);
-		System.out.println(NTT.obtenerPotencia());
+		
 		assertTrue(NTT.obtenerPotencia()>0);
 		assertTrue(NTT.obtenerPotencia()<=3);
 	}
-	/*
+
 	public void testAdherencia(){
 		this.testDesgastar();
+		assertTrue(NI.calcularAdherencia()>0);
+		assertTrue(NL.calcularAdherencia()>0);
+		assertTrue(NM.calcularAdherencia()>0);
+		assertTrue(NS.calcularAdherencia()>0);
+		assertTrue(NTT.calcularAdherencia()>0);
+		
+		System.out.println("test en Superficie sin relieve seca");
+		System.out.println("N invierno: "+NI.calcularAdherencia());
+		System.out.println("N lluvia: "+NL.calcularAdherencia());
+		System.out.println("N mixto: "+NM.calcularAdherencia());
+		System.out.println("N slick: "+NS.calcularAdherencia());
+		System.out.println("N todo terreno: "+NTT.calcularAdherencia());
 	}
-	*/
+
+	public void testAdherenciaSupMojada(){
+		NM.afectar(clima2);
+		NS.afectar(clima2);
+		NTT.afectar(clima2);
+		
+		this.testDesgastar();
+		assertTrue(NI.calcularAdherencia()>0);
+		assertTrue(NL.calcularAdherencia()>0);
+		assertTrue(NM.calcularAdherencia()>0);
+		assertTrue(NS.calcularAdherencia()>0);
+		assertTrue(NTT.calcularAdherencia()>0);
+		
+		System.out.println("test en Superficie sin relieve mojada");
+		System.out.println("N invierno: "+NI.calcularAdherencia());
+		System.out.println("N lluvia: "+NL.calcularAdherencia());
+		System.out.println("N mixto: "+NM.calcularAdherencia());
+		System.out.println("N slick: "+NS.calcularAdherencia());
+		System.out.println("N todo terreno: "+NTT.calcularAdherencia());
+	}
+	
+	public void testAdherenciaSupRelieveMojada(){
+		NI.afectar(sup2);
+		NL.afectar(sup2);
+		NM.afectar(clima2);
+		NM.afectar(sup2);
+		NS.afectar(clima2);
+		NS.afectar(sup2);
+		NTT.afectar(clima2);
+		NTT.afectar(sup2);
+		
+		this.testDesgastar();
+		assertTrue(NI.calcularAdherencia()>0);
+		assertTrue(NL.calcularAdherencia()>0);
+		assertTrue(NM.calcularAdherencia()>0);
+		assertTrue(NS.calcularAdherencia()>0);
+		assertTrue(NTT.calcularAdherencia()>0);
+		
+		System.out.println("test en Superficie con relieve mojada");
+		System.out.println("N invierno: "+NI.calcularAdherencia());
+		System.out.println("N lluvia: "+NL.calcularAdherencia());
+		System.out.println("N mixto: "+NM.calcularAdherencia());
+		System.out.println("N slick: "+NS.calcularAdherencia());
+		System.out.println("N todo terreno: "+NTT.calcularAdherencia());
+	}
+	
 	public static Test suite(){
 		return new TestSuite(TestNeumatico.class);
 	}
