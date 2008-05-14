@@ -12,6 +12,8 @@ public class TestPista extends TestCase{
 		Jugador[] jugador = new Jugador[2];
 		jugador[0]= new Virtual(new Principiante());
 		jugador[1] = new Virtual(new Principiante());
+		jugador[0].getAuto().setPosicion(0);
+		jugador[1].getAuto().setPosicion(0);
 		tramos = new ArrayList<Tramo>();
 		tramos.add(new Tramo(0,150,new Clima(),new Superficie()));
 		tramos.add(new Tramo(150, 321.89, new Clima(35,75,1014),new Superficie(50,50,50)));
@@ -26,11 +28,11 @@ public class TestPista extends TestCase{
 		assertEquals("Pista de 321.89 metros, compuesta por 2 tramos.", pista.toString());
 	}
 	
-	public void testTramoActual1()throws Exception{
+	public void testTramoActual1(){
 		try{
 		assertEquals(tramos.get(0),pista.buscarTramoActual(0));
 		}catch (Exception e){
-			throw e;
+			fail("No deberian haber excepciones");
 			};
 	}
 	
@@ -41,19 +43,25 @@ public class TestPista extends TestCase{
 	public void testJugador2(){
 		assertNotNull(pista.getJugador(1));
 	}
-		
-	public void testTramoActual2()throws Exception{
+	
+	/*
+	 * Se le da al auto una poscion dentro de la pista y se
+	 * espera que se encuentre el tramo en el que se encuentra
+	 */
+	public void testTramoActual2(){
 		pista.getJugador(0).getAuto().setPosicion(200);
 		try{
 			assertEquals(tramos.get(1), pista.buscarTramoActual(0));
 		}catch (Exception e){
-			throw e;
+			fail("No deberian haber excepciones");
 		};
 	}
 
-	public void testTramoActual3()throws Exception{
-		/*Se espera que se lance una excepcion ya que el auto se
-		 *encuentra en una poscion mayor al largo de la pista */
+	/*
+	 * Se le da al auto una posicion mayor al largo de la pista y
+	 * se espera que se lance la excepcion fin de pista
+	 */
+	public void testTramoActual3(){
 		pista.getJugador(0).getAuto().setPosicion(400);
 		try{
 			pista.buscarTramoActual(0);
@@ -62,6 +70,12 @@ public class TestPista extends TestCase{
 		};
 	}
 
+	/*
+	 * Se prueba la actualizacion de las posiciones de los autos de los
+	 * jugadores. Las posiciones de los autos son tales que tienen otro
+	 * tramo por delante, por lo que se espera que actualizar posiciones
+	 * no lance excepciones.
+	 */
 	public void testActualizarPosiciones() throws ExceptionFinPista{
 		try{
 			pista.actualizarPosiciones();
