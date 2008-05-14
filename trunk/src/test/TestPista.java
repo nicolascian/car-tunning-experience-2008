@@ -7,6 +7,7 @@ public class TestPista extends TestCase{
 	Jugador[] jugador;
 	ArrayList<Tramo> tramos;
 	Pista pista ;
+	
 	public void setUp(){
 		Jugador[] jugador = new Jugador[2];
 		jugador[0]= new Virtual(new Principiante());
