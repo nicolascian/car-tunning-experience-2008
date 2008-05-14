@@ -20,7 +20,7 @@ package modelo;
 public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	/* implementado con muchas multiplicaciones */
 	
-	private double EfectoClimatico;
+	private double EfectoClimatico = 1;
 	
 	/* no tienen setter pues son constantes */
 	private static double CTE_HUMEDAD_OPTIMA = 40; // %
@@ -29,7 +29,9 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	/**
 	 * Constructor de Inyeccion por defecto.
 	 */
-	public Inyeccion(){}
+	public Inyeccion(){
+		super();
+	}
 		
 	/**
 	 * Constructor de Inyeccion con parametros.
@@ -37,6 +39,7 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	public Inyeccion(double cte_humedad_optima, 
 						double cte_relacion_potencia){
 		
+		super();
 		CTE_HUMEDAD_OPTIMA = cte_humedad_optima;
 		CTE_RELACION_POTENCIA = cte_relacion_potencia;
 	}
@@ -56,7 +59,7 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 		/* se consume combustible segun la Cilindrada, el tipo de combustible
 		 * y se afecta segun efectoclimatico y el Estado */         
 		double valor = auto.getMotor().getCilindrada() * auto.getMotor().getRPM();
-		return (valor * (1/getEstado()) * (EfectoClimatico/10)  );
+		return (valor * (1/(getEstado()+0.1)) * (EfectoClimatico/10)  );
 	}
 	
 	/** 
@@ -98,9 +101,13 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	 */
 	public double obtenerPotencia(){
 		/* es una relacion matematica */
-		return ((auto.getCombustible().obtenerPotencia() *
+		double AUX = (((auto.getCombustible().obtenerPotencia() *
 				 CTE_RELACION_POTENCIA) /100) * 
-				  EfectoClimatico * getEstado();
+				  EfectoClimatico * getEstado())/100;
+		
+		if (AUX > 50){AUX=50;}
+		
+		return AUX;
 	}
 	
 	/* toString */
