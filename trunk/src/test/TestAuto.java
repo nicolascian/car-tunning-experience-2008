@@ -56,7 +56,7 @@ public class TestAuto {
 		}catch(AssertionError a){
 			 a.printStackTrace();
 			 a.getMessage();
-			 System.out.println("testSetEncendido() "+a);
+			 System.out.println("testEstaListoParaCarrera() "+a);
 		 }
 	}
 	
