@@ -7,6 +7,7 @@ public class TestPista extends TestCase{
 	Jugador[] jugador;
 	ArrayList<Tramo> tramos;
 	Pista pista ;
+	Pista pista2;
 	
 	public void setUp(){
 		Jugador[] jugador = new Jugador[2];
@@ -93,6 +94,14 @@ public class TestPista extends TestCase{
 		}
 	}
 	
+	public void testConstructores2(){
+		pista2 = new Pista(pista.getJugador(0),pista.getJugador(1), 500);
+		assertNotNull(pista2);
+		assertNotNull(pista2.getJugador(0));
+		assertEquals(2,pista2.getCantJugadores());
+		assertEquals(pista2.getTramoActual(0),pista2.getTramoActual(1));
+		
+	}
 	public static Test suite(){
 		return new TestSuite(TestPista.class);
 	}
