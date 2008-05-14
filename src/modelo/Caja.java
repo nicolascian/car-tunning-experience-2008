@@ -95,10 +95,7 @@ public abstract class Caja extends Componente{
 		   this.cambio=cambio;
 		   this.desgastar();
 		   double rpm=obtenerRpm();
-		   //cambio de revoluciones actuales
-		   if(rpm<motor.getRevolucionesMinimasEncendido())
-			   rpm=motor.getRevolucionesMinimasEncendido();
-		   motor.modificarRpmDesdeCaja(rpm-motor.getRPM());
+		   motor.modificarRpmDesdeCaja();
 		   //cambio de revoluciones Maximas del motor segun el cambio
 		   rpm=motor.getRevolucionesMaximas();
 		   motor.setRevolucionesMaximasCambio(rpm*(1-40*getRelacionDeCambio()/rpm));
