@@ -136,4 +136,8 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 		return this.estado;
 		
 	}
+
+	public void setPeso(double peso) {
+		this.peso = peso;
+	}
 }
