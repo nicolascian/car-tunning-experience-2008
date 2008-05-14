@@ -37,7 +37,7 @@ public class TestNeumatico extends TestCase{
 	
 	public void testDesgastar(){
 		int i=0;
-		while (i<1000){
+		while (i<10000000){
 			NI.desgastar();
 			NL.desgastar();
 			NM.desgastar();
@@ -77,7 +77,11 @@ public class TestNeumatico extends TestCase{
 		assertTrue(NTT.obtenerPotencia()>0);
 		assertTrue(NTT.obtenerPotencia()<=3);
 	}
-	
+	/*
+	public void testAdherencia(){
+		this.testDesgastar();
+	}
+	*/
 	public static Test suite(){
 		return new TestSuite(TestNeumatico.class);
 	}
