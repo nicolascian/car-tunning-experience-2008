@@ -44,10 +44,11 @@ Lucas:		Desgastar y ObtenerPotencia
 			Inyeccion,Suspencion,
 			Faltan : Llantas, motor,caja,Combustible)
 			Componente <-------------------------Listo
-			eje <--------------------------------Listo
 			Carroceria <-------------------------Listo
 			Excepciones <------------------------Listo
-			
+			Llanta<----------------------- falta una parte de la prueba
+			Suspension <---------------------c/pruebas
+
 Nico C:		Clima <------------------------------Listo c/ test
 			Jugador <----------------------------Listo no se me ocurre un test
 			  Usuario <--------------------------Listo
@@ -60,12 +61,12 @@ Nico C:		Clima <------------------------------Listo c/ test
 			  Carburador <-----------------------Listo c/ test
 			  Inyeccion <------------------------Listo c/ test
 			  		
-Maxi:		Suspension 		me faltan las pruebas
+Maxi:				me faltan las pruebas
 			Combustible
 			Escape
 			Turbo
 			AlgoPesos
-			Llanta
+			eje(pruebas)
 			
 
 			
