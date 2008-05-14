@@ -214,13 +214,11 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 */
 	public void setEncendido(boolean encendido) {
 	 	if(estaListoParaCarrera()){
-	 		
-	 		if (encendido ==true){
+	 		if (encendido==true){
 	 			getMotor().encender();
 	 		}else{
 	 			getMotor().apagar();
 	 		}
-	 		
 	 	}
 	}
 	
@@ -229,7 +227,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @return
 	 */
 	public boolean isEncendido() {
-		if(getMotor()!=null)
+		if(estaListoParaCarrera())
 			return(getMotor().isEncendido());
 		else
 			return(false);
@@ -240,7 +238,13 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @param valor
 	 */
 	public void acelerar(boolean valor){
-		getMotor().acelerar(valor);
+		if(estaListoParaCarrera())
+			getMotor().acelerar(valor);
+	}
+	
+	public boolean isAcelerando(){
+		
+		return(getMotor().isAcelerando());
 	}
 	
 	/**
@@ -469,4 +473,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		return(cadena);
 	}
 		
+	
+	
 }

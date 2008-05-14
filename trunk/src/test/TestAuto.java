@@ -45,7 +45,7 @@ public class TestAuto {
 	 	try{
 			auto.comprobarComponentes();
 		}catch(Exception e){
-			System.out.println(e);
+			System.out.println("Comprobar Componentes Error"+e);
 		}
 	}
 	
@@ -65,9 +65,7 @@ public class TestAuto {
 		try{
 			auto.setEncendido(true);
 			assertTrue(auto.isEncendido());
-			//assertTrue(auto.getMotor().isEncendido());
-			//System.out.println(auto.toString());
-		 }catch(AssertionError a){
+		}catch(AssertionError a){
 			 a.printStackTrace();
 			 a.getMessage();
 			 System.out.println("testSetEncendido() "+a);
@@ -78,7 +76,7 @@ public class TestAuto {
 	public void testAcelerar(){
 	  try{	 
 		  auto.acelerar(true);
-		  assertTrue(auto.getMotor().isAcelerando());
+		  assertTrue(auto.isAcelerando());
 	  }catch (AssertionError a){
 		  System.out.println("Error Acelerar "+a);
 	  }
@@ -90,22 +88,10 @@ public class TestAuto {
 		  long tiempo=System.currentTimeMillis()+1000;
 		  auto.getCaja().siguiente();
 		  while(System.currentTimeMillis()<tiempo);
-		  System.out.println(auto.toString());	  
+		 // System.out.println(auto.toString());	  
 	  }catch (Exception e){
 		  System.out.println("Error Acelerar");
 	  }
 	}
-	
-	/*
-	@Test
-	public void testSetMotor() {
-	  try{	
-		Motor motor=new Motor();
-		auto.setMotor(motor);
-		
-	  }catch (Exception e){
-		  System.out.println("Error setMotor");
-	  }
-	}*/
-		
+				
 }
