@@ -31,6 +31,10 @@ public abstract class Alimentacion extends Componente {
 	 */
 	public abstract double CombustibleAConsumir();
 	
+	public Alimentacion(){
+		setEstado(100);
+	}
+	
 	/* toString */
 	
 	public String toString() {
