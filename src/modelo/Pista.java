@@ -58,8 +58,8 @@ public class Pista{
 		iterador[0]= Tramos.iterator();
 		iterador[1]= Tramos.iterator();
 		tramoActual = new Tramo[2];
+		tramoActual[0]= Tramos.get(0);
 		tramoActual[1]= Tramos.get(0);
-		tramoActual[2]= Tramos.get(0);
 		cantJugadores = 2;
 		for (int i = 0; i<cantJugadores; i++){
 			Jugador[i].getAuto().afectar(tramoActual[i].getClima());
