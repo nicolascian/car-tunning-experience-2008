@@ -33,5 +33,11 @@ public class TestSuspencion extends TestCase{
 		suspension.afectar(new Superficie(50,50,10));
 		assertEquals(0.1 , this.suspension.getEfectoSuperficie());
 		}
-	
+	@Test
+	public void testObtenerPotencia(){
+		suspension.setEfectoClimatico(2.1);
+		suspension.setEfectoSuperficie(2.3);
+		suspension.setEstado(85);
+		assertEquals( 4.228665 , this.suspension.obtenerPotencia());
+		}
 }
