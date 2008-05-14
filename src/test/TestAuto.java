@@ -77,7 +77,9 @@ public class TestAuto {
 	public void testAcelerar(){
 	  try{	 
 		  auto.acelerar(true);
-		  assertTrue(auto.isAcelerando());
+		  //assertTrue("Error acelerando auto",auto.isAcelerando());
+		  //assertTrue("Error acelerando motor",auto.getMotor().isAcelerando());
+		  assertTrue("Error Encendido motor",auto.getMotor().isEncendido());
 	  }catch (AssertionError a){
 		  System.out.println("Error Acelerar "+a);
 	  }
