@@ -46,7 +46,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public Auto(){
 		//creacion de componentes
 		setMotor(new Motor(4,1600,8000)); 
-		setCaja(new Manual(5));
+		setCaja(new Automatica(5));
 		setCombustible(new Combustible(50.0,0.4));
 		setCarroceria(new Carroceria(2.4));
 		setAlimentacion(new Carburador());
@@ -109,22 +109,24 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public double getVelocidad(){
 		
 		Velocidad = this.getAceleracion() * 20;
-		
 		return Velocidad;
 	}
 	
 	public double getAceleracion(){
 		
 		Aceleracion = CNTE_ACELERACION_POTENCIA * (getPotenciaTotal()*getPotenciaTotal());
-		
-		return Aceleracion;
-		
+		return Aceleracion;		
 	}
+	
+	public double getPosicion() {
+		return Posicion;
+	}
+	
+	
 
 	/**
 	 * para cada instante puede decirnos cual
 	 * es la potencia final del automovil en HP ---> 1 HP = 746W
-
 	 * 
 	 * @return
 	 */
@@ -288,14 +290,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		this.alimentacion = alimentacion;
 	}
 
-	public double getPosicion() {
-		return Posicion;
-	}
-	
-	public void setPosicion(double posicion) {
-		Posicion = posicion;
-		
-	}
 
 	/**
 	 * @return the carroceria
