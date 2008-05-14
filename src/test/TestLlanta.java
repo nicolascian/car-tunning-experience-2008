@@ -36,7 +36,6 @@ public class TestLlanta extends TestCase{
 
 	public void testObtenerPotencia(){
 		Llanta llanta = new Llanta();
-		
 		llanta.setPesoNormal(15);
 		llanta.setPeso(20);
 		assertEquals(11.25, llanta.obtenerPotencia());

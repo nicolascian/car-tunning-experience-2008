@@ -20,7 +20,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 	private static double  potenciaNormal=15;  
 	
 	//expresado en kg
-	private double pesoNormal=1;
+	private double pesoNormal=25;
 	
 	// expresada en porcentaje}
 	private double humedadOptima=50; 
@@ -37,6 +37,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 	
 	public Llanta(){
 		setEstado(100);
+		this.setPeso(25);
 		this.setCoeficienteDeDesgastePorSuperficie(3);
 	}
 	
@@ -48,7 +49,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 	 */
 	public Llanta(double pesoNormal){
 		setEstado(100);
-		this.setPesoNormal(8);
+		this.setPeso(25);
 		this.setCoeficienteDeDesgastePorSuperficie(3);
 		
 
