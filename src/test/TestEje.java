@@ -3,7 +3,8 @@ import junit.framework.TestCase;
 
 import modelo.Llanta;
 import modelo.Eje;
-
+import modelo.NeumaticoInvierno;
+import modelo.Auto;
 
 public class TestEje extends TestCase{
 
@@ -12,10 +13,11 @@ public class TestEje extends TestCase{
 	public void testEstado() {
 		Eje eje= new Eje();
 		System.out.println(eje.toString());
+		
 	}
-
 	public void testObtenerPotencia(){
-		Eje
+		
+	
 	}
 	
 		
