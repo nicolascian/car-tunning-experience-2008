@@ -34,11 +34,11 @@ public abstract class Caja extends Componente{
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
-	 * detallados a continuaci�n.
+	 * detallados a continuacion.
 	 * @param auto: auto que contiene a 
 	 * la instancia.  
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa que en 
-	 * esta implementaci�n no existe y punto muerto. Debe entre 4 y 8.
+	 * esta implementacion no existe y punto muerto. Debe entre 4 y 8.
 	*/
 	public Caja(int cantidadCambios){
 		this.cantidadCambios=cantidadCambios;
@@ -72,7 +72,7 @@ public abstract class Caja extends Componente{
 	 * @Post: Se ha obtenido el cambio actual.
 	*/
 	public int getCambio(){
-		 return cambio;
+		return cambio;
 	}
 			
 	/**
@@ -94,15 +94,14 @@ public abstract class Caja extends Componente{
 		   Motor motor=getAuto().getMotor();
 		   this.cambio=cambio;
 		   this.desgastar();
-		   double relacionRpm=Math.abs(obtenerRpm()/motor.getRevolucionesMaximas()-1); 
-		   double rpm=motor.getRevolucionesMaximas()*relacionRpm;
+		   double rpm=obtenerRpm();
 		   //cambio de revoluciones actuales
 		   if(rpm<motor.getRevolucionesMinimasEncendido())
 			   rpm=motor.getRevolucionesMinimasEncendido();
 		   motor.modificarRpmDesdeCaja(rpm-motor.getRPM());
 		   //cambio de revoluciones Maximas del motor segun el cambio
-		   rpm=motor.getRevolucionesMaximas()*(1-1/getRelacionDeCambio());
-		   motor.setRevolucionesMaximasCambio(rpm);
+		   rpm=motor.getRevolucionesMaximas();
+		   motor.setRevolucionesMaximasCambio(rpm*(1-40*getRelacionDeCambio()/rpm));
 		 }//fin cambio!=cambio instancia
 		}//fin cambio valido
 	}
@@ -119,7 +118,9 @@ public abstract class Caja extends Componente{
 	 * estos metodos los usa la caja
 	 * heredada Automatica */
 	public void Chequear(){}
+	
 	public void siguiente(){}
+	
 	public void anterior(){}
 
 	/**
@@ -127,7 +128,8 @@ public abstract class Caja extends Componente{
 	 * @Post: Se retorna la cantidad de RPM de la instancia para le cambio actual.
 	*/
 	public double obtenerRpm() {
-		return (getAuto().getMotor().getRPM()/getRelacionDeCambio());
+		double rpm=getAuto().getMotor().getRPM();
+		return (rpm*(1-20*getRelacionDeCambio()/rpm));
 	}
 
 	/**
@@ -176,6 +178,5 @@ public abstract class Caja extends Componente{
 		cadena=cadena+"Estado "+getEstado()+"%"+'\n';
 		return cadena;
 	}
-
 		
 }

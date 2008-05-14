@@ -60,7 +60,5 @@ public class Automatica extends Caja{
 			relacionDeCambio[cursor]=15.0/(cursor-0.3)-9.0/(cantidadCambios*cantidadCambios);
 		  else
 			relacionDeCambio[cursor]=60.0;  
-	}
-
-	
+	}	
 }

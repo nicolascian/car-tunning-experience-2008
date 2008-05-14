@@ -34,7 +34,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	protected final static double TEMPERATURA_MEDIANA_AIRE=15;//temperatura del aire la cual si se sobrepasa se 
 												//se disminuye la potencia del motor, y si se opera por debajo
 												//de esa temperatura aumenta el rendimiento.
-	protected final static double COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO=0.25;
+	protected final static double COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO=0.8;
 	
 	protected final static double COEFICIENTE_RPM_ENCENDIDO=0.08;// 8%
 	
@@ -101,7 +101,7 @@ public class Motor extends Componente implements AfectablePorClima{
 		setCilindrada(cilindrada);
 		//inicializacion de revoluciones
 		setRevolucionesMaximas(revolucionesMaximas);
-		setRevolucionesMaximasCambio(revolucionesMaximas);
+		setRevolucionesMaximasCambio(revolucionesMaximas*COEFICIENTE_RPM_ENCENDIDO);
 		RPM=0;
 		//inicializacion de temperaturas
 		setTemperaturaAire(25); //°C
@@ -132,7 +132,6 @@ public class Motor extends Componente implements AfectablePorClima{
 		setCilindrada(1600);
 		//inicializacion de revoluciones
 		setRevolucionesMaximas(8000);
-		setRevolucionesMaximasCambio(8000);
 		RPM=0;
 		//inicializacion de temperaturas
 		setTemperaturaAire(25); //°C
@@ -140,14 +139,15 @@ public class Motor extends Componente implements AfectablePorClima{
 		//inicilizacion de coeficientes
 		setCoeficienteDeAbsorcionCalorico(COEFICIENTE_DE_ABSORCION_CALORICO_INICIAL);
 		setCoeficienteDeDisipacionCalorico(COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL);
-		setEncendido(false);
-		setAcelerando(false);
+		encendido=false;
+		acelerando=false;
 		setTiempoDeControlAceleracion(0);
 		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*
 				                  COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
 		setAuto(null);
 		setEstado(100);
 		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
+		setRevolucionesMaximasCambio(getRevolucionesMinimasEncendido()*1.6);
 	}
 	
 	/**
@@ -161,8 +161,9 @@ public class Motor extends Componente implements AfectablePorClima{
 			setEncendido(true);
 			setTemperatura(TEMPERATURA_INICIAL);
 			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
-			setRevolucionesMaximasCambio(getRevolucionesMaximas());
+			setRevolucionesMaximasCambio(getRevolucionesMinimasEncendido()*1.6);
 			setRPM(getRevolucionesMinimasEncendido());
+			getAuto().getCaja().setCambio(0);
 			setAcelerando(false);
 		}
 	}
@@ -174,6 +175,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	*/
 	public void apagar(){
 		if(isEncendido()){
+			getAuto().getCaja().setCambio(0);
 			setEncendido(false);
 			setRPM(0);
 			setTemperatura(25);
@@ -191,20 +193,20 @@ public class Motor extends Componente implements AfectablePorClima{
 	 if(isEncendido())
 	  if(!isActualizandoRPM()){
 	   setActualizandoRPM(true);
-	   if(RPM<getRevolucionesMaximas()){
+	   long diferenciaDeTiempoReal=System.currentTimeMillis()-getTiempoDeControlAceleracion();
+	   long tiempoParametroFuncion=getTiempoDeControlCurvaAceleracion()+diferenciaDeTiempoReal;
+	   if(tiempoParametroFuncion<=getTiempoCaracteristicoAceleracion()){
 		 if(isAcelerando()){
 			 double rpmInicial=RPM;
-			 long diferenciaDeTiempoReal=System.currentTimeMillis()-getTiempoDeControlAceleracion();
-			 setRPM(getRevolucionesMaximas()*Math.sin((getTiempoDeControlCurvaAceleracion()+diferenciaDeTiempoReal)*Math.PI/
-		    	 (2*getTiempoCaracteristicoAceleracion())));
+			 setRPM(getRevolucionesMaximas()*(Math.sin((tiempoParametroFuncion)*Math.PI/
+		    	 (2*getTiempoCaracteristicoAceleracion()))));
 		     //actualizacion de temperatura
 		     actualizarTemperaturaPorCambioDeRpm(rpmInicial, RPM, diferenciaDeTiempoReal);
 		 }else
 		   if(RPM>getRevolucionesMinimasEncendido()) {
 			 double rpm=RPM;
 			 double rpmInicial=RPM;
-			 long diferenciaDeTiempoReal=System.currentTimeMillis()-getTiempoDeControlAceleracion();
-			 rpm=getRevolucionesMaximas()*Math.cos((getTiempoDeControlCurvaAceleracion()+diferenciaDeTiempoReal)*Math.PI/
+			 rpm=getRevolucionesMaximas()*Math.cos((tiempoParametroFuncion)*Math.PI/
 			    	 (2*getTiempoCaracteristicoAceleracion()));
 	    	 if(rpm<getRevolucionesMinimasEncendido())
 	    		 rpm=getRevolucionesMinimasEncendido();
@@ -213,7 +215,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	    	 actualizarTemperaturaPorCambioDeRpm(rpmInicial, RPM, diferenciaDeTiempoReal);
            }
 	     //chequeo para compatibilidad con caja automatica
-	     getAuto().getCaja().Chequear();
+		 getAuto().getCaja().Chequear(); 
 	   }
 	   setActualizandoRPM(false);
 	  }
@@ -264,6 +266,7 @@ public class Motor extends Componente implements AfectablePorClima{
 			setTiempoDeControlCurvaAceleracion(Math.round((2*getTiempoCaracteristicoAceleracion()/Math.PI)*
                     Math.acos(Math.round(RPM/getRevolucionesMaximas()))));
 	    }//fin falso y acelerando
+		actualizarRpm();
 	  }//fin encendido	
 	}
 		
@@ -331,9 +334,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	 *  @Post: Se han seteado las rpm de la instancia.    
 	*/
 	protected void setRPM(double rpm) {
-		if(rpm>0)
-		   this.RPM=rpm;
-		getAuto().getCaja().Chequear();
+		this.RPM=rpm;
 	}
 	
 	/**
@@ -567,6 +568,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * @return the temperatura
 	 */
 	public double getTemperatura() {
+		actualizarRpm();
 		return temperatura;
 	}
 
