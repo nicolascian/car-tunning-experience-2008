@@ -91,14 +91,30 @@ public class TestAutoSecondEdition extends TestCase {
 		int contador =0;
 		while( contador <= 500){
 
+			/*
 			long tiempo=System.currentTimeMillis()+1000;
-			 while(System.currentTimeMillis()<tiempo);
+			 while(System.currentTimeMillis()<tiempo);  */
 			
-			System.out.print("RPM: ");
+
+			System.out.print("Cambio: ");
+			System.out.print(auto.getCaja().getCambio());
+			
+			System.out.print("       RPM: ");
 			System.out.println(auto.getMotor().getRPM());
 			
-			System.out.print("Cambio: ");
-			System.out.println(auto.getCaja().getCambio());
+			System.out.print("Estado: ");
+			System.out.print(auto.getEstado());
+			
+			System.out.print("  A: ");
+			System.out.print(auto.getAceleracion());
+			
+			System.out.print("  V: ");
+			System.out.print(auto.getVelocidad());
+
+			System.out.print("  P: ");
+			System.out.println(auto.getPosicion());
+			
+			
 
 			contador++;
 		}//fin while
