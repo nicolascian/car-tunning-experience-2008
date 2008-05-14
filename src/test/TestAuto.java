@@ -86,16 +86,5 @@ public class TestAuto {
 		  System.out.println("Error Acelerar "+a);
 	  }
 	}
-	
-	@Test
-	public void testPasandoCambio(){
-	  try{
-		  long tiempo=System.currentTimeMillis()+1000;
-		  auto.getCaja().siguiente();
-		  while(System.currentTimeMillis()<tiempo);
-	  }catch (Exception e){
-		  System.out.println("Error Acelerar");
-	  }
-	}
-				
+					
 }
