@@ -1,10 +1,11 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
  *                   Algoritmos y Programacion III - 75.07                    *
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
+
+package modelo;
 
 /**
  * Es el tipo de dato con el que vamos a trabajar.
@@ -17,8 +18,7 @@ public class AlgoPesos{
 	private int entero;
 	// parte decimal de AlgoPesos
 	private int decimal;
-	
-	
+
 	
 	/** Constructor, queda instanciada la clase.
 	 * 

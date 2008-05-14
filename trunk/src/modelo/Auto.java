@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,15 +5,11 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-/**
- * Documentacion
- * 
- * @version	1.0
- */
+package modelo;
 import java.util.*;
 
 /**
- * Documentacion
+ * Clase Auto
  * 
  * @version 1.0
  */
@@ -40,7 +35,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private Eje ejeTrasero;
 			
 	/**
-	 * constructor por defecto
+	 * Constructor de Auto por defecto
 	 *
 	 */
 	public Auto(){
@@ -53,17 +48,15 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setSuspension(new Suspension());
 		setEscape(new Escape());
 		setTurbo(new Turbo());
-		//creacion de ejes
-		//eje delantero
-		 
+		
+		/* eje delantero */
 		  setEjeDelantero(new Eje());
 		  ejeDelantero.setLlantaDerecha(new Llanta());
 		  ejeDelantero.setLlantaIzquierda(new Llanta());
 		  ejeDelantero.setNeumaticoDerecho(new NeumaticoMixto());
 		  ejeDelantero.setNeumaticoIzquierdo(new NeumaticoMixto());
 		
-		//eje trasero
-		
+		/* eje trasero */
 		  setEjeTrasero(new Eje());
 		  ejeTrasero.setLlantaDerecha(new Llanta());
 		  ejeTrasero.setLlantaIzquierda(new Llanta());
@@ -74,12 +67,20 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		//inicializacion de aceleracion y velocidad
 		Velocidad=0;
 		Aceleracion=0;
-		setPosicion(0);
+		Posicion=0;
 	}
 	
 	/**
-	 * constructor
-	 *
+	 * Costructor de Auto con parametros
+	 * 
+	 * @param motor
+	 * @param caja
+	 * @param combustible
+	 * @param carroceria
+	 * @param alimentacion
+	 * @param suspension
+	 * @param escape
+	 * @param turbo
 	 */
 	public Auto(Motor motor,Caja caja,Combustible combustible,
 			Carroceria carroceria,Alimentacion alimentacion,
@@ -98,13 +99,22 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		//inicializacion de aceleracion y velocidad
 		Velocidad=0;
 		Aceleracion=0;
-		setPosicion(0);
+		Posicion=0;
     }
 
-	/*
-	 * ESTO HAY Q CAMBIARLOOOOOOOOOOOOO!!!!!!!!!
-	 * !!!!!!!!!!!!!!!!!!!!!!!!
-	 * !!!!!!!!!!!!!!!!!!!!!!!!
+	/**
+	 * getAceleracion
+	 * @return
+	 */
+	public double getAceleracion(){
+		
+		Aceleracion = CNTE_ACELERACION_POTENCIA * (getPotenciaTotal()*getPotenciaTotal());
+		return Aceleracion;		
+	}
+	
+	/**
+	 * getVelocidad
+	 * @return
 	 */
 	public double getVelocidad(){
 		
@@ -112,17 +122,20 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		return Velocidad;
 	}
 	
-	public double getAceleracion(){
-		
-		Aceleracion = CNTE_ACELERACION_POTENCIA * (getPotenciaTotal()*getPotenciaTotal());
-		return Aceleracion;		
-	}
-	
+	/**
+	 * getPosicion
+	 * @return
+	 */
 	public double getPosicion() {
+		
+		Posicion = getVelocidad() * 
 		return Posicion;
 	}
 	
-	
+	/* mas adelante hay que poner este metodo como PRIVATE */
+	public void setPosicion(double posicion) {
+		Posicion = posicion;
+	}
 
 	/**
 	 * para cada instante puede decirnos cual
@@ -159,55 +172,82 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		while (it.hasNext()){
 			it.next().desgastar();
 		}
+	}	
+	
+	/**
+	 * estaListoParaCarrera
+	 * @return
+	 */
+	public boolean estaListoParaCarrera() {
+		boolean listo = true;
+		try{
+			comprobarComponentes();
+		}catch (Exception e){
+			return false;
+		}
+		return listo;
 	}
 	
-	public LinkedList<Componente> obtenerComponentes(){
+	/**
+	 * comprobarComponentes
+	 * @return the listoParaCarrera
+	 */
+	public void comprobarComponentes() 
+	  throws ExceptionComponenteFaltante, ExceptionComponenteDesgastado{
+		LinkedList<Componente> lista = this.obtenerComponentes();
+		Iterator<Componente> it = lista.iterator();
+		while (it.hasNext()){
+			Componente aux = it.next();
+			if( aux == null) throw new ExceptionComponenteFaltante();
+			if(aux.getEstado()==0)throw new ExceptionComponenteDesgastado(aux.getClass().getName());
+		}
+	}
+
+	/**
+	 * setEncendido
+	 * @param encendido
+	 */
+	public void setEncendido(boolean encendido) {
+	 	if(estaListoParaCarrera())
+			getMotor().setEncendido(encendido);
+	}
+	
+	/**
+	 * isEncendido
+	 * @return
+	 */
+	public boolean isEncendido() {
+		if(getMotor()!=null)
+			return(getMotor().isEncendido());
+		else
+			return(false);
+	}
+
+	/**
+	 * acelerar
+	 * @param valor
+	 */
+	public void acelerar(boolean valor){
+		getMotor().acelerar(valor);
+	}
+	
+	/**
+	 * getEstado
+	 * @return
+	 */
+	public double getEstado() {
 		
-		LinkedList<Componente> lista =  new LinkedList<Componente>();
-		lista.add(this.alimentacion);
-		lista.add(this.caja);
-		lista.add(this.carroceria);
-		lista.add(this.combustible);
-		lista.add(this.escape);
-		lista.add(this.motor);
-		lista.add(this.suspension);
-		lista.add(this.turbo);
-		lista.add(this.ejeDelantero);
-		lista.add(this.ejeDelantero.getLlantaDerecha());
-		lista.add(this.ejeDelantero.getLlantaIzquierda());
-		lista.add(this.ejeDelantero.getNeumaticoDerecho());
-		lista.add(this.ejeDelantero.getNeumaticoIzquierdo());
-		lista.add(this.ejeTrasero.getLlantaDerecha());
-		lista.add(this.ejeTrasero.getLlantaIzquierda());
-		lista.add(this.ejeTrasero.getNeumaticoDerecho());
-		lista.add(this.ejeTrasero.getNeumaticoIzquierdo());
-		lista.add(this.ejeTrasero);
-
-		return lista;
+		double Estado = 0;
+		
+		LinkedList<Componente> lista = this.obtenerComponentes();
+		Iterator<Componente> it = lista.iterator();
+		while (it.hasNext()){
+			Estado = Estado + it.next().getEstado();
+		}
+		
+		return Estado;
 	}
 
-	
-	public LinkedList<AfectablePorSuperficie> obtenerAfectablesPorSup(){
-		LinkedList<AfectablePorSuperficie> listaAS = new LinkedList<AfectablePorSuperficie>();
-		LinkedList<Componente> listaComp = this.obtenerComponentes();
-		Iterator<Componente> it = listaComp.iterator();
-		while (it.hasNext()){
-			it.next().agregarAListaAfecSuperficie(listaAS);
-		}
-		return listaAS;
-	}
-	
-	
-	public LinkedList<AfectablePorClima> obtenerAfectablesPorClima(){
-		LinkedList<AfectablePorClima> listaAC = new LinkedList<AfectablePorClima>();
-		LinkedList<Componente> listaComp = this.obtenerComponentes();
-		Iterator<Componente> it = listaComp.iterator();
-		while (it.hasNext()){
-			it.next().agregarAListaAfecClima(listaAC);
-		}
-		return listaAC;
-	}
-	
 	/**
 	 * se afectan los componentes del auto por el clima
 	 * - esta sobrecargada con Superficie
@@ -236,23 +276,98 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		}
 	}
 	
-	/**
-	 * @param suspension the suspension to set
-	 */
-	public void setSuspension(Suspension suspension) {
-		this.suspension = suspension;
-		suspension.instalar(this);
+	public boolean isAutomatica(){
+		return(getCaja().getClass().isInstance(new Automatica(5)));
+	}
+		
+	public boolean isManual(){
+		return(getCaja().getClass().isInstance(new Manual(5)));
+	}
+	
+	public boolean isSecuencial(){
+		return(getCaja().getClass().isInstance(new Secuencial(5)));
+	}	
+
+	public LinkedList<Componente> obtenerComponentes(){
+		
+		LinkedList<Componente> lista =  new LinkedList<Componente>();
+		lista.add(this.alimentacion);
+		lista.add(this.caja);
+		lista.add(this.carroceria);
+		lista.add(this.combustible);
+		lista.add(this.escape);
+		lista.add(this.motor);
+		lista.add(this.suspension);
+		lista.add(this.turbo);
+		lista.add(this.ejeDelantero);
+		lista.add(this.ejeDelantero.getLlantaDerecha());
+		lista.add(this.ejeDelantero.getLlantaIzquierda());
+		lista.add(this.ejeDelantero.getNeumaticoDerecho());
+		lista.add(this.ejeDelantero.getNeumaticoIzquierdo());
+		lista.add(this.ejeTrasero.getLlantaDerecha());
+		lista.add(this.ejeTrasero.getLlantaIzquierda());
+		lista.add(this.ejeTrasero.getNeumaticoDerecho());
+		lista.add(this.ejeTrasero.getNeumaticoIzquierdo());
+		lista.add(this.ejeTrasero);
+
+		return lista;
 	}
 
-	/**
-	 * @return the suspension
-	 */
-	public Suspension getSuspension() {
-		return suspension;
+	public LinkedList<AfectablePorSuperficie> obtenerAfectablesPorSup(){
+		LinkedList<AfectablePorSuperficie> listaAS = new LinkedList<AfectablePorSuperficie>();
+		LinkedList<Componente> listaComp = this.obtenerComponentes();
+		Iterator<Componente> it = listaComp.iterator();
+		while (it.hasNext()){
+			it.next().agregarAListaAfecSuperficie(listaAS);
+		}
+		return listaAS;
 	}
-
+		
+	public LinkedList<AfectablePorClima> obtenerAfectablesPorClima(){
+		LinkedList<AfectablePorClima> listaAC = new LinkedList<AfectablePorClima>();
+		LinkedList<Componente> listaComp = this.obtenerComponentes();
+		Iterator<Componente> it = listaComp.iterator();
+		while (it.hasNext()){
+			it.next().agregarAListaAfecClima(listaAC);
+		}
+		return listaAC;
+	}
 	
 	/* setters y getters */
+
+	public void setEjeDelantero(Eje ejeDelantero) {
+	 
+		ejeDelantero.instalar(this);
+		try{	
+		  ejeDelantero.setLlantaDerecha(this.getEjeDelantero().getLlantaDerecha());
+		  ejeDelantero.setLlantaIzquierda(this.getEjeDelantero().getLlantaIzquierda());
+		  ejeDelantero.setNeumaticoDerecho(this.getEjeDelantero().getNeumaticoDerecho());
+		  ejeDelantero.setNeumaticoIzquierdo(this.getEjeDelantero().getNeumaticoIzquierdo());
+		}catch(Exception e){}
+		this.ejeDelantero = ejeDelantero;
+	 
+	}
+
+	public Eje getEjeDelantero() {
+		return ejeDelantero;
+	}
+	
+	public void setEjeTrasero(Eje ejeTrasero) {
+	 
+		ejeTrasero.instalar(this);
+		try{
+		  ejeTrasero.setLlantaDerecha(this.getEjeTrasero().getLlantaDerecha());
+		  ejeTrasero.setLlantaIzquierda(this.getEjeTrasero().getLlantaIzquierda());
+		  ejeTrasero.setNeumaticoDerecho(this.getEjeTrasero().getNeumaticoDerecho());
+		  ejeTrasero.setNeumaticoIzquierdo(this.getEjeTrasero().getNeumaticoIzquierdo());
+		}catch(Exception e){}
+		this.ejeTrasero = ejeTrasero;
+	 
+	}
+
+	public Eje getEjeTrasero() {
+		return ejeTrasero;
+	}
 	
 	public Combustible getCombustible() {
 		return combustible;
@@ -263,6 +378,15 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		this.combustible = combustible;
 	}
 
+	public void setSuspension(Suspension suspension) {
+		this.suspension = suspension;
+		suspension.instalar(this);
+	}
+
+	public Suspension getSuspension() {
+		return suspension;
+	}
+	
 	public void setCaja(Caja caja){
 		caja.instalar(this);
 		this.caja = caja;
@@ -281,165 +405,43 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		return this.motor;
 	}
 
-	public Alimentacion getAlimentacion() {
-		return alimentacion;
-	}
-
 	public void setAlimentacion(Alimentacion alimentacion) {
 		alimentacion.instalar(this);
 		this.alimentacion = alimentacion;
 	}
 
-
-	/**
-	 * @return the carroceria
-	 */
-	public Carroceria getCarroceria() {
-		return carroceria;
+	public Alimentacion getAlimentacion() {
+		return alimentacion;
 	}
 
-	/**
-	 * @param carroceria the carroceria to set
-	 */
 	public void setCarroceria(Carroceria carroceria) {
 		carroceria.instalar(this);
 		this.carroceria = carroceria;
 	}
-
-	/**
-	 * @return the listoParaCarrera
-	 */
-	public void comprobarComponentes() 
-	  throws ExceptionComponenteFaltante, ExceptionComponenteDesgastado{
-		LinkedList<Componente> lista = this.obtenerComponentes();
-		Iterator<Componente> it = lista.iterator();
-		while (it.hasNext()){
-			Componente aux = it.next();
-			if( aux == null) throw new ExceptionComponenteFaltante();
-			if(aux.getEstado()==0)throw new ExceptionComponenteDesgastado(aux.getClass().getName());
-		}
-	}
-		
-	public boolean estaListoParaCarrera() {
-		boolean listo = true;
-		try{
-			comprobarComponentes();
-		}catch (Exception e){
-			return false;
-		}
-		return listo;
-	}
 	
-	/**
-	 * @return the escape
-	 */
-	public Escape getEscape() {
-		return escape;
+	public Carroceria getCarroceria() {
+		return carroceria;
 	}
 
-	/**
-	 * @param escape the escape to set
-	 */
 	public void setEscape(Escape escape) {
 		escape.instalar(this);
 		this.escape = escape;
 	}
 
-	/**
-	 * @return the turbo
-	 */
-	public Turbo getTurbo() {
-		return turbo;
+	public Escape getEscape() {
+		return escape;
 	}
 
-	/**
-	 * @param turbo the turbo to set
-	 */
 	public void setTurbo(Turbo turbo) {
 		turbo.instalar(this);
 		this.turbo = turbo;
 	}
-
-	public double getEstado() {
-		
-		double Estado = 0;
-		
-		LinkedList<Componente> lista = this.obtenerComponentes();
-		Iterator<Componente> it = lista.iterator();
-		while (it.hasNext()){
-			Estado = Estado + it.next().getEstado();
-		}
-		
-		return Estado;
-	}
-
-	public Eje getEjeDelantero() {
-		return ejeDelantero;
-	}
-
-	public void setEjeDelantero(Eje ejeDelantero) {
-	 
-		ejeDelantero.instalar(this);
-		try{	
-		  ejeDelantero.setLlantaDerecha(this.getEjeDelantero().getLlantaDerecha());
-		  ejeDelantero.setLlantaIzquierda(this.getEjeDelantero().getLlantaIzquierda());
-		  ejeDelantero.setNeumaticoDerecho(this.getEjeDelantero().getNeumaticoDerecho());
-		  ejeDelantero.setNeumaticoIzquierdo(this.getEjeDelantero().getNeumaticoIzquierdo());
-		}catch(Exception e){}
-		this.ejeDelantero = ejeDelantero;
-	 
-	}
-
-	public Eje getEjeTrasero() {
-		return ejeTrasero;
-	}
-
-	public void setEjeTrasero(Eje ejeTrasero) {
-	 
-		ejeTrasero.instalar(this);
-		try{
-		  ejeTrasero.setLlantaDerecha(this.getEjeTrasero().getLlantaDerecha());
-		  ejeTrasero.setLlantaIzquierda(this.getEjeTrasero().getLlantaIzquierda());
-		  ejeTrasero.setNeumaticoDerecho(this.getEjeTrasero().getNeumaticoDerecho());
-		  ejeTrasero.setNeumaticoIzquierdo(this.getEjeTrasero().getNeumaticoIzquierdo());
-		}catch(Exception e){}
-		this.ejeTrasero = ejeTrasero;
-	 
-	}
-
-	/**
-	 * @return the encendido
-	 */
-	public boolean isEncendido() {
-		if(getMotor()!=null)
-			return(getMotor().isEncendido());
-		else
-			return(false);
-	}
-
-	/**
-	 * @param encedido the encendido to set
-	 */
-	public void setEncendido(boolean encendido) {
-	 	if(estaListoParaCarrera())
-			getMotor().setEncendido(encendido);
-	}
-
-	public void acelerar(boolean valor){
-		getMotor().acelerar(valor);
+	
+	public Turbo getTurbo() {
+		return turbo;
 	}
 	
-	public boolean isAutomatica(){
-		return(getCaja().getClass().isInstance(new Automatica(5)));
-	}
-		
-	public boolean isManual(){
-		return(getCaja().getClass().isInstance(new Manual(5)));
-	}
-	
-	public boolean isSecuencial(){
-		return(getCaja().getClass().isInstance(new Secuencial(5)));
-	}
+	/* toString */
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

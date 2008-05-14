@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,10 +5,12 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-	/**
-	 * Interfaz que implementan todas aquellas clases que sean afectadas
-	 * de alguna manera por el clima.
-	 */
+package modelo;
+
+/**
+ * Interfaz que implementan todas aquellas clases que sean afectadas
+ * de alguna manera por el clima.
+ */
 public interface AfectablePorClima{
 
 	/**

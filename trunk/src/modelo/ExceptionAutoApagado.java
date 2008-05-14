@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,8 +5,10 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * @Documentacion: Clase de una excepcion creada por el programador
+ * Clase de una excepcion creada por el programador
  * la cual hereda de ecxeption, y se produce cuando se intenta realizar
  * alguna accion con el auto y el mismo se encuentra apagado.
  */
