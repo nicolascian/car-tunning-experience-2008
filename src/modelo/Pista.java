@@ -22,6 +22,7 @@ public class Pista{
 	 */	
 	private Jugador[] Jugador;
 	private int cantJugadores;
+	
 	/**
 	 * La pista esta compuesta por una serie de tramos, cada uno con 
 	 * distintas caracteristicas (superficie, clima) cuya longitud suma
@@ -30,6 +31,7 @@ public class Pista{
 	 */
 	private double Longitud;
 	private ArrayList<Tramo> Tramos;
+	
 	/**
 	 * tramosActuales es un vector de tramos que representa los tramos
 	 * en los que se encuentran cada uno de los autos en un determinado
@@ -37,6 +39,7 @@ public class Pista{
 	 * el tramoActual[i] corresponde al Jugador[i]
 	 */
 	private Tramo[] tramoActual;
+	
 	/**
 	 * Los iteradores se utilizaran para ir recorriendo la lista de tramos
 	 * y actualizar los tramos actuales de cada auto.
@@ -69,6 +72,7 @@ public class Pista{
 			Jugador[i].getAuto().afectar(tramoActual[i].getSuperficie());
 		}
 	}
+	
 	/**
 	 * Constructor con parametrosSystem.out.print("Finaliz� la carrera");
 	 * pre: La lista "tramos" debe estar ordenada, y el principio de cada
@@ -93,6 +97,7 @@ public class Pista{
 			Longitud = it.next().getPosFinal();
 		}
 	}
+	
 	/**
 	 * Metodo que se encarga de actualizar el tramo en el que debe estar cada uno de
 	 * los autos.
@@ -119,6 +124,7 @@ public class Pista{
 			}
 		}
 	}
+	
 	/**
 	 * Metodo que dada la posicion del auto de un determinado jugador se
 	 * encarga de buscar el Tramo en el que deberia estar ubicado.
@@ -129,7 +135,6 @@ public class Pista{
 	 *   que el auto este en una posicion mayor a la longitud de la pista,
 	 *   se lanza la excepcion "ExceptionFinPista". 
 	 * @param nroJugador
-	 * @return
 	 * @throws ExceptionFinPista
 	 */
 	public Tramo buscarTramoActual(int nroJugador) throws ExceptionFinPista{
@@ -146,7 +151,6 @@ public class Pista{
 	 * pre: El auto correspondiente al numero de jugador pasado como parametro
 	 * debe estar en una tramo valido.
 	 * @param nroJugador
-	 * @return
 	 */
 	public boolean jugadorCambioTramo(int nroJugador){
 		return !(this.getJugador(nroJugador).getAuto().getPosicion() 
@@ -196,8 +200,7 @@ public class Pista{
 	public int getCantJugadores() {
 		return cantJugadores;
 	}
-	
-	
+		
 
 	public void setCantJugadores(int cantJugadores) {
 		this.cantJugadores = cantJugadores;
