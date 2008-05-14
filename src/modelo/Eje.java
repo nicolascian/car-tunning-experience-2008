@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,10 +5,14 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * @Documentacion: Los eje del auto contiene las ruedas las cual estan
+ * Los eje del auto contiene las ruedas las cual estan
  * compuestas por llantas y neumaticos.
+ * 
  * Son afectados por y desgastados por la superficie.
+ * 
  * @version 1.0
  */
 public class Eje extends Componente
@@ -45,7 +48,7 @@ implements AfectablePorSuperficie{
 	 * @Documentacion: Metodo que se encarga de modificar el estado de el eje
 	 * teniendo en cuenta que este se ira arruinando por la
 	 * rugosidad que presenta la superficie y las particulas 
-	 * sueltas que presenta dicha superficie que dañan al eje.
+	 * sueltas que presenta dicha superficie que daï¿½an al eje.
 	 */
 	public void desgastar(){
 		double desgaste=0;

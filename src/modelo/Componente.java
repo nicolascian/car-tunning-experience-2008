@@ -1,15 +1,15 @@
-package modelo;
 /* ****************************************************************************
- *                         Car-Tunnig-Experience-2008                         *
+/*                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
  *                   Algoritmos y Programacion III - 75.07                    *
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
 import java.util.*;
 
 /**
- * @Documentacion: Clase padre de la cual heredan todos lo elementos
+ * Clase padre de la cual heredan todos lo elementos
  * que integraran el auto para poder competir.
  * un auto no puede funcionar si no esta completo, es decir,
  * incluye a todos los componentes.

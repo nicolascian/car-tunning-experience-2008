@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,13 +5,16 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * @Documentacion: Esta clase modela la carroceria de un auto. La carroceria se ve afectada por el clima
+ * Esta clase modela la carroceria de un auto. La carroceria se ve afectada por el clima
  * de modo tal que siempre se encuentra a temperatura ambiente, afectando el coeficiente de arrastre
  * siendo que a mayor temperatura menos denso el aire y menor coeficiente de arrastre, ademas la humedad
  * afecta el desgaste de la carroceria debido a que contribuye a la corrocion de la chapa.
  * La carroceria a medida que aumenta la velocidad retornara un valor de potencia mayor en modulo, pero
  * negativo, ya que resta potencia al vehiculo debido a la fuerza de arrastre.
+ * 
  * @version	1.0
  */
 public class Carroceria extends Componente 

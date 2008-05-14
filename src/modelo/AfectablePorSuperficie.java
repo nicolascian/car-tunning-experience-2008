@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,10 +5,12 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-	/**
-	 * Interfaz que deberan implementar todas aquellas clases que sean
-	 * afectables de alguna manera por la superficie.
-	 */
+package modelo;
+
+/**
+ * Interfaz que deberan implementar todas aquellas clases que sean
+ * afectables de alguna manera por la superficie.
+ */
 public interface AfectablePorSuperficie{
 
 	/**
