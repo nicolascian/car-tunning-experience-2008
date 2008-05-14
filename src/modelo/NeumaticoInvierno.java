@@ -88,8 +88,8 @@ public class NeumaticoInvierno extends Neumatico implements
 	 * modificados.
 	 */
 	public void afectar(Superficie superficie) {
-		this.setRugosidadSuperficie(superficie.getRugosidad());
-		this.setParticulasEnSuperficie(superficie.getParticulasSueltas());
+		this.setRugosidadSuperficie(superficie.getRugosidad()/100);
+		this.setParticulasEnSuperficie(superficie.getParticulasSueltas()/100);
 
 	}
 	
