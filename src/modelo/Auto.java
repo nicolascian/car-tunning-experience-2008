@@ -16,12 +16,12 @@ import java.util.*;
 public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	/* comentario acerca de la implementacion de la clase */
 	
-	private double CNTE_ACELERACION_POTENCIA = 0.000003;
+	private double CNTE_ACELERACION_POTENCIA = 0.0003;
 	
 	private double Velocidad; // integral de Aaceleracion
 	private double Aceleracion; // = Potencia de las RPM cuadrado y algo mas
 	private double Posicion; // dstancia recorrida
-	private double tiempo = (0.000000000006);//tiempoPorCiclo;
+	private double tiempo = 20;//(0.000000000006);//tiempoPorCiclo;
 	
 	private Motor motor;
 	private Caja caja;
@@ -109,7 +109,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 */
 	public double getAceleracion(){
 		
-		Aceleracion = CNTE_ACELERACION_POTENCIA * ( (getPotenciaTotal()*getPotenciaTotal())/* + getMotor().getRPM() */);
+		Aceleracion = CNTE_ACELERACION_POTENCIA * ( (getPotenciaTotal()*getPotenciaTotal()) + getMotor().getRPM() );
 		return Aceleracion;		
 	}
 	
@@ -119,7 +119,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 */
 	public double getVelocidad(){
 		
-		Velocidad = /*velocidadInicial + */ getAceleracion() * tiempo;
+		Velocidad = /*velocidadInicial + */ getAceleracion() *  tiempo;
 		return Velocidad;
 	}
 	
@@ -129,7 +129,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 */
 	public double getPosicion() {
 		
-		Posicion = getVelocidad() * tiempo + (0.5)*(getAceleracion()*(tiempo*tiempo));
+		Posicion += getVelocidad() * (0.00000006) + (0.5)*(getAceleracion());
 		return Posicion;
 	}
 	
