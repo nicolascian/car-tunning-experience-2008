@@ -80,7 +80,7 @@ public class TestAutoDeEscritorio extends TestCase {
 			System.out.print((long)auto.getMotor().getRPM());
 	
 			System.out.print("  Pot: ");
-			System.out.print(auto.getPotenciaTotal()); 
+			System.out.print((long)auto.getPotenciaTotal()); 
 			
 			System.out.print("  A: ");
 			System.out.print((long)auto.getAceleracion());

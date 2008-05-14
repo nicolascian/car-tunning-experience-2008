@@ -20,7 +20,9 @@ algo se joden por boludos.
 hice un cambio en Pista: en jugadorCambioTramo(int nroJugador)
 le agregue una negacion ! (espero que este bien)
 
+si queres ejecutar la clase Juego.class la pista me tira una Excepcion
 
+el auto esta tirando muy poco potencia
 para calibrar las potencias de los componentes testAutoPotencias -> ejecutar como: java aplication
 
 para ver como anda el auto testAutoDeEscritorio -> ejecutar como: java aplication
