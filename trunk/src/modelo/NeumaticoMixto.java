@@ -89,7 +89,7 @@ public class NeumaticoMixto extends Neumatico
 	
 	/**
 	 * El desgaste esta dado basicamente por el relieve de la superficie y por
-	 * el simple de uso.
+	 * el simple uso.
 	 */
 	public void desgastar(){
 		double desgaste;
