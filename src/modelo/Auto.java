@@ -44,9 +44,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 *
 	 */
 	public Auto(){
-		
 		//creacion de componentes
-
 		setMotor(new Motor(4,1600,8000)); 
 		setCaja(new Manual(5));
 		setCombustible(new Combustible(50.0,0.4));
@@ -55,16 +53,14 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setSuspension(new Suspension());
 		setEscape(new Escape());
 		setTurbo(new Turbo());
+		//creacion de ejes
+		//eje delantero
 		setEjeDelantero(new Eje());
 		ejeDelantero.setLlantaDerecha(new Llanta());
 		ejeDelantero.setLlantaIzquierda(new Llanta());
-		/*
-		 * DESPUES HAY QUE CAMBIAR EL TIPO DE NEUMATICOS CON LOS QUE 
-		 * SE CREAN. ESTO LO ESCRIBI POR AHORA PORQUE SINO QUEDABAN NULL
-		 * POINTERS Y NECESITO USAR EL AUTO PARA LAS PRUEBAS
-		 */
 		ejeDelantero.setNeumaticoDerecho(new NeumaticoMixto());
 		ejeDelantero.setNeumaticoIzquierdo(new NeumaticoMixto());
+		//eje trasero
 		setEjeTrasero(new Eje());
 		ejeTrasero.setLlantaDerecha(new Llanta());
 		ejeTrasero.setLlantaIzquierda(new Llanta());
