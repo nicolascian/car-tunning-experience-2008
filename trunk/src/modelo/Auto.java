@@ -55,17 +55,21 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setTurbo(new Turbo());
 		//creacion de ejes
 		//eje delantero
-		setEjeDelantero(new Eje());
-		ejeDelantero.setLlantaDerecha(new Llanta());
-		ejeDelantero.setLlantaIzquierda(new Llanta());
-		ejeDelantero.setNeumaticoDerecho(new NeumaticoMixto());
-		ejeDelantero.setNeumaticoIzquierdo(new NeumaticoMixto());
+		try{  
+		  setEjeDelantero(new Eje());
+		  ejeDelantero.setLlantaDerecha(new Llanta());
+		  ejeDelantero.setLlantaIzquierda(new Llanta());
+		  ejeDelantero.setNeumaticoDerecho(new NeumaticoMixto());
+		  ejeDelantero.setNeumaticoIzquierdo(new NeumaticoMixto());
+		}catch(Exception e){}
 		//eje trasero
-		setEjeTrasero(new Eje());
-		ejeTrasero.setLlantaDerecha(new Llanta());
-		ejeTrasero.setLlantaIzquierda(new Llanta());
-		ejeTrasero.setNeumaticoDerecho(new NeumaticoMixto());
-		ejeTrasero.setNeumaticoIzquierdo(new NeumaticoMixto());
+		try{
+		  setEjeTrasero(new Eje());
+		  ejeTrasero.setLlantaDerecha(new Llanta());
+		  ejeTrasero.setLlantaIzquierda(new Llanta());
+		  ejeTrasero.setNeumaticoDerecho(new NeumaticoMixto());
+		  ejeTrasero.setNeumaticoIzquierdo(new NeumaticoMixto());
+		}catch(Exception e){}
 		setEncendido(false);
 		//inicializacion de aceleracion y velocidad
 		Velocidad=0;
@@ -378,12 +382,16 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	}
 
 	public void setEjeDelantero(Eje ejeDelantero) {
+	 try{	
 		ejeDelantero.instalar(this);
 		ejeDelantero.setLlantaDerecha(this.getEjeDelantero().getLlantaDerecha());
 		ejeDelantero.setLlantaIzquierda(this.getEjeDelantero().getLlantaIzquierda());
 		ejeDelantero.setNeumaticoDerecho(this.getEjeDelantero().getNeumaticoDerecho());
 		ejeDelantero.setNeumaticoIzquierdo(this.getEjeDelantero().getNeumaticoIzquierdo());
 		this.ejeDelantero = ejeDelantero;
+	 }catch(Exception e){
+		 
+	 }
 	}
 
 	public Eje getEjeTrasero() {
