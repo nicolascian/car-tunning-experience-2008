@@ -62,15 +62,15 @@ public class TestAuto {
 	
 	@Test
 	public void testSetEncendido(){
-		/*try{
+		try{
 			auto.setEncendido(true);
-			assertFalse(auto.isEncendido());
-			System.out.println(auto.toString());
+			assertTrue(auto.isEncendido());
+			//System.out.println(auto.toString());
 		 }catch(AssertionError a){
 			 a.printStackTrace();
 			 a.getMessage();
 			 System.out.println("testSetEncendido() "+a);
-		 }*/
+		 }
 	}
 	
 	@Test
@@ -81,7 +81,7 @@ public class TestAuto {
 		  System.out.println("Error Acelerar");
 	  }
 	}
-	
+	/*
 	@Test
 	public void testSetMotor() {
 	  try{	
@@ -91,6 +91,6 @@ public class TestAuto {
 	  }catch (Exception e){
 		  System.out.println("Error setMotor");
 	  }
-	}
+	}*/
 		
 }
