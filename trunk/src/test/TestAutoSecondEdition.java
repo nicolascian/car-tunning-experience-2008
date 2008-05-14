@@ -103,7 +103,19 @@ public class TestAutoSecondEdition extends TestCase {
 			System.out.print((long)auto.getPosicion());
 			
 			System.out.print("  Estado: ");
-			System.out.println((long)auto.getEstado());
+			System.out.print((long)auto.getEstado());
+			
+			System.out.print("  DI: ");
+			System.out.print(auto.getEjeDelantero().getNeumaticoIzquierdo().calcularAdherencia());
+			
+			System.out.print("  DD: ");
+			System.out.print(auto.getEjeDelantero().getNeumaticoDerecho().calcularAdherencia());
+			
+			System.out.print("  TI: ");
+			System.out.print(auto.getEjeTrasero().getNeumaticoIzquierdo().calcularAdherencia());
+			
+			System.out.print("  TD: ");
+			System.out.println(auto.getEjeTrasero().getNeumaticoDerecho().calcularAdherencia());
 
 			contador++;
 		}//fin while
