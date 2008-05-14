@@ -21,31 +21,27 @@ package modelo;
 public class Juego{
 		
 	public static void main(String args[]){
-/**
+/*
  * Creacion de dos autos que realizaran la competencia.
  */		
 		Auto auto1 = new Auto();
 		Auto auto2 = new Auto();
 		
 		Habilidad habilidad = new Principiante();
-/**
+/*
  * Se crean dos jugadores uno virtual con un determinado nivel
  * de habilidad y dificualtad para con el jugador que utilice el usuario.
  */		
 		Jugador jugador1 = new Usuario(auto1);
 		Jugador jugador2 = new Virtual(habilidad, auto2);
-/**
+/*
  * Se crea la pista con los jugadores y su longitud.
  */		
 		Pista pista = new Pista(jugador1, jugador2, 100);
-/**
- * Se encienden los motores de los autos.
- */		
-		jugador1.getAuto().getMotor().encender();
-		jugador2.getAuto().getMotor().encender();
+		
 		
 		boolean finCarrera = false;
-/**
+/*
  * Se controlara los turnos de los jugadores
  * que  cada uno juegue en su turno de lo contrario terminaria la carrera.
  * Ademas se corrobora que la pista no termine, o sea, que algun auto llegue a la meta,
