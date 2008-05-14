@@ -7,9 +7,22 @@ package modelo;
  ******************************************************************************/
 
 /**
- * Documentacion
- * Un turbo hace que la potencia del auto
- * se vea incrementada, es un componente.
+ * Un turbocompresor o turbocargador es un sistema de sobrealimentación que usa 
+ * una turbina para comprimir gases. Este tipo de sistemas se suele utilizar en 
+ * motores de combustión interna, aunque también se usan en estaciones distribuidoras 
+ * de gas natural para enviarlo por gasoductos.
+ * 
+ * Los motores provistos de turbocompresores padecen de una demora mayor en la 
+ * disposición de la potencia que los motores atmosféricos (NA Normal Aspiration 
+ * o Aspiración Normal) o con compresor mecánico, debido a que el rendimiento del 
+ * turbocompresor depende de la presión ejercida por éste. En esta demora influyen 
+ * la inercia del grupo (su diámetro y peso) y el volumen del colector entre la 
+ * turbina y la salida de los gases de escape del cilindro.
+ *
+ * Un turbocompresor no funciona de igual manera en distintos regímenes de motor. 
+ * A bajas revoluciones, el turbocompresor no ejerce presión porque la escasa cantidad 
+ * de gases no empuja con suficiente fuerza. Un turbocompresor más pequeño evita la 
+ * demora en la respuesta, pero ejerce menos fuerza a altas revoluciones.
  * 
  * se ve afectado por la humedad del clima
  * 
