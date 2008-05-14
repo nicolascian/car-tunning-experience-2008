@@ -65,7 +65,7 @@ public class TestAuto {
 		try{
 			auto.setEncendido(true);
 			assertTrue(auto.isEncendido());
-			//System.out.println(auto.toString());
+			System.out.println(auto.toString());
 		 }catch(AssertionError a){
 			 a.printStackTrace();
 			 a.getMessage();

@@ -210,7 +210,7 @@ public class Motor extends Componente implements AfectablePorClima{
 		 //chequeo para compatibilidad con caja automatica
 		 getAuto().getCaja().Chequear();
 		 //desgaste
-		 desgastar();
+		 //desgastar();
 	  }
 	}
 	
