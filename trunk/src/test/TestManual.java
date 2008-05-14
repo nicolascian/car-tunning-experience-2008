@@ -9,11 +9,6 @@ public class TestManual {
 
 	Manual manual;
 	
-	@Before
-	public void setUp() throws Exception {
-	
-	}
-	
 	@Test
 	public void testManual(){
 		
