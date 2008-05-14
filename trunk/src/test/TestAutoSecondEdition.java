@@ -77,17 +77,8 @@ public class TestAutoSecondEdition extends TestCase {
 		
 		System.out.print("caja tipo automatica: ");
 		System.out.println(auto.isAutomatica());
-		
-		
-		System.out.print("RPM: ");
-		System.out.println(auto.getMotor().getRPM());
-		
-		System.out.print("Cambio: ");
-		System.out.println(auto.getCaja().getCambio());
-		
-		/* lo pongo a 7000 rpm */ 
-		/*while( auto.getMotor().getRPM() <= 700){*/
-		
+
+				
 		int contador =0;
 		while( contador <= 1500){
 
