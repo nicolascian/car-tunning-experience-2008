@@ -108,6 +108,8 @@ public class NeumaticoSlick extends Neumatico
 	/**
 	 * Los efectos climaticos considerados sobre este tipo de neumatico son
 	 * la cantidad de agua presente y la temperatura exterior.
+	 * La temperatura tiene un efecto negativo cuando es menor a 7ºC, y dicho
+	 * efecto se agrava con la disminucion de la temperatura.
 	 */
 	public void afectar(Clima clima){
 		this.setHumedadEnPista(clima.getHumedad()/100);

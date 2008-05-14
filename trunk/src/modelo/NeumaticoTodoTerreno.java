@@ -88,8 +88,8 @@ public class NeumaticoTodoTerreno extends Neumatico
 	 * En condiciones ideales, entrega una potencia igual a 3.
 	 */
 	public double obtenerPotencia(){
-		return ((this.getEstado()/100)* (this.getPotenciaMax()-this.getParticulasEnSuperficie())
-					- this.getRugosidadSuperficie());
+		return ((this.getEstado()/100)* (this.getPotenciaMax()-this.getParticulasEnSuperficie()
+					- this.getRugosidadSuperficie()));
 	}
 	
 	/**
@@ -112,9 +112,9 @@ public class NeumaticoTodoTerreno extends Neumatico
 	 * sueltas y por la rugosisdad del terreno.
 	 */
 	public void afectar(Superficie superficie){
-		this.setRugosidadSuperficie(superficie.getRugosidad());
-		this.setParticulasEnSuperficie(superficie.getParticulasSueltas());
-		this.setViscosidadSuperficie(superficie.getViscosidad());
+		this.setRugosidadSuperficie(superficie.getRugosidad()/100);
+		this.setParticulasEnSuperficie(superficie.getParticulasSueltas()/100);
+		this.setViscosidadSuperficie(superficie.getViscosidad()/100);
 	}
 	
 	/**
