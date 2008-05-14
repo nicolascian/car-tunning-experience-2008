@@ -3,7 +3,7 @@ package test;
 import junit.framework.*;
 import modelo.*;
 
-public class TestAutoSecondEdition extends TestCase {
+public class TestAutoDeEscritorio extends TestCase {
 	
 	
 	public static void main (String[] args)
