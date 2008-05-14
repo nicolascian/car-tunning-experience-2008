@@ -91,7 +91,6 @@ public class Virtual extends Jugador{
 	 * este metodo permite desarrollar los cambios durante una carrera,
 	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
 	 * 
-	 * @throws ExceptionAutoApagado
 	 */
 	public void jugar(){
 		
