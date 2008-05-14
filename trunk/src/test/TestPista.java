@@ -74,8 +74,9 @@ public class TestPista extends TestCase{
 	/*
 	 * Se prueba la actualizacion de las posiciones de los autos de los
 	 * jugadores. Las posiciones de los autos son tales que tienen otro
-	 * tramo por delante, por lo que se espera que actualizar posiciones
-	 * no lance excepciones.
+	 * tramo por delante pero no deben cambiar de tramo, por lo que se 
+	 * espera que actualizar posiciones no lance excepciones ni que
+	 * cambien de tramo
 	 */
 	public void testActualizarPosiciones() throws ExceptionFinPista{
 		try{
@@ -85,7 +86,30 @@ public class TestPista extends TestCase{
 		}
 	}
 	
-	public void testAcutualizarPosiciones2(){
+	/*
+	 * Se prueba la actualizacion de las posiciones de los autos de los
+	 * jugadores. Las posiciones de los autos son tales que tienen otro
+	 * tramo por delante, por lo que se espera que actualizar posiciones
+	 * no lance excepciones.
+	 */
+	public void testActualizarPosiciones2(){
+		pista.getJugador(0).getAuto().setPosicion(200);
+		pista.getJugador(1).getAuto().setPosicion(250);
+		try{
+			pista.actualizarPosiciones();
+		}catch (ExceptionFinPista e){
+			fail("No deberian haber excepciones");
+		}
+		assertEquals(pista.getTramos().get(1), pista.getTramoActual(0));
+		assertEquals(pista.getTramos().get(1), pista.getTramoActual(1));
+	}
+	
+	/*
+	 * Se prueba la actualizacion de las posiciones de los autos, y se le
+	 * da a uno de los autos una posicion fuera de la pista (mayor a su largo).
+	 * Lo que se espera es que lance la excepcion fin de pista.
+	 */
+	public void testActualizarPosiciones3(){
 		pista.getJugador(1).getAuto().setPosicion(800.23);
 		try{
 			pista.actualizarPosiciones();
