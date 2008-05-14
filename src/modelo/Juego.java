@@ -47,6 +47,7 @@ public class Juego{
  * Ademas se corrobora que la pista no termine, o sea, que algun auto llegue a la meta,
  * lo que marcaria la finalizacion de la carrera y el ganador.
  */		
+		int cont=0;
 		while(!finCarrera){
 			
 			jugador1.jugar();
@@ -63,12 +64,18 @@ public class Juego{
 			try{
 				pista.actualizarPosiciones();
 			}catch (Exception e){
+				System.out.println("Exception");
 				finCarrera=true;
 			}
 			
+			cont++;
+			auto1.setPosicion(cont);
+			auto2.setPosicion(cont);
+			
 		}//FIN CICLO
 		
-		System.out.print("Finaliz� la carrera");
+		System.out.print("Finalizo la carrera ");
+		System.out.print("en: "+ cont + " turnos por jugador");
 		
 	}
 	

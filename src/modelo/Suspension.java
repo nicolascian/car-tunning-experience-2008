@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,11 +5,12 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * Documentacion
- * la suspensión es un componente que absorbe 
+ * la suspension es un componente que absorbe 
  * las irregularidades del terreno por el que se circula
- * para aumentar la comodidad y el control del vehículo.
+ * para aumentar la comodidad y el control del vehiculo.
  * se ve afectada por la temperatura del clima y la superficie
  * 
  * @version	1.0

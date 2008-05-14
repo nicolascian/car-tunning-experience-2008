@@ -1,10 +1,11 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
  *                   Algoritmos y Programacion III - 75.07                    *
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
+
+package modelo;
 
 /**
  * Un tramo es un sector de la pista a lo largo del cual se mantienen las
