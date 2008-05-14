@@ -103,7 +103,7 @@ public class TestAutoSecondEdition extends TestCase {
 			System.out.print((long)auto.getMotor().getRPM());
 			
 			System.out.print(" Estado: ");
-			System.out.print(auto.getEstado());
+			System.out.print((long)auto.getEstado());
 			
 			System.out.print("  A: ");
 			System.out.print((long)auto.getAceleracion());
