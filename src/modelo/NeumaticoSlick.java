@@ -81,7 +81,7 @@ public class NeumaticoSlick extends Neumatico
 	public double calcularAdherencia(){
 		double adherencia;
 		adherencia = 1- (0.4 * this.getHumedadEnPista()) - (0.4* (1-this.getViscosidadSuperficie()))
-					- (.01* this.getRelieveSuperficie()) - (.08);
+					- (.01* this.getRelieveSuperficie()) - (.08*this.getEfectoTemperaturaExterna());
 		return adherencia;
 	}
 	
