@@ -85,7 +85,7 @@ public class TestAutoSecondEdition extends TestCase {
 		System.out.print("Cambio: ");
 		System.out.println(auto.getCaja().getCambio());
 		
-		/* lo pongo a 7000 rpm */ 
+		/*  7000 rpm */ 
 		/*while( auto.getMotor().getRPM() <= 700){*/
 		
 		int contador =0;

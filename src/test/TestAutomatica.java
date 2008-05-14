@@ -24,7 +24,7 @@ public class TestAutomatica extends TestCase {
 		assertEquals(true, auto.isEncendido());
 		assertEquals(true, auto.getMotor().isAcelerando());
 		
-		/* lo pongo a 7000 rpm */
+		/*  7000 rpm */
 		while( auto.getMotor().getRPM() <= 700){ 
 		
 			automatica.Chequear();	
