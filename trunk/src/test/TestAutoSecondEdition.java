@@ -100,19 +100,19 @@ public class TestAutoSecondEdition extends TestCase {
 			System.out.print(auto.getCaja().getCambio());
 			
 			System.out.print(" RPM: ");
-			System.out.print(auto.getMotor().getRPM());
+			System.out.print((long)auto.getMotor().getRPM());
 			
-			System.out.print("Estado: ");
+			System.out.print(" Estado: ");
 			System.out.print(auto.getEstado());
 			
 			System.out.print("  A: ");
-			System.out.print(auto.getAceleracion());
+			System.out.print((long)auto.getAceleracion());
 			
 			System.out.print("  V: ");
-			System.out.print(auto.getVelocidad());
+			System.out.print((long)auto.getVelocidad());
 
 			System.out.print("  P: ");
-			System.out.println(auto.getPosicion());
+			System.out.println((long)auto.getPosicion());
 			
 			
 
