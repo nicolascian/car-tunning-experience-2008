@@ -190,7 +190,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	 if(isEncendido())
 	  if(!isActualizandoRPM()){
 	   setActualizandoRPM(true);
-	   if(RPM<getRevolucionesMaximas())
+	   if(RPM<getRevolucionesMaximas()){
 		 if(isAcelerando()){
 			 double rpmInicial=RPM;
 			 long diferenciaDeTiempoReal=System.currentTimeMillis()-getTiempoDeControlAceleracion();
@@ -211,8 +211,9 @@ public class Motor extends Componente implements AfectablePorClima{
 	    	 //actualizacion de temperatura
 	    	 actualizarTemperaturaPorCambioDeRpm(rpmInicial, RPM, diferenciaDeTiempoReal);
            }
-	   //chequeo para compatibilidad con caja automatica
-	   getAuto().getCaja().Chequear();
+	     //chequeo para compatibilidad con caja automatica
+	     getAuto().getCaja().Chequear();
+	   }
 	   setActualizandoRPM(false);
 	  }
 	}
