@@ -21,6 +21,8 @@ public class TestAutomatica extends TestCase {
 		auto.setEncendido(true);
 		auto.acelerar(true);
 		
+		assertEquals(true, auto.isEncendido());
+		assertEquals(true, auto.getMotor().isAcelerando());
 		
 		/* lo pongo a 7000 rpm */
 		while( auto.getMotor().getRPM() <= 700){ 
