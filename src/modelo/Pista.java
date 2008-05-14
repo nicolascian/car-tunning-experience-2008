@@ -41,7 +41,7 @@ public class Pista{
 	private Iterator<Tramo>[] iterador;
 	
 	/*---------Metodos---------*/
-	/*
+	/**
 	 * Constructor que recibe como parametros dos jugadores y la longitud
 	 * Genera un solo tramo con condiciones por defecto. 
 	 * pre:-
@@ -66,7 +66,7 @@ public class Pista{
 			Jugador[i].getAuto().afectar(tramoActual[i].getSuperficie());
 		}
 	}
-	/*
+	/**
 	 * Constructor con parametros
 	 * pre: La lista "tramos" debe estar ordenada, y el principio de cada
 	 * tramo debe coincidir con el final del anterior.
