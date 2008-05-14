@@ -21,7 +21,7 @@ package modelo;
 public class Carburador extends Alimentacion implements AfectablePorClima{
 	/* implementado con muchas multiplicaciones */
 	
-	private double EfectoClimatico;
+	private double EfectoClimatico = 1;
 	
 	/* no tienen setter pues son constantes */
 	private static double CTE_HUMEDAD_OPTIMA = 30; // %
@@ -31,7 +31,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	 * Constructor de Carburador por defecto.
 	 */
 	public Carburador(){
-		setEstado(100);
+		super();
 	}
 	
 	/**
@@ -40,6 +40,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	public Carburador(double cte_humedad_optima, 
 						double cte_relacion_potencia){
 		
+		super();
 		CTE_HUMEDAD_OPTIMA = cte_humedad_optima;
 		CTE_RELACION_POTENCIA = cte_relacion_potencia;
 	}
@@ -101,9 +102,13 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	 */
 	public double obtenerPotencia(){
 	    /* es una operacion matematica */
-		return ((auto.getCombustible().obtenerPotencia() *
+		double AUX = (((auto.getCombustible().obtenerPotencia() *
 				 CTE_RELACION_POTENCIA) /100) * 
-				  EfectoClimatico * getEstado();
+				  EfectoClimatico * getEstado())/100;
+		
+		if (AUX > 50){AUX=50;}
+		
+		return AUX;
 	}
 	
 	/* toString */
