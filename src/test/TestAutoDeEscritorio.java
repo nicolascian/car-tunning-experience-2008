@@ -71,16 +71,16 @@ public class TestAutoDeEscritorio extends TestCase {
 			
 			long tiempo2=System.currentTimeMillis()+1000;
 			 while(System.currentTimeMillis()<tiempo2); 
-			
-
+		
+			 
 			System.out.print("Cambio: ");
 			System.out.print(auto.getCaja().getCambio());
 			
 			System.out.print("  RPM: ");
 			System.out.print((long)auto.getMotor().getRPM());
-			
+	
 			System.out.print("  Pot: ");
-			System.out.print((long)auto.getPotenciaTotal());
+			System.out.print(auto.getPotenciaTotal()); 
 			
 			System.out.print("  A: ");
 			System.out.print((long)auto.getAceleracion());

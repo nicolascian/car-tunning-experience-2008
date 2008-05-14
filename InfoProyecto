@@ -21,9 +21,13 @@ hice un cambio en Pista: en jugadorCambioTramo(int nroJugador)
 le agregue una negacion ! (espero que este bien)
 
 
-en Auto, getPotenciaTotal; 
-porque esta afuera del if??????????
-potencia=potencia+getCarroceria().obtenerPotencia(); ???
+para calibrar las potencias de los componentes testAutoPotencias -> ejecutar como: java aplication
+
+para ver como anda el auto testAutoDeEscritorio -> ejecutar como: java aplication
+
+falta hacer: que todos los obtenerPotencia esten controlados, y que el obtenerPotencia de los 
+eje no de Infinito jeje, una vez hecho este, ir a auto.java -> getPotenciaTotal y descomentar los ejes.
+
 
 nico
 #########################################################################################

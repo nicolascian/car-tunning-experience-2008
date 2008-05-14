@@ -30,7 +30,12 @@ implements AfectablePorSuperficie{
 	/*Constructor,inicia estado de eje en 100*/
 	public Eje(){
 		this.setEstado(100);
+		LlantaDerecha= new Llanta();
+		LlantaIzquierda= new Llanta();
+		NeumaticoDerecho= new NeumaticoMixto();
+		NeumaticoIzquierdo= new NeumaticoMixto();
 	}
+	
 	/**
 	 * @Pre: Potencias de las ruedas y neumaticos
 	 * @Post: Retorna el valor de potencia generada por
@@ -39,7 +44,6 @@ implements AfectablePorSuperficie{
 	 * las dos llantas y los dos neumaticos que componene cada eje.
 	 * El mejor valor de potencia que puede devolver un eje es de 5 watts.
 	 */
-	
 	public double obtenerPotencia() {
 		return ((5*this.getEstado()/100)+ LlantaDerecha.obtenerPotencia()+ LlantaIzquierda.obtenerPotencia() + NeumaticoDerecho.obtenerPotencia()+ NeumaticoIzquierdo.obtenerPotencia());
 	}

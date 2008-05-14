@@ -18,10 +18,10 @@ package modelo;
 public class Suspension extends Componente
 implements AfectablePorSuperficie, AfectablePorClima{
 	
-	private double EfectoClimatico;
-	private double EfectoSuperficie;
+	private double EfectoClimatico = 1;
+	private double EfectoSuperficie = 1;
 	
-	private double rigidez;
+	private double rigidez=1;
 	
 	/**
 	 * constructor, queda instanciada la clase Suspension
@@ -62,7 +62,7 @@ implements AfectablePorSuperficie, AfectablePorClima{
 	 */
 	public double obtenerPotencia(){
 //		tener en cuenta la temperatura del clima y superficie
-		return (EfectoSuperficie*EfectoClimatico/100) * rigidez/10 * getEstado();
+		return (EfectoSuperficie*EfectoClimatico/10) * rigidez/10 * getEstado();
 	}
 	
 	/** 

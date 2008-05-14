@@ -18,8 +18,8 @@ public class Escape extends Componente
 implements AfectablePorClima, AfectablePorSuperficie{
 	
 
-	private double EfectoSuperficie;
-	private double EfectoClimatico;
+	private double EfectoSuperficie=1;
+	private double EfectoClimatico=1;
 	
 	//valor optimo de humedad
 	private double HumedadOptima = 50;
@@ -69,7 +69,7 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	 */
 	public double obtenerPotencia(){
 		//tener en cuenta Humedad, presion y Estado
-		return (HumedadOptima*PresionOptima*EfectoClimatico/100) * getEstado();
+		return (HumedadOptima*PresionOptima*EfectoClimatico/1000000) * getEstado() -2;
 	}
 	
 	/**
