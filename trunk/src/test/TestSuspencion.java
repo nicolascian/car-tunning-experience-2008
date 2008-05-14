@@ -16,8 +16,8 @@ public class TestSuspencion {
 	}
 	@Test
 	public void testDesgastar(){
-		//suspension.afectar();
-		//suspension.afectar();
+		suspension.afectar(new Clima(100,50,50));
+		suspension.afectar(new Superficie(50,50,10));
 		suspension.desgastar();
 		System.out.println(suspension.toString());
 	}
