@@ -7,6 +7,7 @@
 
 ## Hay que hacer ##
 
+
 el Source Level es 6
 los test se hacen en JUnit version 3.X.X
 
@@ -20,18 +21,16 @@ ObtenerPotencia de los componentes tira MAXIMO 50 HP
 		excepto MOTOR TURBO que tiran MAS
 
 
-Nico M: 	Neumatico <------------Listo
-				NeumaticoSlick <---Listo
-				NeumaticoTodoTerreno <-Listo
-				NeumaticoMixto <---Listo
+Nico M: 	Neumatico <--------------------------Listo
+				NeumaticoSlick <-----------------Listo
+				NeumaticoTodoTerreno <-----------Listo
+				NeumaticoMixto <-----------------Listo
 				NeumaticoInvierno
 				NeumaticoLluvia 
-			Pista <----------------Listo (algunas pruebas hechas)
-			Tramo <----------------Listo (varias pruebas hechas)
-			interfaces Afectable <-Listo 
-			Superficie <-----------Listo
-			
-			VER NOTA IMPORTANTE ABAJO DE TODO
+			Pista <------------------------------Listo (algunas pruebas hechas)
+			Tramo <------------------------------Listo (varias pruebas hechas)
+			interfaces Afectable <---------------Listo 
+			Superficie <-------------------------Listo
 			
 Rafa:		Motor
 			Caja 
@@ -40,44 +39,36 @@ Rafa:		Motor
 			Manual
 			Auto
 			
-			VER NOTA IMPORTANTE ABAJO DE TODO
-			
 Lucas:		Desgastar y ObtenerPotencia
 			(Eje,Escape,Neumatico,Carroceria,Carburador
 			Inyeccion,Suspencion,
 			Faltan : Llantas, motor,caja,Combustible)
-			Componente<------Listo
-			eje <------------Listo
-			Carroceria<------Listo
-			Excepciones<-----Listo
+			Componente <-------------------------Listo
+			eje <--------------------------------Listo
+			Carroceria <-------------------------Listo
+			Excepciones <------------------------Listo
 			
-			VER NOTA IMPORTANTE ABAJO DE TODO
-
-Nico C:		Doc. Dificultad
-			Clima <----------------Listo c/ test
-			Jugador <--------------Listo
-			  Usuario <------------Listo
-			  Virtual <------------Listo
-			    Habilidad <--------Listo
-			      Experto <--------Listo
-			      Intermedio <-----Listo
-			      Principiante <---Listo
-			Alimentacion <---------Listo
-			  Carburador <---------Listo
-			  Inyeccion <----------Listo
-			  
-			  VER NOTA IMPORTANTE ABAJO DE TODO
-			
-Maxi:		
-								me faltan las pruebas
-			Suspension
+Nico C:		Clima <------------------------------Listo c/ test
+			Jugador <----------------------------Listo no se me ocurre un test
+			  Usuario <--------------------------Listo
+			  Virtual <--------------------------Listo
+			    Habilidad <----------------------Listo no se me ocurre un test
+			      Experto <----------------------Listo
+			      Intermedio <-------------------Listo
+			      Principiante <-----------------Listo c/ test a medias
+			Alimentacion <-----------------------Listo no se me ocurre un test
+			  Carburador <-----------------------Listo c/ test
+			  Inyeccion <------------------------Listo c/ test
+			  		
+Maxi:		Suspension 		me faltan las pruebas
 			Combustible
 			Escape
 			Turbo
 			AlgoPesos
 			Llanta
 			
-			VER NOTA IMPORTANTE ABAJO DE TODO
+
+			
  
 --------------------------             NOTA IMPORTANTE              -------------------------------
 
