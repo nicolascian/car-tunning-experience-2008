@@ -45,7 +45,7 @@ implements AfectablePorSuperficie, AfectablePorClima{
 	 */
 	public void desgastar(){
 //		tener en cuenta la temperatura del clima y superficie
-		this.setEstado(getEstado() - EfectoClimatico - EfectoSuperficie/100 - 1/1000000000);
+		this.setEstado(getEstado() - EfectoClimatico - EfectoSuperficie - 1/1000000000);
 	}
 	/**
 	 * observo el estado de mi objeto
@@ -78,9 +78,11 @@ implements AfectablePorSuperficie, AfectablePorClima{
 	 * ve afectada por la superficie 
 	 */
 	public void afectar(Superficie superficie){
-
+		EfectoSuperficie = (superficie.getRugosidad()/1000 + superficie.getParticulasSueltas()/1000);
+	}
+	public String getNombre (){
+		return "suspension";
 	}
 
-	
 	
 }
