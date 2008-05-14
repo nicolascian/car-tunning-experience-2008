@@ -42,8 +42,7 @@ public abstract class Jugador {
 	 * 
 	 * este metodo permite desarrollar los cambios durante una carrera,
 	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
-	 * 
-	 * @throws ExceptionAutoApagado
+	 *
 	 */
 	public abstract void jugar();
 	
