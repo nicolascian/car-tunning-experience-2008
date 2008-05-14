@@ -101,7 +101,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		  ejeDelantero.setLlantaIzquierda(new Llanta());
 		  ejeDelantero.setNeumaticoDerecho(new NeumaticoMixto());
 		  ejeDelantero.setNeumaticoIzquierdo(new NeumaticoMixto());
-
 		setEjeTrasero(new Eje());
 		  ejeTrasero.setLlantaDerecha(new Llanta());
 		  ejeTrasero.setLlantaIzquierda(new Llanta());
