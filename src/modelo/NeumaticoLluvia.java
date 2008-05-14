@@ -1,12 +1,20 @@
+/* ****************************************************************************
+ *                         Car-Tunnig-Experience-2008                         *
+ *                                                                            *
+ *                   Algoritmos y Programacion III - 75.07                    *
+ *            Facultad de Ingenieria - Universidad de Buenos Aires            *
+ ******************************************************************************/
+
 package modelo;
-	/**
-	 * El neumatico para lluvia esta hecho de forma tal que drena el agua y por
-	 * lo tanto no lo afecta la cantidad de la misma que se encuentre en la pista.
-	 * Es similar al neumatico mixto, salvo que no se ve afectado por el clima,
-	 * y el desgaste es mayor.
-	 * Su desgaste es mayor al normal y no tiene un buen comportamiento en superficies
-	 * con mucho relieve.
-	 */
+
+/**
+ * El neumatico para lluvia esta hecho de forma tal que drena el agua y por
+ * lo tanto no lo afecta la cantidad de la misma que se encuentre en la pista.
+ * Es similar al neumatico mixto, salvo que no se ve afectado por el clima,
+ * y el desgaste es mayor.
+ * Su desgaste es mayor al normal y no tiene un buen comportamiento en superficies
+ * con mucho relieve.
+ */
 public class NeumaticoLluvia extends Neumatico
 	implements AfectablePorSuperficie{
 

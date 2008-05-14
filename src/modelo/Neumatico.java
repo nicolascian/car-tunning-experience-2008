@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,13 +5,15 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-	/**
-	 * El neumatico es aquel componente del auto que interactua en forma
-	 * directa con la superficie. Por lo tanto, es el encargado de transmitir
-	 * la pontecia del auto al movimiento.
-	 * Al estar en contacto directo con el suelo es afectable por la superficie, 
-	 * tanto como por el clima.
-	 */
+package modelo;
+
+/**
+ * El neumatico es aquel componente del auto que interactua en forma
+ * directa con la superficie. Por lo tanto, es el encargado de transmitir
+ * la pontecia del auto al movimiento.
+ * Al estar en contacto directo con el suelo es afectable por la superficie, 
+ * tanto como por el clima.
+ */
 public abstract class Neumatico extends Componente{
 	
 	/**

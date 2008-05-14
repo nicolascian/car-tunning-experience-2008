@@ -1,11 +1,18 @@
+/* ****************************************************************************
+ *                         Car-Tunnig-Experience-2008                         *
+ *                                                                            *
+ *                   Algoritmos y Programacion III - 75.07                    *
+ *            Facultad de Ingenieria - Universidad de Buenos Aires            *
+ ******************************************************************************/
+
 package modelo;
 
-	/**
-	 * Los neumaticos todo terreno son utilizados en las superficies mas
-	 * exigentes, proporcionando una mayor adherencia y traccion en terrenos
-	 * con mucho relieve, pero el desgaste es mayor que en un neumatico comun
-	 * Al tener mayor dibujo y grandes tacos drenan mejor el agua.
-	 */
+/**
+ * Los neumaticos todo terreno son utilizados en las superficies mas
+ * exigentes, proporcionando una mayor adherencia y traccion en terrenos
+ * con mucho relieve, pero el desgaste es mayor que en un neumatico comun
+ * Al tener mayor dibujo y grandes tacos drenan mejor el agua.
+ */
 public class NeumaticoTodoTerreno extends Neumatico
 	implements AfectablePorClima, AfectablePorSuperficie{
 	
@@ -27,7 +34,7 @@ public class NeumaticoTodoTerreno extends Neumatico
 	
 	/**
 	 * Las particulas sueltas en la superficie son aquellos elementos de 
-	 * volumen sueltos en la pista q aumentaran el daño producido sobre 
+	 * volumen sueltos en la pista q aumentaran el daï¿½o producido sobre 
 	 * los neumaticos y disminuiran la adherencia aunque no de forma
 	 * significativa.
 	 * Toma valores entre 0 y 1.

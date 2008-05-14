@@ -1,17 +1,20 @@
-package modelo;
-import java.util.*;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
  *                   Algoritmos y Programacion III - 75.07                    *
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
-	/**
-	 * La pista es el lugar donde se desarrolla la carrera.
-	 * Tiene como caracteristicas una sucesion de tramos,
-	 * cada uno con una longitud y caracteristicas especificas.
-	 */
+
+package modelo;
+import java.util.*;
+
+/**
+ * La pista es el lugar donde se desarrolla la carrera.
+ * Tiene como caracteristicas una sucesion de tramos,
+ * cada uno con una longitud y caracteristicas especificas.
+ */
 public class Pista{
+	
 	/*--------Atributos--------*/
 	/**
 	 * La pista tiene una referencia a los dos corredores
@@ -67,7 +70,7 @@ public class Pista{
 		}
 	}
 	/**
-	 * Constructor con parametros
+	 * Constructor con parametrosSystem.out.print("Finaliz� la carrera");
 	 * pre: La lista "tramos" debe estar ordenada, y el principio de cada
 	 * tramo debe coincidir con el final del anterior.
 	 * post: Queda creada una instancia de Pista.
@@ -146,7 +149,7 @@ public class Pista{
 	 * @return
 	 */
 	public boolean jugadorCambioTramo(int nroJugador){
-		return (this.getJugador(nroJugador).getAuto().getPosicion() 
+		return !(this.getJugador(nroJugador).getAuto().getPosicion() 
 				< this.getTramoActual(nroJugador).getPosFinal());
 	}
 	
