@@ -125,8 +125,11 @@ public abstract class Caja extends Componente{
 	 * @Post: Se retorna la cantidad de RPM de la instancia para le cambio actual.
 	*/
 	public double obtenerRpm() {
+	  if(getAuto()!=null){	
 		double rpm=getAuto().getMotor().getRPM();
 		return (rpm*(1-20*getRelacionDeCambio()/rpm));
+	  }else
+		return 0;  
 	}
 
 	/**

@@ -358,7 +358,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		lista.add(this.ejeTrasero.getNeumaticoDerecho());
 		lista.add(this.ejeTrasero.getNeumaticoIzquierdo());
 		lista.add(this.ejeTrasero);
-
 		return lista;
 	}
 
@@ -377,7 +376,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		return listaAS;
 	}
 	
-
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.
 	 * @Post: Retorna una instancia de lista LinkedList con todos los componentes afectables por
