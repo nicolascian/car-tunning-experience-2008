@@ -12,7 +12,6 @@ public class TestAutoDeEscritorio extends TestCase {
 		Auto auto = new Auto();
 		System.out.println("CREAR AUTO POR DEFAULT");
 		
-		
 		System.out.print("caja tipo manual: ");
 		System.out.println(auto.isManual());
 		
@@ -22,21 +21,12 @@ public class TestAutoDeEscritorio extends TestCase {
 		System.out.print("caja tipo automatica: ");
 		System.out.println(auto.isAutomatica());
 		
-			Caja automatica = new Automatica(5);
-			System.out.println("CREAR CAJA AUTOMATICA");
-		
-			auto.setCaja(automatica);
-			System.out.println("COLOCAR CAJA AUTOMATICA");
-		
 		
 		System.out.print("esta listo: ");
 		System.out.println(auto.estaListoParaCarrera());
 		
 		System.out.print("auto encendido: ");
 		System.out.println(auto.isEncendido());
-		
-		System.out.print("motor encendido: ");
-		System.out.println(auto.getMotor().isEncendido());
 		
 		System.out.print("motor acelerando: ");
 		System.out.println(auto.getMotor().isAcelerando());
@@ -45,14 +35,17 @@ public class TestAutoDeEscritorio extends TestCase {
 			System.out.println("ENCENDER AUTO");
 
 		System.out.print("auto encendido: ");
-		System.out.println(auto.isEncendido());
-			
-		System.out.print("motor encendido: ");
-		System.out.println(auto.getMotor().isEncendido());	
+		System.out.println(auto.isEncendido());	
 			
 		System.out.print("motor acelerando: ");
 		System.out.println(auto.getMotor().isAcelerando());
 			
+		long tiempo=System.currentTimeMillis()+1000;
+		 while(System.currentTimeMillis()<tiempo);
+		
+		System.out.print("RPM: ");
+		System.out.println(auto.getMotor().getRPM());
+		  
 			auto.acelerar(true);
 			System.out.println("ACELERAR");
 		
@@ -62,29 +55,22 @@ public class TestAutoDeEscritorio extends TestCase {
 		System.out.print("auto encendido: ");
 		System.out.println(auto.isEncendido());
 		
-		System.out.print("motor encendido: ");
-		System.out.println(auto.getMotor().isEncendido());
-		
 		System.out.print("motor acelerando: ");
 		System.out.println(auto.getMotor().isAcelerando());
 		
+		long tiempo1=System.currentTimeMillis()+1000;
+		 while(System.currentTimeMillis()<tiempo1);
 		
-		System.out.print("caja tipo manual: ");
-		System.out.println(auto.isManual());
+		System.out.print("RPM: ");
+		System.out.println(auto.getMotor().getRPM());
 		
-		System.out.print("caja tipo secuencial: ");
-		System.out.println(auto.isSecuencial());
-		
-		System.out.print("caja tipo automatica: ");
-		System.out.println(auto.isAutomatica());
-
 				
 		int contador =0;
-		while( contador <= 1500){
+		while( contador <= 40){
 
 			
-			long tiempo=System.currentTimeMillis()+100;
-			 while(System.currentTimeMillis()<tiempo); 
+			long tiempo2=System.currentTimeMillis()+1000;
+			 while(System.currentTimeMillis()<tiempo2); 
 			
 
 			System.out.print("Cambio: ");
@@ -92,6 +78,9 @@ public class TestAutoDeEscritorio extends TestCase {
 			
 			System.out.print("  RPM: ");
 			System.out.print((long)auto.getMotor().getRPM());
+			
+			System.out.print("  Pot: ");
+			System.out.print((long)auto.getPotenciaTotal());
 			
 			System.out.print("  A: ");
 			System.out.print((long)auto.getAceleracion());
@@ -119,7 +108,7 @@ public class TestAutoDeEscritorio extends TestCase {
 
 			contador++;
 		}//fin while
-		
+	
 		
 		
 	}

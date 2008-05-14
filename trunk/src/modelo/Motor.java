@@ -453,7 +453,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	/**
 	 * @param encendido the encendido to set
 	 */
-	protected void setEncendido(boolean encendido) {
+	private void setEncendido(boolean encendido) {
 		this.encendido = encendido;
 	}
 
@@ -467,7 +467,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	/**
 	 * @param acelerando the acelerando to set
 	 */
-	protected void setAcelerando(boolean acelerando) {
+	private void setAcelerando(boolean acelerando) {
 		this.acelerando = acelerando;
 	}
 
