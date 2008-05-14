@@ -55,8 +55,8 @@ public class Pista{
 		Jugador[0]=j1;
 		Jugador[1]=j2;
 		iterador = new Iterator[2];
+		iterador[0]= Tramos.iterator();
 		iterador[1]= Tramos.iterator();
-		iterador[2]= Tramos.iterator();
 		tramoActual = new Tramo[2];
 		tramoActual[1]= Tramos.get(0);
 		tramoActual[2]= Tramos.get(0);
