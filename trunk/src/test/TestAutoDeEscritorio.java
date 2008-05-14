@@ -64,7 +64,11 @@ public class TestAutoDeEscritorio extends TestCase {
 		System.out.print("RPM: ");
 		System.out.println(auto.getMotor().getRPM());
 		
-				
+
+		System.out.print("RPM Maximas Cambio: ");
+		System.out.println(auto.getMotor().getRevolucionesMaximasCambio());
+		
+		
 		int contador =0;
 		while( contador <= 40){
 
@@ -104,8 +108,11 @@ public class TestAutoDeEscritorio extends TestCase {
 			System.out.print(auto.getEjeTrasero().getNeumaticoIzquierdo().calcularAdherencia());
 			
 			System.out.print("  TD: ");
-			System.out.println(auto.getEjeTrasero().getNeumaticoDerecho().calcularAdherencia());
+			System.out.print(auto.getEjeTrasero().getNeumaticoDerecho().calcularAdherencia());
 
+			System.out.print(" RpmMaxCambio: ");
+			System.out.println(auto.getMotor().getRevolucionesMaximasCambio());
+			
 			contador++;
 		}//fin while
 	
