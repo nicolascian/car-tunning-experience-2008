@@ -74,6 +74,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		//inicializacion de aceleracion y velocidad
 		Velocidad=0;
 		Aceleracion=0;
+		setPosicion(0);
 	}
 	
 	/**
@@ -97,6 +98,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		//inicializacion de aceleracion y velocidad
 		Velocidad=0;
 		Aceleracion=0;
+		setPosicion(0);
     }
 
 	/*
@@ -385,10 +387,10 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 
 		ejeDelantero.instalar(this);
 		try{	
-		ejeDelantero.setLlantaDerecha(this.getEjeDelantero().getLlantaDerecha());
-		ejeDelantero.setLlantaIzquierda(this.getEjeDelantero().getLlantaIzquierda());
-		ejeDelantero.setNeumaticoDerecho(this.getEjeDelantero().getNeumaticoDerecho());
-		ejeDelantero.setNeumaticoIzquierdo(this.getEjeDelantero().getNeumaticoIzquierdo());
+		  ejeDelantero.setLlantaDerecha(this.getEjeDelantero().getLlantaDerecha());
+		  ejeDelantero.setLlantaIzquierda(this.getEjeDelantero().getLlantaIzquierda());
+		  ejeDelantero.setNeumaticoDerecho(this.getEjeDelantero().getNeumaticoDerecho());
+		  ejeDelantero.setNeumaticoIzquierdo(this.getEjeDelantero().getNeumaticoIzquierdo());
 		}catch(Exception e){}
 		this.ejeDelantero = ejeDelantero;
 	 
@@ -402,10 +404,10 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 
 		ejeTrasero.instalar(this);
 		try{
-		ejeTrasero.setLlantaDerecha(this.getEjeTrasero().getLlantaDerecha());
-		ejeTrasero.setLlantaIzquierda(this.getEjeTrasero().getLlantaIzquierda());
-		ejeTrasero.setNeumaticoDerecho(this.getEjeTrasero().getNeumaticoDerecho());
-		ejeTrasero.setNeumaticoIzquierdo(this.getEjeTrasero().getNeumaticoIzquierdo());
+		  ejeTrasero.setLlantaDerecha(this.getEjeTrasero().getLlantaDerecha());
+		  ejeTrasero.setLlantaIzquierda(this.getEjeTrasero().getLlantaIzquierda());
+		  ejeTrasero.setNeumaticoDerecho(this.getEjeTrasero().getNeumaticoDerecho());
+		  ejeTrasero.setNeumaticoIzquierdo(this.getEjeTrasero().getNeumaticoIzquierdo());
 		}catch(Exception e){}
 		this.ejeTrasero = ejeTrasero;
 	 
@@ -427,7 +429,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public void setEncendido(boolean encendido) {
 	 	if(estaListoParaCarrera())
 			getMotor().setEncendido(encendido);
-		
 	}
 
 	public void acelerar(boolean valor){

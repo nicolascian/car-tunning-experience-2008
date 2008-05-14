@@ -49,7 +49,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	protected final static double COEFICIENTE_BASICO_DE_DESGASTE=1.5;
 	
-	//---------------------     atributos b�sicos de motor   -------------------
+	//---------------------     atributos basicos de motor   -------------------
 	
 	private double cilindrada;//en centimetros c�bicos
 	
@@ -85,6 +85,8 @@ public class Motor extends Componente implements AfectablePorClima{
 	protected double coeficienteDeAbsorcionCalorico;
 		
 	protected double coeficienteDeDisipacionCalorico;
+	
+	protected boolean actualizandoRPM=false;
 	
 	/**
 	 * @Pre: -
@@ -185,8 +187,10 @@ public class Motor extends Componente implements AfectablePorClima{
 	 *  de acuerdo a la variaci�n de las revoluciones.    
 	*/
 	private void actualizarRpm(){
-	 if(isEncendido())	
-	  if(RPM<getRevolucionesMaximas()){
+	 if(isEncendido())
+	  if(isActualizandoRPM()){
+	   setActualizandoRPM(true);
+	   if(RPM<getRevolucionesMaximas())
 		 if(isAcelerando()){
 			 double rpmInicial=RPM;
 			 long diferenciaDeTiempoReal=System.currentTimeMillis()-getTiempoDeControlAceleracion();
@@ -206,11 +210,10 @@ public class Motor extends Componente implements AfectablePorClima{
 	    	 setRPM(rpm);
 	    	 //actualizacion de temperatura
 	    	 actualizarTemperaturaPorCambioDeRpm(rpmInicial, RPM, diferenciaDeTiempoReal);
-         }
-		 //chequeo para compatibilidad con caja automatica
-		 getAuto().getCaja().Chequear();
-		 //desgaste
-		 //desgastar();
+           }
+	   //chequeo para compatibilidad con caja automatica
+	   getAuto().getCaja().Chequear();
+	   setActualizandoRPM(false);
 	  }
 	}
 	
@@ -591,4 +594,19 @@ public class Motor extends Componente implements AfectablePorClima{
 		
 		return(cadena);	
 	}
+
+	/**
+	 * @return the actualizandoRPM
+	 */
+	protected boolean isActualizandoRPM() {
+		return actualizandoRPM;
+	}
+
+	/**
+	 * @param actualizandoRPM the actualizandoRPM to set
+	 */
+	protected void setActualizandoRPM(boolean actualizandoRPM) {
+		this.actualizandoRPM = actualizandoRPM;
+	}
+	
 }
