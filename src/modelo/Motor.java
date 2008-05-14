@@ -122,7 +122,6 @@ public class Motor extends Componente implements AfectablePorClima{
 	//auto y estado
 		setAuto(null);
 		setEstado(100);
-		
 	}
 	
 	/**
@@ -228,7 +227,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	   setActualizandoRPM(true);
 	   long diferenciaDeTiempoReal=System.currentTimeMillis()-getTiempoDeControlAceleracion();
 	   long tiempoParametroFuncion=getTiempoDeControlCurvaAceleracion()+diferenciaDeTiempoReal;
-	   if(tiempoParametroFuncion<=getTiempoCaracteristicoAceleracion()){
+	   if(tiempoParametroFuncion<getTiempoCaracteristicoAceleracion()){
 		 if(isAcelerando()){
 			 double rpmInicial=RPM;
 			 setRPM(getRevolucionesMaximas()*(Math.sin((tiempoParametroFuncion)*Math.PI/
@@ -280,8 +279,6 @@ public class Motor extends Componente implements AfectablePorClima{
 	public double obtenerPotenciaMaximaTeorica(){
 		return(getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000);
 	}
-	
-	
 		
 	/**
 	 * @Pre: La instancia ha sido creada y se encuentra en estado encendido.
