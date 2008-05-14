@@ -116,6 +116,9 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 		String cadena = this.getNombre()+", Estado: "+this.getEstado()+" %.";
 		return cadena;
 	}
+	public String getNombre(){
+		return "Llanta";
+	}
 	/**
 	 * devuelve el coeficienteDeDesgastePorSuperficie
 	 * @return the coeficienteDeDesgastePorSuperficie
@@ -123,5 +126,11 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 	public double getCoeficienteDeDesgastePorSuperficie() {
 		return coeficienteDeDesgastePorSuperficie;
 	}
-	
+	public double getPeso(){
+		return this.peso;
+		}
+	public double getEstado(){
+		return this.estado;
+		
+	}
 }
