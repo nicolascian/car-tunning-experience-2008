@@ -21,6 +21,8 @@ public class TestEscape {
 		
 	}
 
+	
+	
 	@Test
 	public void testObtenerPotencia() {
 		Escape escape= new Escape();
@@ -30,18 +32,4 @@ public class TestEscape {
 	}
 
 	
-	/**
-	 
-	 public void testAfectarClima() {
-		Escape escape= new Escape();
-		Clima clima= new Clima();
-		
-		clima.setHumedad(50);
-		clima.setTemperatura(25);
-		
-		escape.afectar(clima);
-		
-		assertEquals(, );
-	}
-*/
 }
