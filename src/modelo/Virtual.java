@@ -93,7 +93,7 @@ public class Virtual extends Jugador{
 	 * 
 	 * @throws ExceptionAutoApagado
 	 */
-	public void jugar() throws ExceptionAutoApagado{
+	public void jugar(){
 		
 		/* encender el auto */
 		auto.setEncendido(true);
@@ -102,11 +102,7 @@ public class Virtual extends Jugador{
 		if (auto.getMotor().isEncendido()){
 			
 			/* le paso la pelota a la habilidad */
-			habilidad.jugar();
-			
-		}else{/* si esta apagado, que lo resuelva otro */
-		
-			throw new ExceptionAutoApagado();
+			habilidad.jugar();	
 		}
 		
 	}//fin jugar

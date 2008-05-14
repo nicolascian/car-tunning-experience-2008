@@ -50,26 +50,15 @@ public class Juego{
 		while(!finCarrera){
 			//Control1.acelerando ? true
 			
-			try{
-				jugador1.jugar();
-				
-			}catch (Exception e){
-				finCarrera=true;
-			}
+			jugador1.jugar();
 			
-			try{
-				jugador2.jugar();
-				
-			}catch (Exception e){
-				finCarrera=true;
-			}
+			jugador2.jugar();
 			
+			/* vemos si alguien llego */
 			double Long = pista.getLongitud();
-			
 			if ( (auto1.getPosicion() == Long) ||
 				 (auto2.getPosicion() == Long) ){
-				finCarrera = true;
-			}
+				finCarrera = true;	}
 			
 			/* verifica el tramo de cada auto */
 			try{

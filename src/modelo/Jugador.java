@@ -45,7 +45,7 @@ public abstract class Jugador {
 	 * 
 	 * @throws ExceptionAutoApagado
 	 */
-	public abstract void jugar() throws ExceptionAutoApagado;
+	public abstract void jugar();
 	
 	/**
 	 * Constructor con nombre de Jugador
