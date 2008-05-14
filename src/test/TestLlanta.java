@@ -1,10 +1,10 @@
 package test;
-import modelo.*;
 
+import modelo.*;
 import org.junit.Test;
 import junit.framework.TestCase;
 
-public class TestLLanta extends TestCase{
+public class TestLlanta extends TestCase{
 	
 	Llanta llanta = new Llanta();
 	
