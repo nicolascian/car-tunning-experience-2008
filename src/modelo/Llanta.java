@@ -48,6 +48,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 		setEstado(100);
 		this.setPesoNormal(8);
 		this.setCoeficienteDeDesgastePorSuperficie(3);
+		
 
 	}
 	/**
