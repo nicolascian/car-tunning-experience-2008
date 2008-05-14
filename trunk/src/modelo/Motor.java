@@ -87,7 +87,8 @@ public class Motor extends Componente implements AfectablePorClima{
 		
 	protected double coeficienteDeDisipacionCalorico;
 	
-	protected boolean actualizandoRPM=false;
+	protected boolean actualizandoRPM=false;//inicida si se estan actualizando las rpm evitando asi
+	                                        //bucles
 	
 	/**
 	 * @Pre: -
@@ -97,26 +98,31 @@ public class Motor extends Componente implements AfectablePorClima{
 	 * @param revolucionesMaximas revoluciones maximas del motor en rpm
 	*/
 	public Motor(int cantidadCilindros,double cilindrada, double revolucionesMaximas){
+	 //inicializacion de cilindara y cilindros
 		setCantidadCilindros(cantidadCilindros);
 		setCilindrada(cilindrada);
-		//inicializacion de revoluciones
+	 //inicializacion de revoluciones
 		setRevolucionesMaximas(revolucionesMaximas);
 		setRevolucionesMaximasCambio(revolucionesMaximas*COEFICIENTE_RPM_ENCENDIDO);
+		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 		RPM=0;
-		//inicializacion de temperaturas
+	 //inicializacion de temperaturas
 		setTemperaturaAire(25); //°C
 		setTemperatura(TEMPERATURA_INICIAL);
-		//inicilizacion de coeficientes
+	 //inicilizacion de coeficientes
 		setCoeficienteDeAbsorcionCalorico(COEFICIENTE_DE_ABSORCION_CALORICO_INICIAL);
 		setCoeficienteDeDisipacionCalorico(COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL);
+	 //inicializacion de atributos booleanos
 		setEncendido(false);
 		setAcelerando(false);
+	 //inicializacion de tiempos
 		setTiempoDeControlAceleracion(0);
 		setTiempoCaracteristicoAceleracion(Math.round(getRevolucionesMaximas()*
 				                           COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO));
+	//auto y estado
 		setAuto(null);
 		setEstado(100);
-		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
+		
 	}
 	
 	/**
@@ -151,6 +157,28 @@ public class Motor extends Componente implements AfectablePorClima{
 	}
 	
 	/**
+	 *  @Pre: La instancia ha sido creada y se encuentra en estado encendido.
+	 *  @Post: Se ha seteado la instancia como acelerando.    
+	*/
+	public void acelerar(boolean valor){
+	  if(isEncendido()){
+		if((valor)&&(!isAcelerando())){
+			setAcelerando(true);
+			this.setTiempoDeControlAceleracion(System.currentTimeMillis());
+			setTiempoDeControlCurvaAceleracion(Math.round((2*getTiempoCaracteristicoAceleracion()/Math.PI)*
+					                    Math.asin(Math.round(RPM/getRevolucionesMaximas()))));
+		}//fin verdadero y sin acelerar
+		else{
+			setAcelerando(false);
+			this.setTiempoDeControlAceleracion(System.currentTimeMillis());
+			setTiempoDeControlCurvaAceleracion(Math.round((2*getTiempoCaracteristicoAceleracion()/Math.PI)*
+                    Math.acos(Math.round(RPM/getRevolucionesMaximas()))));
+	    }//fin falso y acelerando
+		actualizarRpm();
+	  }//fin encendido	
+	}
+	
+	/**
 	 *	@Pre: La instancia ha sido creada.
 	 *  @Post: Si la insntancia no se encontraba en estado encendido y ademas estaba lista para la carrera
 	 *  se ha encendido, de manera tal que se setean las las rpm en a un porcentaje de las rpm maximas del
@@ -159,7 +187,12 @@ public class Motor extends Componente implements AfectablePorClima{
 	public void encender(){
 		if((!isEncendido())&&(getAuto()!=null)){
 			setEncendido(true);
+		//seteo de tiempos
+			setTiempoDeControlCurvaAceleracion(0);
+			setTiempoDeControlAceleracion(0);
+		//seteo de temperaturas
 			setTemperatura(TEMPERATURA_INICIAL);
+		//seteo de revoluciones
 			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 			setRevolucionesMaximasCambio(getRevolucionesMinimasEncendido()*1.6);
 			setRPM(getRevolucionesMinimasEncendido());
@@ -248,27 +281,7 @@ public class Motor extends Componente implements AfectablePorClima{
 		return(getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000);
 	}
 	
-	/**
-	 *  @Pre: La instancia ha sido creada y se encuentra en estado encendido.
-	 *  @Post: Se ha seteado la instancia como acelerando.    
-	*/
-	public void acelerar(boolean valor){
-	  if(isEncendido()){
-		if((valor)&&(!isAcelerando())){
-			setAcelerando(true);
-			this.setTiempoDeControlAceleracion(System.currentTimeMillis());
-			setTiempoDeControlCurvaAceleracion(Math.round((2*getTiempoCaracteristicoAceleracion()/Math.PI)*
-					                    Math.asin(Math.round(RPM/getRevolucionesMaximas()))));
-		}//fin verdadero y sin acelerar
-		else{
-			setAcelerando(false);
-			this.setTiempoDeControlAceleracion(System.currentTimeMillis());
-			setTiempoDeControlCurvaAceleracion(Math.round((2*getTiempoCaracteristicoAceleracion()/Math.PI)*
-                    Math.acos(Math.round(RPM/getRevolucionesMaximas()))));
-	    }//fin falso y acelerando
-		actualizarRpm();
-	  }//fin encendido	
-	}
+	
 		
 	/**
 	 * @Pre: La instancia ha sido creada y se encuentra en estado encendido.
@@ -294,28 +307,24 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	/**
 	 *  @Pre: La instancia ha sido creada y se encuentra en estado encendido.
-	 *  @Post: Se ha seteado la instancia como acelerando.    
+	 *  @Post: Se ha     
 	*/
-	public void modificarRpmDesdeCaja(double diferenciaDeRpm){
-	  if(isEncendido()){ //debe estar encendido
-	   double rpm=RPM+diferenciaDeRpm;
-	   //deben ser revoluciones validas para un motor encendido
-	   if((rpm<=this.getRevolucionesMaximas())&&(rpm>=this.getRevolucionesMinimasEncendido())){
-		  double rpmInicial=RPM;
-		  setRPM(RPM+diferenciaDeRpm);
-		  setTiempoDeControlAceleracion(System.currentTimeMillis());
-		  if(isAcelerando())	 
+	public void modificarRpmDesdeCaja(){
+	 if(isEncendido()){ //debe estar encendido
+	   double rpmInicial=RPM;
+	   setRPM(getRevolucionesMinimasEncendido());
+	   setTiempoDeControlAceleracion(System.currentTimeMillis());
+		if(isAcelerando())	 
 		     setTiempoDeControlCurvaAceleracion(Math.round((2*getTiempoCaracteristicoAceleracion()/Math.PI)*
 					                    Math.asin(Math.round(RPM/getRevolucionesMaximas()))));
-		  else
-			 setTiempoDeControlCurvaAceleracion(Math.round((2*getTiempoCaracteristicoAceleracion()/Math.PI)*
+		else
+		     setTiempoDeControlCurvaAceleracion(Math.round((2*getTiempoCaracteristicoAceleracion()/Math.PI)*
 	                    Math.acos(Math.round(RPM/getRevolucionesMaximas())))); 
-		  //actualizacion de temperatura
-		  actualizarTemperaturaPorCambioDeRpm(rpmInicial, RPM, getTiempoCaracteristicoAceleracion());
-	   }
-	  }//fin encendido 
+		//actualizacion de temperatura
+		actualizarTemperaturaPorCambioDeRpm(rpmInicial, RPM, getTiempoCaracteristicoAceleracion());
+	 }
 	}
-	
+		
 	/**
 	 *  @Pre: La instancia ha sido creada y se encuentra en estado encendido.
 	 *  @Post: Se ha obtenido la potencia la potencia de la instancia segun las rpm actuales.    
