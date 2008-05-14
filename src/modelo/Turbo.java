@@ -1,10 +1,11 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
  *                   Algoritmos y Programacion III - 75.07                    *
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
+
+package modelo;
 
 /**
  * Un turbocompresor o turbocargador es un sistema de sobrealimentación que usa 
@@ -27,6 +28,7 @@ package modelo;
  * se ve afectado por la humedad del clima
  * 
  * @version	1.0
+ * @see <a href="http://es.wikipedia.org/wiki/Turbocompresor">Turbocompresor - Wikipedia</a> 
  */
 public class Turbo extends Componente implements AfectablePorClima{
 	
