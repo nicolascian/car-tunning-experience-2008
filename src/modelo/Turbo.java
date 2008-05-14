@@ -53,7 +53,7 @@ public class Turbo extends Componente implements AfectablePorClima{
 	 */
 	public Turbo(){
 		setEstado(100);
-		this.setCoeficienteDeObtencionDePotencia(3);
+		this.setCoeficienteDeObtencionDePotencia(0.01);
 		}
 	
 	/**
@@ -84,7 +84,7 @@ public class Turbo extends Componente implements AfectablePorClima{
 		}catch (Exception e){
 		relacion=0.5;
 		}
-		coeficienteDeObtencionDePotencia=coeficienteInicial*Math.abs(1- relacion);
+		this.setCoeficienteDeObtencionDePotencia(coeficienteInicial*Math.abs(1- relacion));
 		
 		
 	}
