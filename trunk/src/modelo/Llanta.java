@@ -20,14 +20,16 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 	private static double  potenciaNormal=15;  
 	
 	//expresado en kg
-	private double pesoNormal;
+	private double pesoNormal=1;
 	
 	// expresada en porcentaje}
 	private double humedadOptima=50; 
 
 	private static double constanteDeDesgaste=1;
 	
-	private double coeficienteDeDesgastePorSuperficie;
+	private double coeficienteDeDesgastePorSuperficie=1;
+	
+	private double peso;
 	
 	/**constructor, queda instanciada 
 	 *  la clase Llanta.

@@ -145,21 +145,21 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @return
 	 */
 	public double getPotenciaTotal(){
-		double potencia=0;
+		double potencia=0; 
 		//seteo la velocidad de la carroceria
-		getCarroceria().setVelocidad(Velocidad);		
+		this.getCarroceria().setVelocidad(Velocidad); 
 		//hay componente que solo aportan potencia al estar encendido el auto
-		if(isEncendido()){
+		if(this.isEncendido()){ 
 		   potencia=motor.obtenerPotencia() +   /* de aca salen: Alimentacion, Combustible*/
 		            caja.obtenerPotencia() +
 		            suspension.obtenerPotencia() +
 		            escape.obtenerPotencia() +
-		            ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteros
-		            ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
+		         //   ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteros
+		         //   ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
 		            turbo.obtenerPotencia();
-		}
+		} 
 		//en caso de que el auto se este moviendo la carroceria aporta potencia negativa
-		potencia=potencia+getCarroceria().obtenerPotencia();
+		potencia=potencia+getCarroceria().obtenerPotencia(); 
 		return(potencia);
 	}
 	
