@@ -89,8 +89,11 @@ public class TestAutoSecondEdition extends TestCase {
 		/*while( auto.getMotor().getRPM() <= 700){*/
 		
 		int contador =0;
-		while( contador <= 40){
-		
+		while( contador <= 500){
+
+			long tiempo=System.currentTimeMillis()+1000;
+			 while(System.currentTimeMillis()<tiempo);
+			
 			System.out.print("RPM: ");
 			System.out.println(auto.getMotor().getRPM());
 			
