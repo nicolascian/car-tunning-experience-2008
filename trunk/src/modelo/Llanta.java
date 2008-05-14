@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,8 +5,9 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * Documentacion
  * Las llantas de un auto estan ligadas al eje del mismo,
  * se afectan directamente por la superficie y la humedad
  * 

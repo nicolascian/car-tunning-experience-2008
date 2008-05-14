@@ -1,12 +1,20 @@
+/* ****************************************************************************
+ *                         Car-Tunnig-Experience-2008                         *
+ *                                                                            *
+ *                   Algoritmos y Programacion III - 75.07                    *
+ *            Facultad de Ingenieria - Universidad de Buenos Aires            *
+ ******************************************************************************/
+
 package modelo;
-	/**
-	 * El neumatico Slick es un neumatico liso (carece de dibujo en la
-	 * banda de rodadura). Tiene la mayor superficie posible en contacto
-	 * con la superficie, y maximiza el agarre en asfalto seco.
-	 * Su utilizacion es recomendable en pistas secas, ya que tienen poca
-	 * capacidad para evacuar agua, y planas, ya que el relieve y las 
-	 * particulas sueltas lo desgastan rapidamente.
-	 */
+
+/**
+ * El neumatico Slick es un neumatico liso (carece de dibujo en la
+ * banda de rodadura). Tiene la mayor superficie posible en contacto
+ * con la superficie, y maximiza el agarre en asfalto seco.
+ * Su utilizacion es recomendable en pistas secas, ya que tienen poca
+ * capacidad para evacuar agua, y planas, ya que el relieve y las 
+ * particulas sueltas lo desgastan rapidamente.
+ */
 public class NeumaticoSlick extends Neumatico
 	implements AfectablePorSuperficie, AfectablePorClima{
 	
@@ -21,9 +29,9 @@ public class NeumaticoSlick extends Neumatico
 	
 	/**
 	 * Este tipo de neumatico pierde eficacia cuando la temperatura externa
-	 * es inferior a los 7ºC.
+	 * es inferior a los 7ï¿½C.
 	 * El efectoTemperaturaExterna toma un valor nulo si la temperatura es
-	 * superior a los 7ºC, y en caso de ser inferior toma un valor cercano
+	 * superior a los 7ï¿½C, y en caso de ser inferior toma un valor cercano
 	 * a 1.
 	 */
 	private double efectoTemperaturaExterna;
@@ -68,7 +76,7 @@ public class NeumaticoSlick extends Neumatico
 	/**
 	 * La adherencia se ve comprometida en un 40% por la cantidad de agua en la
 	 * pista, en otro 40% por la visicosidad de la misma, en un 8% si la temperatura
-	 * externa es menor a 7ºC y en maximo del 2% por el relieve.
+	 * externa es menor a 7ï¿½C y en maximo del 2% por el relieve.
 	 */
 	public double calcularAdherencia(){
 		double adherencia;

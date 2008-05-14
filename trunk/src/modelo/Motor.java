@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,8 +5,10 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * @Documentacion: Esta clase modela el motor de un auto. El motor tiene una cierta potencia
+ * Esta clase modela el motor de un auto. El motor tiene una cierta potencia
  * maxima dada su cilindrada, cantidad de cilindros y revoluciones maximas que puede alcanzar.
  * El motor transfiere la mayor parte de su pontecia a la caja, por lo cual solo un 10% es
  * obtenible asumiendolo como componente.
@@ -64,7 +65,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	
 	private boolean acelerando;//indica si el motor esta acelerendo
 		
-	private double temperatura;//temperatura en ºC del motor
+	private double temperatura;//temperatura en ï¿½C del motor
 	
 	//----------------------  atributos secundarios    ----------------------------
 	
@@ -583,7 +584,7 @@ public class Motor extends Componente implements AfectablePorClima{
 	public String toString() {
 		String cadena="Motor de "+getCantidadCilindros()+" cilindros "+obtenerPotenciaMaximaTeorica()+
 		   " Hp a "+getRevolucionesMaximas()+" rpm"+'\n'+"  RPM:"+getRPM()+" rpm ; RPM MaxCambioActual: "+
-		   getRevolucionesMaximasCambio()+"rpm Temperatura: "+getTemperatura()+"ºC ";
+		   getRevolucionesMaximasCambio()+"rpm Temperatura: "+getTemperatura()+"ï¿½C ";
 		if(isEncendido())
 			cadena=cadena+"Encendido ";
 		else

@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,10 +5,10 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * Documentacion
- * 
- * en una caja manual, podemos pasar de cambio directamente
+ * En una Caja Manual, podemos pasar de cambio directamente
  * haciendo setCambio(cambioNuevo) sin importar cual era el
  * cambio anterior
  * 

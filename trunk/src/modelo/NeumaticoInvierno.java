@@ -1,3 +1,10 @@
+/* ****************************************************************************
+ *                         Car-Tunnig-Experience-2008                         *
+ *                                                                            *
+ *                   Algoritmos y Programacion III - 75.07                    *
+ *            Facultad de Ingenieria - Universidad de Buenos Aires            *
+ ******************************************************************************/
+
 package modelo;
 
 /**
@@ -19,7 +26,7 @@ public class NeumaticoInvierno extends Neumatico implements
 	
 	/**
 	 * Las particulas sueltas en la superficie son aquellos elementos de 
-	 * volumen sueltos en la pista q aumentaran el daño producido sobre 
+	 * volumen sueltos en la pista q aumentaran el daï¿½o producido sobre 
 	 * los neumaticos y disminuiran la adherencia aunque no de forma
 	 * significativa.
 	 * Toma valores entre 0 y 1.
