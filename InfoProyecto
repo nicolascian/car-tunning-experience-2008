@@ -14,21 +14,9 @@ los test se hacen en JUnit version 3.X.X
 modelo MVC, modelo, vista, control
 #########################################################################################
 
-CHE, toque de TODO por TODOS lados, si no hicieron un Update antes de empezar a cambiar 
-algo se joden por boludos.
+FALTA PONER EN LOS DESGASTAR QUE TIREN LA EXCEPCION CUANDO SE ROMPEN
+EMEPCE A HACERLO PERO ESTABA EN DEMASIADOS LUGARES ASIQUE TUVE QUE DEJARLO
 
-hice un cambio en Pista: en jugadorCambioTramo(int nroJugador)
-le agregue una negacion ! (espero que este bien)
-
-si queres ejecutar la clase Juego.class la pista me tira una Excepcion
-
-el auto esta tirando muy poco potencia
-para calibrar las potencias de los componentes testAutoPotencias -> ejecutar como: java aplication
-
-para ver como anda el auto testAutoDeEscritorio -> ejecutar como: java aplication
-
-falta hacer: que todos los obtenerPotencia esten controlados, y que el obtenerPotencia de los 
-eje no de Infinito jeje, una vez hecho este, ir a auto.java -> getPotenciaTotal y descomentar los ejes.
 
 
 nico
@@ -41,7 +29,7 @@ Nico M: 	Neumatico <--------------------------Listo
 				NeumaticoSlick <-----------------Listo
 				NeumaticoTodoTerreno <-----------Listo
 				NeumaticoMixto <-----------------Listo
-				NeumaticoInvierno
+				NeumaticoInvierno <--------------Listo
 				NeumaticoLluvia <----------------Listo
 			Pista <------------------------------Listo (algunas pruebas hechas)
 			Tramo <------------------------------Listo (varias pruebas hechas)
