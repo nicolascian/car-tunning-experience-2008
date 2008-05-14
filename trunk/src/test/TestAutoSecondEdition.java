@@ -82,9 +82,9 @@ public class TestAutoSecondEdition extends TestCase {
 		int contador =0;
 		while( contador <= 1500){
 
-			/*
-			long tiempo=System.currentTimeMillis()+1000;
-			 while(System.currentTimeMillis()<tiempo);  */
+			
+			long tiempo=System.currentTimeMillis()+100;
+			 while(System.currentTimeMillis()<tiempo); 
 			
 
 			System.out.print("Cambio: ");
