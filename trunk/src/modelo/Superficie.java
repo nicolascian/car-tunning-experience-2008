@@ -1,4 +1,3 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
@@ -6,8 +5,10 @@ package modelo;
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+package modelo;
+
 /**
- * cada vez que se crea una superficie nueva, esta se encarga de afectar 
+ * Cada vez que se crea una superficie nueva, esta se encarga de afectar 
  * al auto, en su constructor llama a auto.afectar(this);
  * 
  * @version	1.0
@@ -21,15 +22,15 @@ public class Superficie{
 	 * El valor minimo de rugosidad es 0 y corresponde a 
 	 * una superficie totalmente plana, sin desnivel alguno.
 	 * Un valor de rugosidad igual a 100 corresponde a una superficie
-	 * totalmente dañada.
-	 * Un mayor nivel de rugosidad de la superficie aumentara los daños
+	 * totalmente daï¿½ada.
+	 * Un mayor nivel de rugosidad de la superficie aumentara los daï¿½os
 	 * en aquellas partes del auto que interactuen directamente con el suelo.
 	 */
 	private double rugosidad;
 	
 	/**
 	 * Las particulas sueltas representan aquellos elementos de volumen
-	 * por unidad de superficie considerables que dañan al auto.
+	 * por unidad de superficie considerables que daï¿½an al auto.
 	 * 0 corresponde a ninguna particula suelta
 	 * 100 corresponde al maximo de particulas sueltas 
 	 */

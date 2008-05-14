@@ -1,12 +1,14 @@
-package modelo;
 /* ****************************************************************************
  *                         Car-Tunnig-Experience-2008                         *
  *                                                                            *
  *                   Algoritmos y Programacion III - 75.07                    *
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
+
+package modelo;
+
 /**
- * @Documentacion: Clase de una excepcion creada por el programador
+ * Clase de una excepcion creada por el programador
  * la cual hereda de ecxeption, y se produce cuando se intenta realizar
  * una competencia y el auto no posee uno o mas componentes.
  */
