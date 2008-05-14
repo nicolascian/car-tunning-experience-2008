@@ -5,9 +5,8 @@ import java.util.*;
 
 public class TestPista extends TestCase{
 	Jugador[] jugador;
-	Pista pista;
 	ArrayList<Tramo> tramos;
-	
+	Pista pista ;
 	public void setUp(){
 		Jugador[] jugador = new Jugador[2];
 		jugador[0]= new Virtual(new Principiante());
@@ -20,6 +19,10 @@ public class TestPista extends TestCase{
 	
 	public void testLongitud(){
 		assertEquals(321.89,pista.getLongitud());
+	}
+	
+	public void testToString(){
+		assertEquals("Pista de 321.89 metros, compuesta por 2 tramos.", pista.toString());
 	}
 	
 	public void testTramoActual1()throws Exception{
@@ -81,6 +84,7 @@ public class TestPista extends TestCase{
 
 	
 	public static void main (String[] args){
+	
 		junit.textui.TestRunner.run(suite());
 	}
 
