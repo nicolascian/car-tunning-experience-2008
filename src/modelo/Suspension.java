@@ -84,5 +84,21 @@ implements AfectablePorSuperficie, AfectablePorClima{
 		return "suspension";
 	}
 
+	public double getEfectoClimatico() {
+		return EfectoClimatico;
+	}
+
+	public void setEfectoClimatico(double efectoClimatico) {
+		EfectoClimatico = efectoClimatico;
+	}
+
+	public double getEfectoSuperficie() {
+		return EfectoSuperficie;
+	}
+
+	public void setEfectoSuperficie(double efectoSuperficie) {
+		EfectoSuperficie = efectoSuperficie;
+	}
+
 	
 }
