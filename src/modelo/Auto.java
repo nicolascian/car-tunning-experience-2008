@@ -389,9 +389,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		ejeDelantero.setNeumaticoDerecho(this.getEjeDelantero().getNeumaticoDerecho());
 		ejeDelantero.setNeumaticoIzquierdo(this.getEjeDelantero().getNeumaticoIzquierdo());
 		this.ejeDelantero = ejeDelantero;
-	 }catch(Exception e){
-		 
-	 }
+	 }catch(Exception e){}
 	}
 
 	public Eje getEjeTrasero() {
@@ -399,12 +397,14 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	}
 
 	public void setEjeTrasero(Eje ejeTrasero) {
+	 try{
 		ejeTrasero.instalar(this);
 		ejeTrasero.setLlantaDerecha(this.getEjeTrasero().getLlantaDerecha());
 		ejeTrasero.setLlantaIzquierda(this.getEjeTrasero().getLlantaIzquierda());
 		ejeTrasero.setNeumaticoDerecho(this.getEjeTrasero().getNeumaticoDerecho());
 		ejeTrasero.setNeumaticoIzquierdo(this.getEjeTrasero().getNeumaticoIzquierdo());
 		this.ejeTrasero = ejeTrasero;
+	 }catch(Exception e){}
 	}
 
 	/**
