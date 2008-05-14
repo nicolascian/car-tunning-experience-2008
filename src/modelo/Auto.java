@@ -129,7 +129,11 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @Post: Se ha obtenido la velocidad de acuerdo a la potencia.
 	*/
 	public double getVelocidad(){
-	 	Velocidad =Velocidad+getAceleracion()*tiempo;
+	 	double adherencia = (this.getEjeDelantero().getNeumaticoDerecho().calcularAdherencia()
+	 					+ this.getEjeDelantero().getNeumaticoIzquierdo().calcularAdherencia()
+	 					+ this.getEjeTrasero().getNeumaticoDerecho().calcularAdherencia()
+	 					+ this.getEjeTrasero().getNeumaticoIzquierdo().calcularAdherencia())/4;
+		Velocidad =Velocidad+getAceleracion()*adherencia*tiempo;
 		return Velocidad;
 	}
 	
