@@ -66,7 +66,7 @@ public class TestPista extends TestCase{
 		try{
 			pista.actualizarPosiciones();
 		}catch (ExceptionFinPista e){
-			throw e;
+			fail("No deberian haber excepciones");
 		}
 	}
 	

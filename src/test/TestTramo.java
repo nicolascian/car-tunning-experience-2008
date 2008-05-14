@@ -6,11 +6,12 @@ public class TestTramo extends TestCase {
 	Tramo t  ;
 	Auto auto ;
 
+	
 	public void setUp(){
 		t = new Tramo(122.59,457.58, new Clima(), new Superficie());
 		auto = new Auto();
 	}
-
+	
 	public void testSetFinal(){
 		t.setPosFinal(300.15);
 		assertEquals(300.15,t.getPosFinal());
@@ -64,28 +65,42 @@ public class TestTramo extends TestCase {
 		assertEquals(1.0,t.getLongitud());
 	}
 	
+	/*
+	 * Se le da al auto una poscion dentro del tramo y se espera que
+	 * el tramo lo encuentre dentro de el.
+	 */
 	public void testEstaEnTramo(){
-		//Se le da al auto una poscion dentro del tramo
 		auto.setPosicion(258.658);
 		assertEquals(true, t.estaAutoEnTramo(auto));
 	}
 	
+	/*
+	 * Se le da al auto la posicion final del tramo y se espera que
+	 * el tramo no lo encuentre dentro de el
+	 */
 	public void testEstaEnTramo2(){
-		//Se le da al auto la posicion final del tramo
 		auto.setPosicion(t.getPosFinal());
 		assertEquals(false, t.estaAutoEnTramo(auto));
 	}
 	
+	/*
+	 * Se le da al auto la posicion inicial del tramo y se espera que
+	 * el tramo lo encuentre dentro de el.
+	 */
 	public void testEstaEnTramo3(){
-		//se le da al auto la posicion inicial del tramo
+
 		auto.setPosicion(t.getPosInicial());
-		assertEquals(true, t.estaAutoEnTramo(auto));
+		assertTrue(t.estaAutoEnTramo(auto));
 	}
 	
+	/*
+	 * Se le da al auto una posicion fuera del tramo y se espera que
+	 * el tramo no lo encuentre dentro de el.
+	 */
 	public void testEstaEnTramo4(){
-		//se le da al auto una posicion fuera del tramo
+
 		auto.setPosicion(122);
-		assertEquals(false, t.estaAutoEnTramo(auto));
+		assertFalse(t.estaAutoEnTramo(auto));
 	}
 	
 	public void testCompruebaClima(){
