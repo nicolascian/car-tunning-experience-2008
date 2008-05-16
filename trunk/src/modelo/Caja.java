@@ -91,8 +91,8 @@ public abstract class Caja extends Componente{
 	 * revolucionesMaximas del Motor.
 	*/
 	protected void setCambio(int cambio){
-		if(cambioValido(cambio)){
-		 if(cambio!=getCambio()){  
+		if ((cambioValido(cambio))&&(cambio!=getCambio())&&(isEmbragado())){
+	
 		   Motor motor=getAuto().getMotor();
 		   this.cambio=cambio;
 		   this.desgastar();
@@ -101,8 +101,10 @@ public abstract class Caja extends Componente{
 		   //cambio de revoluciones Maximas del motor segun el cambio
 		   rpm=motor.getRevolucionesMaximas();
 		   motor.setRevolucionesMaximasCambio(rpm*(1-40*getRelacionDeCambio()/rpm));
-		 }//fin cambio!=cambio instancia
-		}//fin cambio valido
+		 
+		}//fin if
+		
+		if (!isEmbragado()) {this.desgastar();}
 	}
 		
 	/**
@@ -129,7 +131,7 @@ public abstract class Caja extends Componente{
 	public double obtenerRpm() {
 	  if(getAuto()!=null){	
 		double rpm=getAuto().getMotor().getRPM();
-		return (rpm*(1-20*getRelacionDeCambio()/rpm));
+		return (rpm*(1-20*getRelacionDeCambio()/(rpm+1)));
 	  }else
 		return 0;  
 	}
@@ -146,7 +148,7 @@ public abstract class Caja extends Componente{
 		
 		for(int cursor=0;cursor<getCambio();cursor++)	
 			potencia = potencia+getAuto().getMotor().getRevolucionesMaximas()*
-			COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM/relacionDeCambio[cursor];
+			COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM/(relacionDeCambio[cursor]+1);
 		
 		potencia = potencia+obtenerRpm()*COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM;
 		
@@ -185,6 +187,14 @@ public abstract class Caja extends Componente{
 		   return this.getEmbragado();
 	}
 
+	public void setEmbragado(boolean embragado) {
+		this.embragado = embragado;
+	}
+		
+	public boolean getEmbragado() {
+		return this.embragado;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -197,12 +207,6 @@ public abstract class Caja extends Componente{
 		return cadena;
 	}
 
-	public void setEmbragado(boolean embragado) {
-		this.embragado = embragado;
-	}
-		
-	public boolean getEmbragado() {
-		return this.embragado;
-	}
+
 		
 }
