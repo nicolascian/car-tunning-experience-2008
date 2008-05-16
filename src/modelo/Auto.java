@@ -120,6 +120,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @Post: Se ha obtenido la aceleracion de la instancia de acuerdo a la potencia. 
 	*/
 	public double getAceleracion(){
+		
+		if (!isEmbragado()){
+		
 		/* usamos la adherencia para calcular la potencia que se transfiere de los neumaticos */
 		double adherencia = (this.getEjeDelantero().getNeumaticoDerecho().calcularAdherencia()
 					+ this.getEjeDelantero().getNeumaticoIzquierdo().calcularAdherencia()
@@ -129,7 +132,11 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		Aceleracion = CNTE_ACELERACION_POTENCIA * 
 					  ( (getPotenciaTotal()*getPotenciaTotal()) + getMotor().getRPM() )
 					  	*adherencia;
-		return Aceleracion;		
+		return Aceleracion;
+		
+		} else{
+			return 0;
+		}
 	}
 	
 	/**
@@ -137,8 +144,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @Post: Se ha obtenido la velocidad de acuerdo a la potencia.
 	*/
 	public double getVelocidad(){
-		
-		Velocidad =Velocidad+getAceleracion()*tiempo;
+		/* si la aceleracion es cero, la velocidad es constante */
+		Velocidad = (Velocidad+getAceleracion())*tiempo;
 		return Velocidad;
 	}
 	
@@ -149,7 +156,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @return
 	*/
 	public double getPosicion() {
-		
+		/* si la velocidad es constante la posicion cambia lineal */
 		Posicion += getVelocidad() * (0.00000006) + (0.5)*(getAceleracion());
 		return Posicion;
 	}
@@ -179,8 +186,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		            caja.obtenerPotencia() +
 		            suspension.obtenerPotencia() +
 		            escape.obtenerPotencia() +
-		         //   ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteros
-		         //   ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
+		            ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteros
+		            ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
 		            turbo.obtenerPotencia();
 		} 
 		//en caso de que el auto se este moviendo la carroceria aporta potencia negativa

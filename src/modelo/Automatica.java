@@ -31,12 +31,18 @@ public class Automatica extends Caja{
 		double rpm=getAuto().getMotor().getRPM();
 		Motor motor=getAuto().getMotor();
 		if(motor.isAcelerando()){
-			if(rpm>=motor.getRevolucionesMaximasCambio())
+			if(rpm>=motor.getRevolucionesMaximasCambio()){
+				embragar(true);
 				setCambio(getCambio()+1);
+				embragar(false);
+			}
 		}
 		else
-			if(rpm<motor.getRevolucionesMinimasEncendido())
+			if(rpm<motor.getRevolucionesMinimasEncendido()){
+				embragar(true);
 				setCambio(getCambio()-1);
+				embragar(false);
+			}
 	}	
 	
 	/**
