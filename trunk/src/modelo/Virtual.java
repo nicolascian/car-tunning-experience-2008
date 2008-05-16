@@ -94,8 +94,11 @@ public class Virtual extends Jugador{
 	 */
 	public void jugar(){
 		
-		/* encender el auto */
-		auto.setEncendido(true);
+		/* si el auto esta apagado */
+		if (!auto.isEncendido()){
+			/* encender el auto */
+			auto.setEncendido(true);
+		}
 		
 		/* SI ENCENDIDO: */
 		if (auto.getMotor().isEncendido()){

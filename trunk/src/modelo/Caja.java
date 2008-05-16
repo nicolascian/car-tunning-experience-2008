@@ -22,6 +22,10 @@ public abstract class Caja extends Componente{
 		
 	protected int cambio;
 	
+	/**
+	 * El embrague es un sistema que permite transmitir o no una energía mecánica a su acción final. 
+	 * En un automóvil, por ejemplo, permite transmitir o no la potencia del motor a las ruedas.
+	 */
 	protected boolean embragado = false;
 		
 	protected double[] relacionDeCambio;//
