@@ -30,9 +30,22 @@ public class Principiante extends Habilidad{
 	 */
 	public void jugar(){
 		
-		/* ACELERAR */
-		auto.acelerar(true);
+		/* si el auto no esta acelerando */
+		if (!auto.isAcelerando()){
+			/* ACELERAR */
+			auto.acelerar(true);
+		}
 		
+		/* si la caja no es automatica */
+		if (!auto.isAutomatica()){
+			pasarCambios();
+		}
+		
+		
+	}
+	
+	
+	private void pasarCambios(){
 		
 		double rpm = auto.getMotor().getRPM();
 		
@@ -50,13 +63,19 @@ public class Principiante extends Habilidad{
         
 		if(motor.isAcelerando()){
 			
-			if( rpm >= (motor.getRevolucionesMaximasCambio() + MARGEN_DE_ERROR_RND_MAXIMAS) )
+			if( rpm >= (motor.getRevolucionesMaximasCambio() + MARGEN_DE_ERROR_RND_MAXIMAS) ){
+				auto.embragar(true);
 				auto.getCaja().setCambio(auto.getCaja().getCambio()+1);
+				auto.embragar(false);
+			}
 		
 		}else{
 		
-			if( rpm < (motor.getRevolucionesMinimasEncendido() + MARGEN_DE_ERROR_RND_MINIMAS) )
+			if( rpm < (motor.getRevolucionesMinimasEncendido() + MARGEN_DE_ERROR_RND_MINIMAS) ){
+				auto.embragar(true);
 				auto.getCaja().setCambio(auto.getCaja().getCambio()-1);
+				auto.embragar(false);
+			}
 		}
 		
 	}
