@@ -21,6 +21,8 @@ package modelo;
 public abstract class Caja extends Componente{
 		
 	protected int cambio;
+	
+	protected boolean embragado = false;
 		
 	protected double[] relacionDeCambio;//
 		
@@ -166,6 +168,22 @@ public abstract class Caja extends Componente{
 	public void instalar(Auto auto) {
 		setAuto(auto);
 	}
+	
+	/**
+	 * @Pre: Se ha creado la instancia de la clase Caja.
+	 * @Post: En caso de que la instancia se encuentre lista para carrera se embraga.
+	*/
+    public void embragar(boolean valor){
+    		this.setEmbragado(valor);
+	}
+	
+	/**
+	 * @Pre: Se ha creado la instancia de la clase Caja.
+	 * @Post: Se retorna true en caso de que la instancia se encuentre embragado.
+	*/
+	public boolean isEmbragado(){
+		   return this.getEmbragado();
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -177,6 +195,14 @@ public abstract class Caja extends Componente{
 			cadena=cadena+"("+cambio+")"+relacionDeCambio[cambio]+" ";
 		cadena=cadena+"Estado "+getEstado()+"%"+'\n';
 		return cadena;
+	}
+
+	public void setEmbragado(boolean embragado) {
+		this.embragado = embragado;
+	}
+		
+	public boolean getEmbragado() {
+		return this.embragado;
 	}
 		
 }

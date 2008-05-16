@@ -70,6 +70,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	      Velocidad=0;
 		  Aceleracion=0;
 		  Posicion=0;
+		  this.embragar(false);
 	}
 	
 	/**
@@ -111,6 +112,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		Velocidad=0;
 		Aceleracion=0;
 		Posicion=0;
+		this.embragar(false);
     }
 
 	/**
@@ -118,8 +120,15 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @Post: Se ha obtenido la aceleracion de la instancia de acuerdo a la potencia. 
 	*/
 	public double getAceleracion(){
+		/* usamos la adherencia para calcular la potencia que se transfiere de los neumaticos */
+		double adherencia = (this.getEjeDelantero().getNeumaticoDerecho().calcularAdherencia()
+					+ this.getEjeDelantero().getNeumaticoIzquierdo().calcularAdherencia()
+					+ this.getEjeTrasero().getNeumaticoDerecho().calcularAdherencia()
+					+ this.getEjeTrasero().getNeumaticoIzquierdo().calcularAdherencia())/4;
 		
-		Aceleracion = CNTE_ACELERACION_POTENCIA * ( (getPotenciaTotal()*getPotenciaTotal()) + getMotor().getRPM() );
+		Aceleracion = CNTE_ACELERACION_POTENCIA * 
+					  ( (getPotenciaTotal()*getPotenciaTotal()) + getMotor().getRPM() )
+					  	*adherencia;
 		return Aceleracion;		
 	}
 	
@@ -128,11 +137,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @Post: Se ha obtenido la velocidad de acuerdo a la potencia.
 	*/
 	public double getVelocidad(){
-	 	double adherencia = (this.getEjeDelantero().getNeumaticoDerecho().calcularAdherencia()
-	 					+ this.getEjeDelantero().getNeumaticoIzquierdo().calcularAdherencia()
-	 					+ this.getEjeTrasero().getNeumaticoDerecho().calcularAdherencia()
-	 					+ this.getEjeTrasero().getNeumaticoIzquierdo().calcularAdherencia())/4;
-		Velocidad =Velocidad+getAceleracion()*adherencia*tiempo;
+		
+		Velocidad =Velocidad+getAceleracion()*tiempo;
 		return Velocidad;
 	}
 	
@@ -273,6 +279,28 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		}else
 		   return false;
 	}
+
+	/**
+	 * @Pre: Se ha creado la instancia de la clase Auto.
+	 * @Post: En caso de que la instancia se encuentre lista para carrera se embraga.
+	*/
+    public void embragar(boolean valor){
+	   	if(getCaja()!=null)
+		   getCaja().embragar(valor);
+	  
+	}
+	
+	/**
+	 * @Pre: Se ha creado la instancia de la clase Auto.
+	 * @Post: Se retorna true en caso de que la instancia se encuentre embragado.
+	*/
+	public boolean isEmbragado(){
+		if(getCaja()!=null){
+		   return(getCaja().isEmbragado());
+		}else
+		   return false;
+	}
+	
 	
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.
