@@ -45,7 +45,7 @@ public abstract class Caja extends Componente{
 	 * la instancia.  
 	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa que en 
 	 * esta implementacion no existe y punto muerto. Debe entre 4 y 8.
-	*/
+	 */
 	public Caja(int cantidadCambios){
 		this.cantidadCambios=cantidadCambios;
 		relacionDeCambio=new double[cantidadCambios+1];
@@ -57,7 +57,7 @@ public abstract class Caja extends Componente{
 	/**
 	 * @Pre: 
 	 * @Post: Se han generado las relaciones de caja correspondientes.
-	*/
+	 */
 	abstract protected void generarRelacionesDeCaja();
 		
 	/**
@@ -65,7 +65,7 @@ public abstract class Caja extends Componente{
 	 * @Post: Se ha validado el cambio pasado por parametro seg�n la codificaci�n siguiente.
 	 * @param cambio: cambio que se desea validad.
 	 * @return "true" en caso de que el cambio sea valido y "false" en caso contrario.
-	*/
+	 */
 	protected boolean cambioValido(int cambio){
 		if((cambio>=0)&&(cambio<=getCantidadCambios()))	
 		   return (true);
@@ -76,7 +76,7 @@ public abstract class Caja extends Componente{
 	/**
 	 * @Pre: Se ha creado la instancia de la clase derivada de la clase Caja.
 	 * @Post: Se ha obtenido el cambio actual.
-	*/
+	 */
 	public int getCambio(){
 		return cambio;
 	}
@@ -84,7 +84,7 @@ public abstract class Caja extends Componente{
 	/**
 	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.
 	 * @Post: Se ha obtenido la relacion de la caja para el cambio actual.
-	*/
+	 */
 	protected double getRelacionDeCambio(){
 		return (relacionDeCambio[getCambio()]);
 	}
@@ -93,7 +93,7 @@ public abstract class Caja extends Componente{
 	 * @Pre: La instancia ha sido creada.
 	 * @Post:Se ha seteado el cambio. Cada vez que hacemos un Cambio, se altera las 
 	 * revolucionesMaximas del Motor.
-	*/
+	 */
 	protected void setCambio(int cambio){
 		if ((cambioValido(cambio))&&(cambio!=getCambio())&&(isEmbragado())){
 	
@@ -114,7 +114,7 @@ public abstract class Caja extends Componente{
 	/**
 	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.
 	 * @Post: Se retorna la cantidad de cambios que tiene la instancia.
-	*/
+	 */
 	public int getCantidadCambios(){
 		return(cantidadCambios);
 	}
@@ -131,7 +131,7 @@ public abstract class Caja extends Componente{
 	/**
 	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.
 	 * @Post: Se retorna la cantidad de RPM de la instancia para le cambio actual.
-	*/
+	 */
 	public double obtenerRpm() {
 	  if(getAuto()!=null){	
 		double rpm=getAuto().getMotor().getRPM();
@@ -145,7 +145,7 @@ public abstract class Caja extends Componente{
 	 * @Post: Se ha obtenido la potencia entregada por la caja a una cantidad
 	 * de Rpm y cambios dado.
 	 * 
-	*/
+	 */
 	public double obtenerPotencia(){
 		
 		double potencia=0;
@@ -162,7 +162,7 @@ public abstract class Caja extends Componente{
 	/*
 	 * (non-Javadoc)
 	 * @see modelo.Componente#desgastar()
-	*/
+	 */
 	public void desgastar(){
 		setEstado(getEstado()-tiempoPorCiclo*COEFICIENTE_DE_DESGASTE);
 	}
@@ -178,7 +178,7 @@ public abstract class Caja extends Componente{
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Caja.
 	 * @Post: En caso de que la instancia se encuentre lista para carrera se embraga.
-	*/
+	 */
     public void embragar(boolean valor){
     		this.setEmbragado(valor);
 	}
