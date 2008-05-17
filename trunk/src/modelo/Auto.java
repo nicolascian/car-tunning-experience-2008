@@ -119,11 +119,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		this.embragar(false);
     }
 
-	/**
-	 * @Pre: Se ha creado la instancia de la clase Auto.
-	 * @Post: Se ha obtenido la aceleracion de la instancia de acuerdo a la potencia. 
-	*/
-	public double getAceleracion(){
+	
+	public void actualizar(){
 		
 		if (!isEmbragado()){
 		
@@ -136,11 +133,27 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		Aceleracion = CNTE_ACELERACION_POTENCIA * 
 					  ( (getPotenciaTotal()*getPotenciaTotal()) + getMotor().getRPM() )
 					  	*adherencia;
-		return Aceleracion;
 		
 		} else{
-			return 0;
+			Aceleracion = 0;
 		}
+		
+		/* si la aceleracion es cero, la velocidad es constante */
+		// que alguien le haga una curva aca
+		Velocidad = (Velocidad+getAceleracion())*(2);
+		
+		/* si la velocidad es constante la posicion cambia lineal */
+		Posicion += getVelocidad() * (0.00000006) + (0.5)*(getAceleracion());
+		
+	}
+	
+	/**
+	 * @Pre: Se ha creado la instancia de la clase Auto.
+	 * @Post: Se ha obtenido la aceleracion de la instancia de acuerdo a la potencia. 
+	*/
+	public double getAceleracion(){
+		return Aceleracion;
+
 	}
 	
 	/**
@@ -148,8 +161,6 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @Post: Se ha obtenido la velocidad de acuerdo a la potencia.
 	*/
 	public double getVelocidad(){
-		/* si la aceleracion es cero, la velocidad es constante */
-		Velocidad = (Velocidad+getAceleracion())*tiempo;
 		return Velocidad;
 	}
 	
@@ -160,10 +171,9 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @return
 	*/
 	public double getPosicion() {
-		/* si la velocidad es constante la posicion cambia lineal */
-		Posicion += getVelocidad() * (0.00000006) + (0.5)*(getAceleracion());
 		return Posicion;
 	}
+
 	
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.
@@ -182,8 +192,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	*/
 	public double getPotenciaTotal(){
 		double potencia=0; 
-		//seteo la velocidad de la carroceria
-		this.getCarroceria().setVelocidad(Velocidad); 
+		 
 		//hay componente que solo aportan potencia al estar encendido el auto
 		if(this.isEncendido()){ 
 		   potencia=motor.obtenerPotencia() +   /* de aca salen: Alimentacion, Combustible*/
@@ -193,9 +202,13 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		            ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteros
 		            ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
 		            turbo.obtenerPotencia();
-		} 
+		}
+		
+//		seteo la velocidad de la carroceria
+		this.getCarroceria().setVelocidad(Velocidad);
 		//en caso de que el auto se este moviendo la carroceria aporta potencia negativa
-		potencia=potencia+getCarroceria().obtenerPotencia(); 
+		potencia += getCarroceria().obtenerPotencia();
+		
 		return(potencia);
 	}
 	
@@ -420,7 +433,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		lista.add(this.ejeTrasero);
 		return lista;
 	}
-
+	
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.
 	 * @Post: Retorna una instancia de lista LinkedList con todos los componentes afectables por

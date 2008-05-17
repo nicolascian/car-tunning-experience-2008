@@ -8,7 +8,7 @@ public class TestAutoPotencias extends TestCase {
 	
 	public static void main (String[] args)
 	{
-		
+
 		Auto auto = new Auto();
 		System.out.println("CREAR AUTO POR DEFAULT");
 		
@@ -17,8 +17,9 @@ public class TestAutoPotencias extends TestCase {
   
 			auto.acelerar(true);
 			System.out.println("ACELERAR");
-		
-				
+	
+
+			
 		int contador =0;
 		while( contador <= 40){
 
@@ -26,6 +27,8 @@ public class TestAutoPotencias extends TestCase {
 			long tiempo2=System.currentTimeMillis()+1000;
 			 while(System.currentTimeMillis()<tiempo2); 
 		
+			 
+			 auto.actualizar();
 			 
 				System.out.println("motor: "+auto.getMotor().obtenerPotencia());   /* de aca salen: Alimentacion, Combustible*/
 				System.out.println("-alimen: "+auto.getAlimentacion().obtenerPotencia());
@@ -36,12 +39,18 @@ public class TestAutoPotencias extends TestCase {
 				System.out.println("ejeD: "+auto.getEjeDelantero().obtenerPotencia() );//de aca salen: llantas y neumaticos delanteros
 				System.out.println("ejeT: "+auto.getEjeTrasero().obtenerPotencia() );//de aca salen: llantas y neumaticos traseros
 				System.out.println("turb: "+auto.getTurbo().obtenerPotencia() ); 
+				System.out.println("caro: "+auto.getCarroceria().obtenerPotencia() ); 
 		
 	
 			System.out.print("  PotTOTAL: ");
-			System.out.println(auto.getPotenciaTotal()); 
-			System.out.println("");
+			System.out.print(auto.getPotenciaTotal()); 
+			System.out.print("  RPM: ");
+			System.out.println(auto.getMotor().getRPM());
 		
+			
+			System.out.println("");
+			
+			
 			contador++;
 		}//fin while
 	
