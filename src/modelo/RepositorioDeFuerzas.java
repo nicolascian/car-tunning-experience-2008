@@ -1,5 +1,9 @@
-
-
+/* ****************************************************************************
+ *                         Car-Tunnig-Experience-2008                         *
+ *                                                                            *
+ *                   Algoritmos y Programacion III - 75.07                    *
+ *            Facultad de Ingenieria - Universidad de Buenos Aires            *
+ ******************************************************************************/
 package modelo;
 import java.util.LinkedList;
 import java.util.Iterator;
@@ -42,30 +46,32 @@ public class RepositorioDeFuerzas {
 		double sumatoria=0;
 		Iterator iterador=listaDeFuerzas.iterator();
 		Fuerza fuerza=null;
+		double valorFuerza=0;
 		while(iterador.hasNext()){
 		  try{	
 			  fuerza=(Fuerza)iterador.next();
-			  sumatoria=sumatoria+fuerza.getValorDeLaFuerza();
+			  valorFuerza=fuerza.getValorDeLaFuerza();
 		  }catch(ExceptionAccesoNoPermitido e){
 			  //en caso de no poder accederse al valor de la fuerza se elimina dicha fuerza
 			  listaDeFuerzas.remove(listaDeFuerzas.indexOf((Object) fuerza));
 		  }
-		}			
-		return sumatoria;
+		  sumatoria=sumatoria+valorFuerza;
+	    }	
+	   return sumatoria;
 	}
 
 	/**
 	 * @Pre: La instancia ha sido creada.
-	 * @Post: Se ha obtenido la sumatoria de los valores de las instancias de la clase Fuerza que se 
-	 * encuentran en esta instancia.
+	 * @Post: Se ha insertado una instancia de la clase Fuerza
 	*/
 	public void insertarFuerza(Fuerza fuerza){
 	  //fuerza no nula
 	  if(fuerza!=null)	
 		  //el receptor de la fuerza es el propietario de esta instancia
 		  if(fuerza.getReceptor()==getPropietario()){
-			//verifico si existen fuerzas previas del emisor en el repositorio  
+			//verifico si existen fuerzas de acceso ilimitado previas del emisor en el repositorio  
 			Fuerza fuerzaPreviaDeEmisor=this.obtenerFuerzaDeAccesoIlimitadoDeEmisor(fuerza.getEmisor());
+			//si existen fuerzas de acceso ilimitado del emisor en el repositorio se reemplazan
 			if(fuerzaPreviaDeEmisor!=null){
 				listaDeFuerzas.remove(listaDeFuerzas.indexOf((Object) fuerzaPreviaDeEmisor));
 				listaDeFuerzas.add(fuerza);
@@ -87,14 +93,15 @@ public class RepositorioDeFuerzas {
 		boolean encontrado=false;
 		Iterator iterador=listaDeFuerzas.iterator();
 		while((iterador.hasNext())&&(!encontrado)){
-		  	  fuerzaCursor=(Fuerza)iterador.next();
-			  //si la fuerza es del emisor
-		  	  if(fuerzaCursor.getEmisor()==emisor)
-				  //si la fuerza es de acceso ilimitado
-		  		  if(!fuerzaCursor.isAccesoLimitado()){   
-				     fuerza=fuerzaCursor;
-				     encontrado=true;
-			      }
+		  fuerzaCursor=(Fuerza)iterador.next();
+		  //si la fuerza es de acceso ilimitado
+	  	  if(!(fuerzaCursor.isAccesoLimitado())){     
+		  	  //si la fuerza es del emisor
+		  	  if(fuerzaCursor.getEmisor()==emisor){
+			        fuerza=fuerzaCursor;
+				    encontrado=true;
+		  	  }
+		  }
 		}
 		return fuerza;
 	}

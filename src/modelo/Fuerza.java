@@ -46,7 +46,7 @@ public class Fuerza {
 			     double valorDeLaFuerza){
 		this.setEmisor(emisor);
 		this.setReceptor(receptor);
-		this.setValorDeLaFuerza(valorDeLaFuerza);
+		this.valorDeLaFuerza=valorDeLaFuerza;
 	}
 
 	/**
@@ -60,10 +60,10 @@ public class Fuerza {
 	 * contrario sera de acceso ilimitado.
 	*/
 	public Fuerza(ReceptorDeFuerzas emisor, ReceptorDeFuerzas receptor, 
-			     double valorDeLaFuerza, boolean accesoLimitado){
+			     double valorDeLaFuerza, boolean accesoLimitado) {
 		this.setEmisor(emisor);
 		this.setReceptor(receptor);
-		this.setValorDeLaFuerza(valorDeLaFuerza);
+		this.valorDeLaFuerza=valorDeLaFuerza;
 		this.accesoLimitado=accesoLimitado;
 	}
 	
@@ -75,7 +75,7 @@ public class Fuerza {
 	public Fuerza(){
 		this.setEmisor(null);
 		this.setReceptor(null);
-		this.setValorDeLaFuerza(0);
+		this.valorDeLaFuerza=0;
 	}
 	
 	/**
