@@ -23,6 +23,9 @@ public class Usuario extends Jugador{
 	private control.Acelerador acelerador;
 	private control.Palanca palanca;
 	private control.Llave llave;
+	private control.Embrague embrague;
+	private control.Freno freno;
+	private control.BotonNitro nitro;
 	
 	/**
 	 * Constructor sin parametros de Usuario
@@ -37,12 +40,7 @@ public class Usuario extends Jugador{
 		/* se crea un auto por defecto para el */
 		setAuto(new Auto());
 		
-	/* ------------------------------------------------------------------------------------------ */
-		acelerador = new control.Acelerador();  
-		palanca = new control.Palanca();
-		llave = new control.Llave();
-	/* ------------------------------------------------------------------------------------------ */
-		
+		construirElementos();
 	}
 	
 	/**
@@ -55,11 +53,7 @@ public class Usuario extends Jugador{
 		super(nombre);
 		setAuto(auto);
 		
-	/* ------------------------------------------------------------------------------------------ */
-		acelerador = new control.Acelerador();  
-		palanca = new control.Palanca();
-		llave = new control.Llave();
-	/* ------------------------------------------------------------------------------------------ */
+		construirElementos();
 	}
 	
 	/**
@@ -73,11 +67,7 @@ public class Usuario extends Jugador{
 		super(USER_DEFAULT_NAME);
 		setAuto(auto);
 		
-	/* ------------------------------------------------------------------------------------------ */
-		acelerador = new control.Acelerador();  
-		palanca = new control.Palanca();
-		llave = new control.Llave();
-	/* ------------------------------------------------------------------------------------------ */
+		construirElementos();
 	}
 	
 	/**
@@ -89,13 +79,18 @@ public class Usuario extends Jugador{
 		super(nombre);
 		setAuto(new Auto());
 		
-	/* ------------------------------------------------------------------------------------------ */
+		construirElementos();
+	}
+	
+	
+	private void construirElementos(){
 		acelerador = new control.Acelerador();  
 		palanca = new control.Palanca();
 		llave = new control.Llave();
-	/* ------------------------------------------------------------------------------------------ */
+		embrague = new control.Embrague();
+		freno = new control.Freno();
+		nitro = new control.BotonNitro();
 	}
-	
 	
 	/**
 	 * Metodo Jugar
@@ -114,6 +109,7 @@ public class Usuario extends Jugador{
 		
 		/* SI ENCENDIDO: */
 		if (auto.isEncendido()){
+			
 		
 			/* vemos que pasa con el acelerador */
 			resolverAcelerador();
@@ -121,9 +117,17 @@ public class Usuario extends Jugador{
 			/* vemos que pasa con el freno */
 			resolverFrenos();
 		
+			/* vemos que pasa con el nitro */
+			resolverNitro();
+			
+			/* vemos que pasa con el freno */
+			resolverEmbrague();
+			
 			/* SI HACE UN CAMBIO */
-			if (palanca.fuePresionado()){ resolverCambios(); }	
-		}
+			if (palanca.fuePresionado()){ resolverCambios(); }
+	
+			
+	     }
 		
 	}//fin jugar
 	
@@ -172,11 +176,50 @@ public class Usuario extends Jugador{
 	}
 	
 	/**
+	 * se encarga de resolver el tema del embrague
+	 */
+	private void resolverEmbrague(){
+		
+		/* SI ESTA EMBRAGANDO */
+		if (embrague.isPresionado()){
+			auto.embragar(true);
+		}else{
+		/* SI NO ESTA EMBRAGANDO */
+			auto.embragar(false);
+		}
+		
+	}
+	
+	/**
 	 * se encarga de resolver el tema del freno
 	 */
 	private void resolverFrenos(){
 		
+		/* SI ESTA APRETANDO EL FRENO */
+		if (freno.isPresionado()){
+			//auto.frenar(true);
+		}else{
+		/* SI NO ESTA APRETANDO EL FRENO */
+			//auto.frenar(false),
+		}
+		
 	}
+	
+	/**
+	 * se encarga de resolver el tema del nitro
+	 */
+	private void resolverNitro(){
+		
+		/* SI ESTA APRETANDO EL NITRO */
+		if (nitro.isPresionado()){
+			//auto.activarNitro(true);
+		}else{
+		/* SI NO ESTA APRETANDO EL NITRO */
+			//auto.activarNitro(false),
+		}
+		
+	}
+	
 	
 	/* toString */
 	
