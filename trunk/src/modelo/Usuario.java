@@ -212,10 +212,10 @@ public class Usuario extends Jugador{
 		
 		/* SI ESTA APRETANDO EL NITRO */
 		if (nitro.isPresionado()){
-			//auto.activarNitro(true);
+			auto.activarNitro(true);
 		}else{
 		/* SI NO ESTA APRETANDO EL NITRO */
-			//auto.activarNitro(false),
+			auto.activarNitro(false);
 		}
 		
 	}

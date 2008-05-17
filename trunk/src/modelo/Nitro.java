@@ -19,6 +19,10 @@ public class Nitro extends Componente {
 		setEstado(100);
 	}
 	
+	public Nitro(double estado){
+		setEstado(estado);
+	}
+	
 	public void activar(boolean valor){
 		activado = valor;
 	}

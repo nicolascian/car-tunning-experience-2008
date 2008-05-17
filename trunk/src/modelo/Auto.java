@@ -34,9 +34,11 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private Suspension suspension;	
 	private Escape escape;
 	private Turbo turbo;
+	private Nitro nitro;
 	private Eje ejeDelantero;
 	private Eje ejeTrasero;
-			
+
+
 	/**
 	 *	@Pre:
 	 *	@Post: Se ha creado una instancia de la clase Auto con valores por defecto 
@@ -53,6 +55,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		  setSuspension(new Suspension());
 		  setEscape(new Escape());
 		  setTurbo(new Turbo());
+		  setNitro(new Nitro());
 		/* eje delantero */
 		  setEjeDelantero(new Eje());
 		  ejeDelantero.setLlantaDerecha(new Llanta());
@@ -88,7 +91,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	*/
 	public Auto(Motor motor,Caja caja,Combustible combustible,
 			Carroceria carroceria,Alimentacion alimentacion,
-			Suspension suspension,Escape escape,Turbo turbo){
+			Suspension suspension,Escape escape,Turbo turbo, Nitro nitro){
 		setMotor(motor);
 		setCaja(caja);
 		setCombustible(combustible);
@@ -97,6 +100,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setSuspension(suspension);
 		setEscape(escape);
 		setTurbo(turbo);
+		setNitro(nitro);
 		setEjeDelantero(new Eje());
 		  ejeDelantero.setLlantaDerecha(new Llanta());
 		  ejeDelantero.setLlantaIzquierda(new Llanta());
@@ -308,6 +312,27 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		   return false;
 	}
 	
+
+	/**
+	 * @Pre: Se ha creado la instancia de la clase Auto.
+	 * @Post: En caso de que la instancia se encuentre lista para carrera se activa el nitro.
+	*/
+    public void activarNitro(boolean valor){
+	   	if(getNitro()!=null)
+		   getNitro().activar(valor);
+	  
+	}
+	
+	/**
+	 * @Pre: Se ha creado la instancia de la clase Auto.
+	 * @Post: Se retorna true en caso de que la instancia se encuentre activado el nitro.
+	*/
+	public boolean isNitroActivado(){
+		if(getNitro()!=null){
+		   return(getNitro().isActivado());
+		}else
+		   return false;
+	}
 	
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.
@@ -382,6 +407,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		lista.add(this.motor);
 		lista.add(this.suspension);
 		lista.add(this.turbo);
+		lista.add(this.nitro);
 		lista.add(this.ejeDelantero);
 		lista.add(this.ejeDelantero.getLlantaDerecha());
 		lista.add(this.ejeDelantero.getLlantaIzquierda());
@@ -544,6 +570,14 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	
 	public Turbo getTurbo() {
 		return turbo;
+	}
+	
+	public Nitro getNitro() {
+		return nitro;
+	}
+
+	public void setNitro(Nitro nitro) {
+		this.nitro = nitro;
 	}
 	
 	/* toString */
