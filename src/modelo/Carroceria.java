@@ -70,7 +70,12 @@ public class Carroceria extends Componente
 	*/
 	public double obtenerPotencia(){
 		double coeficiente=Math.abs(COEFICIENTE_ARRASTRE-TEMPERATURAOPTIMA/(getTemperatura()*10));
-		return (getVelocidad()*coeficiente*getSuperficieFrontal()*0.0001862);
+		double tmp= (getVelocidad()*coeficiente*getSuperficieFrontal()*0.0001862);
+		if ( tmp >50){
+			return 50;
+		}else{
+			return tmp;
+		}
 	}
 	
 	/** el clima afecta a la carroceria

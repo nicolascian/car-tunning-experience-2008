@@ -75,7 +75,8 @@ public class TestAutoDeEscritorio extends TestCase {
 			
 			long tiempo2=System.currentTimeMillis()+1000;
 			 while(System.currentTimeMillis()<tiempo2); 
-	
+
+			 auto.actualizar();
 			 
 			System.out.print("Cambio: ");
 			System.out.print(auto.getCaja().getCambio());
