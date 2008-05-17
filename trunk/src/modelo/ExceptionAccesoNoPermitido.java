@@ -10,7 +10,7 @@ package modelo;
  * @Descripcion: Inidica que no se puede acceder al método invocado.
  *
  */
-public class ExceptionAccesoNoPermitido extends RuntimeException {
+public class ExceptionAccesoNoPermitido extends Exception {
 
 	public ExceptionAccesoNoPermitido() {
 		super("No se puede acceder al método solicitado");
