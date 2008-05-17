@@ -25,9 +25,10 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private double Velocidad; //velocidad del auto
 	private double Aceleracion; //aceleracion de del auto
 	private double Posicion; // dstancia recorrida
-	private double tiempo = 20;//
+
 	private Motor motor;
 	private Caja caja;
+	private Embrague embrague;
 	private Combustible combustible;
 	private Alimentacion alimentacion;
 	private Carroceria carroceria;
@@ -49,6 +50,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		//creacion de componentes
 		  setMotor(new Motor(4,1600,8000)); 
 		  setCaja(new Automatica(5));
+		  setEmbrague(new Embrague());
 		  setCombustible(new Combustible(50.0,0.4));
 		  setCarroceria(new Carroceria(2.4));
 		  setAlimentacion(new Carburador());
@@ -91,9 +93,11 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	*/
 	public Auto(Motor motor,Caja caja,Combustible combustible,
 			Carroceria carroceria,Alimentacion alimentacion,
-			Suspension suspension,Escape escape,Turbo turbo, Nitro nitro){
+			Suspension suspension,Escape escape,Turbo turbo, 
+			Nitro nitro, Embrague embrague){
 		setMotor(motor);
 		setCaja(caja);
+		setEmbrague(embrague);
 		setCombustible(combustible);
 		setCarroceria(carroceria);
 		setAlimentacion(alimentacion);
@@ -202,6 +206,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		            ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteros
 		            ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
 		            turbo.obtenerPotencia();
+		   			nitro.obtenerPotencia(); //si esta activado, si no, da cero
+		   			embrague.obtenerPotencia(); //no da nada de potencia
 		}
 		
 //		seteo la velocidad de la carroceria
@@ -414,6 +420,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		LinkedList<Componente> lista =  new LinkedList<Componente>();
 		lista.add(this.alimentacion);
 		lista.add(this.caja);
+		lista.add(this.embrague);
 		lista.add(this.carroceria);
 		lista.add(this.combustible);
 		lista.add(this.escape);
@@ -606,5 +613,13 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 			cadena=cadena+" No Esta Listo Para Carrera ";
 		cadena=cadena+'\n'+getMotor().toString()+getCaja().toString();
 		return(cadena);
+	}
+
+	public Embrague getEmbrague() {
+		return embrague;
+	}
+
+	public void setEmbrague(Embrague embrague) {
+		this.embrague = embrague;
 	}
 }
