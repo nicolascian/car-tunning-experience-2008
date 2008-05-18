@@ -5,7 +5,7 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-package modelo;
+import modelo.*;
 
 /**
  * Juego es el punto de entrada del programa "Car Tunning Experience 2008"
@@ -39,6 +39,39 @@ public class Juego{
  */		
 		Pista pista = new Pista(jugador1, jugador2, 100);
 		
+/*
+ * se inicializan las vistas
+ */		
+
+	
+	}// fin main
+	
+}
+
+
+
+
+/*
+ * 
+ * 	public static void main(String args[]){
+/*
+ * Creacion de dos autos que realizaran la competencia.
+ */		
+	/*	Auto auto1 = new Auto();
+		Auto auto2 = new Auto();
+		
+		Habilidad habilidad = new Principiante();
+/*
+ * Se crean dos jugadores uno virtual con un determinado nivel
+ * de habilidad y dificualtad para con el jugador que utilice el usuario.
+ */		
+/*		Jugador jugador1 = new Usuario(auto1);
+		Jugador jugador2 = new Virtual(habilidad, auto2);
+/*
+ * Se crea la pista con los jugadores y su longitud.
+ */		
+	/*	Pista pista = new Pista(jugador1, jugador2, 100);
+		
 		
 		boolean finCarrera = false;
 /*
@@ -47,11 +80,11 @@ public class Juego{
  * Ademas se corrobora que la pista no termine, o sea, que algun auto llegue a la meta,
  * lo que marcaria la finalizacion de la carrera y el ganador.
  */		
-
+/*
 		while(!finCarrera){
 			jugador1.jugar();
 			
-			jugador2.jugar();
+			jugador2.jugar(); */
 
 			/* vemos si alguien llego */
 			/*
@@ -61,18 +94,18 @@ public class Juego{
 				finCarrera = true;	}
 			*/
 			/* verifica el tramo de cada auto */
-			try{
+	/*		try{
 				pista.actualizarPosiciones();
 			}catch (Exception e){
 				System.out.println("Exception: "+ e.getMessage() +" "+ e.getClass().getName());
-				finCarrera=true;
-			}
+				finCarrera=true;        */
+	/*		}
 			
 			
-		}//FIN CICLO
+		}//FIN CICLO  */
 		
-		System.out.print("Finalizo la carrera ");
-		
+		/*System.out.print("Finalizo la carrera ");*/
+/*		
 	}
 	
-}
+	*/
