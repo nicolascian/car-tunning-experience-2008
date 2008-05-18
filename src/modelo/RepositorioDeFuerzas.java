@@ -43,21 +43,19 @@ public class RepositorioDeFuerzas {
 	 * Fuerza que se encuentran en esta instancia.
 	*/
 	public double obtenerValorSumatoriaDeFuezas(){
-		double sumatoria=0;
-		Iterator iterador=listaDeFuerzas.iterator();
+	    double sumatoria=0;
+	    Iterator<Fuerza> iterador=listaDeFuerzas.iterator();
 		Fuerza fuerza=null;
-		double valorFuerza=0;
 		while(iterador.hasNext()){
-		  try{	
-			  fuerza=(Fuerza)iterador.next();
-			  valorFuerza=fuerza.getValorDeLaFuerza();
+		  try{
+			  fuerza=iterador.next();
+			  sumatoria=sumatoria+fuerza.getValorDeLaFuerza();
 		  }catch(ExceptionAccesoNoPermitido e){
 			  //en caso de no poder accederse al valor de la fuerza se elimina dicha fuerza
-			  listaDeFuerzas.remove(listaDeFuerzas.indexOf((Object) fuerza));
+			  iterador.remove();
 		  }
-		  sumatoria=sumatoria+valorFuerza;
-	    }	
-	   return sumatoria;
+		}
+	    return sumatoria;
 	}
 
 	/**
@@ -72,12 +70,9 @@ public class RepositorioDeFuerzas {
 			//verifico si existen fuerzas de acceso ilimitado previas del emisor en el repositorio  
 			Fuerza fuerzaPreviaDeEmisor=this.obtenerFuerzaDeAccesoIlimitadoDeEmisor(fuerza.getEmisor());
 			//si existen fuerzas de acceso ilimitado del emisor en el repositorio se reemplazan
-			if(fuerzaPreviaDeEmisor!=null){
+			if(fuerzaPreviaDeEmisor!=null)
 				listaDeFuerzas.remove(listaDeFuerzas.indexOf((Object) fuerzaPreviaDeEmisor));
-				listaDeFuerzas.add(fuerza);
-			}
-			else
-			    this.getListaDeFuerzas().add(fuerza);
+			this.getListaDeFuerzas().add(fuerza);
 		  }
 	}
 
@@ -88,12 +83,12 @@ public class RepositorioDeFuerzas {
 	 * encuentran en esta instancia.
 	*/
 	public Fuerza obtenerFuerzaDeAccesoIlimitadoDeEmisor(ReceptorDeFuerzas emisor){
-		Fuerza fuerza=null;
-		Fuerza fuerzaCursor=null;
+	    Fuerza fuerza=null;
+	 	Fuerza fuerzaCursor=null;
 		boolean encontrado=false;
-		Iterator iterador=listaDeFuerzas.iterator();
+		Iterator<Fuerza> iterador=listaDeFuerzas.iterator();
 		while((iterador.hasNext())&&(!encontrado)){
-		  fuerzaCursor=(Fuerza)iterador.next();
+		  fuerzaCursor=iterador.next();
 		  //si la fuerza es de acceso ilimitado
 	  	  if(!(fuerzaCursor.isAccesoLimitado())){     
 		  	  //si la fuerza es del emisor
@@ -103,7 +98,7 @@ public class RepositorioDeFuerzas {
 		  	  }
 		  }
 		}
-		return fuerza;
+	    return fuerza;
 	}
 	
 	/**

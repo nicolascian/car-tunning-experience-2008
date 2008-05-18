@@ -21,7 +21,7 @@ package modelo;
  * @version	1.0
  */
 
-public class Motor extends Componente implements AfectablePorClima{
+public class Motor extends Componente implements AfectablePorClima, ReceptorDeFuerzas{
 		
     //----------------------      constantes   ---------------------------------
 	
@@ -124,6 +124,30 @@ public class Motor extends Componente implements AfectablePorClima{
 		setEstado(100);
 	}
 	
+	
+	
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
+	 */
+	@Override
+	public void liberarFuerzas() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
+	 */
+	@Override
+	public void recibirFuerza(Fuerza fuerza) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 	/**
 	 * @Pre: -
 	 * @Post: Se ha creado una instancia de la clase, inicializandola segun los parametros
