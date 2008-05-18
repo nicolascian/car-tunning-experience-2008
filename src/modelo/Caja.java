@@ -18,7 +18,7 @@ package modelo;
  * motor del auto.
  * @version	3.2
  */
-public abstract class Caja extends Componente{
+public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		
 	protected int cambio;
 	
@@ -72,7 +72,25 @@ public abstract class Caja extends Componente{
 		else
 		   return false;
 	}
-	
+		
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
+	 */
+	@Override
+	public void liberarFuerzas() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
+	 */
+	@Override
+	public void recibirFuerza(Fuerza fuerza) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * @Pre: Se ha creado la instancia de la clase derivada de la clase Caja.
 	 * @Post: Se ha obtenido el cambio actual.
