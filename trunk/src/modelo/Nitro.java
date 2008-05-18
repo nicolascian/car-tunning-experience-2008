@@ -50,7 +50,8 @@ public class Nitro extends Componente {
 
 	@Override
 	public double obtenerPotencia() {
-		if(isActivado()){
+		if(isActivado() && getEstado()>0){
+			desgastar();
 			return 250;
 		}else{
 			return 0;
