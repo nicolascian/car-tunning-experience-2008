@@ -31,6 +31,15 @@ public class Embrague extends Componente {
 		setEstado(estado);
 	}
 	
+	public boolean isEmbragado(){
+		return embragado;
+	}
+	
+	public void embragar(boolean valor){
+		embragado = valor;
+		desgastar();
+	}
+	
 	@Override
 	public void desgastar() {
 		setEstado(getEstado() - 0.00000008);

@@ -26,7 +26,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 * El embrague es un sistema que permite transmitir o no una energía mecánica a su acción final. 
 	 * En un automóvil, por ejemplo, permite transmitir o no la potencia del motor a las ruedas.
 	 */
-	protected boolean embragado = false;
+
 		
 	protected double[] relacionDeCambio;//
 		
@@ -198,7 +198,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 * @Post: En caso de que la instancia se encuentre lista para carrera se embraga.
 	 */
     public void embragar(boolean valor){
-    		this.setEmbragado(valor);
+    		this.getAuto().getEmbrague().embragar(valor);
 	}
 	
 	/**
@@ -206,15 +206,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 * @Post: Se retorna true en caso de que la instancia se encuentre embragado.
 	*/
 	public boolean isEmbragado(){
-		   return this.getEmbragado();
-	}
-
-	public void setEmbragado(boolean embragado) {
-		this.embragado = embragado;
-	}
-		
-	public boolean getEmbragado() {
-		return this.embragado;
+		   return this.getAuto().getEmbrague().isEmbragado();
 	}
 	
 	/* (non-Javadoc)

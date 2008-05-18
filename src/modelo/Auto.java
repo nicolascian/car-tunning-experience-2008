@@ -36,6 +36,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private Escape escape;
 	private Turbo turbo;
 	private Nitro nitro;
+//	private Freno freno;
 	private Eje ejeDelantero;
 	private Eje ejeTrasero;
 
@@ -208,6 +209,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		            turbo.obtenerPotencia();
 		   			nitro.obtenerPotencia(); //si esta activado, si no, da cero
 		   			embrague.obtenerPotencia(); //no da nada de potencia
+		   			//el freno no esta porque no da potencia
 		}
 		
 //		seteo la velocidad de la carroceria
@@ -315,8 +317,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @Post: En caso de que la instancia se encuentre lista para carrera se embraga.
 	*/
     public void embragar(boolean valor){
-	   	if(getCaja()!=null)
-		   getCaja().embragar(valor);
+	   	if(getEmbrague()!=null)
+	   		getEmbrague().embragar(valor);
 	  
 	}
 	
@@ -325,8 +327,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	 * @Post: Se retorna true en caso de que la instancia se encuentre embragado.
 	*/
 	public boolean isEmbragado(){
-		if(getCaja()!=null){
-		   return(getCaja().isEmbragado());
+		if(getEmbrague()!=null){
+		   return(getEmbrague().isEmbragado());
 		}else
 		   return false;
 	}

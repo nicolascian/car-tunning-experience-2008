@@ -17,16 +17,32 @@ package modelo;
  * literatura del diseño como un elemento de máquina y en literaturas de teoría de 
  * control pueden encontrarse como actuadores.
  * 
+ * heredan:
  * freno de cinta o de banda
- * freno de tambor
  * freno de disco
- * freno hidraulico
- * freno de mano
  * freno ABS (Antilock Brake System)
  * 
  * @version 1.0
- * @see <a href="http://es.wikipedia.org/wiki/Freno">Freno - Wikipedia</a> 
+ * @see <a href="http://es.wikipedia.org/wiki/Freno">Freno - Wikipedia</a>
+ * 
+ * @see <a href="http://es.wikipedia.org/wiki/Freno#Frenos_de_fricci.C3.B3n">Freno de Cinta - Wikipedia</a>
+ * @see <a href="http://es.wikipedia.org/wiki/Freno_de_disco">Freno de Disco - Wikipedia</a>
+ * @see <a href="http://es.wikipedia.org/wiki/Antilock_Brake_System">Freno ABS - Wikipedia</a>
  */
-public class Freno {
+public class Freno extends Componente {
 
+	@Override
+	public void desgastar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double obtenerPotencia() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	
 }
