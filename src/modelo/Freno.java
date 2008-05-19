@@ -31,15 +31,33 @@ package modelo;
  */
 public class Freno extends Componente {
 
+	private boolean frenando = false;
+	
+	public Freno(){
+		setEstado(100);
+	}
+
+	public Freno(double estado){
+		setEstado(estado);
+	}
+	
+	public boolean isFrenando(){
+		return frenando;
+	}
+	
+	public void frenar(boolean valor){
+		frenando = valor;
+		desgastar();
+	}
+	
 	@Override
 	public void desgastar() {
-		// TODO Auto-generated method stub
+		setEstado(getEstado() - 0.00000008);
 		
 	}
 
 	@Override
 	public double obtenerPotencia() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
