@@ -53,18 +53,38 @@ public class Superficie{
 	public Superficie(){
 		rugosidad = 0;
 		particulasSueltas = 0;
-		viscosidad = 0;
+		viscosidad = 100;
+		this.setNombre("Asfalto");
 	}
 
 	/**
-	 * Constructor con parametros. Inicializa los coeficientes con los valores
+	 * Constructor con los parametros rugosidad, viscosidad y cantidad de particulas
+	 * Inicializa los coeficientes con los valores
 	 * segun los parametros
+	 * pre: los indices deben tomar un valor entre 0 y 100
 	 * post: Queda creada una instancia de superficie con los valores indicados.
 	 */
 	public Superficie(double indicerugosidad, double indiceparticulas, double indiceviscosidad){
 		rugosidad = indicerugosidad;
 		particulasSueltas = indiceparticulas;
 		viscosidad = indiceviscosidad;
+		this.setNombre("Personalizada");
+	}
+	
+	/**
+	 * Constructor con los parametros rugosidad, viscosidad, cantidad de particulas
+	 * y nombre.
+	 * Inicializa los coeficientes con los valores
+	 * segun los parametros
+	 * pre: los indices deben tomar un valor entre 0 y 100
+	 * post: Queda creada una instancia de superficie con los valores indicados.
+	 */
+	public Superficie(double indicerugosidad, double indiceparticulas, 
+			double indiceviscosidad, String nombre){
+		rugosidad = indicerugosidad;
+		particulasSueltas = indiceparticulas;
+		viscosidad = indiceviscosidad;
+		this.setNombre(nombre);
 	}
 	
 	/* setters y getters */
