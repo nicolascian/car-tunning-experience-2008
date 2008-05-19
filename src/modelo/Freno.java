@@ -29,16 +29,14 @@ package modelo;
  * @see <a href="http://es.wikipedia.org/wiki/Freno_de_disco">Freno de Disco - Wikipedia</a>
  * @see <a href="http://es.wikipedia.org/wiki/Antilock_Brake_System">Freno ABS - Wikipedia</a>
  */
-public class Freno extends Componente {
+public abstract class Freno extends Componente implements AfectablePorClima{
 
 	private boolean frenando = false;
 	
+	protected double EfectoClimatico = 1;
+	
 	public Freno(){
 		setEstado(100);
-	}
-
-	public Freno(double estado){
-		setEstado(estado);
 	}
 	
 	public boolean isFrenando(){
@@ -50,12 +48,11 @@ public class Freno extends Componente {
 		desgastar();
 	}
 	
-	@Override
-	public void desgastar() {
-		setEstado(getEstado() - 0.00000008);
-		
-	}
-
+	
+	public abstract void desgastar();
+	public abstract void afectar(Clima clima);
+	
+	
 	@Override
 	public double obtenerPotencia() {
 		return 0;
