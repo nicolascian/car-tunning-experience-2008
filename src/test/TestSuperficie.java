@@ -16,7 +16,9 @@ public class TestSuperficie extends TestCase {
 	}
 	
 	public void testCoeficientes(){
-		
+		assertEquals(0, supPorDefecto.getRugosidad());
+		assertEquals(0, supPorDefecto.getParticulasSueltas());
+		assertEquals(100, supPorDefecto.getViscosidad());
 	}
 	
 	public void testNombres(){
