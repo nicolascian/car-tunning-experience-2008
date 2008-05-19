@@ -21,7 +21,7 @@ public class EjeDeTransmision extends Componente implements ReceptorDeFuerzas {
 	
 	//private double COEFICIENTE_DE_OBTENCION_DE_
 	
-	public void EjeDeTransmision(Auto auto){
+	public EjeDeTransmision(Auto auto){
 		//inicializacion de atributos
 		this.setRepositorio(new RepositorioDeFuerzas(this));
 		this.setAuto(auto);
@@ -36,7 +36,6 @@ public class EjeDeTransmision extends Componente implements ReceptorDeFuerzas {
 	@Override
 	public void desgastar() {
 		
-
 	}
 
 	/* (non-Javadoc)
