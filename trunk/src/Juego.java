@@ -18,6 +18,7 @@ import vista.*;
  * @author Nicolas Morandi
  * @author Lucas Uccello
  * @author Maxi Santos
+ * 
  * @see <a href="http://code.google.com/p/car-tunning-experience-2008/">Car Tunning Experience 2008</a>
  */
 public class Juego{
@@ -26,26 +27,31 @@ public class Juego{
 /*
  * Creacion de dos autos que realizaran la competencia.
  */		
-		//Auto auto1 = new Auto();
-		//Auto auto2 = new Auto();
+		Auto auto1 = new Auto();
+		Auto auto2 = new Auto();
 		
-		//Habilidad habilidad = new Principiante();
+		Habilidad habilidad = new Principiante();
 /*
  * Se crean dos jugadores uno virtual con un determinado nivel
  * de habilidad y dificualtad para con el jugador que utilice el usuario.
  */		
-		//Jugador jugador1 = new Usuario(auto1);
-		//Jugador jugador2 = new Virtual(habilidad, auto2);
+		Controlador control = new Controlador ( /* auto1 */ ) ; 
+		
+		Jugador jugador1 = new Usuario(auto1);
+		Jugador jugador2 = new Virtual(habilidad, auto2);
 /*
  * Se crea la pista con los jugadores y su longitud.
  */		
-		//Pista pista = new Pista(jugador1, jugador2, 100);
+		Pista pista = new Pista(jugador1, jugador2, 100);
 		
 /*
  * se inicializan las vistas
  */		
-		new Controlador ( "Controlador" ) ; 
+		new VistaConsola(pista);
+		new VistaControles(pista, control);
 
+//		 esto es necesario para que las vistas se actualicen la 1ra vez
+		pista.ActualizarObservadores();
 	
 	}// fin main
 	
