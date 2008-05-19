@@ -28,11 +28,11 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 */
 
 		
-	protected double[] relacionDeCambio;//
+	private double[] relacionDeCambio;//
 		
-	protected int cantidadCambios;
+	private int cantidadCambios;
 	
-	protected final static double COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM=0.015;
+	private RepositorioDeFuerzas repositorio;
 	
 	protected final static double COEFICIENTE_DE_DESGASTE=4;
 	
@@ -78,8 +78,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 */
 	@Override
 	public void liberarFuerzas() {
-		// TODO Auto-generated method stub
-		
+		this.getRepositorio().vaciar();
 	}
 
 	/* (non-Javadoc)
@@ -87,8 +86,8 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
-		// TODO Auto-generated method stub
 		
+
 	}
 
 	/**
@@ -114,7 +113,6 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 */
 	protected void setCambio(int cambio){
 		if ((cambioValido(cambio))&&(cambio!=getCambio())&&(isEmbragado())){
-	
 		   Motor motor=getAuto().getMotor();
 		   this.cambio=cambio;
 		   this.desgastar();
@@ -136,7 +134,21 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	public int getCantidadCambios(){
 		return(cantidadCambios);
 	}
-	
+		
+	/**
+	 * @return the repositorio
+	 */
+	public RepositorioDeFuerzas getRepositorio() {
+		return repositorio;
+	}
+
+	/**
+	 * @param repositorio the repositorio to set
+	 */
+	public void setRepositorio(RepositorioDeFuerzas repositorio) {
+		this.repositorio = repositorio;
+	}
+
 	/* para hacer uso del polimorfismo
 	 * estos metodos los usa la caja
 	 * heredada Automatica */
@@ -160,21 +172,11 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 
 	/**
 	 * @Pre: Se ha creado una instancia de la Automatica segun los parametros.
-	 * @Post: Se ha obtenido la potencia entregada por la caja a una cantidad
-	 * de Rpm y cambios dado.
+	 * @Post: Se ha obtenido la potencia entregada por la caja.
 	 * 
 	 */
 	public double obtenerPotencia(){
-		
-		double potencia=0;
-		
-		for(int cursor=0;cursor<getCambio();cursor++)	
-			potencia = potencia+getAuto().getMotor().getRevolucionesMaximas()*
-			COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM/(relacionDeCambio[cursor]+1);
-		
-		potencia = potencia+obtenerRpm()*COEFICIENTE_DE_OBTENCION_DE_POTENCIA_A_PARTIR_RPM;
-		
-		return potencia;
+		return 0;
 	}
 	
 	/*
@@ -220,7 +222,5 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		cadena=cadena+"Estado "+getEstado()+"%"+'\n';
 		return cadena;
 	}
-
-
 		
 }
