@@ -11,8 +11,8 @@ package modelo;
  * recibir el valor de una fuerza mediante la primitiva recibirFuerza y de 
  * acuerdo a ella modificar su estado.
  * Una instancia de esta clase puede recibir varias fuerzas a lo largo de su vida
- * por la tanto debera ir acumulandolas de alguna manera y en un momento dado
- * mediante la primitiva liberar fuerzas desacerse de ellas y eliminarlas.
+ * algunas de las cual podra ir acumulandolas de alguna manera y en un momento dado mediante 
+ * la primitiva liberar fuerzas desacerse de ellas y eliminarlas.
  * Las instancias de clase Fuerza que sean de acceso ilimitado deben conservarse hasta
  * la proxima liberacion de fuerzas o hasta que llegue una fuerza del mismo tipo de acceso
  * del mismo emisor.

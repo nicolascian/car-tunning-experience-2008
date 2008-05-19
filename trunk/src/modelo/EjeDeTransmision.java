@@ -15,11 +15,19 @@ public class EjeDeTransmision extends Componente implements ReceptorDeFuerzas {
 
 	private RepositorioDeFuerzas repositorio;
 	
+	private double rpm;
+		
+	protected double COEFICIENTE_OBTENCION_RPM=0.001;//revoluciones del eje
+	
+	//private double COEFICIENTE_DE_OBTENCION_DE_
+	
 	public void EjeDeTransmision(Auto auto){
 		//inicializacion de atributos
 		this.setRepositorio(new RepositorioDeFuerzas(this));
 		this.setAuto(auto);
 		this.setEstado(100);
+		this.setRpm(0);
+		this.setPeso(5);
 	}
 	
 	/* (non-Javadoc)
@@ -54,15 +62,33 @@ public class EjeDeTransmision extends Componente implements ReceptorDeFuerzas {
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
 		if(fuerza.getEmisor()==this.getAuto().getMotor()){
-		   	this.getRepositorio().insertarFuerza(fuerza);
-		   	this.getAuto().getCaja().recibirFuerza(fuerza);
+		  try{ 	
+			//se inserta en el repositorio y se pasa una copia de la fuerz a la Caja
+			Fuerza fuerzaACaja=this.getRepositorio().insertarFuerzaRetornarCopia(fuerza);
+			fuerzaACaja.setEmisor(this);
+			fuerzaACaja.setReceptor(this.getAuto().getCaja());
+			this.getAuto().getCaja().recibirFuerza(fuerzaACaja);
+			actualizarRpm();
+		  }catch(Exception e){}; 	
 		}else
 			if(fuerza.getEmisor()==this.getAuto().getCaja()){
-				this.getRepositorio().insertarFuerza(fuerza);
-				this.getAuto().getMotor().recibirFuerza(fuerza);
+			  try{
+				//se inserta en el repositorio y se pasa una copia de la fuerz al motor
+				Fuerza fuerzaAMotor=this.getRepositorio().insertarFuerzaRetornarCopia(fuerza);
+				fuerzaAMotor.setEmisor(this);
+				fuerzaAMotor.setReceptor(this.getAuto().getMotor());
+				this.getAuto().getMotor().recibirFuerza(fuerzaAMotor);
+				actualizarRpm();
+			  }catch(Exception e){};
 			}
 	}
 
+	private void actualizarRpm(){
+		this.setRpm(this.getRpm()+(this.getRepositorio().obtenerValorSumatoriaDeFuezas(this.getAuto().getMotor())-
+				    this.getRepositorio().obtenerValorSumatoriaDeFuezas(this.getAuto().getCaja()))*
+				    COEFICIENTE_OBTENCION_RPM);
+	}
+	
 	/**
 	 * @return the repositorio
 	 */
@@ -76,4 +102,19 @@ public class EjeDeTransmision extends Componente implements ReceptorDeFuerzas {
 	protected void setRepositorio(RepositorioDeFuerzas repositorio) {
 		this.repositorio = repositorio;
 	}
+
+	/**
+	 * @return the rpm
+	 */
+	public double getRpm() {
+		return rpm;
+	}
+
+	/**
+	 * @param rpm the rpm to set
+	 */
+	protected void setRpm(double rpm) {
+		this.rpm = rpm;
+	}
+			
 }

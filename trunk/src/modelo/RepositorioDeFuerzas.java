@@ -60,6 +60,29 @@ public class RepositorioDeFuerzas {
 
 	/**
 	 * @Pre: La instancia ha sido creada.
+	 * @Post: Se ha obtenido la sumatoria de los valores de las instancias de la clase 
+	 * Fuerza que se encuentran en esta instancia que son del receptor pasado por parametro.
+	*/
+	public double obtenerValorSumatoriaDeFuezas(ReceptorDeFuerzas emisor){
+	    double sumatoria=0;
+	    Iterator<Fuerza> iterador=listaDeFuerzas.iterator();
+		Fuerza fuerza=null;
+		while(iterador.hasNext()){
+		  try{
+			  fuerza=iterador.next();
+			  //si es del emisor pasado por parametro se tiene en cuenta en la suma
+			  if(fuerza.getEmisor()==emisor)
+				sumatoria=sumatoria+fuerza.getValorDeLaFuerza();
+		  }catch(ExceptionAccesoNoPermitido e){
+			  //en caso de no poder accederse al valor de la fuerza se elimina dicha fuerza
+			  iterador.remove();
+		  }
+		}
+	    return sumatoria;
+	}
+	
+	/**
+	 * @Pre: La instancia ha sido creada.
 	 * @Post: Se ha insertado una instancia de la clase Fuerza
 	*/
 	public void insertarFuerza(Fuerza fuerza){
@@ -76,6 +99,28 @@ public class RepositorioDeFuerzas {
 		  }
 	}
 
+	/**
+	 * @Pre: La instancia ha sido creada.
+	 * @Post: Se ha insertado una instancia de la clase Fuerza
+	*/
+	public Fuerza insertarFuerzaRetornarCopia(Fuerza fuerza){
+	  Fuerza copia=null;
+	  //fuerza no nula
+	  if(fuerza!=null){	
+	      double valorDeLaFuerza=0;
+	      try{	
+	    	valorDeLaFuerza=fuerza.getValorDeLaFuerza();
+	      }catch(Exception e){};
+	      copia=new Fuerza(fuerza.getEmisor(),fuerza.getReceptor(),valorDeLaFuerza,
+	    		           fuerza.isAccesoLimitado());
+	      if(!fuerza.isAccesoLimitado())
+	         this.insertarFuerza(fuerza);
+	      else
+	    	 insertarFuerza(new Fuerza(fuerza.getEmisor(),fuerza.getReceptor(),valorDeLaFuerza,true));
+	    }
+	  return copia;
+	}
+	
 	/**
 	 * @Pre: La instancia ha sido creada y instancia de la clase ReceptorDeFuerzas pasada por 
 	 * parametro es no nula.
