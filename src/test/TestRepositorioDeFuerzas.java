@@ -11,7 +11,7 @@ import org.junit.Test;
 import modelo.Fuerza;
 import modelo.ReceptorDeFuerzas;
 import modelo.RepositorioDeFuerzas;
-public class TestRepocitorioDeFuerzas {
+public class TestRepositorioDeFuerzas {
 
 	//Atributos
 	private static HijaReceptorDeFuerzas receptor1;
@@ -102,7 +102,6 @@ public class TestRepocitorioDeFuerzas {
 		try{	
 			assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==19);
 			assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==19);
-			
 		}catch(AssertionError a){
 			  System.out.println(a);
 			  a.printStackTrace();
@@ -113,43 +112,49 @@ public class TestRepocitorioDeFuerzas {
 	 * Test de de el metodo vaciar.
 	 */
 	@Test
-	public void testVaciar() {
+	public void testInsercionFuerzasDeAccesoLimitado() {
 	  try{	
 		receptor2.getRepositorio().vaciar();
-		assertTrue(receptor2.getRepositorio().getListaDeFuerzas().isEmpty());
 		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==0);
 	  }catch(AssertionError a){
 		  System.out.println(a);
 	  }
 	}
-		
+	
+	/**
+	 * Test de respuesta de la instancia ante la insercion de fuerzas de acceso limitado
+	 */
+	@Test
+	public void testInsercionFuerzasDeAccesoLimitado2() {
+	  try{	
+		for(int contador=1;contador<20;contador++){
+			Fuerza fuerza=new Fuerza(receptor1,receptor2,1,true);
+			receptor2.recibirFuerza(fuerza);
+		}
+		assertNotNull(receptor2.getRepositorio());
+		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==19);
+		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==0);
+	  }catch(AssertionError a){
+		  System.out.println(a);
+	  }
+	}
+	
 	/**
 	 * Se testea el comportamiento de la clase al introducir fuerzas de acceso limitado
 	 */
 	@Test 
 	public void testComportamientoAlIntroducirFuerzas() {
 		 try{	
-				for(int contador=1;contador<=20;contador++){
+				//assertNotNull(receptor2.getRepositorio().obtenerFuerzaDeAccesoIlimitadoDeEmisor(receptor1));
+			    for(int contador=1;contador<=20;contador++){
 					Fuerza fuerza=new Fuerza(receptor1,receptor2,1,true);
 					receptor2.recibirFuerza(fuerza);
 			    }
-				assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==20);
-				assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==0);
-		 }catch(AssertionError a){
+				//System.out.println(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas());
+				//assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()>10);
+			}catch(AssertionError a){
 				System.out.println(a);
 				a.printStackTrace();
-	     }
-	     try{	
-	    	 for(int contador=1;contador<=20;contador++){
-			     Fuerza fuerza=new Fuerza(receptor1,receptor2,1,true);
-			     receptor2.recibirFuerza(fuerza);
-	         }
-	    	 receptor2.recibirFuerza(new Fuerza(receptor1,receptor2,20));
-		     assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==40);
-		     assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==20);
-	     }catch(AssertionError a){
-		     System.out.println(a);
-		     a.printStackTrace();
-         }
- }
+	        }
+	}
 }

@@ -1,15 +1,13 @@
 package test;
 
-import static org.junit.Assert.*;
+import junit.framework.*;
 
-import org.junit.Test;
-import modelo.Turbo;
-import modelo.Clima;
+import modelo.*;
 
 
-public class TestTurbo {
+public class TestTurbo extends TestCase{
 
-	@Test
+
 	public void testDesgastar() {
 		Turbo turbo = new Turbo();
 		turbo.setEstado(100);
@@ -20,8 +18,7 @@ public class TestTurbo {
 	}
 
 	
-	
-	@Test
+
 	public void testObtenerPotencia() {
 		Turbo turbo= new Turbo();
 		
@@ -30,7 +27,6 @@ public class TestTurbo {
 
 	
 	
-	@Test
 	public void testAfectar() {
 		Turbo turbo= new Turbo();
 		Clima clima= new Clima(25.0, 50.0, 1013.0);
@@ -39,6 +35,16 @@ public class TestTurbo {
 		assertEquals(1.0, turbo.getCoeficienteDeObtencionDePotencia());
 		
 		
+	}
+	
+	public static Test suite(){
+		return new TestSuite(TestTurbo.class);
+	}
+
+	
+	public static void main (String[] args)
+	{
+		junit.textui.TestRunner.run(suite());
 	}
 
 }
