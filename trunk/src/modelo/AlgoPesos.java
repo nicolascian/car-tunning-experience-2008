@@ -38,8 +38,6 @@ public class AlgoPesos{
 	 * @param decimal2
 	 * @return
 	 */
-	
-	
 	public AlgoPesos sumar( int entero1, int entero2, int decimal1, int decimal2){
 	
 		int enteros= entero1+entero2;

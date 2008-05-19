@@ -29,4 +29,24 @@ package modelo;
  */
 public class FrenoABS extends Freno{
 
+	
+	public FrenoABS(){
+		super();
+		setNombre("Freno ABS (Antilock Brake System)");
+		setPrecio(new AlgoPesos(1200,00)); //algo$
+		setPeso(6); // Kg
+	}
+	
+	@Override
+	public void afectar(Clima clima) {
+		EfectoClimatico = 1;
+		
+	}
+
+	@Override
+	public void desgastar() {
+		setEstado(getEstado() - EfectoClimatico * 0.00013);
+		
+	}
+
 }

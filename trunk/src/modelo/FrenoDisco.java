@@ -18,5 +18,28 @@ package modelo;
  * @see <a href="http://es.wikipedia.org/wiki/Freno_de_disco">Freno de Disco - Wikipedia</a>
  */
 public class FrenoDisco extends Freno{
+	
+	//temperatura optima de un freno de Disco
+	private static double TEMP_OPTIMA = 27; // °C
+
+	
+	public FrenoDisco(){
+		super();
+		setNombre("Freno de Disco");
+		setPrecio(new AlgoPesos(599,99)); //algo$
+		setPeso(9); // Kg
+	}
+	
+	@Override
+	public void afectar(Clima clima) {
+		EfectoClimatico = clima.getTemperatura()/TEMP_OPTIMA;
+		
+	}
+
+	@Override
+	public void desgastar() {
+		setEstado(getEstado() - EfectoClimatico * 0.00082);
+		
+	}
 
 }

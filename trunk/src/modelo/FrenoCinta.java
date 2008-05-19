@@ -19,4 +19,29 @@ package modelo;
  */
 public class FrenoCinta extends Freno {
 
+	//temperatura optima de un freno de Cinta
+	private static double TEMP_OPTIMA = 24; // °C
+	// humedad optima de un freno de Cinta
+	private static double HUM_OPTIMA = 10; // %
+
+	
+	public FrenoCinta(){
+		super();
+		setNombre("Freno de Cintao de Banda");
+		setPrecio(new AlgoPesos(370,00)); //algo$
+		setPeso(11); // Kg
+	}
+	
+	@Override
+	public void afectar(Clima clima) {
+		EfectoClimatico = clima.getTemperatura()/TEMP_OPTIMA * clima.getHumedad()/HUM_OPTIMA;
+		
+	}
+
+	@Override
+	public void desgastar() {
+		setEstado(getEstado() - EfectoClimatico * 0.0015);
+		
+	}
+
 }

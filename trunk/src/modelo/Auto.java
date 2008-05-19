@@ -444,6 +444,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		lista.add(this.suspension);
 		lista.add(this.turbo);
 		lista.add(this.nitro);
+		lista.add(this.freno);
 		lista.add(this.ejeDelantero);
 		lista.add(this.ejeDelantero.getLlantaDerecha());
 		lista.add(this.ejeDelantero.getLlantaIzquierda());

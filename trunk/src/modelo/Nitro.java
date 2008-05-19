@@ -28,10 +28,16 @@ public class Nitro extends Componente {
 	
 	public Nitro(){
 		setEstado(100);
+		setNombre("Equipo de Oxido Nitroso");
+		setPrecio(new AlgoPesos(3200,00)); //algo$
+		setPeso(10); // Kg
 	}
 	
 	public Nitro(double estado){
 		setEstado(estado);
+		setNombre("Equipo de Oxido Nitroso");
+		setPrecio(new AlgoPesos(3200,00)); //algo$
+		setPeso(10); // Kg
 	}
 	
 	public void activar(boolean valor){

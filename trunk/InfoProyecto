@@ -20,6 +20,7 @@ EMEPCE A HACERLO PERO ESTABA EN DEMASIADOS LUGARES ASIQUE TUVE QUE DEJARLO
 nico
 
 NicoM, estaria bueno que la pista no reciba Jugadores, sino, Autos.
+y que el construcctor de pista reciba un Array de Autos
 se puede hacer?
 entonces:
 los Jugadores son controles
@@ -65,13 +66,13 @@ Lucas:		Desgastar y ObtenerPotencia
 			Suspension <---------------------c/pruebas
 
 Nico C:		Clima <------------------------------Listo c/ test
-			Jugador <----------------------------Listo no se me ocurre un test
-			  Usuario <--------------------------Listo
-			  Virtual <--------------------------Listo
-			    Habilidad <----------------------Listo no se me ocurre un test
-			      Experto <----------------------Listo
-			      Intermedio <-------------------Listo
-			      Principiante <-----------------Listo c/ test a medias
+			Jugador <----------------------------
+			  Usuario <--------------------------
+			  Virtual <--------------------------
+			    Habilidad <----------------------
+			      Experto <----------------------
+			      Intermedio <-------------------
+			      Principiante <-----------------
 			Alimentacion <-----------------------Listo no se me ocurre un test
 			  Carburador <-----------------------Listo c/ test
 			  Inyeccion <------------------------Listo c/ test
