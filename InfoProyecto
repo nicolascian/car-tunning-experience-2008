@@ -19,10 +19,18 @@ EMEPCE A HACERLO PERO ESTABA EN DEMASIADOS LUGARES ASIQUE TUVE QUE DEJARLO
 
 nico
 
+NicoM, estaria bueno que la pista no reciba Jugadores, sino, Autos.
+se puede hacer?
+entonces:
+los Jugadores son controles
+la pista tiene Autos
+la Vista observa la pista
+
 AGREGUE UN TEST QUE CORRE TODOS LOS TEST.. FUNCIONA SOLO CON LOS Q ESTAN HECHOS EN
 JUNIT 4, ASI QUE ESTARIA BUENO QUE ESTEN TODOS HECHOS CON ESE.
 CUANDO HAGAN UN NUEVO TEST, AGREGUENLO EN EL TEST SUITE DE 	TestTodos ASI SE PUEDEN
-CORRER TODOS JUNTOS A MEDIDA QUE HACEMOS MODIFICACIONES
+CORRER TODOS JUNTOS A MEDIDA QUE HACEMOS MODIFICACIONES 
+(no me anda la version 4. nicoC)
 #########################################################################################
 ObtenerPotencia de los componentes tira MAXIMO 50 HP
 		excepto MOTOR TURBO que tiran MAS

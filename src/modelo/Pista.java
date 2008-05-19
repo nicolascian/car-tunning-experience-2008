@@ -13,7 +13,7 @@ import java.util.*;
  * Tiene como caracteristicas una sucesion de tramos,
  * cada uno con una longitud y caracteristicas especificas.
  */
-public class Pista{
+public class Pista  extends Observable{
 	
 	/*--------Atributos--------*/
 	/**
@@ -45,6 +45,15 @@ public class Pista{
 	 * y actualizar los tramos actuales de cada auto.
 	 */
 	private Iterator<Tramo>[] iterador;
+	
+	/**
+	 * se ejecuta cuando se actualizan las posciones
+	 */
+	public void ActualizarObservadores()
+	{
+		setChanged();
+		notifyObservers();		
+	}
 	
 	/*---------Metodos---------*/
 	/**
@@ -123,6 +132,7 @@ public class Pista{
 			this.getJugador(i).getAuto().afectar(aux.getSuperficie());
 			}
 		}
+		ActualizarObservadores();
 	}
 	
 	/**
