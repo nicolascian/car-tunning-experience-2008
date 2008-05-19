@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 import modelo.*;
+import control.*;
+import vista.*;
 
 /**
  * Juego es el punto de entrada del programa "Car Tunning Experience 2008"
@@ -24,24 +26,25 @@ public class Juego{
 /*
  * Creacion de dos autos que realizaran la competencia.
  */		
-		Auto auto1 = new Auto();
-		Auto auto2 = new Auto();
+		//Auto auto1 = new Auto();
+		//Auto auto2 = new Auto();
 		
-		Habilidad habilidad = new Principiante();
+		//Habilidad habilidad = new Principiante();
 /*
  * Se crean dos jugadores uno virtual con un determinado nivel
  * de habilidad y dificualtad para con el jugador que utilice el usuario.
  */		
-		Jugador jugador1 = new Usuario(auto1);
-		Jugador jugador2 = new Virtual(habilidad, auto2);
+		//Jugador jugador1 = new Usuario(auto1);
+		//Jugador jugador2 = new Virtual(habilidad, auto2);
 /*
  * Se crea la pista con los jugadores y su longitud.
  */		
-		Pista pista = new Pista(jugador1, jugador2, 100);
+		//Pista pista = new Pista(jugador1, jugador2, 100);
 		
 /*
  * se inicializan las vistas
  */		
+		new Controlador ( "Controlador" ) ; 
 
 	
 	}// fin main

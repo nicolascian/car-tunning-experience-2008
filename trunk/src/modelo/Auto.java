@@ -36,7 +36,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private Escape escape;
 	private Turbo turbo;
 	private Nitro nitro;
-//	private Freno freno;
+	private Freno freno;
 	private Eje ejeDelantero;
 	private Eje ejeTrasero;
 
@@ -59,6 +59,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		  setEscape(new Escape());
 		  setTurbo(new Turbo());
 		  setNitro(new Nitro());
+		  setFreno(new FrenoCinta());
 		/* eje delantero */
 		  setEjeDelantero(new Eje());
 		  ejeDelantero.setLlantaDerecha(new Llanta());
@@ -95,7 +96,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public Auto(Motor motor,Caja caja,Combustible combustible,
 			Carroceria carroceria,Alimentacion alimentacion,
 			Suspension suspension,Escape escape,Turbo turbo, 
-			Nitro nitro, Embrague embrague){
+			Nitro nitro, Embrague embrague, Freno freno){
 		setMotor(motor);
 		setCaja(caja);
 		setEmbrague(embrague);
@@ -106,6 +107,7 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		setEscape(escape);
 		setTurbo(turbo);
 		setNitro(nitro);
+		setFreno(freno);
 		setEjeDelantero(new Eje());
 		  ejeDelantero.setLlantaDerecha(new Llanta());
 		  ejeDelantero.setLlantaIzquierda(new Llanta());
@@ -311,7 +313,19 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 		}else
 		   return false;
 	}
-
+	
+	public void frenar(boolean valor){
+		if(getFreno()!=null)
+			getFreno().frenar(valor);
+	}
+	
+	public boolean isFrenando(){
+		if(getFreno()!=null){
+			return(getFreno().isFrenando());
+		}else
+			return false;
+	}
+	
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.
 	 * @Post: En caso de que la instancia se encuentre lista para carrera se embraga.
@@ -623,5 +637,13 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 
 	public void setEmbrague(Embrague embrague) {
 		this.embrague = embrague;
+	}
+
+	public Freno getFreno() {
+		return freno;
+	}
+
+	public void setFreno(Freno freno) {
+		this.freno = freno;
 	}
 }
