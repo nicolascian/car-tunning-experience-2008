@@ -84,9 +84,7 @@ public class EjeDeTransmision extends Componente implements ReceptorDeFuerzas {
 	}
 
 	private void actualizarRpm(){
-		this.setRpm(this.getRpm()+(this.getRepositorio().obtenerValorSumatoriaDeFuezas(this.getAuto().getMotor())-
-				    this.getRepositorio().obtenerValorSumatoriaDeFuezas(this.getAuto().getCaja()))*
-				    COEFICIENTE_OBTENCION_RPM);
+		this.setRpm(this.getRpm()+this.getRepositorio().obtenerValorSumatoriaDeFuezas()*COEFICIENTE_OBTENCION_RPM);
 	}
 	
 	/**
