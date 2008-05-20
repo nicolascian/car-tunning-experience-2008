@@ -99,6 +99,15 @@ public abstract class Componente extends Constantes {
 		this.setAuto(auto);
 	}
 	
+	/* toString */
+	
+	public String toString(){
+		return (getNombre()+ '\n'+
+				" Estado: "+ getEstado() + " %" + '\n' +
+				" Peso: " + getPeso() + " Kg" + '\n' +
+				" Precio: " + getPrecio() + " algo$");
+	}
+	
 	/* Setters y Getters */
 	
 	public AlgoPesos getPrecio() {

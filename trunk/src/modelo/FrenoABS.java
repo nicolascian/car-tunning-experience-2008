@@ -29,7 +29,10 @@ package modelo;
  */
 public class FrenoABS extends Freno{
 
-	
+	/**
+	 * Constructor de Freno ABS sin parametros
+	 * coloca el estado de la instancia en 100%
+	 */
 	public FrenoABS(){
 		super();
 		setNombre("Freno ABS (Antilock Brake System)");
@@ -38,6 +41,9 @@ public class FrenoABS extends Freno{
 	}
 	
 	@Override
+	/**
+	 * El clima no afecta a los frenos de tipo ABS
+	 */
 	public void afectar(Clima clima) {
 		EfectoClimatico = 1;
 		
@@ -47,6 +53,12 @@ public class FrenoABS extends Freno{
 	public void desgastar() {
 		setEstado(getEstado() - EfectoClimatico * 0.00013);
 		
+	}
+	
+	/* toString */
+	
+	public String toString(){
+		return super.toString();
 	}
 
 }

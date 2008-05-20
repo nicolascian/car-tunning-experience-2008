@@ -48,12 +48,12 @@ Nico M: 	Neumatico <--------------------------Listo
 			interfaces Afectable <---------------Listo 
 			Superficie <-------------------------Listo
 			
-Rafa:		Motor
-			Caja 
-			Automatica
-			Secuencial 
-			Manual
-			Auto
+Rafa:		Motor <------------------------------
+			Caja <-------------------------------
+			Automatica <-------------------------
+			Secuencial <-------------------------
+			Manual <-----------------------------
+			Auto <-------------------------------
 			
 Lucas:		Desgastar y ObtenerPotencia
 			(Eje,Escape,Neumatico,Carroceria,Carburador
@@ -62,8 +62,8 @@ Lucas:		Desgastar y ObtenerPotencia
 			Componente <-------------------------Listo
 			Carroceria <-------------------------Listo
 			Excepciones <------------------------Listo
-			Llanta<----------------------- falta una parte de la prueba
-			Suspension <---------------------c/pruebas
+			Llanta<------------------------------ falta una parte de la prueba
+			Suspension <------------------------- c/pruebas
 
 Nico C:		Clima <------------------------------Listo c/ test
 			Jugador <----------------------------
@@ -78,14 +78,14 @@ Nico C:		Clima <------------------------------Listo c/ test
 			  Inyeccion <------------------------Listo c/ test
 			Nitro <------------------------------Listo
 			Embrague <---------------------------Listo
-			Freno
+			Freno <------------------------------Listo
 			  		
 Maxi:				me faltan las pruebas
-			Combustible
-			Escape
-			Turbo
-			AlgoPesos
-			eje(pruebas)
+			Combustible <------------------------
+			Escape <-----------------------------
+			Turbo <------------------------------
+			AlgoPesos <--------------------------
+			eje <-------------------------------- (pruebas)
 			
 
 			

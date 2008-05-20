@@ -35,14 +35,27 @@ public abstract class Freno extends Componente implements AfectablePorClima{
 	
 	protected double EfectoClimatico = 1;
 	
+	/**
+	 * Constructor de Freno sin parametros
+	 * establece el Estado en 100%
+	 */
 	public Freno(){
 		setEstado(100);
 	}
 	
+	/**
+	 * Nos dice si el freno esta en un estado Frenado o no.
+	 * esto no implica que el auto este frenado.
+	 * @return
+	 */
 	public boolean isFrenando(){
 		return frenando;
 	}
 	
+	/**
+	 * Nos permite cambiar el esado de la instancia entre Frenado o no.
+	 * @param valor
+	 */
 	public void frenar(boolean valor){
 		frenando = valor;
 		desgastar();
@@ -54,6 +67,9 @@ public abstract class Freno extends Componente implements AfectablePorClima{
 	
 	
 	@Override
+	/**
+	 * Los frenos no otorgan potencia
+	 */
 	public double obtenerPotencia() {
 		return 0;
 	}

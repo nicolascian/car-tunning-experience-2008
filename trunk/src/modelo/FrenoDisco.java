@@ -22,7 +22,10 @@ public class FrenoDisco extends Freno{
 	//temperatura optima de un freno de Disco
 	private static double TEMP_OPTIMA = 27; // °C
 
-	
+	/**
+	 * Constructor de Freno a Disco sin parametros
+	 * coloca el estado de la instancia al 100%
+	 */
 	public FrenoDisco(){
 		super();
 		setNombre("Freno de Disco");
@@ -31,6 +34,9 @@ public class FrenoDisco extends Freno{
 	}
 	
 	@Override
+	/**
+	 * El clima afecta a los frenos de Disco (temperatura)
+	 */
 	public void afectar(Clima clima) {
 		EfectoClimatico = clima.getTemperatura()/TEMP_OPTIMA;
 		
@@ -40,6 +46,12 @@ public class FrenoDisco extends Freno{
 	public void desgastar() {
 		setEstado(getEstado() - EfectoClimatico * 0.00082);
 		
+	}
+	
+	/* toString */
+	
+	public String toString(){
+		return super.toString();
 	}
 
 }
