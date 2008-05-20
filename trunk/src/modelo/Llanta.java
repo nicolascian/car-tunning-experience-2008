@@ -29,7 +29,11 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	private double coeficienteDeDesgastePorSuperficie=1;
 	
 	private double peso;
-		
+	
+	private Eje eje=null;
+	
+	private Neumatico neumatico;
+	
 	/**constructor, queda instanciada 
 	 *  la clase Llanta.
 	 */
@@ -154,7 +158,48 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
-				
+		if(fuerza.getEmisor()==getEje()){
+			//la fuerza viene del eje
+			//se pasa la fuerza al neumatico
+			  double valorDeLaFuerza=0;
+			  try{
+			     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
+			  }catch (Exception e){}
+			  //transmito fuerza a nuematico delantero
+			  Fuerza fuerzaANeumatico=new Fuerza(this,getNeumatico(),valorDeLaFuerza,true);
+			  getNeumatico().recibirFuerza(fuerzaANeumatico);
+		}else{
+			//la fuerza viene del neumatico
+			
+		}
 	}
-		
+
+	/**
+	 * @return the eje
+	 */
+	public Eje getEje() {
+		return eje;
+	}
+
+	/**
+	 * @param eje the eje to set
+	 */
+	public void setEje(Eje eje) {
+		this.eje = eje;
+	}
+
+	/**
+	 * @return the neumatico
+	 */
+	public Neumatico getNeumatico() {
+		return neumatico;
+	}
+
+	/**
+	 * @param neumatico the neumatico to set
+	 */
+	public void setNeumatico(Neumatico neumatico) {
+		this.neumatico = neumatico;
+	}
+	
 }
