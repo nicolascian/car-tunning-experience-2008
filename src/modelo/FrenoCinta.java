@@ -24,7 +24,10 @@ public class FrenoCinta extends Freno {
 	// humedad optima de un freno de Cinta
 	private static double HUM_OPTIMA = 10; // %
 
-	
+	/**
+	 * Constructor de Freno a Cinta sin paraetros
+	 *coloca la instancia en estado 100%
+	 */
 	public FrenoCinta(){
 		super();
 		setNombre("Freno de Cintao de Banda");
@@ -33,6 +36,9 @@ public class FrenoCinta extends Freno {
 	}
 	
 	@Override
+	/**
+	 * El clima afecta al freno de disco (temperatura y humedad)
+	 */
 	public void afectar(Clima clima) {
 		EfectoClimatico = clima.getTemperatura()/TEMP_OPTIMA * clima.getHumedad()/HUM_OPTIMA;
 		
@@ -42,6 +48,12 @@ public class FrenoCinta extends Freno {
 	public void desgastar() {
 		setEstado(getEstado() - EfectoClimatico * 0.0015);
 		
+	}
+	
+	/* toString */
+	
+	public String toString(){
+		return super.toString();
 	}
 
 }

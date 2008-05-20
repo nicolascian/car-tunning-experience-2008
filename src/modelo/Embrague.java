@@ -23,18 +23,31 @@ public class Embrague extends Componente {
 	
 	private boolean embragado = false;
 	
+	/**
+	 * Constructor de Embrague sin argumentos
+	 * pone el estado de la clase en 100%
+	 */
 	public Embrague(){
 		setEstado(100);
+		setNombre("Embrague");
+		setPrecio(new AlgoPesos(1830,00)); //algo$
+		setPeso(4); // Kg
 	}
 	
-	public Embrague(double estado){
-		setEstado(estado);
-	}
-	
+	/**
+	 * Nos informa el estado de la instancia: Embragado o no.
+	 * @return
+	 */
 	public boolean isEmbragado(){
 		return embragado;
 	}
 	
+	/**
+	 * Nos permite cambiar el estado de la instancia enre Acoplado 
+	 * y Desacoplado.
+	 * 
+	 * @param valor
+	 */
 	public void embragar(boolean valor){
 		embragado = valor;
 		desgastar();
@@ -47,10 +60,18 @@ public class Embrague extends Componente {
 	}
 
 	@Override
+	/**
+	 * El embrague no otorga potencia
+	 */
 	public double obtenerPotencia() {
 		// no otorga potencia
 		return 0;
 	}
 
+	/* toString */
+	
+	public String toString(){
+		return super.toString();
+	}
 
 }

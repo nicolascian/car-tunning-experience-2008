@@ -26,6 +26,10 @@ public class Nitro extends Componente {
 
 	private boolean activado= false;
 	
+	/**
+	 * Construcctor de Nitro sin parametros
+	 * establece el estado  en 100%
+	 */
 	public Nitro(){
 		setEstado(100);
 		setNombre("Equipo de Oxido Nitroso");
@@ -33,6 +37,11 @@ public class Nitro extends Componente {
 		setPeso(10); // Kg
 	}
 	
+	/**
+	 * Constructor de Nitro con parametro
+	 * 
+	 * @param estado
+	 */
 	public Nitro(double estado){
 		setEstado(estado);
 		setNombre("Equipo de Oxido Nitroso");
@@ -40,10 +49,20 @@ public class Nitro extends Componente {
 		setPeso(10); // Kg
 	}
 	
+	/**
+	 * Permite poner al Nitro en estado Activo / Desactivo
+	 * 
+	 * @param valor
+	 */
 	public void activar(boolean valor){
 		activado = valor;
 	}
 	
+	/**
+	 * Nos dice si el Nitro se encuentra en estado Activado o no.
+	 * 
+	 * @return
+	 */
 	public boolean isActivado(){
 		return activado;
 	}
@@ -55,6 +74,10 @@ public class Nitro extends Componente {
 	}
 
 	@Override
+	/**
+	 * Obtener Potencia nos da una gran cantidad si esta activado
+	 * y cero si no lo esta.
+	 */
 	public double obtenerPotencia() {
 		if(isActivado() && getEstado()>0){
 			desgastar();
@@ -64,6 +87,10 @@ public class Nitro extends Componente {
 		}
 	}
 
+	/* toString */
 	
+	public String toString(){
+		return super.toString();
+	}
 	
 }
