@@ -34,12 +34,11 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	protected final static double TEMPERATURA_MEDIANA_AIRE=15;//temperatura del aire la cual si se sobrepasa se 
 												//se disminuye la potencia del motor, y si se opera por debajo
 												//de esa temperatura aumenta el rendimiento.
-	protected final static double COEFICIENTE_TIEMPO_ACELERACION_CARACTERISTICO=0.8;
-	
+		
 	protected final static double COEFICIENTE_RPM_ENCENDIDO=0.08;// 8%
 	
-	protected final static double COEFICIENTE_POTENCIA_A_OBTENER=0.05;// 5%
-	
+	protected final static double COEFICIENTE_PRODUCCION_FUERZA_POTENCIA=0.1;
+
 	protected final static double COEFICIENTE_DE_ABSORCION_CALORICO_INICIAL=0.0015;
 	
 	protected final static double COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL=0.003;
@@ -59,7 +58,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	private double revolucionesMaximas;//revoluciones maximas que el motor puede alcanzar segun su cilindrada 
 	                                   //y cantidad de cilindros en rpm.
 			
-	private double rpm;//revoluciones a las que se encuentra trabajando el motor, en rpm.
+	private double RPM;//revoluciones a las que se encuentra trabajando el motor, en rpm.
 	
 	private boolean encendido;//indica si el motor se encuentra encendido
 	
@@ -82,7 +81,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		
 	private double coeficienteDeDisipacionCalorico;
 	
-	private double coeficienteDeIncrementoRpm=10;
+	private double coeficienteDeIncrementoRpm;
 	
 	private RepositorioDeFuerzas repositorio;
 	
@@ -114,7 +113,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	//inicializacion de potencias 	
 		potenciaMaxima=getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000;
 		potenciaExtra=0;
-		
+		this.setCoeficienteDeIncrementoFuerza(this.getPotenciaMaxima()*this.COEFICIENTE_OBTENCION_INCREMENTO_RPM_POTENCIA);
 	//inicializacion de repositorio de fuerzas
 		this.repositorio=new RepositorioDeFuerzas(this);
 	}
@@ -150,7 +149,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		setCilindrada(1600);
 		//inicializacion de revoluciones
 		setRevolucionesMaximas(8000);
-		rpm=0;
+		RPM=0;
 		//inicializacion de temperaturas
 		setTemperaturaAire(25); //°C
 		setTemperatura(TEMPERATURA_INICIAL);
@@ -174,7 +173,8 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	  if(isEncendido()){
 		if(valor){
 			setAcelerando(true);
-			this.incrementarRpm();
+			
+			
 			
 		}//fin verdadero y sin acelerar
 		else{
@@ -187,14 +187,15 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	}
 	
 	public void incrementarRpm(){
-		double rpmFinal=getRpm()+this.coeficienteDeIncrementoRpm;
+		double rpmFinal=getRPM()+this.coeficienteDeIncrementoRpm;
 		if(rpmFinal<this.getRevolucionesMaximas()){
-		  setRpm(rpmFinal);
+		  setRPM(rpmFinal);
 		  this.setCoeficienteDeIncrementoRpm(coeficienteDeIncrementoRpm+
-				                             2*Math.sqrt(coeficienteDeIncrementoRpm));
+			                                2*Math.sqrt(coeficienteDeIncrementoRpm+this.getPotenciaExtra()*
+					                        this.COEFICIENTE_OBTENCION_INCREMENTO_RPM_POTENCIA));
 		}
 		else
-		  this.setRpm(this.getRevolucionesMaximas());
+		  this.setRPM(this.getRevolucionesMaximas());
 	}
 		
 	/**
@@ -211,7 +212,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		//seteo de revoluciones
 			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 			
-			setRpm(getRevolucionesMinimasEncendido());
+			setRPM(getRevolucionesMinimasEncendido());
 			getAuto().getCaja().setCambio(0);
 			setAcelerando(false);
 		}
@@ -226,7 +227,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		if(isEncendido()){
 			getAuto().getCaja().setCambio(0);
 			setEncendido(false);
-			setRpm(0);
+			setRPM(0);
 			setTemperatura(25);
 			setAcelerando(false);
 			this.liberarFuerzas();
@@ -275,8 +276,8 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 *  @Pre: La instancia ha sido creada y se encuentra en estado encendido.
 	 *  @Post: Se han seteado las rpm de la instancia.    
 	*/
-	protected void setRpm(double rpm) {
-		this.rpm=rpm;
+	protected void setRPM(double rpm) {
+		this.RPM=rpm;
 	}
 	
 	/**
@@ -291,8 +292,8 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 * @Pre: La instancia ha sido creada y se encuentra en estado encendido.
 	 * @Post: Se ha obtenido las Rpm del motor.
 	*/
-	public double getRpm() {
-		return rpm;
+	public double getRPM() {
+		return RPM;
 	}
 		
 	/* (non-Javadoc)
@@ -474,15 +475,55 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		this.coeficienteDeIncrementoRpm = coeficienteDeIncrementoRpm;
 	}
 
+	/**
+	 * @return the potenciaMaxima
+	 */
+	public double getPotenciaMaxima() {
+		return potenciaMaxima;
+	}
 
+	/**
+	 * @param potenciaMaxima the potenciaMaxima to set
+	 */
+	public void setPotenciaMaxima(double potenciaMaxima) {
+		this.potenciaMaxima = potenciaMaxima;
+	}
+
+	/**
+	 * @return the potenciaExtra
+	 */
+	public double getPotenciaExtra() {
+		return potenciaExtra;
+	}
+
+	/**
+	 * @param potenciaExtra the potenciaExtra to set
+	 */
+	public void setPotenciaExtra(double potenciaExtra) {
+		this.potenciaExtra = potenciaExtra;
+	}
+	
+	/**
+	 * @return the repositorio
+	 */
+	public RepositorioDeFuerzas getRepositorio() {
+		return repositorio;
+	}
+
+	/**
+	 * @param repositorio the repositorio to set
+	 */
+	public void setRepositorio(RepositorioDeFuerzas repositorio) {
+		this.repositorio = repositorio;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		String cadena="Motor de "+getCantidadCilindros()+" cilindros "+obtenerPotenciaMaxima()+
-		   " Hp a "+getRevolucionesMaximas()+" rpm"+'\n'+"  RPM:"+getRpm()
+		String cadena="Motor de "+getCantidadCilindros()+" cilindros "+getPotenciaMaxima()+
+		   " Hp a "+getRevolucionesMaximas()+" rpm"+'\n'+"  RPM:"+getRPM()
 		   +"rpm Temperatura: "+getTemperatura()+"�C ";
 		if(isEncendido())
 			cadena=cadena+"Encendido ";
