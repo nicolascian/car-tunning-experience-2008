@@ -18,7 +18,7 @@ package modelo;
  * @version	1.0
  */
 public class Carroceria extends Componente 
-	implements AfectablePorClima, AfectablePorSuperficie{
+	implements AfectablePorClima, AfectablePorSuperficie, ReceptorDeFuerzas{
 	
 	private double arrastre;//coeficiente de arrastre del aire
 	
@@ -161,6 +161,22 @@ public class Carroceria extends Componente
 	 */
 	public void setVelocidad(double velocidad) {
 		this.velocidad = velocidad;
+	}
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
+	 */
+	@Override
+	public void liberarFuerzas() {
+		// TODO Auto-generated method stub
+		
+	}
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
+	 */
+	@Override
+	public void recibirFuerza(Fuerza fuerza) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

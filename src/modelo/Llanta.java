@@ -13,9 +13,8 @@ package modelo;
  * 
  * @version	1.0
  */
-public class Llanta extends Componente implements AfectablePorSuperficie{
-	
-	
+public class Llanta extends Componente implements AfectablePorSuperficie, ReceptorDeFuerzas{
+		
 	// en hp
 	private static double potenciaNormal=15;  
 	
@@ -30,7 +29,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 	private double coeficienteDeDesgastePorSuperficie=1;
 	
 	private double peso;
-	
+		
 	/**constructor, queda instanciada 
 	 *  la clase Llanta.
 	 */
@@ -51,9 +50,8 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 		setEstado(100);
 		this.setPeso(25);
 		this.setCoeficienteDeDesgastePorSuperficie(3);
-		
-
 	}
+	
 	/**
 	 * Con el pasar del tiempo, las llantas,
 	 * asi como todos los componentes del auto,
@@ -72,8 +70,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 	public double obtenerPotencia(){
 		return (this.getPesoNormal()*potenciaNormal / this.getPeso());
 	}
-	
-	
+		
 	/** 
 	 * la superficie afecta a las llantas 
 	 * 
@@ -87,6 +84,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 		}
 		this.setCoeficienteDeDesgastePorSuperficie(this.getCoeficienteDeDesgastePorSuperficie()+(this.getCoeficienteDeDesgastePorSuperficie()*Math.abs(1- relacion)));
 	}
+	
 	/**
 	 * le asigna un valor al pesoNormal
 	 * 
@@ -141,4 +139,22 @@ public class Llanta extends Componente implements AfectablePorSuperficie{
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
+
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
+	 */
+	@Override
+	public void liberarFuerzas() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
+	 */
+	@Override
+	public void recibirFuerza(Fuerza fuerza) {
+				
+	}
+		
 }

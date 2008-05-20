@@ -15,8 +15,7 @@ package modelo;
  * 
  * @version 1.0
  */
-public class Eje extends Componente
-implements AfectablePorSuperficie{ 
+public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDeFuerzas{ 
 	
 	/* Atributos de la clase */
 	private Llanta LlantaDerecha;
@@ -25,12 +24,11 @@ implements AfectablePorSuperficie{
 	private Neumatico NeumaticoIzquierdo;
 	private double DesgastePorRugosidad;
 	private double DesgastePorParticulas;
-	
-	
+	private RepositorioDeFuerzas repositorio;	
 	/*Constructor,inicia estado de eje en 100*/
 	public Eje(){
 		this.setEstado(100);
-		
+		repositorio=new RepositorioDeFuerzas(this);
 	}
 	
 	/**
@@ -118,6 +116,56 @@ implements AfectablePorSuperficie{
 	public void setNeumaticoIzquierdo(Neumatico neumaticoIzquierdo) {
 		neumaticoIzquierdo.instalar(this.getAuto());
 		NeumaticoIzquierdo = neumaticoIzquierdo;
+	}
+	
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
+	 */
+	@Override
+	public void liberarFuerzas() {
+		repositorio.vaciar();
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
+	 */
+	@Override
+	public void recibirFuerza(Fuerza fuerza) {
+		if(fuerza.getEmisor()==this.getAuto().getEjeDeTransmision()){
+			  //viene del eje de transmision
+			  double valorDeLaFuerza=0;
+			  try{
+			     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
+			  }catch (Exception e){}
+			  //transmito fuerza a llanta derecha
+			  Fuerza fuerzaALlantaDer=new Fuerza(this,getLlantaDerecha(),valorDeLaFuerza/2,true);
+			  this.getLlantaDerecha().recibirFuerza(fuerzaALlantaDer);
+			  //transmito fuerza a llanta izquierda			  			
+			  Fuerza fuerzaALlantaIzq=new Fuerza(this,getLlantaIzquierda(),valorDeLaFuerza/2,true);
+			  this.getLlantaIzquierda().recibirFuerza(fuerzaALlantaIzq);  	 	
+		}else{//viene de la carroceria
+			  if(fuerza.getEmisor()==getAuto().getCarroceria()){
+				try{ 
+				  repositorio.insertarFuerza(new Fuerza(fuerza.getEmisor(),fuerza.getReceptor(),
+						  					fuerza.getValorDeLaFuerza(),false));
+				}catch (Exception e){}
+			  }
+			  else{//llanta derecha o izquierda
+				  //envio una fueza nula a la carroceria
+				  getAuto().getCarroceria().recibirFuerza(new Fuerza(this,getAuto().getCarroceria(),0,
+						                                  true));
+				  //obtengo del repositorio el total de fuerzas que provienen de la carroceria
+				  double totalFuerzas=repositorio.obtenerValorSumatoriaDeFuerzas(getAuto().getCarroceria());
+				  double valorDeLaFuerza=0;
+				  try{
+				     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
+				  }catch (Exception e){}
+				  Fuerza fuerzaAux=new Fuerza(this,getAuto().getEjeDeTransmision(),
+		  					                  valorDeLaFuerza+totalFuerzas,true);
+				  getAuto().getEjeDeTransmision().recibirFuerza(fuerzaAux);
+			  }
+		}
 	}
 
 	public String toString(){
