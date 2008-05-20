@@ -33,8 +33,8 @@ CUANDO HAGAN UN NUEVO TEST, AGREGUENLO EN EL TEST SUITE DE 	TestTodos ASI SE PUE
 CORRER TODOS JUNTOS A MEDIDA QUE HACEMOS MODIFICACIONES 
 (no me anda la version 4. nicoC)
 #########################################################################################
-ObtenerPotencia de los componentes tira MAXIMO 50 HP
-		excepto MOTOR TURBO que tiran MAS
+ObtenerPotencia de los componentes tira MAXIMO 50 HP <----- hacer un IF
+		excepto MOTOR TURBO NITRO que tiran MAS
 
 
 Nico M: 	Neumatico <--------------------------Listo
@@ -66,7 +66,7 @@ Lucas:		Desgastar y ObtenerPotencia
 			Suspension <------------------------- c/pruebas
 
 Nico C:		Clima <------------------------------Listo c/ test
-			Jugador <----------------------------
+			Jugador <----------------------------esta jerarquia va a pasar a control
 			  Usuario <--------------------------
 			  Virtual <--------------------------
 			    Habilidad <----------------------
@@ -80,8 +80,7 @@ Nico C:		Clima <------------------------------Listo c/ test
 			Embrague <---------------------------Listo
 			Freno <------------------------------Listo
 			  		
-Maxi:				me faltan las pruebas
-			Combustible <------------------------
+Maxi:		Combustible <------------------------
 			Escape <-----------------------------
 			Turbo <------------------------------
 			AlgoPesos <--------------------------
@@ -89,16 +88,6 @@ Maxi:				me faltan las pruebas
 			
 
 			
- 
---------------------------             NOTA IMPORTANTE              -------------------------------
-
-Nota Importante!!! 
-  
-   coeficiente de desgaste en 1 y 10
-   
-   tiempoDeDuracionDeComponente= 5555.55/CteDeDesgaste
-   
-   un componente de CteDeDesgaste 10 duraria 555.55 duraria 4 carreraas de 2 minutos
 
 ----------------------------------------------------------------------------------------------------
 
