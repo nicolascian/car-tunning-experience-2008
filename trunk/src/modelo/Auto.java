@@ -39,7 +39,8 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	private Freno freno;
 	private Eje ejeDelantero;
 	private Eje ejeTrasero;
-
+	private EjeDeTransmision ejeDeTransmision;
+	
 
 	/**
 	 *	@Pre:
@@ -612,6 +613,20 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public Nitro getNitro() {
 		return nitro;
 	}
+	
+	/**
+	 * @return the ejeDeTransmision
+	 */
+	public EjeDeTransmision getEjeDeTransmision() {
+		return ejeDeTransmision;
+	}
+
+	/**
+	 * @param ejeDeTransmision the ejeDeTransmision to set
+	 */
+	public void setEjeDeTransmision(EjeDeTransmision ejeDeTransmision) {
+		this.ejeDeTransmision = ejeDeTransmision;
+	}
 
 	public void setNitro(Nitro nitro) {
 		this.nitro = nitro;
@@ -647,4 +662,5 @@ public class Auto implements AfectablePorClima, AfectablePorSuperficie{
 	public void setFreno(Freno freno) {
 		this.freno = freno;
 	}
+	
 }
