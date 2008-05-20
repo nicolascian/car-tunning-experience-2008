@@ -100,8 +100,8 @@ public class TestRepositorioDeFuerzas {
 	@Test
 	public void testObtenerValorSumatoriaDeFuezas() {
 		try{	
-			assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==19);
-			assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==19);
+			assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuerzas()==19);
+			assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuerzas()==19);
 		}catch(AssertionError a){
 			  System.out.println(a);
 			  a.printStackTrace();
@@ -115,7 +115,7 @@ public class TestRepositorioDeFuerzas {
 	public void testInsercionFuerzasDeAccesoLimitado() {
 	  try{	
 		receptor2.getRepositorio().vaciar();
-		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==0);
+		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuerzas()==0);
 	  }catch(AssertionError a){
 		  System.out.println(a);
 	  }
@@ -132,8 +132,8 @@ public class TestRepositorioDeFuerzas {
 			receptor2.recibirFuerza(fuerza);
 		}
 		assertNotNull(receptor2.getRepositorio());
-		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==19);
-		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()==0);
+		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuerzas()==19);
+		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuerzas()==0);
 	  }catch(AssertionError a){
 		  System.out.println(a);
 	  }

@@ -42,7 +42,7 @@ public class RepositorioDeFuerzas {
 	 * @Post: Se ha obtenido la sumatoria de los valores de las instancias de la clase
 	 * Fuerza que se encuentran en esta instancia.
 	*/
-	public double obtenerValorSumatoriaDeFuezas(){
+	public double obtenerValorSumatoriaDeFuerzas(){
 	    double sumatoria=0;
 	    Iterator<Fuerza> iterador=listaDeFuerzas.iterator();
 		Fuerza fuerza=null;
@@ -63,7 +63,7 @@ public class RepositorioDeFuerzas {
 	 * @Post: Se ha obtenido la sumatoria de los valores de las instancias de la clase 
 	 * Fuerza que se encuentran en esta instancia que son del receptor pasado por parametro.
 	*/
-	public double obtenerValorSumatoriaDeFuezas(ReceptorDeFuerzas emisor){
+	public double obtenerValorSumatoriaDeFuerzas(ReceptorDeFuerzas emisor){
 	    double sumatoria=0;
 	    Iterator<Fuerza> iterador=listaDeFuerzas.iterator();
 		Fuerza fuerza=null;

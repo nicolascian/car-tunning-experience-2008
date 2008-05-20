@@ -86,8 +86,30 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
-		
-
+	  if(this.getCambio()!=0){
+		if(fuerza.getEmisor()==getAuto().getEjeDeTransmision()){
+			  //se pasa la mitad de la fuerza a cada eje
+			  double valorDeLaFuerza=0;
+			  try{
+			     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
+			  }catch (Exception e){}
+			  //transmito fuerza a eje delantero
+			  Fuerza fuerzaAEje=new Fuerza(this,getAuto().getEjeDelantero(),valorDeLaFuerza/2,true);
+			  getAuto().getEjeDelantero().recibirFuerza(fuerzaAEje);
+			  //transmito fuerza a eje trasero			  			
+			  fuerzaAEje=new Fuerza(this,getAuto().getEjeTrasero(),valorDeLaFuerza/2,true);
+			  this.getAuto().getEjeTrasero().recibirFuerza(fuerzaAEje);  	 
+		}else{
+              //viene de alguno de los ejes
+        	  double valorDeLaFuerza=0;
+			  try{
+			     valorDeLaFuerza=fuerza.getValorDeLaFuerza()/this.getRelacionDeCambio();
+			  }catch (Exception e){}
+			  //transmito fuerza al ejeDeTransmision 
+			  Fuerza fuerzaAEje=new Fuerza(this,getAuto().getEjeDeTransmision(),valorDeLaFuerza,true);
+			  getAuto().getEjeDeTransmision().recibirFuerza(fuerzaAEje);
+		}
+	  }
 	}
 
 	/**
@@ -113,15 +135,12 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 */
 	protected void setCambio(int cambio){
 		if ((cambioValido(cambio))&&(cambio!=getCambio())&&(isEmbragado())){
-		   Motor motor=getAuto().getMotor();
-		   this.cambio=cambio;
-		   this.desgastar();
-		   double rpm=obtenerRpm();
-		   motor.modificarRpmDesdeCaja();
-		   //cambio de revoluciones Maximas del motor segun el cambio
-		   rpm=motor.getRevolucionesMaximas();
-		   motor.setRevolucionesMaximasCambio(rpm*(1-40*getRelacionDeCambio()/rpm));
-		 
+		   /*
+		    * setear el cambio
+		    * cambiar rpm maximas para el cambio internas
+		    * si se pasa a un cambio menor pasar una tension muy grande al motor
+		    * 
+		    */
 		}//fin if
 		
 		if (!isEmbragado()) {this.desgastar();}

@@ -69,21 +69,20 @@ public class EjeDeTransmision extends Componente implements ReceptorDeFuerzas {
 			this.getAuto().getCaja().recibirFuerza(fuerzaACaja);
 			actualizarRpm();
 		  }catch(Exception e){}; 	
-		}else
-			if(fuerza.getEmisor()==this.getAuto().getCaja()){
-			  try{
-				//se inserta en el repositorio y se pasa una copia de la fuerz al motor
+		}else{
+			try{
+				//se inserta en el repositorio y se pasa una copia de la fuerza al motor
 				Fuerza fuerzaAMotor=this.getRepositorio().insertarFuerzaRetornarCopia(fuerza);
 				fuerzaAMotor.setEmisor(this);
 				fuerzaAMotor.setReceptor(this.getAuto().getMotor());
 				this.getAuto().getMotor().recibirFuerza(fuerzaAMotor);
 				actualizarRpm();
-			  }catch(Exception e){};
-			}
+			}catch(Exception e){};
+		}
 	}
 
 	private void actualizarRpm(){
-		this.setRpm(this.getRpm()+this.getRepositorio().obtenerValorSumatoriaDeFuezas()*COEFICIENTE_OBTENCION_RPM);
+		this.setRpm(this.getRpm()+this.getRepositorio().obtenerValorSumatoriaDeFuerzas()*COEFICIENTE_OBTENCION_RPM);
 	}
 	
 	/**
