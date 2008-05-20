@@ -14,7 +14,7 @@ package modelo;
  * Al estar en contacto directo con el suelo es afectable por la superficie, 
  * tanto como por el clima.
  */
-public abstract class Neumatico extends Componente{
+public abstract class Neumatico extends Componente implements ReceptorDeFuerzas{
 	
 	/**
 	 * Este atributo indica la potencia maxima que podra entregar un neumatico,
@@ -43,4 +43,40 @@ public abstract class Neumatico extends Componente{
 		this.potenciaMax = potenciaMax;
 	}
 
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
+	 */
+	@Override
+	public void liberarFuerzas() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
+	 */
+	@Override
+	public void recibirFuerza(Fuerza fuerza) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see modelo.Componente#desgastar()
+	 */
+	@Override
+	public void desgastar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see modelo.Componente#obtenerPotencia()
+	 */
+	@Override
+	public double obtenerPotencia() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }
