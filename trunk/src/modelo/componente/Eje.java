@@ -29,6 +29,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	private double DesgastePorRugosidad;
 	private double DesgastePorParticulas;
 	private RepositorioDeFuerzas repositorio;	
+	
 	/*Constructor,inicia estado de eje en 100*/
 	public Eje(){
 		this.setEstado(100);
@@ -138,11 +139,16 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	public void recibirFuerza(Fuerza fuerza) {
 		if(fuerza.getEmisor()==this.getAuto().getEjeDeTransmision()){
 			  //viene del eje de transmision
+			  //envio una fueza nula a la carroceria para que se actualice la fueza que ejerce sobre el eje
+			  getAuto().getCarroceria().recibirFuerza(new Fuerza(this,getAuto().getCarroceria(),0,
+					                                  true));
 			  double valorDeLaFuerza=0;
 			  try{
 			     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
 			  }catch (Exception e){}
-			  //transmito fuerza a llanta derecha
+			  //obtengo la sumatoria de fuerza del repositorio proveniente de la carroceria
+			  valorDeLaFuerza=valorDeLaFuerza-repositorio.obtenerValorSumatoriaDeFuerzas(getAuto().getCarroceria());
+			  //transmito lo que queda de la fuerza a la llanta derecha
 			  Fuerza fuerzaALlantaDer=new Fuerza(this,getLlantaDerecha(),valorDeLaFuerza/2,true);
 			  this.getLlantaDerecha().recibirFuerza(fuerzaALlantaDer);
 			  //transmito fuerza a llanta izquierda			  			
@@ -156,17 +162,11 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 				}catch (Exception e){}
 			  }
 			  else{//llanta derecha o izquierda
-				  //envio una fueza nula a la carroceria
-				  getAuto().getCarroceria().recibirFuerza(new Fuerza(this,getAuto().getCarroceria(),0,
-						                                  true));
-				  //obtengo del repositorio el total de fuerzas que provienen de la carroceria
-				  double totalFuerzas=repositorio.obtenerValorSumatoriaDeFuerzas(getAuto().getCarroceria());
 				  double valorDeLaFuerza=0;
 				  try{
 				     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
 				  }catch (Exception e){}
-				  Fuerza fuerzaAux=new Fuerza(this,getAuto().getEjeDeTransmision(),
-		  					                  valorDeLaFuerza+totalFuerzas,true);
+				  Fuerza fuerzaAux=new Fuerza(this,getAuto().getEjeDeTransmision(),valorDeLaFuerza,true);
 				  getAuto().getEjeDeTransmision().recibirFuerza(fuerzaAux);
 			  }
 		}
