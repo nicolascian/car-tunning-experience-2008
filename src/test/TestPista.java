@@ -6,21 +6,21 @@ import modelo.exceptions.ExceptionFinPista;
 import java.util.*;
 
 public class TestPista extends TestCase{
-	Jugador[] jugador;
+	Auto[] auto;
 	ArrayList<Tramo> tramos;
 	Pista pista ;
 	Pista pista2;
 	
 	public void setUp(){
-		Jugador[] jugador = new Jugador[2];
-		jugador[0]= new Virtual(new Principiante());
-		jugador[1] = new Virtual(new Principiante());
-		jugador[0].getAuto().setPosicion(0);
-		jugador[1].getAuto().setPosicion(0);
+		Auto[] auto = new Auto[2];
+		auto[0] = new Auto();
+		auto[1] = new Auto();
+		auto[0].setPosicion(0);
+		auto[1].setPosicion(0);
 		tramos = new ArrayList<Tramo>();
 		tramos.add(new Tramo(0,150,new Clima(),new Superficie()));
 		tramos.add(new Tramo(150, 321.89, new Clima(35,75,1014),new Superficie(50,50,50)));
-		pista = new Pista(jugador,tramos);
+		pista = new Pista(auto,tramos);
 	}
 	
 	public void testLongitud(){
@@ -39,12 +39,12 @@ public class TestPista extends TestCase{
 			};
 	}
 	
-	public void testJugador1(){
-		assertNotNull(pista.getJugador(0));
+	public void testAuto1(){
+		assertNotNull(pista.getAuto(0));
 	}
 	
-	public void testJugador2(){
-		assertNotNull(pista.getJugador(1));
+	public void testAuto2(){
+		assertNotNull(pista.getAuto(1));
 	}
 	
 	/*
@@ -52,7 +52,7 @@ public class TestPista extends TestCase{
 	 * espera que se encuentre el tramo en el que se encuentra
 	 */
 	public void testTramoActual2(){
-		pista.getJugador(0).getAuto().setPosicion(200);
+		pista.getAuto(0).setPosicion(200);
 		try{
 			assertEquals(tramos.get(1), pista.buscarTramoActual(0));
 		}catch (Exception e){
@@ -65,7 +65,7 @@ public class TestPista extends TestCase{
 	 * se espera que se lance la excepcion fin de pista
 	 */
 	public void testTramoActual3(){
-		pista.getJugador(0).getAuto().setPosicion(400);
+		pista.getAuto(0).setPosicion(400);
 		try{
 			pista.buscarTramoActual(0);
 		}catch (Exception e){
@@ -95,8 +95,8 @@ public class TestPista extends TestCase{
 	 * no lance excepciones.
 	 */
 	public void testActualizarPosiciones2(){
-		pista.getJugador(0).getAuto().setPosicion(200);
-		pista.getJugador(1).getAuto().setPosicion(250);
+		pista.getAuto(0).setPosicion(200);
+		pista.getAuto(1).setPosicion(250);
 		try{
 			pista.actualizarPosiciones();
 		}catch (ExceptionFinPista e){
@@ -112,7 +112,7 @@ public class TestPista extends TestCase{
 	 * Lo que se espera es que lance la excepcion fin de pista.
 	 */
 	public void testActualizarPosiciones3(){
-		pista.getJugador(1).getAuto().setPosicion(800.23);
+		pista.getAuto(1).setPosicion(800.23);
 		try{
 			pista.actualizarPosiciones();
 		}catch (Exception e){
@@ -121,10 +121,10 @@ public class TestPista extends TestCase{
 	}
 	
 	public void testConstructores2(){
-		pista2 = new Pista(pista.getJugador(0),pista.getJugador(1), 500);
+		pista2 = new Pista(pista.getAuto(0),pista.getAuto(1), 500);
 		assertNotNull(pista2);
-		assertNotNull(pista2.getJugador(0));
-		assertEquals(2,pista2.getCantJugadores());
+		assertNotNull(pista2.getAuto(0));
+		assertEquals(2,pista2.getCantAutos());
 		assertEquals(pista2.getTramoActual(0),pista2.getTramoActual(1));
 		
 	}
