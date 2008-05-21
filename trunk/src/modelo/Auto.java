@@ -6,6 +6,7 @@
  ******************************************************************************/
 
 package modelo;
+import modelo.componente.*;
 import java.util.*;
 
 /**
