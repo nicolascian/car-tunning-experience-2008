@@ -54,7 +54,7 @@ public class FrenoCinta extends Freno {
 	/* toString */
 	
 	public String toString(){
-		return super.toString();
+		return getNombre();
 	}
 
 }

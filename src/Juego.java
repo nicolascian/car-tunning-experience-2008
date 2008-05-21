@@ -47,7 +47,7 @@ public class Juego{
 /*
  * se inicializan las vistas
  */		
-		new VistaConsola(pista);
+		new VistaConsola(auto1, pista);
 		new VistaControles(pista, control);
 
 //		 esto es necesario para que las vistas se actualicen la 1ra vez

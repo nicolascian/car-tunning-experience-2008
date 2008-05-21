@@ -31,7 +31,7 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	 * Constructor de Inyeccion por defecto.
 	 */
 	public Inyeccion(){
-		super();
+		cargarDatos();
 	}
 		
 	/**
@@ -40,9 +40,16 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	public Inyeccion(double cte_humedad_optima, 
 						double cte_relacion_potencia){
 		
-		super();
 		CTE_HUMEDAD_OPTIMA = cte_humedad_optima;
 		CTE_RELACION_POTENCIA = cte_relacion_potencia;
+		cargarDatos();
+	}
+	
+	private void cargarDatos(){
+		setEstado(100);
+		setNombre("Inyeccion");
+		setPrecio(new AlgoPesos(600,00)); //algo$
+		setPeso(3); // Kg
 	}
 	
 	/**
@@ -115,8 +122,8 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	
 	public String toString() {
 		
-		super.toString();
-		String cadena="  INYECCION: " +'\n' 
+		String cadena = super.toString();
+		cadena += "  INYECCION: " +'\n' 
 		            + "      Humedad optima: " + CTE_HUMEDAD_OPTIMA +"%";
 
 		return(cadena);

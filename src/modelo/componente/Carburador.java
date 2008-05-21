@@ -32,7 +32,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	 * Constructor de Carburador por defecto.
 	 */
 	public Carburador(){
-		super();
+		cargarDatos();
 	}
 	
 	/**
@@ -41,9 +41,16 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	public Carburador(double cte_humedad_optima, 
 						double cte_relacion_potencia){
 		
-		super();
 		CTE_HUMEDAD_OPTIMA = cte_humedad_optima;
 		CTE_RELACION_POTENCIA = cte_relacion_potencia;
+		cargarDatos();
+	}
+	
+	private void cargarDatos(){
+		setEstado(100);
+		setNombre("Carburador");
+		setPrecio(new AlgoPesos(400,00)); //algo$
+		setPeso(4); // Kg
 	}
 	
 	/**
@@ -116,8 +123,8 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	
 	public String toString() {
 		
-		super.toString();
-		String cadena="  CARBURADOR: " +'\n' 
+		String cadena = super.toString();
+		cadena += "  CARBURADOR: " +'\n' 
 		            + "      Humedad optima: " + CTE_HUMEDAD_OPTIMA +"%";
 
 		return(cadena);
