@@ -29,6 +29,9 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	private double DesgastePorRugosidad;
 	private double DesgastePorParticulas;
 	private RepositorioDeFuerzas repositorio;	
+	private double rpm=0;
+	protected final static double COEFICIENTE_OBTENCION_RPM=0.00456;
+	
 	
 	/*Constructor,inicia estado de eje en 100*/
 	public Eje(){
@@ -162,12 +165,15 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 				}catch (Exception e){}
 			  }
 			  else{//llanta derecha o izquierda
+				  //obtengo el valor de la fuerza y modifico las rpm del eje
 				  double valorDeLaFuerza=0;
 				  try{
-				     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
-				  }catch (Exception e){}
-				  Fuerza fuerzaAux=new Fuerza(this,getAuto().getEjeDeTransmision(),valorDeLaFuerza,true);
-				  getAuto().getEjeDeTransmision().recibirFuerza(fuerzaAux);
+					  valorDeLaFuerza=fuerza.getValorDeLaFuerza();
+				  }catch(Exception e){}
+				  setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_OBTENCION_RPM);
+				  Fuerza fuerzaAuxiliar=new Fuerza(this,getAuto().getEjeDeTransmision(),
+						                           valorDeLaFuerza,true);
+				  getAuto().getEjeDeTransmision().recibirFuerza(fuerzaAuxiliar);
 			  }
 		}
 	}
@@ -179,5 +185,21 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	public String getNombre(){
 		return "Eje";
 	}
+
+	/**
+	 * @return the rpm
+	 */
+	public double getRpm() {
+		return rpm;
+	}
+
+	/**
+	 * @param rpm the rpm to set
+	 */
+	public void setRpm(double rpm) {
+		this.rpm = rpm;
+	}
+	
+	
 	
 }

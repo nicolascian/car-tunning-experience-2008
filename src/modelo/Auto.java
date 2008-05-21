@@ -45,7 +45,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	private Eje ejeTrasero;
 	private EjeDeTransmision ejeDeTransmision;
 	
-
 	/**
 	 *	@Pre:
 	 *	@Post: Se ha creado una instancia de la clase Auto con valores por defecto 
@@ -665,6 +664,13 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 
 	public void setFreno(Freno freno) {
 		this.freno = freno;
+	}
+	
+	public double getPeso(){
+	  double peso=motor.getPeso()+caja.getPeso()+embrague.getPeso()+combustible.getPeso()+alimentacion.getPeso()+
+		     carroceria.getPeso()+suspension.getPeso()+escape.getPeso()+turbo.getPeso()+nitro.getPeso()+
+		     freno.getPeso()+ejeDelantero.getPeso()+ejeTrasero.getPeso()+ejeDeTransmision.getPeso();
+	  return(peso);
 	}
 	
 }
