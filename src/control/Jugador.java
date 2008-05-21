@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package control;
+import java.awt.event.KeyListener;
+
 import modelo.Auto;
 
 /**
@@ -20,7 +22,7 @@ import modelo.Auto;
  * @see  modelo.Virtual  Virtual 
  * @see  modelo.Usuario  Usuario
  */
-public abstract class Jugador {
+public abstract class Jugador  implements KeyListener{
 	/* implementacion basada en polimorfismo */
 	
 	/**
@@ -38,15 +40,7 @@ public abstract class Jugador {
 	/** Es el nombre por defecto para un Virtual */
 	protected final static String PC_DEFAULT_NAME = "Computador";
 	
-	/**
-	 * Metodo Jugar
-	 * 
-	 * este metodo permite desarrollar los cambios durante una carrera,
-	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
-	 *
-	 */
-	public abstract void jugar();
-	
+
 	/**
 	 * Constructor con nombre de Jugador
 	 * 
