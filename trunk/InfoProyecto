@@ -23,9 +23,9 @@ NicoM, estaria bueno que la pista no reciba Jugadores, sino, Autos.
 y que el construcctor de pista reciba un Array de Autos
 se puede hacer?
 entonces:
-los Jugadores son controles
+los Jugadores son controles de autos
 la pista tiene Autos
-la Vista observa la pista
+la Vista observa la pista y los autos
 
 AGREGUE UN TEST QUE CORRE TODOS LOS TEST.. FUNCIONA SOLO CON LOS Q ESTAN HECHOS EN
 JUNIT 4, ASI QUE ESTARIA BUENO QUE ESTEN TODOS HECHOS CON ESE.
