@@ -26,7 +26,7 @@ public class VistaControles implements Observer{
 	private Label l1;
 	
 //	Constructor de la vista
-	public VistaControles(Pista pista,Controlador control){
+	public VistaControles(Pista pista,Jugador jugador){
 		
 //		armado de la ventana
 		frame = new Frame("Key Listener!"); //creamos el marco
@@ -48,7 +48,7 @@ public class VistaControles implements Observer{
 		frame.addWindowListener(new CloseListener());
 		
 		//escuha el Teclado
-		frame.addKeyListener(control);		
+		frame.addKeyListener(jugador);		
 
 		// Conectamos esta vista con el modelo
 		this.pista = pista;
@@ -58,6 +58,8 @@ public class VistaControles implements Observer{
 	
 	
 	public void update(Observable arg0, Object arg1) {
+		
+		
 		l1.setText("update");
 		
 	}

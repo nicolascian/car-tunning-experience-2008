@@ -20,24 +20,8 @@ import java.awt.event.*;
  * @version	1.0
  * @see  modelo.Jugador  Jugador
  */
-public class Usuario extends Jugador  implements KeyListener{
+public class Usuario extends Jugador {
 	/* comentario acerca de la implementacion de la clase */
-
-	
-	/**
-	 * Constructor sin parametros de Usuario
-	 * 
-	 * por default el nombre es: USER_DEFAULT_NAME
-	 * 
-	 * Al ejecutar este constructor, el Usuario se crea un
-	 * Auto para ser utilizado por el mismo
-	 */
-	public Usuario(){
-		super(USER_DEFAULT_NAME);
-		/* se crea un auto por defecto para el */
-		setAuto(new Auto());
-
-	}
 	
 	/**
 	 * Constructor con parametros de Usuario
@@ -64,20 +48,9 @@ public class Usuario extends Jugador  implements KeyListener{
 
 	}
 	
-	/**
-	 * Constructor con parametro de Usuario
-	 * 
-	 * @param nombre recibe el nombre con el cual se identifica
-	 */
-	public Usuario(String nombre){
-		super(nombre);
-		setAuto(new Auto());
-
-	}
-	
 	
     public void keyTyped ( KeyEvent e ){  
-    //l1.setText("Key Typed " + e);
+    //no hace nada
      }
     
     /** Se ejecuta cuando se presiona una tecla */
@@ -86,23 +59,23 @@ public class Usuario extends Jugador  implements KeyListener{
     	switch (e.getKeyCode()){
     	case 70 : {
     		System.out.println("F: Acelerador -> auto.acelerar(true) ");
-    		//auto.acelerar(true);
+    		auto.acelerar(true);
     	} break;
     	case 68 : {
     		System.out.println("D: Frenando -> auto.frenar(true) ");
-    		//auto.frenar(true);
+    		auto.frenar(true);
     	} break;
     	case 83 : {
     		System.out.println("S: Embragando -> auto.embragar(true) ");
-    		//auto.embragar(true);
+    		auto.embragar(true);
     	} break;
     	case 65 : {
     		System.out.println("A: Nitro -> auto.activarNitro(true) ");
-    		//auto.activarNitro(true);
+    		auto.activarNitro(true);
     	} break;
     	case 69 : {
     		System.out.println("E: Encender -> auto.setEncendido(true) ");
-    		//auto.setEncendido(true);
+    		auto.setEncendido(true);
     	} break;
     	}//fin switch
     	
@@ -111,28 +84,28 @@ public class Usuario extends Jugador  implements KeyListener{
     	
     		switch (e.getKeyCode()){
     		case 85 : {System.out.println("U: Neutro");
-						//auto.getCaja().setCambio(0);
+						auto.getCaja().setCambio(0);
     		} break;
     		case 74 : {System.out.println("J: Reversa");
-						//auto.getCaja().setCambio(-1);
+						auto.getCaja().setCambio(-1);
     		} break;
     		case 73 : {System.out.println("I: Primera");
-    					//auto.getCaja().setCambio(1);
+    					auto.getCaja().setCambio(1);
     		} break;
     		case 75 : {System.out.println("K: Segunda");
-    					//auto.getCaja().setCambio(2);
+    					auto.getCaja().setCambio(2);
     		} break;
     		case 79 : {System.out.println("O: Tercera");
-						//auto.getCaja().setCambio(3);
+						auto.getCaja().setCambio(3);
     		} break;
     		case 76 : {System.out.println("L: Cuarta");
-						//auto.getCaja().setCambio(4);
+						auto.getCaja().setCambio(4);
     		} break;
     		case 80 : {System.out.println("P: Quinta");
-						//auto.getCaja().setCambio(5);
+						auto.getCaja().setCambio(5);
     		} break;
     		case 0  : {System.out.println("Ñ: Sexta");
-    					//auto.getCaja().setCambio(6);
+    					auto.getCaja().setCambio(6);
     		} break;
     		}//fin switch
     	}
@@ -141,10 +114,10 @@ public class Usuario extends Jugador  implements KeyListener{
     		
     		switch (e.getKeyCode()){
     		case 73 : {System.out.println("I: Siguiente");
-						//auto.getCaja().siguiente();
+						auto.getCaja().siguiente();
     		} break;
     		case 75 : {System.out.println("K: Anterior");
-						//auto.getCaja().anterior();
+						auto.getCaja().anterior();
     		} break;
     		}//fin switch
     	}
@@ -157,19 +130,19 @@ public class Usuario extends Jugador  implements KeyListener{
     	switch (e.getKeyCode()){
     	case 70 : {
     		System.out.println("F: Acelerador -> auto.acelerar(false) ");
-    		//auto.acelerar(false);
+    		auto.acelerar(false);
     	} break;
     	case 68 : {
     		System.out.println("D: Frenando -> auto.frenar(false) ");
-    		//auto.frenar(false);
+    		auto.frenar(false);
     	} break;
     	case 83 : {
     		System.out.println("S: Embragando -> auto.embragar(false) ");
-    		//auto.embragar(false);
+    		auto.embragar(false);
     	} break;
     	case 65 : {
     		System.out.println("A: Nitro -> auto.activarNitro(false) ");
-    		//auto.activarNitro(false);
+    		auto.activarNitro(false);
     	} break;
     	}//fin switch
     	

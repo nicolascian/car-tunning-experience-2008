@@ -35,7 +35,6 @@ public class Juego{
  * Se crean dos jugadores uno virtual con un determinado nivel
  * de habilidad y dificualtad para con el jugador que utilice el usuario.
  */		
-		Controlador control = new Controlador ( /* auto1 */ ) ; 
 		
 		Jugador jugador1 = new Usuario(auto1);
 		Jugador jugador2 = new Virtual(habilidad, auto2);
@@ -48,7 +47,7 @@ public class Juego{
  * se inicializan las vistas
  */		
 		new VistaConsola(auto1, pista);
-		new VistaControles(pista, control);
+		new VistaControles(pista, jugador1);
 
 //		 esto es necesario para que las vistas se actualicen la 1ra vez
 		pista.ActualizarObservadores();
