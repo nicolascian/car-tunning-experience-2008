@@ -1,5 +1,6 @@
 package test;
 import junit.framework.*;
+import modelo.componente.*;
 import modelo.*;
 
 public class TestNeumatico extends TestCase{
