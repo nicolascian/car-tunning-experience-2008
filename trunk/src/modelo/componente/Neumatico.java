@@ -28,6 +28,8 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 	
 	private Componente contenedor;
 	
+	protected final static double GRAVEDAD=9.8;
+	
 	/**
 	 * Metodo que a partir del estado del neumatico y de las condiciones climaticas
 	 * y de la superficie se encarga de calcular la adherencia.
@@ -63,10 +65,14 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
-		if(fuerza.getEmisor()==getComponenteContenedor()){
-			double 
-		}
-		
+		//de acuerdo al peso del auto se calcula la fuerza de rozamiento
+		double valorFuerzaRetorno=getAuto().getPeso()*calcularAdherencia()*GRAVEDAD/(-100);
+		try{
+			valorFuerzaRetorno=valorFuerzaRetorno+fuerza.getValorDeLaFuerza();
+		}catch (Exception e){}
+		Fuerza fuerzaRetorno=new Fuerza(this,(ReceptorDeFuerzas)getComponenteContenedor(),
+				                        valorFuerzaRetorno,true);
+		((ReceptorDeFuerzas)getComponenteContenedor()).recibirFuerza(fuerza);
 	}
 
 	/* (non-Javadoc)

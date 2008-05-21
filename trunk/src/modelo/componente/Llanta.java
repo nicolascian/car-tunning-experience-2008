@@ -56,9 +56,9 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 * 
 	 * @param pesoNormal
 	 */
-	public Llanta(double pesoNormal){
+	public Llanta(double peso){
 		setEstado(100);
-		this.setPeso(25);
+		this.setPeso(peso);
 		this.setCoeficienteDeDesgastePorSuperficie(3);
 	}
 	
@@ -167,16 +167,13 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		if(fuerza.getEmisor()==getComponenteContenedor()){
 			//la fuerza viene del eje
 			//se pasa la fuerza al neumatico
-			  double valorDeLaFuerza=0;
-			  try{
-			     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
-			  }catch (Exception e){}
-			  //transmito fuerza a nuematico delantero
-			  Fuerza fuerzaANeumatico=new Fuerza(this,getNeumatico(),valorDeLaFuerza,true);
-			  getNeumatico().recibirFuerza(fuerzaANeumatico);
+			fuerza.setEmisor(this);
+			fuerza.setReceptor(getNeumatico());
+			getNeumatico().recibirFuerza(fuerza);
 		}else{
-			//la fuerza viene del neumatico
-			
+			//la fuerza viene del neumatico se pasa al eje
+			fuerza.setEmisor(this);
+			fuerza.setReceptor((ReceptorDeFuerzas)getComponenteContenedor());
 		}
 	}
 
@@ -210,6 +207,4 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		this.contenedor=contenedor;
 		
 	}
-	
-	
 }
