@@ -8,6 +8,8 @@
 package control;
 import modelo.Auto;
 
+import java.awt.event.*;
+
 /**
  * Clase Usuario 
  * 
@@ -18,7 +20,7 @@ import modelo.Auto;
  * @version	1.0
  * @see  modelo.Jugador  Jugador
  */
-public class Usuario extends Jugador{
+public class Usuario extends Jugador  implements KeyListener{
 	/* comentario acerca de la implementacion de la clase */
 
 	
@@ -74,133 +76,104 @@ public class Usuario extends Jugador{
 	}
 	
 	
-	/**
-	 * Metodo Jugar
-	 * 
-	 * este metodo permite desarrollar los cambios durante una carrera,
-	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
-	 * 
-	 */
-	public void jugar(){
-		
-		/* si gira la llave... */
-		if (llave.fuePresionado()){
-			/* encender el auto */
-			auto.setEncendido(true);
-		}
-		
-		/* SI ENCENDIDO: */
-		if (auto.isEncendido()){
-			
-		
-			/* vemos que pasa con el acelerador */
-			resolverAcelerador();
-			
-			/* vemos que pasa con el freno */
-			resolverFrenos();
-		
-			/* vemos que pasa con el nitro */
-			resolverNitro();
-			
-			/* vemos que pasa con el freno */
-			resolverEmbrague();
-			
-			/* SI HACE UN CAMBIO */
-			if (palanca.fuePresionado()){ resolverCambios(); }
-	
-			
-	     }
-		
-	}//fin jugar
-	
-	/**
-	 * se encarga de resolver el tema de los cambios
-	 */
-	private void resolverCambios(){
-		
-		/* SI CAJA SECUENCIAL */
-		if (auto.isSecuencial()){
-		
-			/* SI SUBE CAMBIO */
-			if (palanca.subirCambio()){
-				auto.getCaja().siguiente();
-			}
-	
-			/* SI BAJA CAMBIO */
-			if (palanca.bajarCambio()){
-				auto.getCaja().anterior();
-			}
-		}// fin if secuencial
-		
-		/* SI CAJA MANUAL */
-		if (auto.isManual()){
-			
-			int Cambio = palanca.cambioPresionado();
-			auto.getCaja().setCambio(Cambio);
-		}
-		
-	}
-	
-	/**
-	 * se encarga de resolver el tema del acelerador
-	 */
-	private void resolverAcelerador(){
-		
-		/* SI ESTA ACELERANDO */
-		if (acelerador.isPresionado()){
-			auto.acelerar(true);
-			
-		}else{
-		/* SI NO ESTA ACELERANDO */
-			auto.acelerar(false);
-		}
-		
-	}
-	
-	/**
-	 * se encarga de resolver el tema del embrague
-	 */
-	private void resolverEmbrague(){
-		
-		/* SI ESTA EMBRAGANDO */
-		if (embrague.isPresionado()){
-			auto.embragar(true);
-		}else{
-		/* SI NO ESTA EMBRAGANDO */
-			auto.embragar(false);
-		}
-		
-	}
-	
-	/**
-	 * se encarga de resolver el tema del freno
-	 */
-	private void resolverFrenos(){
-		
-		/* SI ESTA APRETANDO EL FRENO */
-		if (freno.isPresionado()){
-			//auto.frenar(true);
-		}else{
-		/* SI NO ESTA APRETANDO EL FRENO */
-			//auto.frenar(false),
-		}
-		
-	}
-	
-	/**
-	 * se encarga de resolver el tema del nitro
-	 */
-	private void resolverNitro(){
-		
-		/* SI ESTA APRETANDO EL NITRO */
-		if (nitro.isPresionado()){
-			auto.activarNitro(true);
-		}else{
-		/* SI NO ESTA APRETANDO EL NITRO */
-			auto.activarNitro(false);
-		}
-		
-	}
+    public void keyTyped ( KeyEvent e ){  
+    //l1.setText("Key Typed " + e);
+     }
+    
+    /** Se ejecuta cuando se presiona una tecla */
+    public void keyPressed ( KeyEvent e){   
+    	
+    	switch (e.getKeyCode()){
+    	case 70 : {
+    		System.out.println("F: Acelerador -> auto.acelerar(true) ");
+    		//auto.acelerar(true);
+    	} break;
+    	case 68 : {
+    		System.out.println("D: Frenando -> auto.frenar(true) ");
+    		//auto.frenar(true);
+    	} break;
+    	case 83 : {
+    		System.out.println("S: Embragando -> auto.embragar(true) ");
+    		//auto.embragar(true);
+    	} break;
+    	case 65 : {
+    		System.out.println("A: Nitro -> auto.activarNitro(true) ");
+    		//auto.activarNitro(true);
+    	} break;
+    	case 69 : {
+    		System.out.println("E: Encender -> auto.setEncendido(true) ");
+    		//auto.setEncendido(true);
+    	} break;
+    	}//fin switch
+    	
+    	
+    	if (auto.isSecuencial()){
+    	
+    		switch (e.getKeyCode()){
+    		case 85 : {System.out.println("U: Neutro");
+						//auto.getCaja().setCambio(0);
+    		} break;
+    		case 74 : {System.out.println("J: Reversa");
+						//auto.getCaja().setCambio(-1);
+    		} break;
+    		case 73 : {System.out.println("I: Primera");
+    					//auto.getCaja().setCambio(1);
+    		} break;
+    		case 75 : {System.out.println("K: Segunda");
+    					//auto.getCaja().setCambio(2);
+    		} break;
+    		case 79 : {System.out.println("O: Tercera");
+						//auto.getCaja().setCambio(3);
+    		} break;
+    		case 76 : {System.out.println("L: Cuarta");
+						//auto.getCaja().setCambio(4);
+    		} break;
+    		case 80 : {System.out.println("P: Quinta");
+						//auto.getCaja().setCambio(5);
+    		} break;
+    		case 0  : {System.out.println("Ñ: Sexta");
+    					//auto.getCaja().setCambio(6);
+    		} break;
+    		}//fin switch
+    	}
+    	
+    	if (auto.isManual()){
+    		
+    		switch (e.getKeyCode()){
+    		case 73 : {System.out.println("I: Siguiente");
+						//auto.getCaja().siguiente();
+    		} break;
+    		case 75 : {System.out.println("K: Anterior");
+						//auto.getCaja().anterior();
+    		} break;
+    		}//fin switch
+    	}
+    	
+    }
+    
+    /** Se ejecuta cuando se suelta un tecla */
+    public void keyReleased ( KeyEvent e ){  
+    	
+    	switch (e.getKeyCode()){
+    	case 70 : {
+    		System.out.println("F: Acelerador -> auto.acelerar(false) ");
+    		//auto.acelerar(false);
+    	} break;
+    	case 68 : {
+    		System.out.println("D: Frenando -> auto.frenar(false) ");
+    		//auto.frenar(false);
+    	} break;
+    	case 83 : {
+    		System.out.println("S: Embragando -> auto.embragar(false) ");
+    		//auto.embragar(false);
+    	} break;
+    	case 65 : {
+    		System.out.println("A: Nitro -> auto.activarNitro(false) ");
+    		//auto.activarNitro(false);
+    	} break;
+    	}//fin switch
+    	
+    }  
 	
 	
 	/* toString */

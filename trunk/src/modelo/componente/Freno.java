@@ -74,7 +74,6 @@ public abstract class Freno extends Componente implements AfectablePorClima{
 	public double obtenerPotencia() {
 		return 0;
 	}
-
 	
 	
 }

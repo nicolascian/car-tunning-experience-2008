@@ -13,11 +13,17 @@ import java.util.Observer;
 
 public class VistaConsola implements Observer
 {	
+	private Auto auto; //referencia al modelo
 	private Pista pista; //referencia al modelo
 
 	//Constructor de la vista
-	public VistaConsola(Pista pista)
+	public VistaConsola(Auto auto, Pista pista)
 	{	
+
+		// Conectamos esta vista con el modelo
+		this.auto = auto;
+		this.auto.addObserver(this); 
+		
 		// Conectamos esta vista con el modelo
 		this.pista = pista;
 		this.pista.addObserver(this); 
@@ -26,6 +32,7 @@ public class VistaConsola implements Observer
 	//Metodo que es llamado por el modelo al actualizarse el mismo
 	public void update(Observable t, Object o)
 	{	
+		System.out.println( auto );
 		System.out.println( pista );
 	}
 		

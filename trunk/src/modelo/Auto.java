@@ -19,7 +19,7 @@ import java.util.*;
  * 	
  * @version 1.0
  */
-public class Auto implements AfectablePorClima, AfectablePorSuperficie{
+public class Auto extends Observable implements AfectablePorClima, AfectablePorSuperficie{
 	
 	private double CNTE_ACELERACION_POTENCIA = 0.0003;//permite calcular la aceleracion a
 													  //partir de la potencia.

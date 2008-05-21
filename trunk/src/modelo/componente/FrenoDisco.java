@@ -52,7 +52,7 @@ public class FrenoDisco extends Freno{
 	/* toString */
 	
 	public String toString(){
-		return super.toString();
+		return getNombre();
 	}
 
 }
