@@ -1,5 +1,5 @@
 package test;
-
+import modelo.*;
 import junit.framework.*;
 import modelo.*;
 

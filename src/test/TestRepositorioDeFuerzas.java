@@ -8,9 +8,9 @@ package test;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import modelo.Fuerza;
-import modelo.ReceptorDeFuerzas;
-import modelo.RepositorioDeFuerzas;
+import modelo.fuerzas.Fuerza;
+import modelo.fuerzas.ReceptorDeFuerzas;
+import modelo.fuerzas.RepositorioDeFuerzas;
 public class TestRepositorioDeFuerzas {
 
 	//Atributos
@@ -62,7 +62,7 @@ public class TestRepositorioDeFuerzas {
 	}
 	
 	/**
-	 * Test method for {@link modelo.RepositorioDeFuerzas#RepositorioDeFuerzas(modelo.ReceptorDeFuerzas)}.
+	 * Test method for {@link modelo.fuerzas.RepositorioDeFuerzas#RepositorioDeFuerzas(modelo.fuerzas.ReceptorDeFuerzas)}.
 	 */
 	@Test
 	public void testRepositorioDeFuerzas() {
@@ -79,7 +79,7 @@ public class TestRepositorioDeFuerzas {
 	}
 
 	/**
-	 * Test method for {@link modelo.RepositorioDeFuerzas#insertarFuerza(modelo.Fuerza)}.
+	 * Test method for {@link modelo.fuerzas.RepositorioDeFuerzas#insertarFuerza(modelo.fuerzas.Fuerza)}.
 	 */
 	@Test
 	public void testInsertarFuerza() {
@@ -95,7 +95,7 @@ public class TestRepositorioDeFuerzas {
 	}
 	
 	/**
-	 * Test method for {@link modelo.RepositorioDeFuerzas#obtenerValorSumatoriaDeFuezas()}.
+	 * Test method for {@link modelo.fuerzas.RepositorioDeFuerzas#obtenerValorSumatoriaDeFuezas()}.
 	 */
 	@Test
 	public void testObtenerValorSumatoriaDeFuezas() {

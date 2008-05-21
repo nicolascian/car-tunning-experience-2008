@@ -8,6 +8,8 @@
 package modelo;
 import java.util.*;
 
+import modelo.exceptions.ExceptionFinPista;
+
 /**
  * La pista es el lugar donde se desarrolla la carrera.
  * Tiene como caracteristicas una sucesion de tramos,

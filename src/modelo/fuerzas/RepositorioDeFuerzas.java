@@ -4,9 +4,11 @@
  *                   Algoritmos y Programacion III - 75.07                    *
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
-package modelo;
+package modelo.fuerzas;
 import java.util.LinkedList;
 import java.util.Iterator;
+
+import modelo.exceptions.ExceptionAccesoNoPermitido;
 /**
  * @Descripcion:
  * 				Esta clase modela un repositorio de Fuerzas sobre un ReceptorDeFuerzas.
