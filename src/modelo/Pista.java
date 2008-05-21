@@ -19,11 +19,11 @@ public class Pista  extends Observable{
 	
 	/*--------Atributos--------*/
 	/**
-	 * La pista tiene una referencia a los dos corredores
+	 * La pista tiene una referencia a los autos de los corredores
 	 * que se encuentran compitiendo en ella
 	 */	
-	private Jugador[] Jugador;
-	private int cantJugadores;
+	private Auto[] auto;
+	private int cantAutos;
 	
 	/**
 	 * La pista esta compuesta por una serie de tramos, cada uno con 
@@ -31,8 +31,8 @@ public class Pista  extends Observable{
 	 * la longitud total.
 	 * Los tramos deben estar en orden dentro de la lista.
 	 */
-	private double Longitud;
-	private ArrayList<Tramo> Tramos;
+	private double longitud;
+	private ArrayList<Tramo> tramos;
 	
 	/**
 	 * tramosActuales es un vector de tramos que representa los tramos
@@ -64,23 +64,23 @@ public class Pista  extends Observable{
 	 * pre:-
 	 * post: Queda creada una instacia de Pista.
 	 */
-	public Pista(Jugador j1,Jugador j2, double longitud){
-		Tramos = new ArrayList<Tramo>();
-		Tramos.add(new Tramo(longitud));
-		Longitud = longitud;
-		Jugador = new Jugador[2];
-		Jugador[0]=j1;
-		Jugador[1]=j2;
+	public Pista(Auto A1,Auto A2, double largo){
+		longitud = largo;
+		tramos = new ArrayList<Tramo>();
+		tramos.add(new Tramo(longitud));
+		auto = new Auto[2];
+		auto[0]=A1;
+		auto[1]=A2;
 		iterador = new Iterator[2];
-		iterador[0]= Tramos.iterator();
-		iterador[1]= Tramos.iterator();
+		iterador[0]= tramos.iterator();
+		iterador[1]= tramos.iterator();
 		tramoActual = new Tramo[2];
-		tramoActual[0]= Tramos.get(0);
-		tramoActual[1]= Tramos.get(0);
-		cantJugadores = 2;
-		for (int i = 0; i<cantJugadores; i++){
-			Jugador[i].getAuto().afectar(tramoActual[i].getClima());
-			Jugador[i].getAuto().afectar(tramoActual[i].getSuperficie());
+		tramoActual[0]= tramos.get(0);
+		tramoActual[1]= tramos.get(0);
+		cantAutos = 2;
+		for (int i = 0; i<cantAutos; i++){
+			auto[i].afectar(tramoActual[i].getClima());
+			auto[i].afectar(tramoActual[i].getSuperficie());
 		}
 	}
 	
@@ -90,22 +90,22 @@ public class Pista  extends Observable{
 	 * tramo debe coincidir con el final del anterior.
 	 * post: Queda creada una instancia de Pista.
 	 */
-	public Pista(Jugador[] jugador,ArrayList<Tramo> tramos){
-		Tramos = tramos;
-		Jugador = jugador;
-		cantJugadores = Jugador.length;
-		iterador = new Iterator[cantJugadores];
-		tramoActual = new Tramo[cantJugadores];
-		for (int i=0;i<cantJugadores;i++){
+	public Pista(Auto[] autos,ArrayList<Tramo> Tramos){
+		tramos = Tramos;
+		auto = autos;
+		cantAutos = autos.length;
+		iterador = new Iterator[cantAutos];
+		tramoActual = new Tramo[cantAutos];
+		for (int i=0;i<cantAutos;i++){
 			iterador[i]= Tramos.iterator();
 			tramoActual[i] = Tramos.get(0);
-			Jugador[i].getAuto().afectar(tramoActual[i].getClima());
-			Jugador[i].getAuto().afectar(tramoActual[i].getSuperficie());
+			auto[i].afectar(tramoActual[i].getClima());
+			auto[i].afectar(tramoActual[i].getSuperficie());
 		}
-		Longitud = 0;
+		longitud = 0;
 		Iterator<Tramo> it = Tramos.iterator();
 		while(it.hasNext()){
-			Longitud = it.next().getPosFinal();
+			longitud = it.next().getPosFinal();
 		}
 	}
 	
@@ -121,17 +121,17 @@ public class Pista  extends Observable{
 	 * @throws ExceptionFinPista
 	 */
 	public void actualizarPosiciones() throws ExceptionFinPista{
-		for (int i=0;i<this.getCantJugadores();i++){
+		for (int i=0;i<this.getCantAutos();i++){
 			Tramo aux;
-			if (this.jugadorCambioTramo(i)){
+			if (this.autoCambioTramo(i)){
 				try{
 					aux = this.buscarTramoActual(i);
 				}catch (ExceptionFinPista e){
 					throw e;
 				}
 			this.setTramoActual(i,aux);
-			this.getJugador(i).getAuto().afectar(aux.getClima());
-			this.getJugador(i).getAuto().afectar(aux.getSuperficie());
+			this.getAuto(i).afectar(aux.getClima());
+			this.getAuto(i).afectar(aux.getSuperficie());
 			}
 		}
 		ActualizarObservadores();
@@ -149,10 +149,10 @@ public class Pista  extends Observable{
 	 * @param nroJugador
 	 * @throws ExceptionFinPista
 	 */
-	public Tramo buscarTramoActual(int nroJugador) throws ExceptionFinPista{
-		while (iterador[nroJugador].hasNext()){
-			Tramo aux = iterador[nroJugador].next();
-			if (this.getJugador(nroJugador).getAuto().getPosicion() 
+	public Tramo buscarTramoActual(int nroAuto) throws ExceptionFinPista{
+		while (iterador[nroAuto].hasNext()){
+			Tramo aux = iterador[nroAuto].next();
+			if (this.getAuto(nroAuto).getPosicion() 
 					< aux.getPosFinal())return aux;
 		}
 		throw new ExceptionFinPista();
@@ -164,9 +164,9 @@ public class Pista  extends Observable{
 	 * debe estar en una tramo valido.
 	 * @param nroJugador
 	 */
-	public boolean jugadorCambioTramo(int nroJugador){
-		return !(this.getJugador(nroJugador).getAuto().getPosicion() 
-				< this.getTramoActual(nroJugador).getPosFinal());
+	public boolean autoCambioTramo(int nroAuto){
+		return !(this.getAuto(nroAuto).getPosicion() 
+				< this.getTramoActual(nroAuto).getPosFinal());
 	}
 	
 	public String toString(){
@@ -176,19 +176,19 @@ public class Pista  extends Observable{
 	}
 	
 	public double getLongitud() {
-		return Longitud;
+		return longitud;
 	}
 
-	public void setLongitud(double longitud) {
-		Longitud = longitud;
+	public void setLongitud(double Longitud) {
+		longitud = Longitud;
 	}
 
 	public ArrayList<Tramo> getTramos() {
-		return Tramos;
+		return tramos;
 	}
 
-	public void setTramos(ArrayList<Tramo> tramos) {
-		Tramos = tramos;
+	public void setTramos(ArrayList<Tramo> Tramos) {
+		tramos = Tramos;
 	}
 	
 	
@@ -199,22 +199,22 @@ public class Pista  extends Observable{
 	public Tramo getTramoActual(int nroTramo){
 		return this.tramoActual[nroTramo];
 	}
-	
-	public Jugador getJugador(int nroJugador){
-		return this.Jugador[nroJugador];
+
+	public Auto getAuto(int nroAuto) {
+		return auto[nroAuto];
 	}
-	
-	public void setJugador(int nroJugador, Jugador jugador){
-		this.Jugador[nroJugador] = jugador;
+
+	public void setAuto(Auto auto, int nroAuto) {
+		this.auto[nroAuto] = auto;
+	}
+
+	public int getCantAutos() {
+		return cantAutos;
+	}
+
+	public void setCantAutos(int cantAutos) {
+		this.cantAutos = cantAutos;
 	}
 	
 
-	public int getCantJugadores() {
-		return cantJugadores;
-	}
-		
-
-	public void setCantJugadores(int cantJugadores) {
-		this.cantJugadores = cantJugadores;
-	}
 }
