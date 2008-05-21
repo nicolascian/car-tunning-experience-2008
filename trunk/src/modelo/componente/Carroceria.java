@@ -7,6 +7,8 @@
 
 package modelo.componente;
 import modelo.*;
+import modelo.fuerzas.Fuerza;
+import modelo.fuerzas.ReceptorDeFuerzas;
 
 /**
  * Esta clase modela la carroceria de un auto. La carroceria se ve afectada por el clima

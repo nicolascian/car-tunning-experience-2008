@@ -7,6 +7,9 @@
 
 package modelo;
 import modelo.componente.*;
+import modelo.exceptions.ExceptionComponenteDesgastado;
+import modelo.exceptions.ExceptionComponenteFaltante;
+
 import java.util.*;
 
 /**

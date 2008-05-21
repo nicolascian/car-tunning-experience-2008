@@ -7,6 +7,8 @@
 
 package modelo.componente;
 import modelo.*;
+import modelo.fuerzas.Fuerza;
+import modelo.fuerzas.ReceptorDeFuerzas;
 
 /**
  * Esta clase modela el motor de un auto. El motor tiene una cierta potencia

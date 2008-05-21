@@ -5,13 +5,21 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-package modelo;
+package modelo.exceptions;
 
 /**
- * Excepcion que avisa cuando ah finalizado la pista.
+ * Clase de una excepcion creada por el programador
+ * la cual hereda de ecxeption, y se produce cuando se intenta realizar
+ * alguna accion con el auto y el mismo se encuentra apagado.
  */
-public class ExceptionFinPista extends Exception{
-	public ExceptionFinPista() {
-		super ("Fin de la Pista");
+public class ExceptionAutoApagado extends Exception {
+	
+	public ExceptionAutoApagado() {
+		super ("Exception Auto apagado");
+	}
+
+	@Override
+	public String toString() {
+		return ("Error Auto Apagado, carrera finalizada");
 	}
 }

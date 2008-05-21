@@ -5,20 +5,21 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-package modelo;
+package modelo.exceptions;
 
 /**
  * Clase de una excepcion creada por el programador
  * la cual hereda de ecxeption, y se produce cuando se intenta realizar
- * una competencia y el auto no posee uno o mas componentes.
+ * una competencia y el auto posee uno o mas componentes con estado 0,
+ * o lo que es igual, totalmente desgastados y fuera de alguna utilizacion.
  */
-public class ExceptionComponenteFaltante extends Exception{
-	public ExceptionComponenteFaltante() {
-		super ("Elemento faltante");
-	}
-/* Mensaje que aclara que componente es el que falta en el auto*/
-	public ExceptionComponenteFaltante(String s) {
-		super ("Elemento faltante: " + s);
-	}
 
+public class ExceptionComponenteDesgastado extends Exception {
+	public ExceptionComponenteDesgastado() {
+		super ("Elemento Desgastado");
+	}
+/* mensaje que aclara que componente es el desgastado*/
+	public ExceptionComponenteDesgastado(String s) {
+		super ("Elemento desgastado: " + s);
+	}
 }

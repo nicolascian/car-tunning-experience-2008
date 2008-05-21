@@ -1,6 +1,8 @@
 package test;
 import junit.framework.*;
 import modelo.*;
+import modelo.exceptions.ExceptionFinPista;
+
 import java.util.*;
 
 public class TestPista extends TestCase{

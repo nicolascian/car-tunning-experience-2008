@@ -1,6 +1,7 @@
 package test;
 
 import modelo.*;
+import modelo.componente.Llanta;
 
 import junit.framework.TestCase;
 

@@ -7,6 +7,9 @@
 
 package modelo.componente;
 import modelo.*;
+import modelo.fuerzas.Fuerza;
+import modelo.fuerzas.ReceptorDeFuerzas;
+import modelo.fuerzas.RepositorioDeFuerzas;
 
 /**
  * Los eje del auto contiene las ruedas las cual estan
