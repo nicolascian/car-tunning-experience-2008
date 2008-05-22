@@ -184,6 +184,8 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	*/
 	public void acelerar(boolean valor){
 	  if(isEncendido()){
+		  //se obtiene potencia extra del resto de componentes
+		  setPotenciaExtra(getAuto().getPotenciaTotal());
 		  setAcelerando(valor);
 		  /*Envio una fuerza al eje proporcional a las rpm y 
 		    al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
