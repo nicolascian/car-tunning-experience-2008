@@ -18,7 +18,7 @@ import modelo.fuerzas.Fuerza;
  */
 public class Automatica extends Caja{
 
-	private double revolucionesMaximasMotorParaCambioActual=0;
+	
 	
 	/**
 	 * @Pre: La instancia de la clase Automatica ha sido creada, y su atributo auto tiene una instancia de la 

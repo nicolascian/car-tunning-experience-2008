@@ -144,7 +144,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		setAuto(null);
 		setEstado(100);
 		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
-		
 	}
 	
 	/* (non-Javadoc)
@@ -159,14 +158,12 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
 		if(fuerza!=null){
-			if(fuerza.getEmisor()==this.getAuto().getEjeDeTransmision()){
-			   afectarRpmPorFuerza(fuerza);
-			   if(isAcelerando())
-				   incrementarRpm();
-			   else
-				   decrementarRpm();
-			}//fin fuerza desde eje
-		}//fin fuerza no nula
+			afectarRpmPorFuerza(fuerza);
+			if(isAcelerando())
+			   incrementarRpm();
+			else
+			   decrementarRpm();
+		}
 	}
 	
 	private void afectarRpmPorFuerza(Fuerza fuerza){
@@ -251,7 +248,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 			setTemperatura(TEMPERATURA_INICIAL);
 		//seteo de revoluciones
 			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
-			
 			setRPM(getRevolucionesMinimasEncendido());
 			getAuto().getCaja().setCambio(0);
 			setAcelerando(false);
@@ -273,8 +269,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 			this.liberarFuerzas();
 		}
 	}
-	
-	
+		
 	/**
 	 *	@Pre: La instancia ha sido creada y se encuentra en estado encendido.
 	 *  @Post: Se actualiza la temperatura de acuerdo a la variaci�n de las revoluciones.    
@@ -547,8 +542,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 			cadena=cadena+"Acelerando ";
 		else
 			cadena=cadena+"No Acelerando";
-		
 		return(cadena);	
 	}
-	
 }
