@@ -7,6 +7,7 @@
 
 package modelo.componente;
 
+import modelo.Auto;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
 
@@ -29,7 +30,7 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 	private Componente contenedor;
 	
 	protected final static double GRAVEDAD=9.8;
-	
+		
 	/**
 	 * Metodo que a partir del estado del neumatico y de las condiciones climaticas
 	 * y de la superficie se encarga de calcular la adherencia.
@@ -110,5 +111,9 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 		
 	}
 	
+	public void instalar(Auto auto,Llanta llanta){
+		setAuto(auto);
+		setComponenteContenedor(llanta);
+	}
 	
 }
