@@ -72,19 +72,5 @@ public class Automatica extends Caja{
 			setRelacionDeCambio(cursor,60.0);  
 	}
 
-	/**
-	 * @return the revolucionesMaximasMotorParaCambioActual
-	 */
-	public double getRevolucionesMaximasMotorParaCambioActual() {
-		return revolucionesMaximasMotorParaCambioActual;
-	}
-
-	/**
-	 * @param revolucionesMaximasMotorParaCambioActual the revolucionesMaximasMotorParaCambioActual to set
-	 */
-	public void setRevolucionesMaximasMotorParaCambioActual(
-			double revolucionesMaximasMotorParaCambioActual) {
-		this.revolucionesMaximasMotorParaCambioActual = revolucionesMaximasMotorParaCambioActual;
-	}	
 		
 }
