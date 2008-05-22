@@ -24,26 +24,23 @@ import java.util.*;
  */
 public class Auto extends Observable implements AfectablePorClima, AfectablePorSuperficie{
 	
-	private double CNTE_ACELERACION_POTENCIA = 0.0003;//permite calcular la aceleracion a
-													  //partir de la potencia.
-	private double Velocidad; //velocidad del auto
-	private double Aceleracion; //aceleracion de del auto
-	private double Posicion; // dstancia recorrida
-
-	private Motor motor;
-	private Caja caja;
-	private Embrague embrague;
-	private Combustible combustible;
-	private Alimentacion alimentacion;
-	private Carroceria carroceria;
-	private Suspension suspension;	
-	private Escape escape;
-	private Turbo turbo;
-	private Nitro nitro;
-	private Freno freno;
-	private Eje ejeDelantero;
-	private Eje ejeTrasero;
-	private EjeDeTransmision ejeDeTransmision;
+	private double Velocidad=0; //velocidad del auto
+	private double Posicion=0; // dstancia recorrida
+	private Motor motor=null;
+	private Caja caja=null;
+	private Embrague embrague=null;
+	private Combustible combustible=null;
+	private Alimentacion alimentacion=null;
+	private Carroceria carroceria=null;
+	private Suspension suspension=null;	
+	private Escape escape=null;
+	private Turbo turbo=null;
+	private Nitro nitro=null;
+	private Freno freno=null;
+	private Eje ejeDelantero=null;
+	private Eje ejeTrasero=null;
+	private EjeDeTransmision ejeDeTransmision=null;
+	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.11232;
 	
 	/**
 	 *	@Pre:
@@ -78,10 +75,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		  ejeTrasero.setNeumaticoIzquierdo(new NeumaticoMixto());
 		//inicilizacion de otros atributos
 		  setEncendido(false);
-	      Velocidad=0;
-		  Aceleracion=0;
-		  Posicion=0;
-		  this.embragar(false);
+	      this.embragar(false);
 	}
 	
 	/**
@@ -124,49 +118,14 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		  ejeTrasero.setNeumaticoIzquierdo(new NeumaticoMixto());
 		setEncendido(false);
 		//inicializacion de aceleracion y velocidad
-		Velocidad=0;
-		Aceleracion=0;
-		Posicion=0;
 		this.embragar(false);
     }
-
 	
-	public void actualizar(){
-		
-		if (!isEmbragado()){
-		
-		/* usamos la adherencia para calcular la potencia que se transfiere de los neumaticos */
-		double adherencia = (this.getEjeDelantero().getNeumaticoDerecho().calcularAdherencia()
-					+ this.getEjeDelantero().getNeumaticoIzquierdo().calcularAdherencia()
-					+ this.getEjeTrasero().getNeumaticoDerecho().calcularAdherencia()
-					+ this.getEjeTrasero().getNeumaticoIzquierdo().calcularAdherencia())/4;
-		
-		Aceleracion = CNTE_ACELERACION_POTENCIA * 
-					  ( (getPotenciaTotal()*getPotenciaTotal()) + getMotor().getRPM() )
-					  	*adherencia;
-		
-		} else{
-			Aceleracion = 0;
-		}
-		
-		/* si la aceleracion es cero, la velocidad es constante */
-		// que alguien le haga una curva aca
-		Velocidad = (Velocidad+getAceleracion())*(2);
-		
-		/* si la velocidad es constante la posicion cambia lineal */
-		Posicion += getVelocidad() * (0.00000006) + (0.5)*(getAceleracion());
-		
+	public void actualizarVelocidadYPosicion(){
+		Velocidad = Velocidad+getEjeDelantero().getRpm()*CONSTANTE_DE_OBTENCION_DE_VELOCIDAD;
+		Posicion +=getVelocidad() * (0.00000006);
 	}
-	
-	/**
-	 * @Pre: Se ha creado la instancia de la clase Auto.
-	 * @Post: Se ha obtenido la aceleracion de la instancia de acuerdo a la potencia. 
-	*/
-	public double getAceleracion(){
-		return Aceleracion;
-
-	}
-	
+			
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.
 	 * @Post: Se ha obtenido la velocidad de acuerdo a la potencia.
@@ -203,7 +162,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public double getPotenciaTotal(){
 		double potencia=0; 
-		 
 		//hay componente que solo aportan potencia al estar encendido el auto
 		if(this.isEncendido()){ 
 		   potencia=motor.obtenerPotencia() +   /* de aca salen: Alimentacion, Combustible*/
@@ -217,12 +175,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		   			embrague.obtenerPotencia(); //no da nada de potencia
 		   			//el freno no esta porque no da potencia
 		}
-		
-//		seteo la velocidad de la carroceria
-		this.getCarroceria().setVelocidad(Velocidad);
-		//en caso de que el auto se este moviendo la carroceria aporta potencia negativa
-		potencia += getCarroceria().obtenerPotencia();
-		
 		return(potencia);
 	}
 	
@@ -302,9 +254,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: En caso de que la instancia se encuentre lista para carrera se enciende la instancia.
 	*/
     public void acelerar(boolean valor){
-	   	if(getMotor()!=null)
-		   getMotor().acelerar(valor);
-	  
+	   	getMotor().acelerar(valor);
+	   	actualizarVelocidadYPosicion();
 	}
 	
 	/**
@@ -530,7 +481,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		  ejeTrasero.setNeumaticoIzquierdo(this.getEjeTrasero().getNeumaticoIzquierdo());
 		}catch(Exception e){}
 		this.ejeTrasero = ejeTrasero;
-	 
 	}
 
 	/**
