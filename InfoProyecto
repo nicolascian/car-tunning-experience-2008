@@ -48,12 +48,12 @@ Nico M: 	Neumatico <--------------------------Listo
 			interfaces Afectable <---------------Listo 
 			Superficie <-------------------------Listo
 			
-Rafa:		Motor <------------------------------listo pero sin probar
-			Caja <-------------------------------listo pero sin probar
-			Automatica <-------------------------casi listo, pero sin probar
-			Secuencial <-------------------------casi listo, pero sin probar
-			Manual <-----------------------------casi listo, pero sin probar
-			Auto <-------------------------------casi listo, pero sin probar
+Rafa:		Motor <------------------------------listo probando
+			Caja <-------------------------------listo probando
+			Automatica <-------------------------casi probando
+			Secuencial <-------------------------casi probando
+			Manual <-----------------------------casi probando
+			Auto <-------------------------------casi probando
 			
 Lucas:		Desgastar y ObtenerPotencia
 			(Eje,Escape,Neumatico,Carroceria,Carburador
