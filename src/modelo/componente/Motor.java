@@ -56,20 +56,20 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	
 	//---------------------     atributos basicos de motor   -------------------
 	
-	private double cilindrada;//en centimetros c�bicos
+	private double cilindrada=0;//en centimetros c�bicos
 	
-	private int cantidadCilindros;
+	private int cantidadCilindros=0;
 	
-	private double revolucionesMaximas;//revoluciones maximas que el motor puede alcanzar segun su cilindrada 
+	private double revolucionesMaximas=0;//revoluciones maximas que el motor puede alcanzar segun su cilindrada 
 	                                   //y cantidad de cilindros en rpm.
 			
-	private double RPM;//revoluciones a las que se encuentra trabajando el motor, en rpm.
+	private double RPM=0;//revoluciones a las que se encuentra trabajando el motor, en rpm.
 	
-	private boolean encendido;//indica si el motor se encuentra encendido
+	private boolean encendido=false;//indica si el motor se encuentra encendido
 	
-	private boolean acelerando;//indica si el motor esta acelerendo
+	private boolean acelerando=false;//indica si el motor esta acelerendo
 		
-	private double temperatura;//temperatura en �C del motor
+	private double temperatura=0;//temperatura en �C del motor
 	
 	private double potenciaMaxima=0;
 	
@@ -79,15 +79,15 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	
 	private double temperaturaAire=25;//temperatura del aire que ingresa al motor en �C
 	
-	private double revolucionesMinimasEncendido;//revoluciones minimas que alcanza el auto mientras
+	private double revolucionesMinimasEncendido=0;//revoluciones minimas que alcanza el auto mientras
 												//se haya encendido.
-	private double coeficienteDeAbsorcionCalorico;
+	private double coeficienteDeAbsorcionCalorico=0;
 		
-	private double coeficienteDeDisipacionCalorico;
+	private double coeficienteDeDisipacionCalorico=0;
 	
-	private double coeficienteDeIncrementoRpm;
+	private double coeficienteDeIncrementoRpm=0;
 	
-	private double coeficienteDeProduccionDeFuerzaAPartirRpm;
+	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0;
 		
 	/**
 	 * @Pre: -

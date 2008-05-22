@@ -28,6 +28,7 @@ public class TestAuto {
 		assertNotNull(auto.getMotor());
 		assertNotNull(auto.getSuspension());
 		assertNotNull(auto.getTurbo());
+		assertNotNull(auto.getEjeDeTransmision());
 		assertFalse(auto.isEncendido());
 		assertTrue(auto.isAutomatica());
 		assertFalse(auto.isManual());
@@ -36,7 +37,6 @@ public class TestAuto {
 	  }catch(AssertionError a){
 		  a.printStackTrace();
 		  a.getMessage();
-		  System.out.println("testAuto() "+a);
 	  }
 	}
 	
@@ -45,8 +45,8 @@ public class TestAuto {
 	 	try{
 			auto.comprobarComponentes();
 		}catch(Exception e){
-			System.out.println("Comprobar Componentes Error"+e);
-		}
+		 e.printStackTrace();
+		 }
 	}
 	
 	@Test
@@ -56,7 +56,6 @@ public class TestAuto {
 		}catch(AssertionError a){
 			 a.printStackTrace();
 			 a.getMessage();
-			 System.out.println("testEstaListoParaCarrera() "+a);
 		 }
 	}
 	
@@ -69,7 +68,6 @@ public class TestAuto {
 		}catch(AssertionError a){
 			 a.printStackTrace();
 			 a.getMessage();
-			 System.out.println("testSetEncendido() "+a);
 		}
 	}
 	
@@ -77,14 +75,12 @@ public class TestAuto {
 	public void testAcelerar(){
 	  try{	 
 		  auto.acelerar(true);
-		  auto.getMotor().acelerar(true);
-		  if(auto.getMotor().isAcelerando()) System.out.println("acelera");
-		// assertTrue("Error acelerando auto",auto.isAcelerando());
-		  assertTrue("Error acelerando motor",auto.getMotor().isAcelerando());
-		  assertTrue("Error Encendido motor",auto.getMotor().isEncendido());
+	      assertTrue("Error acelerando auto",auto.isAcelerando());
+		  //assertTrue("Error acelerando motor",auto.getMotor().isAcelerando());
+		  //assertTrue("Error Encendido motor",auto.getMotor().isEncendido());
 	  }catch (AssertionError a){
-		  System.out.println("Error Acelerar "+a);
+		 a.printStackTrace();
 	  }
 	}
-					
+				
 }

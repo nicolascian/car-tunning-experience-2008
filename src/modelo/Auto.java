@@ -61,6 +61,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		  setTurbo(new Turbo());
 		  setNitro(new Nitro());
 		  setFreno(new FrenoCinta());
+		  setEjeDeTransmision(new EjeDeTransmision(this));
 		/* eje delantero */
 		  setEjeDelantero(new Eje());
 		  ejeDelantero.setLlantaDerecha(new Llanta());
@@ -243,10 +244,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: Retorna true en caso de que el auto se encuentre encendido.
 	*/
 	public boolean isEncendido() {
-		if(motor!=null)
-			return(getMotor().isEncendido());
-		else
-			return(false);
+		return(getMotor().isEncendido());
 	}
 
 	/**
@@ -263,10 +261,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: Se retorna true en caso de que la instancia se encuentre acelerando.
 	*/
 	public boolean isAcelerando(){
-		if(getMotor()!=null){
-		   return(getMotor().isAcelerando());
-		}else
-		   return false;
+		return(getMotor().isAcelerando());
 	}
 	
 	public void frenar(boolean valor){
