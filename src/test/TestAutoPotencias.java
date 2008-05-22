@@ -2,7 +2,7 @@ package test;
 
 import junit.framework.*;
 import modelo.*;
-
+import modelo.componente.*;
 public class TestAutoPotencias extends TestCase {
 	
 	
@@ -28,7 +28,7 @@ public class TestAutoPotencias extends TestCase {
 			 while(System.currentTimeMillis()<tiempo2); 
 		
 			 
-			 auto.actualizar();
+			 auto.actualizarVelocidadYPosicion();
 			 
 				System.out.println("motor: "+auto.getMotor().obtenerPotencia());   /* de aca salen: Alimentacion, Combustible*/
 				System.out.println("-alimen: "+auto.getAlimentacion().obtenerPotencia());

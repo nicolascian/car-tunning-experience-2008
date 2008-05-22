@@ -2,7 +2,7 @@ package test;
 
 import junit.framework.*;
 import modelo.*;
-
+import modelo.componente.*;
 public class TestAutoSecondEdition extends TestCase {
 	
 	
@@ -104,10 +104,7 @@ public class TestAutoSecondEdition extends TestCase {
 			
 			System.out.print(" Estado: ");
 			System.out.print(auto.getEstado());
-			
-			System.out.print("  A: ");
-			System.out.print((long)auto.getAceleracion());
-			
+						
 			System.out.print("  V: ");
 			System.out.print((long)auto.getVelocidad());
 

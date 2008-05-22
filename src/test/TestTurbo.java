@@ -1,7 +1,7 @@
 package test;
 
 import junit.framework.*;
-
+import modelo.componente.*;
 import modelo.*;
 
 

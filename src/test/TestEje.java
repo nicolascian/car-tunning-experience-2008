@@ -1,7 +1,6 @@
 package test;
 import junit.framework.TestCase;
-import modelo.*;
-import modelo.componente.Llanta;
+import modelo.componente.*;
 
 public class TestEje extends TestCase{
 

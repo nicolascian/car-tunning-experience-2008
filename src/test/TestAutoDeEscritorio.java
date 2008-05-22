@@ -1,7 +1,7 @@
 package test;
 import modelo.*;
 import junit.framework.*;
-import modelo.*;
+import modelo.componente.*;
 
 public class TestAutoDeEscritorio extends TestCase {
 	
@@ -65,8 +65,8 @@ public class TestAutoDeEscritorio extends TestCase {
 		System.out.println(auto.getMotor().getRPM());
 		
 
-		System.out.print("RPM Maximas Cambio: ");
-		System.out.println(auto.getMotor().getRevolucionesMaximasCambio());
+		//System.out.print("RPM Maximas Cambio: ");
+		//System.out.println(auto.getCaja().getRevolucionesMaximasCambio());
 		
 		
 		int contador =0;
@@ -76,7 +76,7 @@ public class TestAutoDeEscritorio extends TestCase {
 			long tiempo2=System.currentTimeMillis()+1000;
 			 while(System.currentTimeMillis()<tiempo2); 
 
-			 auto.actualizar();
+			 auto.actualizarVelocidadYPosicion();
 			 
 			System.out.print("Cambio: ");
 			System.out.print(auto.getCaja().getCambio());
@@ -86,10 +86,7 @@ public class TestAutoDeEscritorio extends TestCase {
 	
 			System.out.print("  Pot: ");
 			System.out.print((long)auto.getPotenciaTotal()); 
-			
-			System.out.print("  A: ");
-			System.out.print((long)auto.getAceleracion());
-			
+						
 			System.out.print("  V: ");
 			System.out.print((long)auto.getVelocidad());
 
@@ -111,8 +108,8 @@ public class TestAutoDeEscritorio extends TestCase {
 			System.out.print("  TD: ");
 			System.out.print(auto.getEjeTrasero().getNeumaticoDerecho().calcularAdherencia());
 
-			System.out.print(" RpmMaxCambio: ");
-			System.out.println(auto.getMotor().getRevolucionesMaximasCambio());
+			//System.out.print(" RpmMaxCambio: ");
+			//System.out.println(auto.getMotor().getRevolucionesMaximasCambio());
 			
 			contador++;
 		}//fin while

@@ -4,10 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import modelo.Auto;
-import modelo.Combustible;
-import modelo.Escape;
-import modelo.Clima;
+import modelo.*;
+import modelo.componente.*;
 
 public class TestEscape {
 
