@@ -31,6 +31,8 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 * En un automóvil, por ejemplo, permite transmitir o no la potencia del motor a las ruedas.
 	 */
 	
+	private double revolucionesMaximasMotorParaCambioActual=0;
+	
 	private double[] relacionDeCambio;//
 		
 	private int cantidadCambios;
@@ -139,14 +141,20 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 */
 	protected void setCambio(int cambio){
 		if ((cambioValido(cambio))&&(cambio!=getCambio())&&(isEmbragado())){
-		   /*
-		    * setear el cambio
-		    * cambiar rpm maximas para el cambio internas
-		    * si se pasa a un cambio menor pasar una tension muy grande al motor
-		    * 
-		    */
+		   //se calcula la fuerza que se debe ejercer al motor
+		   double valorDeFuerza=0;
+		   if(cambio>getCambio())
+			  valorDeFuerza=getAuto().getMotor().getRPM()*(-0.1);
+		   else
+			  valorDeFuerza=getAuto().getMotor().getRPM()*(0.07);
+		   //se pasa el cambio
+		   this.cambio=cambio;
+		   //se cambian las revoluciones maximas para el cambio actual
+		   setRevolucionesMaximasMotorParaCambioActual(calcularRevolucionesMaximasMotorParaCambioActual());
+		   //se pasa una fuerza motor 
+		   Fuerza fuerza=new Fuerza(this,getAuto().getEjeDeTransmision(),valorDeFuerza,true);
+		   this.getAuto().getEjeDeTransmision().recibirFuerza(fuerza);
 		}//fin if
-		
 		if (!isEmbragado()) {this.desgastar();}
 	}
 		
@@ -180,12 +188,9 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.
 	 * @Post: Se retorna la cantidad de RPM de la instancia para le cambio actual.
 	 */
-	public double obtenerRpm() {
-	  if(getAuto()!=null){	
-		double rpm=getAuto().getMotor().getRPM();
-		return (rpm*(1-20*getRelacionDeCambio()/(rpm+1)));
-	  }else
-		return 0;  
+	public double calcularRevolucionesMaximasMotorParaCambioActual() {
+		return (getAuto().getMotor().getRPM()*(1-20*getRelacionDeCambio()/
+			    (getAuto().getMotor().getRPM()+1)));
 	}
 
 	/**
@@ -249,5 +254,19 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		this.relacionDeCambio[cambio] = relacionDeCambio;
 	 }catch(Exception e){}
 	}
-		
+
+	/**
+	 * @return the revolucionesMaximasMotorParaCambioActual
+	 */
+	public double getRevolucionesMaximasMotorParaCambioActual() {
+		return revolucionesMaximasMotorParaCambioActual;
+	}
+
+	/**
+	 * @param revolucionesMaximasMotorParaCambioActual the revolucionesMaximasMotorParaCambioActual to set
+	 */
+	public void setRevolucionesMaximasMotorParaCambioActual(
+			double revolucionesMaximasMotorParaCambioActual) {
+		this.revolucionesMaximasMotorParaCambioActual = revolucionesMaximasMotorParaCambioActual;
+	}
 }

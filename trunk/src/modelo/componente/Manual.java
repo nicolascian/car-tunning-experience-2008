@@ -42,7 +42,6 @@ public class Manual extends Caja{
 			else
 			  setRelacionDeCambio(cursor,60.0);  
 	}
-
 	
 	/**
 	 * @Pre: La instancia ha sido creada.
