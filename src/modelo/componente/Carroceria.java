@@ -31,6 +31,8 @@ public class Carroceria extends Componente
 	
 	private final static double COEFICIENTE_ARRASTRE=0.38;
 	
+	private final static double COEFICIENTE_OBTENCION_FUERZA=0.6;
+	
 	private double coeficienteDeOxidacionPorParticulas;
 	
 	private double coeficienteDeOxidacionPorHumedad;
@@ -72,13 +74,7 @@ public class Carroceria extends Componente
 	 * y por lo tanto obteniendose una menor potencia de arrastre. 	 
 	*/
 	public double obtenerPotencia(){
-		double coeficiente=Math.abs(COEFICIENTE_ARRASTRE-TEMPERATURAOPTIMA/(getTemperatura()*10));
-		double tmp= (getVelocidad()*coeficiente*getSuperficieFrontal()*0.0001862);
-		if ( tmp >50){
-			return 50;
-		}else{
-			return tmp;
-		}
+		return 0;
 	}
 	
 	/** el clima afecta a la carroceria
@@ -178,8 +174,13 @@ public class Carroceria extends Componente
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
-		// TODO Auto-generated method stub
-		
+		if((fuerza.getEmisor()==getAuto().getEjeDelantero()||
+		   (fuerza.getEmisor()==getAuto().getEjeTrasero()))){
+			double coeficiente=Math.abs(COEFICIENTE_ARRASTRE-TEMPERATURAOPTIMA/(getTemperatura()*10));
+			double valor=getVelocidad()*coeficiente*getSuperficieFrontal()*COEFICIENTE_OBTENCION_FUERZA/2;
+			getAuto().getEjeDelantero().recibirFuerza(new Fuerza(this,getAuto().getEjeDelantero(),valor,true));
+			getAuto().getEjeTrasero().recibirFuerza(new Fuerza(this,getAuto().getEjeDelantero(),valor,true));
+		}
 	}
 	
 }
