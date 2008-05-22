@@ -36,11 +36,11 @@ public class Manual extends Caja{
 	 * 
 	*/
 	protected void generarRelacionesDeCaja(){
-		for(int cursor=0;cursor<=cantidadCambios;cursor++)
+		for(int cursor=0;cursor<=getCantidadCambios();cursor++)
 			if(cursor!=0)		 
-			  relacionDeCambio[cursor]=15.0/cursor-9.0/(cantidadCambios*cantidadCambios);
+			  setRelacionDeCambio(cursor,15.0/cursor-9.0/(getCantidadCambios()*getCantidadCambios()));
 			else
-			  relacionDeCambio[cursor]=60.0;  
+			  setRelacionDeCambio(cursor,60.0);  
 	}
 
 	

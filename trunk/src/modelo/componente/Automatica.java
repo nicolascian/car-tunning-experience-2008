@@ -7,6 +7,7 @@
 
 package modelo.componente;
 import modelo.*;
+import modelo.fuerzas.Fuerza;
 
 /**
  * @Documentacion: Una instancia de la clase caja Automatica modela una caja automatica de un auto,
@@ -17,6 +18,8 @@ import modelo.*;
  */
 public class Automatica extends Caja{
 
+	private double revolucionesMaximasMotorParaCambioActual=0;
+	
 	/**
 	 * @Pre: La instancia de la clase Automatica ha sido creada, y su atributo auto tiene una instancia de la 
 	 * clase Auto la cual es no nula y se encuentra listo para carrera.
@@ -32,7 +35,7 @@ public class Automatica extends Caja{
 		double rpm=getAuto().getMotor().getRPM();
 		Motor motor=getAuto().getMotor();
 		if(motor.isAcelerando()){
-			if(rpm>=motor.getRevolucionesMaximasCambio()){
+			if(rpm>=getRevolucionesMaximasMotorParaCambioActual()){
 				embragar(true);
 				setCambio(getCambio()+1);
 				embragar(false);
@@ -62,10 +65,26 @@ public class Automatica extends Caja{
 	 * @Post: Se han generado las relaciones de caja correspondientes.
 	*/
 	protected void generarRelacionesDeCaja(){
-		for(int cursor=0;cursor<=cantidadCambios;cursor++)
+		for(int cursor=0;cursor<=getCantidadCambios();cursor++)
 		  if(cursor!=0)	   
-			relacionDeCambio[cursor]=15.0/(cursor-0.3)-9.0/(cantidadCambios*cantidadCambios);
+			setRelacionDeCambio(cursor,15.0/(cursor-0.3)-9.0/(getCantidadCambios()*getCantidadCambios()));
 		  else
-			relacionDeCambio[cursor]=60.0;  
+			setRelacionDeCambio(cursor,60.0);  
+	}
+
+	/**
+	 * @return the revolucionesMaximasMotorParaCambioActual
+	 */
+	public double getRevolucionesMaximasMotorParaCambioActual() {
+		return revolucionesMaximasMotorParaCambioActual;
+	}
+
+	/**
+	 * @param revolucionesMaximasMotorParaCambioActual the revolucionesMaximasMotorParaCambioActual to set
+	 */
+	public void setRevolucionesMaximasMotorParaCambioActual(
+			double revolucionesMaximasMotorParaCambioActual) {
+		this.revolucionesMaximasMotorParaCambioActual = revolucionesMaximasMotorParaCambioActual;
 	}	
+		
 }

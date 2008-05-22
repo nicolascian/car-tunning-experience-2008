@@ -24,23 +24,21 @@ import modelo.fuerzas.RepositorioDeFuerzas;
  */
 public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		
-	protected int cambio;
+	private int cambio=0;
 	
 	/**
 	 * El embrague es un sistema que permite transmitir o no una energía mecánica a su acción final. 
 	 * En un automóvil, por ejemplo, permite transmitir o no la potencia del motor a las ruedas.
 	 */
-
-		
+	
 	private double[] relacionDeCambio;//
 		
 	private int cantidadCambios;
 	
 	private RepositorioDeFuerzas repositorio;
-	
-	protected final static double COEFICIENTE_DE_DESGASTE=4;
-	
 		
+	protected final static double COEFICIENTE_DE_DESGASTE=4;
+			
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
@@ -53,10 +51,11 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	public Caja(int cantidadCambios){
 		this.cantidadCambios=cantidadCambios;
 		relacionDeCambio=new double[cantidadCambios+1];
-		cambio=0;
 		generarRelacionesDeCaja();
 		setEstado(100);
 	}
+	
+	public void Chequear(){};
 	
 	/**
 	 * @Pre: 
@@ -112,6 +111,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 			  //transmito fuerza al ejeDeTransmision 
 			  Fuerza fuerzaAEje=new Fuerza(this,getAuto().getEjeDeTransmision(),valorDeLaFuerza,true);
 			  getAuto().getEjeDeTransmision().recibirFuerza(fuerzaAEje);
+			  Chequear();
 		}
 	  }
 	}
@@ -171,11 +171,6 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	public void setRepositorio(RepositorioDeFuerzas repositorio) {
 		this.repositorio = repositorio;
 	}
-
-	/* para hacer uso del polimorfismo
-	 * estos metodos los usa la caja
-	 * heredada Automatica */
-	public void Chequear(){}
 	
 	public void siguiente(){}
 	
@@ -244,6 +239,15 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 			cadena=cadena+"("+cambio+")"+relacionDeCambio[cambio]+" ";
 		cadena=cadena+"Estado "+getEstado()+"%"+'\n';
 		return cadena;
+	}
+
+	/**
+	 * @param relacionDeCambio the relacionDeCambio to set
+	 */
+	protected void setRelacionDeCambio(int cambio,double relacionDeCambio) {
+	 try{	
+		this.relacionDeCambio[cambio] = relacionDeCambio;
+	 }catch(Exception e){}
 	}
 		
 }

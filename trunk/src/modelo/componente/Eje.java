@@ -24,19 +24,18 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	/* Atributos de la clase */
 	private Llanta LlantaDerecha;
 	private Llanta LlantaIzquierda;
-	private Neumatico NeumaticoDerecho;
-	private Neumatico NeumaticoIzquierdo;
 	private double DesgastePorRugosidad;
 	private double DesgastePorParticulas;
 	private RepositorioDeFuerzas repositorio;	
 	private double rpm=0;
 	protected final static double COEFICIENTE_OBTENCION_RPM=0.00456;
-	
-	
+		
 	/*Constructor,inicia estado de eje en 100*/
 	public Eje(){
 		this.setEstado(100);
 		repositorio=new RepositorioDeFuerzas(this);
+		setLlantaDerecha(new Llanta());
+		setLlantaIzquierda(new Llanta());
 	}
 	
 	/**
@@ -48,8 +47,9 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 * El mejor valor de potencia que puede devolver un eje es de 5 watts.
 	 */
 	public double obtenerPotencia() {
-		return ((5*this.getEstado()/100)+ LlantaDerecha.obtenerPotencia()+ LlantaIzquierda.obtenerPotencia() + NeumaticoDerecho.obtenerPotencia()+ NeumaticoIzquierdo.obtenerPotencia());
+		return ((5*this.getEstado()/100)+ LlantaDerecha.obtenerPotencia()+ LlantaIzquierda.obtenerPotencia());
 	}
+	
 	/**
 	 * @Post: Eje desgastado, modificacion del estado del eje.
 	 * @Documentacion: Metodo que se encarga de modificar el estado de el eje
@@ -95,7 +95,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	}
 
 	public void setLlantaDerecha(Llanta llantaDerecha) {
-		llantaDerecha.instalar(this.getAuto());
+		llantaDerecha.instalar(this.getAuto(),this);
 		LlantaDerecha = llantaDerecha;
 	}
 
@@ -104,26 +104,26 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	}
 
 	public void setLlantaIzquierda(Llanta llantaIzquierda) {
-		llantaIzquierda.instalar(this.getAuto());
+		llantaIzquierda.instalar(this.getAuto(),this);
 		LlantaIzquierda = llantaIzquierda;
 	}
 
 	public Neumatico getNeumaticoDerecho() {
-		return NeumaticoDerecho;
+		return getLlantaDerecha().getNeumatico();
 	}
 
 	public void setNeumaticoDerecho(Neumatico neumaticoDerecho) {
-		neumaticoDerecho.instalar(this.getAuto());
-		NeumaticoDerecho = neumaticoDerecho;
+		neumaticoDerecho.instalar(this.getAuto(),getLlantaDerecha());
+		getLlantaDerecha().setNeumatico(neumaticoDerecho);
 	}
 
 	public Neumatico getNeumaticoIzquierdo() {
-		return NeumaticoIzquierdo;
+		return getLlantaIzquierda().getNeumatico();
 	}
 
 	public void setNeumaticoIzquierdo(Neumatico neumaticoIzquierdo) {
-		neumaticoIzquierdo.instalar(this.getAuto());
-		NeumaticoIzquierdo = neumaticoIzquierdo;
+		neumaticoIzquierdo.instalar(this.getAuto(),getLlantaIzquierda());
+		getLlantaIzquierda().setNeumatico(neumaticoIzquierdo);
 	}
 	
 	/* (non-Javadoc)
@@ -132,7 +132,6 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	@Override
 	public void liberarFuerzas() {
 		repositorio.vaciar();
-		
 	}
 
 	/* (non-Javadoc)
@@ -140,11 +139,10 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
-		if(fuerza.getEmisor()==this.getAuto().getEjeDeTransmision()){
-			  //viene del eje de transmision
+		if(fuerza.getEmisor()==this.getAuto().getCaja()){
+			  //viene de la caja
 			  //envio una fueza nula a la carroceria para que se actualice la fueza que ejerce sobre el eje
-			  getAuto().getCarroceria().recibirFuerza(new Fuerza(this,getAuto().getCarroceria(),0,
-					                                  true));
+			  getAuto().getCarroceria().recibirFuerza(new Fuerza(this,getAuto().getCarroceria(),0,true));
 			  double valorDeLaFuerza=0;
 			  try{
 			     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
@@ -171,9 +169,8 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 					  valorDeLaFuerza=fuerza.getValorDeLaFuerza();
 				  }catch(Exception e){}
 				  setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_OBTENCION_RPM);
-				  Fuerza fuerzaAuxiliar=new Fuerza(this,getAuto().getEjeDeTransmision(),
-						                           valorDeLaFuerza,true);
-				  getAuto().getEjeDeTransmision().recibirFuerza(fuerzaAuxiliar);
+				  Fuerza fuerzaAuxiliar=new Fuerza(this,getAuto().getCaja(),valorDeLaFuerza,true);
+				  getAuto().getCaja().recibirFuerza(fuerzaAuxiliar);
 			  }
 		}
 	}
@@ -199,7 +196,4 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	public void setRpm(double rpm) {
 		this.rpm = rpm;
 	}
-	
-	
-	
 }
