@@ -2,7 +2,7 @@ package test;
 
 import junit.framework.*;
 import modelo.*;
-
+import modelo.componente.*;
 
 public class TestInyeccion extends TestCase {
 

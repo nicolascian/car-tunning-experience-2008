@@ -1,5 +1,6 @@
 package test;
 import modelo.*;
+import modelo.componente.*;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -60,20 +61,7 @@ public class TestMotor {
 		}
 	}
 	
-	@Test
-	public void testObtenerPotenciaMaximaTeorica(){
-	     for(double cilindrada=1.0; cilindrada<=5.0;cilindrada++)
-		   for(double revoluciones=7000.0;revoluciones<=15000.0;revoluciones++)
-			for(int cilindros=4;cilindros<=12;cilindros++)
-			  try{
-				  Motor motor=new Motor(cilindros,cilindrada,revoluciones);
-				  assert motor.obtenerPotenciaMaximaTeorica()>=80;
-			  }catch (AssertionError a){
-			    a.printStackTrace();
-			    a.getMessage();
-			    System.out.println(a);
-			 }
-	}
+	
 	
 	@Test
 	public void testAcelerar(){
@@ -125,15 +113,5 @@ public class TestMotor {
 		}
 	}
 	
-	@Test
-	public void testGetRevolucionesMinimasCambios(){
-		try{
-		   assertTrue(motor.getRevolucionesMaximasCambio()>600);
-		   assertTrue(motor.getRevolucionesMaximasCambio()<=8000);
-		}catch (AssertionError a){
-		    a.printStackTrace();
-		    a.getMessage();
-		    System.out.println(a);
-		}
-	}
+	
 }

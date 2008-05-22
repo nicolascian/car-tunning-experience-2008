@@ -1,6 +1,6 @@
 
 package test;
-import modelo.Manual;
+import modelo.componente.*;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -32,17 +32,7 @@ public class TestManual {
 		  a.printStackTrace();
 	  }
 	}
-	
-	@Test
-	public void testObtenerRpm(){
-	  try{	
-		  assertTrue(manual.obtenerRpm()==0);
-	  }catch(AssertionError a){
-		  System.out.println(a);
-		  a.printStackTrace();
-	  }
-	}
-	
+		
 	@Test
 	public void testDesgastar(){
 	  try{	

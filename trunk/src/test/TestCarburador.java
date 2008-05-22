@@ -1,5 +1,6 @@
 package test;
 
+import modelo.componente.*;
 import modelo.*;
 import junit.framework.TestCase;
 

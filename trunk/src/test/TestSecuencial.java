@@ -1,5 +1,5 @@
 package test;
-import modelo.Secuencial;
+import modelo.componente.*;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -31,17 +31,7 @@ public class TestSecuencial {
 		  a.printStackTrace();
 	  }
 	}
-	
-	@Test
-	public void testObtenerRpm(){
-	  try{	
-		  assertTrue(secuencial.obtenerRpm()==0);
-	  }catch(AssertionError a){
-		  System.out.println(a);
-		  a.printStackTrace();
-	  }
-	}
-	
+			
 	@Test
 	public void testDesgastar(){
 	  try{	

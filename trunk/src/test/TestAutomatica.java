@@ -1,6 +1,7 @@
 package test;
 import junit.framework.*;
 import modelo.*;
+import modelo.componente.*;
 public class TestAutomatica extends TestCase {
 
 	public void testGenerarRelacionesDeCaja() {
