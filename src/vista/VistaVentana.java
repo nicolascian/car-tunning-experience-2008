@@ -29,10 +29,10 @@ public class VistaVentana implements Observer{
 	public VistaVentana(Pista pista,Jugador jugador){
 		
 //		armado de la ventana
-		frame = new Frame("Key Listener!"); //creamos el marco
+		frame = new Frame("Car Tunnning Experience 2008"); //creamos el marco
 		
 //		agregamos un titulo
-		frame.add("North", new Label("Key Listener! usar: E A S D F I K O L P Ñ                         " ));  
+		frame.add("North", new Label("Key Listener! usar: E A S D F U J I K O L P Ñ                         " ));  
 		
 		Panel panel = new Panel(); //creamos un panel para el Label
 		
@@ -60,7 +60,7 @@ public class VistaVentana implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		
 		
-		l1.setText("update");
+		l1.setText("updated");
 		
 	}
 	
