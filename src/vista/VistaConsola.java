@@ -32,8 +32,59 @@ public class VistaConsola implements Observer
 	//Metodo que es llamado por el modelo al actualizarse el mismo
 	public void update(Observable t, Object o)
 	{	
-		System.out.println( auto );
-		System.out.println( pista );
+		
+		System.out.println( 
+		"===================================================================" + '\n' +
+		" Caja tipo: " + " Manual: " + auto.isManual() + "   Secuencial: " + auto.isSecuencial() + "   Automatica: " + auto.isAutomatica() + '\n' + 
+		"-------------------------------------------------------------------" + '\n' + '\n' +
+				
+		" Cambio: " + auto.getCaja().getCambio() + "   " +
+		"RPM-> " + (long)auto.getCaja().getRPM() + "  " + "-" + "  " +
+		 (long)auto.getCaja().getRevolucionesMaximasMotorParaCambioActual() + " <-RPMoptimas"  + '\n' + '\n' +
+		
+		" Velocidad: " + (long)auto.getVelocidad() + " Km/h" + "     " +
+		"Distancia recorrida: " + (long)auto.getPosicion() + " m" + '\n' + '\n' +
+		
+		" Acelerando: " + auto.isAcelerando() + '\n' +
+		"   Frenando: " + auto.isFrenando() + '\n' +
+		"  Embragado: " + auto.isEmbragado() + '\n' +
+		" Nitro act.: " + auto.isNitroActivado() + '\n' +
+		"  Encendido: " + auto.isEncendido() + '\n' +  '\n' +
+		
+		"-------------------------------------------------------------------" + '\n' +
+		" F:Acelerador D:Freno S:Embrague A:Nitro E:Encender" + '\n' +
+		" Manual: I-1 K-2 O-3 L-4 P-5 Ñ-6 U.Neutro J.Reversa" + '\n' +
+		" Secuencial: I++ K--" + '\n' +
+		"===================================================================" + '\n' 
+		);
+		
 	}
+	
+	
+	/*FORMATO
+	 * 
+	 * 
+	    ===================================================================
+		 Caja tipo:  Manual: true   Secuencial: false   Automatica: false
+		-------------------------------------------------------------------		
+				
+		 Cambio: 4   RPM-> 6400  -  6600 <-RPMoptimas
+		
+		 Velocidad: 120 Km/h     Distancia recorrida: 58 m
+		
+		 Acelerando: true
+		   Frenando: false
+		  Embragado: false
+		 Nitro act.: false
+		  Encendido: true
+		
+		-------------------------------------------------------------------
+		 F:Acelerador D:Freno S:Embrague A:Nitro E:Encender
+		 Manual: I-1 K-2 O-3 L-4 P-5 Ñ-6 U.Neutro J.Reversa
+		 Secuencial: I++ K--
+		===================================================================
+	 * 
+	 * 
+	 */
 		
 }

@@ -24,32 +24,21 @@ import vista.*;
 public class Juego{
 		
 	public static void main(String args[]){
-/*
- * Creacion de dos autos que realizaran la competencia.
- */		
-		Auto auto1 = new Auto();
-		Auto auto2 = new Auto();
-		
-		Habilidad habilidad = new Principiante();
-/*
- * Se crean dos jugadores uno virtual con un determinado nivel
- * de habilidad y dificualtad para con el jugador que utilice el usuario.
- */		
-		
-		Jugador jugador1 = new Usuario(auto1);
-		Jugador jugador2 = new Virtual(habilidad, auto2);
-/*
- * Se crea la pista con los jugadores y su longitud.
- */		
-		Pista pista = new Pista(jugador1, jugador2, 100);
-		
-/*
- * se inicializan las vistas
- */		
-		new VistaConsola(auto1, pista);
-		new VistaControles(pista, jugador1);
 
-//		 esto es necesario para que las vistas se actualicen la 1ra vez
+		Auto auto1 = new Auto(); //creo un auto	
+		
+		Jugador jugador1 = new Usuario(auto1); //creo un control y le paso el auto 
+		//Jugador jugador2 = new Virtual(new Principiante, auto2); //creo un control automatico y le paso, habilidad y auto
+		
+		Pista pista = new Pista(auto1, auto1, 100); //creo una pista y le pongo el auto
+		
+
+		//se inicializan las vistas
+ 	
+		new VistaConsola(auto1, pista); //creo una vista consola, y le paso el auto y la pista
+		new VistaControles(pista, jugador1); //creo una vista
+
+		// esto es necesario para que las vistas se actualicen la 1ra vez
 		pista.ActualizarObservadores();
 	
 	}// fin main

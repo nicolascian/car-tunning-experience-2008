@@ -18,7 +18,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
-public class VistaControles implements Observer{
+public class VistaVentana implements Observer{
 
 	private Pista pista; //referencia al modelo (pista)
 	
@@ -26,7 +26,7 @@ public class VistaControles implements Observer{
 	private Label l1;
 	
 //	Constructor de la vista
-	public VistaControles(Pista pista,Jugador jugador){
+	public VistaVentana(Pista pista,Jugador jugador){
 		
 //		armado de la ventana
 		frame = new Frame("Key Listener!"); //creamos el marco
