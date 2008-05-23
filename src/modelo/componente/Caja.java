@@ -139,7 +139,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 * @Post:Se ha seteado el cambio. Cada vez que hacemos un Cambio, se altera las 
 	 * revolucionesMaximas del Motor.
 	 */
-	protected void setCambio(int cambio){
+	public void setCambio(int cambio){
 		if ((cambioValido(cambio))&&(cambio!=getCambio())&&(isEmbragado())){
 		   //se calcula la fuerza que se debe ejercer al motor
 		   double valorDeFuerza=0;

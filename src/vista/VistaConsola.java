@@ -39,7 +39,7 @@ public class VistaConsola implements Observer
 		"-------------------------------------------------------------------" + '\n' + '\n' +
 				
 		" Cambio: " + auto.getCaja().getCambio() + "   " +
-		"RPM-> " + (long)auto.getCaja().getRPM() + "  " + "-" + "  " +
+		"RPM-> " + (long)auto.getMotor().getRPM() + "  " + "-" + "  " +
 		 (long)auto.getCaja().getRevolucionesMaximasMotorParaCambioActual() + " <-RPMoptimas"  + '\n' + '\n' +
 		
 		" Velocidad: " + (long)auto.getVelocidad() + " Km/h" + "     " +
