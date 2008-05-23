@@ -36,7 +36,7 @@ public class Juego{
 		//se inicializan las vistas
  	
 		new VistaConsola(auto1, pista); //creo una vista consola, y le paso el auto y la pista
-		new VistaControles(pista, jugador1); //creo una vista
+		new VistaVentana(pista, jugador1); //creo una vista
 
 		// esto es necesario para que las vistas se actualicen la 1ra vez
 		pista.ActualizarObservadores();
