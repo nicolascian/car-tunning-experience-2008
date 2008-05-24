@@ -295,6 +295,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	*/
 	protected void setRPM(double rpm) {
 		this.RPM=rpm;
+		ActualizarObservadores();
 	}
 	
 	/**

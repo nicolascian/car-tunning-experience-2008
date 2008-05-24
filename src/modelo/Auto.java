@@ -124,8 +124,11 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	
 	/**
 	 * se ejecuta cuando hay cambios en el auto
-	 * posicion, velocidad, RPM, Estado.
-	 * caja: cambio, RPMmaximas
+	 * auto.actualizarVelocidadYPosicion ----------> Velocidad, Posicion
+	 * auto.desgastar -----------------------------> Estado?????????????????cuando se llama?
+	 * motor.setRPM -------------------------------> RPM
+	 * caja.setCambio -----------------------------> Cambio
+	 * caja.setRevolucionesMaximasMotorParaCambioActual ----------------------------> RPMmaximas
 	 */
 	public void ActualizarObservadores(){
 		setChanged();

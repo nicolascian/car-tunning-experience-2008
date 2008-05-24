@@ -19,7 +19,7 @@ import modelo.*;
  * 
  * @version 1.0
  */
-public abstract class Componente extends modelo.Constantes {
+public abstract class Componente extends Observable {
 	/* comentario acerca de la implementacion de la clase */
 	
 	private String nombre;
@@ -39,6 +39,9 @@ public abstract class Componente extends modelo.Constantes {
 	protected Auto auto;
 	
 	protected AlgoPesos precio;
+	
+	public static double tiempoPorCiclo = (0.000000000006);/*multiplicador para
+	el calculo del desgaste de los componentes*/
 	
 	/**
 	 * es invocado por el auto
