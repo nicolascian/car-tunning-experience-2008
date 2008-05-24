@@ -69,7 +69,7 @@ public class VistaVentana implements Observer{
 		// ponemos el panelPrimero en la ventana
 		ventana1.add("North", getPanelPrimero());
 		
-		ventana1.setSize(400,50);  //seteamos las dimensiones de la ventana
+		ventana1.setSize(250,65);  //seteamos las dimensiones de la ventana
 		ventana1.setVisible(true);  //mostramos la ventana
 
 		//agregamos el listener del evento de cerrado de la ventana		
@@ -90,7 +90,7 @@ public class VistaVentana implements Observer{
 		// ponemos el panelPrimero en la ventana
 		ventana2.add("North", getPanelSegundo());
 		
-		ventana2.setSize(700,50);  //seteamos las dimensiones de la ventana
+		ventana2.setSize(510,65);  //seteamos las dimensiones de la ventana
 		ventana2.setVisible(true);  //mostramos la ventana
 
 		//agregamos el listener del evento de cerrado de la ventana		
