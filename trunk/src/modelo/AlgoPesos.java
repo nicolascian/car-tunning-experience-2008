@@ -38,16 +38,28 @@ public class AlgoPesos{
 	 * @param decimal2
 	 * @return
 	 */
-	public AlgoPesos sumar( int entero1, int entero2, int decimal1, int decimal2){
+	public AlgoPesos sumar(int entero1, int decimal1){
 	
-		int enteros= entero1+entero2;
-		int decimales= decimal1+decimal2;
-		if (decimales>99){ 
-		enteros= enteros +1;
-		decimales= decimales -100;
+		int parteEntera=(this.getEntero()+ entero1); 
+		int parteDecimal= (this.getDecimal()+ decimal1);
+		if (parteDecimal>99){
+			parteEntera++;
+			parteDecimal= parteDecimal -100;
 		}
-		AlgoPesos algoPesos= new AlgoPesos ( enteros, decimales);
-		return algoPesos;
+		return new AlgoPesos(parteEntera,parteDecimal);
+	}
+	
+	/** Resta dos instancias de AlgoPesos
+	 * 
+	 * @param entero1
+	 * @param decimal1
+	 * @return
+	 */
+	public AlgoPesos restar(int entero1, int decimal1){
+		
+		int parteEntera= (this.getEntero()- entero1);
+		int parteDecimal=Math.abs((this.getDecimal()- decimal1));
+		return new AlgoPesos(parteEntera, parteDecimal);
 	}
 	
 	/**
