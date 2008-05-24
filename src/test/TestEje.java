@@ -27,12 +27,7 @@ public class TestEje extends TestCase{
 		//assertTrue(eje.obtenerPotencia()<50);
 	
 	}
-	
-		
-	
-	
-		
-		
+			
 		
 }
 

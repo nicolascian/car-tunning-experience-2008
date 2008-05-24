@@ -17,7 +17,7 @@ public class TestAuto {
 	@Test
 	public void testAuto(){
 	  try{
-		auto=new Auto();
+		Auto auto=new Auto();
 		assertNotNull(auto.getCaja());
 		assertNotNull(auto.getAlimentacion());
 		assertNotNull(auto.getCarroceria());
@@ -77,6 +77,7 @@ public class TestAuto {
 			auto.setEncendido(true);
 			assertTrue(auto.isEncendido());
 			assertTrue(auto.getMotor().isEncendido());
+			assertTrue(auto.isEncendido());
 		}catch(AssertionError a){
 			 a.printStackTrace();
 			 a.getMessage();
@@ -86,9 +87,28 @@ public class TestAuto {
 	@Test
 	public void testAcelerar(){
 	  try{	 
-		  auto.acelerar(true);
-	      //assertTrue(auto.isAcelerando());
-		  //assertTrue(auto.getMotor().isAcelerando());
+		  auto.setEncendido(true);
+		  assertTrue(auto.isEncendido());
+		  auto.acelerar(true);	      
+		  assertTrue(auto.isAcelerando());
+		  assertTrue(auto.getMotor().isAcelerando());
+      }catch (AssertionError a){
+		 a.printStackTrace();
+	  }
+	}
+	
+	@Test
+	public void testAcelerarIterativo(){
+	  try{	 
+		  auto.setEncendido(true);
+		  assertTrue(auto.isEncendido());
+		  int contador=0;
+		  while(contador<20000){
+		     auto.acelerar(true);
+		     contador++;
+		  }
+		  System.out.println(auto.getMotor().getRPM());
+		  //assertTrue(auto.getMotor().getRPM()>auto.getMotor().getRevolucionesMinimasEncendido());
       }catch (AssertionError a){
 		 a.printStackTrace();
 	  }
