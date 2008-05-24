@@ -6,8 +6,9 @@
  ******************************************************************************/
  
 package control;
-import modelo.Auto;
-import modelo.componente.Motor;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Clase Experto
@@ -20,9 +21,12 @@ import modelo.componente.Motor;
  * @see modelo.Habilidad Habilidad
  */
 public class Experto extends Habilidad{
-	/* comentario acerca de la implementacion de la clase */
+	/* usamos Margen de error y tiempo de reaccion */
 	
 	private final static double MARGEN_DE_ERROR_EXPERTO = 1.5;
+	
+	/** tiempo de reaccion de EXPERTO */
+	private static final long mSecsControl = 100; //0.1 segundos
 	
 	/**
 	 * Metodo Jugar
@@ -31,6 +35,11 @@ public class Experto extends Habilidad{
 	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
 	 */
 	public void jugar(){
+		
+		/* si el auto esta apagado */
+		if (!auto.isEncendido()){
+			auto.setEncendido(true);
+		}
 		
 		/* si el auto no esta acelerando */
 		if (!auto.isAcelerando()){
@@ -50,7 +59,6 @@ public class Experto extends Habilidad{
 		
 		double rpm = auto.getMotor().getRPM();
 		
-		Motor motor = auto.getMotor();
 	
 		/* numeros aleaorios entre 0 y 0.5 incluidos */
         double x = (rnd.nextDouble() * MARGEN_DE_ERROR_EXPERTO);
@@ -62,28 +70,42 @@ public class Experto extends Habilidad{
         MARGEN_DE_ERROR_RND_MINIMAS = ((x + y) - (x + y)/2) *100;
         
 		
-		if(motor.isAcelerando()){
-			
-			if( rpm >= (motor.getRevolucionesMaximasCambio() + MARGEN_DE_ERROR_RND_MAXIMAS) ){
+		if(auto.isAcelerando()){
+			if(rpm >= (auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+ MARGEN_DE_ERROR_RND_MAXIMAS) ){
 				auto.embragar(true);
 				auto.getCaja().setCambio(auto.getCaja().getCambio()+1);
 				auto.embragar(false);
 			}
-		
-		}else{
-		
-			if( rpm < (motor.getRevolucionesMinimasEncendido() + MARGEN_DE_ERROR_RND_MINIMAS) ){
+		}else
+			if(rpm< (auto.getMotor().getRevolucionesMinimasEncendido()+ MARGEN_DE_ERROR_RND_MINIMAS) ){
 				auto.embragar(true);
 				auto.getCaja().setCambio(auto.getCaja().getCambio()-1);
 				auto.embragar(false);
 			}
-		}
 		
 	}
 	
-	
+	/**
+	 * Constructor de Experto
+	 * Crea un Timer
+	 */
 	public Experto(){
 		super();
+		//lanzamos el timer
+        Timer t = new Timer();
+        t.schedule(new Temporizador(), mSecsControl, mSecsControl);
+	}
+	
+	/**
+	 * Clase interna Temporizador
+	 * Hereda de TimerTask e implementa run();
+	 */
+	private class Temporizador extends TimerTask {
+		
+		public void run() {
+			jugar();
+        }
+        
 	}
 	
 	

@@ -6,8 +6,9 @@
  ******************************************************************************/
 
 package control;
-import modelo.Auto;
-import modelo.componente.Motor;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Clase Principiante
@@ -20,9 +21,12 @@ import modelo.componente.Motor;
  * @see modelo.Habilidad Habilidad
  */
 public class Principiante extends Habilidad{
-	/* comentario acerca de la implementacion de la clase */
+	/* usamos Margen de error y tiempo de reaccion */
 	
 	private final static double MARGEN_DE_ERROR_PRINCIPIANTE = 6.0;
+	
+	/** tiempo de reaccion de PRINCIPIANTE */
+	private static final long mSecsControl = 500; //0.5 segundos
 	
 	/**
 	 * Metodo Jugar
@@ -31,6 +35,11 @@ public class Principiante extends Habilidad{
 	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
 	 */
 	public void jugar(){
+		
+		/* si el auto esta apagado */
+		if (!auto.isEncendido()){
+			auto.setEncendido(true);
+		}
 		
 		/* si el auto no esta acelerando */
 		if (!auto.isAcelerando()){
@@ -43,15 +52,13 @@ public class Principiante extends Habilidad{
 			pasarCambios();
 		}
 		
-		
 	}
 	
 	
 	private void pasarCambios(){
 		
 		double rpm = auto.getMotor().getRPM();
-		
-		Motor motor = auto.getMotor();
+	
 	
 		/* numeros aleaorios entre 0 y 5 incluidos */
         double x = (rnd.nextDouble() * MARGEN_DE_ERROR_PRINCIPIANTE);
@@ -61,32 +68,45 @@ public class Principiante extends Habilidad{
         MARGEN_DE_ERROR_RND_MAXIMAS = (x - y)*100;
         /* numero entre 0 y 250 tomando x e y */
         MARGEN_DE_ERROR_RND_MINIMAS = ((x + y) - (x + y)/2) *100;
-		
-        
-		if(motor.isAcelerando()){
 			
-			if( rpm >= (motor.getRevolucionesMaximasCambio() + MARGEN_DE_ERROR_RND_MAXIMAS) ){
+		
+		if(auto.isAcelerando()){
+			if(rpm >= (auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+ MARGEN_DE_ERROR_RND_MAXIMAS) ){
 				auto.embragar(true);
 				auto.getCaja().setCambio(auto.getCaja().getCambio()+1);
 				auto.embragar(false);
 			}
-		
-		}else{
-		
-			if( rpm < (motor.getRevolucionesMinimasEncendido() + MARGEN_DE_ERROR_RND_MINIMAS) ){
+		}else
+			if(rpm< (auto.getMotor().getRevolucionesMinimasEncendido()+ MARGEN_DE_ERROR_RND_MINIMAS) ){
 				auto.embragar(true);
 				auto.getCaja().setCambio(auto.getCaja().getCambio()-1);
 				auto.embragar(false);
 			}
-		}
 		
 	}
 	
-	
+	/**
+	 * Constructor de Principiante
+	 * Crea un Timer
+	 */
 	public Principiante(){
 		super();
+		//lanzamos el timer
+        Timer t = new Timer();
+        t.schedule(new Temporizador(), mSecsControl, mSecsControl);
 	}
 	
+	/**
+	 * Clase interna Temporizador
+	 * Hereda de TimerTask e implementa run();
+	 */
+	private class Temporizador extends TimerTask {
+		
+		public void run() {
+			jugar();
+        }
+        
+	}
 	
 	/* toString */
 	

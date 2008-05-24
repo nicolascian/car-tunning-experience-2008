@@ -7,8 +7,6 @@
 
 package control;
 import java.awt.event.KeyEvent;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import modelo.Auto;
 
@@ -26,15 +24,12 @@ import modelo.Auto;
  * @see  modelo.Habilidad  Habilidad
  */
 public class Virtual extends Jugador{
-	/* comentario acerca de la implementacion de la clase */
-
+	/* hacemos delegacion a Habilidad */
 
 	/**
 	 * Todo jugador Virtual, tiene una Habilidad que le dice que tan "bien" jugar.
 	 */
 	private Habilidad habilidad;
-
-	private static final long mSecsControl = 1000;  // control cada 1 segundo
 
 	/**
 	 * Constructor de Virtual con 3 parametros
@@ -47,10 +42,6 @@ public class Virtual extends Jugador{
 		super(nombre);
 		setAuto(auto);
 		setHabilidad(habilidad);
-		
-//		lanzamos el timer
-        Timer t = new Timer();
-        t.schedule(new Temporizador(), mSecsControl, mSecsControl);
 	}
 	
 	/**
@@ -65,19 +56,8 @@ public class Virtual extends Jugador{
 		super(PC_DEFAULT_NAME);
 		setAuto(auto);
 		setHabilidad(habilidad);
-		
-//		lanzamos el timer
-        Timer t = new Timer();
-        t.schedule(new Temporizador(), mSecsControl, mSecsControl);
 	}
 
-	private class Temporizador extends TimerTask {
-
-		public void run() {
-			jugar();
-        }
-        
-	}
 	
 	/**
 	 * Metodo Jugar
@@ -88,23 +68,10 @@ public class Virtual extends Jugador{
 	 */
 	public void jugar(){
 		
-		/* si el auto esta apagado */
-		if (!auto.isEncendido()){
-			/* encender el auto */
-			auto.setEncendido(true);
-		}
+		/* le paso la pelota a la habilidad */
+		habilidad.jugar();	
+	}
 		
-		/* SI ENCENDIDO: */
-		if (auto.isEncendido()){
-			
-			/* le paso la pelota a la habilidad */
-			habilidad.jugar();	
-		}
-		
-	}//fin jugar
-	
-	
-	
 	
 	/* getters y setters */
 
