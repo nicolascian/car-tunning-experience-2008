@@ -50,14 +50,14 @@ public class VistaVentana implements Observer{
 	
 	
 	/** Constructor de la vista con ventanas */
-	public VistaVentana(Auto auto, Pista pista){
+	public VistaVentana(){
 		
 		// Conectamos esta vista con el modelo
-		this.auto = auto;
+		this.auto = new Auto();
+		this.pista = new Pista(auto, auto, 1000);
 		this.auto.addObserver(this); 
-		this.pista = pista;
 		this.pista.addObserver(this); 
-
+		
 		
 		crearVentanaPrincipal();
 	}
@@ -70,16 +70,23 @@ public class VistaVentana implements Observer{
 	}
 	private void CargarJuego(){}
 	private void Manejar(){
-		new Virtual(new Principiante(), auto); 
-	}
-	private void Carrera(){
-		Frame frame = new Frame("Juego");
+		Frame frame = new Frame("Manejar - CTE08");
 		frame.setSize(300, 100);
 		frame.setVisible(true);
 		frame.addKeyListener(new Usuario(auto));
+		new VistaConsola(auto, pista);
+		
 	}
-	private void Auto(){}
-	private void Pista(){}
+	private void Carrera(){
+		Jugador jugador = new Virtual(new Principiante(), auto);
+		new VistaConsola(auto, pista);
+	}
+	private void Auto(){
+		//Taller
+	}
+	private void Pista(){
+		//se pude elegir una pista
+	}
 	private void Opciones(){}
 	private void Creditos(){}
 	
@@ -145,7 +152,7 @@ public class VistaVentana implements Observer{
 		ventana2.setVisible(true);  //mostramos la ventana
 		//agregamos el listener del evento de cerrado de la ventana		
 		ventana2.addWindowListener(new CloseListener());
-		
+	
 	}
 	
 	private void cerrarVentanaMenu(){
