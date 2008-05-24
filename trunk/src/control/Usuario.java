@@ -74,7 +74,7 @@ public class Usuario extends Jugador {
     		auto.activarNitro(true);
     	} break;
     	case 69 : {
-    		//System.out.println("E: Encender -> auto.setEncendido(true) ");
+    		System.out.println("E: Encender -> auto.setEncendido(true) ");
     		auto.setEncendido(true);
     	} break;
     	}//fin switch
