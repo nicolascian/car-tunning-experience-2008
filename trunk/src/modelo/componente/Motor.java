@@ -85,9 +85,9 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		
 	private double coeficienteDeDisipacionCalorico=0;
 	
-	private double coeficienteDeIncrementoRpm=0.0002;
+	private double coeficienteDeIncrementoRpm=0.00000002;
 	
-	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0.0003;
+	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0.15875;
 		
 	/**
 	 * @Pre: -
@@ -194,9 +194,11 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 				   decrementarRpm();		     
 		     /*Envio una fuerza al eje proporcional a las rpm y 
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
-		     Fuerza fuerza=new Fuerza(this,this.getAuto().getEjeDeTransmision(),getRPM()*
-			                       this.coeficienteDeProduccionDeFuerzaAPartirRpm,true);
-		     this.getAuto().getEjeDeTransmision().recibirFuerza(fuerza);
+		     System.out.println("Rpm "+getRPM() +" Fuerza en motor "+
+		    		            getRPM()*this.coeficienteDeProduccionDeFuerzaAPartirRpm);
+		     Fuerza fuerza=new Fuerza(this,getAuto().getCaja(),getRPM()*
+			                          coeficienteDeProduccionDeFuerzaAPartirRpm,true);
+		     getAuto().getCaja().recibirFuerza(fuerza);
 		  }catch (NullPointerException e){}
 	  }
 	}

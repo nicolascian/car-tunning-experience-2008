@@ -91,31 +91,40 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
-	  if(this.getCambio()!=0){
-		if(fuerza.getEmisor()==getAuto().getEjeDeTransmision()){
+	  
+	  if(getCambio()!=0)
+		if(fuerza.getEmisor()==getAuto().getMotor()){
 			  //se pasa la mitad de la fuerza a cada eje
-			  double valorDeLaFuerza=0;
+			 
+			double valorDeLaFuerza=0;
 			  try{
 			     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
 			  }catch (Exception e){}
+			  
 			  //transmito fuerza a eje delantero
-			  Fuerza fuerzaAEje=new Fuerza(this,getAuto().getEjeDelantero(),valorDeLaFuerza/2,true);
+			  Fuerza fuerzaAEje=new Fuerza(this,getAuto().getEjeDelantero(),
+					                       valorDeLaFuerza/2,true);
+			  System.out.println("Fuerza en caja "+valorDeLaFuerza);
 			  getAuto().getEjeDelantero().recibirFuerza(fuerzaAEje);
+			 
 			  //transmito fuerza a eje trasero			  			
-			  fuerzaAEje=new Fuerza(this,getAuto().getEjeTrasero(),valorDeLaFuerza/2,true);
-			  this.getAuto().getEjeTrasero().recibirFuerza(fuerzaAEje);  	 
+			  fuerzaAEje=new Fuerza(this,getAuto().getEjeTrasero(),
+					                valorDeLaFuerza/2,true);
+			  this.getAuto().getEjeTrasero().recibirFuerza(fuerzaAEje);
+			  
 		}else{
               //viene de alguno de los ejes
         	  double valorDeLaFuerza=0;
 			  try{
 			     valorDeLaFuerza=fuerza.getValorDeLaFuerza()/this.getRelacionDeCambio();
 			  }catch (Exception e){}
-			  //transmito fuerza al ejeDeTransmision 
-			  Fuerza fuerzaAEje=new Fuerza(this,getAuto().getEjeDeTransmision(),valorDeLaFuerza,true);
-			  getAuto().getEjeDeTransmision().recibirFuerza(fuerzaAEje);
+			  //transmito fuerza al motor
+			  Fuerza fuerzaAMotor=new Fuerza(this,getAuto().getMotor(),valorDeLaFuerza,
+					                       true);
+			  getAuto().getMotor().recibirFuerza(fuerzaAMotor);
 			  Chequear();
 		}
-	  }
+	  
 	}
 
 	/**
@@ -152,8 +161,8 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		   //se cambian las revoluciones maximas para el cambio actual
 		   setRevolucionesMaximasMotorParaCambioActual(calcularRevolucionesMaximasMotorParaCambioActual());
 		   //se pasa una fuerza motor 
-		   Fuerza fuerza=new Fuerza(this,getAuto().getEjeDeTransmision(),valorDeFuerza,true);
-		   this.getAuto().getEjeDeTransmision().recibirFuerza(fuerza);
+		   Fuerza fuerza=new Fuerza(this,getAuto().getMotor(),valorDeFuerza,true);
+		   this.getAuto().getMotor().recibirFuerza(fuerza);
 		}//fin if
 		if (!isEmbragado()) {this.desgastar();}
 		
