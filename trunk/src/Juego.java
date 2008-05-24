@@ -27,7 +27,7 @@ public class Juego{
 
 		Auto auto1 = new Auto(); //creo un auto	
 		
-		Jugador jugador1 = new Usuario(auto1); //creo un control y le paso el auto 
+		Jugador jugador1 = new Virtual(new Principiante(), auto1); //creo un control y le paso el auto 
 		//Jugador jugador2 = new Virtual(new Principiante, auto2); //creo un control automatico y le paso, habilidad y auto
 		
 		Pista pista = new Pista(auto1, auto1, 100); //creo una pista y le pongo el auto
@@ -40,6 +40,7 @@ public class Juego{
 
 		// esto es necesario para que las vistas se actualicen la 1ra vez
 		pista.ActualizarObservadores();
+		auto1.ActualizarObservadores();
 		
 	
 	}// fin main

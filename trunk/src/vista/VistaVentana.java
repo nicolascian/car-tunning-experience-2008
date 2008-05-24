@@ -58,46 +58,46 @@ public class VistaVentana implements Observer{
 		this.pista = pista;
 		this.pista.addObserver(this); 
 
-		crearVentana1();
+		crearVentanaPrincipal();
 	}
 	
 	
-	private void crearVentana1(){
+	private void crearVentanaPrincipal(){
 		
 		ventana1 = new JFrame("Car Tunnning Experience 2008");
 		
 		// ponemos el panelPrimero en la ventana
 		ventana1.add("North", getPanelPrimero());
 		
-		ventana1.setSize(400,100);  //seteamos las dimensiones de la ventana
+		ventana1.setSize(400,50);  //seteamos las dimensiones de la ventana
 		ventana1.setVisible(true);  //mostramos la ventana
 
 		//agregamos el listener del evento de cerrado de la ventana		
 		ventana1.addWindowListener(new CloseListener());
 	}
 	
-	private void cerrarVentana1(){
+	private void cerrarVentanaPrincipal(){
 		// como no se cerrar ventanas, la desaparezco
 		// y lo pongo en null, para que el recolector se encargue
 		ventana1.setVisible(false);
 		ventana1 = null;
 	}
 	
-	private void crearVentana2(){
+	private void crearVentanaMenu(){
 		
 		ventana2 = new JFrame("Car Tunnning Experience 2008");
 		
 		// ponemos el panelPrimero en la ventana
 		ventana2.add("North", getPanelSegundo());
 		
-		ventana2.setSize(700,100);  //seteamos las dimensiones de la ventana
+		ventana2.setSize(700,50);  //seteamos las dimensiones de la ventana
 		ventana2.setVisible(true);  //mostramos la ventana
 
 		//agregamos el listener del evento de cerrado de la ventana		
 		ventana2.addWindowListener(new CloseListener());
 	}
 	
-	private void cerrarVentana2(){
+	private void cerrarVentanaMenu(){
 		// como no se cerrar ventanas, la desaparezco
 		// y lo pongo en null, para que el recolector se encargue
 		ventana2.setVisible(false);
@@ -134,8 +134,8 @@ public class VistaVentana implements Observer{
 			botonJuegoNuevo.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					System.out.println("Juego Nuevo");
-					cerrarVentana1();
-					crearVentana2();
+					cerrarVentanaPrincipal();
+					crearVentanaMenu();
 				}
 			});
 		}

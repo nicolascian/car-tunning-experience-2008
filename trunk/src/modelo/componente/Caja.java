@@ -156,6 +156,8 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		   this.getAuto().getEjeDeTransmision().recibirFuerza(fuerza);
 		}//fin if
 		if (!isEmbragado()) {this.desgastar();}
+		
+		ActualizarObservadores();
 	}
 		
 	/**
@@ -268,5 +270,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	public void setRevolucionesMaximasMotorParaCambioActual(
 			double revolucionesMaximasMotorParaCambioActual) {
 		this.revolucionesMaximasMotorParaCambioActual = revolucionesMaximasMotorParaCambioActual;
+		
+		ActualizarObservadores();
 	}
 }
