@@ -106,7 +106,7 @@ public class TestAutoDeEscritorio extends TestCase {
 			System.out.print(auto.getEjeTrasero().getNeumaticoIzquierdo().calcularAdherencia());
 			
 			System.out.print("  TD: ");
-			System.out.print(auto.getEjeTrasero().getNeumaticoDerecho().calcularAdherencia());
+			System.out.println(auto.getEjeTrasero().getNeumaticoDerecho().calcularAdherencia());
 
 			//System.out.print(" RpmMaxCambio: ");
 			//System.out.println(auto.getMotor().getRevolucionesMaximasCambio());
