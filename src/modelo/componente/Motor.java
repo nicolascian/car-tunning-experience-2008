@@ -128,22 +128,26 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 *  8000 rpm como maximo
 	*/
 	public Motor(){
+	  //inicializacion de cilindara y cilindros
 		setCantidadCilindros(4);
 		setCilindrada(1600);
-		//inicializacion de revoluciones
+	  //inicializacion de revoluciones
 		setRevolucionesMaximas(8000);
-		RPM=0;
-		//inicializacion de temperaturas
-		setTemperaturaAire(25); //°C
+		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
+	  //inicializacion de temperatura
 		setTemperatura(TEMPERATURA_INICIAL);
-		//inicilizacion de coeficientes
+	  //inicilizacion de coeficientes
 		setCoeficienteDeAbsorcionCalorico(COEFICIENTE_DE_ABSORCION_CALORICO_INICIAL);
 		setCoeficienteDeDisipacionCalorico(COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL);
-		encendido=false;
-		acelerando=false;
+	  //inicializacion de atributos booleanos
+		setEncendido(false);
+		setAcelerando(false);
+	  //auto y estado
 		setAuto(null);
 		setEstado(100);
-		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
+	  //inicializacion de potencias 	
+		potenciaMaxima=getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000;
+		potenciaExtra=0;
 	}
 	
 	/* (non-Javadoc)
@@ -157,19 +161,19 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
-		if(fuerza!=null){
-			afectarRpmPorFuerza(fuerza);
-			if(isAcelerando())
-			   incrementarRpm();
-			else
-			   decrementarRpm();
-		}
+		try{	
+		   afectarRpmPorFuerza(fuerza);
+		}catch(NullPointerException e){}
+		if(isAcelerando())
+		   incrementarRpm();
+		else
+		   decrementarRpm();
 	}
 	
 	private void afectarRpmPorFuerza(Fuerza fuerza){
-		   double rpm=0;
+		   double rpm=RPM;
 		   try{
-			   rpm=RPM+fuerza.getValorDeLaFuerza()/coeficienteDeProduccionDeFuerzaAPartirRpm;
+			   rpm=rpm+fuerza.getValorDeLaFuerza()/coeficienteDeProduccionDeFuerzaAPartirRpm;
 		   }catch (Exception e){}
 		   if(rpm<getRevolucionesMinimasEncendido())
 			  rpm=getRevolucionesMinimasEncendido();
@@ -183,16 +187,18 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 *  @Post: Se ha seteado la instancia como acelerando.    
 	*/
 	public void acelerar(boolean valor){
-	  if(isEncendido()){
-		  //se obtiene potencia extra del resto de componentes
-		  setPotenciaExtra(getAuto().getPotenciaTotal());
-		  setAcelerando(valor);
-		  /*Envio una fuerza al eje proporcional a las rpm y 
-		    al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
-		  Fuerza fuerza=new Fuerza(this,this.getAuto().getEjeDeTransmision(),getRPM()*
+	  if(isEncendido()){	  
+		  try{   
+		     //se obtiene potencia extra del resto de componentes
+		     setPotenciaExtra(getAuto().getPotenciaTotal());
+		     setAcelerando(valor);
+	         /*Envio una fuerza al eje proporcional a las rpm y 
+		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
+		     Fuerza fuerza=new Fuerza(this,this.getAuto().getEjeDeTransmision(),getRPM()*
 			                       this.coeficienteDeProduccionDeFuerzaAPartirRpm,true);
-		  this.getAuto().getEjeDeTransmision().recibirFuerza(fuerza);
-	  }//fin encendido	
+		     this.getAuto().getEjeDeTransmision().recibirFuerza(fuerza);
+		  }catch (NullPointerException e){}
+	  }
 	}
 	
 	/**
@@ -244,14 +250,16 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 *  motor, tal como si estubiese regulando.    
 	*/
 	public void encender(){
-		if((!isEncendido())&&(getAuto()!=null)){
+		if(!isEncendido()){
 			setEncendido(true);
-		//seteo de temperaturas
+		  //seteo de temperaturas
 			setTemperatura(TEMPERATURA_INICIAL);
-		//seteo de revoluciones
+		  //seteo de revoluciones
 			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 			setRPM(getRevolucionesMinimasEncendido());
-			getAuto().getCaja().setCambio(0);
+			try{
+			   getAuto().getCaja().setCambio(0);
+			}catch(NullPointerException e){}
 			setAcelerando(false);
 		}
 	}
@@ -262,14 +270,14 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 *  para acelerar.    
 	*/
 	public void apagar(){
-		if(isEncendido()){
-			getAuto().getCaja().setCambio(0);
-			setEncendido(false);
+		    try{
+		      getAuto().getCaja().setCambio(0);
+		    }catch(Exception e){}
+		    setEncendido(false);
 			setRPM(0);
 			setTemperatura(25);
 			setAcelerando(false);
 			this.liberarFuerzas();
-		}
 	}
 		
 	/**

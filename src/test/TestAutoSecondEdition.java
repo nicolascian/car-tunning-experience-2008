@@ -111,14 +111,7 @@ public class TestAutoSecondEdition extends TestCase {
 			System.out.print("  P: ");
 			System.out.println((long)auto.getPosicion());
 			
-			
-
 			contador++;
 		}//fin while
-		
-		
-		
 	}
-	
-
 }

@@ -66,14 +66,14 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		  setEjeDelantero(new Eje());
 		  ejeDelantero.setLlantaDerecha(new Llanta());
 		  ejeDelantero.setLlantaIzquierda(new Llanta());
-		  ejeDelantero.setNeumaticoDerecho(new NeumaticoMixto());
-		  ejeDelantero.setNeumaticoIzquierdo(new NeumaticoMixto());
+		  //ejeDelantero.setNeumaticoDerecho(new NeumaticoMixto());
+		  //ejeDelantero.setNeumaticoIzquierdo(new NeumaticoMixto());
 		/* eje trasero */
 		  setEjeTrasero(new Eje());
 		  ejeTrasero.setLlantaDerecha(new Llanta());
 		  ejeTrasero.setLlantaIzquierda(new Llanta());
-		  ejeTrasero.setNeumaticoDerecho(new NeumaticoMixto());
-		  ejeTrasero.setNeumaticoIzquierdo(new NeumaticoMixto());
+		  //ejeTrasero.setNeumaticoDerecho(new NeumaticoMixto());
+		  //ejeTrasero.setNeumaticoIzquierdo(new NeumaticoMixto());
 		//inicilizacion de otros atributos
 		  setEncendido(false);
 	      this.embragar(false);
