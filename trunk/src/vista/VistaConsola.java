@@ -26,7 +26,7 @@ public class VistaConsola implements Observer
 		
 		// Conectamos esta vista con el modelo
 		this.pista = pista;
-		this.pista.addObserver(this); 
+		this.pista.addObserver(this);
 	}
 
 	//Metodo que es llamado por el modelo al actualizarse el mismo

@@ -25,6 +25,7 @@ public class VistaVentana implements Observer{
 
 	private Auto auto = null; //referencia al modelo (auto)
 	private Pista pista = null; //referencia al modelo (pista)
+	private Jugador jugador = null; //referencia al control (jugador)
 	
 	private JFrame ventana1  = null; //marco que contendra los controles del primer menu
 	private JFrame ventana2  = null; //marco que contendra los controles del segundo menu
@@ -50,14 +51,17 @@ public class VistaVentana implements Observer{
 	
 	
 	/** Constructor de la vista con ventanas */
-	public VistaVentana(Auto auto, Pista pista){
+	public VistaVentana(Auto auto, Pista pista, Jugador jugador){
 		
 		// Conectamos esta vista con el modelo
 		this.auto = auto;
 		this.auto.addObserver(this); 
 		this.pista = pista;
 		this.pista.addObserver(this); 
+		
+		this.jugador = jugador;
 
+		
 		crearVentanaPrincipal();
 	}
 	
@@ -95,6 +99,7 @@ public class VistaVentana implements Observer{
 
 		//agregamos el listener del evento de cerrado de la ventana		
 		ventana2.addWindowListener(new CloseListener());
+		ventana2.addKeyListener(jugador);
 	}
 	
 	private void cerrarVentanaMenu(){
@@ -103,6 +108,8 @@ public class VistaVentana implements Observer{
 		ventana2.setVisible(false);
 		ventana2 = null;
 	}
+	
+	
 	
 	private JPanel getPanelPrimero(){
 		if (panelPrimero == null) {
