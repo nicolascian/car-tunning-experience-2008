@@ -25,7 +25,14 @@ public class VistaVentana implements Observer{
 	private Frame frame; //marco que contendr� los controles
 	private Label l1;
 	
-//	Constructor de la vista
+	
+	public void update(Observable arg0, Object arg1) {
+		
+		l1.setText("updated");	
+	}
+	
+	
+	/** Constructor de la vista con ventanas */
 	public VistaVentana(Pista pista,Jugador jugador){
 		
 //		armado de la ventana
@@ -56,13 +63,6 @@ public class VistaVentana implements Observer{
 		
 	}
 	
-	
-	public void update(Observable arg0, Object arg1) {
-		
-		
-		l1.setText("updated");
-		
-	}
 	
 //	Clase auxiliar para escuchar el evento de cerrado de la ventana
 	public static class CloseListener extends WindowAdapter
