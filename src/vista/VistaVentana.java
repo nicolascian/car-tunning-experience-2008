@@ -71,6 +71,7 @@ public class VistaVentana implements Observer{
 		cerrarVentanaMenu();
 		//ya esta creada
 		ventanaJuego.setVisible(true);
+		new VistaConsola(auto, pista);	
 	}
 	private void Carrera(){
 		Jugador jugador = new Virtual(new Principiante(), auto);
@@ -312,8 +313,7 @@ public class VistaVentana implements Observer{
 		ventanaJuego.setLocationRelativeTo(null); //centrada
 		ventanaJuego.addKeyListener(new Usuario(auto));
 		//agregamos el listener del evento de cerrado de la ventana		
-		ventanaJuego.addWindowListener(new CloseListener());
-		new VistaConsola(auto, pista);		
+		ventanaJuego.addWindowListener(new CloseListener());	
 	}
 	
 	private void cerrarVentanaJuego(){
