@@ -85,9 +85,9 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		
 	private double coeficienteDeDisipacionCalorico=0;
 	
-	private double coeficienteDeIncrementoRpm=0;
+	private double coeficienteDeIncrementoRpm=0.0002;
 	
-	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0;
+	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0.0003;
 		
 	/**
 	 * @Pre: -
@@ -164,10 +164,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		try{	
 		   afectarRpmPorFuerza(fuerza);
 		}catch(NullPointerException e){}
-		if(isAcelerando())
-		   incrementarRpm();
-		else
-		   decrementarRpm();
 	}
 	
 	private void afectarRpmPorFuerza(Fuerza fuerza){
@@ -192,7 +188,11 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     //se obtiene potencia extra del resto de componentes
 		     setPotenciaExtra(getAuto().getPotenciaTotal());
 		     setAcelerando(valor);
-	         /*Envio una fuerza al eje proporcional a las rpm y 
+		     if(isAcelerando())
+				   incrementarRpm();
+				else
+				   decrementarRpm();		     
+		     /*Envio una fuerza al eje proporcional a las rpm y 
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
 		     Fuerza fuerza=new Fuerza(this,this.getAuto().getEjeDeTransmision(),getRPM()*
 			                       this.coeficienteDeProduccionDeFuerzaAPartirRpm,true);
@@ -228,6 +228,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		  setRPM(rpmFinal);
 		  this.setCoeficienteDeIncrementoRpm(coeficienteDeIncrementoRpm+
 			                                2*Math.sqrt(coeficienteDeIncrementoRpm));
+		 
 		}
 		else
 		  this.setRPM(this.getRevolucionesMaximas());
