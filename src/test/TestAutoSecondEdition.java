@@ -91,10 +91,7 @@ public class TestAutoSecondEdition extends TestCase {
 		int contador =0;
 		while( contador <= 500){
 
-			
-			long tiempo=System.currentTimeMillis()+1000;
-			 while(System.currentTimeMillis()<tiempo);  
-			
+			auto.acelerar(true);			
 
 			System.out.print("Cambio: ");
 			System.out.print(auto.getCaja().getCambio());
