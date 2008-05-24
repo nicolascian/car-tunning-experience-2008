@@ -1,5 +1,6 @@
 package test;
 import modelo.*;
+import modelo.componente.Manual;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -28,7 +29,6 @@ public class TestAuto {
 		assertNotNull(auto.getMotor());
 		assertNotNull(auto.getSuspension());
 		assertNotNull(auto.getTurbo());
-		assertNotNull(auto.getEjeDeTransmision());
 		assertFalse(auto.isEncendido());
 		assertTrue(auto.isAutomatica());
 		assertFalse(auto.isManual());
@@ -102,12 +102,17 @@ public class TestAuto {
 	  try{	 
 		  auto.setEncendido(true);
 		  assertTrue(auto.isEncendido());
+		  auto.setCaja(new Manual(5));
 		  int contador=0;
-		  while(contador<20000){
+		  auto.embragar(true);
+		  auto.getCaja().setCambio(1);
+		  auto.embragar(false);
+		  while(contador<200){
 		     auto.acelerar(true);
 		     contador++;
 		  }
-		  System.out.println(auto.getMotor().getRPM());
+		  System.out.println(auto.getMotor().getRPM()+" velocidad "+auto.getVelocidad()+" cambio "+
+				  			 auto.getCaja().getCambio());
 		  //assertTrue(auto.getMotor().getRPM()>auto.getMotor().getRevolucionesMinimasEncendido());
       }catch (AssertionError a){
 		 a.printStackTrace();

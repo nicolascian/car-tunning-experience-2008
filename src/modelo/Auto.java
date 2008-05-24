@@ -39,7 +39,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	private Freno freno=null;
 	private Eje ejeDelantero=null;
 	private Eje ejeTrasero=null;
-	private EjeDeTransmision ejeDeTransmision=null;
+	
 	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.11232;
 	
 	/**
@@ -61,7 +61,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		  setTurbo(new Turbo());
 		  setNitro(new Nitro());
 		  setFreno(new FrenoCinta());
-		  setEjeDeTransmision(new EjeDeTransmision(this));
+		  
 		/* eje delantero */
 		  setEjeDelantero(new Eje());
 		  ejeDelantero.setLlantaDerecha(new Llanta());
@@ -588,20 +588,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		return nitro;
 	}
 	
-	/**
-	 * @return the ejeDeTransmision
-	 */
-	public EjeDeTransmision getEjeDeTransmision() {
-		return ejeDeTransmision;
-	}
-
-	/**
-	 * @param ejeDeTransmision the ejeDeTransmision to set
-	 */
-	public void setEjeDeTransmision(EjeDeTransmision ejeDeTransmision) {
-		this.ejeDeTransmision = ejeDeTransmision;
-	}
-
 	public void setNitro(Nitro nitro) {
 		this.nitro = nitro;
 	}
@@ -640,7 +626,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public double getPeso(){
 	  double peso=motor.getPeso()+caja.getPeso()+embrague.getPeso()+combustible.getPeso()+alimentacion.getPeso()+
 		     carroceria.getPeso()+suspension.getPeso()+escape.getPeso()+turbo.getPeso()+nitro.getPeso()+
-		     freno.getPeso()+ejeDelantero.getPeso()+ejeTrasero.getPeso()+ejeDeTransmision.getPeso();
+		     freno.getPeso()+ejeDelantero.getPeso()+ejeTrasero.getPeso();
 	  return(peso);
 	}
 	

@@ -157,4 +157,18 @@ public class TestRepositorioDeFuerzas {
 				a.printStackTrace();
 	        }
 	}
+	
+	@Test 
+	public void insertarFuerzaRetornarCopia() {
+		 try{	
+			Fuerza fuerza=new Fuerza(receptor1,receptor2,2,true);
+			Fuerza fuerza2=receptor2.getRepositorio().insertarFuerzaRetornarCopia(fuerza);	
+			assertTrue(fuerza.getEmisor()==fuerza2.getEmisor());
+			assertTrue(fuerza.getReceptor()==fuerza2.getReceptor());	
+			//assertTrue(fuerza.getValorDeLaFuerza()==fuerza2.getValorDeLaFuerza());
+		 }catch(AssertionError a){
+			a.printStackTrace();
+	     }
+	}
+	
 }
