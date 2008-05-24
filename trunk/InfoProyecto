@@ -55,14 +55,14 @@ Lucas:		Desgastar y ObtenerPotencia
 			Suspension <------------------------- c/pruebas
 
 Nico C:		Clima <------------------------------Listo c/ test
-			Jugador <----------------------------esta jerarquia va a pasar a control
-			  Usuario <--------------------------
-			  Virtual <--------------------------
-			    Habilidad <----------------------
-			      Experto <----------------------
-			      Intermedio <-------------------
-			      Principiante <-----------------
-			Alimentacion <-----------------------Listo no se me ocurre un test
+			Jugador <----------------------------Listo
+			  Usuario <--------------------------Listo
+			  Virtual <--------------------------Listo
+			    Habilidad <----------------------Listo
+			      Experto <----------------------Listo
+			      Intermedio <-------------------Listo
+			      Principiante <-----------------Listo
+			Alimentacion <-----------------------Listo sin test
 			  Carburador <-----------------------Listo c/ test
 			  Inyeccion <------------------------Listo c/ test
 			Nitro <------------------------------Listo
