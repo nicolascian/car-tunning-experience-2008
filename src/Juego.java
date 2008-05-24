@@ -40,6 +40,7 @@ public class Juego{
 
 		// esto es necesario para que las vistas se actualicen la 1ra vez
 		pista.ActualizarObservadores();
+		
 	
 	}// fin main
 	

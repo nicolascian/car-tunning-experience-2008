@@ -122,36 +122,21 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		this.embragar(false);
     }
 	
+	/**
+	 * se ejecuta cuando hay cambios en el auto
+	 * posicion, velocidad, RPM, Estado.
+	 * caja: cambio, RPMmaximas
+	 */
+	public void ActualizarObservadores(){
+		setChanged();
+		notifyObservers();		
+	}
+	
 	public void actualizarVelocidadYPosicion(){
 		Velocidad = Velocidad+getEjeDelantero().getRpm()*CONSTANTE_DE_OBTENCION_DE_VELOCIDAD;
-		Posicion +=getVelocidad() * (0.00000006);
-	}
-			
-	/**
-	 * @Pre: Se ha creado la instancia de la clase Auto.
-	 * @Post: Se ha obtenido la velocidad de acuerdo a la potencia.
-	*/
-	public double getVelocidad(){
-		return Velocidad;
-	}
-	
-	/**
-	 * @Pre: Se ha creado la instancia de la clase Auto.
-	 * @Post: Se ha obtenido la posicion en la pista de acuerdo a la velocidad y aceleracion de la
-	 * instancia. 
-	 * @return
-	*/
-	public double getPosicion() {
-		return Posicion;
-	}
-
-	
-	/**
-	 * @Pre: Se ha creado la instancia de la clase Auto.
-	 * @Post: Se ha seteado la posicion del auto en la pista.
-	*/
-	public void setPosicion(double posicion) {
-		Posicion = posicion;
+		Posicion += getVelocidad() * (0.00000006);
+		//notifico a los observadores
+		ActualizarObservadores();
 	}
 
 	/**
@@ -190,6 +175,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		while (it.hasNext()){
 			it.next().desgastar();
 		}
+		//notifico a los observadores
+		ActualizarObservadores();
 	}	
 	
 	/**
@@ -337,6 +324,33 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		   return Estado/componentes;
 		else
 		   return 0;
+	}
+	
+	/**
+	 * @Pre: Se ha creado la instancia de la clase Auto.
+	 * @Post: Se ha obtenido la velocidad de acuerdo a la potencia.
+	*/
+	public double getVelocidad(){
+		return Velocidad;
+	}
+	
+	/**
+	 * @Pre: Se ha creado la instancia de la clase Auto.
+	 * @Post: Se ha obtenido la posicion en la pista de acuerdo a la velocidad y aceleracion de la
+	 * instancia. 
+	 * @return
+	*/
+	public double getPosicion() {
+		return Posicion;
+	}
+
+	
+	/**
+	 * @Pre: Se ha creado la instancia de la clase Auto.
+	 * @Post: Se ha seteado la posicion del auto en la pista.
+	*/
+	public void setPosicion(double posicion) {
+		Posicion = posicion;
 	}
 
 	/**
