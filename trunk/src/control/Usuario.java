@@ -21,7 +21,7 @@ import java.awt.event.*;
  * @see  modelo.Jugador  Jugador
  */
 public class Usuario extends Jugador {
-	/* comentario acerca de la implementacion de la clase */
+	/* trabajamos de KeyListener */
 	
 	/**
 	 * Constructor con parametros de Usuario
