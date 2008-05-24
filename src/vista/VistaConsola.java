@@ -40,7 +40,7 @@ public class VistaConsola implements Observer
 				
 		" Cambio: " + auto.getCaja().getCambio() + "   " +
 		"RPM-> " + (long)auto.getMotor().getRPM() + "  " + "-" + "  " +
-		 (long)auto.getCaja().getRevolucionesMaximasMotorParaCambioActual() + " <-RPMoptimas"  + '\n' + '\n' +
+		 (long)auto.getCaja().getRevolucionesMaximasMotorParaCambioActual() + " <-RPMoptimas" + '\n' + '\n' +
 		
 		" Velocidad: " + (long)auto.getVelocidad() + " Km/h" + "     " +
 		"Distancia recorrida: " + (long)auto.getPosicion() + " m" + '\n' + '\n' +
@@ -50,6 +50,8 @@ public class VistaConsola implements Observer
 		"  Embragado: " + auto.isEmbragado() + '\n' +
 		" Nitro act.: " + auto.isNitroActivado() + '\n' +
 		"  Encendido: " + auto.isEncendido() + '\n' +  '\n' +
+		
+		"     Estado: "+ auto.getEstado() +'\n' +
 		
 		"-------------------------------------------------------------------" + '\n' +
 		" F:Acelerador D:Freno S:Embrague A:Nitro E:Encender" + '\n' +

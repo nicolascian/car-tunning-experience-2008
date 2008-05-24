@@ -63,16 +63,33 @@ public class VistaVentana implements Observer{
 	}
 	
 	
+	/* BOTONES ACIONES********************************************************************************/
+	private void JuegoNuevo(){
+		cerrarVentanaPrincipal();
+		crearVentanaMenu();
+	}
+	private void CargarJuego(){}
+	private void Manejar(){
+		new Virtual(new Principiante(), auto); 
+	}
+	private void Carrera(){
+		Frame frame = new Frame("Juego");
+		frame.setSize(300, 100);
+		frame.setVisible(true);
+		frame.addKeyListener(new Usuario(auto));
+	}
+	private void Auto(){}
+	private void Pista(){}
+	private void Opciones(){}
+	private void Creditos(){}
+	
+	/* VENTANA PRINCIPAL *****************************************************************************/
 	private void crearVentanaPrincipal(){
-		
 		ventana1 = new JFrame("Car Tunnning Experience 2008");
-		
 		// ponemos el panelPrimero en la ventana
 		ventana1.add("North", getPanelPrimero());
-		
 		ventana1.setSize(250,65);  //seteamos las dimensiones de la ventana
 		ventana1.setVisible(true);  //mostramos la ventana
-
 		//agregamos el listener del evento de cerrado de la ventana		
 		ventana1.addWindowListener(new CloseListener());
 	}
@@ -84,16 +101,48 @@ public class VistaVentana implements Observer{
 		ventana1 = null;
 	}
 	
+	private JPanel getPanelPrimero(){
+		if (panelPrimero == null) {
+			panelPrimero = new JPanel();
+			panelPrimero.add(getBotonJuegoNuevo());
+			panelPrimero.add(getBotonCargarJuego());
+		}
+		return panelPrimero;
+	}
+	
+	private JButton getBotonJuegoNuevo(){
+		if (botonJuegoNuevo == null) {
+			botonJuegoNuevo = new JButton();
+			botonJuegoNuevo.setText("Juego Nuevo");
+			botonJuegoNuevo.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					JuegoNuevo();
+				}
+			});
+		}
+		return botonJuegoNuevo;
+	}
+	
+	private JButton getBotonCargarJuego(){
+		if (botonCargarJuego == null) {
+			botonCargarJuego = new JButton();
+			botonCargarJuego.setText("Cargar Juego");
+			botonCargarJuego.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					CargarJuego();
+				}
+			});
+		}
+		return botonCargarJuego;
+	}
+	
+	/* VENTANA MENU **********************************************************************************/
 	private void crearVentanaMenu(){
-		
 		ventana2 = new JFrame("Car Tunnning Experience 2008");
-		
 		// ponemos el panelPrimero en la ventana
 		ventana2.add("North", getPanelSegundo());
-		
 		ventana2.setSize(510,65);  //seteamos las dimensiones de la ventana
 		ventana2.setVisible(true);  //mostramos la ventana
-
 		//agregamos el listener del evento de cerrado de la ventana		
 		ventana2.addWindowListener(new CloseListener());
 		
@@ -104,17 +153,6 @@ public class VistaVentana implements Observer{
 		// y lo pongo en null, para que el recolector se encargue
 		ventana2.setVisible(false);
 		ventana2 = null;
-	}
-	
-	
-	
-	private JPanel getPanelPrimero(){
-		if (panelPrimero == null) {
-			panelPrimero = new JPanel();
-			panelPrimero.add(getBotonJuegoNuevo());
-			panelPrimero.add(getBotonCargarJuego());
-		}
-		return panelPrimero;
 	}
 	
 	private JPanel getPanelSegundo(){
@@ -131,42 +169,13 @@ public class VistaVentana implements Observer{
 		return panelSegundo;
 	}
 	
-	private JButton getBotonJuegoNuevo(){
-		if (botonJuegoNuevo == null) {
-			botonJuegoNuevo = new JButton();
-			botonJuegoNuevo.setText("Juego Nuevo");
-			botonJuegoNuevo.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("Juego Nuevo");
-					cerrarVentanaPrincipal();
-					crearVentanaMenu();
-				}
-			});
-		}
-		return botonJuegoNuevo;
-	}
-	
-	private JButton getBotonCargarJuego(){
-		if (botonCargarJuego == null) {
-			botonCargarJuego = new JButton();
-			botonCargarJuego.setText("Cargar Juego");
-			botonCargarJuego.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("Cargar Juego");
-				}
-			});
-		}
-		return botonCargarJuego;
-	}
-	
 	private JButton getBotonManejar(){
 		if (botonManejar == null) {
 			botonManejar = new JButton();
 			botonManejar.setText("Manejar");
 			botonManejar.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("Manejar");
-					Jugador jugador = new Virtual(new Principiante(), auto); 
+					Manejar();
 				}
 			});
 		}
@@ -179,11 +188,7 @@ public class VistaVentana implements Observer{
 			botonCarrera.setText("Carrera");
 			botonCarrera.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("Carrera");
-					Frame frame = new Frame("Juego");
-					frame.setSize(300, 100);
-					frame.setVisible(true);
-					frame.addKeyListener(new Usuario(auto));
+					Carrera();
 				}
 			});
 		}
@@ -196,7 +201,7 @@ public class VistaVentana implements Observer{
 			botonAuto.setText("Auto");
 			botonAuto.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("Auto");
+					Auto();
 				}
 			});
 		}
@@ -209,11 +214,24 @@ public class VistaVentana implements Observer{
 			botonPista.setText("Pista");
 			botonPista.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("Pista");
+					Pista();
 				}
 			});
 		}
 		return botonPista;
+	}
+		
+	private JButton getBotonOpciones(){
+		if (botonOpciones == null) {
+			botonOpciones = new JButton();
+			botonOpciones.setText("Opciones");
+			botonOpciones.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Opciones();
+				}
+			});
+		}
+		return botonOpciones;
 	}
 	
 	private JButton getBotonCreditos(){
@@ -222,26 +240,14 @@ public class VistaVentana implements Observer{
 			botonCreditos.setText("Creditos");
 			botonCreditos.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("Creditos");
+					Creditos();
 				}
 			});
 		}
 		return botonCreditos;
 	}
 	
-	private JButton getBotonOpciones(){
-		if (botonOpciones == null) {
-			botonOpciones = new JButton();
-			botonOpciones.setText("Opciones");
-			botonOpciones.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("Opciones");
-				}
-			});
-		}
-		return botonOpciones;
-	}
-	
+	/* ***********************************************************************************************/
 //	Clase auxiliar para escuchar el evento de cerrado de la ventana
 	public static class CloseListener extends WindowAdapter
 	{	public void windowClosing(WindowEvent e)
