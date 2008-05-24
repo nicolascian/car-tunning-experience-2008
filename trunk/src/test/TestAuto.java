@@ -63,8 +63,8 @@ public class TestAuto {
 	public void testSetEncendido(){
 		try{
 			auto.setEncendido(true);
-			assertTrue("Error Encendido Auto",auto.isEncendido());
-			assertTrue("Error Encendido Motor",auto.getMotor().isEncendido());
+			assertTrue(auto.isEncendido());
+			assertTrue(auto.getMotor().isEncendido());
 		}catch(AssertionError a){
 			 a.printStackTrace();
 			 a.getMessage();
@@ -75,12 +75,10 @@ public class TestAuto {
 	public void testAcelerar(){
 	  try{	 
 		  auto.acelerar(true);
-	      assertTrue("Error acelerando auto",auto.isAcelerando());
-		  //assertTrue("Error acelerando motor",auto.getMotor().isAcelerando());
-		  //assertTrue("Error Encendido motor",auto.getMotor().isEncendido());
-	  }catch (AssertionError a){
+	      assertTrue(auto.isAcelerando());
+		  //assertTrue(auto.getMotor().isAcelerando());
+      }catch (AssertionError a){
 		 a.printStackTrace();
 	  }
 	}
-				
 }

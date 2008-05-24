@@ -30,7 +30,7 @@ public class TestMotor {
 	public void testEncender(){
 		try{
 		   motor.encender();
-		   assertFalse(motor.isEncendido());
+		   assertTrue(motor.isEncendido());
 		}catch (AssertionError a){
 		    a.printStackTrace();
 		    a.getMessage();
@@ -66,8 +66,16 @@ public class TestMotor {
 	@Test
 	public void testAcelerar(){
 		try{
+		   //no encendido->no acelera
 		   motor.acelerar(true);
 		   assertFalse(motor.isAcelerando());
+		   //si encendido->si acelera
+		   Auto auto=new Auto();
+		   motor.setAuto(auto);
+		   motor.encender();
+		   assertTrue(motor.isEncendido());
+		   motor.acelerar(true);
+		   assertTrue(motor.isAcelerando());
 		}catch (AssertionError a){
 		    a.printStackTrace();
 		    a.getMessage();
@@ -85,22 +93,7 @@ public class TestMotor {
 		    System.out.println(a);
 		}
 	}
-	
-	@Test
-	public void testDesgastar(){
-		try{
-		   while(motor.getEstado()>99.999){
-		      motor.desgastar();
-		      assert motor.getEstado()<100;
-		      assert motor.getEstado()>0.0;
-		   }
-		}catch (AssertionError a){
-		    a.printStackTrace();
-		    a.getMessage();
-		    System.out.println(a);
-		}
-	}
-	
+		
 	@Test
 	public void testGetRevolucionesMinimasEncendido(){
 		try{
@@ -112,6 +105,4 @@ public class TestMotor {
 		    System.out.println(a);
 		}
 	}
-	
-	
 }
