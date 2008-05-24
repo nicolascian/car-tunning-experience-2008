@@ -12,10 +12,7 @@ import control.*;
 
 import javax.swing.*;
 
-import java.awt.Button;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.Panel;
+import java.awt.*;
 import java.util.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -26,8 +23,12 @@ public class VistaVentana implements Observer{
 	private Auto auto = null; //referencia al modelo (auto)
 	private Pista pista = null; //referencia al modelo (pista)
 	
-	private JFrame ventana1  = null; //marco que contendra los controles del primer menu
-	private JFrame ventana2  = null; //marco que contendra los controles del segundo menu
+	private JWindow ventanaSplash  = null; //marco que contendra el splash
+	private JFrame ventanaPrincipal  = null; //marco que contendra los controles del primer menu
+	private JFrame ventanaMenu  = null; //marco que contendra los controles del segundo menu
+	private JFrame ventanaJuego  = null; //marco que contendra los autos y pista
+	
+	private JProgressBar progressBar = null;
 	
 	private JPanel panelPrimero = null;
 	private JButton botonJuegoNuevo = null;  //boton para comenzar un juego nuevo
@@ -42,7 +43,8 @@ public class VistaVentana implements Observer{
 	private JButton botonOpciones = null;  //boton para ver las opciones
 	private JButton botonCreditos = null;  //boton para ver los creditos
 	
-	
+
+    
 	public void update(Observable arg0, Object arg1) {
 		
 		System.out.println("update");
@@ -51,31 +53,24 @@ public class VistaVentana implements Observer{
 	
 	/** Constructor de la vista con ventanas */
 	public VistaVentana(){
-		
-		// Conectamos esta vista con el modelo
-		this.auto = new Auto();
-		this.pista = new Pista(auto, auto, 1000);
-		this.auto.addObserver(this); 
-		this.pista.addObserver(this); 
-		
-		
-		crearVentanaPrincipal();
+
+		// decorados
+		JFrame.setDefaultLookAndFeelDecorated(true); //false para Windows estandar
+		crearVentanaSplash();
 	}
 	
 	
 	/* BOTONES ACIONES********************************************************************************/
 	private void JuegoNuevo(){
 		cerrarVentanaPrincipal();
-		crearVentanaMenu();
+		//ya esta creada
+		ventanaMenu.setVisible(true);
 	}
 	private void CargarJuego(){}
 	private void Manejar(){
-		Frame frame = new Frame("Manejar - CTE08");
-		frame.setSize(300, 100);
-		frame.setVisible(true);
-		frame.addKeyListener(new Usuario(auto));
-		new VistaConsola(auto, pista);
-		
+		cerrarVentanaMenu();
+		//ya esta creada
+		ventanaJuego.setVisible(true);
 	}
 	private void Carrera(){
 		Jugador jugador = new Virtual(new Principiante(), auto);
@@ -90,22 +85,75 @@ public class VistaVentana implements Observer{
 	private void Opciones(){}
 	private void Creditos(){}
 	
+	
+	/* VENTANA SPLASH ********************************************************************************/
+	private void crearVentanaSplash(){
+		ventanaSplash = new JWindow();
+		// ponemos el panelPrimero en la ventana
+		JProgressBar progress = getProgressBar();
+		ventanaSplash.add("South", getProgressBar());
+		ventanaSplash.setSize(400,250);  //seteamos las dimensiones de la ventana
+		ventanaSplash.setLocationRelativeTo(null); //centrada
+		ventanaSplash.setAlwaysOnTop(true);
+		ventanaSplash.setVisible(true);  //mostramos la ventana
+		
+	
+		ventanaSplash.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	progress.setValue(0);
+	progress.setStringPainted(true);
+//		 Conectamos esta vista con el modelo
+		this.auto = new Auto();
+		this.pista = new Pista(auto, auto, 1000);
+		this.auto.addObserver(this); 
+		this.pista.addObserver(this);
+	progress.setValue(25);
+		crearVentanaPrincipal();
+	progress.setValue(50);
+	
+	long tiempo2=System.currentTimeMillis()+1000; //<---------------SE PUEDE SACAR
+	 while(System.currentTimeMillis()<tiempo2); 
+	
+		crearVentanaMenu();
+	progress.setValue(75);
+		crearVentanaJuego();
+	progress.setValue(100);
+		cerrarVentanaSplash();
+		
+		ventanaPrincipal.setVisible(true);
+	}
+	
+	private void cerrarVentanaSplash(){
+//		 como no se cerrar ventanas, la desaparezco
+		// y lo pongo en null, para que el recolector se encargue
+		ventanaSplash.setVisible(false);
+		ventanaSplash = null;
+	}
+	
+	private JProgressBar getProgressBar() {
+		if (progressBar == null) {
+			progressBar = new JProgressBar();
+		}
+		return progressBar;
+	}
+	
+	
 	/* VENTANA PRINCIPAL *****************************************************************************/
 	private void crearVentanaPrincipal(){
-		ventana1 = new JFrame("Car Tunnning Experience 2008");
+		ventanaPrincipal = new JFrame("Car Tunnning Experience 2008");
 		// ponemos el panelPrimero en la ventana
-		ventana1.add("North", getPanelPrimero());
-		ventana1.setSize(250,65);  //seteamos las dimensiones de la ventana
-		ventana1.setVisible(true);  //mostramos la ventana
+		ventanaPrincipal.add("North", getPanelPrimero());
+		ventanaPrincipal.pack(); //seteamos las dimensiones de la ventana
+		ventanaPrincipal.setResizable(false);
+		ventanaPrincipal.setLocationRelativeTo(null); //centrada
 		//agregamos el listener del evento de cerrado de la ventana		
-		ventana1.addWindowListener(new CloseListener());
+		ventanaPrincipal.addWindowListener(new CloseListener());
 	}
 	
 	private void cerrarVentanaPrincipal(){
 		// como no se cerrar ventanas, la desaparezco
 		// y lo pongo en null, para que el recolector se encargue
-		ventana1.setVisible(false);
-		ventana1 = null;
+		ventanaPrincipal.setVisible(false);
+		ventanaPrincipal = null;
 	}
 	
 	private JPanel getPanelPrimero(){
@@ -145,21 +193,22 @@ public class VistaVentana implements Observer{
 	
 	/* VENTANA MENU **********************************************************************************/
 	private void crearVentanaMenu(){
-		ventana2 = new JFrame("Car Tunnning Experience 2008");
+		ventanaMenu = new JFrame("Car Tunnning Experience 2008");
 		// ponemos el panelPrimero en la ventana
-		ventana2.add("North", getPanelSegundo());
-		ventana2.setSize(510,65);  //seteamos las dimensiones de la ventana
-		ventana2.setVisible(true);  //mostramos la ventana
+		ventanaMenu.add("North", getPanelSegundo());
+		ventanaMenu.pack(); //seteamos las dimensiones de la ventana
+		ventanaMenu.setResizable(false);
+		ventanaMenu.setLocationRelativeTo(null); //centrada
 		//agregamos el listener del evento de cerrado de la ventana		
-		ventana2.addWindowListener(new CloseListener());
+		ventanaMenu.addWindowListener(new CloseListener());
 	
 	}
 	
 	private void cerrarVentanaMenu(){
 		// como no se cerrar ventanas, la desaparezco
 		// y lo pongo en null, para que el recolector se encargue
-		ventana2.setVisible(false);
-		ventana2 = null;
+		ventanaMenu.setVisible(false);
+		ventanaMenu = null;
 	}
 	
 	private JPanel getPanelSegundo(){
@@ -253,6 +302,27 @@ public class VistaVentana implements Observer{
 		}
 		return botonCreditos;
 	}
+	
+	/* VENTANA JUEGO *********************************************************************************/
+	private void crearVentanaJuego(){
+		ventanaJuego = new JFrame("Manejar - CTE08");
+		ventanaJuego.setSize(300, 100);
+		ventanaJuego.setResizable(false);
+		ventanaJuego.setAlwaysOnTop(true);
+		ventanaJuego.setLocationRelativeTo(null); //centrada
+		ventanaJuego.addKeyListener(new Usuario(auto));
+		//agregamos el listener del evento de cerrado de la ventana		
+		ventanaJuego.addWindowListener(new CloseListener());
+		new VistaConsola(auto, pista);		
+	}
+	
+	private void cerrarVentanaJuego(){
+//		 como no se cerrar ventanas, la desaparezco
+		// y lo pongo en null, para que el recolector se encargue
+		ventanaMenu.setVisible(false);
+		ventanaMenu = null;
+	}
+	
 	
 	/* ***********************************************************************************************/
 //	Clase auxiliar para escuchar el evento de cerrado de la ventana
