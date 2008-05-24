@@ -77,6 +77,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//inicilizacion de otros atributos
 		  setEncendido(false);
 	      this.embragar(false);
+	    motor.setAuto(this);
 	}
 	
 	/**
@@ -120,6 +121,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		setEncendido(false);
 		//inicializacion de aceleracion y velocidad
 		this.embragar(false);
+		motor.setAuto(this);
     }
 	
 	/**
@@ -228,7 +230,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
         else
 	 		getMotor().apagar();
       }
-      
       ActualizarObservadores();
 	}
 	
@@ -247,7 +248,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
     public void acelerar(boolean valor){
 	   	getMotor().acelerar(valor);
 	   	actualizarVelocidadYPosicion();
-	   	
 	   	ActualizarObservadores();
 	}
 	
