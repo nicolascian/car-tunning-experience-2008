@@ -8,6 +8,7 @@
 package modelo.componente;
 
 import java.util.*;
+
 import modelo.*;
 
 /**
@@ -70,6 +71,16 @@ public abstract class Componente extends modelo.Constantes {
 	public AlgoPesos getPrecioAmortizado(){
 		return precio;//( getEstado()*100/getPrecio().getValor());
 		
+	}
+	
+	/**
+	 * se ejecuta cuando hay cambios en el auto
+	 * posicion, velocidad, RPM, Estado.
+	 * caja: cambio, RPMmaximas
+	 */
+	public void ActualizarObservadores(){
+		setChanged();
+		notifyObservers();		
 	}
 	
 	/**

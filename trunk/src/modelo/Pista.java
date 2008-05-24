@@ -49,7 +49,7 @@ public class Pista  extends Observable{
 	private Iterator<Tramo>[] iterador;
 	
 	/**
-	 * se ejecuta cuando se actualizan las posciones
+	 * se ejecuta cuando se cambia de tramo
 	 */
 	public void ActualizarObservadores()
 	{
@@ -134,6 +134,7 @@ public class Pista  extends Observable{
 			this.getAuto(i).afectar(aux.getSuperficie());
 			}
 		}
+		//notifico a los observadores
 		ActualizarObservadores();
 	}
 	
