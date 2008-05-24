@@ -58,7 +58,7 @@ public class Usuario extends Jugador {
     	
     	switch (e.getKeyCode()){
     	case 70 : {
-    		System.out.println("F: Acelerador -> auto.acelerar(true) ");
+    		//System.out.println("F: Acelerador -> auto.acelerar(true) ");
     		auto.acelerar(true);
     	} break;
     	case 68 : {
@@ -74,7 +74,7 @@ public class Usuario extends Jugador {
     		auto.activarNitro(true);
     	} break;
     	case 69 : {
-    		System.out.println("E: Encender -> auto.setEncendido(true) ");
+    		//System.out.println("E: Encender -> auto.setEncendido(true) ");
     		auto.setEncendido(true);
     	} break;
     	}//fin switch

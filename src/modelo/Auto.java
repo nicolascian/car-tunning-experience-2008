@@ -227,6 +227,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
         else
 	 		getMotor().apagar();
       }
+      
+      ActualizarObservadores();
 	}
 	
 	/**
@@ -244,6 +246,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
     public void acelerar(boolean valor){
 	   	getMotor().acelerar(valor);
 	   	actualizarVelocidadYPosicion();
+	   	
+	   	ActualizarObservadores();
 	}
 	
 	/**
@@ -257,6 +261,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public void frenar(boolean valor){
 		if(getFreno()!=null)
 			getFreno().frenar(valor);
+		
+		ActualizarObservadores();
 	}
 	
 	public boolean isFrenando(){
@@ -274,6 +280,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	   	if(getEmbrague()!=null)
 	   		getEmbrague().embragar(valor);
 	  
+	   	ActualizarObservadores();
 	}
 	
 	/**
@@ -296,6 +303,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	   	if(getNitro()!=null)
 		   getNitro().activar(valor);
 	  
+	   	ActualizarObservadores();
 	}
 	
 	/**
