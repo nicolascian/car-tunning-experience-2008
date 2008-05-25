@@ -178,6 +178,7 @@ public class Carroceria extends Componente
 		   (fuerza.getEmisor()==getAuto().getEjeTrasero()))){
 			double coeficiente=Math.abs(COEFICIENTE_ARRASTRE-TEMPERATURAOPTIMA/(getTemperatura()*10));
 			double valor=getVelocidad()*coeficiente*getSuperficieFrontal()*COEFICIENTE_OBTENCION_FUERZA/2;
+			System.out.println("Fuerza a un eje desde carroceria "+valor);
 			getAuto().getEjeDelantero().recibirFuerza(new Fuerza(this,getAuto().getEjeDelantero(),valor,true));
 			getAuto().getEjeTrasero().recibirFuerza(new Fuerza(this,getAuto().getEjeDelantero(),valor,true));
 		}
