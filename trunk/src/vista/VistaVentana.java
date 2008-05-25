@@ -10,7 +10,9 @@ package vista;
 import modelo.*;
 import modelo.componente.*;
 import control.*;
+import vista.imagen.*;
 
+import javax.imageio.*;
 import javax.swing.*;
 
 import java.awt.*;
@@ -77,6 +79,7 @@ public class VistaVentana implements Observer{
 		auto.setCaja(new Manual(5));//le pongo una caja al auto
 		new VistaConsola(auto, pista);//creo una vistaa de consola
 		auto.ActualizarObservadores();// para que se actualice por primera vez
+
 	}
 	
 	private void Carrera(){
@@ -336,13 +339,25 @@ public class VistaVentana implements Observer{
 	/* VENTANA JUEGO *********************************************************************************/
 	private void crearVentanaJuego(){
 		ventanaJuego = new JFrame("Manejar - CTE08");
-		ventanaJuego.setSize(300, 100);
-		ventanaJuego.setResizable(false);
-		ventanaJuego.setAlwaysOnTop(true);
+		ventanaJuego.setSize(500, 500);
+		
 		ventanaJuego.setLocationRelativeTo(null); //centrada
+		
 		ventanaJuego.addKeyListener(new Usuario(auto));
 		//agregamos el listener del evento de cerrado de la ventana		
-		ventanaJuego.addWindowListener(new CloseListener());	
+		ventanaJuego.addWindowListener(new CloseListener());
+		
+		// Se carga la imagen desde el fichero que se indique, que se 
+	    // supone situado en el directorio actual del disco duro
+		//Image imagen = Toolkit.getDefaultToolkit().getImage( "alfaromeo.png" );
+	  
+		// cargamso la imagen desde archivo
+		ventanaJuego.add(new ImagenAuto(ventanaJuego));
+		
+		//ventanaJuego.pack();
+		//ventanaJuego.setResizable(false);
+		ventanaJuego.setAlwaysOnTop(true);
+		
 	}
 	
 	private void cerrarVentanaJuego(){
@@ -361,5 +376,5 @@ public class VistaVentana implements Observer{
 			System.exit(0);
 		}
 	}
-
+	
 }
