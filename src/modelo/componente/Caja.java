@@ -115,12 +115,10 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 			     valorDeLaFuerza=fuerza.getValorDeLaFuerza()/this.getRelacionDeCambio();
 			  }catch (Exception e){}
 			  //transmito fuerza al motor
-			  Fuerza fuerzaAMotor=new Fuerza(this,getAuto().getMotor(),valorDeLaFuerza,
-					                       true);
+			  Fuerza fuerzaAMotor=new Fuerza(this,getAuto().getMotor(),valorDeLaFuerza,true);
 			  getAuto().getMotor().recibirFuerza(fuerzaAMotor);
 			  Chequear();
 		}
-	  
 	}
 
 	/**
@@ -196,8 +194,9 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 * @Post: Se retorna la cantidad de RPM de la instancia para le cambio actual.
 	 */
 	public double calcularRevolucionesMaximasMotorParaCambioActual() {
-		return (getAuto().getMotor().getRPM()*(1-20*getRelacionDeCambio()/
-			    (getAuto().getMotor().getRPM()+1)));
+		return (getAuto().getMotor().getRevolucionesUmbralPeligro()-
+				getAuto().getMotor().getRevolucionesMaximas()*0.07/
+				getRelacionDeCambio());
 	}
 
 	/**
