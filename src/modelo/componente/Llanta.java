@@ -171,14 +171,12 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
 		if(fuerza.getEmisor()==getComponenteContenedor()){
-			System.out.println("Llanta recibio fuerza desde Eje");
 			//la fuerza viene del eje
 			//se pasa la fuerza al neumatico
 			fuerza.setEmisor(this);
 			fuerza.setReceptor(getNeumatico());
 			getNeumatico().recibirFuerza(fuerza);
 		}else{
-			System.out.println("Llanta recibio fuerza desde Neumatico");
 			//la fuerza viene del neumatico se pasa al eje
 			fuerza.setEmisor(this);
 			fuerza.setReceptor((ReceptorDeFuerzas)getComponenteContenedor());

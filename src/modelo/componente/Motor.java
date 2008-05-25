@@ -194,8 +194,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 				   decrementarRpm();		     
 		     /*Envio una fuerza al eje proporcional a las rpm y 
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
-		     System.out.println("Rpm "+getRPM() +" Fuerza en motor "+
-		    		            getRPM()*this.coeficienteDeProduccionDeFuerzaAPartirRpm);
 		     Fuerza fuerza=new Fuerza(this,getAuto().getCaja(),getRPM()*
 			                          coeficienteDeProduccionDeFuerzaAPartirRpm,true);
 		     getAuto().getCaja().recibirFuerza(fuerza);
