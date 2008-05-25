@@ -30,6 +30,7 @@ public class Combustible extends Componente{
 	 * @param indiceDeCombustion
 	 */
 	public Combustible(double capacidad, double indiceDeCombustion){
+		setPeso(33.75);
 		setCapacidad(capacidad);
 		setEstado(capacidad);
 		setIndiceDeCombustion(indiceDeCombustion);

@@ -58,6 +58,7 @@ public class Automatica extends Caja{
 	*/
 	public Automatica(int cantidadCambios){
 		super(cantidadCambios);
+		setPeso(80);
 	}
 	
 	/**
@@ -71,6 +72,5 @@ public class Automatica extends Caja{
 		  else
 			setRelacionDeCambio(cursor,60.0);  
 	}
-
-		
+	
 }

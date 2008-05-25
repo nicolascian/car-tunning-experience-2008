@@ -53,7 +53,7 @@ public class Carroceria extends Componente
 		setSuperficieFrontal(superficieFrontal);
 		setCoeficienteDeOxidacionPorHumedad(0);
 		setCoeficienteDeOxidacionPorParticulas(0);
-		
+		setPeso(905);
 	}
 	/**
 	 * @Post: La carroceria desgastada.

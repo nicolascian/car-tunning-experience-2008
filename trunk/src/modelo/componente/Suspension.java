@@ -29,6 +29,7 @@ implements AfectablePorSuperficie, AfectablePorClima{
 	 */
 	public Suspension(){
 		setEstado(100);
+		setPeso(56);
 	}
 	
 	/**
@@ -39,6 +40,7 @@ implements AfectablePorSuperficie, AfectablePorClima{
 	public Suspension(double rigidez){
 		this.rigidez = rigidez;
 		setEstado(100);
+		setPeso(56);
 	}
 	/**
 	 * como es un componente, con el pasar del tiempo se

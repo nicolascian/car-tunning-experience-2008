@@ -41,6 +41,7 @@ public abstract class Freno extends Componente implements AfectablePorClima{
 	 * establece el Estado en 100%
 	 */
 	public Freno(){
+		setPeso(6);
 		setEstado(100);
 	}
 	

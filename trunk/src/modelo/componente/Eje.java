@@ -32,6 +32,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		
 	/*Constructor,inicia estado de eje en 100*/
 	public Eje(Auto auto){
+		setPeso(50);
 		setAuto(auto);
 		setEstado(100);
 		repositorio=new RepositorioDeFuerzas(this);
@@ -189,6 +190,17 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		}
 	}
 
+	public double getPeso(){
+		double pesoTotal=this.peso;
+		try{
+			pesoTotal+=getLlantaDerecha().getPeso();
+		}catch (NullPointerException e){}
+		try{
+			pesoTotal+=getLlantaIzquierda().getPeso();
+		}catch (NullPointerException e){}
+		return pesoTotal;
+	}
+	
 	public String toString(){
 		String cadena = this.getNombre()+", Estado: "+this.getEstado()+" %.";
 		return cadena;

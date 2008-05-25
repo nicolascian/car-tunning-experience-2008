@@ -53,6 +53,7 @@ public class Turbo extends Componente implements AfectablePorClima{
 	 * la clase
 	 */
 	public Turbo(){
+		setPeso(15);
 		setEstado(100);
 		this.setCoeficienteDeObtencionDePotencia(0.01);
 		}

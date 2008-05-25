@@ -33,7 +33,7 @@ public class FrenoCinta extends Freno {
 		super();
 		setNombre("Freno de Cintao de Banda");
 		setPrecio(new AlgoPesos(370,00)); //algo$
-		setPeso(11); // Kg
+		setPeso(50); // Kg
 	}
 	
 	@Override

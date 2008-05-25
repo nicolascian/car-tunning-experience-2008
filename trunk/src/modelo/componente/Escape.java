@@ -34,6 +34,7 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	 * 
 	 */
 	public Escape(){
+		setPeso(20);
 		HumedadOptima = 50;
 		PresionOptima = 1013;
 		this.setEstado(100);
@@ -47,6 +48,7 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	 * @param PresionOptima
 	 */
 	public Escape(double HumedadOptima, double PresionOptima){
+		setPeso(20);
 		this.HumedadOptima = HumedadOptima;
 		this.PresionOptima = PresionOptima;
 		this.setEstado(100);

@@ -27,6 +27,7 @@ public class Secuencial extends Caja{
 	*/
 	public Secuencial(int cantidadCambios){
 		super(cantidadCambios);
+		setPeso(85);
 	}
 
 	/**
