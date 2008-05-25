@@ -31,7 +31,7 @@ public class Carroceria extends Componente
 	
 	private final static double COEFICIENTE_ARRASTRE=0.38;
 	
-	private final static double COEFICIENTE_OBTENCION_FUERZA=0.6;
+	private final static double COEFICIENTE_OBTENCION_FUERZA=6;
 	
 	private double coeficienteDeOxidacionPorParticulas;
 	
@@ -39,8 +39,6 @@ public class Carroceria extends Componente
 
 	private double temperatura;
 	
-	private double velocidad;
-
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase carroceria, inicializandola segun los
@@ -149,18 +147,7 @@ public class Carroceria extends Componente
 	public void setTemperatura(double temperatura) {
 		this.temperatura = temperatura;
 	}
-	/**
-	 * @return the velocidad
-	 */
-	public double getVelocidad() {
-		return velocidad;
-	}
-	/**
-	 * @param velocidad the velocidad to set
-	 */
-	public void setVelocidad(double velocidad) {
-		this.velocidad = velocidad;
-	}
+	
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
 	 */
@@ -176,12 +163,10 @@ public class Carroceria extends Componente
 	public void recibirFuerza(Fuerza fuerza) {
 		if((fuerza.getEmisor()==getAuto().getEjeDelantero()||
 		   (fuerza.getEmisor()==getAuto().getEjeTrasero()))){
-			double coeficiente=Math.abs(COEFICIENTE_ARRASTRE-TEMPERATURAOPTIMA/(getTemperatura()*10));
-			double valor=getVelocidad()*coeficiente*getSuperficieFrontal()*COEFICIENTE_OBTENCION_FUERZA/2;
-			System.out.println("Fuerza a un eje desde carroceria "+valor);
+			double coeficiente=Math.abs(COEFICIENTE_ARRASTRE-TEMPERATURAOPTIMA/(getTemperatura()*10.0));
+			double valor=getAuto().getVelocidad()*coeficiente*getSuperficieFrontal()*COEFICIENTE_OBTENCION_FUERZA/2;
 			getAuto().getEjeDelantero().recibirFuerza(new Fuerza(this,getAuto().getEjeDelantero(),valor,true));
 			getAuto().getEjeTrasero().recibirFuerza(new Fuerza(this,getAuto().getEjeDelantero(),valor,true));
 		}
 	}
-	
 }
