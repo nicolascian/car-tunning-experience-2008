@@ -624,9 +624,23 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 	
 	public double getPeso(){
-	  double peso=motor.getPeso()+caja.getPeso()+embrague.getPeso()+combustible.getPeso()+alimentacion.getPeso()+
-		     carroceria.getPeso()+suspension.getPeso()+escape.getPeso()+turbo.getPeso()+nitro.getPeso()+
-		     freno.getPeso()+ejeDelantero.getPeso()+ejeTrasero.getPeso();
+	  double peso=motor.getPeso();
+	  try{
+		  peso+=caja.getPeso();
+	 	  peso+=carroceria.getPeso();
+	      peso+=ejeDelantero.getPeso();
+	      peso+=ejeTrasero.getPeso();
+	  }catch(Exception e){e.printStackTrace();}
+	  try {
+		  peso+=suspension.getPeso();
+		  peso+=escape.getPeso();
+		  peso+=turbo.getPeso();
+		  peso+=nitro.getPeso();
+		  peso+=freno.getPeso();
+		  peso+=embrague.getPeso();
+		  peso+=combustible.getPeso();
+		  peso+=alimentacion.getPeso();
+	  }catch (Exception e){e.printStackTrace();}
 	  return(peso);
 	}
 	

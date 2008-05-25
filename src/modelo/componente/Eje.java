@@ -154,7 +154,8 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 			  this.getLlantaDerecha().recibirFuerza(fuerzaALlantaDer);
 			  //transmito fuerza a llanta izquierda			  			
 			  Fuerza fuerzaALlantaIzq=new Fuerza(this,getLlantaIzquierda(),valorDeLaFuerza/2,true);
-			  this.getLlantaIzquierda().recibirFuerza(fuerzaALlantaIzq);  	 	
+			  this.getLlantaIzquierda().recibirFuerza(fuerzaALlantaIzq);
+			 
 		}else{//viene de la carroceria
 			  if(fuerza.getEmisor()==getAuto().getCarroceria()){
 				try{ 
