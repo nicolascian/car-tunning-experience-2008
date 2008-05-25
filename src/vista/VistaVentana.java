@@ -48,7 +48,7 @@ public class VistaVentana implements Observer{
     // se ejecuta cuando hay cambios en el modelo
 	public void update(Observable arg0, Object arg1) {
 		
-		System.out.println("update");
+	
 	}
 	
 	
@@ -337,7 +337,7 @@ public class VistaVentana implements Observer{
 	/* VENTANA JUEGO *********************************************************************************/
 	private void crearVentanaJuego(){
 		ventanaJuego = new JFrame("Manejar - CTE08");
-		ventanaJuego.setSize(500, 500);
+		ventanaJuego.setSize(800, 600);
 		
 		ventanaJuego.setLocationRelativeTo(null); //centrada
 		
@@ -353,7 +353,7 @@ public class VistaVentana implements Observer{
 		ventanaJuego.add(new ImagenAuto(ventanaJuego));
 		
 		//ventanaJuego.pack();
-		//ventanaJuego.setResizable(false);
+		ventanaJuego.setResizable(false);
 		ventanaJuego.setAlwaysOnTop(true);
 		
 	}

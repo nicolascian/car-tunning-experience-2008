@@ -7,24 +7,46 @@ import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
 
-/**
- * This class demonstrates how to load an Image from an external file
- */
+
 public class ImagenAuto extends Component {
           
-    BufferedImage img;
-    JFrame frame;
+    BufferedImage Auto;
+    BufferedImage Piso;
+    BufferedImage Khm;
+    BufferedImage Rpm;
+    JFrame Ventana;
     
     public ImagenAuto(JFrame ventanaJuego) {
-    	this.frame= ventanaJuego;
-       try {
-           img = ImageIO.read(new File("alfaromeo.png"));
+    	
+    	this.Ventana= ventanaJuego;
+
+    	try {
+           Auto = ImageIO.read(new File("alfaromeo.png"));
        } catch (IOException e) {
        }
+       
+       try {
+           Piso = ImageIO.read(new File("piso.png"));
+       } catch (IOException e) {
+       }
+       
+       try {
+           Rpm = ImageIO.read(new File("rpm.png"));
+       } catch (IOException e) {
+       }
+       
+       try {
+           Khm = ImageIO.read(new File("kmh.png"));
+       } catch (IOException e) {
+       }
+       //Piso = new BufferedImage(2*Auto.getWidth(), Auto.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
     }
     
     public void paint(Graphics g) {
-        g.drawImage(img, (frame.getWidth()-img.getWidth(null))/2, (frame.getHeight()-img.getHeight(null))-100, null);
+    	g.drawImage(Piso, (Ventana.getWidth()-Piso.getWidth(null))/2, (Ventana.getHeight()-Piso.getHeight(null))-30, null );
+    	g.drawImage(Auto, (Ventana.getWidth()-Auto.getWidth(null))/2, (Ventana.getHeight()-Auto.getHeight(null))-100, null);
+    	g.drawImage(Khm, 0, 0, null);
+    	g.drawImage(Rpm, 0, 128, null);
     }
 
     public void update(Graphics g){
@@ -32,10 +54,10 @@ public class ImagenAuto extends Component {
     }
     
     public Dimension getPreferredSize() {
-        if (img == null) {
+        if (Piso == null) {
              return new Dimension(100,100);
         } else {
-           return new Dimension(img.getWidth(null), img.getHeight(null));
+           return new Dimension(Piso.getWidth(null), Piso.getHeight(null));
        }
     }
 
