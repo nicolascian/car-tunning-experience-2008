@@ -12,9 +12,7 @@ import modelo.componente.*;
 import control.*;
 import vista.imagen.*;
 
-import javax.imageio.*;
 import javax.swing.*;
-
 import java.awt.*;
 import java.util.*;
 import java.awt.event.WindowAdapter;
