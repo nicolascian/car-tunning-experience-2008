@@ -35,7 +35,9 @@ public class Secuencial extends Caja{
 	 * revolucionesMaximas del Motor.
 	*/
 	public void siguiente(){
+		embragar(true);
 		setCambio(getCambio()+1);
+		embragar(false);
 	}
 	
 	/**
@@ -44,7 +46,9 @@ public class Secuencial extends Caja{
 	 * revolucionesMaximas del Motor.
 	*/
 	public void anterior(){
+		embragar(true);
 		setCambio(getCambio()-1);
+		embragar(false);
 	}
 		
 	/**
