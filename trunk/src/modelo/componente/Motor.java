@@ -81,6 +81,11 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	
 	private double revolucionesMinimasEncendido=0;//revoluciones minimas que alcanza el auto mientras
 												//se haya encendido.
+	
+	private double revolucionesUmbralPeligro=0;/*revoluciones a partir de las cuales el motor
+												entra en una fatiga intensa, es decir las revoluciones
+												que nomalmente estan pintadas de rojo en el tablero*/
+	
 	private double coeficienteDeAbsorcionCalorico=0;
 		
 	private double coeficienteDeDisipacionCalorico=0;
@@ -103,6 +108,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 //inicializacion de revoluciones
 		setRevolucionesMaximas(revolucionesMaximas);
 		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
+		setRevolucionesUmbralPeligro(getRevolucionesMaximas()*0.875);
 	//inicializacion de temperatura
 		setTemperatura(TEMPERATURA_INICIAL);
 	 //inicilizacion de coeficientes
@@ -134,6 +140,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	  //inicializacion de revoluciones
 		setRevolucionesMaximas(8000);
 		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
+		setRevolucionesUmbralPeligro(getRevolucionesMaximas()*0.875);
 	  //inicializacion de temperatura
 		setTemperatura(TEMPERATURA_INICIAL);
 	  //inicilizacion de coeficientes
@@ -536,6 +543,20 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	public void setCoeficienteDeProduccionDeFuerzaAPartirRpm(
 			double coeficienteDeProduccionDeFuerzaAPartirRpm) {
 		this.coeficienteDeProduccionDeFuerzaAPartirRpm = coeficienteDeProduccionDeFuerzaAPartirRpm;
+	}
+		
+	/**
+	 * @return the revolucionesUmbralPeligro
+	 */
+	public double getRevolucionesUmbralPeligro() {
+		return revolucionesUmbralPeligro;
+	}
+
+	/**
+	 * @param revolucionesUmbralPeligro the revolucionesUmbralPeligro to set
+	 */
+	public void setRevolucionesUmbralPeligro(double revolucionesUmbralPeligro) {
+		this.revolucionesUmbralPeligro = revolucionesUmbralPeligro;
 	}
 
 	/* (non-Javadoc)
