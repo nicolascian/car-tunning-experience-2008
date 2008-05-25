@@ -39,6 +39,7 @@ public class VistaVentana implements Observer{
 	private JButton botonCarrera = null;  //boton para hacer una carrera
 	private JButton botonAuto = null;  //boton para elegir un auto
 	private JButton botonPista = null;  //boton para elegir una pista
+	private JButton botonGuardar = null;  //boton encargado de la persistencia
 	private JButton botonOpciones = null;  //boton para ver las opciones
 	private JButton botonCreditos = null;  //boton para ver los creditos
 	
@@ -60,7 +61,8 @@ public class VistaVentana implements Observer{
 	}
 	
 	
-	/* BOTONES ACIONES********************************************************************************/
+	/* BOTONES ACCIONES ******************************************************************************/
+	
 	private void JuegoNuevo(){
 		cerrarVentanaPrincipal();
 		ventanaMenu.setVisible(true);
@@ -88,9 +90,17 @@ public class VistaVentana implements Observer{
 	private void Pista(){
 		//se pude elegir una pista
 	}
+	
+	private void Guardar(){}
 	private void Opciones(){}
 	private void Creditos(){}
 	
+	
+	
+	
+	
+	
+	/* de aca para abajo pura GUI (embole mal!) */
 	
 	/* VENTANA SPLASH ********************************************************************************/
 	private void crearVentanaSplash(){
@@ -103,15 +113,16 @@ public class VistaVentana implements Observer{
 		ventanaSplash.setAlwaysOnTop(true);
 		ventanaSplash.setVisible(true);  //mostramos la ventana
 		
-		ventanaSplash.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		ventanaSplash.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); //le pongo cursor en espera
 		progress.setValue(0);
-		progress.setStringPainted(true);
+		progress.setStringPainted(true);// le pongo numeritos al progressBar
 		
 		// Conectamos esta vista con el modelo
 		this.auto = new Auto();
 		this.pista = new Pista(auto, auto, 1000);
 		this.auto.agregarObservador(this);
 		this.pista.addObserver(this);
+		
 		progress.setValue(25);
 		
 		crearVentanaPrincipal();
@@ -148,7 +159,7 @@ public class VistaVentana implements Observer{
 		// ponemos el panelPrimero en la ventana
 		ventanaPrincipal.add("North", getPanelPrimero());
 		ventanaPrincipal.pack(); //seteamos las dimensiones de la ventana
-		ventanaPrincipal.setResizable(false);
+		ventanaPrincipal.setResizable(false);//que no se pueda cambiar de tamaño
 		ventanaPrincipal.setLocationRelativeTo(null); //centrada
 		//agregamos el listener del evento de cerrado de la ventana		
 		ventanaPrincipal.addWindowListener(new CloseListener());
@@ -223,6 +234,7 @@ public class VistaVentana implements Observer{
 			panelSegundo.add(getBotonCarrera());
 			panelSegundo.add(getBotonAuto());
 			panelSegundo.add(getBotonPista());
+			panelSegundo.add(getBotonGuardar());
 			panelSegundo.add(getBotonOpciones());
 			panelSegundo.add(getBotonCreditos());
 			//panelSegundo.add(getBotonCarrera());  //LABEL ALGOPESOS
@@ -280,6 +292,19 @@ public class VistaVentana implements Observer{
 			});
 		}
 		return botonPista;
+	}
+	
+	private JButton getBotonGuardar(){
+		if (botonGuardar == null) {
+			botonGuardar = new JButton();
+			botonGuardar.setText("Guardar");
+			botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Guardar();
+				}
+			});
+		}
+		return botonGuardar;
 	}
 		
 	private JButton getBotonOpciones(){
