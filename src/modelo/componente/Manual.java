@@ -28,6 +28,7 @@ public class Manual extends Caja{
 	*/	
 	public Manual(int cantidadCambios) {
 		super(cantidadCambios);
+		setPeso(85);
 	}
 
 	/**

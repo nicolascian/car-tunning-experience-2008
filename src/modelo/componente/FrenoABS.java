@@ -38,7 +38,7 @@ public class FrenoABS extends Freno{
 		super();
 		setNombre("Freno ABS (Antilock Brake System)");
 		setPrecio(new AlgoPesos(1200,00)); //algo$
-		setPeso(6); // Kg
+		setPeso(8); // Kg
 	}
 	
 	@Override

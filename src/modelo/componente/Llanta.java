@@ -34,8 +34,6 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	
 	private double coeficienteDeDesgastePorSuperficie=1;
 	
-	private double peso;
-	
 	private Componente contenedor=null;
 	
 	private Neumatico neumatico=null;
@@ -48,7 +46,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		setAuto(null);
 		setComponenteContenedor(null);
 		setEstado(100);
-		this.setPeso(25);
+		this.setPeso(15);
 		this.setCoeficienteDeDesgastePorSuperficie(3);
 		this.setNeumatico(new NeumaticoMixto());
 	}
@@ -63,7 +61,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		setAuto(null);
 		setComponenteContenedor(null);
 		setEstado(100);
-		this.setPeso(peso);
+		setPeso(peso);
 		setCoeficienteDeDesgastePorSuperficie(3);
 		setNeumatico(new NeumaticoMixto());
 	}
@@ -144,14 +142,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	public double getCoeficienteDeDesgastePorSuperficie() {
 		return coeficienteDeDesgastePorSuperficie;
 	}
-	public double getPeso(){
-		return this.peso;
-		}
-	public double getEstado(){
-		return this.estado;
-		
-	}
-
+	
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
@@ -218,6 +209,14 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	public void setAuto(Auto auto){
 		super.setAuto(auto);
 		instalar(getAuto(),null);
+	}
+	
+	public double getPeso(){
+		double pesoTotal=this.peso;
+		try{
+			pesoTotal+=getNeumatico().getPeso();
+		}catch (NullPointerException e){}
+		return pesoTotal;
 	}
 	
 	public void instalar(Auto auto,Eje eje){

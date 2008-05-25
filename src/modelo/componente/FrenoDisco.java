@@ -31,7 +31,7 @@ public class FrenoDisco extends Freno{
 		super();
 		setNombre("Freno de Disco");
 		setPrecio(new AlgoPesos(599,99)); //algo$
-		setPeso(9); // Kg
+		setPeso(65); // Kg
 	}
 	
 	@Override

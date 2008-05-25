@@ -236,9 +236,9 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: En caso de que la instancia se encuentre lista para carrera se enciende la instancia.
 	*/
     public void acelerar(boolean valor){
-	   	getMotor().acelerar(valor);
-	   	actualizarVelocidadYPosicion();
-	   	ActualizarObservadores();
+	      getMotor().acelerar(valor);
+	   	  actualizarVelocidadYPosicion();
+	   	  ActualizarObservadores();
 	}
 	
 	/**
@@ -345,7 +345,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public double getPosicion() {
 		return Posicion;
 	}
-
 	
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.

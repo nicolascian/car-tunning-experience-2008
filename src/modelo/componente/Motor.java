@@ -195,14 +195,18 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     //se obtiene potencia extra del resto de componentes
 		     setPotenciaExtra(getAuto().getPotenciaTotal());
 		     setAcelerando(valor);
-		     if(isAcelerando())
-				   incrementarRpm();
-				else
-				   decrementarRpm();		     
+		     double valorFuerza=0;
+		     if(isAcelerando()){
+				 incrementarRpm();
+				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm*0.05;  
+		     }	   
+			 else{
+				 decrementarRpm();
+				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm;
+			 }
 		     /*Envio una fuerza al eje proporcional a las rpm y 
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
-		     Fuerza fuerza=new Fuerza(this,getAuto().getCaja(),getRPM()*
-			                          coeficienteDeProduccionDeFuerzaAPartirRpm,true);
+		     Fuerza fuerza=new Fuerza(this,getAuto().getCaja(),valorFuerza,true);
 		     getAuto().getCaja().recibirFuerza(fuerza);
 		  }catch (NullPointerException e){}
 	  }

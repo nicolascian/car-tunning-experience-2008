@@ -73,9 +73,10 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 		}catch (Exception e){}
 		double pesoAuto=0;
 		try{
-			//pesoAuto=(getAuto().getPeso()*calcularAdherencia()*GRAVEDAD)/(-660);
-		}catch (Exception e){pesoAuto=0; e.printStackTrace();}
-		valorFuerzaRetorno=peso+valorFuerzaRetorno;
+			pesoAuto=(getAuto().getPeso()*calcularAdherencia()*GRAVEDAD)/(-660);
+		}catch (Exception e){}
+		valorFuerzaRetorno=pesoAuto+valorFuerzaRetorno;
+		System.out.println("peso del auto"+pesoAuto+" Fuerza "+valorFuerzaRetorno);
 		Fuerza fuerzaRetorno=new Fuerza(this,(ReceptorDeFuerzas)getComponenteContenedor(),
 				                        valorFuerzaRetorno,true);
 		

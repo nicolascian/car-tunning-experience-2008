@@ -33,6 +33,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	 */
 	public Carburador(){
 		cargarDatos();
+		setPeso(10);
 	}
 	
 	/**
@@ -44,6 +45,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 		CTE_HUMEDAD_OPTIMA = cte_humedad_optima;
 		CTE_RELACION_POTENCIA = cte_relacion_potencia;
 		cargarDatos();
+		setPeso(10);
 	}
 	
 	private void cargarDatos(){
