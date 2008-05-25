@@ -147,7 +147,8 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		   //se calcula la fuerza que se debe ejercer al motor
 		   double valorDeFuerza=0;
 		   if(cambio>getCambio())
-			  valorDeFuerza=getAuto().getMotor().getRPM()*(-0.1);
+			  valorDeFuerza=getAuto().getMotor().getRPM()*
+			                (-1)*getAuto().getMotor().getCoeficienteDeProduccionDeFuerzaAPartirRpm();
 		   else
 			  valorDeFuerza=getAuto().getMotor().getRPM()*(0.07);
 		   //se pasa el cambio
@@ -158,8 +159,8 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		   Fuerza fuerza=new Fuerza(this,getAuto().getMotor(),valorDeFuerza,true);
 		   this.getAuto().getMotor().recibirFuerza(fuerza);
 		}//fin if
-		if (!isEmbragado()) {this.desgastar();}
-		
+		if (!isEmbragado()) {
+			this.desgastar();}
 		ActualizarObservadores();
 	}
 		

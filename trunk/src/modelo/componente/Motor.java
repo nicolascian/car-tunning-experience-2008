@@ -92,7 +92,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	
 	private double coeficienteDeIncrementoRpm=0.00000002;
 	
-	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0.15875;
+	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0.3767;
 		
 	/**
 	 * @Pre: -
@@ -533,7 +533,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	/**
 	 * @return the coeficienteDeProduccionDeFuerzaAPartirRpm
 	 */
-	private double getCoeficienteDeProduccionDeFuerzaAPartirRpm() {
+	public double getCoeficienteDeProduccionDeFuerzaAPartirRpm() {
 		return coeficienteDeProduccionDeFuerzaAPartirRpm;
 	}
 
