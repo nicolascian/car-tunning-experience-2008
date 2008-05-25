@@ -8,6 +8,7 @@
 package vista;
 
 import modelo.*;
+import modelo.componente.*;
 import control.*;
 
 import javax.swing.*;
@@ -24,16 +25,14 @@ public class VistaVentana implements Observer{
 	private Pista pista = null; //referencia al modelo (pista)
 	
 	private JWindow ventanaSplash  = null; //marco que contendra el splash
-	private JFrame ventanaPrincipal  = null; //marco que contendra los controles del primer menu
-	private JFrame ventanaMenu  = null; //marco que contendra los controles del segundo menu
-	private JFrame ventanaJuego  = null; //marco que contendra los autos y pista
-	
 	private JProgressBar progressBar = null;
 	
+	private JFrame ventanaPrincipal  = null; //marco que contendra los controles del primer menu
 	private JPanel panelPrimero = null;
 	private JButton botonJuegoNuevo = null;  //boton para comenzar un juego nuevo
 	private JButton botonCargarJuego = null;  //boton para cargar un juego previamente guardado
 	
+	private JFrame ventanaMenu  = null; //marco que contendra los controles del segundo menu
 	private JPanel panelSegundo = null;
 	private JLabel labelAlgoPesos = null; //indica la cantidad de algo$
 	private JButton botonManejar = null;  //boton para manejar solo
@@ -43,8 +42,9 @@ public class VistaVentana implements Observer{
 	private JButton botonOpciones = null;  //boton para ver las opciones
 	private JButton botonCreditos = null;  //boton para ver los creditos
 	
-
-    
+	private JFrame ventanaJuego  = null; //marco que contendra los autos y pista
+	
+    // se ejecuta cuando hay cambios en el modelo
 	public void update(Observable arg0, Object arg1) {
 		
 		System.out.println("update");
@@ -63,20 +63,25 @@ public class VistaVentana implements Observer{
 	/* BOTONES ACIONES********************************************************************************/
 	private void JuegoNuevo(){
 		cerrarVentanaPrincipal();
-		//ya esta creada
 		ventanaMenu.setVisible(true);
 	}
+	
 	private void CargarJuego(){}
+	
 	private void Manejar(){
 		cerrarVentanaMenu();
-		//ya esta creada
 		ventanaJuego.setVisible(true);
-		new VistaConsola(auto, pista);	
+		
+		auto.setCaja(new Manual(5));//le pongo una caja al auto
+		new VistaConsola(auto, pista);//creo una vistaa de consola
+		auto.ActualizarObservadores();// para que se actualice por primera vez
 	}
+	
 	private void Carrera(){
 		Jugador jugador = new Virtual(new Principiante(), auto);
 		new VistaConsola(auto, pista);
 	}
+	
 	private void Auto(){
 		//Taller
 	}
@@ -98,28 +103,27 @@ public class VistaVentana implements Observer{
 		ventanaSplash.setAlwaysOnTop(true);
 		ventanaSplash.setVisible(true);  //mostramos la ventana
 		
-	
 		ventanaSplash.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-	progress.setValue(0);
-	progress.setStringPainted(true);
-//		 Conectamos esta vista con el modelo
+		progress.setValue(0);
+		progress.setStringPainted(true);
+		
+		// Conectamos esta vista con el modelo
 		this.auto = new Auto();
 		this.pista = new Pista(auto, auto, 1000);
-		this.auto.addObserver(this); 
+		this.auto.agregarObservador(this);
 		this.pista.addObserver(this);
-	progress.setValue(25);
+		progress.setValue(25);
+		
 		crearVentanaPrincipal();
-	progress.setValue(50);
-	
-	long tiempo2=System.currentTimeMillis()+1000; //<---------------SE PUEDE SACAR
-	 while(System.currentTimeMillis()<tiempo2); 
+		progress.setValue(50);
 	
 		crearVentanaMenu();
-	progress.setValue(75);
-		crearVentanaJuego();
-	progress.setValue(100);
-		cerrarVentanaSplash();
+		progress.setValue(75);
 		
+		crearVentanaJuego();
+		progress.setValue(100);
+		
+		cerrarVentanaSplash();
 		ventanaPrincipal.setVisible(true);
 	}
 	

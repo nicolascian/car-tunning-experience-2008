@@ -80,7 +80,7 @@ public class Usuario extends Jugador {
     	}//fin switch
     	
     	
-    	if (auto.isSecuencial()){
+    	if (auto.isManual()){
     	
     		switch (e.getKeyCode()){
     		case 85 : {//System.out.println("U: Neutro");
@@ -110,7 +110,7 @@ public class Usuario extends Jugador {
     		}//fin switch
     	}
     	
-    	if (auto.isManual()){
+    	if (auto.isSecuencial()){
     		
     		switch (e.getKeyCode()){
     		case 73 : {//System.out.println("I: Siguiente");

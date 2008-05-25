@@ -52,6 +52,8 @@ public class Embrague extends Componente {
 	public void embragar(boolean valor){
 		embragado = valor;
 		desgastar();
+		
+		ActualizarObservadores();
 	}
 	
 	@Override
