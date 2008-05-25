@@ -31,11 +31,23 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	protected final static double COEFICIENTE_OBTENCION_RPM=0.00456;
 		
 	/*Constructor,inicia estado de eje en 100*/
-	public Eje(){
-		this.setEstado(100);
+	public Eje(Auto auto){
+		setAuto(auto);
+		setEstado(100);
 		repositorio=new RepositorioDeFuerzas(this);
 		setLlantaDerecha(new Llanta());
 		setLlantaIzquierda(new Llanta());
+		instalar(getAuto());
+	}
+	
+	public void instalar(Auto auto){
+		setAuto(auto);
+		try{
+			getLlantaDerecha().instalar(auto,this);
+		}catch(NullPointerException e){}
+		try{
+			getLlantaIzquierda().instalar(auto,this);
+		}catch(NullPointerException e){}
 	}
 	
 	/**
@@ -95,7 +107,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	}
 
 	public void setLlantaDerecha(Llanta llantaDerecha) {
-		llantaDerecha.instalar(this.getAuto(),this);
+		llantaDerecha.instalar(getAuto(),this);
 		LlantaDerecha = llantaDerecha;
 	}
 
@@ -140,6 +152,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
 		if(fuerza.getEmisor()==this.getAuto().getCaja()){
+			  System.out.println("Eje recibio Fuerza desde Caja");
 			  //viene de la caja
 			  //envio una fueza nula a la carroceria para que se actualice la fueza que ejerce sobre el eje
 			  getAuto().getCarroceria().recibirFuerza(new Fuerza(this,getAuto().getCarroceria(),0,true));
@@ -158,12 +171,15 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 			 
 		}else{//viene de la carroceria
 			  if(fuerza.getEmisor()==getAuto().getCarroceria()){
+				  System.out.println("Eje recibio Fuerza desde Carroceria");  
 				try{ 
 				  repositorio.insertarFuerza(new Fuerza(fuerza.getEmisor(),fuerza.getReceptor(),
 						  					fuerza.getValorDeLaFuerza(),false));
 				}catch (Exception e){}
 			  }
-			  else{//llanta derecha o izquierda
+			  else{
+				  System.out.println("Eje recibio Fuerza desde alguna llanta");				  
+				  //llanta derecha o izquierda
 				  //obtengo el valor de la fuerza y modifico las rpm del eje
 				  double valorDeLaFuerza=0;
 				  try{

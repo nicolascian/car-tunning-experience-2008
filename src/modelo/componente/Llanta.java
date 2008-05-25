@@ -45,6 +45,8 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 */
 	
 	public Llanta(){
+		setAuto(null);
+		setComponenteContenedor(null);
 		setEstado(100);
 		this.setPeso(25);
 		this.setCoeficienteDeDesgastePorSuperficie(3);
@@ -58,10 +60,12 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 * @param pesoNormal
 	 */
 	public Llanta(double peso){
+		setAuto(null);
+		setComponenteContenedor(null);
 		setEstado(100);
 		this.setPeso(peso);
-		this.setCoeficienteDeDesgastePorSuperficie(3);
-		this.setNeumatico(new NeumaticoMixto());
+		setCoeficienteDeDesgastePorSuperficie(3);
+		setNeumatico(new NeumaticoMixto());
 	}
 	
 	/**
@@ -167,15 +171,18 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
 		if(fuerza.getEmisor()==getComponenteContenedor()){
+			System.out.println("Llanta recibio fuerza desde Eje");
 			//la fuerza viene del eje
 			//se pasa la fuerza al neumatico
 			fuerza.setEmisor(this);
 			fuerza.setReceptor(getNeumatico());
 			getNeumatico().recibirFuerza(fuerza);
 		}else{
+			System.out.println("Llanta recibio fuerza desde Neumatico");
 			//la fuerza viene del neumatico se pasa al eje
 			fuerza.setEmisor(this);
 			fuerza.setReceptor((ReceptorDeFuerzas)getComponenteContenedor());
+			((ReceptorDeFuerzas)getComponenteContenedor()).recibirFuerza(fuerza);
 		}
 	}
 
@@ -191,6 +198,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 */
 	public void setNeumatico(Neumatico neumatico) {
 		this.neumatico = neumatico;
+		neumatico.instalar(auto,this);
 	}
 
 	/* (non-Javadoc)
@@ -207,11 +215,18 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	@Override
 	public void setComponenteContenedor(Componente contenedor) {
 		this.contenedor=contenedor;
-		
+	}
+	
+	public void setAuto(Auto auto){
+		super.setAuto(auto);
+		instalar(getAuto(),null);
 	}
 	
 	public void instalar(Auto auto,Eje eje){
-		setAuto(auto);
+		this.auto=auto;
+		try{
+			neumatico.instalar(auto,this);
+		}catch(NullPointerException e){}
 		setComponenteContenedor(eje);
 	}
 }

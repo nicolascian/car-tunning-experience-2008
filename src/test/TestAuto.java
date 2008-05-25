@@ -125,7 +125,7 @@ public class TestAuto {
 		  auto.embragar(true);
 		  auto.getCaja().setCambio(1);
 		  auto.embragar(false);
-		  while(contador<20){
+		  while(contador<35){
 		     auto.acelerar(true);
 		     contador++;
 		     System.out.println(auto.getEjeDelantero().getRpm());
