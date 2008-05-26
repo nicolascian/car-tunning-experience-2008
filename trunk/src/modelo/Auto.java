@@ -40,7 +40,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	private Eje ejeDelantero=null;
 	private Eje ejeTrasero=null;
 	
-	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.11232;
+	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.0000012011;
 	
 	/**
 	 *	@Pre:

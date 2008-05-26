@@ -157,16 +157,15 @@ public class TestAuto {
 		  auto.setEncendido(true);
 		  assertTrue(auto.isEncendido());
 		  int contador=0;
-		  while(contador<43){
-			 
-		     contador++;
-		     System.out.println("Iteracion "+contador+
+		  while((auto.getCaja().getCambio()!=2)){
+			 System.out.println("Iteracion "+contador+
 		    		" Cambio "+auto.getCaja().getCambio()+
 		    		" velocidad "+auto.getVelocidad()+
 		    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
 		    		" Rpm Motor "+auto.getMotor().getRPM()+
 		    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual());
 		     auto.acelerar(true);
+		     contador++;
 		  }
 		  System.out.println(auto.getPeso());
 		  /*

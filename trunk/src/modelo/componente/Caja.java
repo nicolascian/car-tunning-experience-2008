@@ -138,6 +138,14 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	}
 	
 	/**
+	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.
+	 * @Post: Se ha obtenido la relacion de la caja para el cambio pasado por parametro.
+	 */
+	protected double getRelacionDeCambio(int cambio){
+		return (relacionDeCambio[cambio]);
+	}
+	
+	/**
 	 * @Pre: La instancia ha sido creada.
 	 * @Post:Se ha seteado el cambio. Cada vez que hacemos un Cambio, se altera las 
 	 * revolucionesMaximas del Motor.
@@ -148,7 +156,8 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		   double valorDeFuerza=0;
 		   if(cambio>getCambio())
 			  valorDeFuerza=getAuto().getMotor().getRPM()*
-			                getAuto().getMotor().getCoeficienteDeProduccionDeFuerzaAPartirRpm();
+			                getAuto().getMotor().getCoeficienteDeProduccionDeFuerzaAPartirRpm()*
+			                1.1315*getRelacionDeCambio()/getRelacionDeCambio(0);
 		   else
 			  valorDeFuerza=getAuto().getMotor().getRPM()*(-0.07);
 		   //se pasa el cambio
@@ -157,7 +166,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		   setRevolucionesMaximasMotorParaCambioActual(calcularRevolucionesMaximasMotorParaCambioActual());
 		   //se pasa una fuerza motor 
 		   Fuerza fuerza=new Fuerza(this,getAuto().getMotor(),valorDeFuerza,true);
-		   this.getAuto().getMotor().recibirFuerza(fuerza);
+		   this.getAuto().getMotor().afectarRpmPorFuerza(fuerza);
 		}//fin if
 		if (!isEmbragado()) {
 			this.desgastar();}
