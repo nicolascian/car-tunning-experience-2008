@@ -9,7 +9,7 @@ package modelo.componente;
 import modelo.*;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
-
+import modelo.fuerzas.RepositorioDeFuerzas;
 /**
  * Esta clase modela el motor de un auto. El motor tiene una cierta potencia
  * maxima dada su cilindrada, cantidad de cilindros y revoluciones maximas que puede alcanzar.
@@ -92,8 +92,10 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	
 	private double coeficienteDeIncrementoRpm=0.00000002;
 	
-	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0.3767;
+	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0.31256;
 		
+	private RepositorioDeFuerzas repositorio=null;
+	
 	/**
 	 * @Pre: -
 	 * @Post: Se ha creado una instancia de la clase, inicializandola segun los parametros.
@@ -123,6 +125,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	//inicializacion de potencias 	
 		potenciaMaxima=getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000;
 		potenciaExtra=0;
+		repositorio=new RepositorioDeFuerzas(this);
 	}
 		
 	/**
@@ -155,6 +158,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	  //inicializacion de potencias 	
 		potenciaMaxima=getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000;
 		potenciaExtra=0;
+		repositorio=new RepositorioDeFuerzas(this);
 	}
 	
 	/* (non-Javadoc)
@@ -169,19 +173,21 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
 		try{	
-		   afectarRpmPorFuerza(fuerza);
+		   repositorio.insertarFuerza(fuerza);
 		}catch(NullPointerException e){}
 	}
 	
 	private void afectarRpmPorFuerza(Fuerza fuerza){
 		   double rpm=RPM;
+		   double valorDeLaFuerza=0;
 		   try{
-			   rpm=rpm+fuerza.getValorDeLaFuerza()/coeficienteDeProduccionDeFuerzaAPartirRpm;
+			   valorDeLaFuerza=fuerza.getValorDeLaFuerza();
 		   }catch (Exception e){}
+		   rpm=rpm-valorDeLaFuerza/coeficienteDeProduccionDeFuerzaAPartirRpm;
 		   if(rpm<getRevolucionesMinimasEncendido())
-			  rpm=getRevolucionesMinimasEncendido();
+			     rpm=getRevolucionesMinimasEncendido();
 		   if(rpm>getRevolucionesMaximas())
-			  rpm=getRevolucionesMaximas();
+			      rpm=getRevolucionesMaximas();
 		   setRPM(rpm);
 	}
 	
@@ -198,7 +204,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     double valorFuerza=0;
 		     if(isAcelerando()){
 				 incrementarRpm();
-				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm*0.05;  
+				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm;  
 		     }	   
 			 else{
 				 decrementarRpm();
@@ -208,6 +214,10 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
 		     Fuerza fuerza=new Fuerza(this,getAuto().getCaja(),valorFuerza,true);
 		     getAuto().getCaja().recibirFuerza(fuerza);
+		     //obtengo el total de fuerzas sobre el motor
+		     valorFuerza+=repositorio.obtenerValorSumatoriaDeFuerzas();
+		     if(valorFuerza<0)   
+		         afectarRpmPorFuerza(new Fuerza(this,getAuto().getCaja(),valorFuerza,true));
 		  }catch (NullPointerException e){}
 	  }
 	}
