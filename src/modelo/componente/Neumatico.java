@@ -67,19 +67,19 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
 		//de acuerdo al peso del auto se calcula la fuerza de rozamiento
-		double valorFuerzaRetorno=0;
+		double valorFuerzaDeRozamiento=0;
+		double valorFuerzaRecibida=0;
 		try{
-			valorFuerzaRetorno=fuerza.getValorDeLaFuerza();
+			valorFuerzaRecibida=fuerza.getValorDeLaFuerza();
 		}catch (Exception e){}
-		double pesoAuto=0;
-		try{
-			pesoAuto=(getAuto().getPeso()*calcularAdherencia()*GRAVEDAD)/(-660);
-		}catch (Exception e){}
-		valorFuerzaRetorno=pesoAuto+valorFuerzaRetorno;
-		System.out.println("peso del auto"+pesoAuto+" Fuerza "+valorFuerzaRetorno);
+		if(getAuto().getVelocidad()!=0)  
+		  try{
+			valorFuerzaDeRozamiento=(getAuto().getPeso()*calcularAdherencia()*GRAVEDAD)/(-660);
+		  }catch (Exception e){}
+		//actualizar Rpm del neumatico
+		//se retorna fuerza a llanta
 		Fuerza fuerzaRetorno=new Fuerza(this,(ReceptorDeFuerzas)getComponenteContenedor(),
-				                        valorFuerzaRetorno,true);
-		
+				                        valorFuerzaDeRozamiento,true);
 		((ReceptorDeFuerzas)getComponenteContenedor()).recibirFuerza(fuerzaRetorno);
 	}
 

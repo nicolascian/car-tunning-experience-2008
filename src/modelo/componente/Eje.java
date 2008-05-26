@@ -154,38 +154,42 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	public void recibirFuerza(Fuerza fuerza) {
 		if(fuerza.getEmisor()==this.getAuto().getCaja()){
 			  //viene de la caja
-			  //envio una fueza nula a la carroceria para que se actualice la fueza que ejerce sobre el eje
+			  //envio una fuerza nula a la carroceria para que se actualice la fueza que ejerce sobre el eje
 			  getAuto().getCarroceria().recibirFuerza(new Fuerza(this,getAuto().getCarroceria(),0,true));
 			  double valorDeLaFuerza=0;
+			  //inserto copia de la fuerza en el repositorio de fuerzas
+			  Fuerza fuerzaCopia=repositorio.insertarFuerzaRetornarCopia(fuerza);
 			  try{
-			     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
+			     valorDeLaFuerza=fuerzaCopia.getValorDeLaFuerza();
 			  }catch (Exception e){}
 			  //obtengo la sumatoria de fuerza del repositorio proveniente de la carroceria
-			  valorDeLaFuerza=valorDeLaFuerza-repositorio.obtenerValorSumatoriaDeFuerzas(getAuto().getCarroceria());
+			  valorDeLaFuerza+=repositorio.obtenerValorSumatoriaDeFuerzas(getAuto().getCarroceria());
 			  //transmito lo que queda de la fuerza a la llanta derecha
 			  Fuerza fuerzaALlantaDer=new Fuerza(this,getLlantaDerecha(),valorDeLaFuerza/2,true);
 			  this.getLlantaDerecha().recibirFuerza(fuerzaALlantaDer);
 			  //transmito fuerza a llanta izquierda			  			
 			  Fuerza fuerzaALlantaIzq=new Fuerza(this,getLlantaIzquierda(),valorDeLaFuerza/2,true);
 			  this.getLlantaIzquierda().recibirFuerza(fuerzaALlantaIzq);
-			 
+			  //obtendo la sumatorio total de fuerzas sobre el eje
+			  valorDeLaFuerza=repositorio.obtenerValorSumatoriaDeFuerzas();
+			   //actualizo las rpm del eje
+			  setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_OBTENCION_RPM);
 		}else{//viene de la carroceria
 			  if(fuerza.getEmisor()==getAuto().getCarroceria()){
-				try{ 
-				  repositorio.insertarFuerza(new Fuerza(fuerza.getEmisor(),fuerza.getReceptor(),
-						  					fuerza.getValorDeLaFuerza(),false));
-				}catch (Exception e){}
+				Fuerza fuerzaACaja=fuerzaACaja=repositorio.insertarFuerzaRetornarCopia(fuerza);
+				//envio una copia de la fuerza a la caja
+				
+				((ReceptorDeFuerzas)getAuto().getCaja()).recibirFuerza(fuerzaACaja);
 			  }
 			  else{
 				  //llanta derecha o izquierda
-				  //obtengo el valor de la fuerza y modifico las rpm del eje
-				  double valorDeLaFuerza=0;
-				  try{
-					  valorDeLaFuerza=fuerza.getValorDeLaFuerza();
-				  }catch(Exception e){}
-				  setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_OBTENCION_RPM);
-				  Fuerza fuerzaAuxiliar=new Fuerza(this,getAuto().getCaja(),valorDeLaFuerza,true);
-				  getAuto().getCaja().recibirFuerza(fuerzaAuxiliar);
+				  //inserto en el repositorio
+				  Fuerza fuerzaACaja=repositorio.insertarFuerzaRetornarCopia(fuerza);
+				  //envio una copia de la fuerza a la caja
+				  fuerzaACaja.setEmisor(this);
+				  fuerzaACaja.setReceptor(getAuto().getCaja());
+				  fuerzaACaja.limitarAcceso();
+				  ((ReceptorDeFuerzas)getAuto().getCaja()).recibirFuerza(fuerzaACaja);				  
 			  }
 		}
 	}

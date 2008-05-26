@@ -164,9 +164,9 @@ public class Carroceria extends Componente
 		if((fuerza.getEmisor()==getAuto().getEjeDelantero()||
 		   (fuerza.getEmisor()==getAuto().getEjeTrasero()))){
 			double coeficiente=Math.abs(COEFICIENTE_ARRASTRE-TEMPERATURAOPTIMA/(getTemperatura()*10.0));
-			double valor=getAuto().getVelocidad()*coeficiente*getSuperficieFrontal()*COEFICIENTE_OBTENCION_FUERZA/2;
-			getAuto().getEjeDelantero().recibirFuerza(new Fuerza(this,getAuto().getEjeDelantero(),valor,true));
-			getAuto().getEjeTrasero().recibirFuerza(new Fuerza(this,getAuto().getEjeDelantero(),valor,true));
+			double valor=getAuto().getVelocidad()*coeficiente*getSuperficieFrontal()*COEFICIENTE_OBTENCION_FUERZA/(-2);
+			getAuto().getEjeDelantero().recibirFuerza(new Fuerza(this,getAuto().getEjeDelantero(),valor,false));
+			getAuto().getEjeTrasero().recibirFuerza(new Fuerza(this,getAuto().getEjeDelantero(),valor,false));
 		}
 	}
 }
