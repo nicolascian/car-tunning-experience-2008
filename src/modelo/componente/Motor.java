@@ -50,6 +50,8 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	
 	protected final static double COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES=2;
 	
+	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_INICIAL=2.0;
+	
 	protected final static double COEFICIENTE_BASICO_DE_DESGASTE=1.5;
 	
 	protected final static double COEFICIENTE_ACTUALIZACION_DE_CTE_DE_PROD_FZA_A_PATIR_RPM=0.1;
@@ -90,11 +92,13 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		
 	private double coeficienteDeDisipacionCalorico=0;
 	
-	private double coeficienteDeIncrementoRpm=0.00000002;
+	private double coeficienteDeIncrementoRpm=COEFICIENTE_DE_INCREMENTO_RPM_INICIAL;
 	
 	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0.31256;
 		
 	private RepositorioDeFuerzas repositorio=null;
+	
+	private long tiempoUltimoIncrementoRpm=0;
 	
 	/**
 	 * @Pre: -
@@ -172,23 +176,36 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
-		try{	
-		   repositorio.insertarFuerza(fuerza);
-		}catch(NullPointerException e){}
+		repositorio.insertarFuerza(fuerza);
+		
 	}
 	
-	private void afectarRpmPorFuerza(Fuerza fuerza){
-		   double rpm=RPM;
+	public void afectarRpmPorFuerza(Fuerza fuerza){
+		   double rpmFinal=RPM;
 		   double valorDeLaFuerza=0;
 		   try{
 			   valorDeLaFuerza=fuerza.getValorDeLaFuerza();
 		   }catch (Exception e){}
-		   rpm=rpm-valorDeLaFuerza/coeficienteDeProduccionDeFuerzaAPartirRpm;
-		   if(rpm<getRevolucionesMinimasEncendido())
-			     rpm=getRevolucionesMinimasEncendido();
-		   if(rpm>getRevolucionesMaximas())
-			      rpm=getRevolucionesMaximas();
-		   setRPM(rpm);
+		   rpmFinal-=valorDeLaFuerza/coeficienteDeProduccionDeFuerzaAPartirRpm;
+		   if(rpmFinal<getRevolucionesMinimasEncendido()){
+			     rpmFinal=getRevolucionesMinimasEncendido();
+		   }
+		   if(rpmFinal>getRevolucionesMaximas()){
+			     rpmFinal=getRevolucionesMaximas();
+		   }
+		   afectarCoeficienteDeIncrementoRpmPorCambioBruscoRpm(rpmFinal);
+		   setRPM(rpmFinal);
+	}
+	
+	private void afectarCoeficienteDeIncrementoRpmPorCambioBruscoRpm(double rpmFinal){
+		double diferencia=RPM-rpmFinal;
+		double coeficienteFinal=getCoeficienteDeIncrementoRpm()-diferencia*0.0007;
+		if(coeficienteFinal<COEFICIENTE_DE_INCREMENTO_RPM_INICIAL)
+			coeficienteFinal=COEFICIENTE_DE_INCREMENTO_RPM_INICIAL;
+		if(coeficienteFinal>5)
+			coeficienteFinal=5;
+		this.setCoeficienteDeIncrementoRpm(coeficienteFinal);
+		tiempoUltimoIncrementoRpm=System.currentTimeMillis();
 	}
 	
 	/**
@@ -198,7 +215,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	public void acelerar(boolean valor){
 	  if(isEncendido()){	  
 		  try{   
-		     //se obtiene potencia extra del resto de componentes
+			 //se obtiene potencia extra del resto de componentes
 		     setPotenciaExtra(getAuto().getPotenciaTotal());
 		     setAcelerando(valor);
 		     double valorFuerza=0;
@@ -228,14 +245,19 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 *  de la instancia.    
 	*/
 	private void decrementarRpm(){
-		double rpmFinal=getRPM()-this.coeficienteDeIncrementoRpm;
+		long tiempo=System.currentTimeMillis();
+		if(this.tiempoUltimoIncrementoRpm==0)
+			tiempoUltimoIncrementoRpm=tiempo;
+		long deltaTiempo=tiempo-tiempoUltimoIncrementoRpm;
+		double rpmFinal=getRPM()-this.coeficienteDeIncrementoRpm*deltaTiempo;
 		if(rpmFinal>this.getRevolucionesMinimasEncendido()){
 		  setRPM(rpmFinal);
 		  this.setCoeficienteDeIncrementoRpm(coeficienteDeIncrementoRpm-
-			                                2*Math.sqrt(coeficienteDeIncrementoRpm));
+			                        0.000001*Math.sqrt(coeficienteDeIncrementoRpm)*deltaTiempo);
 		}
 		else
 		  this.setRPM(this.getRevolucionesMinimasEncendido());
+		tiempoUltimoIncrementoRpm=tiempo;
 	}
 	
 	/**
@@ -244,15 +266,17 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 *  de la instancia.    
 	*/
 	private void incrementarRpm(){
-		double rpmFinal=getRPM()+this.coeficienteDeIncrementoRpm;
+		long tiempo=System.currentTimeMillis();
+		long deltaTiempo=tiempo-tiempoUltimoIncrementoRpm;
+		double rpmFinal=getRPM()+coeficienteDeIncrementoRpm*deltaTiempo;
 		if(rpmFinal<this.getRevolucionesMaximas()){
 		  setRPM(rpmFinal);
 		  this.setCoeficienteDeIncrementoRpm(coeficienteDeIncrementoRpm+
-			                                2*Math.sqrt(coeficienteDeIncrementoRpm));
-		 
+			                        0.000001*Math.sqrt(coeficienteDeIncrementoRpm)*deltaTiempo);
 		}
 		else
 		  this.setRPM(this.getRevolucionesMaximas());
+		tiempoUltimoIncrementoRpm=tiempo;
 	}
 	
 	/**
@@ -283,6 +307,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 			   getAuto().getCaja().setCambio(0);
 			}catch(NullPointerException e){}
 			setAcelerando(false);
+			tiempoUltimoIncrementoRpm=System.currentTimeMillis();
 		}
 	}
 	
