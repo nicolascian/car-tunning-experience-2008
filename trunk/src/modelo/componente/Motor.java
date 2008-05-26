@@ -94,7 +94,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	
 	private double coeficienteDeIncrementoRpm=COEFICIENTE_DE_INCREMENTO_RPM_INICIAL;
 	
-	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0.31256;
+	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0.3299956;
 		
 	private RepositorioDeFuerzas repositorio=null;
 		
@@ -197,11 +197,11 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	
 	private void afectarCoeficienteDeIncrementoRpmPorCambioBruscoRpm(double rpmFinal){
 		double diferencia=RPM-rpmFinal;
-		double coeficienteFinal=getCoeficienteDeIncrementoRpm()-diferencia*0.0007;
+		double coeficienteFinal=getCoeficienteDeIncrementoRpm()-diferencia*0.000005;
 		if(coeficienteFinal<COEFICIENTE_DE_INCREMENTO_RPM_INICIAL)
 			coeficienteFinal=COEFICIENTE_DE_INCREMENTO_RPM_INICIAL;
-		if(coeficienteFinal>4)
-			coeficienteFinal=4;
+		if(coeficienteFinal>5)
+			coeficienteFinal=5;
 		this.setCoeficienteDeIncrementoRpm(coeficienteFinal);
 	}
 	
@@ -222,7 +222,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     }	   
 			 else{
 				 decrementarRpm();
-				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm;
+				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm*0.15;
 			 }
 		     /*Envio una fuerza al eje proporcional a las rpm y 
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
@@ -245,8 +245,8 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		double rpmFinal=getRPM()-this.coeficienteDeIncrementoRpm;
 		if(rpmFinal>this.getRevolucionesMinimasEncendido()){
 		  setRPM(rpmFinal);
-		  this.setCoeficienteDeIncrementoRpm(coeficienteDeIncrementoRpm-
-			                        0.000001*Math.sqrt(coeficienteDeIncrementoRpm));
+		  this.setCoeficienteDeIncrementoRpm(coeficienteDeIncrementoRpm+
+			                        0.000001*Math.exp(3+coeficienteDeIncrementoRpm));
 		}
 		else
 		  this.setRPM(this.getRevolucionesMinimasEncendido());
@@ -261,8 +261,8 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		double rpmFinal=getRPM()+coeficienteDeIncrementoRpm;
 		if(rpmFinal<this.getRevolucionesMaximas()){
 		  setRPM(rpmFinal);
-		  this.setCoeficienteDeIncrementoRpm(coeficienteDeIncrementoRpm+
-			                        0.000001*Math.sqrt(coeficienteDeIncrementoRpm));
+		  this.setCoeficienteDeIncrementoRpm(coeficienteDeIncrementoRpm-
+			                        0.000001*Math.exp(3+coeficienteDeIncrementoRpm));
 		}
 		else
 		  this.setRPM(this.getRevolucionesMaximas());
