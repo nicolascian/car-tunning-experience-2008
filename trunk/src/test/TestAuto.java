@@ -178,10 +178,9 @@ public class TestAuto {
 			     contador++;
 		     }
 		  }
-		 
 		  //desacelerar
 		  contador=0;
-		  while(contador<10000){
+		  while((contador<1000)){
 				 auto.acelerar(false);
 			     contador++;
 			     System.out.println("Iteracion "+contador+
