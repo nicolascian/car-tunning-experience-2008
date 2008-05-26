@@ -28,7 +28,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	private double DesgastePorParticulas;
 	private RepositorioDeFuerzas repositorio;	
 	private double rpm=0;
-	protected final static double COEFICIENTE_OBTENCION_RPM=0.004006;
+	protected final static double COEFICIENTE_OBTENCION_RPM=0.00839999785;
 		
 	/*Constructor,inicia estado de eje en 100*/
 	public Eje(Auto auto){

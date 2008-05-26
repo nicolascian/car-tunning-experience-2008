@@ -156,8 +156,10 @@ public class TestAuto {
 	  try{	 
 		  auto.setEncendido(true);
 		  assertTrue(auto.isEncendido());
+		  int cambio=5;
 		  int contador=0;
-		  while((auto.getCaja().getCambio()!=2)){
+		  while(//(auto.getCaja().getCambio()!=cambio)&&
+			  !((auto.getCaja().getCambio()==cambio)&&(auto.getMotor().getRPM()==8000))){
 			 System.out.println("Iteracion "+contador+
 		    		" Cambio "+auto.getCaja().getCambio()+
 		    		" velocidad "+auto.getVelocidad()+
@@ -166,8 +168,17 @@ public class TestAuto {
 		    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual());
 		     auto.acelerar(true);
 		     contador++;
+		     if(auto.getCaja().getCambio()==cambio){
+		         System.out.println("Iteracion "+contador+
+			    		" Cambio "+auto.getCaja().getCambio()+
+			    		" velocidad "+auto.getVelocidad()+
+			    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+			    		" Rpm Motor "+auto.getMotor().getRPM()+
+			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual());
+			     auto.acelerar(true);
+			     contador++;
+		     }
 		  }
-		  System.out.println(auto.getPeso());
 		  /*
 		  contador=0;
 		  while(contador<10){
