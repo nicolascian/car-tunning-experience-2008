@@ -40,7 +40,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	private Eje ejeDelantero=null;
 	private Eje ejeTrasero=null;
 	
-	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.00000269999998;
+	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.004311113598;
 	
 	/**
 	 *	@Pre:
@@ -129,7 +129,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 	
 	public void actualizarVelocidadYPosicion(){
-		Velocidad = Velocidad+getEjeDelantero().getRpm()*CONSTANTE_DE_OBTENCION_DE_VELOCIDAD;
+		Velocidad = getEjeDelantero().getRpm()*CONSTANTE_DE_OBTENCION_DE_VELOCIDAD;
 		Posicion += getVelocidad() * (0.00000006);
 		//notifico a los observadores
 		ActualizarObservadores();

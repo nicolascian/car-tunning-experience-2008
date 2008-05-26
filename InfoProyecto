@@ -39,12 +39,12 @@ Nico M: 	Neumatico <--------------------------Listo
 			interfaces Afectable <---------------Listo 
 			Superficie <-------------------------Listo
 			
-Rafa:		Motor <------------------------------listo probando
-			Caja <-------------------------------listo probando
-			Automatica <-------------------------casi probando
-			Secuencial <-------------------------casi probando
-			Manual <-----------------------------casi probando
-			Auto <-------------------------------casi probando
+Rafa:		Motor <------------------------------probando
+			Caja <-------------------------------probando
+			Automatica <-------------------Acelerando siempre se puede probar en juego
+			Secuencial <-------------------------probando
+			Manual <-----------------------------probando
+			Auto <-------------------------Acelerando con caja automatica se puede probar en juego
 			
 Lucas:		Desgastar y ObtenerPotencia
 			(Eje,Escape,Neumatico,Carroceria,Carburador
