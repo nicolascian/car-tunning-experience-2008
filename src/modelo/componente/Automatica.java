@@ -42,7 +42,7 @@ public class Automatica extends Caja{
 			}
 		}
 		else{
-			if(rpm<=motor.getRevolucionesMinimasEncendido()){
+			if(rpm<=getRevolucionesMinimasMotorParaCambioActual()){
 				embragar(true);
 				setCambio(getCambio()-1);
 				embragar(false);

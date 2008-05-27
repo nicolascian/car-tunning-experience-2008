@@ -28,8 +28,8 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	private double DesgastePorParticulas;
 	private RepositorioDeFuerzas repositorio;	
 	private double rpm=0;
-	protected final static double COEFICIENTE_OBTENCION_RPM=0.0069999999895;
-		
+	protected final static double COEFICIENTE_INCREMENTO_RPM=0.0069999999895;
+	protected final static double COEFICIENTE_DECREMENTO_RPM=0.3739888456661;	
 	/*Constructor,inicia estado de eje en 100*/
 	public Eje(Auto auto){
 		setPeso(50);
@@ -173,12 +173,14 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 			  //obtendo la sumatorio total de fuerzas sobre el eje
 			  valorDeLaFuerza=repositorio.obtenerValorSumatoriaDeFuerzas();
 			   //actualizo las rpm del eje
-			  setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_OBTENCION_RPM);
+			  if(valorDeLaFuerza>0)
+			    setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_INCREMENTO_RPM);
+			  else
+				  setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_DECREMENTO_RPM);  
 		}else{//viene de la carroceria
 			  if(fuerza.getEmisor()==getAuto().getCarroceria()){
 				Fuerza fuerzaACaja=fuerzaACaja=repositorio.insertarFuerzaRetornarCopia(fuerza);
 				//envio una copia de la fuerza a la caja
-				
 				((ReceptorDeFuerzas)getAuto().getCaja()).recibirFuerza(fuerzaACaja);
 			  }
 			  else{

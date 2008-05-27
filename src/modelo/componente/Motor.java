@@ -247,7 +247,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		double rpmFinal=getRPM()-this.coeficienteDeIncrementoRpm;
 		if(rpmFinal<getRevolucionesMinimasEncendido())
 			rpmFinal=getRevolucionesMinimasEncendido();
-		double coeficienteFinal=coeficienteDeIncrementoRpm+0.001*(3+coeficienteDeIncrementoRpm);
+		double coeficienteFinal=coeficienteDeIncrementoRpm+0.000001*(2+coeficienteDeIncrementoRpm);
 		if(coeficienteFinal>COEFICIENTE_DE_INCREMENTO_RPM_INICIAL)
 			coeficienteFinal=COEFICIENTE_DE_INCREMENTO_RPM_INICIAL;
 		setCoeficienteDeIncrementoRpm(coeficienteFinal);
