@@ -16,8 +16,7 @@ import modelo.*;
  * Su desgaste es mayor al normal y no tiene un buen comportamiento en superficies
  * con mucho relieve.
  */
-public class NeumaticoLluvia extends Neumatico
-	implements AfectablePorSuperficie{
+public class NeumaticoLluvia extends Neumatico implements AfectablePorSuperficie{
 
 	/*----------Atributos---------*/
 	/**

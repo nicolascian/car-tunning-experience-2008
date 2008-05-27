@@ -73,7 +73,10 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 * 
 	 */
 	public void desgastar(){
-		setEstado(getEstado()-this.getCoeficienteDeDesgastePorSuperficie()*tiempoPorCiclo*constanteDeDesgaste);
+		setEstado(super.getEstado()-this.getCoeficienteDeDesgastePorSuperficie()*tiempoPorCiclo*constanteDeDesgaste);
+		try{
+			this.getNeumatico().desgastar();
+		}catch(NullPointerException e){}
 	}
 	
 	/**
@@ -82,7 +85,8 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 * son, mas potencia puede otorgar
 	 */
 	public double obtenerPotencia(){
-		return (this.getPesoNormal()*potenciaNormal / this.getPeso());
+		return (this.getPesoNormal()*potenciaNormal / super.getPeso()+
+				getNeumatico().obtenerPotencia());
 	}
 		
 	/** 
@@ -92,11 +96,13 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	public void afectar(Superficie superficie){           
 		double relacion;
 		try{
-		relacion= (this.getCoeficienteDeDesgastePorSuperficie()/(superficie.getParticulasSueltas()*superficie.getRugosidad()*superficie.getViscosidad()));
+		   relacion= (this.getCoeficienteDeDesgastePorSuperficie()/(superficie.getParticulasSueltas()
+				     *superficie.getRugosidad()*superficie.getViscosidad()));
 		}catch (Exception e){
-		relacion=0.5;
+		   relacion=0.5;
 		}
-		this.setCoeficienteDeDesgastePorSuperficie(this.getCoeficienteDeDesgastePorSuperficie()+(this.getCoeficienteDeDesgastePorSuperficie()*Math.abs(1- relacion)));
+		this.setCoeficienteDeDesgastePorSuperficie(this.getCoeficienteDeDesgastePorSuperficie()+
+				               (this.getCoeficienteDeDesgastePorSuperficie()*Math.abs(1- relacion)));
 	}
 	
 	/**
@@ -212,11 +218,8 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	}
 	
 	public double getPeso(){
-		double pesoTotal=this.peso;
-		try{
-			pesoTotal+=getNeumatico().getPeso();
-		}catch (NullPointerException e){}
-		return pesoTotal;
+		return(this.peso);
+		
 	}
 	
 	public void instalar(Auto auto,Eje eje){

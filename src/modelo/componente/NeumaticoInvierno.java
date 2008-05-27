@@ -14,8 +14,7 @@ import modelo.*;
  * en cualquier condicion, pero su vida util es muy corta debido al rapido
  * desgaste de los clavos.
  */
-public class NeumaticoInvierno extends Neumatico implements
-		AfectablePorSuperficie {
+public class NeumaticoInvierno extends Neumatico implements	AfectablePorSuperficie {
 
 	/*----------Atributos---------*/
 	/**
