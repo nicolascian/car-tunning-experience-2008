@@ -164,7 +164,8 @@ public class TestAuto {
 		    		" velocidad "+auto.getVelocidad()+
 		    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
 		    		" Rpm Motor "+auto.getMotor().getRPM()+
-		    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual());
+		    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+		    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
 		     auto.acelerar(true);
 		     contador++;
 		     if(auto.getCaja().getCambio()==cambio){
@@ -173,7 +174,8 @@ public class TestAuto {
 			    		" velocidad "+auto.getVelocidad()+
 			    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
 			    		" Rpm Motor "+auto.getMotor().getRPM()+
-			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual());
+			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
 			     auto.acelerar(true);
 			     contador++;
 		     }
@@ -189,7 +191,8 @@ public class TestAuto {
 			    		" velocidad "+auto.getVelocidad()+
 			    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
 			    		" Rpm Motor "+auto.getMotor().getRPM()+
-			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual());
+			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
 		  }
 		
 	  
