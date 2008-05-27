@@ -33,6 +33,8 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	
 	private double revolucionesMaximasMotorParaCambioActual=0;
 	
+	private double revolucionesMinimasMotorParaCambioActual=0;
+	
 	private double[] relacionDeCambio;//
 		
 	private int cantidadCambios;
@@ -159,9 +161,12 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 			            getAuto().getMotor().getCoeficienteDeProduccionDeFuerzaAPartirRpm()*
 			            (-1.7)*getCambio()*getRelacionDeCambio()/getRelacionDeCambio(0);
 		   else
-			  valorDeFuerza=getAuto().getMotor().getRPM()*(-0.07);
+			  valorDeFuerza=getAuto().getMotor().getRPM()*(0.22);
 		   //se pasa el cambio
 		   this.cambio=cambio;
+		   //se cambian las revoluciones minimas para el cambio actual
+		   setRevolucionesMinimasMotorParaCambioActual(getAuto().getMotor().getRevolucionesMaximas()
+				                       *7*getCambio()/getRelacionDeCambio(0));
 		   //se cambian las revoluciones maximas para el cambio actual
 		   setRevolucionesMaximasMotorParaCambioActual(calcularRevolucionesMaximasMotorParaCambioActual());
 		   //se pasa una fuerza motor 
@@ -287,4 +292,20 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		
 		ActualizarObservadores();
 	}
+
+	/**
+	 * @return the revolucionesMinimasMotorParaCambioActual
+	 */
+	public double getRevolucionesMinimasMotorParaCambioActual() {
+		return revolucionesMinimasMotorParaCambioActual;
+	}
+
+	/**
+	 * @param revolucionesMinimasMotorParaCambioActual the revolucionesMinimasMotorParaCambioActual to set
+	 */
+	public void setRevolucionesMinimasMotorParaCambioActual(
+			double revolucionesMinimasMotorParaCambioActual) {
+		this.revolucionesMinimasMotorParaCambioActual = revolucionesMinimasMotorParaCambioActual;
+	}
+	
 }
