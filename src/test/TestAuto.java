@@ -1,6 +1,7 @@
 package test;
 import modelo.*;
 import modelo.componente.Manual;
+import modelo.componente.Secuencial;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -152,10 +153,46 @@ public class TestAuto {
 		  a.printStackTrace();
 	    }
 	}
-	*/
+	*//*
 	@Test
 	public void testAcelerarCajaManual(){
-	  	  auto.setEncendido(true);
+	  	  Auto auto=new Auto();
+		  auto.setCaja(new Manual(5));
+		  auto.setEncendido(true);
+		  assertTrue(auto.isEncendido());
+		  auto.embragar(true);
+		  //auto.getCaja().setCambio(1);
+		  auto.embragar(false);
+		  int cambio=5;
+		  int contador=0;
+	      while(!((auto.getCaja().getCambio()==cambio)&&(auto.getMotor().getRPM()==8000))){
+			 System.out.println("Iteracion "+contador+
+		    		" Cambio "+auto.getCaja().getCambio()+
+		    		" velocidad "+auto.getVelocidad()+
+		    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+		    		" Rpm Motor "+auto.getMotor().getRPM()+
+		    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+		    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+		     auto.acelerar(true);
+		     contador++;
+		     if(auto.getMotor().getRPM()>auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()){
+		    	 auto.embragar(true);
+		    	 auto.getCaja().setCambio(auto.getCaja().getCambio()+1);
+		    	 auto.embragar(false);
+		     }
+		     if(auto.getMotor().getRPM()<auto.getCaja().getRevolucionesMinimasMotorParaCambioActual()){
+		    	 auto.embragar(true);
+		    	 auto.getCaja().setCambio(auto.getCaja().getCambio()-1);
+		    	 auto.embragar(false);
+		     } 
+		  }
+	}*/
+	
+	@Test
+	public void testAcelerarCajaSecuencial(){
+		 Auto auto=new Auto();
+		  auto.setCaja(new Secuencial(5));
+		  auto.setEncendido(true);
 		  assertTrue(auto.isEncendido());
 		  int cambio=5;
 		  int contador=0;
@@ -170,9 +207,9 @@ public class TestAuto {
 		     auto.acelerar(true);
 		     contador++;
 		     if(auto.getMotor().getRPM()>auto.getCaja().getRevolucionesMaximasMotorParaCambioActual())
-		    	 auto.getCaja().setCambio(auto.getCaja().getCambio()+1);
+		    	 auto.getCaja().siguiente();
 		     if(auto.getMotor().getRPM()<auto.getCaja().getRevolucionesMinimasMotorParaCambioActual())
-		    	 auto.getCaja().setCambio(auto.getCaja().getCambio()-1);
+		    	 auto.getCaja().anterior();
 		  }
 	}
 	
