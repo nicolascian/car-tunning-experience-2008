@@ -184,14 +184,14 @@ public class TestAuto {
 			     contador++;
 		     }
 		  }
-		  auto.setEncendido(false);
-		  auto.setEncendido(true);
-		  cambio=5;
+		  //auto.setEncendido(false);
+		  //auto.setEncendido(true);
+		  //cambio=5;
 	 }
 		  //desacelerar
-		  /*
+		  
 		  contador=0;
-		  while((contador<8000)){
+		  while((contador<10000)){
 				 auto.acelerar(false);
 			     contador++;
 			     System.out.println("Iteracion "+contador+
@@ -201,7 +201,7 @@ public class TestAuto {
 			    		" Rpm Motor "+auto.getMotor().getRPM()+
 			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
 			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
-		  }*/
+		  }
 		
 	  
 	}
