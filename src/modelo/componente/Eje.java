@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.Iterator;
+import java.util.ArrayList;
 import modelo.*;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
@@ -30,6 +32,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	private double rpm=0;
 	protected final static double COEFICIENTE_INCREMENTO_RPM=0.0069999999895;
 	protected final static double COEFICIENTE_DECREMENTO_RPM=0.3739888456661;	
+	
 	/*Constructor,inicia estado de eje en 100*/
 	public Eje(Auto auto){
 		setPeso(50);
@@ -78,6 +81,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		this.getLlantaDerecha().desgastar();
 		this.getLlantaIzquierda().desgastar();
 	}
+	
 	/**
 	 * @Post: Atributos modificados por la dependencia del tipo de pista.
 	 * @Documentacion: Metodo que modifica el valor producido por cada desgaste
@@ -86,7 +90,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	public void afectar(Superficie superficie){
 		this.setDesgastePorParticulas(superficie.getParticulasSueltas());
 		this.setDesgastePorRugosidad(superficie.getRugosidad());
-		//afecto componentes contenidos
+		//se afactan componentes contenidos
 		this.getLlantaDerecha().afectar(superficie);
 		this.getLlantaIzquierda().afectar(superficie);
 	}
@@ -114,8 +118,10 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	}
 
 	public void setLlantaDerecha(Llanta llantaDerecha) {
+	  try{	
 		llantaDerecha.instalar(getAuto(),this);
 		LlantaDerecha = llantaDerecha;
+	  }catch(NullPointerException e){}
 	}
 
 	public Llanta getLlantaIzquierda() {
@@ -123,8 +129,10 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	}
 
 	public void setLlantaIzquierda(Llanta llantaIzquierda) {
+	  try{	
 		llantaIzquierda.instalar(this.getAuto(),this);
 		LlantaIzquierda = llantaIzquierda;
+	  }catch(NullPointerException e){}
 	}
 
 	public Neumatico getNeumaticoDerecho() {
@@ -132,8 +140,10 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	}
 
 	public void setNeumaticoDerecho(Neumatico neumaticoDerecho) {
+	  try{	
 		neumaticoDerecho.instalar(this.getAuto(),getLlantaDerecha());
 		getLlantaDerecha().setNeumatico(neumaticoDerecho);
+       }catch(NullPointerException e){}
 	}
 
 	public Neumatico getNeumaticoIzquierdo() {
@@ -141,8 +151,10 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	}
 
 	public void setNeumaticoIzquierdo(Neumatico neumaticoIzquierdo) {
+	  try{	
 		neumaticoIzquierdo.instalar(this.getAuto(),getLlantaIzquierda());
 		getLlantaIzquierda().setNeumatico(neumaticoIzquierdo);
+	  }catch(NullPointerException e){}
 	}
 	
 	/* (non-Javadoc)
@@ -158,6 +170,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
+	  try{	
 		if(fuerza.getEmisor()==this.getAuto().getCaja()){
 			  //viene de la caja
 			  //envio una fuerza nula a la carroceria para que se actualice la fueza que ejerce sobre el eje
@@ -185,7 +198,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 				  setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_DECREMENTO_RPM);  
 		}else{//viene de la carroceria
 			  if(fuerza.getEmisor()==getAuto().getCarroceria()){
-				Fuerza fuerzaACaja=fuerzaACaja=repositorio.insertarFuerzaRetornarCopia(fuerza);
+				Fuerza fuerzaACaja=repositorio.insertarFuerzaRetornarCopia(fuerza);
 				//envio una copia de la fuerza a la caja
 				((ReceptorDeFuerzas)getAuto().getCaja()).recibirFuerza(fuerzaACaja);
 			  }
@@ -200,6 +213,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 				  ((ReceptorDeFuerzas)getAuto().getCaja()).recibirFuerza(fuerzaACaja);				  
 			  }
 		}
+	  }catch(NullPointerException e){}
 	}
 
 	public double getPeso(){
@@ -219,6 +233,30 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	}
 	public String getNombre(){
 		return "Eje";
+	}
+	
+	/* (non-Javadoc)
+	 * @see modelo.componente.Componente#getEstado()
+	 */
+	@Override
+	public double getEstado() {
+		double estado=super.getEstado();
+		try{
+			if(estado<=0){
+			  throw new NullPointerException();
+			}
+			estado+=this.getLlantaDerecha().getEstado();
+			if(estado<=0){
+				throw new NullPointerException();
+			}
+			estado+=this.getLlantaIzquierda().getEstado();
+			if(estado<=0){
+				throw new NullPointerException();
+			}
+		}catch(NullPointerException e){
+			estado=0;
+		}
+		return estado/3;
 	}
 
 	/**
