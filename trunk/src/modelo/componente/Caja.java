@@ -208,6 +208,12 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		this.repositorio = repositorio;
 	}
 	
+	public void puntoMuerto(){
+		this.embragar(true);
+		setCambio(0);
+		this.embragar(false);
+	}
+	
 	public void siguiente(){}
 	
 	public void anterior(){}
@@ -246,7 +252,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	public void instalar(Auto auto) {
 		setAuto(auto);
 	}
-	
+		
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Caja.
 	 * @Post: En caso de que la instancia se encuentre lista para carrera se embraga.
