@@ -74,6 +74,9 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		double desgaste=0;
 		desgaste = ((this.getDesgastePorRugosidad()/100) + (this.getDesgastePorParticulas())/10000)*Constantes.tiempoPorCiclo;
 		this.setEstado(this.getEstado()- desgaste);
+		//desgaste de componentes contenidos
+		this.getLlantaDerecha().desgastar();
+		this.getLlantaIzquierda().desgastar();
 	}
 	/**
 	 * @Post: Atributos modificados por la dependencia del tipo de pista.
@@ -83,6 +86,9 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	public void afectar(Superficie superficie){
 		this.setDesgastePorParticulas(superficie.getParticulasSueltas());
 		this.setDesgastePorRugosidad(superficie.getRugosidad());
+		//afecto componentes contenidos
+		this.getLlantaDerecha().afectar(superficie);
+		this.getLlantaIzquierda().afectar(superficie);
 	}
 
 	/* getters y setters*/

@@ -181,7 +181,7 @@ public class TestAuto {
 		     }
 		  }
 		  //desacelerar
-		  
+		  /*
 		  contador=0;
 		  while((contador<8000)){
 				 auto.acelerar(false);
@@ -193,7 +193,7 @@ public class TestAuto {
 			    		" Rpm Motor "+auto.getMotor().getRPM()+
 			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
 			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
-		  }
+		  }*/
 		
 	  
 	}

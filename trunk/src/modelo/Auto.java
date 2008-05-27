@@ -39,7 +39,11 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	private Freno freno=null;
 	private Eje ejeDelantero=null;
 	private Eje ejeTrasero=null;
-	
+	/*listas para acceder a los componentes en forma rapida, mientras el auto se encuentra encendido 
+	*/
+	private LinkedList<Componente> listaDeComponentes=null;
+	private LinkedList<AfectablePorClima> listaDeAfectablesPorClima=null;
+	private LinkedList<AfectablePorSuperficie> listaDeAfectablesPorSuperficie=null;
 	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.004311113598;
 	
 	/**
@@ -69,6 +73,11 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		  setEncendido(false);
 	      this.embragar(false);
 	    motor.setAuto(this);
+	    //creacion de listas de componentes
+	    listaDeComponentes=this.obtenerComponentes();
+	    listaDeAfectablesPorClima=this.obtenerAfectablesPorClima();
+		listaDeAfectablesPorSuperficie=this.obtenerAfectablesPorSup();
+		
 	}
 	
 	/**
@@ -105,7 +114,11 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//inicializacion de aceleracion y velocidad
 		this.embragar(false);
 		motor.setAuto(this);
-    }
+		 //creacion de listas de componentes
+		listaDeComponentes=this.obtenerComponentes();
+	    listaDeAfectablesPorClima=this.obtenerAfectablesPorClima();
+		listaDeAfectablesPorSuperficie=this.obtenerAfectablesPorSup();
+	}
 	
 	/**
 	 * se ejecuta cuando hay cambios en el auto
@@ -145,17 +158,12 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public double getPotenciaTotal(){
 		double potencia=0; 
 		//hay componente que solo aportan potencia al estar encendido el auto
-		if(this.isEncendido()){ 
-		   potencia=motor.obtenerPotencia() +   /* de aca salen: Alimentacion, Combustible*/
-		            caja.obtenerPotencia() +
-		            suspension.obtenerPotencia() +
-		            escape.obtenerPotencia() +
-		            ejeDelantero.obtenerPotencia() +//de aca salen: llantas y neumaticos delanteros
-		            ejeTrasero.obtenerPotencia() + //de aca salen: llantas y neumaticos traseros
-		            turbo.obtenerPotencia();
-		   			nitro.obtenerPotencia(); //si esta activado, si no, da cero
-		   			embrague.obtenerPotencia(); //no da nada de potencia
-		   			//el freno no esta porque no da potencia
+		if(isEncendido()){ 
+		   Iterator<Componente> it=listaDeComponentes.iterator();
+		   while(it.hasNext())  
+		     try{
+			    potencia=it.next().obtenerPotencia();
+			 }catch(NullPointerException e){}	
 		}
 		return(potencia);
 	}
@@ -166,8 +174,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @return
 	*/
 	public void Desgastar(){
-		LinkedList<Componente> lista = this.obtenerComponentes();
-		Iterator<Componente> it = lista.iterator();
+		Iterator<Componente> it = listaDeComponentes.iterator();
 		while (it.hasNext()){
 			it.next().desgastar();
 		}
@@ -198,8 +205,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public void comprobarComponentes() 
 	  throws ExceptionComponenteFaltante, ExceptionComponenteDesgastado{
-		LinkedList<Componente> lista = this.obtenerComponentes();
-		Iterator<Componente> it = lista.iterator();
+		Iterator<Componente> it = listaDeComponentes.iterator();
 		while (it.hasNext()){
 			Componente aux = it.next();
 			if( aux == null) throw new ExceptionComponenteFaltante();
@@ -214,13 +220,23 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * desgastados completamente.
 	*/
 	public void setEncendido(boolean encendido) {
-      if(motor!=null){	
-		if(encendido)
-	  		getMotor().encender();
+      try {	
+		//encendido de motor
+	    if(encendido){
+	  	  if(!getMotor().isEncendido()){
+	  		  //creo listas de componentes
+	  		  listaDeAfectablesPorClima=this.obtenerAfectablesPorClima();
+	  		  listaDeAfectablesPorSuperficie=this.obtenerAfectablesPorSup();
+	  		  listaDeComponentes=this.obtenerComponentes();
+	  		  //encendido de motor
+	  		  getMotor().encender();
+	  	  }	
+	    }
         else
 	 		getMotor().apagar();
-      }
-      ActualizarObservadores();
+        //actualizacion de observadores
+	    ActualizarObservadores();
+	  }catch(NullPointerException e){}
 	}
 	
 	/**
@@ -311,21 +327,29 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.
 	 * @Post: Retorna el estado promedio de la instancia, teniendo en cuenta el estado de todos
-	 * sus componentes.
+	 * sus componentes, en caso de que un componente tenga estado 0 se retorna 0 como estado 
+	 * promedio.
 	*/
 	public double getEstado() {
 		double Estado = 0;
 		int componentes=0;
-		LinkedList<Componente> lista = this.obtenerComponentes();
-		Iterator<Componente> it = lista.iterator();
-		while (it.hasNext()){
-			Estado = Estado + it.next().getEstado();
+		Iterator<Componente> it = listaDeComponentes.iterator();
+		boolean componente0=false;
+		while ((it.hasNext())&&(!componente0)){
+			double estadoComponente= it.next().getEstado();
+			if(estadoComponente!=0)
+			  Estado+=estadoComponente;
+			else{
+			  Estado=0;
+			  componente0=true;
+			}
 			componentes++;
 		}
-		if(componentes>0)
-		   return Estado/componentes;
-		else
-		   return 0;
+		try{
+			return(Estado/componentes);
+		}catch(Exception e){
+			return 0;
+		}
 	}
 	
 	/**
@@ -360,8 +384,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: Se afecta a la instancia y a todos sus componentes por el clima pasado por parametro.
 	*/
 	public void afectar(Clima clima){
-		LinkedList<AfectablePorClima> lista = this.obtenerAfectablesPorClima();
-		Iterator<AfectablePorClima> it = lista.iterator();
+		Iterator<AfectablePorClima> it = listaDeAfectablesPorClima.iterator();
 		while (it.hasNext()){
 			it.next().afectar(clima);
 		}
@@ -373,8 +396,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: Se afecta a la instancia y a todos sus componentes por la supericie pasada por parametro.
 	*/
 	public void afectar(Superficie superficie){
-		LinkedList<AfectablePorSuperficie> lista = this.obtenerAfectablesPorSup();
-		Iterator<AfectablePorSuperficie> it = lista.iterator();
+		Iterator<AfectablePorSuperficie> it = listaDeAfectablesPorSuperficie.iterator();
 		while (it.hasNext()){
 			it.next().afectar(superficie);
 		}
@@ -397,7 +419,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: Retorna una instancia de lista LinkedList con todos los componentes de la instancia.
 	*/
 	public LinkedList<Componente> obtenerComponentes(){
-		
 		LinkedList<Componente> lista =  new LinkedList<Componente>();
 		lista.add(this.alimentacion);
 		lista.add(this.caja);
@@ -411,14 +432,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		lista.add(this.nitro);
 		lista.add(this.freno);
 		lista.add(this.ejeDelantero);
-		lista.add(this.ejeDelantero.getLlantaDerecha());
-		lista.add(this.ejeDelantero.getLlantaIzquierda());
-		lista.add(this.ejeDelantero.getNeumaticoDerecho());
-		lista.add(this.ejeDelantero.getNeumaticoIzquierdo());
-		lista.add(this.ejeTrasero.getLlantaDerecha());
-		lista.add(this.ejeTrasero.getLlantaIzquierda());
-		lista.add(this.ejeTrasero.getNeumaticoDerecho());
-		lista.add(this.ejeTrasero.getNeumaticoIzquierdo());
 		lista.add(this.ejeTrasero);
 		return lista;
 	}
@@ -430,8 +443,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public LinkedList<AfectablePorSuperficie> obtenerAfectablesPorSup(){
 		LinkedList<AfectablePorSuperficie> listaAS = new LinkedList<AfectablePorSuperficie>();
-		LinkedList<Componente> listaComp = this.obtenerComponentes();
-		Iterator<Componente> it = listaComp.iterator();
+		Iterator<Componente> it = listaDeComponentes.iterator();
 		while (it.hasNext()){
 			it.next().agregarAListaAfecSuperficie(listaAS);
 		}
@@ -445,8 +457,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public LinkedList<AfectablePorClima> obtenerAfectablesPorClima(){
 		LinkedList<AfectablePorClima> listaAC = new LinkedList<AfectablePorClima>();
-		LinkedList<Componente> listaComp = this.obtenerComponentes();
-		Iterator<Componente> it = listaComp.iterator();
+		Iterator<Componente> it = listaDeComponentes.iterator();
 		while (it.hasNext()){
 			it.next().agregarAListaAfecClima(listaAC);
 		}
@@ -458,15 +469,10 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: Se setea el eje delantero de la instancia.
 	*/
 	public void setEjeDelantero(Eje ejeDelantero) {
-    	ejeDelantero.instalar(this);
-		try{	
-		  ejeDelantero.setLlantaDerecha(this.getEjeDelantero().getLlantaDerecha());
-		  ejeDelantero.setLlantaIzquierda(this.getEjeDelantero().getLlantaIzquierda());
-		  ejeDelantero.setNeumaticoDerecho(this.getEjeDelantero().getNeumaticoDerecho());
-		  ejeDelantero.setNeumaticoIzquierdo(this.getEjeDelantero().getNeumaticoIzquierdo());
-		}catch(Exception e){}
-		this.ejeDelantero = ejeDelantero;
-	 
+    	try{
+    		ejeDelantero.instalar(this);
+    		this.ejeDelantero = ejeDelantero;
+    	}catch(NullPointerException e){}
 	}
 
 	/**
@@ -482,15 +488,10 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: Se setea el eje trasero de la instancia.
 	*/
 	public void setEjeTrasero(Eje ejeTrasero) {
-	 
-		ejeTrasero.instalar(this);
-		try{
-		  ejeTrasero.setLlantaDerecha(this.getEjeTrasero().getLlantaDerecha());
-		  ejeTrasero.setLlantaIzquierda(this.getEjeTrasero().getLlantaIzquierda());
-		  ejeTrasero.setNeumaticoDerecho(this.getEjeTrasero().getNeumaticoDerecho());
-		  ejeTrasero.setNeumaticoIzquierdo(this.getEjeTrasero().getNeumaticoIzquierdo());
-		}catch(Exception e){}
-		this.ejeTrasero = ejeTrasero;
+	 	try{
+			ejeTrasero.instalar(this);
+			this.ejeTrasero = ejeTrasero;
+		}catch(NullPointerException e){}
 	}
 
 	/**
@@ -506,13 +507,17 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 
 	public void setCombustible(Combustible combustible) {
+	  try{	
 		combustible.instalar(this);
 		this.combustible = combustible;
+	  }catch(NullPointerException e){}
 	}
 
 	public void setSuspension(Suspension suspension) {
+	  try{	
 		this.suspension = suspension;
 		suspension.instalar(this);
+	  }catch(NullPointerException e){}
 	}
 
 	public Suspension getSuspension() {
@@ -520,8 +525,10 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 	
 	public void setCaja(Caja caja){
+	  try{	
 		caja.instalar(this);
 		this.caja = caja;
+	  }catch (NullPointerException e){}
 	}
 
 	public Caja getCaja(){
@@ -529,8 +536,10 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 
 	public void setMotor(Motor motor){
+	  try{	
 		motor.instalar(this);
 		this.motor = motor;
+	  }catch (NullPointerException e){}
 	}
 	
 	public Motor getMotor(){
@@ -538,8 +547,10 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 
 	public void setAlimentacion(Alimentacion alimentacion) {
+	  try{	
 		alimentacion.instalar(this);
 		this.alimentacion = alimentacion;
+	  }catch (NullPointerException e){}
 	}
 
 	public Alimentacion getAlimentacion() {
@@ -547,8 +558,10 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 
 	public void setCarroceria(Carroceria carroceria) {
+	  try{	
 		carroceria.instalar(this);
 		this.carroceria = carroceria;
+	  }catch (NullPointerException e){}
 	}
 	
 	public Carroceria getCarroceria() {
@@ -556,8 +569,10 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 
 	public void setEscape(Escape escape) {
+	  try{
 		escape.instalar(this);
 		this.escape = escape;
+	  }catch (NullPointerException e){}
 	}
 
 	public Escape getEscape() {
@@ -565,8 +580,10 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 
 	public void setTurbo(Turbo turbo) {
+	  try{	
 		turbo.instalar(this);
 		this.turbo = turbo;
+	  }catch (NullPointerException e){}
 	}
 	
 	public Turbo getTurbo() {
@@ -578,7 +595,10 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 	
 	public void setNitro(Nitro nitro) {
+	  try{
+		nitro.instalar(this);  
 		this.nitro = nitro;
+	  }catch (NullPointerException e){}
 	}
 	
 	/* toString */
@@ -601,7 +621,10 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 
 	public void setEmbrague(Embrague embrague) {
+	  try{	
+		embrague.instalar(this);
 		this.embrague = embrague;
+	  }catch (NullPointerException e){}
 	}
 
 	public Freno getFreno() {
@@ -609,27 +632,19 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	}
 
 	public void setFreno(Freno freno) {
+	  try{
+		embrague.instalar(this);
 		this.freno = freno;
+	  }catch (NullPointerException e){}
 	}
 	
 	public double getPeso(){
 	  double peso=motor.getPeso();
-	  try{
-		  peso+=caja.getPeso();
-	 	  peso+=carroceria.getPeso();
-	      peso+=ejeDelantero.getPeso();
-	      peso+=ejeTrasero.getPeso();
-	  }catch(Exception e){e.printStackTrace();}
-	  try {
-		  peso+=suspension.getPeso();
-		  peso+=escape.getPeso();
-		  peso+=turbo.getPeso();
-		  peso+=nitro.getPeso();
-		  peso+=freno.getPeso();
-		  peso+=embrague.getPeso();
-		  peso+=combustible.getPeso();
-		  peso+=alimentacion.getPeso();
-	  }catch (Exception e){e.printStackTrace();}
+	  Iterator<Componente> it=listaDeComponentes.iterator();  
+	  while(it.hasNext())  
+	    try{
+	    	peso+=it.next().getPeso();
+	    }catch (NullPointerException e){}
 	  return(peso);
 	}
 	
