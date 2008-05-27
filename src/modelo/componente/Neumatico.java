@@ -73,7 +73,7 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 		try{
 			valorFuerzaRecibida=fuerza.getValorDeLaFuerza();
 		}catch (Exception e){}
-		if(getAuto().getVelocidad()!=0)  
+		if(getAuto().getVelocidad()>0)  
 		  try{
 			valorFuerzaDeRozamiento=(getAuto().getPeso()*calcularAdherencia()*GRAVEDAD)/(-660);
 		  }catch (Exception e){}

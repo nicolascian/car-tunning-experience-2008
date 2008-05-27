@@ -243,6 +243,9 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 * @param rpm the rpm to set
 	 */
 	public void setRpm(double rpm) {
-		this.rpm = rpm;
+	  if(rpm<0)	
+		this.rpm =0;
+	  else
+		this.rpm=rpm;
 	}
 }

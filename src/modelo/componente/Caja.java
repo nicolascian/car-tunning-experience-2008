@@ -93,14 +93,13 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
-	  
-	  if(getCambio()!=0){
-		if(fuerza.getEmisor()==getAuto().getMotor()){
-			  //se pasa la mitad de la fuerza a cada eje
+	    if(fuerza.getEmisor()==getAuto().getMotor()){
+		  	  //se pasa la mitad de la fuerza a cada eje
 			  double valorDeLaFuerza=0;
-			  try{
-			     valorDeLaFuerza=fuerza.getValorDeLaFuerza();
-			  }catch (Exception e){}
+			  if(getCambio()!=0)   
+			     try{
+			        valorDeLaFuerza=fuerza.getValorDeLaFuerza();
+			     }catch (Exception e){}
 			  //transmito fuerza a eje delantero
 			  Fuerza fuerzaAEje=new Fuerza(this,getAuto().getEjeDelantero(),
 					                       valorDeLaFuerza/2,true);
@@ -110,6 +109,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 					                valorDeLaFuerza/2,true);
 			  this.getAuto().getEjeTrasero().recibirFuerza(fuerzaAEje);
 		}else{
+		  if(getCambio()!=0){	  
 			  //viene de alguno de los ejes
         	  double valorDeLaFuerza=0;
 			  try{
@@ -118,13 +118,9 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 			  //transmito fuerza al motor
 			  Fuerza fuerzaAMotor=new Fuerza(this,getAuto().getMotor(),valorDeLaFuerza,true);
 			  getAuto().getMotor().recibirFuerza(fuerzaAMotor);
-			  Chequear();
-		}
-	  }else{
-		  
-		  
+		  }
 		  Chequear();
-	  }
+		}
 	}
 
 	/**
