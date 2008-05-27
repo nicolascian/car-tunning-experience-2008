@@ -154,6 +154,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 */
 	public void setCambio(int cambio){
 		if ((cambioValido(cambio))&&(cambio!=getCambio())&&(isEmbragado())){
+		 if(cambio!=0){ 
 		   //se calcula la fuerza que se debe ejercer al motor
 		   double valorDeFuerza=0;
 		   if(cambio>getCambio())
@@ -172,6 +173,13 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		   //se pasa una fuerza motor 
 		   Fuerza fuerza=new Fuerza(this,getAuto().getMotor(),valorDeFuerza,true);
 		   this.getAuto().getMotor().afectarRpmPorFuerza(fuerza);
+		 }else{
+			   //se cambian las revoluciones minimas para el cambio actual
+			   setRevolucionesMinimasMotorParaCambioActual(getAuto().getMotor().getRevolucionesMinimasEncendido());
+			   //se cambian las revoluciones maximas para el cambio actual
+			   setRevolucionesMaximasMotorParaCambioActual(getAuto().getMotor().getRevolucionesMinimasEncendido()+20);
+			  this.cambio=0;
+		 }
 		}//fin if
 		if (!isEmbragado()) {
 			this.desgastar();}

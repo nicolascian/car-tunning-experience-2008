@@ -7,6 +7,7 @@
 
 package modelo.componente;
 
+import modelo.AfectablePorSuperficie;
 import modelo.Auto;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
@@ -19,7 +20,7 @@ import modelo.fuerzas.ReceptorDeFuerzas;
  * tanto como por el clima.
  */
 public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
-															  ComponenteContenidoEnComponente{
+			      ComponenteContenidoEnComponente{
 	
 	/**
 	 * Este atributo indica la potencia maxima que podra entregar un neumatico,

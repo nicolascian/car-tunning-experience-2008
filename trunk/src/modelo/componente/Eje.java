@@ -63,7 +63,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 * El mejor valor de potencia que puede devolver un eje es de 5 watts.
 	 */
 	public double obtenerPotencia() {
-		return ((5*this.getEstado()/100)+ LlantaDerecha.obtenerPotencia()+ LlantaIzquierda.obtenerPotencia());
+		return ((5*this.getEstado()/100));
 	}
 	
 	/**
@@ -76,10 +76,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	public void desgastar(){
 		double desgaste=0;
 		desgaste = ((this.getDesgastePorRugosidad()/100) + (this.getDesgastePorParticulas())/10000)*Constantes.tiempoPorCiclo;
-		this.setEstado(this.getEstado()- desgaste);
-		//desgaste de componentes contenidos
-		this.getLlantaDerecha().desgastar();
-		this.getLlantaIzquierda().desgastar();
+		this.setEstado(super.getEstado()- desgaste);
 	}
 	
 	/**
@@ -90,9 +87,6 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	public void afectar(Superficie superficie){
 		this.setDesgastePorParticulas(superficie.getParticulasSueltas());
 		this.setDesgastePorRugosidad(superficie.getRugosidad());
-		//se afactan componentes contenidos
-		this.getLlantaDerecha().afectar(superficie);
-		this.getLlantaIzquierda().afectar(superficie);
 	}
 
 	/* getters y setters*/
@@ -163,6 +157,8 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	@Override
 	public void liberarFuerzas() {
 		repositorio.vaciar();
+		this.LlantaDerecha.liberarFuerzas();
+		this.LlantaIzquierda.liberarFuerzas();
 	}
 
 	/* (non-Javadoc)
@@ -217,14 +213,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	}
 
 	public double getPeso(){
-		double pesoTotal=this.peso;
-		try{
-			pesoTotal+=getLlantaDerecha().getPeso();
-		}catch (NullPointerException e){}
-		try{
-			pesoTotal+=getLlantaIzquierda().getPeso();
-		}catch (NullPointerException e){}
-		return pesoTotal;
+		return peso;
 	}
 	
 	public String toString(){
@@ -240,23 +229,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 */
 	@Override
 	public double getEstado() {
-		double estado=super.getEstado();
-		try{
-			if(estado<=0){
-			  throw new NullPointerException();
-			}
-			estado+=this.getLlantaDerecha().getEstado();
-			if(estado<=0){
-				throw new NullPointerException();
-			}
-			estado+=this.getLlantaIzquierda().getEstado();
-			if(estado<=0){
-				throw new NullPointerException();
-			}
-		}catch(NullPointerException e){
-			estado=0;
-		}
-		return estado/3;
+		return(super.getEstado());
 	}
 
 	/**

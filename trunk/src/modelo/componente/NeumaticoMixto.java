@@ -13,8 +13,8 @@ import modelo.*;
  * y para secas asi como para humedas, aunque su rendimiento no es el mismo
  * que el que se obtendria con un neumatico especifico para cada situacion,
  */
-public class NeumaticoMixto extends Neumatico
-	implements AfectablePorClima, AfectablePorSuperficie{
+public class NeumaticoMixto extends Neumatico implements AfectablePorClima,
+                                                    AfectablePorSuperficie{
 
 	/*----------Atributos---------*/
 	/**

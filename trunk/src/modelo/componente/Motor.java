@@ -294,9 +294,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		  //seteo de revoluciones
 			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 			setRPM(getRevolucionesMinimasEncendido());
-			try{
-			   getAuto().getCaja().setCambio(0);
-			}catch(NullPointerException e){}
 			setAcelerando(false);
 		}
 	}
@@ -307,14 +304,10 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 *  para acelerar.    
 	*/
 	public void apagar(){
-		    try{
-		      getAuto().getCaja().setCambio(0);
-		    }catch(Exception e){}
 		    setEncendido(false);
 			setRPM(0);
 			setTemperatura(25);
 			setAcelerando(false);
-			this.liberarFuerzas();
 	}
 		
 	/**

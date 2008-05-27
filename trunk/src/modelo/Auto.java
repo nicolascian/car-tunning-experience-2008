@@ -9,7 +9,7 @@ package modelo;
 import modelo.componente.*;
 import modelo.exceptions.ExceptionComponenteDesgastado;
 import modelo.exceptions.ExceptionComponenteFaltante;
-
+import modelo.fuerzas.ReceptorDeFuerzas;
 import java.util.*;
 
 /**
@@ -44,6 +44,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	private LinkedList<Componente> listaDeComponentes=null;
 	private LinkedList<AfectablePorClima> listaDeAfectablesPorClima=null;
 	private LinkedList<AfectablePorSuperficie> listaDeAfectablesPorSuperficie=null;
+	private LinkedList<ReceptorDeFuerzas> listaDeReceptoresDeFuerzas=null;
+	
 	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.004311113598;
 	
 	/**
@@ -77,7 +79,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	    listaDeComponentes=this.obtenerComponentes();
 	    listaDeAfectablesPorClima=this.obtenerAfectablesPorClima();
 		listaDeAfectablesPorSuperficie=this.obtenerAfectablesPorSup();
-		
+		listaDeReceptoresDeFuerzas=this.obtenerReceptoresDeFuerzas();
 	}
 	
 	/**
@@ -114,10 +116,11 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//inicializacion de aceleracion y velocidad
 		this.embragar(false);
 		motor.setAuto(this);
-		 //creacion de listas de componentes
+		//creacion de listas de componentes
 		listaDeComponentes=this.obtenerComponentes();
 	    listaDeAfectablesPorClima=this.obtenerAfectablesPorClima();
 		listaDeAfectablesPorSuperficie=this.obtenerAfectablesPorSup();
+		listaDeReceptoresDeFuerzas=this.obtenerReceptoresDeFuerzas();
 	}
 	
 	/**
@@ -140,7 +143,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		getEmbrague().addObserver(obs);
 		getMotor().addObserver(obs);
 	}
-	
+
 	public void actualizarVelocidadYPosicion(){
 		Velocidad = getEjeDelantero().getRpm()*CONSTANTE_DE_OBTENCION_DE_VELOCIDAD;
 		Posicion += getVelocidad() * (0.00000006);
@@ -224,16 +227,32 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//encendido de motor
 	    if(encendido){
 	  	  if(!getMotor().isEncendido()){
-	  		  //creo listas de componentes
+	  		  getEmbrague().embragar(true);
+	 		  getCaja().setCambio(0);
+	 		  getEmbrague().embragar(false);
+	  		  //actualizo lista de componentes
 	  		  listaDeAfectablesPorClima=this.obtenerAfectablesPorClima();
 	  		  listaDeAfectablesPorSuperficie=this.obtenerAfectablesPorSup();
 	  		  listaDeComponentes=this.obtenerComponentes();
+	  		  listaDeReceptoresDeFuerzas=this.obtenerReceptoresDeFuerzas();
 	  		  //encendido de motor
+	  		  getEjeDelantero().setRpm(0);
+	  		  getEjeTrasero().setRpm(0);
 	  		  getMotor().encender();
 	  	  }	
 	    }
-        else
-	 		getMotor().apagar();
+        else{
+        	getMotor().apagar();
+	 		getEjeDelantero().setRpm(0);
+	  		getEjeTrasero().setRpm(0);
+	  		caja.setRevolucionesMaximasMotorParaCambioActual(0);
+	  		caja.setRevolucionesMinimasMotorParaCambioActual(0);
+	  		Velocidad=0;
+	 		liberarFuerzas();
+	 		getEmbrague().embragar(true);
+	 		getCaja().setCambio(0);
+	 		getEmbrague().embragar(false);
+        }
         //actualizacion de observadores
 	    ActualizarObservadores();
 	  }catch(NullPointerException e){}
@@ -352,6 +371,16 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		}
 	}
 	
+
+    protected void liberarFuerzas(){
+    	Iterator<ReceptorDeFuerzas> it = listaDeReceptoresDeFuerzas.iterator();
+		boolean componente0=false;
+		while ((it.hasNext())&&(!componente0)){
+			it.next().liberarFuerzas();
+		}
+    }
+    
+	
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.
 	 * @Post: Se ha obtenido la velocidad de acuerdo a la potencia.
@@ -433,9 +462,40 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		lista.add(this.freno);
 		lista.add(this.ejeDelantero);
 		lista.add(this.ejeTrasero);
+		lista.add(this.ejeDelantero.getLlantaDerecha());
+		lista.add(this.ejeDelantero.getLlantaIzquierda());
+		lista.add(this.ejeDelantero.getLlantaDerecha().getNeumatico());
+		lista.add(this.ejeDelantero.getLlantaIzquierda().getNeumatico());
+		lista.add(this.ejeTrasero.getLlantaDerecha());
+		lista.add(this.ejeTrasero.getLlantaIzquierda());
+		lista.add(this.ejeTrasero.getLlantaDerecha().getNeumatico());
+		lista.add(this.ejeTrasero.getLlantaIzquierda().getNeumatico());
 		return lista;
 	}
 	
+	/**
+	 * @Pre: Se ha creado la instancia de la clase Auto.
+	 * @Post: Retorna una instancia de lista LinkedList con todos los componentes afectables por
+	 * superficie de la instancia.
+	*/
+	public LinkedList<ReceptorDeFuerzas> obtenerReceptoresDeFuerzas(){
+		LinkedList<ReceptorDeFuerzas> lista = new LinkedList<ReceptorDeFuerzas>();
+		try{
+			lista.add(this.ejeDelantero.getLlantaDerecha());
+			lista.add(this.ejeDelantero.getLlantaIzquierda());
+			lista.add(this.ejeDelantero.getLlantaDerecha().getNeumatico());
+			lista.add(this.ejeDelantero.getLlantaIzquierda().getNeumatico());
+			lista.add(this.ejeTrasero.getLlantaDerecha());
+			lista.add(this.ejeTrasero.getLlantaIzquierda());
+			lista.add(this.ejeTrasero.getLlantaDerecha().getNeumatico());
+			lista.add(this.ejeTrasero.getLlantaIzquierda().getNeumatico());
+			lista.add(this.motor);
+			lista.add(this.caja);
+			lista.add(this.carroceria);
+		}catch(Exception e){}
+		return lista;
+	}
+		
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.
 	 * @Post: Retorna una instancia de lista LinkedList con todos los componentes afectables por
