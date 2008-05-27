@@ -2,6 +2,7 @@ package test;
 
 import junit.framework.*;
 import modelo.*;
+import control.*;
 import modelo.componente.*;
 public class TestPrincipiante extends TestCase {
 

@@ -7,7 +7,7 @@ public class TestTodos extends TestCase {
 		TestSuite pruebaTodos =new TestSuite();
 		pruebaTodos.addTestSuite(TestAuto.class);
 		pruebaTodos.addTestSuite(TestAutoDeEscritorio.class);
-		pruebaTodos.addTestSuite(TestAutomatica.class);
+		//pruebaTodos.addTestSuite(TestAutomatica.class);
 		pruebaTodos.addTestSuite(TestAutoPotencias.class);
 		pruebaTodos.addTestSuite(TestAutoSecondEdition.class);
 		pruebaTodos.addTestSuite(TestCarburador.class);
