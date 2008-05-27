@@ -120,7 +120,11 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 			  getAuto().getMotor().recibirFuerza(fuerzaAMotor);
 			  Chequear();
 		}
-	  }else Chequear();
+	  }else{
+		  
+		  
+		  Chequear();
+	  }
 	}
 
 	/**

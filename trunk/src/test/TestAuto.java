@@ -119,22 +119,38 @@ public class TestAuto {
 	@Test
 	public void testAcelerarIterativo(){
 	  try{	 
-		  auto.setEncendido(true);
-		  assertTrue(auto.isEncendido());
-		  auto.acelerar(true);
-		  double velocidad=auto.getVelocidad();
-		  double rpmMotor=auto.getMotor().getRPM();
-		  double rpmEje=auto.getEjeDelantero().getRpm();
-		  double rpmMaximasParaCambioActual;
-		  double rpmMinimasParaCambioActual;
+		  //aceleracion
+		  for(int cambio=0;cambio<=5;cambio++){
+			auto.setEncendido(true);
+			double velocidad=auto.getVelocidad();
+			double rpmEje=auto.getEjeDelantero().getRpm();
+			for(int i=0; i<20;i++)
+			  auto.acelerar(true);
+			while((auto.getCaja().getCambio()<=cambio)&&
+		    	  (auto.getMotor().getRPM()<auto.getMotor().getRevolucionesMaximas())){
+		       auto.acelerar(true);
+		       assertTrue(auto.getVelocidad()>velocidad);
+		       
+		       velocidad=auto.getVelocidad();
+		       assertTrue(auto.getEjeDelantero().getRpm()>rpmEje);
+		       rpmEje=auto.getEjeDelantero().getRpm();
+		    }
+			for(int i=0; i<50;i++)
+				  auto.acelerar(false);
+			while(auto.getMotor().getRPM()>auto.getMotor().getRevolucionesMinimasEncendido()){
+			       auto.acelerar(false);
+			       assertTrue(auto.getVelocidad()<1.002*velocidad);
+			       velocidad=auto.getVelocidad();
+			       assertTrue(auto.getEjeDelantero().getRpm()<1.2*rpmEje);
+			       rpmEje=auto.getEjeDelantero().getRpm();
+			}
+			
+		    auto.setEncendido(false);
+		  }
 		  
-  		" Rpm Eje "+
-  		" Rpm Motor "++
-  		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
-  		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
-	  }catch(AssertionError a){			
-		a.printStackTrace();
-	  }
+	    }catch(AssertionError a){			
+		  a.printStackTrace();
+	    }
 	}
 	
 	@Test
@@ -143,7 +159,7 @@ public class TestAuto {
 		  assertTrue(auto.isEncendido());
 		  int cambio=5;
 		  int contador=0;
-	 for(int i=0;i<=35;i++){	  
+	 for(int i=0;i<1;i++){	  
 		 contador=0;
 		 while(//(auto.getCaja().getCambio()<=cambio)){//&&
 			  !((auto.getCaja().getCambio()==cambio)&&(auto.getMotor().getRPM()==8000))){
