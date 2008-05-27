@@ -44,7 +44,7 @@ public class VistaConsola implements Observer
 		 (long)auto.getCaja().getRevolucionesMaximasMotorParaCambioActual() + " <-RPMoptimas" + '\n' + '\n' +
 		
 		" Velocidad: " + Math.round(auto.getVelocidad()) + " Km/h" + "     " +
-		"Distancia recorrida: " + (long)auto.getPosicion() + " m" + '\n' + '\n' +
+		"Distancia recorrida: " + Math.round(auto.getPosicion()) + " m" + '\n' + '\n' +
 		
 		" Acelerando: " + auto.isAcelerando() + '\n' +
 		"   Frenando: " + auto.isFrenando() + '\n' +
