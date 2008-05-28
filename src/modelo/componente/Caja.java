@@ -251,7 +251,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 * @see modelo.Componente#desgastar()
 	 */
 	public void desgastar(){
-		setEstado(getEstado()-tiempoPorCiclo*COEFICIENTE_DE_DESGASTE);
+		setEstado(getEstado()-Constantes.tiempoPorCiclo*COEFICIENTE_DE_DESGASTE);
 	}
 	
 	/* (non-Javadoc)
