@@ -43,6 +43,8 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		
 	protected final static double COEFICIENTE_DE_DESGASTE=4;
 			
+	private double fuerzaMaximaAlPasarDeCambio;
+	
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
@@ -57,6 +59,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		relacionDeCambio=new double[cantidadCambios+1];
 		generarRelacionesDeCaja();
 		setEstado(100);
+		this.setFuerzaMaximaAlPasarDeCambio(getCantidadCambios()*250);
 	}
 	
 	public void Chequear(){};
@@ -113,7 +116,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 			  //viene de alguno de los ejes
         	  double valorDeLaFuerza=0;
 			  try{
-			     valorDeLaFuerza=fuerza.getValorDeLaFuerza()/this.getRelacionDeCambio();
+			     valorDeLaFuerza=fuerza.getValorDeLaFuerza()/getRelacionDeCambio();
 			  }catch (Exception e){}
 			  //transmito fuerza al motor
 			  Fuerza fuerzaAMotor=new Fuerza(this,getAuto().getMotor(),valorDeLaFuerza,true);
@@ -148,6 +151,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	}
 	
 	/**
+	 * 
 	 * @Pre: La instancia ha sido creada.
 	 * @Post:Se ha seteado el cambio. Cada vez que hacemos un Cambio, se altera las 
 	 * revolucionesMaximas del Motor.
@@ -160,30 +164,43 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		   if(cambio>getCambio())
 			  valorDeFuerza=getAuto().getMotor().getRPM()*
 			            getAuto().getMotor().getCoeficienteDeProduccionDeFuerzaAPartirRpm()*
-			            (-1.7)*getCambio()*getRelacionDeCambio()/getRelacionDeCambio(0);
+			            (-1.8)*getCambio()*getRelacionDeCambio()/getRelacionDeCambio(0);
 		   else
 			  valorDeFuerza=getAuto().getMotor().getRPM()*(0.22);
+		   System.out.println(valorDeFuerza);
 		   //se pasa el cambio
 		   this.cambio=cambio;
-		   //se cambian las revoluciones minimas para el cambio actual
-		   setRevolucionesMinimasMotorParaCambioActual(getAuto().getMotor().getRevolucionesMaximas()
-				                       *7*getCambio()/getRelacionDeCambio(0));
-		   //se cambian las revoluciones maximas para el cambio actual
-		   setRevolucionesMaximasMotorParaCambioActual(calcularRevolucionesMaximasMotorParaCambioActual());
+		   //se actualizan las revoluciones minimas y maximas para el cambio actual
+		   actualizarRevolucionesLimiteMotorParaCambioActual();
 		   //se pasa una fuerza motor 
 		   Fuerza fuerza=new Fuerza(this,getAuto().getMotor(),valorDeFuerza,true);
 		   this.getAuto().getMotor().afectarRpmPorFuerza(fuerza);
 		 }else{
-			   //se cambian las revoluciones minimas para el cambio actual
-			   setRevolucionesMinimasMotorParaCambioActual(getAuto().getMotor().getRevolucionesMinimasEncendido());
-			   //se cambian las revoluciones maximas para el cambio actual
-			   setRevolucionesMaximasMotorParaCambioActual(getAuto().getMotor().getRevolucionesMinimasEncendido()+20);
+			//se actualizan las revoluciones minimas y maximas para el cambio actual
+			  actualizarRevolucionesLimiteMotorParaCambioActual();
 			  this.cambio=0;
 		 }
 		}//fin if
 		if (!isEmbragado()) {
 			this.desgastar();}
 		ActualizarObservadores();
+	}
+	
+	protected void actualizarRevolucionesLimiteMotorParaCambioActual(){
+	  double minimas;
+	  double rpmMaximas;
+	  if(getCambio()!=0){	
+		minimas=0.6*getAuto().getMotor().getRevolucionesMaximas()*getCambio()/getCantidadCambios();
+		rpmMaximas=getAuto().getMotor().getRevolucionesUmbralPeligro();
+	  }else{
+		  minimas=getAuto().getMotor().getRevolucionesMinimasEncendido();
+		  rpmMaximas=getAuto().getMotor().getRevolucionesMinimasEncendido()*1.2;
+	  }
+	  double rpmMinimas=0.6*getAuto().getMotor().getRPM()*getCambio()/getCantidadCambios();
+	  if(rpmMinimas<minimas)
+		 rpmMinimas=minimas;
+	  this.setRevolucionesMinimasMotorParaCambioActual(rpmMinimas);
+	  this.setRevolucionesMaximasMotorParaCambioActual(rpmMaximas);
 	}
 		
 	/**
@@ -314,6 +331,20 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	public void setRevolucionesMinimasMotorParaCambioActual(
 			double revolucionesMinimasMotorParaCambioActual) {
 		this.revolucionesMinimasMotorParaCambioActual = revolucionesMinimasMotorParaCambioActual;
+	}
+
+	/**
+	 * @return the fuerzaMaximaAlPasarDeCambio
+	 */
+	public double getFuerzaMaximaAlPasarDeCambio() {
+		return fuerzaMaximaAlPasarDeCambio;
+	}
+
+	/**
+	 * @param fuerzaMaximaAlPasarDeCambio the fuerzaMaximaAlPasarDeCambio to set
+	 */
+	public void setFuerzaMaximaAlPasarDeCambio(double fuerzaMaximaAlPasarDeCambio) {
+		this.fuerzaMaximaAlPasarDeCambio = fuerzaMaximaAlPasarDeCambio;
 	}
 	
 }

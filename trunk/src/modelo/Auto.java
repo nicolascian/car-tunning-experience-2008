@@ -287,7 +287,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public void frenar(boolean valor){
 		if(getFreno()!=null)
 			getFreno().frenar(valor);
-		
 		ActualizarObservadores();
 	}
 	
