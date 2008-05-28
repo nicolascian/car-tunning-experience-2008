@@ -219,12 +219,12 @@ public class TestAuto {
 	public void testAcelerarCajaAutomatica(){
 	  	  auto.setEncendido(true);
 		  assertTrue(auto.isEncendido());
-		  int cambio=5;
+		  int cambio=4;
 		  int contador=0;
 	 for(int i=0;i<1;i++){	  
 		 contador=0;
 		 while((auto.getCaja().getCambio()<=cambio)&&
-			  (auto.getMotor().getRPM()<=(8000/*300+auto.getMotor().getRevolucionesUmbralPeligro()*/))){
+			  (auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))){
 			 System.out.println("Iteracion "+contador+
 		    		" Cambio "+auto.getCaja().getCambio()+
 		    		" velocidad "+auto.getVelocidad()+

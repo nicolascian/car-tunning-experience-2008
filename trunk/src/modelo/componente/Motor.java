@@ -201,14 +201,14 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	}
 	
 	private void incrementarCoeficienteDeIncrementoRpm(){
-		double coeficiente=coeficienteDeIncrementoRpm+0.0002;
+		double coeficiente=coeficienteDeIncrementoRpm+0.001;//0.0002
 		if(coeficiente>COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO)
 			coeficiente=COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO;
 		this.setCoeficienteDeIncrementoRpm(coeficiente);
 	}
 	
 	private void decrementarCoeficienteDeIncrementoRpm(){
-		double coeficiente=coeficienteDeIncrementoRpm-0.0002;
+		double coeficiente=coeficienteDeIncrementoRpm-0.001;//0.0002
 		if(coeficiente>COEFICIENTE_DE_INCREMENTO_RPM_MINIMO)
 			coeficiente=COEFICIENTE_DE_INCREMENTO_RPM_MINIMO;
 		this.setCoeficienteDeIncrementoRpm(coeficiente);
@@ -293,14 +293,14 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		double coeficiente=getCoeficienteDeProduccionDeFuerzaAPartirRpm();
 		if(getRPM()<=getRevolucionesUmbralPeligro()){
 		  if(!isAcelerando()){
-			double maximo=potencia*0.0038;
-			coeficiente+=0.00003;
+			double maximo=potencia*0.0048;//0.0038
+			coeficiente+=0.0003;//0.00003
 			if(coeficiente>maximo)
 			  coeficiente=maximo;
 		  }
 		  else{
-		    double medio=potencia*0.00325;
-			coeficiente-=0.00003;
+		    double medio=potencia*0.00425;//0.00325
+			coeficiente-=0.0003;//0.00003
 			if(coeficiente<medio)
 			  coeficiente=medio;
 		  }
@@ -308,10 +308,10 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		else{
 		   double minimo=potencia*0.00135;
 		   if(!isAcelerando()){
-			  coeficiente+=0.00003;
+			  coeficiente+=0.0003;//0.0003
 		   }
 		   else{
-			 coeficiente-=0.00005;
+			 coeficiente-=0.0005;//0.00005
 			 if(coeficiente<minimo)
 			   coeficiente=minimo;
 		   }  
