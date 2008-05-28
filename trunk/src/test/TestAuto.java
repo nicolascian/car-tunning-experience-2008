@@ -187,14 +187,14 @@ public class TestAuto {
 		     } 
 		  }
 	}
-	/**//*
+	/**/
 	@Test
 	public void testAcelerarCajaSecuencial(){
 		  Auto auto=new Auto();
 		  auto.setCaja(new Secuencial(5));
 		  auto.setEncendido(true);
 		  assertTrue(auto.isEncendido());
-		  int cambio=5;
+		  int cambio=2;
 		  int contador=0;
 	      while((auto.getCaja().getCambio()!=cambio)//(!((auto.getCaja().getCambio()==cambio)&&(auto.getMotor().getRPM()==8000)))
 	    	  &&(contador<19000)){
@@ -213,8 +213,8 @@ public class TestAuto {
 		    	 auto.getCaja().anterior();
 		  }
 	}
-	*/
 	
+	/*
 	@Test
 	public void testAcelerarCajaAutomatica(){
 	  	  auto.setEncendido(true);
@@ -266,5 +266,5 @@ public class TestAuto {
 		  }
 		*/
 	  
-	}
+	//}
 }
