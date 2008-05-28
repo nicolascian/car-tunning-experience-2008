@@ -21,7 +21,7 @@ import modelo.*;
 public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	/* implementado con muchas multiplicaciones */
 	
-	private double EfectoClimatico = 1;
+	private double EfectoClimatico;
 	
 	/* no tienen setter pues son constantes */
 	private static double CTE_HUMEDAD_OPTIMA = 40; // %
@@ -50,6 +50,7 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 		setNombre("Inyeccion");
 		setPrecio(new AlgoPesos(600,00)); //algo$
 		setPeso(3); // Kg
+		EfectoClimatico = 1;
 	}
 	
 	/**
