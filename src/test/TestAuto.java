@@ -187,7 +187,7 @@ public class TestAuto {
 		     } 
 		  }
 	}
-	/**/
+	/**//*
 	@Test
 	public void testAcelerarCajaSecuencial(){
 		  Auto auto=new Auto();
@@ -196,8 +196,8 @@ public class TestAuto {
 		  assertTrue(auto.isEncendido());
 		  int cambio=5;
 		  int contador=0;
-	      while((!((auto.getCaja().getCambio()==cambio)&&(auto.getMotor().getRPM()==8000)))
-	    	  &&(contador<7000)){
+	      while((auto.getCaja().getCambio()!=cambio)//(!((auto.getCaja().getCambio()==cambio)&&(auto.getMotor().getRPM()==8000)))
+	    	  &&(contador<19000)){
 			 System.out.println("Iteracion "+contador+
 		    		" Cambio "+auto.getCaja().getCambio()+
 		    		" velocidad "+auto.getVelocidad()+
@@ -213,8 +213,8 @@ public class TestAuto {
 		    	 auto.getCaja().anterior();
 		  }
 	}
+	*/
 	
-	/*
 	@Test
 	public void testAcelerarCajaAutomatica(){
 	  	  auto.setEncendido(true);
@@ -266,5 +266,5 @@ public class TestAuto {
 		  }
 		*/
 	  
-	//}*/
+	}
 }
