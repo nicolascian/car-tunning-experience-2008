@@ -96,7 +96,7 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	 */
 	public void desgastar(){
 		
-		setEstado(getEstado() - tiempoPorCiclo * EfectoClimatico/2);
+		setEstado(getEstado() - Constantes.tiempoPorCiclo * EfectoClimatico/2);
 	}
 	
 	/**
