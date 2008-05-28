@@ -8,7 +8,6 @@
 package modelo.componente;
 
 import java.util.*;
-
 import modelo.*;
 
 /**

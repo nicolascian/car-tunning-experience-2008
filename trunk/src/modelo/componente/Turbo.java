@@ -34,7 +34,7 @@ import modelo.*;
 public class Turbo extends Componente implements AfectablePorClima{
 	
 	// en HectoPascales
-	private static double presionInterna=500;
+	private double presionInterna=500;
 	
 	//surge de la multiplicacion de una tempratura extrema, una humedad extrema,
 	//y una presion normal, a este valor le calculamos un porcentaje que represente la media.
