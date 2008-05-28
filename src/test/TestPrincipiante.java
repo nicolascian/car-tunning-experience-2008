@@ -10,7 +10,7 @@ public class TestPrincipiante extends TestCase {
 		
 		Habilidad principiante = new Principiante();
 		
-		Jugador virtual = new Virtual(principiante);
+		Jugador virtual = new Virtual(principiante, new Auto());
 		
 		principiante.jugar();
 		
