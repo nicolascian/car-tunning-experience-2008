@@ -6,12 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
-import java.util.Iterator;
-import java.util.ArrayList;
 import modelo.*;
-import modelo.fuerzas.Fuerza;
-import modelo.fuerzas.ReceptorDeFuerzas;
-import modelo.fuerzas.RepositorioDeFuerzas;
+import modelo.fuerzas.*;
 
 /**
  * Los eje del auto contiene las ruedas las cual estan

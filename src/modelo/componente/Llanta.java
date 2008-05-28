@@ -19,8 +19,8 @@ import modelo.*;
  * 
  * @version	1.0
  */
-public class Llanta extends Componente implements AfectablePorSuperficie, ReceptorDeFuerzas,
-												  ComponenteContenidoEnComponente{
+public class Llanta extends Componente implements 
+	AfectablePorSuperficie, ReceptorDeFuerzas,  ComponenteContenidoEnComponente{
 		
 	// en hp
 	private static double potenciaNormal=15;  
