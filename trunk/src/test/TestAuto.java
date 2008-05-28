@@ -3,7 +3,7 @@ import modelo.*;
 import modelo.componente.Manual;
 import modelo.componente.Secuencial;
 import static org.junit.Assert.*;
-
+import modelo.componente.Automatica;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -187,17 +187,19 @@ public class TestAuto {
 		     } 
 		  }
 	}
-	/**/
+	/**//*
 	@Test
 	public void testAcelerarCajaSecuencial(){
 		  Auto auto=new Auto();
-		  auto.setCaja(new Secuencial(5));
+		  auto.setCaja(new Secuencial(4));
 		  auto.setEncendido(true);
 		  assertTrue(auto.isEncendido());
 		  int cambio=2;
 		  int contador=0;
-	      while((auto.getCaja().getCambio()!=cambio)//(!((auto.getCaja().getCambio()==cambio)&&(auto.getMotor().getRPM()==8000)))
-	    	  &&(contador<19000)){
+	      auto.acelerar(true);
+	      auto.getCaja().siguiente();
+		  while((auto.getCaja().getCambio()!=cambio)&&!((auto.getCaja().getCambio()==cambio)&&
+	    	   (auto.getMotor().getRPM()>=(auto.getMotor().getRevolucionesUmbralPeligro())))){
 			 System.out.println("Iteracion "+contador+
 		    		" Cambio "+auto.getCaja().getCambio()+
 		    		" velocidad "+auto.getVelocidad()+
@@ -213,18 +215,20 @@ public class TestAuto {
 		    	 auto.getCaja().anterior();
 		  }
 	}
+	*/
 	
-	/*
 	@Test
 	public void testAcelerarCajaAutomatica(){
 	  	  auto.setEncendido(true);
 		  assertTrue(auto.isEncendido());
-		  int cambio=4;
+		  auto.setCaja(new Automatica(6));
+		  int cambio=6;
 		  int contador=0;
 	 for(int i=0;i<1;i++){	  
 		 contador=0;
-		 while((auto.getCaja().getCambio()<=cambio)&&
-			  (auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))){
+		 while((auto.getCaja().getCambio()<cambio)
+			//	 &&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
+			 ){
 			 System.out.println("Iteracion "+contador+
 		    		" Cambio "+auto.getCaja().getCambio()+
 		    		" velocidad "+auto.getVelocidad()+
@@ -233,6 +237,7 @@ public class TestAuto {
 		    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
 		    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
 		     auto.acelerar(true);
+		     
 		     contador++;
 		     if(auto.getCaja().getCambio()==cambio){
 		         System.out.println("Iteracion "+contador+
@@ -266,5 +271,5 @@ public class TestAuto {
 		  }
 		*/
 	  
-	//}
+	}
 }
