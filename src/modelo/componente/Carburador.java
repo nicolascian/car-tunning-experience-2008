@@ -22,7 +22,7 @@ import modelo.*;
 public class Carburador extends Alimentacion implements AfectablePorClima{
 	/* implementado con muchas multiplicaciones */
 	
-	private double EfectoClimatico = 1;
+	private double EfectoClimatico;
 	
 	/* no tienen setter pues son constantes */
 	private static double CTE_HUMEDAD_OPTIMA = 30; // %
@@ -53,6 +53,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 		setNombre("Carburador");
 		setPrecio(new AlgoPesos(400,00)); //algo$
 		setPeso(4); // Kg
+		EfectoClimatico = 1;
 	}
 	
 	/**

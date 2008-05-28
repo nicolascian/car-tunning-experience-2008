@@ -39,6 +39,7 @@ CUESTIONES DE DISEÑO:
 	con  el neumatico. en todo caso tendria q estar en la clase constantes.
 	tambien me da la sensacion de que hay muchas constantes estaticas por todos lados, y 
 	no me cierra como se van a distinguir dos componentes (por ejemplo 2 turbos)
+	otra q acabo de ver es  ¿!¿!¿!constante tiempo por ciclo adentro de componente?!?!?!?!
 	
 COSAS DE IMPLEMENTACION:
 	-hay q ver en q lugar del codigo se llama al metodo desgastar de todos los componentes,
