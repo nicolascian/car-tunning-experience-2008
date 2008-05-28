@@ -207,13 +207,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	public void setRepositorio(RepositorioDeFuerzas repositorio) {
 		this.repositorio = repositorio;
 	}
-	
-	public void puntoMuerto(){
-		this.embragar(true);
-		setCambio(0);
-		this.embragar(false);
-	}
-	
+		
 	public void siguiente(){}
 	
 	public void anterior(){}

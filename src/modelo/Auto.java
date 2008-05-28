@@ -227,9 +227,9 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//encendido de motor
 	    if(encendido){
 	  	  if(!getMotor().isEncendido()){
-	  		  getEmbrague().embragar(true);
-	 		  getCaja().setCambio(0);
-	 		  getEmbrague().embragar(false);
+	  		  this.embragar(true);
+			  getCaja().setCambio(0);
+			  this.embragar(false);
 	  		  //actualizo lista de componentes
 	  		  listaDeAfectablesPorClima=this.obtenerAfectablesPorClima();
 	  		  listaDeAfectablesPorSuperficie=this.obtenerAfectablesPorSup();
@@ -249,9 +249,9 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	  		caja.setRevolucionesMinimasMotorParaCambioActual(0);
 	  		Velocidad=0;
 	 		liberarFuerzas();
-	 		getEmbrague().embragar(true);
-	 		getCaja().setCambio(0);
-	 		getEmbrague().embragar(false);
+	 		this.embragar(true);
+			getCaja().setCambio(0);
+			this.embragar(false);
         }
         //actualizacion de observadores
 	    ActualizarObservadores();
