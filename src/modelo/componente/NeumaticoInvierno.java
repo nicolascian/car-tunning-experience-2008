@@ -43,6 +43,7 @@ public class NeumaticoInvierno extends Neumatico implements	AfectablePorSuperfic
 		this.setParticulasEnSuperficie(0);
 		this.setRugosidadSuperficie(0);
 		this.setAuto(auto);
+		this.setPrecio(new AlgoPesos(400,0));
 	}
 
 	public NeumaticoInvierno(){
@@ -52,7 +53,7 @@ public class NeumaticoInvierno extends Neumatico implements	AfectablePorSuperfic
 		this.setPeso(15);//en kilos
 		this.setParticulasEnSuperficie(0);
 		this.setRugosidadSuperficie(0);
-
+		this.setPrecio(new AlgoPesos(400,0));
 	}
 
 	/**

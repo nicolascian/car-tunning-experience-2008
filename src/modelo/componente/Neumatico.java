@@ -7,7 +7,6 @@
 
 package modelo.componente;
 
-import modelo.AfectablePorSuperficie;
 import modelo.Auto;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
@@ -49,7 +48,7 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 		return potenciaMax;
 	}
 
-	public void setPotenciaMax(double potenciaMax) {
+	protected void setPotenciaMax(double potenciaMax) {
 		this.potenciaMax = potenciaMax;
 	}
 
@@ -82,24 +81,6 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 		Fuerza fuerzaRetorno=new Fuerza(this,(ReceptorDeFuerzas)getComponenteContenedor(),
 				                        valorFuerzaDeRozamiento,true);
 		((ReceptorDeFuerzas)getComponenteContenedor()).recibirFuerza(fuerzaRetorno);
-	}
-
-	/* (non-Javadoc)
-	 * @see modelo.Componente#desgastar()
-	 */
-	@Override
-	public void desgastar() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see modelo.Componente#obtenerPotencia()
-	 */
-	@Override
-	public double obtenerPotencia() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	/* (non-Javadoc)
