@@ -60,6 +60,7 @@ public class NeumaticoTodoTerreno extends Neumatico
 		this.setRugosidadSuperficie(0);
 		this.setViscosidadSuperficie(0);
 		this.setAuto(auto);
+		this.setPrecio(new AlgoPesos(350,0));
 	}
 
 	public NeumaticoTodoTerreno(){
@@ -71,6 +72,7 @@ public class NeumaticoTodoTerreno extends Neumatico
 		this.setParticulasEnSuperficie(0);
 		this.setRugosidadSuperficie(0);
 		this.setViscosidadSuperficie(0);
+		this.setPrecio(new AlgoPesos(350,0));
 
 	}
 	/**
