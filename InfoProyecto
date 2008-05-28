@@ -62,11 +62,17 @@ COSAS DE IMPLEMENTACION:
 	-hay q definir q vamos a hacer cuando un componente se rompe
 	
 	
-COSAS QUE NO ANDAN:
+COSAS QUE NO ANDAN DEL TODO BIEN:
 	- cuando se juega, se supone que se esta usando una caja automatica, y se pueden hacer 
 	  los cambios como tal. pero cuando llega a las rpm optimas hace el cambio solo.
+
 	- hay tests que que muestran errores y no fueron corregidos.
 
+	- hay q ajustar la rapidez con q aumenta las rpm y la velocidad.
+	
+	- cuando arranca el juego el auto siempre empieza con este estado:
+	Estado: 97.61904761523809
+	
 bueno estas son algunas cosas q charlamos hoy, y otras q se me ocurrieron ami.
 todo lo q vean q falta agreguenlo, y estaria bueno q estemos la mayoria mañana asi
 podemos discutir todo esto, mas las correcciones q nos hagan (q seguro son unas cuantas)
