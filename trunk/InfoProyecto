@@ -16,6 +16,9 @@ CUESTIONES DE DISEÑO:
 	codigo, asi podemos entender y ver q nos parecen las ideas, y asi depaso desp no
 	qdamos todos re colgados y no podemos avanzar xq no entendemos q se hizo.
 	
+	-faltaria algun diagrama de la relacion de las fuerzas con el resto de las
+	clases
+	
 	-si a alguien se le ocurre una mejor forma de detectar el fin de la carrera, q no
 	sea lanzando una excepcion "fin de pista", que no me parece q sea la mejor.
 	
