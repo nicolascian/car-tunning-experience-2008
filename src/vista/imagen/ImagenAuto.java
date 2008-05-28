@@ -1,6 +1,7 @@
 
 package vista.imagen;
 
+import modelo.*;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
@@ -10,13 +11,18 @@ import javax.swing.*;
 
 public class ImagenAuto extends Component {
           
+	Auto auto;
+	Pista pista;
+	
     BufferedImage Auto;
     BufferedImage Piso;
     BufferedImage Khm;
     BufferedImage Rpm;
+    BufferedImage AgujaRpm;
+    BufferedImage AgujaKmh;
     JFrame Ventana;
     
-    public ImagenAuto(JFrame ventanaJuego) {
+    public ImagenAuto(JFrame ventanaJuego, Auto auto, Pista pista) {
     	
     	this.Ventana= ventanaJuego;
 
@@ -39,7 +45,11 @@ public class ImagenAuto extends Component {
            Khm = ImageIO.read(new File("kmh.png"));
        } catch (IOException e) {
        }
-       //Piso = new BufferedImage(2*Auto.getWidth(), Auto.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
+       
+       this.auto= auto;
+       this.pista = pista;
+       
+       AgujaRpm = new BufferedImage(2*Auto.getWidth(), Auto.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
     }
     
     public void paint(Graphics g) {
