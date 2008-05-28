@@ -44,11 +44,15 @@ public class VistaVentana implements Observer{
 	private JButton botonCreditos = null;  //boton para ver los creditos
 	
 	private JFrame ventanaJuego  = null; //marco que contendra los autos y pista
+	ImagenAuto imagen = null;
 	
     // se ejecuta cuando hay cambios en el modelo
 	public void update(Observable arg0, Object arg1) {
 		
-	
+		if (!(ventanaJuego==null)){
+			imagen.repaint();
+		}
+		
 	}
 	
 	
@@ -344,13 +348,10 @@ public class VistaVentana implements Observer{
 		ventanaJuego.addKeyListener(new Usuario(auto));
 		//agregamos el listener del evento de cerrado de la ventana		
 		ventanaJuego.addWindowListener(new CloseListener());
-		
-		// Se carga la imagen desde el fichero que se indique, que se 
-	    // supone situado en el directorio actual del disco duro
-		//Image imagen = Toolkit.getDefaultToolkit().getImage( "alfaromeo.png" );
 	  
+		imagen = new ImagenAuto(ventanaJuego, auto, pista);
 		// cargamso la imagen desde archivo
-		ventanaJuego.add(new ImagenAuto(ventanaJuego));
+		ventanaJuego.add(imagen);
 		
 		//ventanaJuego.pack();
 		ventanaJuego.setResizable(false);
