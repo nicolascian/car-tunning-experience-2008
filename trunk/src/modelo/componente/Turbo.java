@@ -63,7 +63,7 @@ public class Turbo extends Componente implements AfectablePorClima{
 	 * los componentes se van desgastando
 	 */
 	public void desgastar(){
-		  setEstado(getEstado()-tiempoPorCiclo*constanteDeDesgaste);
+		  setEstado(getEstado()-Constantes.tiempoPorCiclo*constanteDeDesgaste);
 	}
 	/**
 	 * nos devuelve la potencia 

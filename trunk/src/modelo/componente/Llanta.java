@@ -12,6 +12,7 @@ import modelo.Superficie;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
 import modelo.Auto;
+import modelo.*;
 /**
  * Las llantas de un auto estan ligadas al eje del mismo,
  * se afectan directamente por la superficie y la humedad
@@ -73,7 +74,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 * 
 	 */
 	public void desgastar(){
-		setEstado(super.getEstado()-this.getCoeficienteDeDesgastePorSuperficie()*tiempoPorCiclo*constanteDeDesgaste);
+		setEstado(super.getEstado()-this.getCoeficienteDeDesgastePorSuperficie()*Constantes.tiempoPorCiclo*constanteDeDesgaste);
 		try{
 			this.getNeumatico().desgastar();
 		}catch(NullPointerException e){}

@@ -99,7 +99,7 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	 */
 	public void desgastar(){
 		
-		setEstado(getEstado() - tiempoPorCiclo * EfectoClimatico);
+		setEstado(getEstado() - Constantes.tiempoPorCiclo * EfectoClimatico);
 	}
 	
 	/**
