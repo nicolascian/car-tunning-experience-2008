@@ -40,8 +40,7 @@ public abstract class Componente extends Observable {
 	
 	protected AlgoPesos precio;
 	
-	public static double tiempoPorCiclo = (0.000000000006);/*multiplicador para
-	el calculo del desgaste de los componentes*/
+
 	
 	/**
 	 * es invocado por el auto
