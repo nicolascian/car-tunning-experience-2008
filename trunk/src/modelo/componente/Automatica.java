@@ -32,24 +32,24 @@ public class Automatica extends Caja{
 	 *  la caja baja un cambio
 	*/	
 	public void Chequear(){
-		double rpm=getAuto().getMotor().getRPM();
-		Motor motor=getAuto().getMotor();
-		if(motor.isAcelerando()){
+		  double rpm=getAuto().getMotor().getRPM();
+		  Motor motor=getAuto().getMotor();
+		  if(motor.isAcelerando()){
 			if(rpm>=getRevolucionesMaximasMotorParaCambioActual()){
 				embragar(true);
 				setCambio(getCambio()+1);
 				embragar(false);
 			}
-		}
-		else{
+		  }
+		  else{
 			if(rpm<=getRevolucionesMinimasMotorParaCambioActual()){
 				embragar(true);
 				setCambio(getCambio()-1);
 				embragar(false);
 			}
-		}
+		  }
 	}	
-	
+		
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase Automatica segun los parametros detallados a continuaci�n.
