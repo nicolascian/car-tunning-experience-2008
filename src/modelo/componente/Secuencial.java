@@ -59,9 +59,9 @@ public class Secuencial extends Caja{
 	*/
 	protected void generarRelacionesDeCaja(){
 		for(int cursor=0;cursor<=getCantidadCambios();cursor++)
-	     if(cursor!=0)		    
-			setRelacionDeCambio(cursor,15.0/(cursor-0.2)-9.0/(getCantidadCambios()*getCantidadCambios()));
-	     else
-	    	setRelacionDeCambio(cursor,60.0);   
-	}	
+		  if(cursor!=0)	   
+			setRelacionDeCambio(cursor,15.0/(cursor-0.3)-9.0/(getCantidadCambios()*getCantidadCambios()));
+		  else
+			setRelacionDeCambio(cursor,60.0);  
+	}
 }

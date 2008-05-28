@@ -293,13 +293,13 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		double coeficiente=getCoeficienteDeProduccionDeFuerzaAPartirRpm();
 		if(getRPM()<=getRevolucionesUmbralPeligro()){
 		  if(!isAcelerando()){
-			double maximo=potencia*0.0048;//0.0038
+			double maximo=potencia*0.005;//0.0038
 			coeficiente+=0.0003;//0.00003
 			if(coeficiente>maximo)
 			  coeficiente=maximo;
 		  }
 		  else{
-		    double medio=potencia*0.00425;//0.00325
+		    double medio=potencia*0.00435;//0.00325
 			coeficiente-=0.0003;//0.00003
 			if(coeficiente<medio)
 			  coeficiente=medio;
