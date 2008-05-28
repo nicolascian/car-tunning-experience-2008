@@ -59,7 +59,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		relacionDeCambio=new double[cantidadCambios+1];
 		generarRelacionesDeCaja();
 		setEstado(100);
-		this.setFuerzaMaximaAlPasarDeCambio(getCantidadCambios()*250);
+		this.setFuerzaMaximaAlPasarDeCambio(getCantidadCambios()*0.0101);
 	}
 	
 	public void Chequear(){};
@@ -162,12 +162,10 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		   //se calcula la fuerza que se debe ejercer al motor
 		   double valorDeFuerza=0;
 		   if(cambio>getCambio())
-			  valorDeFuerza=getAuto().getMotor().getRPM()*
-			            getAuto().getMotor().getCoeficienteDeProduccionDeFuerzaAPartirRpm()*
-			            (-1.8)*getCambio()*getRelacionDeCambio()/getRelacionDeCambio(0);
+			   valorDeFuerza=getAuto().getMotor().getRPM()*(-1)*(getFuerzaMaximaAlPasarDeCambio()*
+			                 getCantidadCambios()/(cambio)+1.1/Math.pow(getRelacionDeCambio(),2));   
 		   else
 			  valorDeFuerza=getAuto().getMotor().getRPM()*(0.22);
-		   System.out.println(valorDeFuerza);
 		   //se pasa el cambio
 		   this.cambio=cambio;
 		   //se actualizan las revoluciones minimas y maximas para el cambio actual

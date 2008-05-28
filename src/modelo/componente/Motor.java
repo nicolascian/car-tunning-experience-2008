@@ -54,7 +54,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	
 	protected final static double COEFICIENTE_BASICO_DE_DESGASTE=1.5;
 			
-	protected final static double PORCENTAJE_REVOLUCIONES_UMBRAL_PELIGRO=0.875;
+	protected final static double PORCENTAJE_REVOLUCIONES_UMBRAL_PELIGRO=0.898;
 	
 	//---------------------     atributos basicos de motor   -------------------
 	
@@ -306,12 +306,12 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		  }
 		}
 		else{
-		   double minimo=potencia*0.0015;
+		   double minimo=potencia*0.00135;
 		   if(!isAcelerando()){
 			  coeficiente+=0.00003;
 		   }
 		   else{
-			 coeficiente-=0.00003;
+			 coeficiente-=0.00005;
 			 if(coeficiente<minimo)
 			   coeficiente=minimo;
 		   }  
@@ -327,6 +327,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	*/
 	public void encender(){
 		if(!isEncendido()){
+			actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
 			setEncendido(true);
 		  //seteo de temperaturas
 			setTemperatura(TEMPERATURA_INICIAL);
