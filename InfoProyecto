@@ -65,6 +65,9 @@ COSAS DE IMPLEMENTACION:
 	
 	-hay q definir q vamos a hacer cuando un componente se rompe
 	
+	-hay q escribir bien el metodo reparar, teniendo en cuenta el costo, la plata 
+	disponible etc etc
+	
 	
 COSAS QUE NO ANDAN DEL TODO BIEN:
 	- cuando se juega, se supone que se esta usando una caja automatica, y se pueden hacer 
