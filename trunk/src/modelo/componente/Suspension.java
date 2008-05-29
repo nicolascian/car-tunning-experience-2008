@@ -19,17 +19,23 @@ import modelo.*;
 public class Suspension extends Componente
 implements AfectablePorSuperficie, AfectablePorClima{
 	
-	private double EfectoClimatico = 1;
-	private double EfectoSuperficie = 1;
+	private double EfectoClimatico;
+	private double EfectoSuperficie;
 	
-	private double rigidez=1;
+	private double rigidez;
 	
 	/**
 	 * constructor, queda instanciada la clase Suspension
 	 */
 	public Suspension(){
-		setEstado(100);
-		setPeso(56);
+		this.setEstado(100);
+		this.setPeso(56);
+		this.setEfectoClimatico(1);
+		this.setEfectoSuperficie(1);
+		this.rigidez=1;
+		this.setPrecio(new AlgoPesos(800,0));
+		this.setNombre("Suspencion estandar");
+		this.setAuto(null);
 	}
 	
 	/**
@@ -39,8 +45,13 @@ implements AfectablePorSuperficie, AfectablePorClima{
 	 */
 	public Suspension(double rigidez){
 		this.rigidez = rigidez;
-		setEstado(100);
-		setPeso(56);
+		this.setEstado(100);
+		this.setPeso(56);
+		this.setEfectoClimatico(1);
+		this.setEfectoSuperficie(1);
+		this.setPrecio(new AlgoPesos(800,0));
+		this.setNombre("Suspencion estandar");
+		this.setAuto(null);
 	}
 	/**
 	 * como es un componente, con el pasar del tiempo se
@@ -82,9 +93,6 @@ implements AfectablePorSuperficie, AfectablePorClima{
 	 */
 	public void afectar(Superficie superficie){
 		EfectoSuperficie = (superficie.getRugosidad()/1000 + superficie.getParticulasSueltas()/1000);
-	}
-	public String getNombre (){
-		return "suspension";
 	}
 
 	public double getEfectoClimatico() {
