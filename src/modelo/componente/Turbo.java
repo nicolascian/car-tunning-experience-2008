@@ -34,7 +34,7 @@ import modelo.*;
 public class Turbo extends Componente implements AfectablePorClima{
 	
 	// en HectoPascales
-	private double presionInterna=500;
+	private double presionInterna;
 	
 	//surge de la multiplicacion de una tempratura extrema, una humedad extrema,
 	//y una presion normal, a este valor le calculamos un porcentaje que represente la media.
@@ -49,15 +49,33 @@ public class Turbo extends Componente implements AfectablePorClima{
 	private static double coeficienteInicial=0.16;
 	
 	/**
-	 * constructor, queda instanciada 
-	 * la clase
+	 * constructor sin parametros, queda instanciado un objeto
+	 * de la clase Turbo
 	 */
 	public Turbo(){
-		setPeso(15);
-		setEstado(100);
+		this.setPeso(15);
+		this.setEstado(100);
 		this.setCoeficienteDeObtencionDePotencia(0.01);
+		this.setPresionInterna(500);
+		this.setPrecio(new AlgoPesos(1000,0));
+		this.setAuto(null);
+		this.setNombre("Turbo Estandar");
 		}
 	
+	/**
+	 * Constructor que recibe un auto.
+	 * post: queda instanciado un objeto de la clase Turbo
+	 * @param auto
+	 */
+	public Turbo(Auto auto){
+		this.setPeso(15);
+		this.setEstado(100);
+		this.setCoeficienteDeObtencionDePotencia(0.01);
+		this.setPresionInterna(500);
+		this.setPrecio(new AlgoPesos(1000,0));
+		this.setAuto(auto);
+		this.setNombre("Turbo Estandar");
+		}
 	/**
 	 * con el correr del tiempo,
 	 * los componentes se van desgastando
@@ -72,7 +90,6 @@ public class Turbo extends Componente implements AfectablePorClima{
 	
 	public double obtenerPotencia(){
 		return presionInterna*getCoeficienteDeObtencionDePotencia();
-	
 	}
 	
 	/** 
@@ -87,8 +104,7 @@ public class Turbo extends Componente implements AfectablePorClima{
 		relacion=0.5;
 		}
 		this.setCoeficienteDeObtencionDePotencia(coeficienteInicial*Math.abs(1- relacion));
-		
-		
+			
 	}
 
 		// setters y getters //
