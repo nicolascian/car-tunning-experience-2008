@@ -219,7 +219,7 @@ public class TestAuto {
 		  auto.setCaja(new Automatica(5));
 		  int cambio=5;
 		  int contador=0;
-	 for(int i=0;i<1;i++){	  
+	 
 		 contador=0;
 		 while((auto.getCaja().getCambio()<=cambio)
 			&&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
@@ -249,7 +249,7 @@ public class TestAuto {
 		  //auto.setEncendido(false);
 		  //auto.setEncendido(true);
 		  //cambio=5;
-	 }
+	 /*
 		  //desacelerar
 		  double velocidad=auto.getVelocidad();
 		  contador=0;
@@ -268,9 +268,9 @@ public class TestAuto {
 			    	 contador=20000;
 			    	 System.out.println(velocidad);
 			     }*/
-			     velocidad=auto.getVelocidad();
+		/*	     velocidad=auto.getVelocidad();
 		  }
-		
-	  
+	
+		  */
 	}
 }
