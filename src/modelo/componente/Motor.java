@@ -193,8 +193,8 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		   if(rpmFinal<getRevolucionesMinimasEncendido()){
 			     rpmFinal=getRevolucionesMinimasEncendido();
 		   }
-		   if(rpmFinal>getRevolucionesMaximas()){
-			     rpmFinal=getRevolucionesMaximas();
+		   if(rpmFinal>getRevolucionesUmbralPeligro()){
+			     rpmFinal=getRevolucionesUmbralPeligro();
 		   }
 		   afectarCoeficienteDeIncrementoRpmPorCambioBruscoRpm(rpmFinal);
 		   setRPM(rpmFinal);
@@ -243,8 +243,8 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     }	   
 			 else{
 				 decrementarRpm();
-				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm*0.3;
-			 }
+				 valorFuerza=getRPM()*Math.pow(coeficienteDeProduccionDeFuerzaAPartirRpm,2)*1.05;
+		     }
 		     /*Envio una fuerza al eje proporcional a las rpm y 
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
 		     Fuerza fuerza=new Fuerza(this,getAuto().getCaja(),valorFuerza,true);
@@ -252,16 +252,9 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     //obtengo el total de fuerzas sobre el motor
 		     valorFuerza+=repositorio.obtenerValorSumatoriaDeFuerzas();
 		     if(valorFuerza<0)
-		         afectarRpmPorFuerza(new Fuerza(this,getAuto().getCaja(),valorFuerza,true));
+		       afectarRpmPorFuerza(new Fuerza(this,getAuto().getCaja(),valorFuerza,true));
+		     
 		  }catch (NullPointerException e){}
-	  }
-	}
-
-	protected double obtenerCoeficienteDeDesaceleracion(){
-	  try{	
-		return getRevolucionesMaximas()/(10*getRPM());
-	  }catch(ArithmeticException e){
-		return  1; 
 	  }
 	}
 	
@@ -271,7 +264,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 *  de la instancia.    
 	*/
 	private void decrementarRpm(){
-		double rpmFinal=getRPM()-this.coeficienteDeIncrementoRpm;
+		double rpmFinal=getRPM()-coeficienteDeIncrementoRpm;
 		if(rpmFinal<getRevolucionesMinimasEncendido())
 			rpmFinal=getRevolucionesMinimasEncendido();
 		decrementarCoeficienteDeIncrementoRpm();		
