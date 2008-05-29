@@ -25,7 +25,7 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 	 * Este atributo indica la potencia maxima que podra entregar un neumatico,
 	 * que es baja en relacion con el resto de los componentes.
 	*/
-	private double potenciaMax=0;
+	private double potenciaMax;
 	
 	private Componente contenedor=null;//indica el componente en el cual se encuentra
 	
