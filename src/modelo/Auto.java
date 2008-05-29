@@ -41,9 +41,9 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	private Eje ejeTrasero=null;
 	/*listas para acceder a los componentes en forma rapida, mientras el auto se encuentra encendido 
 	*/
-	private LinkedList<Componente> listaDeComponentes=null;
-	private LinkedList<AfectablePorClima> listaDeAfectablesPorClima=null;
-	private LinkedList<AfectablePorSuperficie> listaDeAfectablesPorSuperficie=null;
+	//private LinkedList<Componente> listaDeComponentes=null;
+	//private LinkedList<AfectablePorClima> listaDeAfectablesPorClima=null;
+	//private LinkedList<AfectablePorSuperficie> listaDeAfectablesPorSuperficie=null;
 	private LinkedList<ReceptorDeFuerzas> listaDeReceptoresDeFuerzas=null;
 	
 	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.004311113598;
@@ -76,10 +76,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	      this.embragar(false);
 	    motor.setAuto(this);
 	    //creacion de listas de componentes
-	    listaDeComponentes=this.obtenerComponentes();
-	    listaDeAfectablesPorClima=this.obtenerAfectablesPorClima();
-		listaDeAfectablesPorSuperficie=this.obtenerAfectablesPorSup();
-		listaDeReceptoresDeFuerzas=this.obtenerReceptoresDeFuerzas();
+	    listaDeReceptoresDeFuerzas=this.obtenerReceptoresDeFuerzas();
 	}
 	
 	/**
@@ -117,9 +114,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		this.embragar(false);
 		motor.setAuto(this);
 		//creacion de listas de componentes
-		listaDeComponentes=this.obtenerComponentes();
-	    listaDeAfectablesPorClima=this.obtenerAfectablesPorClima();
-		listaDeAfectablesPorSuperficie=this.obtenerAfectablesPorSup();
+
 		listaDeReceptoresDeFuerzas=this.obtenerReceptoresDeFuerzas();
 	}
 	
@@ -162,7 +157,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		double potencia=0; 
 		//hay componente que solo aportan potencia al estar encendido el auto
 		if(isEncendido()){ 
-		   Iterator<Componente> it=listaDeComponentes.iterator();
+		   Iterator<Componente> it=this.obtenerComponentes().iterator();
 		   while(it.hasNext())  
 		     try{
 			    potencia=it.next().obtenerPotencia();
@@ -177,7 +172,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @return
 	*/
 	public void Desgastar(){
-		Iterator<Componente> it = listaDeComponentes.iterator();
+		Iterator<Componente> it = this.obtenerComponentes().iterator();
 		while (it.hasNext()){
 			it.next().desgastar();
 		}
@@ -208,7 +203,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public void comprobarComponentes() 
 	  throws ExceptionComponenteFaltante, ExceptionComponenteDesgastado{
-		Iterator<Componente> it = listaDeComponentes.iterator();
+		Iterator<Componente> it = this.obtenerComponentes().iterator();
 		while (it.hasNext()){
 			Componente aux = it.next();
 			if( aux == null) throw new ExceptionComponenteFaltante();
@@ -230,10 +225,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	  		  this.embragar(true);
 			  getCaja().setCambio(0);
 			  this.embragar(false);
-	  		  //actualizo lista de componentes
-	  		  listaDeAfectablesPorClima=this.obtenerAfectablesPorClima();
-	  		  listaDeAfectablesPorSuperficie=this.obtenerAfectablesPorSup();
-	  		  listaDeComponentes=this.obtenerComponentes();
+
 	  		  listaDeReceptoresDeFuerzas=this.obtenerReceptoresDeFuerzas();
 	  		  //encendido de motor
 	  		  getEjeDelantero().setRpm(0);
@@ -351,7 +343,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public double getEstado() {
 		double Estado = 0;
 		int componentes=0;
-		Iterator<Componente> it = listaDeComponentes.iterator();
+		Iterator<Componente> it = this.obtenerComponentes().iterator();
 		boolean componente0=false;
 		while ((it.hasNext())&&(!componente0)){
 			double estadoComponente= it.next().getEstado();
@@ -412,7 +404,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: Se afecta a la instancia y a todos sus componentes por el clima pasado por parametro.
 	*/
 	public void afectar(Clima clima){
-		Iterator<AfectablePorClima> it = listaDeAfectablesPorClima.iterator();
+		Iterator<AfectablePorClima> it = this.obtenerAfectablesPorClima().iterator();
 		while (it.hasNext()){
 			it.next().afectar(clima);
 		}
@@ -424,7 +416,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: Se afecta a la instancia y a todos sus componentes por la supericie pasada por parametro.
 	*/
 	public void afectar(Superficie superficie){
-		Iterator<AfectablePorSuperficie> it = listaDeAfectablesPorSuperficie.iterator();
+		Iterator<AfectablePorSuperficie> it = this.obtenerAfectablesPorSup().iterator();
 		while (it.hasNext()){
 			it.next().afectar(superficie);
 		}
@@ -502,7 +494,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public LinkedList<AfectablePorSuperficie> obtenerAfectablesPorSup(){
 		LinkedList<AfectablePorSuperficie> listaAS = new LinkedList<AfectablePorSuperficie>();
-		Iterator<Componente> it = listaDeComponentes.iterator();
+		Iterator<Componente> it = this.obtenerComponentes().iterator();
 		while (it.hasNext()){
 			it.next().agregarAListaAfecSuperficie(listaAS);
 		}
@@ -516,7 +508,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public LinkedList<AfectablePorClima> obtenerAfectablesPorClima(){
 		LinkedList<AfectablePorClima> listaAC = new LinkedList<AfectablePorClima>();
-		Iterator<Componente> it = listaDeComponentes.iterator();
+		Iterator<Componente> it = this.obtenerComponentes().iterator();
 		while (it.hasNext()){
 			it.next().agregarAListaAfecClima(listaAC);
 		}
@@ -699,7 +691,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	
 	public double getPeso(){
 	  double peso=motor.getPeso();
-	  Iterator<Componente> it=listaDeComponentes.iterator();  
+	  Iterator<Componente> it=this.obtenerComponentes().iterator();  
 	  while(it.hasNext())  
 	    try{
 	    	peso+=it.next().getPeso();
