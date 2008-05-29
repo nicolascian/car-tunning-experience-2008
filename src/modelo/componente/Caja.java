@@ -15,44 +15,38 @@ import modelo.fuerzas.RepositorioDeFuerzas;
  * @Documentacion
  * Esta clase modela la caja de velocidades de un vehiculo. Puede tener una cantidad de cambios 
  * determinada, que una vez creada no puede ser cambiada. Cada cambio tiene una relacion de velocidad
- * o de cambio, que es un factor numerico el cual determinara la forma en la que caja entrega potencia
- * de a cuerdo a encontrarse en un cambio dado. Se toma como convencion que a mayor numero de cambio
- * menor relacionDeCambio. 
- * @Nota: Al pasar de cambio la caja disminuye en un porcentaje la cantidad de rpm del
- * motor del auto.
+ * o de cambio. Se toma como convencion que a mayor numero de cambio menor relacionDeCambio.
+ * Una instancia de una clase derivada de Caja intercambia instancias de la clase Fuerza con las instancias
+ * de la clase Motor y Eje de un Auto determinado.
+ * La cantidad de cambios puede ser de 4 ad 6. 
+ * @Nota: Al pasar de cambio la caja disminuye en un porcentaje la cantidad de rpm del motor del auto.
  * @version	3.2
  */
 public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		
-	private int cambio=0;
+	private int cambio=0;//cambio actual de la instancia
 	
-	/**
-	 * El embrague es un sistema que permite transmitir o no una energía mecánica a su acción final. 
-	 * En un automóvil, por ejemplo, permite transmitir o no la potencia del motor a las ruedas.
-	 */
-	
-	private double revolucionesMaximasMotorParaCambioActual=0;
-	
-	private double revolucionesMinimasMotorParaCambioActual=0;
-	
-	private double[] relacionDeCambio;//
+	private double revolucionesMaximasMotorParaCambioActual=0;/*revoluciones maximas optimas para el motor
+	 															al cambio actual*/
+	private double revolucionesMinimasMotorParaCambioActual=0;/*revoluciones minimas optimas para el motor
+																al cambio actual*/	
+	private double[] relacionDeCambio;//almacena las distintas relaciones de cambio para cada cambio
 		
-	private int cantidadCambios;
+	private int cantidadCambios;//cantidad de cambios que tiene la caja
 	
-	private RepositorioDeFuerzas repositorio;
+	private RepositorioDeFuerzas repositorio;//guarda las fuerzas que llegan a la caja
 		
 	protected final static double COEFICIENTE_DE_DESGASTE=4;
 			
-	private double fuerzaMaximaAlPasarDeCambio;
+	private double fuerzaMaximaAlPasarDeCambio;/*fuerza maxima que retorna la caja al pasar de cambio
+												depende de la cantidad de cambios*/
 	
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
 	 * detallados a continuacion.
-	 * @param auto: auto que contiene a 
-	 * la instancia.  
-	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa que en 
-	 * esta implementacion no existe y punto muerto. Debe entre 4 y 8.
+	 * @param cantidadCambios: cantidad de cambios que posee la caja. Debe entre 4 y 6 sin contar el
+	 * punto muerto.En esta implementacion no existe la reverza.
 	 */
 	public Caja(int cantidadCambios){
 		this.cantidadCambios=cantidadCambios;
@@ -61,7 +55,11 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		setEstado(100);
 		this.setFuerzaMaximaAlPasarDeCambio(getCantidadCambios()*0.0101);
 	}
-	
+	/**
+	 *	@Pre: La instancia ha sido creada.
+	 *	@Post: Se ha chequeado algun aspecto relacionado con las revoluciones del motor y realizando
+	 *	alguna operacion sobre este y la instancia de la clase Caja. 
+	*/
 	public void Chequear(){};
 	
 	/**
@@ -72,8 +70,8 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		
 	/**
 	 * @Pre: Se ha creado la instancia de la clase derivada de la clase Caja.
-	 * @Post: Se ha validado el cambio pasado por parametro seg�n la codificaci�n siguiente.
-	 * @param cambio: cambio que se desea validad.
+	 * @Post: Se ha validado el cambio pasado por parametro segun la codificacion siguiente.
+	 * @param cambio: cambio que se desea validar.
 	 * @return "true" en caso de que el cambio sea valido y "false" en caso contrario.
 	 */
 	protected boolean cambioValido(int cambio){
@@ -157,6 +155,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 * revolucionesMaximas del Motor.
 	 */
 	public void setCambio(int cambio){
+	  try{	
 		if ((cambioValido(cambio))&&(cambio!=getCambio())&&(isEmbragado())){
 		 if(cambio!=0){ 
 		   //se calcula la fuerza que se debe ejercer al motor
@@ -182,9 +181,15 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		if (!isEmbragado()) {
 			this.desgastar();}
 		ActualizarObservadores();
+	  }catch(NullPointerException e){}
 	}
 	
+	/**
+	 * @Pre: La instancia de la clase Auto asociada a esta instancia se encuentra encendida
+	 * @Post: Se actualizan las revoluciones maximas y minimas del motor para el cambio actual.
+	*/
 	protected void actualizarRevolucionesLimiteMotorParaCambioActual(){
+	 try{ 
 	  double minimas;
 	  double rpmMaximas;
 	  if(getCambio()!=0){	
@@ -199,6 +204,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		 rpmMinimas=minimas;
 	  this.setRevolucionesMinimasMotorParaCambioActual(rpmMinimas);
 	  this.setRevolucionesMaximasMotorParaCambioActual(rpmMaximas);
+	 }catch(NullPointerException e){}
 	}
 		
 	/**
@@ -222,20 +228,18 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	public void setRepositorio(RepositorioDeFuerzas repositorio) {
 		this.repositorio = repositorio;
 	}
-		
+	
+	/**
+	 * @Pre: La instancia ha sido creada.
+	 * @Post: Se pasa al cambio siguiente.
+	*/	
 	public void siguiente(){}
 	
-	public void anterior(){}
-
 	/**
-	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.
-	 * @Post: Se retorna la cantidad de RPM de la instancia para le cambio actual.
-	 */
-	public double calcularRevolucionesMaximasMotorParaCambioActual() {
-		return (getAuto().getMotor().getRevolucionesUmbralPeligro()-
-				getAuto().getMotor().getRevolucionesMaximas()*0.07/
-				getRelacionDeCambio());
-	}
+	 * @Pre: La instancia ha sido creada.
+	 * @Post: Se pasa al cambio anterior.
+	*/
+	public void anterior(){}
 
 	/**
 	 * @Pre: Se ha creado una instancia de la Automatica segun los parametros.
@@ -312,7 +316,6 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	public void setRevolucionesMaximasMotorParaCambioActual(
 			double revolucionesMaximasMotorParaCambioActual) {
 		this.revolucionesMaximasMotorParaCambioActual = revolucionesMaximasMotorParaCambioActual;
-		
 		ActualizarObservadores();
 	}
 
@@ -333,14 +336,14 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 
 	/**
 	 * @return the fuerzaMaximaAlPasarDeCambio
-	 */
+	*/
 	public double getFuerzaMaximaAlPasarDeCambio() {
 		return fuerzaMaximaAlPasarDeCambio;
 	}
 
 	/**
 	 * @param fuerzaMaximaAlPasarDeCambio the fuerzaMaximaAlPasarDeCambio to set
-	 */
+	*/
 	public void setFuerzaMaximaAlPasarDeCambio(double fuerzaMaximaAlPasarDeCambio) {
 		this.fuerzaMaximaAlPasarDeCambio = fuerzaMaximaAlPasarDeCambio;
 	}

@@ -19,12 +19,11 @@ public class Secuencial extends Caja{
 	
 	/**
 	 * @Pre:
-	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
-	 * detallados a continuacion.
-	 * @param auto: auto que contiene a la instancia.  
-	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
-	 * muerto. Debe entre 4 y 8.
-	*/
+	 * @Post: Se ha creado una instancia de la clase Secuencial segun los parametros detallados a 
+	 * continuacion.
+	 * @param cantidadCambios: cantidad de cambios que posee la caja. Debe entre 4 y 6 sin contar el
+	 * punto muerto.En esta implementacion no existe la reverza.
+	 */
 	public Secuencial(int cantidadCambios){
 		super(cantidadCambios);
 		setPeso(85);

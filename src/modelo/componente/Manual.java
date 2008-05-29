@@ -9,10 +9,8 @@ package modelo.componente;
 import modelo.*;
 
 /**
- * En una Caja Manual, podemos pasar de cambio directamente
- * haciendo setCambio(cambioNuevo) sin importar cual era el
- * cambio anterior
- * 
+ * Una instancia de esta clase modela una caja manual estandar en la cual se puede pasar de un cambio
+ * a otro en forma arbitraria. 
  * @version	1.0
 */
 public class Manual extends Caja{
@@ -20,12 +18,11 @@ public class Manual extends Caja{
 
 	/**
 	 * @Pre:
-	 * @Post: Se ha creado una instancia de la clase derivada de la clase Manual segun los parametros
-	 * detallados a continuaci�n.
-	 * @param auto: auto que contiene a la instancia.  
-	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
-	 * muerto. Debe entre 4 y 8.
-	*/	
+	 * @Post: Se ha creado una instancia de la clase Manual segun los parametros detallados a 
+	 * continuacion.
+	 * @param cantidadCambios: cantidad de cambios que posee la caja. Debe entre 4 y 6 sin contar el
+	 * punto muerto.En esta implementacion no existe la reverza.
+	 */
 	public Manual(int cantidadCambios) {
 		super(cantidadCambios);
 		setPeso(85);

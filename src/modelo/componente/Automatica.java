@@ -23,6 +23,7 @@ public class Automatica extends Caja{
 	/**
 	 * @Pre: La instancia de la clase Automatica ha sido creada, y su atributo auto tiene una instancia de la 
 	 * clase Auto la cual es no nula y se encuentra listo para carrera.
+	 * 
 	 * @Post: Se podrucen los siguientes estados finales:
 	 *  
 	 *  1)Si se esta acelerando el motor, y las revoluciones alcanzan cierto nivel, 
@@ -52,10 +53,10 @@ public class Automatica extends Caja{
 		
 	/**
 	 * @Pre:
-	 * @Post: Se ha creado una instancia de la clase Automatica segun los parametros detallados a continuaci�n.
-	 * @param auto: auto que contiene a la instancia.  
-	 * @param cantidadCambios: cantidad de cambios que posee la caja, sin contar la reversa y punto
-	 * muerto. Debe entre 4 y 8.
+	 * @Post: Se ha creado una instancia de la clase Automatica segun los parametros detallados a 
+	 * continuacion.
+	 * @param cantidadCambios: cantidad de cambios que posee la caja. Debe entre 4 y 6 sin contar el
+	 * punto muerto.En esta implementacion no existe la reverza.
 	*/
 	public Automatica(int cantidadCambios){
 		super(cantidadCambios);
@@ -73,5 +74,4 @@ public class Automatica extends Caja{
 		  else
 			setRelacionDeCambio(cursor,60.0);  
 	}
-	
 }
