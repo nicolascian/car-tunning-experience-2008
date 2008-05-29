@@ -132,7 +132,7 @@ public class NeumaticoTodoTerreno extends Neumatico
 		return humedadEnPista;
 	}
 
-	public void setHumedadEnPista(double humedadEnPista) {
+	private void setHumedadEnPista(double humedadEnPista) {
 		this.humedadEnPista = humedadEnPista;
 	}
 
@@ -140,7 +140,7 @@ public class NeumaticoTodoTerreno extends Neumatico
 		return rugosidadSuperficie;
 	}
 
-	public void setRugosidadSuperficie(double rugosidadSuperficie) {
+	private void setRugosidadSuperficie(double rugosidadSuperficie) {
 		this.rugosidadSuperficie = rugosidadSuperficie;
 	}
 
@@ -148,7 +148,7 @@ public class NeumaticoTodoTerreno extends Neumatico
 		return particulasEnSuperficie;
 	}
 
-	public void setParticulasEnSuperficie(double particulasEnSuperficie) {
+	private void setParticulasEnSuperficie(double particulasEnSuperficie) {
 		this.particulasEnSuperficie = particulasEnSuperficie;
 	}
 
@@ -156,7 +156,7 @@ public class NeumaticoTodoTerreno extends Neumatico
 		return viscosidadSuperficie;
 	}
 
-	public void setViscosidadSuperficie(double viscosidadSuperficie) {
+	private void setViscosidadSuperficie(double viscosidadSuperficie) {
 		this.viscosidadSuperficie = viscosidadSuperficie;
 	}
 }

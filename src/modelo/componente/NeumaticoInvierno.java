@@ -100,7 +100,7 @@ public class NeumaticoInvierno extends Neumatico implements	AfectablePorSuperfic
 	}
 
 
-	public void setRugosidadSuperficie(double rugosidadSuperficie) {
+	private void setRugosidadSuperficie(double rugosidadSuperficie) {
 		this.rugosidadSuperficie = rugosidadSuperficie;
 	}
 
@@ -110,7 +110,7 @@ public class NeumaticoInvierno extends Neumatico implements	AfectablePorSuperfic
 	}
 
 
-	public void setParticulasEnSuperficie(double particulasEnSuperficie) {
+	private void setParticulasEnSuperficie(double particulasEnSuperficie) {
 		this.particulasEnSuperficie = particulasEnSuperficie;
 	}
 

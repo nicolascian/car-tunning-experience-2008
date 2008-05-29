@@ -131,7 +131,7 @@ public class NeumaticoMixto extends Neumatico implements AfectablePorClima,
 		return cantidadSurcos;
 	}
 
-	public void setCantidadSurcos(double cantidadSurcos) {
+	private void setCantidadSurcos(double cantidadSurcos) {
 		this.cantidadSurcos = cantidadSurcos;
 	}
 
@@ -139,7 +139,7 @@ public class NeumaticoMixto extends Neumatico implements AfectablePorClima,
 		return humedadEnPista;
 	}
 
-	public void setHumedadEnPista(double humedadEnPista) {
+	private void setHumedadEnPista(double humedadEnPista) {
 		this.humedadEnPista = humedadEnPista;
 	}
 
@@ -147,7 +147,7 @@ public class NeumaticoMixto extends Neumatico implements AfectablePorClima,
 		return relieveSuperficie;
 	}
 
-	public void setRelieveSuperficie(double relieveSuperficie) {
+	private void setRelieveSuperficie(double relieveSuperficie) {
 		this.relieveSuperficie = relieveSuperficie;
 	}
 
@@ -155,7 +155,7 @@ public class NeumaticoMixto extends Neumatico implements AfectablePorClima,
 		return viscosidadSuperficie;
 	}
 
-	public void setViscosidadSuperficie(double viscosidadSuperficie) {
+	private void setViscosidadSuperficie(double viscosidadSuperficie) {
 		this.viscosidadSuperficie = viscosidadSuperficie;
 	}
 	

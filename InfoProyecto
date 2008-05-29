@@ -68,6 +68,9 @@ COSAS DE IMPLEMENTACION:
 	-hay q escribir bien el metodo reparar, teniendo en cuenta el costo, la plata 
 	disponible etc etc
 	
+	-comentar q significan los atributos, rangos de valores validos etc etc.
+	 x ej en suspencion, cuales son los valores validos para la rigidez? y para los efectos
+	 de superficie y clima?
 	
 COSAS QUE NO ANDAN DEL TODO BIEN:
 	- cuando se juega, se supone que se esta usando una caja automatica, y se pueden hacer 
