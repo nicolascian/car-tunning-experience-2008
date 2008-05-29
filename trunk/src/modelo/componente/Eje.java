@@ -10,11 +10,10 @@ import modelo.*;
 import modelo.fuerzas.*;
 
 /**
- * Los eje del auto contiene las ruedas las cual estan
- * compuestas por llantas y neumaticos.
- * 
- * Son afectados por y desgastados por la superficie.
- * 
+ * Una instancia de esta clase modela el eje delantero o trasero de un vehiculo
+ * Un eje gira con una determinada cantidad de revoluciones las cuales afectan el desplazamiento del
+ * vehiculo y las fuerzas sobre la caja, llantas, neumaticos y carroceria.
+ * Son afectados por y desgastados por la superficie. * 
  * @version 1.0
  */
 public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDeFuerzas{ 
@@ -24,12 +23,17 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	private Llanta LlantaIzquierda;
 	private double DesgastePorRugosidad;
 	private double DesgastePorParticulas;
-	private RepositorioDeFuerzas repositorio;	
-	private double rpm=0;
+	private RepositorioDeFuerzas repositorio;//donde se almacenan las fuerzas que llegan a la isntancia
+	private double rpm=0;//revoluciones a las que gira la instancia.
 	protected final static double COEFICIENTE_INCREMENTO_RPM=0.0069999999895;
 	protected final static double COEFICIENTE_DECREMENTO_RPM=0.3739888456661;	
 	
-	/*Constructor,inicia estado de eje en 100*/
+	/**
+	 * @Pre: 
+	 * @Post: Se ha creado la instaica de la clase Eje inicializandola con la instancia de auto pasada
+	 * por parametro, con su estado al 100% y con llantas con neumaticos mixtos.
+	 * @param auto
+	*/
 	public Eje(Auto auto){
 		setPeso(50);
 		setAuto(auto);
@@ -39,7 +43,10 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		setLlantaIzquierda(new Llanta());
 		instalar(getAuto());
 	}
-	
+	/**
+	 * @Pre: La instancia de la clase Auto pasada por parametro ha sido creda.
+	 * @Post: Se ha instalado la instancia en la instancia de la clase Auto pasada por parametro.
+	 */
 	public void instalar(Auto auto){
 		setAuto(auto);
 		try{
@@ -51,13 +58,9 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	}
 	
 	/**
-	 * @Pre: Potencias de las ruedas y neumaticos
-	 * @Post: Retorna el valor de potencia generada por
-	 * el eje.
-	 * @Documentacion: El valor es la suma de la potencia generada por los ejes
-	 * las dos llantas y los dos neumaticos que componene cada eje.
-	 * El mejor valor de potencia que puede devolver un eje es de 5 watts.
-	 */
+	 * @Pre:
+	 * @Post: Retorna el valor de potencia generada por el eje.
+	*/
 	public double obtenerPotencia() {
 		return ((5*this.getEstado()/100));
 	}
@@ -68,7 +71,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 * teniendo en cuenta que este se ira arruinando por la
 	 * rugosidad que presenta la superficie y las particulas 
 	 * sueltas que presenta dicha superficie que da�an al eje.
-	 */
+	*/
 	public void desgastar(){
 		double desgaste=0;
 		desgaste = ((this.getDesgastePorRugosidad()/100) + (this.getDesgastePorParticulas())/10000)*Constantes.tiempoPorCiclo;
@@ -84,8 +87,6 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		this.setDesgastePorParticulas(superficie.getParticulasSueltas());
 		this.setDesgastePorRugosidad(superficie.getRugosidad());
 	}
-
-	/* getters y setters*/
 
 	public double getDesgastePorRugosidad() {
 		return DesgastePorRugosidad;
@@ -107,6 +108,11 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		return LlantaDerecha;
 	}
 
+	/**
+	 * @Pre: La instacia de la Clase Llanta pasada por parametro ha sido creda.
+	 * @Post: Se ha instalado la instancia pasada por parametro en esta instancia.
+	 * @param llantaDerecha
+	*/
 	public void setLlantaDerecha(Llanta llantaDerecha) {
 	  try{	
 		llantaDerecha.instalar(getAuto(),this);
@@ -118,6 +124,11 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		return LlantaIzquierda;
 	}
 
+	/**
+	 * @Pre: La instacia de la Clase Llanta pasada por parametro ha sido creda.
+	 * @Post: Se ha instalado la instancia pasada por parametro en esta instancia.
+	 * @param llantaDerecha
+	*/
 	public void setLlantaIzquierda(Llanta llantaIzquierda) {
 	  try{	
 		llantaIzquierda.instalar(this.getAuto(),this);
@@ -125,28 +136,6 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	  }catch(NullPointerException e){}
 	}
 
-	public Neumatico getNeumaticoDerecho() {
-		return getLlantaDerecha().getNeumatico();
-	}
-
-	public void setNeumaticoDerecho(Neumatico neumaticoDerecho) {
-	  try{	
-		neumaticoDerecho.instalar(this.getAuto(),getLlantaDerecha());
-		getLlantaDerecha().setNeumatico(neumaticoDerecho);
-       }catch(NullPointerException e){}
-	}
-
-	public Neumatico getNeumaticoIzquierdo() {
-		return getLlantaIzquierda().getNeumatico();
-	}
-
-	public void setNeumaticoIzquierdo(Neumatico neumaticoIzquierdo) {
-	  try{	
-		neumaticoIzquierdo.instalar(this.getAuto(),getLlantaIzquierda());
-		getLlantaIzquierda().setNeumatico(neumaticoIzquierdo);
-	  }catch(NullPointerException e){}
-	}
-	
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
 	 */
@@ -211,7 +200,10 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	public double getPeso(){
 		return peso;
 	}
-	
+	/**
+	 * @Pre: La instancia ha sido creada.
+	 * @Post: Se ha retornado la instancia expresada como una cadena de caracteres.
+	*/
 	public String toString(){
 		String cadena = this.getNombre()+", Estado: "+this.getEstado()+" %.";
 		return cadena;
@@ -237,11 +229,17 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 
 	/**
 	 * @param rpm the rpm to set
-	 */
+	*/
 	public void setRpm(double rpm) {
+	  double rpmFinal;
 	  if(rpm<0)	
-		this.rpm =0;
+		rpmFinal=0;
 	  else
-		this.rpm=rpm;
+		rpmFinal=rpm;
+	  this.rpm=rpmFinal;
+	  try{
+		  this.getLlantaDerecha().setRpm(rpmFinal);
+		  this.getLlantaIzquierda().setRpm(rpmFinal);
+	  }catch(NullPointerException e){}
 	}
 }
