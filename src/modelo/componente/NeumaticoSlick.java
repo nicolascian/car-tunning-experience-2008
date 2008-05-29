@@ -75,6 +75,7 @@ public class NeumaticoSlick extends Neumatico
 		this.setViscosidadSuperficie(0);
 		this.setRelieveSuperficie(0);
 		this.setPrecio(new AlgoPesos(300,0));
+		this.setAuto(null);
 	}
 	/**
 	 * La adherencia se ve comprometida en un 40% por la cantidad de agua en la
