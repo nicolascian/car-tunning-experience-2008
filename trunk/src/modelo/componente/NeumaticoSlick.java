@@ -136,19 +136,19 @@ public class NeumaticoSlick extends Neumatico
 	public double getHumedadEnPista() {
 		return humedadEnPista;
 	}
-	public void setHumedadEnPista(double humedadEnPista) {
+	private void setHumedadEnPista(double humedadEnPista) {
 		this.humedadEnPista = humedadEnPista;
 	}
 	public double getViscosidadSuperficie() {
 		return viscosidadSuperficie;
 	}
-	public void setViscosidadSuperficie(double viscosidadSuperficie) {
+	private void setViscosidadSuperficie(double viscosidadSuperficie) {
 		this.viscosidadSuperficie = viscosidadSuperficie;
 	}
 	public double getRelieveSuperficie() {
 		return relieveSuperficie;
 	}
-	public void setRelieveSuperficie(double relieveSuperficie) {
+	private void setRelieveSuperficie(double relieveSuperficie) {
 		this.relieveSuperficie = relieveSuperficie;
 	}
 
@@ -156,7 +156,7 @@ public class NeumaticoSlick extends Neumatico
 		return efectoTemperaturaExterna;
 	}
 
-	public void setEfectoTemperaturaExterna(double temperaturaExterna) {
+	private void setEfectoTemperaturaExterna(double temperaturaExterna) {
 		this.efectoTemperaturaExterna = temperaturaExterna;
 	}
 	

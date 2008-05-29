@@ -109,7 +109,7 @@ public class NeumaticoLluvia extends Neumatico implements AfectablePorSuperficie
 		return relieveSuperficie;
 	}
 
-	public void setRelieveSuperficie(double relieveSuperficie) {
+	private void setRelieveSuperficie(double relieveSuperficie) {
 		this.relieveSuperficie = relieveSuperficie;
 	}
 
@@ -117,7 +117,7 @@ public class NeumaticoLluvia extends Neumatico implements AfectablePorSuperficie
 		return viscosidadSuperficie;
 	}
 
-	public void setViscosidadSuperficie(double viscosidadSuperficie) {
+	private void setViscosidadSuperficie(double viscosidadSuperficie) {
 		this.viscosidadSuperficie = viscosidadSuperficie;
 	}
 }
