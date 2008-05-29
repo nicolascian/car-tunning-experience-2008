@@ -37,18 +37,18 @@ public class TestAuto {
 		assertNotNull(auto.getMotor().getAuto());
 		assertNotNull(auto.getMotor().getAuto().getCaja());
 		//comprobacion de neumaticos
-		assertNotNull(auto.getEjeDelantero().getNeumaticoDerecho().
+		assertNotNull(auto.getEjeDelantero().getLlantaDerecha().getNeumatico().
 			      getComponenteContenedor());
-		assertNotNull(auto.getEjeDelantero().getNeumaticoIzquierdo().
+		assertNotNull(auto.getEjeDelantero().getLlantaIzquierda().getNeumatico().
 			      getComponenteContenedor());
 		assertNotNull(auto.getEjeDelantero().getLlantaDerecha().getNeumatico().
 			      getComponenteContenedor());
 		assertNotNull(auto.getEjeDelantero().getLlantaIzquierda().getNeumatico().
 			      getComponenteContenedor());
 		//comprobacion de neumaticos
-		assertNotNull(auto.getEjeTrasero().getNeumaticoDerecho().
+		assertNotNull(auto.getEjeTrasero().getLlantaDerecha().getNeumatico().
 			      getComponenteContenedor());
-		assertNotNull(auto.getEjeTrasero().getNeumaticoIzquierdo().
+		assertNotNull(auto.getEjeTrasero().getLlantaIzquierda().getNeumatico().
 			      getComponenteContenedor());
 		assertNotNull(auto.getEjeTrasero().getLlantaDerecha().getNeumatico().
 			      getComponenteContenedor());
@@ -115,45 +115,40 @@ public class TestAuto {
 		 a.printStackTrace();
 	  }
 	}
-	/*	
+		/*
 	@Test
 	public void testAcelerarIterativo(){
 	  try{	 
 		  //aceleracion
-		  for(int cambio=0;cambio<=5;cambio++){
-			auto.setEncendido(true);
+		  	auto.setEncendido(true);
+		  	auto.acelerar(true);
 			double velocidad=auto.getVelocidad();
 			double rpmEje=auto.getEjeDelantero().getRpm();
-			for(int i=0; i<20;i++)
-			  auto.acelerar(true);
-			while((auto.getCaja().getCambio()<=cambio)&&
-		    	  (auto.getMotor().getRPM()<auto.getMotor().getRevolucionesMaximas())){
+			while((auto.getCaja().getCambio()<=5)&&
+		    	  (auto.getMotor().getRPM()<auto.getMotor().getRevolucionesUmbralPeligro())){
 		       auto.acelerar(true);
 		       assertTrue(auto.getVelocidad()>velocidad);
-		       
+		       System.out.println(velocidad);
 		       velocidad=auto.getVelocidad();
 		       assertTrue(auto.getEjeDelantero().getRpm()>rpmEje);
 		       rpmEje=auto.getEjeDelantero().getRpm();
 		    }
 			//frenado por dejar de acelerar
-			for(int i=0; i<50;i++)
-				  auto.acelerar(false);
-			while(auto.getMotor().getRPM()>auto.getMotor().getRevolucionesMinimasEncendido()){
+			while(auto.getCaja().getCambio()>4){
 			       auto.acelerar(false);
 			       assertTrue(auto.getVelocidad()<1.002*velocidad);
 			       velocidad=auto.getVelocidad();
 			       assertTrue(auto.getEjeDelantero().getRpm()<1.2*rpmEje);
 			       rpmEje=auto.getEjeDelantero().getRpm();
+			       System.out.println(velocidad);
 			}
 			
 		    auto.setEncendido(false);
-		  }
-		  
-	    }catch(AssertionError a){			
+		}catch(AssertionError a){			
 		  a.printStackTrace();
 	    }
 	}
-	*//*
+	/*
 	@Test
 	public void testAcelerarCajaManual(){
 	  	  Auto auto=new Auto();
@@ -216,18 +211,18 @@ public class TestAuto {
 		  }
 	}
 	*/
-	
+	/**/
 	@Test
 	public void testAcelerarCajaAutomatica(){
 	  	  auto.setEncendido(true);
 		  assertTrue(auto.isEncendido());
-		  auto.setCaja(new Automatica(6));
-		  int cambio=6;
+		  auto.setCaja(new Automatica(5));
+		  int cambio=5;
 		  int contador=0;
 	 for(int i=0;i<1;i++){	  
 		 contador=0;
-		 while((auto.getCaja().getCambio()<cambio)
-			//	 &&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
+		 while((auto.getCaja().getCambio()<=cambio)
+			&&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
 			 ){
 			 System.out.println("Iteracion "+contador+
 		    		" Cambio "+auto.getCaja().getCambio()+
@@ -256,9 +251,9 @@ public class TestAuto {
 		  //cambio=5;
 	 }
 		  //desacelerar
-		  /*
+		  double velocidad=auto.getVelocidad();
 		  contador=0;
-		  while((contador<10000)){
+		  while((contador<2000)){
 				 auto.acelerar(false);
 			     contador++;
 			     System.out.println("Iteracion "+contador+
@@ -268,8 +263,14 @@ public class TestAuto {
 			    		" Rpm Motor "+auto.getMotor().getRPM()+
 			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
 			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+			     /*
+			     if(auto.getVelocidad()>velocidad){
+			    	 contador=20000;
+			    	 System.out.println(velocidad);
+			     }*/
+			     velocidad=auto.getVelocidad();
 		  }
-		*/
+		
 	  
 	}
 }

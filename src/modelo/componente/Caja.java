@@ -38,8 +38,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		
 	protected final static double COEFICIENTE_DE_DESGASTE=4;
 			
-	private double fuerzaMaximaAlPasarDeCambio;/*fuerza maxima que retorna la caja al pasar de cambio
-												depende de la cantidad de cambios*/
+	private double coefProdFzaAlPasarDeCambio;/*coeficiente para obtener la fuerza al pasar de cambio*/
 	
 	/**
 	 * @Pre:
@@ -53,7 +52,8 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		relacionDeCambio=new double[cantidadCambios+1];
 		generarRelacionesDeCaja();
 		setEstado(100);
-		this.setFuerzaMaximaAlPasarDeCambio(getCantidadCambios()*0.0101);
+		setCoefProdFzaAlPasarDeCambio(getCantidadCambios()*0.0097115*
+		        		             (1+47/(getCantidadCambios()*getCantidadCambios())));
 	}
 	/**
 	 *	@Pre: La instancia ha sido creada.
@@ -159,12 +159,10 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		if ((cambioValido(cambio))&&(cambio!=getCambio())&&(isEmbragado())){
 		 if(cambio!=0){ 
 		   //se calcula la fuerza que se debe ejercer al motor
-		   double valorDeFuerza=0;
-		   if(cambio>getCambio())
-			   valorDeFuerza=getAuto().getMotor().getRPM()*(-1)*(getFuerzaMaximaAlPasarDeCambio()*
-			                 getCantidadCambios()/(cambio)+1.1/Math.pow(getRelacionDeCambio(),2));   
-		   else
-			  valorDeFuerza=getAuto().getMotor().getRPM()*(0.22);
+		   double valorDeFuerza=getAuto().getMotor().getRPM()*(-1)*(getCoefProdFzaAlPasarDeCambio()*
+			                    getCantidadCambios()/(cambio)+1.1/Math.pow(getRelacionDeCambio(),2));   
+		   if(cambio<getCambio())
+			   valorDeFuerza=valorDeFuerza*(0.02);
 		   //se pasa el cambio
 		   this.cambio=cambio;
 		   //se actualizan las revoluciones minimas y maximas para el cambio actual
@@ -337,15 +335,15 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	/**
 	 * @return the fuerzaMaximaAlPasarDeCambio
 	*/
-	public double getFuerzaMaximaAlPasarDeCambio() {
-		return fuerzaMaximaAlPasarDeCambio;
+	public double getCoefProdFzaAlPasarDeCambio() {
+		return coefProdFzaAlPasarDeCambio;
 	}
 
 	/**
-	 * @param fuerzaMaximaAlPasarDeCambio the fuerzaMaximaAlPasarDeCambio to set
+	 * @param coefProdfzaAlPasarDeCambio the coefProdfzaAlPasarDeCambio to set
 	*/
-	public void setFuerzaMaximaAlPasarDeCambio(double fuerzaMaximaAlPasarDeCambio) {
-		this.fuerzaMaximaAlPasarDeCambio = fuerzaMaximaAlPasarDeCambio;
+	public void setCoefProdFzaAlPasarDeCambio(double coefProdFzaAlPasarDeCambio) {
+		this.coefProdFzaAlPasarDeCambio = coefProdFzaAlPasarDeCambio;
 	}
 	
 }

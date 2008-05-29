@@ -237,9 +237,5 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	  else
 		rpmFinal=rpm;
 	  this.rpm=rpmFinal;
-	  try{
-		  this.getLlantaDerecha().setRpm(rpmFinal);
-		  this.getLlantaIzquierda().setRpm(rpmFinal);
-	  }catch(NullPointerException e){}
 	}
 }
