@@ -79,6 +79,7 @@ public class NeumaticoMixto extends Neumatico implements AfectablePorClima,
 		this.setViscosidadSuperficie(0);
 		this.setRelieveSuperficie(0);
 		this.setPrecio(new AlgoPesos(200,0));
+		this.setAuto(null);
 	}
 
 	/**
