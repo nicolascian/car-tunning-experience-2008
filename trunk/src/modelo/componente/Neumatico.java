@@ -7,7 +7,7 @@
 
 package modelo.componente;
 
-import modelo.Auto;
+import modelo.*;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
 
@@ -28,10 +28,6 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 	private double potenciaMax=0;
 	
 	private Componente contenedor=null;//indica el componente en el cual se encuentra
-	
-	protected final static double GRAVEDAD=9.8;//aceleracion de la gravedad
-	
-	private double rpm=0;//rpm a las que gira la instancia
 	
 	/**
 	 * Metodo que a partir del estado del neumatico y de las condiciones climaticas
@@ -73,7 +69,7 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 		}catch (Exception e){}
 		if(getAuto().getVelocidad()>0)  
 		  try{
-			valorFuerzaDeRozamiento=(getAuto().getPeso()*calcularAdherencia()*GRAVEDAD)/(-660);
+			valorFuerzaDeRozamiento=(getAuto().getPeso()*calcularAdherencia()*Constantes.GRAVEDAD)/(-660);
 		  }catch (Exception e){}
 		//actualizar Rpm del neumatico
 		//se retorna fuerza a llanta
@@ -109,18 +105,5 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 		setComponenteContenedor((Componente)llanta);
 	}
 
-	/**
-	 * @return the rpm
-	 */
-	public double getRpm() {
-		return rpm;
-	}
 
-	/**
-	 * @param rpm the rpm to set
-	 */
-	public void setRpm(double rpm) {
-		this.rpm = rpm;
-	}
-		
 }
