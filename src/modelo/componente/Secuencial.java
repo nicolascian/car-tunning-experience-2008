@@ -9,8 +9,8 @@ package modelo.componente;
 import modelo.*;
 
 /**
- * En una caja secuencial podemos pasar los cambios;
- * como siguiente, y anterior.
+ * Modela una caja secuencial, en la cual se puede pasar los cambios como su nombre lo dice
+ * de manera secuencial, con las primitivas siguiente y anterior.
  * 
  * @version	1.0
  */

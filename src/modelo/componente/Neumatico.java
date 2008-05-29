@@ -24,19 +24,21 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 	/**
 	 * Este atributo indica la potencia maxima que podra entregar un neumatico,
 	 * que es baja en relacion con el resto de los componentes.
-	 */
-	private double potenciaMax;
+	*/
+	private double potenciaMax=0;
 	
-	private Componente contenedor;
+	private Componente contenedor=null;//indica el componente en el cual se encuentra
 	
-	protected final static double GRAVEDAD=9.8;
-		
+	protected final static double GRAVEDAD=9.8;//aceleracion de la gravedad
+	
+	private double rpm=0;//rpm a las que gira la instancia
+	
 	/**
 	 * Metodo que a partir del estado del neumatico y de las condiciones climaticas
 	 * y de la superficie se encarga de calcular la adherencia.
 	 * Devuelve un valor entre 0 y 1. 1 corresponde a una adherencia del 100%, y 
 	 * 0 a una adherencia de 0%.
-	 */
+	*/
 	public abstract double calcularAdherencia();
 
 	public String toString(){
@@ -56,10 +58,7 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
 	 */
 	@Override
-	public void liberarFuerzas() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void liberarFuerzas() {}
 
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
@@ -100,9 +99,28 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 		
 	}
 	
+	/**
+	 * @Pre: Las instancias de las clases pasadas por parametro han sido creadas.
+	 * @Post: Se instala la instancia en la instancia de Llanta correpondiente a la instacia de Auto
+	 * pasada por parametro.
+	*/
 	public void instalar(Auto auto,Llanta llanta){
 		setAuto(auto);
 		setComponenteContenedor((Componente)llanta);
 	}
-	
+
+	/**
+	 * @return the rpm
+	 */
+	public double getRpm() {
+		return rpm;
+	}
+
+	/**
+	 * @param rpm the rpm to set
+	 */
+	public void setRpm(double rpm) {
+		this.rpm = rpm;
+	}
+		
 }

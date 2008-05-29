@@ -11,7 +11,6 @@ import modelo.AfectablePorSuperficie;
 import modelo.Superficie;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
-import modelo.Auto;
 import modelo.*;
 /**
  * Las llantas de un auto estan ligadas al eje del mismo,
@@ -38,6 +37,8 @@ public class Llanta extends Componente implements
 	private Componente contenedor=null;
 	
 	private Neumatico neumatico=null;
+	
+	private double rpm=0;//revoluciones a las que gira la instancia
 	
 	/**constructor, queda instanciada 
 	 *  la clase Llanta.
@@ -230,4 +231,27 @@ public class Llanta extends Componente implements
 		}catch(NullPointerException e){}
 		setComponenteContenedor(eje);
 	}
+
+	/**
+	 * @return the rpm
+	 */
+	public double getRpm() {
+		return rpm;
+	}
+
+	/**
+	 * @param rpm the rpm to set
+	 */
+	public void setRpm(double rpm) {
+		  double rpmFinal;
+		  if(rpm<0)	
+			rpmFinal=0;
+		  else
+			rpmFinal=rpm;
+		  this.rpm=rpmFinal;
+		  try{
+			  this.getNeumatico().setRpm(rpmFinal);
+		  }catch(NullPointerException e){}
+	}
+		
 }
