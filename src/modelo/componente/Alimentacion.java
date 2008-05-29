@@ -6,7 +6,7 @@
  ******************************************************************************/
 
 package modelo.componente;
-import modelo.*;
+
 
 /**
  * La alimentacion de un motor de combustion interna es la encargada
