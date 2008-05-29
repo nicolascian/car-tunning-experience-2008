@@ -243,7 +243,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     }	   
 			 else{
 				 decrementarRpm();
-				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm*0.28;
+				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm*0.3;
 			 }
 		     /*Envio una fuerza al eje proporcional a las rpm y 
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
@@ -254,6 +254,14 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     if(valorFuerza<0)
 		         afectarRpmPorFuerza(new Fuerza(this,getAuto().getCaja(),valorFuerza,true));
 		  }catch (NullPointerException e){}
+	  }
+	}
+
+	protected double obtenerCoeficienteDeDesaceleracion(){
+	  try{	
+		return getRevolucionesMaximas()/(10*getRPM());
+	  }catch(ArithmeticException e){
+		return  1; 
 	  }
 	}
 	
@@ -306,15 +314,21 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		  }
 		}
 		else{
-		   double minimo=potencia*0.00135;
-		   if(!isAcelerando()){
-			  coeficiente+=0.0003;//0.0003
-		   }
-		   else{
-			 coeficiente-=0.0005;//0.00005
-			 if(coeficiente<minimo)
-			   coeficiente=minimo;
-		   }  
+			if(getRPM()>=getRevolucionesMaximas()){
+			   coeficiente=0.0001;	
+			}
+			else{  
+			  double minimo=potencia*0.00135;
+		      if(!isAcelerando()){
+			     coeficiente+=0.0003;//0.0003
+		      }
+		      else{
+			     coeficiente-=0.0005;//0.00005
+			     if(coeficiente<minimo)
+			        coeficiente=minimo;
+		   
+		      }
+			}
 		}
 		setCoeficienteDeProduccionDeFuerzaAPartirRpm(coeficiente);
 	}
@@ -372,6 +386,9 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 *  @Post: Se han seteado las rpm de la instancia.    
 	*/
 	protected void setRPM(double rpm) {
+		if(rpm>getRevolucionesMaximas())
+		   this.RPM=getRevolucionesMaximas();
+		else
 		this.RPM=rpm;
 		ActualizarObservadores();
 	}
