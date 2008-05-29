@@ -38,7 +38,6 @@ public class Llanta extends Componente implements
 	
 	private Neumatico neumatico=null;
 	
-	private double rpm=0;//revoluciones a las que gira la instancia
 	
 	/**constructor, queda instanciada 
 	 *  la clase Llanta.
@@ -232,26 +231,4 @@ public class Llanta extends Componente implements
 		setComponenteContenedor(eje);
 	}
 
-	/**
-	 * @return the rpm
-	 */
-	public double getRpm() {
-		return rpm;
-	}
-
-	/**
-	 * @param rpm the rpm to set
-	 */
-	public void setRpm(double rpm) {
-		  double rpmFinal;
-		  if(rpm<0)	
-			rpmFinal=0;
-		  else
-			rpmFinal=rpm;
-		  this.rpm=rpmFinal;
-		  try{
-			  this.getNeumatico().setRpm(rpmFinal);
-		  }catch(NullPointerException e){}
-	}
-		
 }
