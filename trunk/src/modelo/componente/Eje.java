@@ -219,7 +219,16 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	public double getEstado() {
 		return(super.getEstado());
 	}
-
+	
+	public double obtenerResultanteFuerzasActuales(){
+		double resultante;
+		getAuto().getCarroceria().recibirFuerza(new Fuerza(this,getAuto().getCarroceria(),0,true));
+		getLlantaDerecha().recibirFuerza(new Fuerza(this,getLlantaDerecha(),0,true));
+		getLlantaIzquierda().recibirFuerza(new Fuerza(this,getLlantaIzquierda(),0,true));
+		resultante=repositorio.obtenerValorSumatoriaDeFuerzas(getAuto().getCarroceria());
+		return(resultante);
+	}
+	
 	/**
 	 * @return the rpm
 	 */
