@@ -243,8 +243,8 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     }	   
 			 else{
 				 decrementarRpm();
-				 valorFuerza=getAuto().getCaja().obtenerResultanteFuerzasActuales();
-				 System.out.println(valorFuerza);
+				 valorFuerza=Math.abs(getAuto().getCaja().obtenerResultanteFuerzasActuales());
+				// System.out.println(valorFuerza);
 		     }
 		     /*Envio una fuerza al eje proporcional a las rpm y 
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
