@@ -191,7 +191,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		   try{
 			   valorDeLaFuerza=fuerza.getValorDeLaFuerza();
 		   }catch (Exception e){}
-		   rpmFinal+=valorDeLaFuerza/(260*coeficienteDeProduccionDeFuerzaAPartirRpm);
+		   rpmFinal+=valorDeLaFuerza/(400*coeficienteDeProduccionDeFuerzaAPartirRpm);
 		   if(rpmFinal<getRevolucionesMinimasEncendido()){
 			     rpmFinal=getRevolucionesMinimasEncendido();
 		   }
