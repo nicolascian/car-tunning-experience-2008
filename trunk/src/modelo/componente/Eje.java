@@ -19,8 +19,8 @@ import modelo.fuerzas.*;
 public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDeFuerzas{ 
 	
 	/* Atributos de la clase */
-	private Llanta LlantaDerecha;
-	private Llanta LlantaIzquierda;
+	private Llanta LlantaDerecha=null;
+	private Llanta LlantaIzquierda=null;
 	private double DesgastePorRugosidad;
 	private double DesgastePorParticulas;
 	private RepositorioDeFuerzas repositorio;//donde se almacenan las fuerzas que llegan a la isntancia
@@ -39,22 +39,27 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		setAuto(auto);
 		setEstado(100);
 		repositorio=new RepositorioDeFuerzas(this);
-		setLlantaDerecha(new Llanta());
-		setLlantaIzquierda(new Llanta());
+		setLlantaDerecha(null);
+		setLlantaIzquierda(null);
 		instalar(getAuto());
 	}
+	
 	/**
 	 * @Pre: La instancia de la clase Auto pasada por parametro ha sido creda.
 	 * @Post: Se ha instalado la instancia en la instancia de la clase Auto pasada por parametro.
 	 */
 	public void instalar(Auto auto){
 		setAuto(auto);
-		try{
-			getLlantaDerecha().instalar(auto,this);
-		}catch(NullPointerException e){}
-		try{
-			getLlantaIzquierda().instalar(auto,this);
-		}catch(NullPointerException e){}
+	}
+	
+	/**
+	 * @Pre: La instancia de la clase Auto pasada por parametro ha sido creda.
+	 * @Post: Se ha instalado la instancia en la instancia de la clase Auto pasada por parametro.
+	 */
+	public void instalar(Auto auto,Llanta llantaDerecha,Llanta llantaIzquierda){
+		setAuto(auto);
+		this.setLlantaDerecha(llantaDerecha);
+		this.setLlantaIzquierda(llantaIzquierda);
 	}
 	
 	/**
@@ -114,9 +119,9 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 * @param llantaDerecha
 	*/
 	public void setLlantaDerecha(Llanta llantaDerecha) {
-	  try{	
-		llantaDerecha.instalar(getAuto(),this);
-		LlantaDerecha = llantaDerecha;
+	  try{
+		LlantaDerecha = llantaDerecha;  
+		LlantaDerecha.instalar(getAuto(),this);
 	  }catch(NullPointerException e){}
 	}
 
@@ -130,9 +135,9 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 * @param llantaDerecha
 	*/
 	public void setLlantaIzquierda(Llanta llantaIzquierda) {
-	  try{	
+	  try{
+		LlantaIzquierda = llantaIzquierda;  
 		llantaIzquierda.instalar(this.getAuto(),this);
-		LlantaIzquierda = llantaIzquierda;
 	  }catch(NullPointerException e){}
 	}
 
