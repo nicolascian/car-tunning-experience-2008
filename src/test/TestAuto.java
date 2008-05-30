@@ -266,7 +266,7 @@ public class TestAuto {
 			     
 			     if(//(auto.getVelocidad()>velocidad*0.99)
 			    	//||
-			    	(auto.getCaja().getCambio()<2)	 
+			    	(auto.getCaja().getCambio()==4)	 
 			        ){
 			    	 contador=20000;
 			    	 System.out.println(velocidad);

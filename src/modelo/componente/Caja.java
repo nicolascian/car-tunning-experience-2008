@@ -295,7 +295,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	public double obtenerResultanteFuerzasActuales(){
 		double resultante=getAuto().getEjeDelantero().obtenerResultanteFuerzasActuales();
 		resultante+=getAuto().getEjeTrasero().obtenerResultanteFuerzasActuales();
-		return(resultante/this.getRelacionDeCambio());
+		return(resultante);
 	}
 	
 	/**
