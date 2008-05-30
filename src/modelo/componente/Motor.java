@@ -236,14 +236,15 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     setPotenciaExtra(getAuto().getPotenciaTotal());
 		     actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
 		     setAcelerando(valor);
-		     double valorFuerza=0;
+		     double valorFuerza;
 		     if(isAcelerando()){
 				 incrementarRpm();
 				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm;  
 		     }	   
 			 else{
 				 decrementarRpm();
-				 valorFuerza=getRPM()*Math.pow(coeficienteDeProduccionDeFuerzaAPartirRpm,2)*1.05;
+				 valorFuerza=getAuto().getCaja().obtenerResultanteFuerzasActuales();
+				 System.out.println(valorFuerza);
 		     }
 		     /*Envio una fuerza al eje proporcional a las rpm y 
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
@@ -253,7 +254,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     valorFuerza+=repositorio.obtenerValorSumatoriaDeFuerzas();
 		     if(valorFuerza<0)
 		       afectarRpmPorFuerza(new Fuerza(this,getAuto().getCaja(),valorFuerza,true));
-		     
 		  }catch (NullPointerException e){}
 	  }
 	}
