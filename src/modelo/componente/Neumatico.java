@@ -63,10 +63,6 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 	public void recibirFuerza(Fuerza fuerza) {
 		//de acuerdo al peso del auto se calcula la fuerza de rozamiento
 		double valorFuerzaDeRozamiento=0;
-		double valorFuerzaRecibida=0;
-		try{
-			valorFuerzaRecibida=fuerza.getValorDeLaFuerza();
-		}catch (Exception e){}
 		if(getAuto().getVelocidad()>0)  
 		  try{
 			valorFuerzaDeRozamiento=(getAuto().getPeso()*calcularAdherencia()*Constantes.GRAVEDAD)/(-660);

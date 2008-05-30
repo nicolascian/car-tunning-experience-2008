@@ -264,12 +264,12 @@ public class TestAuto {
 			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
 			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
 			     
-			     if(//(auto.getVelocidad()>velocidad*0.99)
-			    	//||
-			    	(auto.getCaja().getCambio()==4)	 
+			     if((auto.getVelocidad()<120)
+			    	||
+			    	(auto.getCaja().getCambio()<=4)	 
 			        ){
 			    	 contador=20000;
-			    	 System.out.println(velocidad);
+			    	 System.out.println("Velocidad "+velocidad);
 			     }
 			     velocidad=auto.getVelocidad();
 		  }
