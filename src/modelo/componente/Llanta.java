@@ -18,8 +18,7 @@ import modelo.*;
  * 
  * @version	1.0
  */
-public class Llanta extends Componente implements 
-	AfectablePorSuperficie, ReceptorDeFuerzas,  ComponenteContenidoEnComponente{
+public class Llanta extends Componente implements AfectablePorSuperficie, ReceptorDeFuerzas{
 		
 	// en hp
 	private static double potenciaNormal=15;  
@@ -34,7 +33,7 @@ public class Llanta extends Componente implements
 	
 	private double coeficienteDeDesgastePorSuperficie=1;
 	
-	private Componente contenedor=null;
+	private Eje eje=null;
 	
 	private Neumatico neumatico=null;
 	
@@ -45,11 +44,11 @@ public class Llanta extends Componente implements
 	
 	public Llanta(){
 		setAuto(null);
-		setComponenteContenedor(null);
+		setEje(null);
 		setEstado(100);
 		this.setPeso(15);
 		this.setCoeficienteDeDesgastePorSuperficie(3);
-		this.setNeumatico(new NeumaticoMixto());
+		this.setNeumatico(null);
 	}
 	
 	/**
@@ -60,11 +59,11 @@ public class Llanta extends Componente implements
 	 */
 	public Llanta(double peso){
 		setAuto(null);
-		setComponenteContenedor(null);
+		setEje(null);
 		setEstado(100);
 		setPeso(peso);
 		setCoeficienteDeDesgastePorSuperficie(3);
-		setNeumatico(new NeumaticoMixto());
+		setNeumatico(null);
 	}
 	
 	/**
@@ -158,17 +157,14 @@ public class Llanta extends Componente implements
 	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
 	 */
 	@Override
-	public void liberarFuerzas() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void liberarFuerzas() {}
 
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
 	 */
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
-		if(fuerza.getEmisor()==getComponenteContenedor()){
+		if(fuerza.getEmisor()==getEje()){
 			//la fuerza viene del eje
 			//se pasa la fuerza al neumatico
 			fuerza.setEmisor(this);
@@ -177,8 +173,8 @@ public class Llanta extends Componente implements
 		}else{
 			//la fuerza viene del neumatico se pasa al eje
 			fuerza.setEmisor(this);
-			fuerza.setReceptor((ReceptorDeFuerzas)getComponenteContenedor());
-			((ReceptorDeFuerzas)getComponenteContenedor()).recibirFuerza(fuerza);
+			fuerza.setReceptor((ReceptorDeFuerzas)getEje());
+			((ReceptorDeFuerzas)getEje()).recibirFuerza(fuerza);
 		}
 	}
 
@@ -194,23 +190,14 @@ public class Llanta extends Componente implements
 	 */
 	public void setNeumatico(Neumatico neumatico) {
 		this.neumatico = neumatico;
-		neumatico.instalar(auto,this);
 	}
 
-	/* (non-Javadoc)
-	 * @see modelo.ComponenteContenidoEnComponente#getComponenteContenedor()
-	 */
-	@Override
-	public Componente getComponenteContenedor() {
-		return(contenedor);
+	public Eje getEje() {
+		return(eje);
 	}
-
-	/* (non-Javadoc)
-	 * @see modelo.ComponenteContenidoEnComponente#setComponenteContenedor()
-	 */
-	@Override
-	public void setComponenteContenedor(Componente contenedor) {
-		this.contenedor=contenedor;
+	
+	public void setEje(Eje eje) {
+		this.eje=eje;
 	}
 	
 	public void setAuto(Auto auto){
@@ -228,7 +215,7 @@ public class Llanta extends Componente implements
 		try{
 			neumatico.instalar(auto,this);
 		}catch(NullPointerException e){}
-		setComponenteContenedor(eje);
+		setEje(eje);
 	}
 
 }

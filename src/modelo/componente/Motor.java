@@ -87,7 +87,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	private double revolucionesUmbralPeligro=0;/*revoluciones a partir de las cuales el motor
 												entra en una fatiga intensa, es decir las revoluciones
 												que nomalmente estan pintadas de rojo en el tablero*/
-	
 	private double coeficienteDeAbsorcionCalorico=0;
 		
 	private double coeficienteDeDisipacionCalorico=0;

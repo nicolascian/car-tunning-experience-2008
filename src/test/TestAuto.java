@@ -36,26 +36,36 @@ public class TestAuto {
 		assertTrue(auto.getVelocidad()==0);
 		assertNotNull(auto.getMotor().getAuto());
 		assertNotNull(auto.getMotor().getAuto().getCaja());
+		//comprobacion de llantas
+		assertNotNull(auto.getLlantaDelanteraDerecha());
+		assertNotNull(auto.getLlantaDelanteraIzquierda());
+		assertNotNull(auto.getLlantaTraseraDerecha());
+		assertNotNull(auto.getLlantaTraseraIzquierda());
 		//comprobacion de neumaticos
-		assertNotNull(auto.getEjeDelantero().getLlantaDerecha().getNeumatico().
-			      getComponenteContenedor());
-		assertNotNull(auto.getEjeDelantero().getLlantaIzquierda().getNeumatico().
-			      getComponenteContenedor());
-		assertNotNull(auto.getEjeDelantero().getLlantaDerecha().getNeumatico().
-			      getComponenteContenedor());
-		assertNotNull(auto.getEjeDelantero().getLlantaIzquierda().getNeumatico().
-			      getComponenteContenedor());
-		//comprobacion de neumaticos
-		assertNotNull(auto.getEjeTrasero().getLlantaDerecha().getNeumatico().
-			      getComponenteContenedor());
-		assertNotNull(auto.getEjeTrasero().getLlantaIzquierda().getNeumatico().
-			      getComponenteContenedor());
-		assertNotNull(auto.getEjeTrasero().getLlantaDerecha().getNeumatico().
-			      getComponenteContenedor());
-		assertNotNull(auto.getEjeTrasero().getLlantaIzquierda().getNeumatico().
-			      getComponenteContenedor());
-		assertNotNull(auto.getEjeTrasero().getLlantaIzquierda().getNeumatico().
-				      getComponenteContenedor());
+		assertNotNull(auto.getNeumaticoDelanteroDerecho());
+		assertNotNull(auto.getNeumaticoDelanteroIzquierdo());
+		assertNotNull(auto.getNeumaticoTraseroDerecho());
+		assertNotNull(auto.getNeumaticoTraseroIzquierdo());
+		//llantas en ejes 
+		assertNotNull(auto.getEjeDelantero().getLlantaDerecha());
+		assertNotNull(auto.getEjeDelantero().getLlantaIzquierda());
+		assertNotNull(auto.getEjeTrasero().getLlantaDerecha());
+		assertNotNull(auto.getEjeTrasero().getLlantaIzquierda());
+		//neumaticos en llantas
+		assertNotNull(auto.getLlantaDelanteraDerecha().getNeumatico());
+		assertNotNull(auto.getLlantaDelanteraIzquierda().getNeumatico());
+		assertNotNull(auto.getLlantaTraseraDerecha().getNeumatico());
+		assertNotNull(auto.getLlantaTraseraIzquierda().getNeumatico());
+		//llantas en neumaticos
+		assertNotNull(auto.getNeumaticoDelanteroDerecho().getLlanta());
+		assertNotNull(auto.getNeumaticoDelanteroIzquierdo().getLlanta());
+		assertNotNull(auto.getNeumaticoTraseroDerecho().getLlanta());
+		assertNotNull(auto.getNeumaticoTraseroIzquierdo().getLlanta());
+		//ejes en llantas
+		assertNotNull(auto.getLlantaDelanteraDerecha().getEje());
+		assertNotNull(auto.getLlantaDelanteraIzquierda().getEje());
+		assertNotNull(auto.getLlantaTraseraDerecha().getEje());
+		assertNotNull(auto.getLlantaTraseraIzquierda().getEje());
 	  }catch(AssertionError a){
 		  a.printStackTrace();
 		  a.getMessage();

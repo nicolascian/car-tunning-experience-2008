@@ -39,14 +39,18 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	private Freno freno=null;
 	private Eje ejeDelantero=null;
 	private Eje ejeTrasero=null;
-	/*listas para acceder a los componentes en forma rapida, mientras el auto se encuentra encendido 
-	*/
-	//private LinkedList<Componente> listaDeComponentes=null;
-	//private LinkedList<AfectablePorClima> listaDeAfectablesPorClima=null;
-	//private LinkedList<AfectablePorSuperficie> listaDeAfectablesPorSuperficie=null;
-	private LinkedList<ReceptorDeFuerzas> listaDeReceptoresDeFuerzas=null;
+	//llantas
+	private Llanta llantaDelanteraDerecha=null;
+	private Llanta llantaDelanteraIzquierda=null;
+	private Llanta llantaTraseraDerecha=null;
+	private Llanta llantaTraseraIzquierda=null;
+	//neumaticos
+	private Neumatico neumaticoDelanteroDerecho=null;
+	private Neumatico neumaticoDelanteroIzquierdo=null;
+	private Neumatico neumaticoTraseroDerecho=null;
+	private Neumatico neumaticoTraseroIzquierdo=null;
 	
-	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.004311113598;
+	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.0043112;
 	
 	/**
 	 *	@Pre:
@@ -69,14 +73,20 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		  setFreno(new FrenoCinta());
 		/* eje delantero */
 		  setEjeDelantero(new Eje(this));
+		  setLlantaDelanteraDerecha(new Llanta());
+		  setLlantaDelanteraIzquierda(new Llanta());
+		  setNeumaticoDelanteroDerecho(new NeumaticoMixto());
+		  setNeumaticoDelanteroIzquierdo(new NeumaticoMixto());
 		/* eje trasero */
 		  setEjeTrasero(new Eje(this));
+		  setLlantaTraseraDerecha(new Llanta());
+		  setLlantaTraseraIzquierda(new Llanta());
+		  setNeumaticoTraseroDerecho(new NeumaticoMixto());
+		  setNeumaticoTraseroIzquierdo(new NeumaticoMixto());
 		//inicilizacion de otros atributos
 		  setEncendido(false);
 	      this.embragar(false);
 	    motor.setAuto(this);
-	    //creacion de listas de componentes
-	    listaDeReceptoresDeFuerzas=this.obtenerReceptoresDeFuerzas();
 	}
 	
 	/**
@@ -107,15 +117,22 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		setTurbo(turbo);
 		setNitro(nitro);
 		setFreno(freno);
+		/* eje delantero */
 		setEjeDelantero(new Eje(this));
+		setLlantaDelanteraDerecha(new Llanta());
+		setLlantaDelanteraIzquierda(new Llanta());
+		setNeumaticoDelanteroDerecho(new NeumaticoMixto());
+		setNeumaticoDelanteroIzquierdo(new NeumaticoMixto());
+		/* eje trasero */
 		setEjeTrasero(new Eje(this));
+		setLlantaTraseraDerecha(new Llanta());
+		setLlantaTraseraIzquierda(new Llanta());
+		setNeumaticoTraseroDerecho(new NeumaticoMixto());
+		setNeumaticoTraseroIzquierdo(new NeumaticoMixto());
 		setEncendido(false);
 		//inicializacion de aceleracion y velocidad
 		this.embragar(false);
 		motor.setAuto(this);
-		//creacion de listas de componentes
-
-		listaDeReceptoresDeFuerzas=this.obtenerReceptoresDeFuerzas();
 	}
 	
 	/**
@@ -156,8 +173,9 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public double getPotenciaTotal(){
 		double potencia=0; 
 		//hay componente que solo aportan potencia al estar encendido el auto
-		if(isEncendido()){ 
-		   Iterator<Componente> it=this.obtenerComponentes().iterator();
+		if(isEncendido()){
+		   LinkedList<Componente> lista=this.obtenerComponentes();
+		   Iterator<Componente> it=lista.iterator();
 		   while(it.hasNext())  
 		     try{
 			    potencia=it.next().obtenerPotencia();
@@ -172,7 +190,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @return
 	*/
 	public void Desgastar(){
-		Iterator<Componente> it = this.obtenerComponentes().iterator();
+		LinkedList<Componente> lista= this.obtenerComponentes();
+		Iterator<Componente> it =lista.iterator();
 		while (it.hasNext()){
 			it.next().desgastar();
 		}
@@ -203,7 +222,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public void comprobarComponentes() 
 	  throws ExceptionComponenteFaltante, ExceptionComponenteDesgastado{
-		Iterator<Componente> it = this.obtenerComponentes().iterator();
+		LinkedList<Componente> lista=this.obtenerComponentes();
+		Iterator<Componente> it =lista.iterator();
 		while (it.hasNext()){
 			Componente aux = it.next();
 			if( aux == null) throw new ExceptionComponenteFaltante();
@@ -225,9 +245,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	  		  this.embragar(true);
 			  getCaja().setCambio(0);
 			  this.embragar(false);
-
-	  		  listaDeReceptoresDeFuerzas=this.obtenerReceptoresDeFuerzas();
-	  		  //encendido de motor
+			  //encendido de motor
 	  		  getEjeDelantero().setRpm(0);
 	  		  getEjeTrasero().setRpm(0);
 	  		  getMotor().encender();
@@ -343,7 +361,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public double getEstado() {
 		double Estado = 0;
 		int componentes=0;
-		Iterator<Componente> it = this.obtenerComponentes().iterator();
+		LinkedList<Componente> lista=obtenerComponentes();
+		Iterator<Componente> it =lista.iterator();
 		boolean componente0=false;
 		while ((it.hasNext())&&(!componente0)){
 			double estadoComponente= it.next().getEstado();
@@ -362,16 +381,15 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		}
 	}
 	
-
     protected void liberarFuerzas(){
-    	Iterator<ReceptorDeFuerzas> it = listaDeReceptoresDeFuerzas.iterator();
+    	LinkedList<ReceptorDeFuerzas> lista=this.obtenerReceptoresDeFuerzas();
+    	Iterator<ReceptorDeFuerzas> it = lista.iterator();
 		boolean componente0=false;
 		while ((it.hasNext())&&(!componente0)){
 			it.next().liberarFuerzas();
 		}
     }
-    
-	
+    	
 	/**
 	 * @Pre: Se ha creado la instancia de la clase Auto.
 	 * @Post: Se ha obtenido la velocidad de acuerdo a la potencia.
@@ -451,16 +469,15 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		lista.add(this.turbo);
 		lista.add(this.nitro);
 		lista.add(this.freno);
+		//ejes
 		lista.add(this.ejeDelantero);
 		lista.add(this.ejeTrasero);
-		lista.add(this.ejeDelantero.getLlantaDerecha());
-		lista.add(this.ejeDelantero.getLlantaIzquierda());
-		lista.add(this.ejeDelantero.getLlantaDerecha().getNeumatico());
-		lista.add(this.ejeDelantero.getLlantaIzquierda().getNeumatico());
-		lista.add(this.ejeTrasero.getLlantaDerecha());
-		lista.add(this.ejeTrasero.getLlantaIzquierda());
-		lista.add(this.ejeTrasero.getLlantaDerecha().getNeumatico());
-		lista.add(this.ejeTrasero.getLlantaIzquierda().getNeumatico());
+		//llantas
+		lista.add(this.llantaDelanteraDerecha);	lista.add(this.llantaDelanteraIzquierda);
+		lista.add(this.llantaTraseraDerecha);	lista.add(this.llantaTraseraIzquierda);
+		//neumaticos
+		lista.add(this.neumaticoDelanteroDerecho); lista.add(this.neumaticoDelanteroIzquierdo);
+		lista.add(this.neumaticoTraseroDerecho); lista.add(this.neumaticoTraseroIzquierdo);		
 		return lista;
 	}
 	
@@ -472,17 +489,18 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public LinkedList<ReceptorDeFuerzas> obtenerReceptoresDeFuerzas(){
 		LinkedList<ReceptorDeFuerzas> lista = new LinkedList<ReceptorDeFuerzas>();
 		try{
-			lista.add(this.ejeDelantero.getLlantaDerecha());
-			lista.add(this.ejeDelantero.getLlantaIzquierda());
-			lista.add(this.ejeDelantero.getLlantaDerecha().getNeumatico());
-			lista.add(this.ejeDelantero.getLlantaIzquierda().getNeumatico());
-			lista.add(this.ejeTrasero.getLlantaDerecha());
-			lista.add(this.ejeTrasero.getLlantaIzquierda());
-			lista.add(this.ejeTrasero.getLlantaDerecha().getNeumatico());
-			lista.add(this.ejeTrasero.getLlantaIzquierda().getNeumatico());
 			lista.add(this.motor);
 			lista.add(this.caja);
 			lista.add(this.carroceria);
+			//ejes
+			lista.add(this.ejeDelantero);
+			lista.add(this.ejeTrasero);
+			//llantas
+			lista.add(this.llantaDelanteraDerecha);	lista.add(this.llantaDelanteraIzquierda);
+			lista.add(this.llantaTraseraDerecha);	lista.add(this.llantaTraseraIzquierda);
+			//neumaticos
+			lista.add(this.neumaticoDelanteroDerecho); lista.add(this.neumaticoDelanteroIzquierdo);
+			lista.add(this.neumaticoTraseroDerecho); lista.add(this.neumaticoTraseroIzquierdo);
 		}catch(Exception e){}
 		return lista;
 	}
@@ -494,7 +512,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public LinkedList<AfectablePorSuperficie> obtenerAfectablesPorSup(){
 		LinkedList<AfectablePorSuperficie> listaAS = new LinkedList<AfectablePorSuperficie>();
-		Iterator<Componente> it = this.obtenerComponentes().iterator();
+		LinkedList<Componente> lista=obtenerComponentes();
+		Iterator<Componente> it =lista.iterator();
 		while (it.hasNext()){
 			it.next().agregarAListaAfecSuperficie(listaAS);
 		}
@@ -508,7 +527,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public LinkedList<AfectablePorClima> obtenerAfectablesPorClima(){
 		LinkedList<AfectablePorClima> listaAC = new LinkedList<AfectablePorClima>();
-		Iterator<Componente> it = this.obtenerComponentes().iterator();
+		LinkedList<Componente> lista=this.obtenerComponentes();
+		Iterator<Componente> it = lista.iterator();
 		while (it.hasNext()){
 			it.next().agregarAListaAfecClima(listaAC);
 		}
@@ -691,12 +711,149 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	
 	public double getPeso(){
 	  double peso=motor.getPeso();
-	  Iterator<Componente> it=this.obtenerComponentes().iterator();  
+	  LinkedList<Componente> lista=obtenerComponentes();
+	  Iterator<Componente> it=lista.iterator();  
 	  while(it.hasNext())  
 	    try{
 	    	peso+=it.next().getPeso();
 	    }catch (NullPointerException e){}
 	  return(peso);
+	}
+
+	/**
+	 * @return the llantaDelanteraDerecha
+	 */
+	public Llanta getLlantaDelanteraDerecha() {
+		return llantaDelanteraDerecha;
+	}
+
+	/**
+	 * @param llantaDelanteraDerecha the llantaDelanteraDerecha to set
+	 */
+	public void setLlantaDelanteraDerecha(Llanta llantaDelanteraDerecha) {
+		this.llantaDelanteraDerecha = llantaDelanteraDerecha;
+		try{
+			this.llantaDelanteraDerecha.instalar(this,getEjeDelantero());
+		}catch(NullPointerException e){}
+	}
+
+	/**
+	 * @return the llantaDelanteraIzquierda
+	 */
+	public Llanta getLlantaDelanteraIzquierda() {
+		return llantaDelanteraIzquierda;
+	}
+
+	/**
+	 * @param llantaDelanteraIzquierda the llantaDelanteraIzquierda to set
+	 */
+	public void setLlantaDelanteraIzquierda(Llanta llantaDelanteraIzquierda) {
+		this.llantaDelanteraIzquierda = llantaDelanteraIzquierda;
+		try{
+			this.llantaDelanteraIzquierda.instalar(this,ejeDelantero);
+		}catch(NullPointerException e){}
+	}
+
+	/**
+	 * @return the llantaTraseraDerecha
+	 */
+	public Llanta getLlantaTraseraDerecha() {
+		return llantaTraseraDerecha;
+	}
+
+	/**
+	 * @param llantaTraseraDerecha the llantaTraseraDerecha to set
+	 */
+	public void setLlantaTraseraDerecha(Llanta llantaTraseraDerecha) {
+		this.llantaTraseraDerecha = llantaTraseraDerecha;
+		try{
+			this.llantaTraseraDerecha.instalar(this,ejeTrasero);
+		}catch(NullPointerException e){}
+	}
+
+	/**
+	 * @return the llantaTraseraIzquierda
+	 */
+	public Llanta getLlantaTraseraIzquierda() {
+		return llantaTraseraIzquierda;
+	}
+
+	/**
+	 * @param llantaTraseraIzquierda the llantaTraseraIzquierda to set
+	 */
+	public void setLlantaTraseraIzquierda(Llanta llantaTraseraIzquierda) {
+		this.llantaTraseraIzquierda = llantaTraseraIzquierda;
+		try{
+			this.llantaTraseraIzquierda.instalar(this,ejeTrasero);
+		}catch(NullPointerException e){}
+	}
+
+	/**
+	 * @return the neumaticoDelanteroDerecho
+	 */
+	public Neumatico getNeumaticoDelanteroDerecho() {
+		return neumaticoDelanteroDerecho;
+	}
+
+	/**
+	 * @param neumaticoDelanteroDerecho the neumaticoDelanteroDerecho to set
+	 */
+	public void setNeumaticoDelanteroDerecho(Neumatico neumaticoDelanteroDerecho) {
+		this.neumaticoDelanteroDerecho = neumaticoDelanteroDerecho;
+		try{
+			this.neumaticoDelanteroDerecho.instalar(this,llantaDelanteraDerecha);
+		}catch(NullPointerException e){}
+	}
+
+	/**
+	 * @return the neumaticoDelanteroIzquierdo
+	 */
+	public Neumatico getNeumaticoDelanteroIzquierdo() {
+		return neumaticoDelanteroIzquierdo;
+	}
+
+	/**
+	 * @param neumaticoDelanteroIzquierdo the neumaticoDelanteroIzquierdo to set
+	 */
+	public void setNeumaticoDelanteroIzquierdo(Neumatico neumaticoDelanteroIzquierdo) {
+		this.neumaticoDelanteroIzquierdo = neumaticoDelanteroIzquierdo;
+		try{
+			this.neumaticoDelanteroIzquierdo.instalar(this,llantaDelanteraIzquierda);
+		}catch(NullPointerException e){}
+	}
+
+	/**
+	 * @return the neumaticoTraseroDerecho
+	 */
+	public Neumatico getNeumaticoTraseroDerecho() {
+		return neumaticoTraseroDerecho;
+	}
+
+	/**
+	 * @param neumaticoTraseroDerecho the neumaticoTraseroDerecho to set
+	 */
+	public void setNeumaticoTraseroDerecho(Neumatico neumaticoTraseroDerecho) {
+		this.neumaticoTraseroDerecho = neumaticoTraseroDerecho;
+		try{
+			this.neumaticoTraseroDerecho.instalar(this,llantaTraseraDerecha);
+		}catch(NullPointerException e){}
+	}
+
+	/**
+	 * @return the neumaticoTraseroIzquierdo
+	 */
+	public Neumatico getNeumaticoTraseroIzquierdo() {
+		return neumaticoTraseroIzquierdo;
+	}
+
+	/**
+	 * @param neumaticoTraseroIzquierdo the neumaticoTraseroIzquierdo to set
+	 */
+	public void setNeumaticoTraseroIzquierdo(Neumatico neumaticoTraseroIzquierdo) {
+		this.neumaticoTraseroIzquierdo = neumaticoTraseroIzquierdo;
+		try{
+			this.neumaticoTraseroIzquierdo.instalar(this,llantaTraseraIzquierda);
+		}catch(NullPointerException e){}
 	}
 	
 }

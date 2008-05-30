@@ -18,8 +18,7 @@ import modelo.fuerzas.ReceptorDeFuerzas;
  * Al estar en contacto directo con el suelo es afectable por la superficie, 
  * tanto como por el clima.
  */
-public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
-			      ComponenteContenidoEnComponente{
+public abstract class Neumatico extends Componente implements ReceptorDeFuerzas{
 	
 	/**
 	 * Este atributo indica la potencia maxima que podra entregar un neumatico,
@@ -27,7 +26,7 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 	*/
 	private double potenciaMax;
 	
-	private Componente contenedor=null;//indica el componente en el cual se encuentra
+	private Llanta llanta=null;//indica el componente en el cual se encuentra
 	
 	/**
 	 * Metodo que a partir del estado del neumatico y de las condiciones climaticas
@@ -69,25 +68,17 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 		  }catch (Exception e){}
 		//actualizar Rpm del neumatico
 		//se retorna fuerza a llanta
-		Fuerza fuerzaRetorno=new Fuerza(this,(ReceptorDeFuerzas)getComponenteContenedor(),
+		Fuerza fuerzaRetorno=new Fuerza(this,(ReceptorDeFuerzas)getLlanta(),
 				                        valorFuerzaDeRozamiento,true);
-		((ReceptorDeFuerzas)getComponenteContenedor()).recibirFuerza(fuerzaRetorno);
+		((ReceptorDeFuerzas)getLlanta()).recibirFuerza(fuerzaRetorno);
 	}
 
-	/* (non-Javadoc)
-	 * @see modelo.ComponenteContenidoEnComponente#getComponenteContenedor()
-	 */
-	@Override
-	public Componente getComponenteContenedor() {
-		return contenedor;
+	public Llanta getLlanta() {
+		return llanta;
 	}
-
-	/* (non-Javadoc)
-	 * @see modelo.ComponenteContenidoEnComponente#setComponenteContenedor(modelo.Componente)
-	 */
-	@Override
-	public void setComponenteContenedor(Componente contenedor) {
-		this.contenedor=contenedor;
+	
+	public void setLlanta(Llanta llanta) {
+		this.llanta=llanta;
 		
 	}
 	
@@ -98,7 +89,7 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas,
 	*/
 	public void instalar(Auto auto,Llanta llanta){
 		setAuto(auto);
-		setComponenteContenedor((Componente)llanta);
+		setLlanta(llanta);
 	}
 
 
