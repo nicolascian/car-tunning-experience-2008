@@ -39,7 +39,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	protected final static double COEFICIENTE_DE_DESGASTE=4;
 			
 	private double coefProdFzaAlPasarDeCambio;/*coeficiente para obtener la fuerza al pasar de cambio*/
-	
+		
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
@@ -49,6 +49,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 */
 	public Caja(int cantidadCambios){
 		this.cantidadCambios=cantidadCambios;
+		repositorio=new RepositorioDeFuerzas(this);
 		relacionDeCambio=new double[cantidadCambios+1];
 		generarRelacionesDeCaja();
 		setEstado(100);
@@ -161,7 +162,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		   //se calcula la fuerza que se debe ejercer al motor
 		   double valorDeFuerza=0;
 		   if(cambio>getCambio())
-		      valorDeFuerza=getAuto().getMotor().getRPM()*(-1)*(getCoefProdFzaAlPasarDeCambio()*
+		      valorDeFuerza=260*getAuto().getMotor().getRPM()*(-1)*(getCoefProdFzaAlPasarDeCambio()*
 			                    getCantidadCambios()/(cambio)+1.1/Math.pow(getRelacionDeCambio(),2));   
 		   //se pasa el cambio
 		   this.cambio=cambio;
@@ -290,12 +291,6 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 			cadena=cadena+"("+cambio+")"+relacionDeCambio[cambio]+" ";
 		cadena=cadena+"Estado "+getEstado()+"%"+'\n';
 		return cadena;
-	}
-
-	public double obtenerResultanteFuerzasActuales(){
-		double resultante=getAuto().getEjeDelantero().obtenerResultanteFuerzasActuales();
-		resultante+=getAuto().getEjeTrasero().obtenerResultanteFuerzasActuales();
-		return(resultante);
 	}
 	
 	/**

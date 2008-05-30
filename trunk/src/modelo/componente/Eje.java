@@ -172,7 +172,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 			  this.getLlantaIzquierda().recibirFuerza(fuerzaALlantaIzq);
 			  //obtendo la sumatorio total de fuerzas sobre el eje
 			  valorDeLaFuerza=repositorio.obtenerValorSumatoriaDeFuerzas();
-			   //actualizo las rpm del eje
+			  //actualizo las rpm del eje
 			  if(valorDeLaFuerza>0)
 			    setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_INCREMENTO_RPM);
 			  else
