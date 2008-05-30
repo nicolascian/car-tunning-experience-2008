@@ -60,6 +60,10 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		setAuto(auto);
 		this.setLlantaDerecha(llantaDerecha);
 		this.setLlantaIzquierda(llantaIzquierda);
+		try{
+			getLlantaDerecha().setEje(this);
+			getLlantaIzquierda().setEje(this);
+		}catch(NullPointerException e){}
 	}
 	
 	/**
@@ -119,10 +123,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 * @param llantaDerecha
 	*/
 	public void setLlantaDerecha(Llanta llantaDerecha) {
-	  try{
-		LlantaDerecha = llantaDerecha;  
-		LlantaDerecha.instalar(getAuto(),this);
-	  }catch(NullPointerException e){}
+	  LlantaDerecha = llantaDerecha;  
 	}
 
 	public Llanta getLlantaIzquierda() {
@@ -135,10 +136,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 * @param llantaDerecha
 	*/
 	public void setLlantaIzquierda(Llanta llantaIzquierda) {
-	  try{
-		LlantaIzquierda = llantaIzquierda;  
-		llantaIzquierda.instalar(this.getAuto(),this);
-	  }catch(NullPointerException e){}
+	  LlantaIzquierda = llantaIzquierda;
 	}
 
 	/* (non-Javadoc)
@@ -147,8 +145,6 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	@Override
 	public void liberarFuerzas() {
 		repositorio.vaciar();
-		this.LlantaDerecha.liberarFuerzas();
-		this.LlantaIzquierda.liberarFuerzas();
 	}
 
 	/* (non-Javadoc)
