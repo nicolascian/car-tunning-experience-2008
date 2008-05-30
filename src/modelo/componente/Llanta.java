@@ -44,11 +44,9 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	
 	public Llanta(){
 		setAuto(null);
-		setEje(null);
 		setEstado(100);
 		this.setPeso(15);
 		this.setCoeficienteDeDesgastePorSuperficie(3);
-		this.setNeumatico(null);
 	}
 	
 	/**
@@ -59,7 +57,6 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 */
 	public Llanta(double peso){
 		setAuto(null);
-		setEje(null);
 		setEstado(100);
 		setPeso(peso);
 		setCoeficienteDeDesgastePorSuperficie(3);
@@ -138,6 +135,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		String cadena = this.getNombre()+", Estado: "+this.getEstado()+" %.";
 		return cadena;
 	}
+	
 	public String getNombre(){
 		return "Llanta";
 	}
@@ -202,20 +200,33 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	
 	public void setAuto(Auto auto){
 		super.setAuto(auto);
-		instalar(getAuto(),null);
 	}
 	
 	public double getPeso(){
 		return(this.peso);
 		
 	}
-	
-	public void instalar(Auto auto,Eje eje){
-		this.auto=auto;
+	/**
+	 * 
+	 * @param auto
+	 * @param eje
+	 * @param neumatico
+	 * @param derecha indica si es la llanta derecha del eje si se pasa true como parametro, en
+	 * caso contrario se paso false y sera la llanta izquierda
+	 */
+	public void instalar(Auto auto,Eje eje,Neumatico neumatico,boolean derecha){
+		this.setAuto(auto);
+		this.setEje(eje);
+		this.setNeumatico(neumatico);
 		try{
-			neumatico.instalar(auto,this);
+			getNeumatico().setLlanta(this);
 		}catch(NullPointerException e){}
-		setEje(eje);
+		try{
+			if(derecha)
+			  getEje().setLlantaDerecha(this);
+			else
+			  getEje().setLlantaIzquierda(this);
+		}catch(NullPointerException e){}
 	}
 
 }

@@ -90,7 +90,9 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas{
 	public void instalar(Auto auto,Llanta llanta){
 		setAuto(auto);
 		setLlanta(llanta);
+		try{
+			getLlanta().setNeumatico(this);
+		}catch(NullPointerException e){}
 	}
-
 
 }

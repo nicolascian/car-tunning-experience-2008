@@ -541,7 +541,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public void setEjeDelantero(Eje ejeDelantero) {
     	try{
-    		ejeDelantero.instalar(this);
+    		ejeDelantero.instalar(this,getLlantaDelanteraDerecha(),
+    				              getLlantaDelanteraIzquierda());
     		this.ejeDelantero = ejeDelantero;
     	}catch(NullPointerException e){}
 	}
@@ -560,7 +561,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	*/
 	public void setEjeTrasero(Eje ejeTrasero) {
 	 	try{
-			ejeTrasero.instalar(this);
+			ejeTrasero.instalar(this,getLlantaTraseraDerecha(),
+					            getLlantaTraseraIzquierda());
 			this.ejeTrasero = ejeTrasero;
 		}catch(NullPointerException e){}
 	}
@@ -733,7 +735,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public void setLlantaDelanteraDerecha(Llanta llantaDelanteraDerecha) {
 		this.llantaDelanteraDerecha = llantaDelanteraDerecha;
 		try{
-			this.llantaDelanteraDerecha.instalar(this,getEjeDelantero());
+			this.llantaDelanteraDerecha.instalar(this,getEjeDelantero(),getNeumaticoDelanteroDerecho(),
+					                             true);
 		}catch(NullPointerException e){}
 	}
 
@@ -750,7 +753,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public void setLlantaDelanteraIzquierda(Llanta llantaDelanteraIzquierda) {
 		this.llantaDelanteraIzquierda = llantaDelanteraIzquierda;
 		try{
-			this.llantaDelanteraIzquierda.instalar(this,ejeDelantero);
+			this.llantaDelanteraIzquierda.instalar(this,ejeDelantero,getNeumaticoDelanteroIzquierdo(),
+					                               false);
 		}catch(NullPointerException e){}
 	}
 
@@ -767,7 +771,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public void setLlantaTraseraDerecha(Llanta llantaTraseraDerecha) {
 		this.llantaTraseraDerecha = llantaTraseraDerecha;
 		try{
-			this.llantaTraseraDerecha.instalar(this,ejeTrasero);
+			this.llantaTraseraDerecha.instalar(this,ejeTrasero,getNeumaticoTraseroDerecho(),true);
 		}catch(NullPointerException e){}
 	}
 
@@ -784,7 +788,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public void setLlantaTraseraIzquierda(Llanta llantaTraseraIzquierda) {
 		this.llantaTraseraIzquierda = llantaTraseraIzquierda;
 		try{
-			this.llantaTraseraIzquierda.instalar(this,ejeTrasero);
+			this.llantaTraseraIzquierda.instalar(this,ejeTrasero,getNeumaticoTraseroIzquierdo(),false);
 		}catch(NullPointerException e){}
 	}
 
