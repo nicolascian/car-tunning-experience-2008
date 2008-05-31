@@ -256,6 +256,7 @@ public class TestAuto {
 			     contador++;
 		     }
 		  }
+		 ((Automatica)auto.getCaja()).print();
 		  //auto.setEncendido(false);
 		  //auto.setEncendido(true);
 		  //cambio=5;
@@ -263,7 +264,7 @@ public class TestAuto {
 		  //desacelerar
 		  double velocidad=auto.getVelocidad();
 		  contador=0;
-		  while((contador<14000)){
+		  while((contador<13000)){
 				 auto.acelerar(false);
 			     contador++;
 			     System.out.println("Iteracion "+contador+
@@ -276,14 +277,14 @@ public class TestAuto {
 			     
 			     if((auto.getVelocidad()==0)
 			    	||
-			    	(auto.getCaja().getCambio()<=0)	 
+			    	(auto.getCaja().getCambio()<=1)	 
 			        ){
 			    	 contador=20000;
 			    	 System.out.println("Velocidad "+velocidad);
 			     }
 			     velocidad=auto.getVelocidad();
 		  }
-		  
+		 
 		  cambio=5;
 		  contador=0;
 			 while((auto.getCaja().getCambio()<=cambio)
