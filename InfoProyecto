@@ -119,11 +119,15 @@ Nico M: 	Neumatico <--------------------------Listo
 			interfaces Afectable <---------------Listo 
 			Superficie <-------------------------Listo
 			
-Rafa:		Motor <------------------------------lista / falta desgaste
-			Caja <-------------------------------lista / falta desgaste
-			Automatica <-------------------------lista / falta desgaste
-			Secuencial <-------------------------probando
-			Manual <-----------------------------lista / falta desgaste
+Rafa:		Motor <------------------------------lista / faltan pruebas unitarias
+			Caja <-------------------------------lista / falta termina prueba unitaria
+			                                     /discutir modificaciones de control de cambios
+			Automatica <-------------------------lista / falta termina prueba unitaria
+			                                     /discutir modificaciones de control de cambios
+			Secuencial <-------------------------lista / falta termina prueba unitaria
+			                                     /discutir modificaciones de control de cambios
+			Manual <-----------------------------lista / falta termina prueba unitaria
+			                                     /discutir modificaciones de control de cambios
 			Auto <-------------------------------lista / faltan detalles
 			
 Lucas:		Desgastar y ObtenerPotencia
