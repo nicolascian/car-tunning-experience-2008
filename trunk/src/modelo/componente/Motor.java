@@ -181,7 +181,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	@Override
 	public void recibirFuerza(Fuerza fuerza) {
 		repositorio.insertarFuerza(fuerza);
-		
 	}
 	
 	public void afectarRpmPorFuerza(Fuerza fuerza){

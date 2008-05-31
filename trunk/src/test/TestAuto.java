@@ -227,7 +227,7 @@ public class TestAuto {
 	  	  auto.setEncendido(true);
 		  assertTrue(auto.isEncendido());
 		  auto.setCaja(new Automatica(5));
-		  int cambio=5;
+		  int cambio=2;
 		  int contador=0;
 	 
 		 contador=0;
@@ -255,7 +255,7 @@ public class TestAuto {
 			     auto.acelerar(true);
 			     contador++;
 		     }
-		  }
+		  }/*
 		  //auto.setEncendido(false);
 		  //auto.setEncendido(true);
 		  //cambio=5;
@@ -263,7 +263,7 @@ public class TestAuto {
 		  //desacelerar
 		  double velocidad=auto.getVelocidad();
 		  contador=0;
-		  while((contador<4500)){
+		  while((contador<15000)){
 				 auto.acelerar(false);
 			     contador++;
 			     System.out.println("Iteracion "+contador+
@@ -274,14 +274,41 @@ public class TestAuto {
 			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
 			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
 			     
-			     if((auto.getVelocidad()<120)
+			     if((auto.getVelocidad()==0)
 			    	||
-			    	(auto.getCaja().getCambio()<=4)	 
+			    	(auto.getCaja().getCambio()<=0)	 
 			        ){
 			    	 contador=20000;
 			    	 System.out.println("Velocidad "+velocidad);
 			     }
 			     velocidad=auto.getVelocidad();
 		  }
+		  cambio=5;
+		  contador=0;
+			 while((auto.getCaja().getCambio()<=cambio)
+				&&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
+				 ){
+				 System.out.println("Iteracion "+contador+
+			    		" Cambio "+auto.getCaja().getCambio()+
+			    		" velocidad "+auto.getVelocidad()+
+			    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+			    		" Rpm Motor "+auto.getMotor().getRPM()+
+			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+			     auto.acelerar(true);
+			     
+			     contador++;
+			     if(auto.getCaja().getCambio()==cambio){
+			         System.out.println("Iteracion "+contador+
+				    		" Cambio "+auto.getCaja().getCambio()+
+				    		" velocidad "+auto.getVelocidad()+
+				    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+				    		" Rpm Motor "+auto.getMotor().getRPM()+
+				    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+				    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+				     auto.acelerar(true);
+				     contador++;
+			     }
+			  }*/
 	}
 }

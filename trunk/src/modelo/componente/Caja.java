@@ -38,8 +38,9 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		
 	protected final static double COEFICIENTE_DE_DESGASTE=4;
 			
-	private double coefProdFzaAlPasarDeCambio;/*coeficiente para obtener la fuerza al pasar de cambio*/
+	private double coefProdFzaAlPasarACambioMayor;/*coeficiente para obtener la fuerza al pasar de cambio*/
 		
+	private double coefProdFzaAlPasarACambioMenor;/*coeficiente para obtener la fuerza al pasar de cambio*/
 	/**
 	 * @Pre:
 	 * @Post: Se ha creado una instancia de la clase derivada de la clase Caja segun los parametros
@@ -53,8 +54,9 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		relacionDeCambio=new double[cantidadCambios+1];
 		generarRelacionesDeCaja();
 		setEstado(100);
-		setCoefProdFzaAlPasarDeCambio(getCantidadCambios()*0.0097115*
+		setCoefProdFzaAlPasarACambioMayor(getCantidadCambios()*3.8847*
 		        		             (1+47/(getCantidadCambios()*getCantidadCambios())));
+		setCoefProdFzaAlPasarACambioMenor(0.46*getCoefProdFzaAlPasarACambioMayor());
 	}
 	/**
 	 *	@Pre: La instancia ha sido creada.
@@ -162,8 +164,11 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 		   //se calcula la fuerza que se debe ejercer al motor
 		   double valorDeFuerza=0;
 		   if(cambio>getCambio())
-		      valorDeFuerza=400*getAuto().getMotor().getRPM()*(-1)*(getCoefProdFzaAlPasarDeCambio()*
+		      valorDeFuerza=getAuto().getMotor().getRPM()*(-1)*(getCoefProdFzaAlPasarACambioMayor()*
 			                    getCantidadCambios()/(cambio)+1.1/Math.pow(getRelacionDeCambio(),2));   
+		   else
+			   valorDeFuerza=getAuto().getMotor().getRPM()*(getCoefProdFzaAlPasarACambioMenor()*
+	                    getCantidadCambios()/(cambio)+1.1/Math.pow(getRelacionDeCambio(),2)); 
 		   //se pasa el cambio
 		   this.cambio=cambio;
 		   //se actualizan las revoluciones minimas y maximas para el cambio actual
@@ -334,17 +339,30 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	}
 
 	/**
-	 * @return the fuerzaMaximaAlPasarDeCambio
+	 * @return the fuerzaMaximaAlPasarACambioMayor
 	*/
-	public double getCoefProdFzaAlPasarDeCambio() {
-		return coefProdFzaAlPasarDeCambio;
+	public double getCoefProdFzaAlPasarACambioMayor() {
+		return coefProdFzaAlPasarACambioMayor;
 	}
 
 	/**
-	 * @param coefProdfzaAlPasarDeCambio the coefProdfzaAlPasarDeCambio to set
+	 * @param coefProdfzaAlPasarACambioMayor the coefProdfzaAlPasarACambioMayor to set
 	*/
-	public void setCoefProdFzaAlPasarDeCambio(double coefProdFzaAlPasarDeCambio) {
-		this.coefProdFzaAlPasarDeCambio = coefProdFzaAlPasarDeCambio;
+	public void setCoefProdFzaAlPasarACambioMayor(double coefProdFzaAlPasarACambioMayor) {
+		this.coefProdFzaAlPasarACambioMayor = coefProdFzaAlPasarACambioMayor;
 	}
 	
+	/**
+	 * @return the fuerzaMaximaAlPasarACambioMayor
+	*/
+	public double getCoefProdFzaAlPasarACambioMenor() {
+		return coefProdFzaAlPasarACambioMenor;
+	}
+
+	/**
+	 * @param coefProdfzaAlPasarACambioMenor the coefProdfzaAlPasarACambioMenor to set
+	*/
+	public void setCoefProdFzaAlPasarACambioMenor(double coefProdFzaAlPasarACambioMenor) {
+		this.coefProdFzaAlPasarACambioMenor = coefProdFzaAlPasarACambioMenor;
+	}
 }
