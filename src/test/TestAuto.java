@@ -230,7 +230,6 @@ public class TestAuto {
 		  int cambio=5;
 		  int contador=0;
 	 
-		 contador=0;
 		 while((auto.getCaja().getCambio()<=cambio)
 			&&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
 			 ){
@@ -264,7 +263,7 @@ public class TestAuto {
 		  //desacelerar
 		  double velocidad=auto.getVelocidad();
 		  contador=0;
-		  while((contador<13000)){
+		  while((contador<12000)){
 				 auto.acelerar(false);
 			     contador++;
 			     System.out.println("Iteracion "+contador+
@@ -277,7 +276,7 @@ public class TestAuto {
 			     
 			     if((auto.getVelocidad()==0)
 			    	||
-			    	(auto.getCaja().getCambio()<=1)	 
+			    	(auto.getCaja().getCambio()<=4)	 
 			        ){
 			    	 contador=20000;
 			    	 System.out.println("Velocidad "+velocidad);
