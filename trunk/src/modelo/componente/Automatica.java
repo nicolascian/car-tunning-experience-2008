@@ -122,13 +122,4 @@ public class Automatica extends Caja{
 	protected void registrarVelocidadMinima(){
 		this.velocidadMinimaParaCambioRegistrada[getCambio()]=getAuto().getVelocidad();
 	}
-	
-	public void print(){
-		System.out.println("maximas");
-		for(int cursor=0;cursor<=getCantidadCambios();cursor++)
-			System.out.println(cursor+" "+velocidadMaximaParaCambioRegistrada[cursor]);
-		System.out.println("minimas");
-		for(int cursor=0;cursor<=getCantidadCambios();cursor++)
-			System.out.println(cursor+" "+velocidadMinimaParaCambioRegistrada[cursor]);
-	}
 }
