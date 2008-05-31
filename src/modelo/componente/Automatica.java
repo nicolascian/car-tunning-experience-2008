@@ -6,8 +6,6 @@
  ******************************************************************************/
 
 package modelo.componente;
-import modelo.*;
-import modelo.fuerzas.Fuerza;
 
 /**
  * @Documentacion: Una instancia de la clase caja Automatica modela una caja automatica de un auto,

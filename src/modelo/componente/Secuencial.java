@@ -6,7 +6,6 @@
  ******************************************************************************/
 
 package modelo.componente;
-import modelo.*;
 
 /**
  * Modela una caja secuencial, en la cual se puede pasar los cambios como su nombre lo dice

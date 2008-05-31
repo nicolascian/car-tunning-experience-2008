@@ -6,7 +6,6 @@
  ******************************************************************************/
 
 package modelo.componente;
-import modelo.*;
 
 /**
  * Una instancia de esta clase modela una caja manual estandar en la cual se puede pasar de un cambio
