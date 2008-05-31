@@ -1,7 +1,6 @@
 package test;
 import modelo.*;
 import junit.framework.*;
-import modelo.componente.*;
 
 public class TestAutoDeEscritorio extends TestCase {
 	
@@ -97,16 +96,16 @@ public class TestAutoDeEscritorio extends TestCase {
 			System.out.print((long)auto.getEstado());
 			
 			System.out.print("  DI: ");
-			System.out.print(auto.getEjeDelantero().getNeumaticoIzquierdo().calcularAdherencia());
+			System.out.print(auto.getEjeDelantero().getLlantaIzquierda().getNeumatico().calcularAdherencia());
 			
 			System.out.print("  DD: ");
-			System.out.print(auto.getEjeDelantero().getNeumaticoDerecho().calcularAdherencia());
+			System.out.print(auto.getEjeDelantero().getLlantaDerecha().getNeumatico().calcularAdherencia());
 			
 			System.out.print("  TI: ");
-			System.out.print(auto.getEjeTrasero().getNeumaticoIzquierdo().calcularAdherencia());
+			System.out.print(auto.getEjeTrasero().getLlantaIzquierda().getNeumatico().calcularAdherencia());
 			
 			System.out.print("  TD: ");
-			System.out.println(auto.getEjeTrasero().getNeumaticoDerecho().calcularAdherencia());
+			System.out.println(auto.getEjeTrasero().getLlantaDerecha().getNeumatico().calcularAdherencia());
 
 			//System.out.print(" RpmMaxCambio: ");
 			//System.out.println(auto.getMotor().getRevolucionesMaximasCambio());

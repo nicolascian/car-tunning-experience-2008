@@ -15,8 +15,8 @@ public class TestEje{
 		assertNotNull(eje.getAuto());
 		assertNotNull(eje.getLlantaDerecha());
 		assertNotNull(eje.getLlantaIzquierda());
-		assertNotNull(eje.getLlantaDerecha().getComponenteContenedor());
-		assertNotNull(eje.getLlantaIzquierda().getComponenteContenedor());
+		assertNotNull(eje.getLlantaDerecha().getEje());
+		assertNotNull(eje.getLlantaIzquierda().getEje());
 	  }catch (AssertionError a){
 		  a.printStackTrace();
 	  }
@@ -26,9 +26,9 @@ public class TestEje{
 	public void testNeumaticos(){
 	  try{	
 		assertNotNull(eje.getLlantaDerecha().getNeumatico().
-				      getComponenteContenedor());
+				getLlanta());
 		assertNotNull(eje.getLlantaIzquierda().getNeumatico().
-				      getComponenteContenedor());
+				getLlanta());
 	  }catch (AssertionError a){
 		  a.printStackTrace();
 	  }
