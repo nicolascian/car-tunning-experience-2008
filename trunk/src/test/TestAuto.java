@@ -310,6 +310,6 @@ public class TestAuto {
 				     contador++;
 			     }
 			  }
-			((Automatica)auto.getCaja()).print();
+			
 	}
 }
