@@ -6,7 +6,6 @@
  ******************************************************************************/
 
 package modelo.componente;
-import modelo.*;
 
 /**
  * Combustible es un componente capaz de 
