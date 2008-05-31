@@ -168,7 +168,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 			                    getCantidadCambios()/(cambio)+1.1/Math.pow(getRelacionDeCambio(),2));   
 		   else
 			   valorDeFuerza=getAuto().getMotor().getRPM()*(getCoefProdFzaAlPasarACambioMenor()*
-	                    getCantidadCambios()/(cambio)+1.1/Math.pow(getRelacionDeCambio(),2)); 
+	                    getCantidadCambios()/(cambio)+1.1/Math.pow(getRelacionDeCambio(),2));
 		   //se pasa el cambio
 		   this.cambio=cambio;
 		   //se actualizan las revoluciones minimas y maximas para el cambio actual

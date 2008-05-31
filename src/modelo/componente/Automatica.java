@@ -47,14 +47,13 @@ public class Automatica extends Caja{
 				embragar(false);
 			}
 		  }
-		  else{
+		  else
 			if((rpm<=getRevolucionesMinimasMotorParaCambioActual())
 			    &&(chequearVelocidadMinima())){
 				embragar(true);
 				setCambio(getCambio()-1);
 				embragar(false);
 			}
-		  }
 	}	
 		
 	/**
@@ -90,15 +89,15 @@ public class Automatica extends Caja{
 	
 	protected boolean chequearVelocidadMinima(){
 		if((intentos<getAuto().getMotor().getRevolucionesMaximas()*0.1)
-			    &&(getAuto().getVelocidad()>velocidadMinimaParaCambioRegistrada[getCambio()])){
+		  &&(getAuto().getVelocidad()>velocidadMinimaParaCambioRegistrada[getCambio()])){
 				intentos++;
 				return false;
-			}
-			else{
+		}
+		else{
 				registrarVelocidadMinima();
 				intentos=0;
 			    return true;
-			}
+		}
 	}
 	
 	/**
@@ -124,9 +123,11 @@ public class Automatica extends Caja{
 	}
 	
 	public void print(){
-		for(int cursor=0;cursor<getCantidadCambios();cursor++)
+		System.out.println("maximas");
+		for(int cursor=0;cursor<=getCantidadCambios();cursor++)
 			System.out.println(velocidadMaximaParaCambioRegistrada[cursor]);
-		for(int cursor=0;cursor<getCantidadCambios();cursor++)
+		System.out.println("minimas");
+		for(int cursor=0;cursor<=getCantidadCambios();cursor++)
 			System.out.println(velocidadMinimaParaCambioRegistrada[cursor]);
 	}
 }
