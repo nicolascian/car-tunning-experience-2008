@@ -255,7 +255,6 @@ public class TestAuto {
 			     contador++;
 		     }
 		  }
-		 ((Automatica)auto.getCaja()).print();
 		  //auto.setEncendido(false);
 		  //auto.setEncendido(true);
 		  //cambio=5;
