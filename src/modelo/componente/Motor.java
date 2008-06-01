@@ -27,32 +27,16 @@ import modelo.fuerzas.RepositorioDeFuerzas;
 public class Motor extends Componente implements AfectablePorClima, ReceptorDeFuerzas{
 		
     //----------------------      constantes   ---------------------------------
-	
-	protected final static double TEMPERATURA_CRITICA=200;//temperatura critica del circuito de agua en �C
-	
-	protected final static double TEMPERATURA_OPTIMA=95;//temperatura optima del circuito de agua en �C
-	
-	protected final static double TEMPERATURA_INICIAL=80;//temperatura inicial del circuito de agua en �C
-	
-	protected final static double TEMPERATURA_MEDIANA_AIRE=15;//temperatura del aire la cual si se sobrepasa se 
-												//se disminuye la potencia del motor, y si se opera por debajo
-												//de esa temperatura aumenta el rendimiento.
+					
+	protected final static double COEFICIENTE_RPM_ENCENDIDO=0.08;//
 		
-	protected final static double COEFICIENTE_RPM_ENCENDIDO=0.08;// 8%
-	
-	protected final static double COEFICIENTE_DE_ABSORCION_CALORICO_INICIAL=0.0015;
-	
-	protected final static double COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL=0.003;
-	
-	protected final static double COEFICIENTE_DE_DESGASTE_POR_TEMPERATURA=1.5;
-	
 	protected final static double COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES=2;
 	
 	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO=2.0;
 	
 	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MINIMO=1.0;
 	
-	protected final static double COEFICIENTE_BASICO_DE_DESGASTE=1.5;
+	protected final static double COEFICIENTE_DE_DESGASTE=2;
 			
 	protected final static double PORCENTAJE_REVOLUCIONES_UMBRAL_PELIGRO=0.898;
 	
@@ -79,18 +63,13 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	
 	//----------------------  atributos secundarios    ----------------------------
 	
-	private double temperaturaAire=25;//temperatura del aire que ingresa al motor en �C
-	
 	private double revolucionesMinimasEncendido=0;//revoluciones minimas que alcanza el auto mientras
 												//se haya encendido.
 	
 	private double revolucionesUmbralPeligro=0;/*revoluciones a partir de las cuales el motor
 												entra en una fatiga intensa, es decir las revoluciones
 												que nomalmente estan pintadas de rojo en el tablero*/
-	private double coeficienteDeAbsorcionCalorico=0;
 		
-	private double coeficienteDeDisipacionCalorico=0;
-	
 	private double coeficienteDeIncrementoRpm=COEFICIENTE_DE_INCREMENTO_RPM_MINIMO;
 	
 	private double coeficienteDeProduccionDeFuerzaAPartirRpm;
@@ -98,7 +77,9 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	private double valorFuerzaContraMotor=0;
 	
 	private RepositorioDeFuerzas repositorio=null;
-		
+	
+	private double temperaturaExterior=25;
+	
 	/**
 	 * @Pre: -
 	 * @Post: Se ha creado una instancia de la clase, inicializandola segun los parametros.
@@ -114,11 +95,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		setRevolucionesMaximas(revolucionesMaximas);
 		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 		setRevolucionesUmbralPeligro(getRevolucionesMaximas()*PORCENTAJE_REVOLUCIONES_UMBRAL_PELIGRO);
-	//inicializacion de temperatura
-		setTemperatura(TEMPERATURA_INICIAL);
-	 //inicilizacion de coeficientes
-		setCoeficienteDeAbsorcionCalorico(COEFICIENTE_DE_ABSORCION_CALORICO_INICIAL);
-		setCoeficienteDeDisipacionCalorico(COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL);
+	//inicilizacion de coeficientes
 		this.actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
 	//inicializacion de atributos booleanos
 		setEncendido(false);
@@ -130,7 +107,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		potenciaMaxima=getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000;
 		potenciaExtra=0;
 		repositorio=new RepositorioDeFuerzas(this);
-	 
 	}
 		
 	/**
@@ -149,11 +125,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		setRevolucionesMaximas(8000);
 		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 		setRevolucionesUmbralPeligro(getRevolucionesMaximas()*PORCENTAJE_REVOLUCIONES_UMBRAL_PELIGRO);
-	  //inicializacion de temperatura
-		setTemperatura(TEMPERATURA_INICIAL);
-	  //inicilizacion de coeficientes
-		setCoeficienteDeAbsorcionCalorico(COEFICIENTE_DE_ABSORCION_CALORICO_INICIAL);
-		setCoeficienteDeDisipacionCalorico(COEFICIENTE_DE_DISIPACION_CALORICO_INICIAL);
+	 //inicilizacion de coeficientes
 		this.actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
 	 //inicializacion de atributos booleanos
 		setEncendido(false);
@@ -183,6 +155,10 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		repositorio.insertarFuerza(fuerza);
 	}
 	
+	/**
+	 * @Pre:La instancia se encuetra encendida.
+	 * @Post:Se ha afectado las rpm segun la fuerza pasada por parametro.
+	 */
 	public void afectarRpmPorFuerza(Fuerza fuerza){
 		   double rpmFinal=RPM;
 		   double valorDeLaFuerza=0;
@@ -196,10 +172,14 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		   if(rpmFinal>getRevolucionesMaximas()){
 			     rpmFinal=getRevolucionesMaximas();
 		   }
-		   afectarCoeficienteDeIncrementoRpmPorCambioBruscoRpm(rpmFinal);
+		   afectarCoeficienteDeIncrementoRpmPorCambioRpm(rpmFinal);
 		   setRPM(rpmFinal);
 	}
 	
+	/**
+	 * @Pre:La instancia se encuetra encendida.
+	 * @Post:Se ha incrementado el coeficiente de incremento de rpm.
+	*/	
 	private void incrementarCoeficienteDeIncrementoRpm(){
 		double coeficiente=coeficienteDeIncrementoRpm+0.001;//0.0002
 		if(coeficiente>COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO)
@@ -207,14 +187,22 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		this.setCoeficienteDeIncrementoRpm(coeficiente);
 	}
 	
+	/**
+	 * @Pre:La instancia se encuentra encendida.
+	 * @Post:Se ha decrementado el coeficiente de incremento de rpm.
+	 */
 	private void decrementarCoeficienteDeIncrementoRpm(){
 		double coeficiente=coeficienteDeIncrementoRpm-0.001;//0.0002
 		if(coeficiente>COEFICIENTE_DE_INCREMENTO_RPM_MINIMO)
 			coeficiente=COEFICIENTE_DE_INCREMENTO_RPM_MINIMO;
 		this.setCoeficienteDeIncrementoRpm(coeficiente);
 	}
-	
-	private void afectarCoeficienteDeIncrementoRpmPorCambioBruscoRpm(double rpmFinal){
+	/**
+	 * @Pre: La instancia se encuentra encendida.
+	 * @Post: Se afecta el coeficiente de incremento de las rpm por una variacion de las rpm. 
+	 * @param rpmFinal
+	 */
+	private void afectarCoeficienteDeIncrementoRpmPorCambioRpm(double rpmFinal){
 		double diferencia=RPM-rpmFinal;
 		double coeficienteFinal=getCoeficienteDeIncrementoRpm()+
 		                        diferencia/getRevolucionesMaximas();
@@ -234,11 +222,13 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		  try{   
 			 //se obtiene potencia extra del resto de componentes
 		     setPotenciaExtra(getAuto().getPotenciaTotal());
+		     getAuto().getSistemaDeRefrigeracion().chequearTemperatura();
 		     actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
 		     setAcelerando(valor);
 		     double valorFuerza=0;
 		     if(isAcelerando()){
-				 incrementarRpm();
+				 incrementarTemperatura();
+		    	 incrementarRpm();
 				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm;
 			 }	   
 			 else{
@@ -285,6 +275,35 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		setRPM(rpmFinal);
 	}
 	
+	/**
+	 * @Pre: La instancia se encuentra encendida.
+	 * @Post: En caso de contar con la potencia extra necesaria se retorna la potencia pasada por por
+	 * parametro. 
+	 * @param potencia
+	 * @return
+	*/
+	public double tomarPotencia(double potencia){
+		double potenciaFinal=getPotenciaExtra()-potencia;
+		if(potenciaFinal<=0){
+		  setPotenciaExtra(0);
+		  return 0;
+		}  
+		else{
+			setPotenciaExtra(potenciaFinal);
+			return(potenciaFinal);
+		}
+	}
+	/**
+	 * @Pre: La instancia se encuentra encendida.
+	 * @Post: Se ha modificado la temperatura de la instancia de acuerdo a la temperatura exterior.
+	 */
+	protected void incrementarTemperatura(){
+		if(getTemperatura()>0)
+		   setTemperatura(getTemperatura()+this.getTemperaturaExterior()*0.08);
+		else
+		   setTemperatura(getTemperatura()+0.5);	
+	}
+		
 	/**
 	 *  @Pre: La instancia ha sido creada y se encuentra en estado encendido.
 	 *  @Post: Se ha actualizado el coeficienteDeProduccionDeFuerzaAPartirRpm de la instancia a partir
@@ -337,8 +356,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		if(!isEncendido()){
 			actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
 			setEncendido(true);
-		  //seteo de temperaturas
-			setTemperatura(TEMPERATURA_INICIAL);
+			setTemperatura(25);
 		  //seteo de revoluciones
 			setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 			setRPM(getRevolucionesMinimasEncendido());
@@ -357,22 +375,21 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 			setTemperatura(25);
 			setAcelerando(false);
 	}
-		
-	/**
-	 *	@Pre: La instancia ha sido creada y se encuentra en estado encendido.
-	 *  @Post: Se actualiza la temperatura de acuerdo a la variaci�n de las revoluciones.    
-	*/
-	private void actualizarTemperaturaPorCambioDeRpm(double rpmInicial,double rpmFinal,long diferenciaDeTiempo){
-		
-	}
-			
+				
 	/**
 	 * @Pre: La instancia ha sido creada y se encuentra en estado encendido.
 	 * @Post: Se ha desgastado la instancia segun las revoluciones maximas soportadas para el cambio
 	 * actual y segun la temperatura a la que se encuentra el agua del motor.    
 	*/
 	public void desgastar(){
-	  	
+		double desgaste=Constantes.tiempoPorCiclo*COEFICIENTE_DE_DESGASTE;
+		if(getRPM()>this.getRevolucionesUmbralPeligro()){
+			if(getRPM()==this.getRevolucionesMaximas())
+				desgaste+=Constantes.tiempoPorCiclo*5*COEFICIENTE_DE_DESGASTE;
+			else
+				desgaste+=Constantes.tiempoPorCiclo*2*COEFICIENTE_DE_DESGASTE;
+		}
+		setEstado(getEstado()-desgaste);
 	}
 		
 	/**
@@ -389,7 +406,9 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 * @Post: Se ha afectado la instancia por el clima.
 	*/
 	public void afectar(Clima clima){
-		setTemperaturaAire(clima.getTemperatura());
+	  try{	
+		this.setTemperaturaExterior(clima.getTemperatura());
+	  }catch(NullPointerException e){}
 	}
 	
 	/**
@@ -423,21 +442,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	protected void setRevolucionesMaximas(double revoluciones) {
 		this.revolucionesMaximas = revoluciones;
 	}
-			
-	/**
-	 * @return the temperaturaAire
-	 */
-	protected double getTemperaturaAire() {
-		return temperaturaAire;
-	}
-
-	/**
-	 * @param temperaturaExterna the temperaturaAire to set
-	 */
-	protected void setTemperaturaAire(double temperatura) {
-		this.temperaturaAire = temperatura;
-	}
-
+		
 	/**
 	 * @param cilindrada the cilindrada to set
 	 */
@@ -507,35 +512,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	protected void setRevolucionesMinimasEncendido(double revolucionesMinimasEncendido) {
 		this.revolucionesMinimasEncendido = revolucionesMinimasEncendido;
 	}
-
-	/**
-	 * @return the coeficienteDeAbsorcionCalorico
-	 */
-	protected double getCoeficienteDeAbsorcionCalorico() {
-		return coeficienteDeAbsorcionCalorico;
-	}
-
-	/**
-	 * @param coeficienteDeAbsorcionCalorico the coeficienteDeAbsorcionCalorico to set
-	 */
-	protected void setCoeficienteDeAbsorcionCalorico(double coeficienteDeAbsorcionCalorico) {
-		this.coeficienteDeAbsorcionCalorico = coeficienteDeAbsorcionCalorico;
-	}
-
-	/**
-	 * @return the coeficienteDeDisipacionCalorico
-	 */
-	protected double getCoeficienteDeDisipacionCalorico() {
-		return coeficienteDeDisipacionCalorico;
-	}
-
-	/**
-	 * @param coeficienteDeDisipacionCalorico the coeficienteDeDisipacionCalorico to set
-	 */
-	protected void setCoeficienteDeDisipacionCalorico(double coeficienteDeDisipacionCalorico) {
-		this.coeficienteDeDisipacionCalorico = coeficienteDeDisipacionCalorico;
-	}
-
+		
 	/* (non-Javadoc)
 	 * @see modelo.Componente#instalar(modelo.Auto)
 	 */
@@ -647,4 +624,19 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 			cadena=cadena+"No Acelerando";
 		return(cadena);	
 	}
+
+	/**
+	 * @return the temperaturaExterior
+	 */
+	public double getTemperaturaExterior() {
+		return temperaturaExterior;
+	}
+
+	/**
+	 * @param temperaturaExterior the temperaturaExterior to set
+	 */
+	public void setTemperaturaExterior(double temperaturaExterior) {
+		this.temperaturaExterior = temperaturaExterior;
+	}
+	
 }

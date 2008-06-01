@@ -39,6 +39,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	private Freno freno=null;
 	private Eje ejeDelantero=null;
 	private Eje ejeTrasero=null;
+	private SistemaDeRefrigeracion sistemaDeRefrigeracion=null;
 	//llantas
 	private Llanta llantaDelanteraDerecha=null;
 	private Llanta llantaDelanteraIzquierda=null;
@@ -71,6 +72,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		  setTurbo(new Turbo());
 		  setNitro(new Nitro());
 		  setFreno(new FrenoCinta());
+		  setSistemaDeRefrigeracion(new SistemaDeRefrigeracion(this));
 		/* eje delantero */
 		  setEjeDelantero(new Eje(this));
 		  setLlantaDelanteraDerecha(new Llanta());
@@ -117,6 +119,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		setTurbo(turbo);
 		setNitro(nitro);
 		setFreno(freno);
+		setSistemaDeRefrigeracion(new SistemaDeRefrigeracion(this));
 		/* eje delantero */
 		setEjeDelantero(new Eje(this));
 		setLlantaDelanteraDerecha(new Llanta());
@@ -469,6 +472,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		lista.add(this.turbo);
 		lista.add(this.nitro);
 		lista.add(this.freno);
+		lista.add(this.sistemaDeRefrigeracion);
 		//ejes
 		lista.add(this.ejeDelantero);
 		lista.add(this.ejeTrasero);
@@ -859,5 +863,22 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 			this.neumaticoTraseroIzquierdo.instalar(this,llantaTraseraIzquierda);
 		}catch(NullPointerException e){}
 	}
-	
+
+	/**
+	 * @return the sistemaDeRefrigeracion
+	 */
+	public SistemaDeRefrigeracion getSistemaDeRefrigeracion() {
+		return sistemaDeRefrigeracion;
+	}
+
+	/**
+	 * @param sistemaDeRefrigeracion the sistemaDeRefrigeracion to set
+	 */
+	public void setSistemaDeRefrigeracion(
+			SistemaDeRefrigeracion sistemaDeRefrigeracion) {
+		this.sistemaDeRefrigeracion = sistemaDeRefrigeracion;
+		try{
+			this.sistemaDeRefrigeracion.instalar(this);
+		}catch(NullPointerException e){}
+	}
 }
