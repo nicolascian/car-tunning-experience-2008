@@ -262,7 +262,7 @@ public class TestAuto {
 		  //desacelerar
 		  double velocidad=auto.getVelocidad();
 		  contador=0;
-		  while((contador<12000)){
+		  while((contador<6000)){
 				 auto.acelerar(false);
 			     contador++;
 			     System.out.println("Iteracion "+contador+
@@ -275,7 +275,7 @@ public class TestAuto {
 			     
 			     if((auto.getVelocidad()==0)
 			    	||
-			    	(auto.getCaja().getCambio()<=4)	 
+			    	(auto.getCaja().getCambio()<=0)	 
 			        ){
 			    	 contador=20000;
 			    	 System.out.println("Velocidad "+velocidad);
