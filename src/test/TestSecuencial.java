@@ -10,13 +10,12 @@ public class TestSecuencial {
 	@Test
 	public void testSecuencial(){
 	  try{	
-		for(int cambios=4;cambios<=8;cambios++){
+		for(int cambios=4;cambios<=6;cambios++){
 			Secuencial secuencial=new Secuencial(cambios);
 			assertTrue(secuencial.getCantidadCambios()==cambios);
 		}
 	  }catch(AssertionError a){
-		  System.out.println(a);
-		  a.printStackTrace();
+		 a.printStackTrace();
 	  }
 	}
 	
@@ -25,7 +24,6 @@ public class TestSecuencial {
 	  try{	
 		  assertTrue(secuencial.obtenerPotencia()==0);
 	  }catch(AssertionError a){
-		  System.out.println(a);
 		  a.printStackTrace();
 	  }
 	}
@@ -36,7 +34,6 @@ public class TestSecuencial {
 		  secuencial.desgastar();
 		  assertTrue(secuencial.getEstado()<100);
 	  }catch(AssertionError a){
-		  System.out.println(a);
 		  a.printStackTrace();
 	  }
 	}
@@ -46,7 +43,6 @@ public class TestSecuencial {
 	  try{	
 		  assertNotNull(secuencial.toString());
 	  }catch(AssertionError a){
-		  System.out.println(a);
 		  a.printStackTrace();
 	  }
 	}

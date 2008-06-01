@@ -23,8 +23,6 @@ public class TestLlanta extends TestCase{
 	    assertEquals(1.59992,llanta.getCoeficienteDeDesgastePorSuperficie());
 	}
 	
-	
-	
 	public void testDesgastar(){
 		Llanta llanta = new Llanta();
 		llanta.setEstado(100);
@@ -33,15 +31,13 @@ public class TestLlanta extends TestCase{
 		assertEquals(99.999999999982, llanta.getEstado());
 	}
 
-
-
 	public void testObtenerPotencia(){
 		Llanta llanta = new Llanta();
 		llanta.setPesoNormal(15);
 		llanta.setPeso(20);
 		assertEquals(11.25, llanta.obtenerPotencia());
 		
-}
+    }
 	
 }
 

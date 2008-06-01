@@ -2,8 +2,6 @@ package test;
 import modelo.*;
 import modelo.componente.*;
 import static org.junit.Assert.*;
-
-import org.junit.Before;
 import org.junit.Test;
 
 public class TestMotor {
@@ -21,8 +19,6 @@ public class TestMotor {
 				  assertNotNull(motor);
 			  }catch (AssertionError a){
 			    a.printStackTrace();
-			    a.getMessage();
-			    System.out.println(a);
 			 }
 	}
 	
@@ -56,13 +52,9 @@ public class TestMotor {
 		   assert motor.obtenerPotencia()>=0;
 		}catch (AssertionError a){
 		    a.printStackTrace();
-		    a.getMessage();
-		    System.out.println(a);
 		}
 	}
-	
-	
-	
+		
 	@Test
 	public void testAcelerar(){
 		try{
@@ -78,8 +70,6 @@ public class TestMotor {
 		   assertTrue(motor.isAcelerando());
 		}catch (AssertionError a){
 		    a.printStackTrace();
-		    a.getMessage();
-		    System.out.println(a);
 		}
 	}
 	
@@ -89,8 +79,6 @@ public class TestMotor {
 		   assert motor.getTemperatura()>=80;
 		}catch (AssertionError a){
 		    a.printStackTrace();
-		    a.getMessage();
-		    System.out.println(a);
 		}
 	}
 		
@@ -101,8 +89,6 @@ public class TestMotor {
 		   assertTrue(motor.getRevolucionesMinimasEncendido()<8000);
 		}catch (AssertionError a){
 		    a.printStackTrace();
-		    a.getMessage();
-		    System.out.println(a);
 		}
 	}
 }
