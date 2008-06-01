@@ -11,7 +11,6 @@ public class TestEje{
 	
 	@Test
 	public void testLlantas(){
-	   
 	  try{	
 		assertNotNull(eje.getAuto());
 		assertNotNull(eje.getLlantaDerecha());

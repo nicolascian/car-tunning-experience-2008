@@ -26,7 +26,7 @@ public class TestFuerza {
 		   assertNull(fuerza2.getReceptor());
 		   assertFalse(fuerza2.isAccesoLimitado());
 		}catch(AssertionError a){
-		   System.out.println(a);   
+		   a.printStackTrace();   
 	    }
 	  }catch(Exception e){}	
 	}
@@ -39,7 +39,7 @@ public class TestFuerza {
 		fuerza1.sumar(fuerza2);
 		assertTrue(fuerza1.getValorDeLaFuerza()==3);
 	  }catch(AssertionError a){
-		System.out.println(a);   
+		a.printStackTrace();   
 	  }
 	  fuerza1.setValorDeLaFuerza(1);
 	  fuerza2.setValorDeLaFuerza(2);
@@ -52,7 +52,7 @@ public class TestFuerza {
 	  try{	
 		assertTrue(Fuerza.sumar(fuerza1,fuerza2)==3);
 	  }catch(AssertionError a){
-		System.out.println(a);   
+		a.printStackTrace();
 	  }
 	 }catch(Exception e){} 
 	}
@@ -64,7 +64,7 @@ public class TestFuerza {
 		fuerza1.sumar(2);
 		assertTrue(fuerza1.getValorDeLaFuerza()==3);
 	  }catch(AssertionError a){
-		System.out.println(a);   
+		a.printStackTrace();
 	  }
 	  fuerza1.setValorDeLaFuerza(1);
 	 }catch(Exception e){}
@@ -76,7 +76,7 @@ public class TestFuerza {
 	  try{	
 		assertTrue(Fuerza.restar(fuerza1,fuerza2)==-1);
 	  }catch(AssertionError a){
-		System.out.println(a);   
+		a.printStackTrace();
 	  }
 	 }catch(Exception e){}
 	}
@@ -88,7 +88,7 @@ public class TestFuerza {
 		fuerza1.restar(1);
 		assertTrue(fuerza1.getValorDeLaFuerza()==0);
 	  }catch(AssertionError a){
-		System.out.println(a);   
+		a.printStackTrace();   
 	  }
 	  fuerza1.setValorDeLaFuerza(1);
 	 }catch(Exception e){}
@@ -101,7 +101,6 @@ public class TestFuerza {
 		fuerza1.multiplicar(fuerza2);
 		assertTrue(fuerza1.getValorDeLaFuerza()==2);
 	  }catch(AssertionError a){
-		System.out.println(a);
 		a.printStackTrace();
 	  }
 	  fuerza1.setValorDeLaFuerza(1);
@@ -115,7 +114,6 @@ public class TestFuerza {
 	  try{	
 		assertTrue(Fuerza.multiplicar(fuerza1,fuerza2)==2);
 	  }catch(AssertionError a){
-		System.out.println(a);   
 		a.printStackTrace();
 	  }
 	 }catch(Exception e){}
@@ -128,7 +126,6 @@ public class TestFuerza {
 		fuerza1.multiplicar(2);
 		assertTrue(fuerza1.getValorDeLaFuerza()==2);
 	  }catch(AssertionError a){
-		System.out.println(a);
 		a.printStackTrace();
 	  }
 	  fuerza1.setValorDeLaFuerza(1);
@@ -142,7 +139,6 @@ public class TestFuerza {
 		fuerza1.dividir(fuerza2);
 		assertTrue(fuerza1.getValorDeLaFuerza()==0.5);
 	  }catch(AssertionError a){
-		System.out.println(a);
 		a.printStackTrace();
 	  }
 	  fuerza1.setValorDeLaFuerza(1);
@@ -155,8 +151,7 @@ public class TestFuerza {
 	 try{ 
 	  try{	
 		assertTrue(Fuerza.dividir(fuerza1,fuerza2)==0.5);
-	  }catch(AssertionError a){
-		System.out.println(a);   
+	  }catch(AssertionError a){   
 		a.printStackTrace();
 	  }
 	 }catch(Exception e){}
@@ -169,7 +164,6 @@ public class TestFuerza {
 		fuerza1.dividir(2);
 		assertTrue(fuerza1.getValorDeLaFuerza()==0.5);
 	  }catch(AssertionError a){
-		System.out.println(a);
 		a.printStackTrace();
 	  }
 	  fuerza1.setValorDeLaFuerza(1);
@@ -187,7 +181,6 @@ public class TestFuerza {
 		  assertNotNull(e);
 		}
 	  }catch(AssertionError a){
-		System.out.println(a);
 		a.printStackTrace();
 	  }
 	  fuerza1.setValorDeLaFuerza(1);
@@ -204,7 +197,6 @@ public class TestFuerza {
 			  assertNotNull(e); 
 		  }
 	  }catch(AssertionError a){
-		System.out.println(a);   
 		a.printStackTrace();
 	  }
 	 }catch(Exception e){}
@@ -220,7 +212,6 @@ public class TestFuerza {
 			  assertNotNull(e); 
 		  }
 	  }catch(AssertionError a){
-		System.out.println(a);
 		a.printStackTrace();
 	  }
 	  fuerza1.setValorDeLaFuerza(1);
@@ -242,7 +233,6 @@ public class TestFuerza {
 			assertNotNull(e);
 		}
       }catch (AssertionError a){
-		System.out.println(a);   
 		a.printStackTrace();
 	  }
       try{	
@@ -256,8 +246,7 @@ public class TestFuerza {
   			assertNotNull(e);
   		}
         }catch (AssertionError a){
-  		System.out.println(a);   
-  		a.printStackTrace();
+  			a.printStackTrace();
   	  }
 	}
 }

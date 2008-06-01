@@ -13,12 +13,11 @@ public class TestManual {
 	@Test
 	public void testManual(){
 	  try{	
-		for(int cambios=4;cambios<=8;cambios++){
+		for(int cambios=4;cambios<=6;cambios++){
 			Manual manual=new Manual(cambios);
 			assertTrue(manual.getCantidadCambios()==cambios);
 		}
 	  }catch(AssertionError a){
-		  System.out.println(a);
 		  a.printStackTrace();
 	  }
 	}
@@ -28,7 +27,6 @@ public class TestManual {
 	  try{	
 		  assertTrue(manual.obtenerPotencia()==0);
 	  }catch(AssertionError a){
-		  System.out.println(a);
 		  a.printStackTrace();
 	  }
 	}
@@ -39,7 +37,6 @@ public class TestManual {
 		  manual.desgastar();
 		  assertTrue(manual.getEstado()<100);
 	  }catch(AssertionError a){
-		  System.out.println(a);
 		  a.printStackTrace();
 	  }
 	}
@@ -49,7 +46,6 @@ public class TestManual {
 	  try{	
 		  assertNotNull(manual.toString());
 	  }catch(AssertionError a){
-		  System.out.println(a);
 		  a.printStackTrace();
 	  }
 	}
