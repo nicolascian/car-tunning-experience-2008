@@ -1,7 +1,5 @@
 package test;
 import modelo.*;
-import modelo.componente.Manual;
-import modelo.componente.Secuencial;
 import static org.junit.Assert.*;
 import modelo.componente.Automatica;
 import org.junit.Before;

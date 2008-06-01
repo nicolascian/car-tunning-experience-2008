@@ -1,114 +1,145 @@
 package test;
 
-import junit.framework.*;
 import modelo.*;
-import modelo.componente.*;
-public class TestAutoSecondEdition extends TestCase {
+import static org.junit.Assert.*;
+import modelo.componente.Automatica;
+import org.junit.Before;
+import org.junit.Test;
+
+public class TestAutoSecondEdition{
 	
+	Auto auto=new Auto();
 	
-	public static void main (String[] args)
-	{
-		
-		Auto auto = new Auto();
-		System.out.println("CREAR AUTO POR DEFAULT");
-		
-		
-		System.out.print("caja tipo manual: ");
-		System.out.println(auto.isManual());
-		
-		System.out.print("caja tipo secuencial: ");
-		System.out.println(auto.isSecuencial());
-		
-		System.out.print("caja tipo automatica: ");
-		System.out.println(auto.isAutomatica());
-		
-			Caja automatica = new Automatica(5);
-			System.out.println("CREAR CAJA AUTOMATICA");
-		
-			auto.setCaja(automatica);
-			System.out.println("COLOCAR CAJA AUTOMATICA");
-		
-		
-		System.out.print("esta listo: ");
-		System.out.println(auto.estaListoParaCarrera());
-		
-		System.out.print("auto encendido: ");
-		System.out.println(auto.isEncendido());
-		
-		System.out.print("motor encendido: ");
-		System.out.println(auto.getMotor().isEncendido());
-		
-		System.out.print("motor acelerando: ");
-		System.out.println(auto.getMotor().isAcelerando());
-		
-			auto.setEncendido(true);
-			System.out.println("ENCENDER AUTO");
-
-		System.out.print("auto encendido: ");
-		System.out.println(auto.isEncendido());
-			
-		System.out.print("motor encendido: ");
-		System.out.println(auto.getMotor().isEncendido());	
-			
-		System.out.print("motor acelerando: ");
-		System.out.println(auto.getMotor().isAcelerando());
-			
-			auto.acelerar(true);
-			System.out.println("ACELERAR");
-		
-			assertEquals(true, auto.isEncendido());
-			assertEquals(true, auto.getMotor().isAcelerando());
-		
-		System.out.print("auto encendido: ");
-		System.out.println(auto.isEncendido());
-		
-		System.out.print("motor encendido: ");
-		System.out.println(auto.getMotor().isEncendido());
-		
-		System.out.print("motor acelerando: ");
-		System.out.println(auto.getMotor().isAcelerando());
-		
-		
-		System.out.print("caja tipo manual: ");
-		System.out.println(auto.isManual());
-		
-		System.out.print("caja tipo secuencial: ");
-		System.out.println(auto.isSecuencial());
-		
-		System.out.print("caja tipo automatica: ");
-		System.out.println(auto.isAutomatica());
-		
-		
-		System.out.print("RPM: ");
-		System.out.println(auto.getMotor().getRPM());
-		
-		System.out.print("Cambio: ");
-		System.out.println(auto.getCaja().getCambio());
-		
-		/*  7000 rpm */ 
-		/*while( auto.getMotor().getRPM() <= 700){*/
-		
-		int contador =0;
-		while( contador <= 500){
-
-			auto.acelerar(true);			
-
-			System.out.print("Cambio: ");
-			System.out.print(auto.getCaja().getCambio());
-			
-			System.out.print(" RPM: ");
-			System.out.print((long)auto.getMotor().getRPM());
-			
-			System.out.print(" Estado: ");
-			System.out.print(auto.getEstado());
-						
-			System.out.print("  V: ");
-			System.out.print((long)auto.getVelocidad());
-
-			System.out.print("  P: ");
-			System.out.println((long)auto.getPosicion());
-			
-			contador++;
-		}//fin while
+	@Test
+	public void testAcelerarCajaAutomatica(){
+	  	 auto.setEncendido(true);
+		 assertTrue(auto.isEncendido());
+		 auto.setCaja(new Automatica(5));
+		 int cambio=5;
+		 int contador=0;
+	 	 while((auto.getCaja().getCambio()<=cambio)
+			&&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
+			 ){
+			 System.out.println("Iteracion "+contador+
+		    		" Cambio "+auto.getCaja().getCambio()+
+		    		" velocidad "+auto.getVelocidad()+
+		    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+		    		" Rpm Motor "+auto.getMotor().getRPM()+
+		    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+		    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+		     auto.acelerar(true);
+		     
+		     contador++;
+		     if(auto.getCaja().getCambio()==cambio){
+		         System.out.println("Iteracion "+contador+
+			    		" Cambio "+auto.getCaja().getCambio()+
+			    		" velocidad "+auto.getVelocidad()+
+			    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+			    		" Rpm Motor "+auto.getMotor().getRPM()+
+			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+			     auto.acelerar(true);
+			     contador++;
+		     }
+		 }
+		 double velocidad=auto.getVelocidad();
+		 contador=0;
+		 while((contador<6000)){
+				 auto.acelerar(false);
+			     contador++;
+			     System.out.println("Iteracion "+contador+
+			    		" Cambio "+auto.getCaja().getCambio()+
+			    		" velocidad "+auto.getVelocidad()+
+			    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+			    		" Rpm Motor "+auto.getMotor().getRPM()+
+			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+			     
+			     if((auto.getVelocidad()==0)
+			    	||
+			    	(auto.getCaja().getCambio()<=0)	 
+			        ){
+			    	 contador=20000;
+			    	 System.out.println("Velocidad "+velocidad);
+			     }
+			     velocidad=auto.getVelocidad();
+		 }
+		 cambio=5;
+		 contador=0;
+		 while((auto.getCaja().getCambio()<=cambio)
+				&&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
+				 ){
+				 System.out.println("Iteracion "+contador+
+			    		" Cambio "+auto.getCaja().getCambio()+
+			    		" velocidad "+auto.getVelocidad()+
+			    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+			    		" Rpm Motor "+auto.getMotor().getRPM()+
+			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+			     auto.acelerar(true);
+			     contador++;
+			     if(auto.getCaja().getCambio()==cambio){
+			         System.out.println("Iteracion "+contador+
+				    		" Cambio "+auto.getCaja().getCambio()+
+				    		" velocidad "+auto.getVelocidad()+
+				    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+				    		" Rpm Motor "+auto.getMotor().getRPM()+
+				    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+				    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+				     auto.acelerar(true);
+				     contador++;
+			     }
+		 }
+		 auto.setEncendido(false);
+		 auto.setEncendido(true);
+		 cambio=5;
+		 contador=0;
+	 	 while((auto.getCaja().getCambio()<=cambio)
+			&&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
+			 ){
+			 System.out.println("Iteracion "+contador+
+		    		" Cambio "+auto.getCaja().getCambio()+
+		    		" velocidad "+auto.getVelocidad()+
+		    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+		    		" Rpm Motor "+auto.getMotor().getRPM()+
+		    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+		    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+		     auto.acelerar(true);
+		     
+		     contador++;
+		     if(auto.getCaja().getCambio()==cambio){
+		         System.out.println("Iteracion "+contador+
+			    		" Cambio "+auto.getCaja().getCambio()+
+			    		" velocidad "+auto.getVelocidad()+
+			    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+			    		" Rpm Motor "+auto.getMotor().getRPM()+
+			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+			     auto.acelerar(true);
+			     contador++;
+		     }
+		 }
+	 	 velocidad=auto.getVelocidad();
+		 contador=0;
+		 while((contador<6000)){
+				 auto.acelerar(false);
+			     contador++;
+			     System.out.println("Iteracion "+contador+
+			    		" Cambio "+auto.getCaja().getCambio()+
+			    		" velocidad "+auto.getVelocidad()+
+			    		" Rpm Eje "+auto.getEjeDelantero().getRpm()+
+			    		" Rpm Motor "+auto.getMotor().getRPM()+
+			    		" Rpm Maximas Motor "+auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+
+			    		" Rpm Minimas Motor "+auto.getCaja().getRevolucionesMinimasMotorParaCambioActual());
+			     
+			     if((auto.getVelocidad()==0)
+			    	||
+			    	(auto.getCaja().getCambio()<=0)	 
+			        ){
+			    	 contador=20000;
+			    	 System.out.println("Velocidad "+velocidad);
+			     }
+			     velocidad=auto.getVelocidad();
+		 }
 	}
 }
