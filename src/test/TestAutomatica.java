@@ -1,39 +1,22 @@
 package test;
 import junit.framework.*;
-import modelo.*;
 import modelo.componente.*;
 public class TestAutomatica extends TestCase {
 
 	public void testGenerarRelacionesDeCaja() {
-		
+		for(int cambios=4;cambios<=6;cambios++){
+		  Automatica automatica=new Automatica(cambios);
+		  for(int cambio=0;cambio<=cambios;cambio++)
+			try{
+				if(cambio>0)
+				  assertTrue(automatica.getRelacionDeCambio(cambio-1)>
+				             automatica.getRelacionDeCambio(cambio));
+				else
+					assertTrue(automatica.getRelacionDeCambio(cambio)>0);	
+			}catch(AssertionError a){
+				a.printStackTrace();
+			}
+		}
 	}
 
-	public void testChequear() {
-		
-		
-		Auto auto = new Auto();
-		
-		Caja automatica = new Automatica(5);
-		
-		auto.setCaja(automatica);
-		
-		auto.setEncendido(true);
-		auto.acelerar(true);
-		
-		assertEquals(true, auto.isEncendido());
-		assertEquals(true, auto.getMotor().isAcelerando());
-		
-		/*  7000 rpm */
-		while( auto.getMotor().getRPM() <= 700){ 
-		
-			automatica.Chequear();	
-		/*	
-			if (auto.getMotor().getRPM() > auto.getMotor().getRevolucionesMaximasCambio()){
-				assertEquals(1 ,auto.getCaja().getCambio());
-			}*/
-		}//fin while
-		
-		
-	}
-
-}
+}	

@@ -119,17 +119,28 @@ Nico M: 	Neumatico <--------------------------Listo
 			interfaces Afectable <---------------Listo 
 			Superficie <-------------------------Listo
 			
-Rafa:		Motor <------------------------------lista / faltan pruebas unitarias
-			Caja <-------------------------------lista / falta termina prueba unitaria
-			                                     /discutir modificaciones de control de cambios
-			Automatica <-------------------------lista / falta termina prueba unitaria
-			                                     /discutir modificaciones de control de cambios
-			Secuencial <-------------------------lista / falta termina prueba unitaria
-			                                     /discutir modificaciones de control de cambios
-			Manual <-----------------------------lista / falta termina prueba unitaria
-			                                     /discutir modificaciones de control de cambios
+Rafa:		Motor <------------------------------por fin listo 
+			Caja <-------------------------------lista 
+			Automatica <-------------------------lista			                                    
+			Secuencial <-------------------------lista 
+			Manual <-----------------------------lista 
 			Auto <-------------------------------lista / faltan detalles
-			
+  Nota 1:
+   	Note que existe un error conceptual en la caja, ya que setCambio()
+   	es accedible desde Automatica y Secuencial, ademas no me parece que 
+   	queda bien que siguiente y anterior quede definida en Caja ya que 
+   	son metodos de secuencial.
+   	Ademas se podrian agregar un par de metodos en Automatica que sean 
+   	puntoMuerto() y velocidad(). 
+   	Todo esto llevaria como consecuencia que el jugador deberia 
+   	manejar no un objeto de tipo Caja, sino un objeto Manual, Automatica
+   	o Secuencial.
+   	Antes de modificar esto que es solo una cuestion conceptual quiero que
+   	me digan su opinion, ya que afectaria el control me parece.   	  
+  Nota 2:
+    Los siguientes Tests yo no los uso mas, los eliminamos?
+    testAutoSecondEdition , testAutoPotencias, testAutoDeEscritorio
+						
 Lucas:		Desgastar y ObtenerPotencia
 			(Eje,Escape,Neumatico,Carroceria,Carburador
 			Inyeccion,Suspencion,
@@ -160,8 +171,6 @@ Maxi:		Combustible <------------------------
 			Turbo <------------------------------
 			AlgoPesos <--------------------------
 			eje <-------------------------------- (pruebas)
-			
-
 			
 
 ----------------------------------------------------------------------------------------------------

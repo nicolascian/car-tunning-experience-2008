@@ -11,6 +11,7 @@ public class TestEje{
 	
 	@Test
 	public void testLlantas(){
+	   
 	  try{	
 		assertNotNull(eje.getAuto());
 		assertNotNull(eje.getLlantaDerecha());
@@ -32,19 +33,16 @@ public class TestEje{
 	  }catch (AssertionError a){
 		  a.printStackTrace();
 	  }
-		
 	}
 		
 	@Test
 	public void testObtenerPotencia(){
-		assertTrue(eje.obtenerPotencia()>0);
-		assertTrue(eje.obtenerPotencia()<50);
-		System.out.println("Potencia: " +eje.obtenerPotencia());
-		//assertTrue(eje.obtenerPotencia()<50);
-	
+	  try{	
+		assertTrue(eje.obtenerPotencia()==0);
+	  }catch(AssertionError a){
+		  a.printStackTrace();
+	  }  
 	}
-			
-		
 }
 
 	

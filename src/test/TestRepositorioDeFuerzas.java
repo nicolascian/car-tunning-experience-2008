@@ -74,7 +74,7 @@ public class TestRepositorioDeFuerzas {
 			assertNotNull(receptor1.getRepositorio());
 			assertNotNull(receptor2.getRepositorio());
 		  }catch(AssertionError a){
-			System.out.println(a);   
+			a.printStackTrace();
 		  }
 	}
 
@@ -90,7 +90,7 @@ public class TestRepositorioDeFuerzas {
 		}
 		assertNotNull(receptor2.getRepositorio());
 	  }catch(AssertionError a){
-		  System.out.println(a);
+		  a.printStackTrace();
 	  }
 	}
 	
@@ -103,8 +103,7 @@ public class TestRepositorioDeFuerzas {
 			assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuerzas()==19);
 			assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuerzas()==19);
 		}catch(AssertionError a){
-			  System.out.println(a);
-			  a.printStackTrace();
+			a.printStackTrace();
 		}
 	}	
 
@@ -117,7 +116,7 @@ public class TestRepositorioDeFuerzas {
 		receptor2.getRepositorio().vaciar();
 		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuerzas()==0);
 	  }catch(AssertionError a){
-		  System.out.println(a);
+		 a.printStackTrace();
 	  }
 	}
 	
@@ -135,7 +134,7 @@ public class TestRepositorioDeFuerzas {
 		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuerzas()==19);
 		assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuerzas()==0);
 	  }catch(AssertionError a){
-		  System.out.println(a);
+		 a.printStackTrace();
 	  }
 	}
 	
@@ -145,15 +144,11 @@ public class TestRepositorioDeFuerzas {
 	@Test 
 	public void testComportamientoAlIntroducirFuerzas() {
 		 try{	
-				//assertNotNull(receptor2.getRepositorio().obtenerFuerzaDeAccesoIlimitadoDeEmisor(receptor1));
-			    for(int contador=1;contador<=20;contador++){
+				for(int contador=1;contador<=20;contador++){
 					Fuerza fuerza=new Fuerza(receptor1,receptor2,1,true);
 					receptor2.recibirFuerza(fuerza);
 			    }
-				//System.out.println(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas());
-				//assertTrue(receptor2.getRepositorio().obtenerValorSumatoriaDeFuezas()>10);
 			}catch(AssertionError a){
-				System.out.println(a);
 				a.printStackTrace();
 	        }
 	}
@@ -165,7 +160,6 @@ public class TestRepositorioDeFuerzas {
 			Fuerza fuerza2=receptor2.getRepositorio().insertarFuerzaRetornarCopia(fuerza);	
 			assertTrue(fuerza.getEmisor()==fuerza2.getEmisor());
 			assertTrue(fuerza.getReceptor()==fuerza2.getReceptor());	
-			//assertTrue(fuerza.getValorDeLaFuerza()==fuerza2.getValorDeLaFuerza());
 		 }catch(AssertionError a){
 			a.printStackTrace();
 	     }

@@ -139,7 +139,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.
 	 * @Post: Se ha obtenido la relacion de la caja para el cambio actual.
 	 */
-	protected double getRelacionDeCambio(){
+	public double getRelacionDeCambio(){
 		return (relacionDeCambio[getCambio()]);
 	}
 	
@@ -147,7 +147,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	 * @Pre: La instancia de la clase derivada de Caja ha sido creada.
 	 * @Post: Se ha obtenido la relacion de la caja para el cambio pasado por parametro.
 	 */
-	protected double getRelacionDeCambio(int cambio){
+	public double getRelacionDeCambio(int cambio){
 		return (relacionDeCambio[cambio]);
 	}
 	

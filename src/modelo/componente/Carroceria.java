@@ -22,9 +22,7 @@ import modelo.fuerzas.ReceptorDeFuerzas;
  */
 public class Carroceria extends Componente 
 	implements AfectablePorClima, AfectablePorSuperficie, ReceptorDeFuerzas{
-	
-	private double arrastre;//coeficiente de arrastre del aire
-	
+		
 	private double superficieFrontal;//en metros cuadrados
 	
 	private final static double TEMPERATURAOPTIMA=25;
@@ -55,6 +53,24 @@ public class Carroceria extends Componente
 		setCoeficienteDeOxidacionPorParticulas(0);
 		setPeso(905);
 	}
+	
+	/**
+	 * @Pre:
+	 * @Post: Se ha creado una instancia de la clase carroceria, inicializandola segun los
+	 * siguientes parametros.
+	 * @param arrastre: coeficiente de arrastre, siempre positivo
+	 * @param superficieFrontal: seccion delantera del auto que se vera afectada por la pared
+	 * de aire que enfrente el auto al desplazarse. 
+	*/
+	public Carroceria(double superficieFrontal,double peso){
+		setTemperatura(25);
+		setEstado(100);
+		setSuperficieFrontal(superficieFrontal);
+		setCoeficienteDeOxidacionPorHumedad(0);
+		setCoeficienteDeOxidacionPorParticulas(0);
+		setPeso(peso);
+	}
+	
 	/**
 	 * @Post: La carroceria desgastada.
 	 */
