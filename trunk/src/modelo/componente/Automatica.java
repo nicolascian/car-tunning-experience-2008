@@ -15,8 +15,6 @@ package modelo.componente;
  * @version	1.0
  */
 public class Automatica extends Caja{
-
-	private int intentos=0;
 	
 	/**
 	 * @Pre: La instancia de la clase Automatica ha sido creada, y su atributo auto tiene una instancia de la 
