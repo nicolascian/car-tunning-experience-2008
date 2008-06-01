@@ -140,6 +140,8 @@ Rafa:		Motor <------------------------------por fin listo
   Nota 2:
     Los siguientes Tests yo no los uso mas, los eliminamos?
     testAutoSecondEdition , testAutoPotencias, testAutoDeEscritorio
+  Nota 3:
+    Tenemos que ver como armamos las carpetas para las imagenes que vamos a utilizar. 
 						
 Lucas:		Desgastar y ObtenerPotencia
 			(Eje,Escape,Neumatico,Carroceria,Carburador
