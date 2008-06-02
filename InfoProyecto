@@ -143,7 +143,10 @@ Rafa:		Motor <------------------------------por fin listo
     testAutoSecondEdition , testAutoPotencias, testAutoDeEscritorio
   Nota 3:
     Tenemos que ver como armamos las carpetas para las imagenes que vamos a utilizar. 
-						
+  Nota 4:
+    Deje una imagen de como podriamos hacer el garage, con algo parecido con lo que se 
+    hizo en juego.
+    						
 Lucas:		Desgastar y ObtenerPotencia
 			(Eje,Escape,Neumatico,Carroceria,Carburador
 			Inyeccion,Suspencion,
