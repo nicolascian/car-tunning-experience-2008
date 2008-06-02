@@ -10,8 +10,8 @@ hoy nos quedamos con nico cian un rato desp de q termino a algoritmos para ver q
 faltaban hacer o revisar del tp. aca dejo algunas de las cosas que nos parecio que hay 
 que hacer o revisar:
 
-CUESTIONES DE DISEÑO:
-	-si se va a hacer un cambio grande en el diseño, q involucre a muchas de las clases
+CUESTIONES DE DISEï¿½O:
+	-si se va a hacer un cambio grande en el diseï¿½o, q involucre a muchas de las clases
 	estaria bueno q primero lo charlemos entre todos y no q uno solo cambie todo el 
 	codigo, asi podemos entender y ver q nos parecen las ideas, y asi depaso desp no
 	qdamos todos re colgados y no podemos avanzar xq no entendemos q se hizo.
@@ -39,7 +39,7 @@ CUESTIONES DE DISEÑO:
 	con  el neumatico. en todo caso tendria q estar en la clase constantes.
 	tambien me da la sensacion de que hay muchas constantes estaticas por todos lados, y 
 	no me cierra como se van a distinguir dos componentes (por ejemplo 2 turbos)
-	otra q acabo de ver es  ¿!¿!¿!constante tiempo por ciclo adentro de componente?!?!?!?!
+	otra q acabo de ver es  ï¿½!ï¿½!ï¿½!constante tiempo por ciclo adentro de componente?!?!?!?!
 	
 COSAS DE IMPLEMENTACION:
 	-hay q ver en q lugar del codigo se llama al metodo desgastar de todos los componentes,
@@ -84,7 +84,7 @@ COSAS QUE NO ANDAN DEL TODO BIEN:
 	Estado: 97.61904761523809
 	
 bueno estas son algunas cosas q charlamos hoy, y otras q se me ocurrieron ami.
-todo lo q vean q falta agreguenlo, y estaria bueno q estemos la mayoria mañana asi
+todo lo q vean q falta agreguenlo, y estaria bueno q estemos la mayoria maï¿½ana asi
 podemos discutir todo esto, mas las correcciones q nos hagan (q seguro son unas cuantas)
 nico m
 
@@ -137,6 +137,7 @@ Rafa:		Motor <------------------------------por fin listo
    	o Secuencial.
    	Antes de modificar esto que es solo una cuestion conceptual quiero que
    	me digan su opinion, ya que afectaria el control me parece.   	  
+   	(VOTO POR DEJARLO ASI POR AHORA nicoc)
   Nota 2:
     Los siguientes Tests yo no los uso mas, los eliminamos?
     testAutoSecondEdition , testAutoPotencias, testAutoDeEscritorio
