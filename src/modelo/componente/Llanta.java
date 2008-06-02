@@ -26,9 +26,6 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	//expresado en kg
 	private double pesoNormal=25;
 	
-	// expresada en porcentaje}
-	private double humedadOptima=50; 
-
 	private static double constanteDeDesgaste=1;
 	
 	private double coeficienteDeDesgastePorSuperficie=1;
