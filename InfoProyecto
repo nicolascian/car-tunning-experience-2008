@@ -5,6 +5,16 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
+
+    Los programas feos son como los puentes feos: suelen ser mucho más propensos 
+    a caerse que los bonitos, porque la forma en la que los humanos percibimos la 
+    belleza (y especialmente los humanos-ingenieros) está íntimamente relacionada 
+    con nuestra habilidad de procesar y entender la complejidad. Un lenguaje que 
+    dificulte escribir código elegante también dificulta escribir buen código.
+
+    -- Eric S. Raymond
+    
+
 ## COSAS QUE FALTAN HACER / REVISAR ##
 hoy nos quedamos con nico cian un rato desp de q termino a algoritmos para ver que cosas
 faltaban hacer o revisar del tp. aca dejo algunas de las cosas que nos parecio que hay 
