@@ -156,7 +156,7 @@ public class Pista  extends Observable{
 			if (this.getAuto(nroAuto).getPosicion() 
 					< aux.getPosFinal())return aux;
 		}
-		throw new ExceptionFinPista();
+		throw new ExceptionFinPista(nroAuto);
 	}
 	/**
 	 * Metodo que se encarga de verificar si un auto cambio de tramo, es decir
