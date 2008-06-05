@@ -49,6 +49,7 @@ public class NeumaticoLluvia extends Neumatico implements AfectablePorSuperficie
 		this.setRelieveSuperficie(0);
 		this.setAuto(auto);
 		this.setPrecio(new AlgoPesos(300,0));
+		this.setLlanta(null);
 	}
 	
 	/**
@@ -65,6 +66,7 @@ public class NeumaticoLluvia extends Neumatico implements AfectablePorSuperficie
 		this.setRelieveSuperficie(0);
 		this.setPrecio(new AlgoPesos(300,0));
 		this.setAuto(null);
+		this.setLlanta(null);
 	}
 	
 	/**

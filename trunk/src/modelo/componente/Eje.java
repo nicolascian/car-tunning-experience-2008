@@ -19,28 +19,50 @@ import modelo.fuerzas.*;
 public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDeFuerzas{ 
 	
 	/* Atributos de la clase */
-	private Llanta LlantaDerecha=null;
-	private Llanta LlantaIzquierda=null;
+	private Llanta LlantaDerecha;
+	private Llanta LlantaIzquierda;
 	private double DesgastePorRugosidad;
 	private double DesgastePorParticulas;
 	private RepositorioDeFuerzas repositorio;//donde se almacenan las fuerzas que llegan a la isntancia
-	private double rpm=0;//revoluciones a las que gira la instancia.
+	private double rpm;//revoluciones a las que gira la instancia.
 	protected final static double COEFICIENTE_INCREMENTO_RPM=0.006999;
 	protected final static double COEFICIENTE_DECREMENTO_RPM=0.02219;	
 	
 	/**
 	 * @Pre: 
 	 * @Post: Se ha creado la instaica de la clase Eje inicializandola con la instancia de auto pasada
-	 * por parametro, con su estado al 100% y con llantas con neumaticos mixtos.
+	 * por parametro, con su estado al 100% .
 	 * @param auto
 	*/
-	public Eje(Auto auto, Llanta LlantaDerecha, Llanta LlantaIzquierda){
+	
+	public Eje(Auto auto){
 		setPeso(50);
 		setAuto(auto);
 		setEstado(100);
 		repositorio=new RepositorioDeFuerzas(this);
-		setLlantaDerecha(LlantaDerecha);
-		setLlantaIzquierda(LlantaIzquierda);
+		setLlantaDerecha(null);
+		setLlantaIzquierda(null);
+		this.rpm = 0;
+		this.DesgastePorParticulas = 0 ;
+		this.DesgastePorRugosidad = 0;
+	}
+	
+	/**
+	 * @Pre: 
+	 * @Post: Se ha creado la instaica de la clase Eje inicializandola con la instancia
+	 * de auto y con llantas pasadas por parametro, con su estado al 100%.
+	 * @param auto
+	*/
+	public Eje(Auto auto, Llanta LlantaDer, Llanta LlantaIzq){
+		setPeso(50);
+		setAuto(auto);
+		setEstado(100);
+		repositorio=new RepositorioDeFuerzas(this);
+		setLlantaDerecha(LlantaDer);
+		setLlantaIzquierda(LlantaIzq);
+		this.rpm = 0;
+		this.DesgastePorParticulas = 0 ;
+		this.DesgastePorRugosidad = 0;
 	}
 	
 	/**
