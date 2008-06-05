@@ -7,9 +7,9 @@
 
 package modelo;
 import modelo.componente.*;
-import modelo.exceptions.ExceptionComponenteDesgastado;
-import modelo.exceptions.ExceptionComponenteFaltante;
-import modelo.fuerzas.ReceptorDeFuerzas;
+import modelo.componente.neumaticos.*;
+import modelo.exceptions.*;
+import modelo.fuerzas.*;
 import java.util.*;
 
 /**

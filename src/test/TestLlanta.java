@@ -2,6 +2,7 @@ package test;
 
 import modelo.*;
 import modelo.componente.*;
+import modelo.componente.neumaticos.*;
 
 import junit.framework.TestCase;
 
