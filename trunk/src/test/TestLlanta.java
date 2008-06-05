@@ -1,21 +1,21 @@
 package test;
 
 import modelo.*;
-import modelo.componente.Llanta;
+import modelo.componente.*;
 
 import junit.framework.TestCase;
 
 public class TestLlanta extends TestCase{
 	
-	Llanta llanta = new Llanta();
+	Llanta llanta ;
 	
 	public void setUp() throws Exception {
+		llanta = new Llanta();
 	}
 	
 	
 	public void testEstado(){
-		Llanta llanta = new Llanta();
-		System.out.println(llanta.toString());
+		assertEquals(100.0, llanta.getEstado());
 	}
 	public void testAfectar(){
 		llanta.setCoeficienteDeDesgastePorSuperficie(0.8);
@@ -24,7 +24,7 @@ public class TestLlanta extends TestCase{
 	}
 	
 	public void testDesgastar(){
-		Llanta llanta = new Llanta();
+
 		llanta.setEstado(100);
 		llanta.desgastar();
 		
@@ -32,10 +32,10 @@ public class TestLlanta extends TestCase{
 	}
 
 	public void testObtenerPotencia(){
-		Llanta llanta = new Llanta();
+		llanta.setNeumatico(new NeumaticoMixto());
 		llanta.setPesoNormal(15);
 		llanta.setPeso(20);
-		assertEquals(11.25, llanta.obtenerPotencia());
+		assertEquals(12.25, llanta.obtenerPotencia());
 		
     }
 	
