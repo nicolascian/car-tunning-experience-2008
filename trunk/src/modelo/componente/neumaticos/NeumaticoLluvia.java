@@ -5,7 +5,7 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-package modelo.componente;
+package modelo.componente.neumaticos;
 import modelo.*;
 
 /**

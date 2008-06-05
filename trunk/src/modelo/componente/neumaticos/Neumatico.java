@@ -5,12 +5,11 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-package modelo.componente;
+package modelo.componente.neumaticos;
 
 import modelo.*;
-import modelo.fuerzas.Fuerza;
-import modelo.fuerzas.ReceptorDeFuerzas;
-
+import modelo.componente.*;
+import modelo.fuerzas.*;
 /**
  * El neumatico es aquel componente del auto que interactua en forma
  * directa con la superficie. Por lo tanto, es el encargado de transmitir

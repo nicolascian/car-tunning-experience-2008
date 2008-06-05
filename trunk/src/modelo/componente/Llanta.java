@@ -7,10 +7,8 @@
 
 package modelo.componente;
 
-import modelo.AfectablePorSuperficie;
-import modelo.Superficie;
-import modelo.fuerzas.Fuerza;
-import modelo.fuerzas.ReceptorDeFuerzas;
+import modelo.componente.neumaticos.*;
+import modelo.fuerzas.*;
 import modelo.*;
 /**
  * Las llantas de un auto estan ligadas al eje del mismo,
