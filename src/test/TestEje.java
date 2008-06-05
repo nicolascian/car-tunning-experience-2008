@@ -1,46 +1,53 @@
 package test;
-import static org.junit.Assert.*;
-import org.junit.Test;
+import junit.framework.*;
+import modelo.*;
 import modelo.componente.*;
-import modelo.Auto;
 
-public class TestEje{
+public class TestEje extends TestCase{
 
-	Auto auto=new Auto();
-	Eje eje=new Eje(auto, auto.getLlantaDelanteraDerecha(), auto.getLlantaDelanteraIzquierda());
+	Auto auto;
+	Eje eje;
 	
-	@Test
+
+	public void setUp(){
+		auto=new Auto();
+		eje=new Eje(auto, auto.getLlantaDelanteraDerecha(), auto.getLlantaDelanteraIzquierda());
+	}
+	
 	public void testLlantas(){
-	  try{	
+
 		assertNotNull(eje.getAuto());
 		assertNotNull(eje.getLlantaDerecha());
 		assertNotNull(eje.getLlantaIzquierda());
 		assertNotNull(eje.getLlantaDerecha().getEje());
 		assertNotNull(eje.getLlantaIzquierda().getEje());
-	  }catch (AssertionError a){
-		  a.printStackTrace();
-	  }
+
 	}
 	
-	@Test
+
 	public void testNeumaticos(){
-	  try{	
+
 		assertNotNull(eje.getLlantaDerecha().getNeumatico().
 				getLlanta());
 		assertNotNull(eje.getLlantaIzquierda().getNeumatico().
 				getLlanta());
-	  }catch (AssertionError a){
-		  a.printStackTrace();
-	  }
+
 	}
 		
-	@Test
+
 	public void testObtenerPotencia(){
-	  try{	
-		assertTrue(eje.obtenerPotencia()==0);
-	  }catch(AssertionError a){
-		  a.printStackTrace();
-	  }  
+
+		assertTrue(eje.obtenerPotencia()== 5);
+ 	}
+	
+	public static Test suite(){
+		return new TestSuite(TestEje.class);
+	}
+
+	
+	public static void main (String[] args)
+	{
+		junit.textui.TestRunner.run(suite());
 	}
 }
 
