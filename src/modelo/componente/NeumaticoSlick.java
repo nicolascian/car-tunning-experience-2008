@@ -63,6 +63,7 @@ public class NeumaticoSlick extends Neumatico
 		this.setRelieveSuperficie(0);
 		this.setAuto(auto);
 		this.setPrecio(new AlgoPesos(300,0));
+		this.setLlanta(null);
 	}
 
 	public NeumaticoSlick(){
@@ -76,6 +77,7 @@ public class NeumaticoSlick extends Neumatico
 		this.setRelieveSuperficie(0);
 		this.setPrecio(new AlgoPesos(300,0));
 		this.setAuto(null);
+		this.setLlanta(null);
 	}
 	/**
 	 * La adherencia se ve comprometida en un 40% por la cantidad de agua en la

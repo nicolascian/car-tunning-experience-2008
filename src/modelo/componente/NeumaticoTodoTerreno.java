@@ -61,6 +61,7 @@ public class NeumaticoTodoTerreno extends Neumatico
 		this.setViscosidadSuperficie(0);
 		this.setAuto(auto);
 		this.setPrecio(new AlgoPesos(350,0));
+		this.setLlanta(null);
 	}
 
 	public NeumaticoTodoTerreno(){
@@ -74,6 +75,7 @@ public class NeumaticoTodoTerreno extends Neumatico
 		this.setViscosidadSuperficie(0);
 		this.setPrecio(new AlgoPesos(350,0));
 		this.setAuto(null);
+		this.setLlanta(null);
 	}
 	/**
 	 * El desgaste de este neumatico esta dado por la rugosidad de la superficie,

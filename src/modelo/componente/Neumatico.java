@@ -26,7 +26,7 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas{
 	*/
 	private double potenciaMax;
 	
-	private Llanta llanta=null;//indica el componente en el cual se encuentra
+	private Llanta llanta;//indica el componente en el cual se encuentra
 	
 	/**
 	 * Metodo que a partir del estado del neumatico y de las condiciones climaticas
@@ -79,7 +79,6 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas{
 	
 	public void setLlanta(Llanta llanta) {
 		this.llanta=llanta;
-		
 	}
 	
 	/**
@@ -88,8 +87,8 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas{
 	 * pasada por parametro.
 	*/
 	public void instalar(Auto auto,Llanta llanta){
-		setAuto(auto);
-		setLlanta(llanta);
+		this.setAuto(auto);
+		this.setLlanta(llanta);
 		try{
 			getLlanta().setNeumatico(this);
 		}catch(NullPointerException e){}
