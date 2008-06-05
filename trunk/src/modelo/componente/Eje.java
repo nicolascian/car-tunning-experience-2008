@@ -34,14 +34,13 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	 * por parametro, con su estado al 100% y con llantas con neumaticos mixtos.
 	 * @param auto
 	*/
-	public Eje(Auto auto){
+	public Eje(Auto auto, Llanta LlantaDerecha, Llanta LlantaIzquierda){
 		setPeso(50);
 		setAuto(auto);
 		setEstado(100);
 		repositorio=new RepositorioDeFuerzas(this);
-		setLlantaDerecha(null);
-		setLlantaIzquierda(null);
-		instalar(getAuto());
+		setLlantaDerecha(LlantaDerecha);
+		setLlantaIzquierda(LlantaIzquierda);
 	}
 	
 	/**

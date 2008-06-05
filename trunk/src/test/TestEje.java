@@ -7,7 +7,7 @@ import modelo.Auto;
 public class TestEje{
 
 	Auto auto=new Auto();
-	Eje eje=new Eje(auto);
+	Eje eje=new Eje(auto, auto.getLlantaDelanteraDerecha(), auto.getLlantaDelanteraIzquierda());
 	
 	@Test
 	public void testLlantas(){

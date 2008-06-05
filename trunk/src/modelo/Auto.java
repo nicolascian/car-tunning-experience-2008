@@ -74,17 +74,19 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		  setFreno(new FrenoCinta());
 		  setSistemaDeRefrigeracion(new SistemaDeRefrigeracion(this));
 		/* eje delantero */
-		  setEjeDelantero(new Eje(this));
+
 		  setLlantaDelanteraDerecha(new Llanta());
 		  setLlantaDelanteraIzquierda(new Llanta());
 		  setNeumaticoDelanteroDerecho(new NeumaticoMixto());
 		  setNeumaticoDelanteroIzquierdo(new NeumaticoMixto());
+		  setEjeDelantero(new Eje(this, this.llantaDelanteraDerecha, this.llantaDelanteraIzquierda));
 		/* eje trasero */
-		  setEjeTrasero(new Eje(this));
+
 		  setLlantaTraseraDerecha(new Llanta());
 		  setLlantaTraseraIzquierda(new Llanta());
 		  setNeumaticoTraseroDerecho(new NeumaticoMixto());
 		  setNeumaticoTraseroIzquierdo(new NeumaticoMixto());
+		  setEjeTrasero(new Eje(this, this.llantaTraseraDerecha, this.llantaTraseraIzquierda));
 		//inicilizacion de otros atributos
 		  setEncendido(false);
 	      this.embragar(false);
@@ -121,17 +123,20 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		setFreno(freno);
 		setSistemaDeRefrigeracion(new SistemaDeRefrigeracion(this));
 		/* eje delantero */
-		setEjeDelantero(new Eje(this));
+
 		setLlantaDelanteraDerecha(new Llanta());
 		setLlantaDelanteraIzquierda(new Llanta());
 		setNeumaticoDelanteroDerecho(new NeumaticoMixto());
 		setNeumaticoDelanteroIzquierdo(new NeumaticoMixto());
+		setEjeDelantero(new Eje(this, this.llantaDelanteraDerecha, this.llantaDelanteraIzquierda));
 		/* eje trasero */
-		setEjeTrasero(new Eje(this));
+
 		setLlantaTraseraDerecha(new Llanta());
 		setLlantaTraseraIzquierda(new Llanta());
 		setNeumaticoTraseroDerecho(new NeumaticoMixto());
 		setNeumaticoTraseroIzquierdo(new NeumaticoMixto());
+		setEjeTrasero(new Eje(this, this.llantaTraseraDerecha, this.llantaTraseraIzquierda));
+		
 		setEncendido(false);
 		//inicializacion de aceleracion y velocidad
 		this.embragar(false);
