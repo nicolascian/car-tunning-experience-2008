@@ -8,7 +8,7 @@
 package control;
 
 import java.awt.event.KeyListener;
-import modelo.Auto;
+import modelo.*;
 
 /**
  * Clase Jugador (es una clase abstracta)
@@ -32,6 +32,8 @@ public abstract class Jugador  implements KeyListener{
 	
 	/** Un jugador tiene nombre */
 	protected String nombre;
+	
+	private AlgoPesos dinero;
 	
 	/* Constantes de Nombres */
 	
@@ -77,6 +79,16 @@ public abstract class Jugador  implements KeyListener{
 		            + "  Nombre: " + getNombre() +'\n' 
 		            + "  Auto: " + getAuto().toString() +'\n' ;
 		return(cadena);
+	}
+
+
+	public AlgoPesos getDinero() {
+		return dinero;
+	}
+
+
+	public void setDinero(AlgoPesos dinero) {
+		this.dinero = dinero;
 	}
 	
 }
