@@ -16,7 +16,7 @@ public class AlgoPesos{
 	
 	// parte entera de AlgoPesos
 	private int entero;
-	// parte decimal de AlgoPesos
+	// parte decimal de AlgoPesos, debe estar entre 0 y 99
 	private int decimal;
 
 	
@@ -38,6 +38,19 @@ public class AlgoPesos{
 	 * @param decimal2
 	 * @return
 	 */
+	
+	public AlgoPesos sumar(AlgoPesos otro){
+		AlgoPesos aux = new AlgoPesos(0,0);
+		
+		if ((otro.getDecimal() + this.getDecimal()) >99){
+			aux.setEntero(aux.getEntero()+1);
+			aux.setDecimal(this.getDecimal() + otro.getDecimal() - 100);
+		}else aux.setDecimal(this.getDecimal() + otro.getDecimal());
+		aux.setEntero(aux.getEntero() + this.getEntero() + otro.getEntero());
+		
+		return aux;
+	}
+	
 	public AlgoPesos sumar(int entero1, int decimal1){
 	
 		int parteEntera=(this.getEntero()+ entero1); 
