@@ -68,7 +68,7 @@ public class VisorDeImagenes{
 	public VisorDeImagenes(String ruta,JFrame frame,Dimension dimension,Posicion posicion) {
 		this.frame=frame;
 		this.ruta=ruta;
-		this.posicionPantalla=new Posicion(posicion);
+		this.posicionPantalla=posicion;
 		this.setDimensionPantalla(dimension);
 		this.cargarImagenPantalla();
 		cargarImagenes();
@@ -128,7 +128,7 @@ public class VisorDeImagenes{
 
 	private void cargarImagenPantalla(){
 		try {
-			   BufferedImage imagen =ImageIO.read(new File("src\\visorDeImagenes\\pantalla.png"));
+			   BufferedImage imagen =ImageIO.read(new File("src\\vista\\visorDeImagenes\\pantalla.png"));
 	       	   this.setImagenPantalla(imagen);
 	    } catch (IOException e) {e.printStackTrace();}
 	}
