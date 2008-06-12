@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 /**
  * @author Usuario
  *
@@ -77,8 +79,8 @@ public class VisorDeImagenes{
 	private void ajustarPantalla(){
 		//ajuste de posicion
 		Posicion posicion;
-		posicion=new Posicion((int)Math.round(posicionPantalla.getX()+dimensionPantalla.width*0.12),
-				           (int)Math.round(posicionPantalla.getY()+dimensionPantalla.height*0.15));
+		posicion=new Posicion((int)Math.round(dimensionPantalla.width*0.12),
+				              (int)Math.round(dimensionPantalla.height*0.15));
 		this.setPosicionImagen(posicion);
 		dimensionImagen=new Dimension((int)Math.round(dimensionPantalla.width*0.759),
 				                      (int)Math.round(dimensionPantalla.height*0.71));
@@ -150,12 +152,15 @@ public class VisorDeImagenes{
 	
 	private void imprimirImagen(){
 	 try{
-		 ((Graphics2D)frame.getGraphics()).drawImage(imagenPantalla,this.posicionPantalla.getX(),
-                                         posicionPantalla.getY(),getDimensionPantalla().width,
-                                         getDimensionPantalla().height,null);	 
-	   ((Graphics2D)frame.getGraphics()).drawImage(imagenActual,posicionImagen.getX(),
-			                             posicionImagen.getY(),dimensionImagen.width,
-			                             dimensionImagen.height,null);
+		 Graphics grafico=frame.getGraphics().create();
+		 Image imagen=frame.createImage(this.getDimensionPantalla().width,
+				                        this.getDimensionPantalla().height);
+		 Graphics2D grafico2=(Graphics2D)imagen.getGraphics();
+		 ((Graphics2D)grafico2).drawImage(imagenPantalla,0,0,getDimensionPantalla().width,getDimensionPantalla().height,null);	 	  
+		 grafico2.drawImage(imagenActual,posicionImagen.getX(),posicionImagen.getY(),dimensionImagen.width,
+                 dimensionImagen.height,null);
+		 grafico.drawImage(imagen,posicionImagen.getX(),posicionImagen.getY(),dimensionImagen.width,
+                 dimensionImagen.height,null);
 	  }catch(Exception e){}
 	}
 	
