@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import vista.imagenTramo.Posicion;
 /**
  * @author Usuario
  *
