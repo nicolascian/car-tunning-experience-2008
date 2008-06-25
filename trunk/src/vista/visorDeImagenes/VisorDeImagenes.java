@@ -130,7 +130,7 @@ public class VisorDeImagenes{
 
 	private void cargarImagenPantalla(){
 		try {
-			   BufferedImage imagen =ImageIO.read(new File("src\\vista\\visorDeImagenes\\pantalla.png"));
+			   BufferedImage imagen =ImageIO.read(new File("src//vista//visorDeImagenes//pantalla.png"));
 	       	   this.setImagenPantalla(imagen);
 	    } catch (IOException e) {e.printStackTrace();}
 	}
