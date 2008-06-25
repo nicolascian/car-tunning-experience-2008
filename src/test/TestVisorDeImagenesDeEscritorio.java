@@ -2,8 +2,8 @@ package test;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
-import vista.visorDeImagenes.Posicion;
 import vista.visorDeImagenes.VisorDeImagenes;
+import vista.imagenTramo.Posicion;
 public class TestVisorDeImagenesDeEscritorio {
 		
 	public static void main(String[] args) {

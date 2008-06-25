@@ -3,7 +3,6 @@ package vista.imagenTramo;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
-import java.awt.Polygon;
 import java.awt.Shape;
 /**
  * @author Usuario
