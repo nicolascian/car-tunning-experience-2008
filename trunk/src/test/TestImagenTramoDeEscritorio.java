@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import vista.imagenTramo.*;
 import vista.imagenRueda.*;
-import vista.imagenAuto
+import vista.imagenAuto.ImagenAutoDesdeAtras;
 
 public class TestImagenTramoDeEscritorio extends JFrame{
 
@@ -22,7 +22,7 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 	
 	private ImagenRueda ruedaDer=null;
 	
-	private ImagenAuto imagenAuto=null;
+	private ImagenAutoDesdeAtras imagenAuto=null;
 	
 	public TestImagenTramoDeEscritorio(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,6 +35,8 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 	    		                                                       new Posicion());
 	    ruedaIzq=ImagenRueda.createImagenRuedaNeumaticoDibujo2(new Dimension(50,100), new Posicion(250,450));
 	    ruedaDer=ImagenRueda.createImagenRuedaNeumaticoDibujo2(new Dimension(50,100), new Posicion(500,450));
+	    imagenAuto=new ImagenAutoDesdeAtras(null,"src//vista//imagenAuto//imagenes//DodgeViper//atras.png",
+	    		                            new Dimension(200,100),new Posicion());
 	    super.paint(this.getGraphics());
 	}
 	
@@ -45,14 +47,16 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 		grafico.drawImage(imagenAuxiliar.getImage(),
 			     imagenAuxiliar.getPosicion().getX(),imagenAuxiliar.getPosicion().getY(),
 		         imagenAuxiliar.getDimension().width,imagenAuxiliar.getDimension().height,this);
+		/*
 		imagenAuxiliar=ruedaIzq.getImagen();
 		grafico.drawImage(imagenAuxiliar.getImage(),
 			     imagenAuxiliar.getPosicion().getX(),imagenAuxiliar.getPosicion().getY(),
-		         imagenAuxiliar.getDimension().width,imagenAuxiliar.getDimension().height,this);
+		         imagenAuxiliar.getDimension().width,imagenAuxiliar.getDimension().height,this);/*
 		imagenAuxiliar=ruedaDer.getImagen();
 		grafico.drawImage(imagenAuxiliar.getImage(),
 			     imagenAuxiliar.getPosicion().getX(),imagenAuxiliar.getPosicion().getY(),
-		         imagenAuxiliar.getDimension().width,imagenAuxiliar.getDimension().height,this);
+		         imagenAuxiliar.getDimension().width,imagenAuxiliar.getDimension().height,this);*/
+		imagenAuto.paint(grafico);
 		((Graphics2D)g).drawImage(image,0 ,0,this.getWidth(),this.getHeight(),this);
 	  }catch(Exception e){}
 	}
@@ -71,5 +75,6 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 			}
 		};
 		hilo.run();
+		System.out.println("Fin");
 	}
 }
