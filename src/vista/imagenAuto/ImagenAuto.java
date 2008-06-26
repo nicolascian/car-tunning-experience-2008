@@ -3,22 +3,25 @@ package vista.imagenAuto;
 
 import modelo.*;
 import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
-import javax.imageio.*;
-import javax.swing.*;
+
 import vista.imagenTramo.Imagen;
 import vista.imagenTramo.Posicion;
 
 public class ImagenAuto extends Component {
           
-	Auto auto;
+	private final static int OSCILACION=5;
+	
+	private final static int MAXIMO_CONTADOR=45;
+	
+	private Auto auto;
 		
-    Imagen imagenAuto=null;
+    private Imagen imagenAuto=null;
     
-    Posicion posicion=null;
+    private Posicion posicion=null;
     
-    Dimension dimension=null;
+    private Dimension dimension=null;
+    
+    private int contador=0;
     
     public ImagenAuto( Auto auto, String ruta,Dimension dimension,
     		          Posicion posicion) {
@@ -28,8 +31,23 @@ public class ImagenAuto extends Component {
        this.imagenAuto=new Imagen(ruta,dimension,posicion);
     }
     
+    protected int obtenerOscilacion(){
+    	if(contador<=MAXIMO_CONTADOR){
+    	  contador++;
+    	  return 0;
+    	}
+    	else{
+    	  contador=0;
+    	  return OSCILACION;
+    	}
+    }
+    
     public void paint(Graphics g) {
-    	
+    	try{	
+    		((Graphics2D)g).drawImage(imagenAuto.getImage(),this.getPosicion().getX(),
+    				                  this.getPosicion().getY()+this.obtenerOscilacion(),
+    		                          this.getDimension().width,this.getDimension().height,this);
+    	}catch(Exception e){}
     }
 
     public void update(Graphics g){

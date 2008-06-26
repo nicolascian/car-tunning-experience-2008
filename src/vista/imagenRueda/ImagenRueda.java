@@ -25,6 +25,11 @@ public class ImagenRueda extends ImagenSecuencial {
 		return super.getImagen();
 	}
 
+	public static Dimension createDimensionRuedaMedianaParaAuto(Dimension dimension){
+		return new Dimension((int)(dimension.getWidth()*0.27),
+				             (int)(dimension.getHeight()*0.45));
+	}
+	
 	public static ImagenRueda createImagenRuedaNeumaticoDibujo2(Dimension dimension,Posicion posicion){
 		return new ImagenRueda("src//vista//imagenRueda//neumatico2",false,false,dimension,posicion);
 	}
