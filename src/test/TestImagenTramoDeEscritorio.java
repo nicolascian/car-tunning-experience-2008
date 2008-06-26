@@ -1,7 +1,6 @@
 package test;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -36,7 +35,7 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 	    ruedaIzq=ImagenRueda.createImagenRuedaNeumaticoDibujo2(new Dimension(50,100), new Posicion(250,450));
 	    ruedaDer=ImagenRueda.createImagenRuedaNeumaticoDibujo2(new Dimension(50,100), new Posicion(500,450));
 	    imagenAuto=new ImagenAutoDesdeAtras(null,"src//vista//imagenAuto//imagenes//DodgeViper//atras.png",
-	    		                            new Dimension(200,100),new Posicion());
+	    		                            new Dimension(200,100),new Posicion(300,400));
 	    super.paint(this.getGraphics());
 	}
 	
@@ -47,15 +46,6 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 		grafico.drawImage(imagenAuxiliar.getImage(),
 			     imagenAuxiliar.getPosicion().getX(),imagenAuxiliar.getPosicion().getY(),
 		         imagenAuxiliar.getDimension().width,imagenAuxiliar.getDimension().height,this);
-		/*
-		imagenAuxiliar=ruedaIzq.getImagen();
-		grafico.drawImage(imagenAuxiliar.getImage(),
-			     imagenAuxiliar.getPosicion().getX(),imagenAuxiliar.getPosicion().getY(),
-		         imagenAuxiliar.getDimension().width,imagenAuxiliar.getDimension().height,this);/*
-		imagenAuxiliar=ruedaDer.getImagen();
-		grafico.drawImage(imagenAuxiliar.getImage(),
-			     imagenAuxiliar.getPosicion().getX(),imagenAuxiliar.getPosicion().getY(),
-		         imagenAuxiliar.getDimension().width,imagenAuxiliar.getDimension().height,this);*/
 		imagenAuto.paint(grafico);
 		((Graphics2D)g).drawImage(image,0 ,0,this.getWidth(),this.getHeight(),this);
 	  }catch(Exception e){}
