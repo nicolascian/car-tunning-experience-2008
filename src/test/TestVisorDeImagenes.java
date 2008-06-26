@@ -8,14 +8,14 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import org.junit.Test;
-import vista.visorDeImagenes.Posicion;
+import vista.imagenTramo.Posicion;
 import vista.visorDeImagenes.VisorDeImagenes;
 
 public class TestVisorDeImagenes {
 
 	public class Ventana extends JFrame {
 		
-		private String ruta="src\\vista\\imagenes\\DodgeViper";
+		private String ruta="src//vista//imagenAuto//imagenes//DodgeViper";
 		private VisorDeImagenes visor=new VisorDeImagenes(ruta,this,new Dimension(800,600),
 				                                          new Posicion(50,50));
 		

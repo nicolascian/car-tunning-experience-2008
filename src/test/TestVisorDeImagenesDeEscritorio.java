@@ -12,9 +12,9 @@ public class TestVisorDeImagenesDeEscritorio {
 	    ventana.setSize(600,600);
 	    ventana.setVisible(true);
 	    ventana.setLayout(new FlowLayout());
-	    String ruta="src//vista//imagenes//DodgeViper";
+	    String ruta="src//vista//imagenAuto//imagenes//DodgeViper";
 		VisorDeImagenes visor=new VisorDeImagenes(ruta,ventana,new Dimension(800,600),
 					                                          new Posicion(50,50));
-	    visor.excluirArchivo("autoParaPista.png"); 	     
+	    visor.excluirArchivo("atras.png"); 	     
 	}
 }
