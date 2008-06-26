@@ -15,6 +15,6 @@ public class TestVisorDeImagenesDeEscritorio {
 	    String ruta="src//vista//imagenAuto//imagenes//DodgeViper";
 		VisorDeImagenes visor=new VisorDeImagenes(ruta,ventana,new Dimension(800,600),
 					                                          new Posicion(50,50));
-	    visor.excluirArchivo("atras.png"); 	     
+	    //visor.excluirArchivo("atras.png"); 	     
 	}
 }
