@@ -306,5 +306,61 @@ public class ImagenSecuencial{
 	protected void setCursor(int cursor) {
 		this.cursor = cursor;
 	}
+
+	/**
+	 * @return the proporcionAltoInicial
+	 */
+	protected double getProporcionAltoInicial() {
+		return proporcionAltoInicial;
+	}
+
+	/**
+	 * @param proporcionAltoInicial the proporcionAltoInicial to set
+	 */
+	protected void setProporcionAltoInicial(double proporcionAltoInicial) {
+		this.proporcionAltoInicial = proporcionAltoInicial;
+	}
+
+	/**
+	 * @return the proporcionAncho
+	 */
+	protected double getProporcionAncho() {
+		return proporcionAncho;
+	}
+
+	/**
+	 * @param proporcionAncho the proporcionAncho to set
+	 */
+	protected void setProporcionAncho(double proporcionAncho) {
+		this.proporcionAncho = proporcionAncho;
+	}
+
+	/**
+	 * @return the proporcionAnchoInicial
+	 */
+	protected double getProporcionAnchoInicial() {
+		return proporcionAnchoInicial;
+	}
+
+	/**
+	 * @param proporcionAnchoInicial the proporcionAnchoInicial to set
+	 */
+	protected void setProporcionAnchoInicial(double proporcionAnchoInicial) {
+		this.proporcionAnchoInicial = proporcionAnchoInicial;
+	}
+
+	/**
+	 * @return the piramidal
+	 */
+	protected boolean isPiramidal() {
+		return piramidal;
+	}
+
+	/**
+	 * @param piramidal the piramidal to set
+	 */
+	protected void setPiramidal(boolean piramidal) {
+		this.piramidal = piramidal;
+	}
 	
 }
