@@ -26,7 +26,7 @@ public class ImagenRueda extends ImagenSecuencial {
 	}
 
 	public static Dimension createDimensionRuedaMedianaParaAuto(Dimension dimension){
-		return new Dimension((int)(dimension.getWidth()*0.27),
+		return new Dimension((int)(dimension.getWidth()*0.22),
 				             (int)(dimension.getHeight()*0.45));
 	}
 	
