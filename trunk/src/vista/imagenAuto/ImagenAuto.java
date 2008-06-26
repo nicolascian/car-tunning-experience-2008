@@ -7,70 +7,90 @@ import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
-
+import vista.imagenTramo.Imagen;
+import vista.imagenTramo.Posicion;
 
 public class ImagenAuto extends Component {
           
 	Auto auto;
-	Pista pista;
-	
-    BufferedImage Auto;
-    BufferedImage Piso;
-    BufferedImage Khm;
-    BufferedImage Rpm;
-    BufferedImage AgujaRpm;
-    BufferedImage AgujaKmh;
-    JFrame Ventana;
+		
+    Imagen imagenAuto=null;
     
-    public ImagenAuto(JFrame ventanaJuego, Auto auto, Pista pista) {
-    	
-    	this.Ventana= ventanaJuego;
-
-    	try {
-           Auto = ImageIO.read(new File("alfaromeo.png"));
-       } catch (IOException e) {
-       }
-       
-       try {
-           Piso = ImageIO.read(new File("piso.png"));
-       } catch (IOException e) {
-       }
-       
-       try {
-           Rpm = ImageIO.read(new File("rpm.png"));
-       } catch (IOException e) {
-       }
-       
-       try {
-           Khm = ImageIO.read(new File("kmh.png"));
-       } catch (IOException e) {
-       }
-       
+    Posicion posicion=null;
+    
+    Dimension dimension=null;
+    
+    public ImagenAuto( Auto auto, String ruta,Dimension dimension,
+    		          Posicion posicion) {
        this.auto= auto;
-       this.pista = pista;
-       
-       AgujaRpm = new BufferedImage(2*Auto.getWidth(), Auto.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
+       this.dimension=new Dimension(dimension);
+       this.posicion=new Posicion(posicion);
+       this.imagenAuto=new Imagen(ruta,dimension,posicion);
     }
     
     public void paint(Graphics g) {
-    	g.drawImage(Piso, (Ventana.getWidth()-Piso.getWidth(null))/2, (Ventana.getHeight()-Piso.getHeight(null))-30, null );
-    	g.drawImage(Auto, (Ventana.getWidth()-Auto.getWidth(null))/2, (Ventana.getHeight()-Auto.getHeight(null))-100, null);
-    	g.drawImage(Khm, 0, 0, null);
-    	g.drawImage(Rpm, 0, 128, null);
+    	
     }
 
     public void update(Graphics g){
     	paint(g);
     }
+
+	/**
+	 * @return the auto
+	 */
+	public Auto getAuto() {
+		return auto;
+	}
+
+	/**
+	 * @param auto the auto to set
+	 */
+	public void setAuto(Auto auto) {
+		this.auto = auto;
+	}
+
+	/**
+	 * @return the imagenAuto
+	 */
+	public Imagen getImagenAuto() {
+		return imagenAuto;
+	}
+
+	/**
+	 * @param imagenAuto the imagenAuto to set
+	 */
+	public void setImagenAuto(Imagen imagenAuto) {
+		this.imagenAuto = imagenAuto;
+	}
+
+	/**
+	 * @return the posicion
+	 */
+	public Posicion getPosicion() {
+		return posicion;
+	}
+
+	/**
+	 * @param posicion the posicion to set
+	 */
+	public void setPosicion(Posicion posicion) {
+		this.posicion = posicion;
+	}
+
+	/**
+	 * @return the dimension
+	 */
+	public Dimension getDimension() {
+		return dimension;
+	}
+
+	/**
+	 * @param dimension the dimension to set
+	 */
+	public void setDimension(Dimension dimension) {
+		this.dimension = dimension;
+	}
     
-    public Dimension getPreferredSize() {
-        if (Piso == null) {
-             return new Dimension(100,100);
-        } else {
-           return new Dimension(Piso.getWidth(null), Piso.getHeight(null));
-       }
-    }
-
-
 }
 
