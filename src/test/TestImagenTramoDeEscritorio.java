@@ -8,6 +8,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import vista.imagenTramo.*;
 import vista.imagenRueda.*;
+import vista.imagenAuto
+
 public class TestImagenTramoDeEscritorio extends JFrame{
 
 	private BufferedImage image=null;
@@ -19,6 +21,8 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 	private ImagenRueda ruedaIzq=null;
 	
 	private ImagenRueda ruedaDer=null;
+	
+	private ImagenAuto imagenAuto=null;
 	
 	public TestImagenTramoDeEscritorio(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
