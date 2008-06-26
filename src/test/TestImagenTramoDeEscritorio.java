@@ -1,11 +1,13 @@
 package test;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
+
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import vista.recursos.
-
+import vista.imagenTramo.*;
+import vista.imagenRueda.*;
 public class TestImagenTramoDeEscritorio extends JFrame{
 
 	private BufferedImage image=null;
@@ -13,6 +15,10 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 	private Graphics2D grafico=null;
 	
 	private ImagenTramo imagenTramo=null;
+	
+	private ImagenRueda ruedaIzq=null;
+	
+	private ImagenRueda ruedaDer=null;
 	
 	public TestImagenTramoDeEscritorio(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,6 +29,8 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 	    grafico=image.createGraphics();
 	    imagenTramo=ImagenTramo.createTramoAsfaltoCespedDiaAlgoNublado(ImagenTramo.createDimensionOptima(),
 	    		                                                       new Posicion());
+	    ruedaIzq=ImagenRueda.createImagenRuedaNeumaticoDibujo2(new Dimension(50,100), new Posicion(250,450));
+	    ruedaDer=ImagenRueda.createImagenRuedaNeumaticoDibujo2(new Dimension(50,100), new Posicion(500,450));
 	    super.paint(this.getGraphics());
 	}
 	
@@ -33,9 +41,15 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 		grafico.drawImage(imagenAuxiliar.getImage(),
 			     imagenAuxiliar.getPosicion().getX(),imagenAuxiliar.getPosicion().getY(),
 		         imagenAuxiliar.getDimension().width,imagenAuxiliar.getDimension().height,this);
-		((Graphics2D)g).drawImage(image,
+		imagenAuxiliar=ruedaIzq.getImagen();
+		grafico.drawImage(imagenAuxiliar.getImage(),
 			     imagenAuxiliar.getPosicion().getX(),imagenAuxiliar.getPosicion().getY(),
 		         imagenAuxiliar.getDimension().width,imagenAuxiliar.getDimension().height,this);
+		imagenAuxiliar=ruedaDer.getImagen();
+		grafico.drawImage(imagenAuxiliar.getImage(),
+			     imagenAuxiliar.getPosicion().getX(),imagenAuxiliar.getPosicion().getY(),
+		         imagenAuxiliar.getDimension().width,imagenAuxiliar.getDimension().height,this);
+		((Graphics2D)g).drawImage(image,0 ,0,this.getWidth(),this.getHeight(),this);
 	  }catch(Exception e){}
 	}
 	
