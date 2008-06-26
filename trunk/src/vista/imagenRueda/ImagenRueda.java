@@ -26,7 +26,7 @@ public class ImagenRueda extends ImagenSecuencial {
 	}
 
 	public static ImagenRueda createImagenRuedaNeumaticoDibujo2(Dimension dimension,Posicion posicion){
-		return new ImagenRueda("src//vista//imagenRueda//neumatico1",false,false,dimension,posicion);
+		return new ImagenRueda("src//vista//imagenRueda//neumatico2",false,false,dimension,posicion);
 	}
 	
 	private ImagenRueda(String ruta, boolean invertida, boolean piramidal,
@@ -61,10 +61,10 @@ public class ImagenRueda extends ImagenSecuencial {
 		   vectorDimensiones[cursor]=new Dimension(ancho,altoIndividual);
 		   vectorPosiciones[cursor]=new Posicion(0,vectorPosiciones[cursor-1].getY()+altoIndividual);
 		}
-		for(int cursor=getVectorImagenesSalida().length-1;cursor>=0;cursor--){
-				 Imagen imagen=generarImagenSalida(vectorDimensiones,vectorPosiciones);			
-				 this.getVectorImagenesSalida()[cursor]=imagen;
-				 this.rotar();
-		}
+		for(int cursor=0;cursor<getVectorImagenesSalida().length;cursor++){
+			 Imagen imagen=generarImagenSalida(vectorDimensiones,vectorPosiciones);			
+			 this.getVectorImagenesSalida()[cursor]=imagen;
+			 this.rotar();
+	  }
 	}
 }
