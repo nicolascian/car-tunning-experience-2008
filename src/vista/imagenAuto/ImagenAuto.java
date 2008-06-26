@@ -9,9 +9,9 @@ import vista.imagenTramo.Posicion;
 
 public class ImagenAuto extends Component {
           
-	private final static int OSCILACION=5;
+	private final static int OSCILACION=1;
 	
-	private final static int MAXIMO_CONTADOR=45;
+	private final static int MAXIMO_CONTADOR=5;
 	
 	private Auto auto;
 		

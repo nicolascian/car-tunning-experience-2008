@@ -16,26 +16,20 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 	private Graphics2D grafico=null;
 	
 	private ImagenTramo imagenTramo=null;
-	
-	private ImagenRueda ruedaIzq=null;
-	
-	private ImagenRueda ruedaDer=null;
-	
+			
 	private ImagenAutoDesdeAtras imagenAuto=null;
 	
 	public TestImagenTramoDeEscritorio(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.setSize(ImagenTramo.createDimensionOptima());//600 450
+	    this.setSize(ImagenTramo.createDimensionOptima());
 	    this.setVisible(true);
 	    this.setLayout(new FlowLayout());
 	    image = new BufferedImage(this.getWidth(),this.getHeight(), BufferedImage.TYPE_INT_RGB);
 	    grafico=image.createGraphics();
 	    imagenTramo=ImagenTramo.createTramoAsfaltoCespedDiaAlgoNublado(ImagenTramo.createDimensionOptima(),
 	    		                                                       new Posicion());
-	    ruedaIzq=ImagenRueda.createImagenRuedaNeumaticoDibujo2(new Dimension(50,100), new Posicion(250,450));
-	    ruedaDer=ImagenRueda.createImagenRuedaNeumaticoDibujo2(new Dimension(50,100), new Posicion(500,450));
 	    imagenAuto=new ImagenAutoDesdeAtras(null,"src//vista//imagenAuto//imagenes//DodgeViper//atras.png",
-	    		                            new Dimension(200,100),new Posicion(300,400));
+	    		                            new Dimension(270,170),new Posicion(250,400));
 	    super.paint(this.getGraphics());
 	}
 	
