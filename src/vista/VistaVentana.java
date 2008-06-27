@@ -19,11 +19,25 @@ import java.util.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import java.io.IOException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+//import org.apache.xerces.parsers.DOMParser;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
+
 
 public class VistaVentana implements Observer{
 
+	private modelo.Usuario usuario = null; //referencia al modelo (usuario)
 	private Auto auto = null; //referencia al modelo (auto)
 	private Pista pista = null; //referencia al modelo (pista)
+	private AlgoPesos capital = null; //referencia al modelo (algoPesos)
 	
 	private JWindow ventanaSplash  = null; //marco que contendra el splash
 	private JProgressBar progressBar = null;
@@ -70,6 +84,14 @@ public class VistaVentana implements Observer{
 	
 	private void JuegoNuevo(){
 		cerrarVentanaPrincipal();
+		
+		//creamos un modelo por defecto
+		auto = new Auto();
+		capital = new AlgoPesos(1000,00);
+		
+		//creo un usuario nuevo con cosas por defecto
+		usuario = new modelo.Usuario("NOMBRE", capital, auto);
+		
 		ventanaMenu.setVisible(true);
 	}
 	
@@ -97,7 +119,32 @@ public class VistaVentana implements Observer{
 		//se pude elegir una pista
 	}
 	
-	private void Guardar(){}
+	private void Guardar() throws IOException, ParserConfigurationException{
+		
+		String nombreArchivo = "guardado.xml";
+		
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	    DocumentBuilder loader = factory.newDocumentBuilder();
+        Document doc = loader.newDocument();
+
+        doc.appendChild(usuario.toXml(doc));
+        
+        XMLSerializer serializer = new XMLSerializer();
+        
+        com.sun.org.apache.xml.internal.serialize.OutputFormat outFormat = new com.sun.org.apache.xml.internal.serialize.OutputFormat();
+
+       
+        outFormat.setVersion("1.0");
+        outFormat.setIndenting(true);
+        outFormat.setIndent(4);
+        
+        serializer.setOutputFormat(outFormat);
+        serializer.setOutputCharStream(
+          new java.io.FileWriter(nombreArchivo));
+        serializer.serialize(doc);
+		
+	}
+	
 	private void Opciones(){}
 	private void Creditos(){}
 	
@@ -306,7 +353,12 @@ public class VistaVentana implements Observer{
 			botonGuardar.setText("Guardar");
 			botonGuardar.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Guardar();
+					try{
+						Guardar();
+					}
+					catch(Exception e1){
+						//MANEJAR LAS EXCEPTION
+					}
 				}
 			});
 		}
@@ -346,7 +398,7 @@ public class VistaVentana implements Observer{
 		
 		ventanaJuego.setLocationRelativeTo(null); //centrada
 		
-		ventanaJuego.addKeyListener(new Usuario(auto));
+		ventanaJuego.addKeyListener(new control.Usuario(auto));
 		//agregamos el listener del evento de cerrado de la ventana		
 		ventanaJuego.addWindowListener(new CloseListener());
 	  
