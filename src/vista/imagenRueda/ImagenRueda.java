@@ -8,12 +8,16 @@ import vista.imagenTramo.Imagen;
 import vista.imagenTramo.ImagenSecuencial;
 import vista.imagenTramo.Posicion;
 
+	
+
 /**
  * @author Usuario
  *
  */
 public class ImagenRueda extends ImagenSecuencial {
-		
+	
+	private int altoIndividual=0;
+	
 	/* (non-Javadoc)
 	 * @see vista.imagenTramo.ImagenSecuencial#getImagen()
 	 */
@@ -49,7 +53,14 @@ public class ImagenRueda extends ImagenSecuencial {
 	 * @see vista.imagenTramo.ImagenSecuencial#comprobarProporcion()
 	 */
 	@Override
-	protected void comprobarProporcion(){}
+	protected void comprobarProporcion(){
+		int altoIndividual=(int)(Math.round((float)this.getDimension().getHeight()/this.getVectorImagenes().length));
+		int altoTotal=altoIndividual*this.getVectorImagenes().length;
+		while(altoTotal<getDimension().height){
+			altoTotal=altoIndividual*this.getVectorImagenes().length;
+			altoIndividual++;
+		}
+	}
 
 	/* (non-Javadoc)
 	 * @see vista.imagenTramo.ImagenSecuencial#generarImagenes()
