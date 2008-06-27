@@ -31,7 +31,7 @@ public class ImagenSecuencial{
 	private boolean invertida=false;
 	
 	private boolean piramidal=false;
-	
+		
 	/**
 	 * @param ruta
 	 */
