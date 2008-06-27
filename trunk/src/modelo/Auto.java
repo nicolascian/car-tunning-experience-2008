@@ -6,11 +6,15 @@
  ******************************************************************************/
 
 package modelo;
+
 import modelo.componente.*;
 import modelo.componente.neumaticos.*;
 import modelo.exceptions.*;
 import modelo.fuerzas.*;
 import java.util.*;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
 
 /**
  * @Domumentacion: Una instancia de la clase Auto modela un auto, con todos sus componentes,
@@ -683,20 +687,6 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	  }catch (NullPointerException e){}
 	}
 	
-	/* toString */
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	*/
-	@Override
-	public String toString() {
-		String cadena="Auto Velocidad: "+getVelocidad()+"Km/h ";
-		if(estaListoParaCarrera())
-			cadena=cadena+" Esta Listo Para Carrera ";
-		else
-			cadena=cadena+" No Esta Listo Para Carrera ";
-		cadena=cadena+'\n'+getMotor().toString()+getCaja().toString();
-		return(cadena);
-	}
 
 	public Embrague getEmbrague() {
 		return embrague;
@@ -886,4 +876,35 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 			this.sistemaDeRefrigeracion.instalar(this);
 		}catch(NullPointerException e){}
 	}
+	
+	
+	
+	/* toString */
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	*/
+	@Override
+	public String toString() {
+		String cadena="Auto Velocidad: "+getVelocidad()+"Km/h ";
+		if(estaListoParaCarrera())
+			cadena=cadena+" Esta Listo Para Carrera ";
+		else
+			cadena=cadena+" No Esta Listo Para Carrera ";
+		cadena=cadena+'\n'+getMotor().toString()+getCaja().toString();
+		return(cadena);
+	}
+	
+	
+	public Element toXml(Document doc){
+		Element xmlElement = doc.createElement("auto");
+		
+		LinkedList<Componente> lista= obtenerComponentes();
+		Iterator<Componente> it = lista.iterator();
+		
+		while (it.hasNext()){ xmlElement.appendChild(it.next().toXml(doc));  }
+		
+		return xmlElement;
+	}
+	
+	
 }

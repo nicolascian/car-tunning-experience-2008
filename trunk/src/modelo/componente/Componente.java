@@ -8,6 +8,10 @@
 package modelo.componente;
 
 import java.util.*;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import modelo.*;
 
 /**
@@ -57,6 +61,10 @@ public abstract class Componente extends Observable {
 	 * @return Potencia
 	 */
 	public abstract double obtenerPotencia();
+	
+	/** toXml, para poder guardar */
+	//public abstract Element toXml(Document doc);
+	public Element toXml(Document doc){return null;} //temporal para que no pinche todo
 	
 	/**
 	 * en funcion de la disposicion del unidades monetarias, y
@@ -121,6 +129,7 @@ public abstract class Componente extends Observable {
 				" Peso: " + getPeso() + " Kg" + '\n' +
 				" Precio: " + getPrecio() + " algo$");
 	}
+	
 	
 	/* Setters y Getters */
 	

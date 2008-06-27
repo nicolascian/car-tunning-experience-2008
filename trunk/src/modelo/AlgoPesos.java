@@ -7,6 +7,9 @@
 
 package modelo;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 /**
  * Es el tipo de dato con el que vamos a trabajar.
  * 
@@ -109,6 +112,21 @@ public class AlgoPesos{
 	 */
 	public int getDecimal() {
 		return decimal;
+	}
+	
+	
+	
+	public Element toXml(Document doc){
+		Element xmlElement = doc.createElement("capital");
+		xmlElement.setAttribute("entero", String.valueOf(getEntero()));
+		xmlElement.setAttribute("decimal", String.valueOf(getDecimal()));
+		return xmlElement;
+	}
+	
+	
+	public String toString() {
+		return "capital: " + getEntero() + "," + getDecimal();
+
 	}
 	
 }
