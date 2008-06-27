@@ -27,7 +27,6 @@ public class Juego{
 
 
 		//CREAMOS EL MODELO
-		new modelo.Usuario(String nombre, new Auto(), new AlgoPesos());
 		
 		//CREAMOS UNA VISTA, y le pasamos el modelo
 		new VistaVentana(); 
