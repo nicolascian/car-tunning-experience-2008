@@ -7,7 +7,6 @@
 
 package vista;
 
-import test.*;
 
 import modelo.*;
 import modelo.componente.*;
