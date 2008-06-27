@@ -7,6 +7,8 @@
 
 package vista;
 
+import test.*;
+
 import modelo.*;
 import modelo.componente.*;
 import control.*;
@@ -75,12 +77,12 @@ public class VistaVentana implements Observer{
 	private void CargarJuego(){}
 	
 	private void Manejar(){
-		cerrarVentanaMenu();
-		ventanaJuego.setVisible(true);
+		//cerrarVentanaMenu();
+		//ventanaJuego.setVisible(true);
 		
-		auto.setCaja(new Manual(5));//le pongo una caja al auto
-		new VistaConsola(auto, pista);//creo una vistaa de consola
-		auto.ActualizarObservadores();// para que se actualice por primera vez
+		//auto.setCaja(new Manual(5));//le pongo una caja al auto
+		//new VistaConsola(auto, pista);//creo una vistaa de consola
+		//auto.ActualizarObservadores();// para que se actualice por primera vez
 
 	}
 	
