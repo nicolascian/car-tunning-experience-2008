@@ -26,7 +26,11 @@ public class Juego{
 	public static void main(String args[]){
 
 
-		new VistaVentana(); //creo una vista
+		//CREAMOS EL MODELO
+		new modelo.Usuario(String nombre, new Auto(), new AlgoPesos());
+		
+		//CREAMOS UNA VISTA, y le pasamos el modelo
+		new VistaVentana(); 
 
 
 	}// fin main

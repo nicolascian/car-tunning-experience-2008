@@ -347,7 +347,7 @@ public class VistaVentana implements Observer{
 		
 		ventanaJuego.setLocationRelativeTo(null); //centrada
 		
-		ventanaJuego.addKeyListener(new control.Usuario(auto));
+		ventanaJuego.addKeyListener(new Usuario(auto));
 		//agregamos el listener del evento de cerrado de la ventana		
 		ventanaJuego.addWindowListener(new CloseListener());
 	  
