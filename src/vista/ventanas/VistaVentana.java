@@ -63,10 +63,7 @@ public class VistaVentana implements Observer{
 		ventanaSplash.dispose();
 		ventanaPrincipal.setVisible(true);
 	}
-	
-	
-	/* BOTONES ACCIONES ******************************************************************************/
-	
+			
 	public void JuegoNuevo(){
 		cerrarVentanaPrincipal();
 		ventanaMenu.setVisible(true);
@@ -114,7 +111,6 @@ public class VistaVentana implements Observer{
 	}
 	
 	private void cerrarVentanaPrincipal(){
-		ventanaPrincipal.setVisible(false);
 		ventanaPrincipal.dispose();
 		ventanaPrincipal = null;
 	}
@@ -125,37 +121,18 @@ public class VistaVentana implements Observer{
 	}
 	
 	private void cerrarVentanaMenu(){
-		ventanaMenu.setVisible(false);
 		ventanaMenu.dispose();
 		ventanaMenu = null;
 	}
 	
 	/* VENTANA JUEGO *********************************************************************************/
 	private void crearVentanaJuego(){
-		ventanaJuego = new JFrame("Manejar - CTE08");
-		ventanaJuego.setSize(800, 600);
-		
-		ventanaJuego.setLocationRelativeTo(null); //centrada
-		
-		ventanaJuego.addKeyListener(new Usuario(auto));
-		//agregamos el listener del evento de cerrado de la ventana		
-		ventanaJuego.addWindowListener(new CloseListener());
-	  
-		imagen = new ImagenAuto(ventanaJuego, auto, pista);
-		// cargamso la imagen desde archivo
-		ventanaJuego.add(imagen);
-		
-		//ventanaJuego.pack();
-		ventanaJuego.setResizable(false);
-		ventanaJuego.setAlwaysOnTop(true);
+		ventanaJuego = new VentanaCarrera()
 		
 	}
 	
 	private void cerrarVentanaJuego(){
-//		 como no se cerrar ventanas, la desaparezco
-		// y lo pongo en null, para que el recolector se encargue
-		ventanaMenu.setVisible(false);
+		ventanaJuego.dispose();
 		ventanaMenu = null;
-	}
-		
+	}		
 }
