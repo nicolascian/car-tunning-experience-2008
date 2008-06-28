@@ -8,7 +8,7 @@ public class Manejar implements Runnable {
 	}
 	
 	
-	public Manejar(){
+	public Manejar(modelo.Usuario usuario, Pista pista){
 		
 		
 	}
