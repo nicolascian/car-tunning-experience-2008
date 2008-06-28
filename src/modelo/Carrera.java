@@ -9,11 +9,6 @@ import modelo.exceptions.*;
 
 public class Carrera implements Runnable {
 
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	private Pista pista;
 	
 	/*
@@ -22,9 +17,10 @@ public class Carrera implements Runnable {
 	 */ 
 	private AlgoPesos apuesta;
 	
-	private Jugador jugador[];
+	private Usuario usuario;
 	
-	private int cantidadJugadores;
+	private Virtual virtual;
+	
 	
 	/*
 	 * 	ANTES DE CONSTRUIR LA CARRERA SE DEBE CHEQUEAR QUE EL AUTO
@@ -33,31 +29,20 @@ public class Carrera implements Runnable {
 	 * 	TODOS LOS JUGADORES TIENEN QUE TENER DINERO SUFICIENTE PARA
 	 * 	ENFRENTAR LA APUESTA
 	 */
-	public Carrera(Jugador[] jugador, Pista pista, AlgoPesos apuesta){
-		this.jugador = jugador;
+	public Carrera(Usuario usuario,Virtual virtual, Pista pista, AlgoPesos apuesta){
+		this.usuario = usuario;
+		this.virtual = virtual;
 		this.pista = pista;
-		this.cantidadJugadores = jugador.length;
 		this.apuesta = apuesta;
 	}
 	
 	/**
 	 * Metodo que se encarga de inicializar los atributos para la carrera
 	 */
-	public void incializar() throws ExceptionAutoNoListoParaCarrera{
+	public void incializar(){
+		this.usuario.getAuto().setPosicion(0);
+		this.virtual.getAuto().setPosicion(0);
 		
-		/*	se comprueba que los autos contengan todos sus componentes 
-		 * 	en estados validos, y se setean las posiciones en 0 
-		 */
-		for(int i = 0; i < this.cantidadJugadores; i++){
-			try{
-				this.jugador[i].getAuto().comprobarComponentes();
-			}catch (ExceptionComponenteFaltante e){
-				throw new ExceptionAutoNoListoParaCarrera();
-			}catch (ExceptionComponenteDesgastado e){
-				throw new ExceptionAutoNoListoParaCarrera();
-			}
-			this.jugador[i].getAuto().setPosicion(0);
-		}
 		
 		/* setear posiciones de autos en 0, 
 		 * inicializar controladores
@@ -69,15 +54,20 @@ public class Carrera implements Runnable {
 	
 	public void finalizar(int jugadorGanador){
 		
-		for(int i = 0; i < this.cantidadJugadores; i++){
-			if (i != jugadorGanador) this.jugador[i].setDinero(this.jugador[i].getDinero().restar(this.apuesta.getEntero(), this.apuesta.getDecimal()));
-			else this.jugador[jugadorGanador].setDinero(this.jugador[jugadorGanador].getDinero().sumar(this.apuesta));
-		}
+		if (this.usuario.getAuto().getPosicion() < this.virtual.getAuto().getPosicion()){
+			this.usuario.setDinero(this.usuario.getDinero().restar(this.apuesta.getEntero(), this.apuesta.getDecimal()));
+		}else this.usuario.setDinero(this.usuario.getDinero().sumar(this.apuesta));
+		
 		
 		/* aumentar / disminuir la plata del jugador que gano / perdio
 		 * cerra la vista
 		 * terminar los controles
 		 */
+	}
+	
+	public void run() {
+		this.incializar();
+		
 	}
 	
 	public void correr(){
