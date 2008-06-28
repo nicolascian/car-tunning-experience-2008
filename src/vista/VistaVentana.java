@@ -5,12 +5,13 @@
  *            Facultad de Ingenieria - Universidad de Buenos Aires            *
  ******************************************************************************/
 
-package vista.ventanas;
+package vista;
 
 import modelo.*;
 import modelo.componente.*;
 import control.*;
 import vista.imagen.*;
+import vista.ventanas.*;
 
 import javax.swing.*;
 import java.awt.*;

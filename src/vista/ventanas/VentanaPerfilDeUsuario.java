@@ -1,12 +1,15 @@
 /**
  * 
  */
+
 package vista.ventanas;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import java.awt.*;
+
+import vista.*;
 
 /**
  * @author Usuario
