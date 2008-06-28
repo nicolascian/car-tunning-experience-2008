@@ -72,7 +72,7 @@ public class VistaVentana implements Observer{
 		
 		cerrarVentanaPrincipal();
 		
-		controlJuego.crearUsuario();	
+		controlJuego.crearUsuario(nombre);	
 		
 		ventanaMenu.setVisible(true);
 		

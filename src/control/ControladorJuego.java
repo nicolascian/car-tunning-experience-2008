@@ -25,12 +25,12 @@ public class ControladorJuego {
 	}
 	
 	
-	public void crearUsuario(){
+	public void crearUsuario(String nombre){
 		
 		//creamos parte del modelo
 		//creo un usuario nuevo con cosas por defecto
 
-		datos.setUsuario(new modelo.Usuario("NOMBRE", new AlgoPesos(1000,00), new Auto()));
+		datos.setUsuario(new modelo.Usuario(nombre, new AlgoPesos(1000,00), new Auto()));
 
 	}
 
