@@ -5,6 +5,7 @@
 package modelo;
 
 import control.*;
+import vista.ventanas.*;
 import modelo.exceptions.*;
 
 public class Carrera implements Runnable {
@@ -42,7 +43,11 @@ public class Carrera implements Runnable {
 	public void incializar(){
 		this.usuario.getAuto().setPosicion(0);
 		this.virtual.getAuto().setPosicion(0);
-		
+		VentanaCarrera vista =  new VentanaCarrera(this.usuario, this.virtual, this.pista);
+		this.usuario.getAuto().agregarObservador(vista);
+		this.virtual.getAuto().agregarObservador(vista);
+		this.usuario.getAuto().ActualizarObservadores();
+		this.virtual.getAuto().ActualizarObservadores();
 		
 		/* setear posiciones de autos en 0, 
 		 * inicializar controladores
