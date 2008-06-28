@@ -17,9 +17,9 @@ public class Carrera implements Runnable {
 	 */ 
 	private AlgoPesos apuesta;
 	
-	private Usuario usuario;
+	private modelo.Usuario usuario;
 	
-	private Virtual virtual;
+	private modelo.Virtual virtual;
 	
 	
 	/*
