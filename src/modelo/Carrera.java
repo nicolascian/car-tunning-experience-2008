@@ -2,11 +2,17 @@
  * ALGUNAS COSAS QUE SE ME OCURRIERON A LA NOCHE DE COMO PODRIA SER UNA CARRERA
  */
 
-import modelo.*;
+package modelo;
+
 import control.*;
 import modelo.exceptions.*;
 
-public class Carrera {
+public class Carrera implements Runnable {
+
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	private Pista pista;
 	

@@ -3,6 +3,8 @@
  */
 package vista.ventanas;
 
+import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -19,6 +21,8 @@ private VistaVentana vistaVentana=null;
 	public VentanaMenuPrincipal(VistaVentana vistaVentana){
 		this.setTitle("Menu Principal - Car Tunnning Experience 2008");
 		this.vistaVentana=vistaVentana;
+		this.setLayout(new FlowLayout());
+		
 		JButton botonManejar=new JButton();  //boton para manejar solo
 		botonManejar.setText("Manejar");
 		botonManejar.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +79,7 @@ private VistaVentana vistaVentana=null;
 			}
 		});
 		this.add(botonCreditos);
+		this.pack();
 		this.setResizable(false);//que no se pueda cambiar de tamaño
 		this.setLocationRelativeTo(null); //centrada	
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

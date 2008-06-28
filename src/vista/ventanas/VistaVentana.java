@@ -21,9 +21,7 @@ import vista.VistaConsola;
 
 public class VistaVentana implements Observer{
 
-	private Auto auto = null; //referencia al modelo (auto)
-	
-	private Pista pista = null; //referencia al modelo (pista)
+	private ControladorJuego controlJuego;
 		
 	private JFrame ventanaPrincipal  = null; //marco que contendra los controles del primer menu
 	
@@ -41,15 +39,16 @@ public class VistaVentana implements Observer{
 	}
 	
 	/** Constructor de la vista con ventanas */
-	public VistaVentana(){
+	public VistaVentana(ControladorJuego ctrl){
+		controlJuego = ctrl;
 		// decorados
 		JFrame.setDefaultLookAndFeelDecorated(true); //false para Windows estandar
 		VentanaSplash ventanaSplash = new VentanaSplash();
 		// Conectamos esta vista con el modelo
-		this.auto = new Auto();
-		this.pista = new Pista(auto, auto, 1000);
-		this.auto.agregarObservador(this);
-		this.pista.addObserver(this);
+		//this.auto = new Auto();
+		//this.pista = new Pista(auto, auto, 1000);
+		//this.auto.agregarObservador(this);
+		//this.pista.addObserver(this);
 			
 		crearVentanaPrincipal();
 		ventanaSplash.setProgresoProgressBar(25);
@@ -67,25 +66,42 @@ public class VistaVentana implements Observer{
 	}
 			
 	public void JuegoNuevo(){
+		
 		cerrarVentanaPrincipal();
+	
+		controlJuego.crearUsuario();	
+		
+		ventanaMenu.setVisible(true);
+		
+	}
+	
+	public void CargarJuego(){
+		cerrarVentanaPrincipal();
+		
+		controlJuego.cargarUsuario();
+		
 		ventanaMenu.setVisible(true);
 	}
 	
-	public void CargarJuego(){}
-	
 	public void Manejar(){
-		cerrarVentanaMenu();
-		ventanaJuego.setVisible(true);
+		ventanaMenu.setVisible(false);
 		
-		auto.setCaja(new Manual(5));//le pongo una caja al auto
+		controlJuego.correrSolo();
+		
+		/*
 		new VistaConsola(auto, pista);//creo una vistaa de consola
 		auto.ActualizarObservadores();// para que se actualice por primera vez
-
+		 */
+		
+		ventanaMenu.setVisible(true);
 	}
 	
 	public void Carrera(){
-		Jugador jugador = new Virtual(new Principiante(), auto);
-		new VistaConsola(auto, pista);
+		ventanaMenu.setVisible(false);
+		
+		controlJuego.correrCarrera();
+		
+		ventanaMenu.setVisible(true);
 	}
 	
 	public void Auto(){
@@ -95,7 +111,11 @@ public class VistaVentana implements Observer{
 		//se pude elegir una pista
 	}
 	
-	public void Guardar(){}
+	public void Guardar(){
+		
+		controlJuego.Guardar();
+		
+	}
 	public void Opciones(){}
 	public void Creditos(){}
 	
