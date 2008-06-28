@@ -82,23 +82,11 @@ public class VistaVentana implements Observer{
 	
 	private void JuegoNuevo(){
 		cerrarVentanaPrincipal();
-		
-		//creamos el modelo
-		//creo un usuario nuevo con cosas por defecto
-		usuario = new modelo.Usuario("NOMBRE", new AlgoPesos(1000,00), new Auto());
-		
 		ventanaMenu.setVisible(true);
 	}
 	
 	private void CargarJuego(){
-		//carga usuario de archivo
-		cerrarVentanaPrincipal();
-		
-//		creamos el modelo ESTO NO ES ASI ES TEMPORAL
-		//creo un usuario nuevo con cosas por defecto
-		usuario = new modelo.Usuario("NOMBRE", new AlgoPesos(1000,00), new Auto());
-		
-		ventanaMenu.setVisible(true);
+	
 	}
 	
 	private void Manejar(){
