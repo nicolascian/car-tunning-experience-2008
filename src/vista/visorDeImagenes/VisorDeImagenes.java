@@ -15,6 +15,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import vista.imagenTramo.Posicion;
+import java.util.LinkedList;
 /**
  * @author Usuario
  *
@@ -28,8 +29,8 @@ public class VisorDeImagenes{
 	private BufferedImage imagenPantalla=null;
 	
 	private String ruta=null;
-		
-	private String nombreExcluido="";
+	
+	private LinkedList<String> listaDeExcluidos=null;
 	
 	Hilo hilo=null;
 	
@@ -74,6 +75,7 @@ public class VisorDeImagenes{
 		this.posicionPantalla=posicion;
 		this.setDimensionPantalla(dimension);
 		this.cargarImagenPantalla();
+		this.listaDeExcluidos=new LinkedList<String>();
 		cargarImagenes();
 	}
 	
@@ -177,7 +179,7 @@ public class VisorDeImagenes{
 	}
 	
 	public void excluirArchivo(String nombre){
-		this.nombreExcluido=nombre;
+		this.listaDeExcluidos.add(nombre);
 		this.cargarImagenes();
 	}
 	
@@ -192,11 +194,13 @@ public class VisorDeImagenes{
 	}
 	
 	private boolean validarNombre(String ruta){
-		if(ruta.endsWith(this.nombreExcluido))
-		   return false;
-		else
-		   return true;
-		 
+		boolean retorno=true;
+		Iterator<String> it=this.listaDeExcluidos.iterator();
+		while(it.hasNext()){
+		   if(ruta.endsWith(it.next()))
+			 retorno=false;
+		}
+		return retorno;		 
 	}
 		
 	private boolean validarJpg(String ruta){
