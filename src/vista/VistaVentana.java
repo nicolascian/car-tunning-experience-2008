@@ -68,8 +68,10 @@ public class VistaVentana implements Observer{
 			
 	public void JuegoNuevo(){
 		
+		String nombre = JOptionPane.showInputDialog("Ingresar Nombre:");
+		
 		cerrarVentanaPrincipal();
-	
+		
 		controlJuego.crearUsuario();	
 		
 		ventanaMenu.setVisible(true);
