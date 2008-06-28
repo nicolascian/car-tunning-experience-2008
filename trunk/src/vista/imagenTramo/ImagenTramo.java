@@ -39,7 +39,12 @@ public class ImagenTramo {
 	
 	public static ImagenTramo createTramoTierraNegraTierraClaraDiaAlgoNublado(Dimension dimension,Posicion posicion){
 		return createTramo("src//vista//imagenTramo//cieloSemiNublado","src//vista//imagenTramo//TierraNegra",
-				           "src//vista//imagenTramo//TierraNegra",dimension,posicion);
+				           "src//vista//imagenTramo//Tierra-Clara-1",dimension,posicion);
+	}
+	
+	public static ImagenTramo createTramoPuente(Dimension dimension,Posicion posicion){
+		return createTramo("src//vista//imagenTramo//cieloSemiNublado","src//vista//imagenTramo//carretera2",
+				           "src//vista//imagenTramo//rio",dimension,posicion);
 	}
 	
 	public static Dimension createDimensionMaxima(){
