@@ -30,7 +30,7 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 	    		                                                       new Posicion());
 	    		                                                       */
 
-	    imagenTramo=ImagenTramo.createTramoTierraCespedDiaAlgoNublado(ImagenTramo.createDimensionOptima(),
+	    imagenTramo=ImagenTramo.createTramoTierraNegraTierraClaraDiaAlgoNublado(ImagenTramo.createDimensionOptima(),
 		    		                                                       new Posicion());
         imagenAuto=new ImagenAutoDesdeAtras(null,"src//vista//imagenAuto//imagenes//DodgeViper//atras.png",
 	    		                            new Dimension(270,170),new Posicion(250,400));
