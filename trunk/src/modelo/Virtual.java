@@ -2,11 +2,10 @@ package modelo;
 
 import control.*;
 
-public class Virtual {
+public class Virtual extends Jugador {
 
 	private AlgoPesos capital;
-	
-	private Auto auto;
+
 
 	private control.Virtual control;
 	

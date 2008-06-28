@@ -9,23 +9,34 @@ public class DatosPartida {
 
 	
 	private modelo.Usuario usuario = null;
+	
 	private modelo.Virtual virtual = null;
+	private modelo.Auto autoVirtual = null;
+	private control.Virtual controlVirtual;
+	private control.Habilidad habilidad;
 	
 	private Pista pista = null;
 
 	
 	private ControladorJuego control;
-	private vista.ventanas.VistaVentana vista ;
+	private vista.VistaVentana vista ;
 	
 	private GestorPersistencia gestor = null;
 	
 	
 	public DatosPartida(){
-		
+		//creo un gestor de guardado
 		gestor = new GestorPersistencia();
 		
+		//preparo todo lo del jugador virtual
+		habilidad = new control.Intermedio();
+		autoVirtual = new Auto();
+		controlVirtual = new control.Virtual(habilidad, autoVirtual);
+		virtual = new Virtual(controlVirtual, autoVirtual);
+		
+		//mando las ventanas
 		control = new ControladorJuego(this);
-		vista = new vista.ventanas.VistaVentana(control);
+		vista = new vista.VistaVentana(control);
 		
 		
 	}
@@ -57,7 +68,9 @@ public class DatosPartida {
 	}
 
 	
-
+	
+	
+	
 	public Pista getPista() {
 		return pista;
 	}
