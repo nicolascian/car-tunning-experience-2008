@@ -37,6 +37,11 @@ public class ImagenTramo {
 				           "src//vista//imagenTramo//pasto",dimension,posicion);
 	}
 	
+	public static ImagenTramo createTramoTierraCespedDiaAlgoNublado(Dimension dimension,Posicion posicion){
+		return createTramo("src//vista//imagenTramo//cieloSemiNublado","src//vista//imagenTramo//TierraNegra",
+				           "src//vista//imagenTramo//caminoDeTierra",dimension,posicion);
+	}
+	
 	public static Dimension createDimensionMaxima(){
 		return new Dimension(DIMENSION_MAXIMA);
 	}

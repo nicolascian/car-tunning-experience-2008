@@ -26,9 +26,13 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 	    this.setLayout(new FlowLayout());
 	    image = new BufferedImage(this.getWidth(),this.getHeight(), BufferedImage.TYPE_INT_RGB);
 	    grafico=image.createGraphics();
-	    imagenTramo=ImagenTramo.createTramoAsfaltoCespedDiaAlgoNublado(ImagenTramo.createDimensionOptima(),
+	   /* imagenTramo=ImagenTramo.createTramoAsfaltoCespedDiaAlgoNublado(ImagenTramo.createDimensionOptima(),
 	    		                                                       new Posicion());
-	    imagenAuto=new ImagenAutoDesdeAtras(null,"src//vista//imagenAuto//imagenes//DodgeViper//atras.png",
+	    		                                                       */
+
+	    imagenTramo=ImagenTramo.createTramoTierraCespedDiaAlgoNublado(ImagenTramo.createDimensionOptima(),
+		    		                                                       new Posicion());
+        imagenAuto=new ImagenAutoDesdeAtras(null,"src//vista//imagenAuto//imagenes//DodgeViper//atras.png",
 	    		                            new Dimension(270,170),new Posicion(250,400));
 	    super.paint(this.getGraphics());
 	}
