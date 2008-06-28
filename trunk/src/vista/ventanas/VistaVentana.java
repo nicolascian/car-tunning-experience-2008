@@ -112,11 +112,12 @@ public class VistaVentana implements Observer{
 	}
 	
 	public void Guardar(){
-		
 		controlJuego.Guardar();
 		
 	}
-	public void Opciones(){}
+	public void Opciones(){	
+		//dificultad del PC, y el auto del PC
+	}
 	public void Creditos(){}
 	
 	

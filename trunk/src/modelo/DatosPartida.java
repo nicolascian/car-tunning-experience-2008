@@ -47,7 +47,13 @@ public class DatosPartida {
 	
 	public void Guardar(){
 		
-		gestor.Guardar(usuario);
+		try{
+			gestor.Guardar(usuario);
+		}
+		catch(Exception e1){
+			//MANEJAR LAS EXCEPTION
+		}
+		
 	}
 
 	
