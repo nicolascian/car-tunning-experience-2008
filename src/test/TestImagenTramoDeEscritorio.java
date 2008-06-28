@@ -34,8 +34,7 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 	}
 	
 	public void paint(Graphics g){
-	  
-	   try{	
+	  try{	
 		Imagen imagenAuxiliar=imagenTramo.getImagen();
 		grafico.drawImage(imagenAuxiliar.getImage(),
 			     imagenAuxiliar.getPosicion().getX(),imagenAuxiliar.getPosicion().getY(),
