@@ -167,7 +167,7 @@ public class Carroceria extends Componente
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
 	 */
-	@Override
+	
 	public void liberarFuerzas() {
 		// TODO Auto-generated method stub
 		
@@ -175,7 +175,7 @@ public class Carroceria extends Componente
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
 	 */
-	@Override
+	
 	public void recibirFuerza(Fuerza fuerza) {
 		if((fuerza.getEmisor()==getAuto().getEjeDelantero()||
 		   (fuerza.getEmisor()==getAuto().getEjeTrasero()))){

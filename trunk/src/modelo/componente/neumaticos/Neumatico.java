@@ -51,13 +51,13 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas{
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
 	 */
-	@Override
+	
 	public void liberarFuerzas() {}
 
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
 	 */
-	@Override
+	
 	public void recibirFuerza(Fuerza fuerza) {
 		//de acuerdo al peso del auto se calcula la fuerza de rozamiento
 		double valorFuerzaDeRozamiento=0;

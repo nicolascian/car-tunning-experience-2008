@@ -16,11 +16,11 @@ import modelo.AfectablePorClima;
  */
 public class SistemaDeRefrigeracion extends Componente implements AfectablePorClima {
 
-	private double temperaturaEncendido=100;//temperatura (ºC)a la que se inicia el intercambio de temperatura
+	private double temperaturaEncendido=100;//temperatura (C)a la que se inicia el intercambio de temperatura
 	
-	private double temperaturaCorte=80;//temperatura (ºC)a la que se finaliza el intercambio de temperatura
+	private double temperaturaCorte=80;//temperatura (C)a la que se finaliza el intercambio de temperatura
 	
-	private double temperaturaPuntoFrio=25;//temperatura (ºC) el medio al que se cede la temperatura
+	private double temperaturaPuntoFrio=25;//temperatura (C) el medio al que se cede la temperatura
 	
 	private boolean encendido=false;//indica si la instancia se encuentra intercambiando temperatura
 	
@@ -152,7 +152,7 @@ public class SistemaDeRefrigeracion extends Componente implements AfectablePorCl
 	/* (non-Javadoc)
 	 * @see modelo.AfectablePorClima#afectar(modelo.Clima)
 	 */
-	@Override
+	
 	public void afectar(Clima clima) {
 	  try{	
 		this.setTemperaturaPuntoFrio(clima.getTemperatura());

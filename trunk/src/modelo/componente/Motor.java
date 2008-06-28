@@ -142,7 +142,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
 	 */
-	@Override
+	
 	public void liberarFuerzas() {
 		repositorio.vaciar();
 	}
@@ -150,7 +150,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
 	 */
-	@Override
+	
 	public void recibirFuerza(Fuerza fuerza) {
 		repositorio.insertarFuerza(fuerza);
 	}

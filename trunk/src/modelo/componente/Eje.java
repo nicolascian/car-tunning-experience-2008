@@ -163,7 +163,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
 	 */
-	@Override
+	
 	public void liberarFuerzas() {
 		repositorio.vaciar();
 	}
@@ -171,7 +171,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
 	 */
-	@Override
+	
 	public void recibirFuerza(Fuerza fuerza) {
 	  try{	
 		if(fuerza.getEmisor()==this.getAuto().getCaja()){
