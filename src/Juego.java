@@ -26,7 +26,7 @@ public class Juego{
 
 	public static void main(String args[]){
 		
-		DatosPartida datosPartida = new DatosPartida();
+		new DatosPartida();
 		
 		//creo la vista que dirige el juego
 		//este objeto controla la creacion del Modelo necesario para trabajar

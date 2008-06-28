@@ -14,13 +14,12 @@ import org.w3c.dom.Document;
  * este es el usuario del modelo, no el control
  *
  */
-public class Usuario {
+public class Usuario extends Jugador {
 
 	private String nombre;
 	
 	private AlgoPesos capital;
-	
-	private Auto auto;
+
 
 
 	public Usuario(String nombre, AlgoPesos capital, Auto auto){
