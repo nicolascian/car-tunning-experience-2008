@@ -60,8 +60,10 @@ public class VistaVentana implements Observer{
 		crearVentanaJuego();
 		ventanaSplash.setProgresoProgressBar(100);
 		
-		ventanaSplash.dispose();
+		ventanaSplash.setVisible(false);
+		//ventanaSplash.dispose();
 		ventanaPrincipal.setVisible(true);
+		
 	}
 			
 	public void JuegoNuevo(){
@@ -127,7 +129,7 @@ public class VistaVentana implements Observer{
 	
 	/* VENTANA JUEGO *********************************************************************************/
 	private void crearVentanaJuego(){
-		ventanaJuego = new VentanaCarrera()
+		//ventanaJuego = new VentanaCarrera()
 		
 	}
 	
