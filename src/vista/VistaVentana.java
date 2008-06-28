@@ -35,16 +35,14 @@ import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 public class VistaVentana implements Observer{
 
 	private modelo.Usuario usuario = null; //referencia al modelo (usuario)
-	private Auto auto = null; //referencia al modelo (auto)
 	private Pista pista = null; //referencia al modelo (pista)
-	private AlgoPesos capital = null; //referencia al modelo (algoPesos)
 	
 	private JWindow ventanaSplash  = null; //marco que contendra el splash
 	private JProgressBar progressBar = null;
 	
 	private JFrame ventanaPrincipal  = null; //marco que contendra los controles del primer menu
 	private JPanel panelPrimero = null;
-	private JButton botonJuegoNuevo = null;  //boton para comenzar un juego nuevo
+	private JButton botonJuegoNuevo = null;  //botoarg0n para comenzar un juego nuevo
 	private JButton botonCargarJuego = null;  //boton para cargar un juego previamente guardado
 	
 	private JFrame ventanaMenu  = null; //marco que contendra los controles del segundo menu
@@ -85,31 +83,34 @@ public class VistaVentana implements Observer{
 	private void JuegoNuevo(){
 		cerrarVentanaPrincipal();
 		
-		//creamos un modelo por defecto
-		auto = new Auto();
-		capital = new AlgoPesos(1000,00);
-		
+		//creamos el modelo
 		//creo un usuario nuevo con cosas por defecto
-		usuario = new modelo.Usuario("NOMBRE", capital, auto);
+		usuario = new modelo.Usuario("NOMBRE", new AlgoPesos(1000,00), new Auto());
 		
 		ventanaMenu.setVisible(true);
 	}
 	
-	private void CargarJuego(){}
+	private void CargarJuego(){
+		//carga usuario de archivo
+		cerrarVentanaPrincipal();
+		
+//		creamos el modelo ESTO NO ES ASI ES TEMPORAL
+		//creo un usuario nuevo con cosas por defecto
+		usuario = new modelo.Usuario("NOMBRE", new AlgoPesos(1000,00), new Auto());
+		
+		ventanaMenu.setVisible(true);
+	}
 	
 	private void Manejar(){
-		//cerrarVentanaMenu();
-		//ventanaJuego.setVisible(true);
+		cerrarVentanaMenu();
+		ventanaJuego.setVisible(true);
 		
-		//auto.setCaja(new Manual(5));//le pongo una caja al auto
-		//new VistaConsola(auto, pista);//creo una vistaa de consola
-		//auto.ActualizarObservadores();// para que se actualice por primera vez
 
 	}
 	
 	private void Carrera(){
-		Jugador jugador = new Virtual(new Principiante(), auto);
-		new VistaConsola(auto, pista);
+		Jugador jugador = new Virtual(new Principiante(), usuario.getAuto());
+		new VistaConsola(usuario.getAuto(), pista);
 	}
 	
 	private void Auto(){
@@ -169,12 +170,7 @@ public class VistaVentana implements Observer{
 		ventanaSplash.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); //le pongo cursor en espera
 		progress.setValue(0);
 		progress.setStringPainted(true);// le pongo numeritos al progressBar
-		
-		// Conectamos esta vista con el modelo
-		this.auto = new Auto();
-		this.pista = new Pista(auto, auto, 1000);
-		this.auto.agregarObservador(this);
-		this.pista.addObserver(this);
+	
 		
 		progress.setValue(25);
 		

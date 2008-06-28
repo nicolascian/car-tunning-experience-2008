@@ -19,6 +19,7 @@ public class VentanaPerfilDeUsuario extends JFrame {
 		JButton botonCargarUsuario;
 		this.setTitle("Perfil De Usuario - Car Tunnning Experience 2008");
 		this.vistaVentana=vistaVentana;
+		//this.setSize(650,650);
 		botonNuevoUsuario = new JButton();
 		botonNuevoUsuario.setText("Crear Usuario Nuevo");
 		botonNuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -33,9 +34,10 @@ public class VentanaPerfilDeUsuario extends JFrame {
 				pressBotonCargarUsuario();
 			}
 		});
-		this.add(botonNuevoUsuario);
-		this.add(botonCargarUsuario);
+		this.add("North", botonNuevoUsuario);
+		this.add("North", botonCargarUsuario);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.pack();
 		this.setVisible(false);
 	}
 	
