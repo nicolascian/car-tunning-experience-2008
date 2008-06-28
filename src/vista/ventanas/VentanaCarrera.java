@@ -4,6 +4,7 @@
 package vista.ventanas;
 
 import java.awt.Dimension;
+import java.util.*;
 
 import javax.swing.JFrame;
 import vista.imagenTramo.Posicion;
@@ -13,9 +14,14 @@ import control.Usuario;
  * @author Usuario
  *
  */
-public class VentanaCarrera extends JFrame {
+public class VentanaCarrera extends JFrame implements Observer{
 
 	
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public VentanaCarrera(Dimension dimension,Posicion posicion,
 			              DatoPilotoAutoParaCarrera datoPilotoAuto){
 		this.setSize(800, 600);
