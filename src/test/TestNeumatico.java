@@ -38,7 +38,7 @@ public class TestNeumatico extends TestCase{
 	
 	public void testDesgastar(){
 		int i=0;
-		while (i<10000000){
+		while (i<10000){
 			NI.desgastar();
 			NL.desgastar();
 			NM.desgastar();

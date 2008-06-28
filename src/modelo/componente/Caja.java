@@ -87,7 +87,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
 	 */
-	@Override
+	
 	public void liberarFuerzas() {
 		this.getRepositorio().vaciar();
 	}
@@ -95,7 +95,7 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
 	 */
-	@Override
+	
 	public void recibirFuerza(Fuerza fuerza) {
 	    if(fuerza.getEmisor()==getAuto().getMotor()){
 		  	  //se pasa la mitad de la fuerza a cada eje

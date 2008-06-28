@@ -149,13 +149,13 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
 	 */
-	@Override
+	
 	public void liberarFuerzas() {}
 
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
 	 */
-	@Override
+	
 	public void recibirFuerza(Fuerza fuerza) {
 		if(fuerza.getEmisor()==getEje()){
 			//la fuerza viene del eje
