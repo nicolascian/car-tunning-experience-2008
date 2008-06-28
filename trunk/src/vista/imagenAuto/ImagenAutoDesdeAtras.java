@@ -11,6 +11,7 @@ import modelo.Auto;
 import vista.imagenAuto.ImagenAuto;
 import vista.imagenTramo.Posicion;
 import vista.imagenRueda.*;
+import modelo.Constantes;
 /**
  * @author Usuario
  *
@@ -46,6 +47,7 @@ public class ImagenAutoDesdeAtras extends ImagenAuto {
 	 */
 	@Override
 	public void paint(Graphics g) {
+	 if(System.currentTimeMillis()>=this.getTiempoProximaActualizacion()){
 		try{
 			Imagen imagenAux=this.ruedaIzq.getImagen();
     		((Graphics2D)g).drawImage(imagenAux.getImage(),imagenAux.getPosicion().getX(),
@@ -55,8 +57,14 @@ public class ImagenAutoDesdeAtras extends ImagenAuto {
     		((Graphics2D)g).drawImage(imagenAux.getImage(),imagenAux.getPosicion().getX(),
     				                  imagenAux.getPosicion().getY(),imagenAux.getDimension().width,
     				                  imagenAux.getDimension().height,this);
-    	}catch(Exception e){}
-		super.paint(g);
+    	}catch(Exception e){};
+    	this.setTiempoProximaActualizacion(this.getTiempoProximaActualizacion()+Constantes.TIEMPO_DE_ACTUALIZACION);
+	 } 
+     else{
+    	ruedaIzq.getImagen();
+    	ruedaDer.getImagen();
+     }
+     super.paint(g);
 	}
 
 	/**

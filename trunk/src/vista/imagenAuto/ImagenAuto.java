@@ -3,11 +3,13 @@ package vista.imagenAuto;
 
 import modelo.*;
 import java.awt.*;
-
 import vista.imagenTramo.Imagen;
 import vista.imagenTramo.Posicion;
+import modelo.Constantes;
 
-public class ImagenAuto extends Component {
+import java.util.Observable;
+import java.util.Observer;
+public class ImagenAuto extends Component{
           
 	private final static int OSCILACION=1;
 	
@@ -22,6 +24,8 @@ public class ImagenAuto extends Component {
     private Dimension dimension=null;
     
     private int contador=0;
+    
+    private long tiempoProximaActualizacion=0;
     
     public ImagenAuto( Auto auto, String ruta,Dimension dimension,
     		          Posicion posicion) {
@@ -43,17 +47,20 @@ public class ImagenAuto extends Component {
     }
     
     public void paint(Graphics g) {
-    	try{	
+       	try{	
     		((Graphics2D)g).drawImage(imagenAuto.getImage(),this.getPosicion().getX(),
     				                  this.getPosicion().getY()+this.obtenerOscilacion(),
     		                          this.getDimension().width,this.getDimension().height,this);
-    	}catch(Exception e){}
+    	}catch(Exception e){};
     }
 
     public void update(Graphics g){
-    	paint(g);
+    	if(System.currentTimeMillis()>=this.tiempoProximaActualizacion){
+    	  paint(g);
+    	  this.tiempoProximaActualizacion+=System.currentTimeMillis()+Constantes.TIEMPO_DE_ACTUALIZACION;
+    	}
     }
-
+    
 	/**
 	 * @return the auto
 	 */
@@ -108,6 +115,20 @@ public class ImagenAuto extends Component {
 	 */
 	public void setDimension(Dimension dimension) {
 		this.dimension = dimension;
+	}
+
+	/**
+	 * @return the tiempoProximaActualizacion
+	 */
+	protected long getTiempoProximaActualizacion() {
+		return tiempoProximaActualizacion;
+	}
+
+	/**
+	 * @param tiempoProximaActualizacion the tiempoProximaActualizacion to set
+	 */
+	protected void setTiempoProximaActualizacion(long tiempoProximaActualizacion) {
+		this.tiempoProximaActualizacion = tiempoProximaActualizacion;
 	}
     
 }
