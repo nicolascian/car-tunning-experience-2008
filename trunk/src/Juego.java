@@ -25,7 +25,6 @@ public class Juego{
 		
 	public static void main(String args[]){
 
-
 		new VistaVentana(); //creo la vista que dirige el juego
 		//este objeto controla la creacion del Modelo necesario para trabajar
 		//y la asignacion de controles y vistas para dicho modelo
