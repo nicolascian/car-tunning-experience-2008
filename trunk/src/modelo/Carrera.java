@@ -12,6 +12,8 @@ public class Carrera implements Runnable {
 
 	private Pista pista;
 	
+	private VentanaCarrera vista;
+	
 	/*
 	 * la apuesta corresponde a la cantidad de dinero que cada jugador debera
 	 * pagar en caso de perder la carrera
@@ -35,33 +37,38 @@ public class Carrera implements Runnable {
 		this.virtual = virtual;
 		this.pista = pista;
 		this.apuesta = apuesta;
+		this.vista =  new VentanaCarrera(this.usuario, this.virtual, this.pista);
 	}
 	
 	/**
 	 * Metodo que se encarga de inicializar los atributos para la carrera
 	 */
 	public void incializar(){
-		this.usuario.getAuto().setPosicion(0);
-		this.virtual.getAuto().setPosicion(0);
-		VentanaCarrera vista =  new VentanaCarrera(this.usuario, this.virtual, this.pista);
-		this.usuario.getAuto().agregarObservador(vista);
-		this.virtual.getAuto().agregarObservador(vista);
-		this.usuario.getAuto().ActualizarObservadores();
-		this.virtual.getAuto().ActualizarObservadores();
-		
 		/* setear posiciones de autos en 0, 
 		 * inicializar controladores
 		 * incializar vistas
 		 * setear los observadores
 		 * etc
 		 */
+		//agregar keylistener
+		this.usuario.getAuto().setPosicion(0);
+		this.virtual.getAuto().setPosicion(0);
+		this.usuario.getAuto().agregarObservador(vista);
+		this.virtual.getAuto().agregarObservador(vista);
+		this.usuario.getAuto().ActualizarObservadores();
+		this.virtual.getAuto().ActualizarObservadores();
+		
 	}
 	
-	public void finalizar(int jugadorGanador){
+	public void finalizar(){
 		
 		if (this.usuario.getAuto().getPosicion() < this.virtual.getAuto().getPosicion()){
 			this.usuario.setDinero(this.usuario.getDinero().restar(this.apuesta.getEntero(), this.apuesta.getDecimal()));
-		}else this.usuario.setDinero(this.usuario.getDinero().sumar(this.apuesta));
+		}else {
+			this.usuario.setDinero(this.usuario.getDinero().sumar(this.apuesta));
+		}
+		
+		
 		
 		
 		/* aumentar / disminuir la plata del jugador que gano / perdio
@@ -72,6 +79,8 @@ public class Carrera implements Runnable {
 	
 	public void run() {
 		this.incializar();
+		
+		this.finalizar();
 		
 	}
 	
