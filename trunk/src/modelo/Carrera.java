@@ -53,8 +53,8 @@ public class Carrera implements Runnable {
 
 		this.usuario.getAuto().setPosicion(0);
 		this.virtual.getAuto().setPosicion(0);
-		vista.addKeyListener(new control.Usuario(usuario.getAuto()));
-		vista.addKeyListener(this.virtual.getControl());
+		this.vista.addKeyListener(new control.Usuario(usuario.getAuto()));
+		this.vista.addKeyListener(this.virtual.getControl());
 		this.usuario.getAuto().agregarObservador(this.vista);
 		this.virtual.getAuto().agregarObservador(this.vista);
 		this.usuario.getAuto().ActualizarObservadores();
