@@ -91,6 +91,8 @@ public class Carrera implements Runnable {
 				{
 				synchronized (this.virtual.getAuto())
 				{
+					this.usuario.getAuto().wait(25);
+					this.virtual.getAuto().wait(25);
 					this.pista.actualizarPosiciones();
 					this.usuario.getAuto().Desgastar();
 					this.virtual.getAuto().Desgastar();
@@ -99,11 +101,16 @@ public class Carrera implements Runnable {
 				
 			} catch (ExceptionFinPista e){
 				enCarrera = false;
-			}
+			}catch (InterruptedException e) {
+		        
+	            /* el thread fue interrumpido durante la espera */
+	            throw new IllegalStateException("Productor interrumpido", e);
+	        }
+			/*
 			try{
 			Thread.sleep(50);
 			}catch (InterruptedException e){}
-			
+			*/
 		this.finalizar();
 		}
 	}
