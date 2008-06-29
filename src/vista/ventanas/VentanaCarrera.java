@@ -36,7 +36,6 @@ public class VentanaCarrera extends JFrame implements Observer{
 		this.setAlwaysOnTop(true);
 		this.setVisible(false);
 		
-		
 	}
 
 

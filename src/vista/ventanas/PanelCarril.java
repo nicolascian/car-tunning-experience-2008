@@ -38,7 +38,7 @@ public class PanelCarril extends JPanel{
 		this.setSize(dimension);
 		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(),BufferedImage.TYPE_INT_RGB);
 		this.grafico=buffImage.createGraphics();
-		/*
+		
 		this.hiloDeActualizacion=new Thread(){
 		    public void run(){
 			     super.run();
@@ -50,8 +50,7 @@ public class PanelCarril extends JPanel{
 			     }
 			}
 		};	
-		this.hiloDeActualizacion.run();
-		this.hiloDeActualizacion=null;*/
+		this.hiloDeActualizacion.start();
 	}
 	
 	public static PanelCarril createPanelCarrilVistaAutoDesdeAtras(Dimension dimension,Posicion posicion,
