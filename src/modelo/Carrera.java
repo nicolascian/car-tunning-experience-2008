@@ -6,6 +6,7 @@ package modelo;
 
 import control.*;
 import vista.ventanas.*;
+import vista.*;
 import modelo.exceptions.*;
 
 public class Carrera implements Runnable {
@@ -50,7 +51,8 @@ public class Carrera implements Runnable {
 		 * setear los observadores
 		 * etc
 		 */
-
+		
+		
 		this.usuario.getAuto().setPosicion(0);
 		this.virtual.getAuto().setPosicion(0);
 		this.vista.addKeyListener(new control.Usuario(usuario.getAuto()));
