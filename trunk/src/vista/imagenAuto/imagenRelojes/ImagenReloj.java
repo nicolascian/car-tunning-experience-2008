@@ -12,16 +12,12 @@ import vista.imagenTramo.Posicion;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.BasicStroke;
-import java.util.Observable;
-import java.util.Observer;
 import modelo.Auto;
-import modelo.componente.Caja;
-import modelo.componente.Motor;
 /**
  * @author Usuario
  *
  */
-public abstract class ImagenReloj extends JPanel{
+public class ImagenReloj extends JPanel{
 
 	private double anguloMinimo=0;
 	
@@ -58,6 +54,7 @@ public abstract class ImagenReloj extends JPanel{
 	public ImagenReloj(Auto auto,String rutaImagen,Posicion posicion, Dimension dimension,
 					   Color colorDeAguja,double anguloMinimo,double anguloMaximo,
 					   double valorMinimo,double valorMaximo){
+		System.out.println("Aca");
 		this.setAnguloMaximo(anguloMaximo);
 		this.setAnguloMinimo(anguloMinimo);
 		this.setDimension(dimension);
@@ -82,12 +79,13 @@ public abstract class ImagenReloj extends JPanel{
 				   repaint();
 				   try{   
 					  this.sleep(tiempoDeActualizacion);
-				   }catch(Exception e){};
+				   }catch(Exception e){
+					   e.printStackTrace();};
 			     }
 			}
 		};	
-		this.hiloDeActualizacion.start();
-		this.setVisible(false);	
+		//this.hiloDeActualizacion.start();
+		//this.setVisible(false);	
 	}
 		
 	protected void actualizarAngulo(){}
@@ -107,6 +105,7 @@ public abstract class ImagenReloj extends JPanel{
 	}
 		
 	public void repaint(){
+		this.actualizarAngulo();
 		this.paint(this.getGraphics());
 	}
 	
@@ -115,7 +114,8 @@ public abstract class ImagenReloj extends JPanel{
 	 */
 	@Override
 	public void paint(Graphics g) {
-		g.drawImage(buffImage,0,0,buffImage.getWidth(),buffImage.getHeight(),null);
+		Image auxiliar=this.getImage();
+		g.drawImage(auxiliar,0,0,getWidth(),getHeight(),null);
 	}
 
 	/**
@@ -199,7 +199,7 @@ public abstract class ImagenReloj extends JPanel{
 	 * @param dimension the dimension to set
 	 */
 	protected void setDimension(Dimension dimension) {
-		super.setSize(new Dimension(dimension));
+		setSize(new Dimension(dimension));
 	}
 
 	/**
