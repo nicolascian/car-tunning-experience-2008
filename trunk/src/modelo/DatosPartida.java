@@ -33,7 +33,7 @@ public class DatosPartida {
 		autoVirtual = new Auto();
 		controlVirtual = new control.Virtual(habilidad, autoVirtual);
 		virtual = new Virtual(controlVirtual, autoVirtual);
-		
+	
 		//mando las ventanas
 		control = new ControladorJuego(this);
 		vista = new vista.VistaVentana(control);
@@ -42,17 +42,21 @@ public class DatosPartida {
 	}
 
 	public void Manejar(){
-		
+		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(), 100 );
 		Manejar manejar = new Manejar(usuario, pista);
 		manejar.run();
 		
 	}
 	
 	public void Carrera(){
-		
+		//SACAR ESTO DE ACA
+		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(), 100 );
 		AlgoPesos apuesta = new AlgoPesos(100,00);
 		Carrera carrera = new Carrera(usuario, virtual, pista, apuesta);
-		carrera.run();
+		//carrera.run();
+		
+		Thread threadCarrera = new Thread(carrera);
+		threadCarrera.start();
 		
 	}
 	

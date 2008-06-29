@@ -90,35 +90,40 @@ public class Carrera implements Runnable {
 		this.incializar();
 		boolean enCarrera = true;
 		while(enCarrera){
+
 			try{
-				//synchronized (this.usuario.getAuto())
-				//{
-				//synchronized (this.virtual.getAuto())
-				//{
-					//this.usuario.getAuto().wait(25);
-					//this.virtual.getAuto().wait(25);
+
+				synchronized (this.usuario.getAuto())
+				{
+				synchronized (this.virtual.getAuto())
+				{
+					this.usuario.getAuto().wait(25);
+					this.virtual.getAuto().wait(25);
 					this.pista.actualizarPosiciones();
 					this.usuario.getAuto().Desgastar();
 					this.virtual.getAuto().Desgastar();
-				//}this.virtual.getAuto().notifyAll();
-				//}this.usuario.getAuto().notifyAll();
+					System.out.println(this.usuario.getAuto().getPosicion() + " " + this.virtual.getAuto().getPosicion());
+					this.virtual.getAuto().notifyAll();
+				}this.usuario.getAuto().notifyAll();
+				}
 				
 			} catch (ExceptionFinPista e){
 				enCarrera = false;
 			}
-			//catch (InterruptedException e) {
+			catch (InterruptedException e) {
 		        
 	            /* el thread fue interrumpido durante la espera */
-	          //  throw new IllegalStateException("Productor interrumpido", e);
-	        //}
+	            throw new IllegalStateException("algo interrumpido", e);
+	        }
 			
-			/*
+			
 			try{
 			Thread.sleep(50);
 			}catch (InterruptedException e){}
-			*/
-		this.finalizar();
+			
+		
 		}
+		this.finalizar();
 	}
 	
 	public void correr(){
