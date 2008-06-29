@@ -2,9 +2,8 @@
  * 
  */
 package vista.ventanas;
-
+import vista.imagenAuto.imagenRelojes.*;
 import javax.swing.JPanel;
-
 import vista.imagenTramo.*;
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
@@ -31,14 +30,16 @@ public class PanelCarril extends JPanel{
 	private long tiempoDeActualizacion=550;
 	
 	private Thread hiloDeActualizacion=null;
-
-	private PanelCarril(Dimension dimension, Posicion posicion){
+	
+	private PanelCarril(Dimension dimension, Posicion posicion,modelo.Usuario usuario){
 		this.setDimension(new Dimension(dimension));
 		this.setPosicion(new Posicion(posicion));
 		this.setSize(dimension);
 		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(),BufferedImage.TYPE_INT_RGB);
 		this.grafico=buffImage.createGraphics();
-		
+		ImagenTacometro imagenTacometro= ImagenTacometro.createTacometroBlanco(usuario.getAuto(),
+				                         new Posicion(),ImagenTacometro.createDimensionStandar());
+		System.out.println("Aca ultimo");
 		this.hiloDeActualizacion=new Thread(){
 		    public void run(){
 			     super.run();
@@ -51,11 +52,12 @@ public class PanelCarril extends JPanel{
 			}
 		};	
 		this.hiloDeActualizacion.start();
+		
 	}
 	
 	public static PanelCarril createPanelCarrilVistaAutoDesdeAtras(Dimension dimension,Posicion posicion,
 			                                                       modelo.Usuario usuario){
-		PanelCarril retorno=new PanelCarril(dimension,posicion);
+		PanelCarril retorno=new PanelCarril(dimension,posicion,usuario);
 		retorno.setImagenTramo(ImagenTramo.createTramoAsfaltoCespedDiaAlgoNublado(ImagenTramo.createDimensionOptima(),
                                new Posicion()));
 		retorno.setImagenAuto(new ImagenAutoDesdeAtras(usuario.getAuto(),"src//vista//imagenAuto//imagenes//DodgeViper//atras.png",

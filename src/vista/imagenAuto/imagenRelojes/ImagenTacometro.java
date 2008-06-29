@@ -16,12 +16,12 @@ public class ImagenTacometro extends ImagenReloj {
 			  valorMinimo,valorMaximo);
 	}
 	
-	public ImagenTacometro createTacometroBlanco(Auto auto,Posicion posicion,Dimension dimension){
+	public static ImagenTacometro createTacometroBlanco(Auto auto,Posicion posicion,Dimension dimension){
 		return new ImagenTacometro(auto,"src//vista//imagenAuto//rpm.png",posicion,
 				                   dimension,Color.RED,1.5*Math.PI,0,0,8000);
 	}
 
-	public Dimension createDimensionStandar(){
+	public static Dimension createDimensionStandar(){
 		return new Dimension(200,200);
 	}
 	
