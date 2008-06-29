@@ -34,7 +34,8 @@ public class PanelCarril extends JPanel{
 	private PanelCarril(Dimension dimension, Posicion posicion,modelo.Usuario usuario){
 		this.setDimension(new Dimension(dimension));
 		this.setPosicion(new Posicion(posicion));
-		this.setSize(dimension);
+		this.setBounds(posicion.getX(),posicion.getY(),dimension.width,dimension.height);
+		
 		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(),BufferedImage.TYPE_INT_RGB);
 		this.grafico=buffImage.createGraphics();
 		this.hiloDeActualizacion=new Thread(){
@@ -47,8 +48,8 @@ public class PanelCarril extends JPanel{
 				   }catch(Exception e){};
 			     }
 			}
-		};	
-		this.hiloDeActualizacion.start();
+		};
+		this.hiloDeActualizacion.start();	
 		
 	}
 	
@@ -61,9 +62,8 @@ public class PanelCarril extends JPanel{
 				              new Dimension((int)(dimension.getWidth()*0.3375),
 		    (int)(dimension.getWidth()*0.2833)),new Posicion((int)(dimension.getWidth()*0.3125),
 		    (int)(dimension.getWidth()*0.5))));
-		retorno.add(ImagenTacometro.createTacometroBlanco(usuario.getAuto(),
-                new Posicion(),ImagenTacometro.createDimensionStandar()));
-		
+		ImagenTacometro imagen=ImagenTacometro.createTacometroBlanco(usuario.getAuto(), posicion,
+				                                     ImagenTacometro.createDimensionStandar());
 		return retorno;
 	}
 	
