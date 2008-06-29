@@ -5,14 +5,11 @@ package vista.ventanas;
 
 import javax.swing.JPanel;
 
-import test.TestImagenTramoDeEscritorio;
 import vista.imagenTramo.*;
-
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import modelo.Constantes;
 import vista.imagenAuto.*;
 
 /**
@@ -31,7 +28,7 @@ public class PanelCarril extends JPanel{
 
 	private Graphics2D grafico=null;
 	
-	private long tiempoDeActualizacion=0;
+	private long tiempoDeActualizacion=550;
 	
 	private Thread hiloDeActualizacion=null;
 
@@ -39,8 +36,7 @@ public class PanelCarril extends JPanel{
 		this.setDimension(new Dimension(dimension));
 		this.setPosicion(new Posicion(posicion));
 		this.setSize(dimension);
-		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(), 
-				                         BufferedImage.TYPE_INT_RGB);
+		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(),BufferedImage.TYPE_INT_RGB);
 		this.grafico=buffImage.createGraphics();
 		this.hiloDeActualizacion=new Thread(){
 		    public void run(){
@@ -48,11 +44,12 @@ public class PanelCarril extends JPanel{
 			     while(true){
 				   repaint();
 				   try{   
-					  sleep(tiempoDeActualizacion);
+					  this.sleep(tiempoDeActualizacion);
 				   }catch(Exception e){};
 			     }
 			}
 		};	
+		this.hiloDeActualizacion.run();
 	}
 	
 	public static PanelCarril createPanelCarrilVistaAutoDesdeAtras(Dimension dimension,Posicion posicion,
