@@ -70,7 +70,8 @@ public class Carrera implements Runnable {
 			this.usuario.setDinero(this.usuario.getDinero().sumar(this.apuesta));
 		}
 		
-		
+		//NO SE CIERRA!!!!!!!!!!!!!!!!!!!!!!
+		//this.vista.dispose();
 		
 		
 		/* aumentar / disminuir la plata del jugador que gano / perdio
@@ -81,9 +82,28 @@ public class Carrera implements Runnable {
 	
 	public void run() {
 		this.incializar();
-		
+		boolean enCarrera = true;
+		while(enCarrera){
+			try{
+				synchronized (this.usuario.getAuto())
+				{
+				synchronized (this.virtual.getAuto())
+				{
+					this.pista.actualizarPosiciones();
+					this.usuario.getAuto().Desgastar();
+					this.virtual.getAuto().Desgastar();
+				}this.virtual.getAuto().notifyAll();
+				}this.usuario.getAuto().notifyAll();
+				
+			} catch (ExceptionFinPista e){
+				enCarrera = false;
+			}
+			try{
+			Thread.sleep(50);
+			}catch (InterruptedException e){}
+			
 		this.finalizar();
-		
+		}
 	}
 	
 	public void correr(){
