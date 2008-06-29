@@ -68,8 +68,7 @@ public abstract class ImagenReloj extends JPanel{
 		this.posicionCentro=new Posicion((int)(dimension.width/2.0),(int)(dimension.height/2.0));
 		this.m=(float)(anguloMinimo-anguloMaximo)/(float)(valorMinimo-valorMaximo);
 		this.b=(float)anguloMinimo-(float)m*anguloMaximo;
-		this.buffImage=new BufferedImage(dimension.width,dimension.height,
-				                            BufferedImage.TYPE_INT_ARGB);
+		this.buffImage=new BufferedImage(dimension.width,dimension.height,BufferedImage.TYPE_INT_RGB);
 		this.grafico=(Graphics2D)buffImage.createGraphics();
 		this.grafico.setColor(colorDeAguja);
 		this.grafico.setBackground(new Color(0,0,0,0));
@@ -88,7 +87,7 @@ public abstract class ImagenReloj extends JPanel{
 			}
 		};	
 		this.hiloDeActualizacion.start();
-		this.setVisible(true);
+		this.setVisible(false);	
 	}
 		
 	protected void actualizarAngulo(){}
