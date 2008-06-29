@@ -26,14 +26,12 @@ public class VentanaCarrera extends JFrame implements Observer{
 		
 	}
 
-	public VentanaCarrera(Dimension dimension,Posicion posicion,
-			              DatoPilotoAutoParaCarrera datoPilotoAuto){
+	public VentanaCarrera(Dimension dimension,Posicion posicion){
+
 		this.setSize(800, 600);
 		this.setTitle("Carrera");
 		this.setLocationRelativeTo(null); //centrada
-		try{
-		   this.addKeyListener(new Usuario(datoPilotoAuto.getAuto()));
-		}catch(NullPointerException e){};
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setResizable(false);
 		this.setAlwaysOnTop(true);
