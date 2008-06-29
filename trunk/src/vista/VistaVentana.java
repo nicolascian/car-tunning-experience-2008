@@ -10,7 +10,6 @@ package vista;
 import modelo.*;
 import modelo.componente.*;
 import control.*;
-import vista.imagen.*;
 import vista.ventanas.*;
 
 import javax.swing.*;
