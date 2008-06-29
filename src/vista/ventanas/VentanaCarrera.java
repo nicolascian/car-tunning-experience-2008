@@ -34,8 +34,6 @@ public class VentanaCarrera extends JFrame implements Observer{
 		this.setLocationRelativeTo(null); //centrada
 		this.panel=PanelCarril.createPanelCarrilVistaAutoDesdeAtras(this.getSize(),new Posicion(), usuario);
 		this.add(panel);
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	//this.setResizable(false);
 		this.setAlwaysOnTop(true);
 		this.setVisible(false);
 		
