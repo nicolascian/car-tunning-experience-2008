@@ -32,9 +32,9 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		
 	protected final static double COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES=2;
 	
-	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO=2.0;
+	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO=25.0;//2.0
 	
-	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MINIMO=1.0;
+	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MINIMO=24.0;//1.0
 	
 	protected final static double COEFICIENTE_DE_DESGASTE=2;
 			
@@ -72,7 +72,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		
 	private double coeficienteDeIncrementoRpm=COEFICIENTE_DE_INCREMENTO_RPM_MINIMO;
 	
-	private double coeficienteDeProduccionDeFuerzaAPartirRpm;
+	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0;
 	
 	private double valorFuerzaContraMotor=0;
 	

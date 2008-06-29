@@ -25,7 +25,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	private double DesgastePorParticulas;
 	private RepositorioDeFuerzas repositorio;//donde se almacenan las fuerzas que llegan a la isntancia
 	private double rpm;//revoluciones a las que gira la instancia.
-	protected final static double COEFICIENTE_INCREMENTO_RPM=0.006999;
+	protected final static double COEFICIENTE_INCREMENTO_RPM=0.02335;//0.006999
 	protected final static double COEFICIENTE_DECREMENTO_RPM=0.02219;	
 	
 	/**
