@@ -23,11 +23,6 @@ public class VentanaCarrera extends JFrame implements Observer{
 	}
 	
 	public VentanaCarrera(modelo.Usuario usuario, modelo.Virtual virtual, Pista pista){
-		
-	}
-
-	public VentanaCarrera(Dimension dimension,Posicion posicion){
-
 		this.setSize(800, 600);
 		this.setTitle("Carrera");
 		this.setLocationRelativeTo(null); //centrada
@@ -35,6 +30,10 @@ public class VentanaCarrera extends JFrame implements Observer{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setResizable(false);
 		this.setAlwaysOnTop(true);
+		this.setVisible(true);
+		
 	}
+
+
 	
 }
