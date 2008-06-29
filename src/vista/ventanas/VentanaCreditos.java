@@ -24,7 +24,7 @@ public class VentanaCreditos extends JFrame {
 		
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 		    public void windowClosing(java.awt.event.WindowEvent e) {
-		    	haceralgo();
+		    	cerrarVentana();
 		    }
 		});
 
@@ -34,7 +34,7 @@ public class VentanaCreditos extends JFrame {
 	
 	}
 	
-	private void haceralgo(){
+	private void cerrarVentana(){
 		ventanaMenu.setVisible(true);
 		this.dispose();
 	}

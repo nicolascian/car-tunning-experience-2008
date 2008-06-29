@@ -22,13 +22,11 @@ import vista.VistaConsola;
 public class VistaVentana {
 
 	private ControladorJuego controlJuego;
-		
 	private JFrame ventanaPrincipal  = null; //marco que contendra los controles del primer menu
-	
 	private JFrame ventanaMenu  = null; //marco que contendra los controles del segundo menu
-	
-	private JFrame ventanaCreditos  = null; //marco que contendra los autos y pista
-	
+	private JFrame ventanaCreditos  = null; 
+	private JFrame ventanaTaller = null;
+	private JFrame ventanaPista = null;
     
 	
 	/** Constructor de la vista con ventanas */
@@ -41,6 +39,9 @@ public class VistaVentana {
 		crearVentanaPrincipal();
 		ventanaSplash.setProgresoProgressBar(25);
 	
+		crearVentanaTaller();
+		ventanaSplash.setProgresoProgressBar(50);
+		
 		crearVentanaMenu();
 		ventanaSplash.setProgresoProgressBar(75);
 		
@@ -56,44 +57,40 @@ public class VistaVentana {
 	public void JuegoNuevo(){
 		
 		String nombre = JOptionPane.showInputDialog("Ingresar Nombre:");
-		
 		cerrarVentanaPrincipal();
-		
 		controlJuego.crearUsuario(nombre);	
-		
 		ventanaMenu.setVisible(true);
-		
 	}
 	
 	public void CargarJuego(){
 		cerrarVentanaPrincipal();
-		
 		controlJuego.cargarUsuario();
-		
 		ventanaMenu.setVisible(true);
 	}
 	
 	public void Manejar(){
 		ventanaMenu.setVisible(false);
-		
 		controlJuego.correrSolo();
-		
-		ventanaMenu.setVisible(true);
+		//ventanaMenu.setVisible(true);
 	}
 	
 	public void Carrera(){
 		ventanaMenu.setVisible(false);
-		
 		controlJuego.correrCarrera();
-		
-		ventanaMenu.setVisible(true);
+		//ventanaMenu.setVisible(true);
 	}
 	
 	public void Auto(){
 		//Taller
+		ventanaMenu.setVisible(false);
+		ventanaTaller.setVisible(true);
+		//ventanaMenu.setVisible(true);
 	}
 	public void Pista(){
 		//se pude elegir una pista
+		ventanaMenu.setVisible(false);
+		ventanaPista.setVisible(true);
+		//ventanaMenu.setVisible(true);
 	}
 	
 	public void Guardar(){
@@ -105,15 +102,9 @@ public class VistaVentana {
 	}
 	public void Creditos(){
 		ventanaMenu.setVisible(false);
-		
 		ventanaCreditos.setVisible(true);
-		
 		//ventanaMenu.setVisible(true);
 	}
-	
-	
-	
-	
 	
 	
 	/* de aca para abajo pura GUI (embole mal!) */
@@ -139,6 +130,28 @@ public class VistaVentana {
 		ventanaMenu = null;
 	}
 		
+	
+	/* VENTANA TALLER *********************************************************************************/
+	private void crearVentanaTaller(){
+		ventanaTaller = new VentanaTaller(this.ventanaMenu);
+		
+	}
+	
+	private void cerrarVentanaTaller(){
+		ventanaTaller.dispose();
+		ventanaMenu = null;
+	}		
+	
+	/* VENTANA PISTA *********************************************************************************/
+	private void crearVentanaPista(){
+		ventanaPista = new VentanaPista(this.ventanaMenu);
+		
+	}
+	
+	private void cerrarVentanaPista(){
+		ventanaPista.dispose();
+		ventanaMenu = null;
+	}		
 	
 	/* VENTANA CREDITOS *********************************************************************************/
 	private void crearVentanaCreditos(){
