@@ -30,12 +30,10 @@ public class VistaVentana implements Observer{
 	
 	private JFrame ventanaJuego  = null; //marco que contendra los autos y pista
 	
-	ImagenAuto imagen = null;
-	
     // se ejecuta cuando hay cambios en el modelo
 	public void update(Observable arg0, Object arg1) {
 		if (!(ventanaJuego==null)){
-			imagen.repaint();
+			
 		}		
 	}
 	

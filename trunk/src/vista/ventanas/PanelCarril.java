@@ -13,72 +13,56 @@ import java.awt.Graphics2D;
 import modelo.Constantes;
 import vista.imagenAuto.*;
 
-import java.util.Observable;
-import java.util.Observer;
 /**
  * @author Usuario
  *
  */
-public class PanelCarril extends JPanel implements Observer {
+public class PanelCarril extends JPanel{
 
 	private Posicion posicion=null;
-	
-	private DatoPilotoAutoParaCarrera datoPilotoAuto=null;
 	
 	private ImagenTramo imagenTramo=null;
 	
 	private ImagenAuto imagenAuto=null;
 	
 	private BufferedImage buffImage=null;
-	
+
 	private Graphics2D grafico=null;
 	
 	private long tiempoProximaActualizacion=0;
 	
-	private PanelCarril(Dimension dimension, Posicion posicion,
-			           DatoPilotoAutoParaCarrera datoPilotoAuto){
+	private PanelCarril(Dimension dimension, Posicion posicion){
 		this.setDimension(new Dimension(dimension));
 		this.setPosicion(new Posicion(posicion));
-		this.setDatoPilotoAuto(datoPilotoAuto);
 		this.setSize(dimension);
 		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(), 
 				                         BufferedImage.TYPE_INT_RGB);
 		this.grafico=buffImage.createGraphics();
-		try{
-			datoPilotoAuto.getAuto().agregarObservador(this);
-		}catch (NullPointerException e){};	
+		
 	}
 	
-	public static PanelCarril createPanelCarrilVistaAutoDesdeAtras(Dimension dimension, 
-			                  Posicion posicion,DatoPilotoAutoParaCarrera datoPilotoAuto){
-		PanelCarril retorno=new PanelCarril(dimension,posicion,datoPilotoAuto);
+	public static PanelCarril createPanelCarrilVistaAutoDesdeAtras(Dimension dimension,Posicion posicion,
+			                                                       modelo.Usuario usuario){
+		PanelCarril retorno=new PanelCarril(dimension,posicion);
 		retorno.setImagenTramo(ImagenTramo.createTramoAsfaltoCespedDiaAlgoNublado(ImagenTramo.createDimensionOptima(),
                                new Posicion()));
-		retorno.setImagenAuto(new ImagenAutoDesdeAtras(datoPilotoAuto.getAuto(),
-		    datoPilotoAuto.getRutaAuto()+"//atras.png",new Dimension((int)(dimension.getWidth()*0.3375),
+		retorno.setImagenAuto(new ImagenAutoDesdeAtras(usuario.getAuto(),"src//vista//imagenAuto//imagenes//DodgeViper//atras.png",
+				              new Dimension((int)(dimension.getWidth()*0.3375),
 		    (int)(dimension.getWidth()*0.2833)),new Posicion((int)(dimension.getWidth()*0.3125),
 		    (int)(dimension.getWidth()*0.5))));
 		return retorno;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-	 */
-	@Override
-	public void update(Observable o, Object arg) {
-		if(System.currentTimeMillis()>=this.tiempoProximaActualizacion){	
-			this.repaint();
-			this.tiempoProximaActualizacion+=System.currentTimeMillis()+Constantes.TIEMPO_DE_ACTUALIZACION;
-		}
-	}
-
+	
 	/* (non-Javadoc)
 	 * @see java.awt.Component#repaint()
 	 */
 	@Override
 	public void repaint() {
+      if(System.currentTimeMillis()>=this.tiempoProximaActualizacion){		
 		this.paint(this.getGraphics());
-		super.repaint();
+		this.tiempoProximaActualizacion=System.currentTimeMillis()+Constantes.TIEMPO_DE_ACTUALIZACION;
+	  }
 	}
 
 	/* (non-Javadoc)
@@ -122,20 +106,6 @@ public class PanelCarril extends JPanel implements Observer {
 	 */
 	public void setDimension(Dimension dimension) {
 		this.setSize(dimension);
-	}
-
-	/**
-	 * @return the datoPilotoAuto
-	 */
-	public DatoPilotoAutoParaCarrera getDatoPilotoAuto() {
-		return datoPilotoAuto;
-	}
-
-	/**
-	 * @param datoPilotoAuto the datoPilotoAuto to set
-	 */
-	public void setDatoPilotoAuto(DatoPilotoAutoParaCarrera datoPilotoAuto) {
-		this.datoPilotoAuto = datoPilotoAuto;
 	}
 
 	/**
