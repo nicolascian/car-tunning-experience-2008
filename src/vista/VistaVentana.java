@@ -19,7 +19,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import vista.VistaConsola;
 
-public class VistaVentana implements Observer{
+public class VistaVentana {
 
 	private ControladorJuego controlJuego;
 		
@@ -27,14 +27,9 @@ public class VistaVentana implements Observer{
 	
 	private JFrame ventanaMenu  = null; //marco que contendra los controles del segundo menu
 	
-	private JFrame ventanaJuego  = null; //marco que contendra los autos y pista
+	private JFrame ventanaCreditos  = null; //marco que contendra los autos y pista
 	
-    // se ejecuta cuando hay cambios en el modelo
-	public void update(Observable arg0, Object arg1) {
-		if (!(ventanaJuego==null)){
-			
-		}		
-	}
+    
 	
 	/** Constructor de la vista con ventanas */
 	public VistaVentana(ControladorJuego ctrl){
@@ -42,11 +37,6 @@ public class VistaVentana implements Observer{
 		// decorados
 		JFrame.setDefaultLookAndFeelDecorated(true); //false para Windows estandar
 		VentanaSplash ventanaSplash = new VentanaSplash();
-		// Conectamos esta vista con el modelo
-		//this.auto = new Auto();
-		//this.pista = new Pista(auto, auto, 1000);
-		//this.auto.agregarObservador(this);
-		//this.pista.addObserver(this);
 			
 		crearVentanaPrincipal();
 		ventanaSplash.setProgresoProgressBar(25);
@@ -54,11 +44,11 @@ public class VistaVentana implements Observer{
 		crearVentanaMenu();
 		ventanaSplash.setProgresoProgressBar(75);
 		
-		crearVentanaJuego();
+		crearVentanaCreditos();
 		ventanaSplash.setProgresoProgressBar(100);
 		
 		ventanaSplash.setVisible(false);
-		//ventanaSplash.dispose();
+		ventanaSplash.dispose();
 		ventanaPrincipal.setVisible(true);
 		
 	}
@@ -118,7 +108,13 @@ public class VistaVentana implements Observer{
 	public void Opciones(){	
 		//dificultad del PC, y el auto del PC
 	}
-	public void Creditos(){}
+	public void Creditos(){
+		ventanaMenu.setVisible(false);
+		
+		ventanaCreditos.setVisible(true);
+		
+		//ventanaMenu.setVisible(true);
+	}
 	
 	
 	
@@ -147,15 +143,17 @@ public class VistaVentana implements Observer{
 		ventanaMenu.dispose();
 		ventanaMenu = null;
 	}
+		
 	
-	/* VENTANA JUEGO *********************************************************************************/
-	private void crearVentanaJuego(){
-		//ventanaJuego = new VentanaCarrera()
+	/* VENTANA CREDITOS *********************************************************************************/
+	private void crearVentanaCreditos(){
+		ventanaCreditos = new VentanaCreditos(this.ventanaMenu);
 		
 	}
 	
-	private void cerrarVentanaJuego(){
-		ventanaJuego.dispose();
+	private void cerrarVentanaCreditos(){
+		ventanaCreditos.dispose();
 		ventanaMenu = null;
 	}		
+	
 }
