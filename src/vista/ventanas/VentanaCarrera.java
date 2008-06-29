@@ -23,7 +23,6 @@ public class VentanaCarrera extends JFrame implements Observer{
     private modelo.Usuario usuario = null;
     
 	public void update(Observable arg0, Object arg1) {
-	  
 		panel.actualizarVelocidad(usuario.getAuto().getVelocidad());
 	}
 	
@@ -33,8 +32,9 @@ public class VentanaCarrera extends JFrame implements Observer{
 		this.setSize(1000, 600);
 		this.setLocationRelativeTo(null); //centrada
 		this.setLayout(null);
-		this.panel=PanelCarril.createPanelCarrilVistaAutoDesdeAtras(new Dimension(800,600),
-				                                                    new Posicion(), usuario);
+		Dimension dimensionPanel=new Dimension((int)(this.getSize().width*0.8),this.getSize().height);
+		this.panel=PanelCarril.createPanelCarrilVistaAutoDesdeAtras(dimensionPanel,new Posicion(), 
+				                                                    usuario);
 		this.add(panel);
 		this.add(new PanelDeInformacion(new Dimension(200,600),new Posicion(800,0),usuario ));
 		this.setAlwaysOnTop(true);

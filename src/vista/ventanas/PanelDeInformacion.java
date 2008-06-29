@@ -36,8 +36,10 @@ public class PanelDeInformacion extends JPanel {
 		this.setSize(dimension);
 		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(),BufferedImage.TYPE_INT_RGB);
 		this.grafico=buffImage.createGraphics();
-		this.imagenTacometro=ImagenTacometro.createTacometroBlanco(usuario.getAuto(), new Posicion(),
-				                                                   ImagenTacometro.createDimensionStandar());
+		Dimension dimensionTacometro=new Dimension((int)(dimension.width*0.8),(int)(dimension.width*0.8));
+		this.imagenTacometro=ImagenTacometro.createTacometroBlanco(usuario.getAuto(), 
+			 new Posicion((int)((dimension.width-dimensionTacometro.width)/2),
+			              (int)((dimension.width-dimensionTacometro.width)/2)),dimensionTacometro);
 		this.hiloDeActualizacion=new Thread(){
 		    public void run(){
 			     super.run();
