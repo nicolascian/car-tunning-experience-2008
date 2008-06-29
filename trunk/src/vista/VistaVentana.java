@@ -7,17 +7,10 @@
 
 package vista;
 
-import modelo.*;
-import modelo.componente.*;
 import control.*;
 import vista.ventanas.*;
-
 import javax.swing.*;
-import java.awt.*;
-import java.util.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import vista.VistaConsola;
+
 
 public class VistaVentana {
 
@@ -57,7 +50,6 @@ public class VistaVentana {
 	}
 			
 	public void JuegoNuevo(){
-		
 		String nombre = JOptionPane.showInputDialog("Ingresar Nombre:");
 		cerrarVentanaPrincipal();
 		controlJuego.crearUsuario(nombre);	
@@ -73,42 +65,35 @@ public class VistaVentana {
 	public void Manejar(){
 		ventanaMenu.setVisible(false);
 		controlJuego.correrSolo();
-		//ventanaMenu.setVisible(true);
 	}
 	
 	public void Carrera(){
 		ventanaMenu.setVisible(false);
 		controlJuego.correrCarrera();
-		//ventanaMenu.setVisible(true);
 	}
 	
 	public void Auto(){
 		//Taller
 		ventanaMenu.setVisible(false);
 		ventanaTaller.setVisible(true);
-		//ventanaMenu.setVisible(true);
 	}
 	public void Pista(){
 		//se pude elegir una pista
 		ventanaMenu.setVisible(false);
 		ventanaPista.setVisible(true);
-		//ventanaMenu.setVisible(true);
 	}
 	
 	public void Guardar(){
 		controlJuego.Guardar();
-		
 	}
 	public void Opciones(){	
 		//dificultad del PC, y el auto del PC
-		//ventanaMenu.setVisible(false);
-		//ventanaOpciones.setVisible(true);
-		//ventanaMenu.setVisible(true);
+		ventanaMenu.setVisible(false);
+		ventanaOpciones.setVisible(true);
 	}
 	public void Creditos(){
 		ventanaMenu.setVisible(false);
 		ventanaCreditos.setVisible(true);
-		//ventanaMenu.setVisible(true);
 	}
 	
 	
@@ -129,11 +114,6 @@ public class VistaVentana {
 	private void crearVentanaMenu(){
 		ventanaMenu = new VentanaMenuPrincipal(this);	
 	}
-	
-	private void cerrarVentanaMenu(){
-		ventanaMenu.dispose();
-		ventanaMenu = null;
-	}
 		
 	
 	/* VENTANA TALLER *********************************************************************************/
@@ -142,20 +122,11 @@ public class VistaVentana {
 		
 	}
 	
-	private void cerrarVentanaTaller(){
-		ventanaTaller.dispose();
-		ventanaTaller = null;
-	}		
 	
 	/* VENTANA PISTA *********************************************************************************/
 	private void crearVentanaPista(){
 		ventanaPista = new VentanaPista(this.ventanaMenu);
 		
-	}
-	
-	private void cerrarVentanaPista(){
-		ventanaPista.dispose();
-		ventanaPista = null;
 	}		
 
 	
@@ -165,21 +136,12 @@ public class VistaVentana {
 		
 	}
 	
-	private void cerrarVentanaOpciones(){
-		ventanaOpciones.dispose();
-		ventanaOpciones = null;
-	}	
-	
-	
+		
 	/* VENTANA CREDITOS *********************************************************************************/
 	private void crearVentanaCreditos(){
 		ventanaCreditos = new VentanaCreditos(this.ventanaMenu);
 		
 	}
 	
-	private void cerrarVentanaCreditos(){
-		ventanaCreditos.dispose();
-		ventanaCreditos = null;
-	}		
 	
 }
