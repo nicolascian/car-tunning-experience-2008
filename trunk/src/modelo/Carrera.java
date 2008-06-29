@@ -59,7 +59,7 @@ public class Carrera implements Runnable {
 		this.virtual.getAuto().agregarObservador(this.vista);
 		this.usuario.getAuto().ActualizarObservadores();
 		this.virtual.getAuto().ActualizarObservadores();
-		
+		this.vista.setVisible(true);
 	}
 	
 	private void finalizar(){

@@ -30,7 +30,7 @@ public class VentanaCarrera extends JFrame implements Observer{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setResizable(false);
 		this.setAlwaysOnTop(true);
-		this.setVisible(true);
+		this.setVisible(false);
 		
 	}
 
