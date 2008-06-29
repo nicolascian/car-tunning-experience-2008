@@ -3,8 +3,10 @@
  */
 package vista.imagenAuto.imagenRelojes;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Color;
+import javax.swing.*;
 import vista.imagenTramo.Imagen;
 import vista.imagenTramo.Posicion;
 import java.awt.Graphics2D;
@@ -19,7 +21,7 @@ import modelo.componente.Motor;
  * @author Usuario
  *
  */
-public abstract class ImagenReloj implements Observer{
+public abstract class ImagenReloj extends JPanel{
 
 	private double anguloMinimo=0;
 	
@@ -42,15 +44,17 @@ public abstract class ImagenReloj implements Observer{
     private Posicion posicion=null;
 	
     private Posicion posicionCentro=null;
-    
-	private Dimension dimension=null;
-	
+    	
 	private Graphics2D grafico=null;
 	
 	private BufferedImage buffImage=null;
 	
 	private Auto auto=null;
 		
+	private Thread hiloDeActualizacion=null;
+	
+	private long tiempoDeActualizacion=50;
+	
 	public ImagenReloj(Auto auto,String rutaImagen,Posicion posicion, Dimension dimension,
 					   Color colorDeAguja,double anguloMinimo,double anguloMaximo,
 					   double valorMinimo,double valorMaximo){
@@ -70,23 +74,29 @@ public abstract class ImagenReloj implements Observer{
 		this.grafico.setColor(colorDeAguja);
 		this.grafico.setBackground(new Color(0,0,0,0));
 		this.auto=auto;
-		this.largoAguja=this.dimension.getHeight()*0.85;
+		this.largoAguja=this.getDimension().getHeight()*0.85;
+		this.setBackground(new Color(0,0,0,0));
+		this.hiloDeActualizacion=new Thread(){
+		    public void run(){
+			     super.run();
+			     while(true){
+				   repaint();
+				   try{   
+					  this.sleep(tiempoDeActualizacion);
+				   }catch(Exception e){};
+			     }
+			}
+		};	
+		this.hiloDeActualizacion.start();
+		this.setVisible(true);
 	}
 		
-	/* (non-Javadoc)
-	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-	 */
-	@Override
-	public void update(Observable o, Object arg) {
-		this.actualizarAngulo();		
-	}
-
-	public void actualizarAngulo(){}
+	protected void actualizarAngulo(){}
 
 	/**
 	 * @return the image
 	 */
-	public Image getImage() {
+	private Image getImage() {
 		grafico.drawImage(imagenReloj.getImage(),imagenReloj.getPosicion().getX(),
 				          imagenReloj.getPosicion().getY(),imagenReloj.getDimension().width,
 				          imagenReloj.getDimension().height,null);
@@ -96,61 +106,72 @@ public abstract class ImagenReloj implements Observer{
 				         (int)(posicionCentro.getY()+largoAguja*Math.sin(this.angulo)));
 		return buffImage;
 	}
-
+		
+	public void repaint(){
+		this.paint(this.getGraphics());
+	}
 	
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
+	 */
+	@Override
+	public void paint(Graphics g) {
+		g.drawImage(buffImage,0,0,buffImage.getWidth(),buffImage.getHeight(),null);
+	}
+
 	/**
 	 * @return the anguloMinimo
 	 */
-	public double getAnguloMinimo() {
+	protected double getAnguloMinimo() {
 		return anguloMinimo;
 	}
 
 	/**
 	 * @param anguloMinimo the anguloMinimo to set
 	 */
-	public void setAnguloMinimo(double anguloMinimo) {
+	protected void setAnguloMinimo(double anguloMinimo) {
 		this.anguloMinimo = anguloMinimo;
 	}
 
 	/**
 	 * @return the anguloMaximo
 	 */
-	public double getAnguloMaximo() {
+	protected double getAnguloMaximo() {
 		return anguloMaximo;
 	}
 
 	/**
 	 * @param anguloMaximo the anguloMaximo to set
 	 */
-	public void setAnguloMaximo(double anguloMaximo) {
+	protected void setAnguloMaximo(double anguloMaximo) {
 		this.anguloMaximo = anguloMaximo;
 	}
 
 	/**
 	 * @return the valorMinimo
 	 */
-	public double getValorMinimo() {
+	protected double getValorMinimo() {
 		return valorMinimo;
 	}
 
 	/**
 	 * @param valorMinimo the valorMinimo to set
 	 */
-	public void setValorMinimo(double valorMinimo) {
+	protected void setValorMinimo(double valorMinimo) {
 		this.valorMinimo = valorMinimo;
 	}
 
 	/**
 	 * @return the valorMaximo
 	 */
-	public double getValorMaximo() {
+	protected double getValorMaximo() {
 		return valorMaximo;
 	}
 
 	/**
 	 * @param valorMaximo the valorMaximo to set
 	 */
-	public void setValorMaximo(double valorMaximo) {
+	protected void setValorMaximo(double valorMaximo) {
 		this.valorMaximo = valorMaximo;
 	}
 
@@ -172,14 +193,14 @@ public abstract class ImagenReloj implements Observer{
 	 * @return the dimension
 	 */
 	public Dimension getDimension() {
-		return dimension;
+		return super.getSize();
 	}
 
 	/**
 	 * @param dimension the dimension to set
 	 */
-	public void setDimension(Dimension dimension) {
-		this.dimension =new Dimension( dimension);
+	protected void setDimension(Dimension dimension) {
+		super.setSize(new Dimension(dimension));
 	}
 
 	/**
@@ -199,15 +220,57 @@ public abstract class ImagenReloj implements Observer{
 	/**
 	 * @return the angulo
 	 */
-	public double getAngulo() {
+	protected double getAngulo() {
 		return angulo;
 	}
 
 	/**
 	 * @param angulo the angulo to set
 	 */
-	public void setAngulo(double angulo) {
+	protected void setAngulo(double angulo) {
 		this.angulo = angulo;
 	}
 
+	/**
+	 * @return the auto
+	 */
+	protected Auto getAuto() {
+		return auto;
+	}
+
+	/**
+	 * @param auto the auto to set
+	 */
+	protected void setAuto(Auto auto) {
+		this.auto = auto;
+	}
+
+	/**
+	 * @return the m
+	 */
+	protected double getM() {
+		return m;
+	}
+
+	/**
+	 * @param m the m to set
+	 */
+	protected void setM(double m) {
+		this.m = m;
+	}
+
+	/**
+	 * @return the b
+	 */
+	protected double getB() {
+		return b;
+	}
+
+	/**
+	 * @param b the b to set
+	 */
+	protected void setB(double b) {
+		this.b = b;
+	}
+	
 }
