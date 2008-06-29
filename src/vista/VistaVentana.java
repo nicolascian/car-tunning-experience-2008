@@ -78,11 +78,6 @@ public class VistaVentana {
 		
 		controlJuego.correrSolo();
 		
-		/*
-		new VistaConsola(auto, pista);//creo una vistaa de consola
-		auto.ActualizarObservadores();// para que se actualice por primera vez
-		 */
-		
 		ventanaMenu.setVisible(true);
 	}
 	
