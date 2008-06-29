@@ -43,24 +43,26 @@ public class Carrera implements Runnable {
 	/**
 	 * Metodo que se encarga de inicializar los atributos para la carrera
 	 */
-	public void incializar(){
+	private void incializar(){
 		/* setear posiciones de autos en 0, 
 		 * inicializar controladores
 		 * incializar vistas
 		 * setear los observadores
 		 * etc
 		 */
-		//agregar keylistener
+
 		this.usuario.getAuto().setPosicion(0);
 		this.virtual.getAuto().setPosicion(0);
-		this.usuario.getAuto().agregarObservador(vista);
-		this.virtual.getAuto().agregarObservador(vista);
+		vista.addKeyListener(new control.Usuario(usuario.getAuto()));
+		vista.addKeyListener(this.virtual.getControl());
+		this.usuario.getAuto().agregarObservador(this.vista);
+		this.virtual.getAuto().agregarObservador(this.vista);
 		this.usuario.getAuto().ActualizarObservadores();
 		this.virtual.getAuto().ActualizarObservadores();
 		
 	}
 	
-	public void finalizar(){
+	private void finalizar(){
 		
 		if (this.usuario.getAuto().getPosicion() < this.virtual.getAuto().getPosicion()){
 			this.usuario.setDinero(this.usuario.getDinero().restar(this.apuesta.getEntero(), this.apuesta.getDecimal()));
