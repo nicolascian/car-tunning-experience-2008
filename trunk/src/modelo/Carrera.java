@@ -34,11 +34,14 @@ public class Carrera implements Runnable {
 	 * 	ENFRENTAR LA APUESTA
 	 */
 	public Carrera(Usuario usuario,Virtual virtual, Pista pista, AlgoPesos apuesta){
+		System.out.println("entra al constructor");
 		this.usuario = usuario;
 		this.virtual = virtual;
 		this.pista = pista;
 		this.apuesta = apuesta;
+		System.out.println("antes de la ventana");
 		this.vista =  new VentanaCarrera(this.usuario, this.virtual, this.pista);
+		System.out.println("sale del constructor");
 	}
 	
 	/**
@@ -52,7 +55,7 @@ public class Carrera implements Runnable {
 		 * etc
 		 */
 		
-		
+		System.out.println("entra a inicializar");	
 		this.usuario.getAuto().setPosicion(0);
 		this.virtual.getAuto().setPosicion(0);
 		this.vista.addKeyListener(new control.Usuario(usuario.getAuto()));
@@ -62,6 +65,7 @@ public class Carrera implements Runnable {
 		this.usuario.getAuto().ActualizarObservadores();
 		this.virtual.getAuto().ActualizarObservadores();
 		this.vista.setVisible(true);
+		System.out.println("sale de inicializar");
 	}
 	
 	private void finalizar(){
@@ -87,25 +91,27 @@ public class Carrera implements Runnable {
 		boolean enCarrera = true;
 		while(enCarrera){
 			try{
-				synchronized (this.usuario.getAuto())
-				{
-				synchronized (this.virtual.getAuto())
-				{
-					this.usuario.getAuto().wait(25);
-					this.virtual.getAuto().wait(25);
+				//synchronized (this.usuario.getAuto())
+				//{
+				//synchronized (this.virtual.getAuto())
+				//{
+					//this.usuario.getAuto().wait(25);
+					//this.virtual.getAuto().wait(25);
 					this.pista.actualizarPosiciones();
 					this.usuario.getAuto().Desgastar();
 					this.virtual.getAuto().Desgastar();
-				}this.virtual.getAuto().notifyAll();
-				}this.usuario.getAuto().notifyAll();
+				//}this.virtual.getAuto().notifyAll();
+				//}this.usuario.getAuto().notifyAll();
 				
 			} catch (ExceptionFinPista e){
 				enCarrera = false;
-			}catch (InterruptedException e) {
+			}
+			//catch (InterruptedException e) {
 		        
 	            /* el thread fue interrumpido durante la espera */
-	            throw new IllegalStateException("Productor interrumpido", e);
-	        }
+	          //  throw new IllegalStateException("Productor interrumpido", e);
+	        //}
+			
 			/*
 			try{
 			Thread.sleep(50);
