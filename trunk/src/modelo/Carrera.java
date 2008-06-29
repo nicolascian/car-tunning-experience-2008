@@ -77,7 +77,7 @@ public class Carrera implements Runnable {
 		}
 		
 		//NO SE CIERRA!!!!!!!!!!!!!!!!!!!!!!
-		//this.vista.dispose();
+		this.vista.dispose();
 		
 		
 		/* aumentar / disminuir la plata del jugador que gano / perdio
@@ -102,13 +102,15 @@ public class Carrera implements Runnable {
 					this.pista.actualizarPosiciones();
 					this.usuario.getAuto().Desgastar();
 					this.virtual.getAuto().Desgastar();
-					System.out.println(this.usuario.getAuto().getPosicion() + " " + this.virtual.getAuto().getPosicion());
+					System.out.println(this.usuario.getAuto().getPosicion() + " " + this.usuario.getAuto().getVelocidad()
+							+ " " + this.usuario.getAuto().getMotor().getRPM());
 					this.virtual.getAuto().notifyAll();
 				}this.usuario.getAuto().notifyAll();
 				}
 				
 			} catch (ExceptionFinPista e){
 				enCarrera = false;
+				System.out.println("FIN CARRERA");
 			}
 			catch (InterruptedException e) {
 		        

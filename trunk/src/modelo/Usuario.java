@@ -18,20 +18,17 @@ public class Usuario extends Jugador {
 
 	private String nombre;
 	
-	private AlgoPesos capital;
-
-
 
 	public Usuario(String nombre, AlgoPesos capital, Auto auto){
 		setNombre(nombre);
-		setCapital(capital);
+		this.setDinero(capital);
 		setAuto(auto);
 	}
 	
 	public Element toXml(Document doc){
 		Element xmlElement = doc.createElement("usuario");
 		xmlElement.setAttribute("nombre", getNombre());
-		xmlElement.appendChild(getCapital().toXml(doc));
+		xmlElement.appendChild(getDinero().toXml(doc));
 		xmlElement.appendChild(getAuto().toXml(doc));
 		return xmlElement;
 	}
@@ -39,7 +36,7 @@ public class Usuario extends Jugador {
 	
 	public String toString() {
 		String str = "Usuario: " + getNombre() + "\n" +
-		             "Capital: " + getCapital() + "\n" +
+		             "Capital: " + getDinero() + "\n" +
 		             "Auto: " + getAuto() + "\n" ;
 		return str;
 	}
@@ -54,14 +51,6 @@ public class Usuario extends Jugador {
 
 	public void setAuto(Auto auto) {
 		this.auto = auto;
-	}
-
-	public AlgoPesos getCapital() {
-		return capital;
-	}
-
-	public void setCapital(AlgoPesos capital) {
-		this.capital = capital;
 	}
 
 	public String getNombre() {
