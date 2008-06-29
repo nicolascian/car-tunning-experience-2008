@@ -59,7 +59,7 @@ public class TestImagenTramoDeEscritorio extends JFrame{
 				while(true){
 					prueba.paint(prueba.getGraphics());
 					try{   
-						  this.sleep(50);
+						  this.sleep(20);
 					}catch(Exception e){};
 				}
 			}

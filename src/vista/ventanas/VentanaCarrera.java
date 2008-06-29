@@ -13,17 +13,22 @@ import javax.swing.JWindow;
 
 /**
  * @author Usuario
- *
+ *usuario.getAuto().getVelocidad()
  */ 
 public class VentanaCarrera extends JFrame implements Observer{
 	
     private PanelCarril panel=null;
 	
+    private modelo.Usuario usuario = null;
+    
 	public void update(Observable arg0, Object arg1) {
-	   panel.repaint();
+	  
+		panel.actualizarVelocidad(usuario.getAuto().getVelocidad());
 	}
 	
 	public VentanaCarrera(modelo.Usuario usuario, modelo.Virtual virtual, Pista pista){
+		this.usuario  = usuario;
+		
 		this.setSize(800, 600);
 		//this.setTitle("Carrera");
 		this.setLocationRelativeTo(null); //centrada
