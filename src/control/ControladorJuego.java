@@ -19,9 +19,7 @@ public class ControladorJuego {
 	
 	public void cargarUsuario(){
 		
-		//cargo el Usuario de archivo
-		//se lo paso a datos
-		datos.setUsuario(null);
+		datos.Cargar();
 	}
 	
 	

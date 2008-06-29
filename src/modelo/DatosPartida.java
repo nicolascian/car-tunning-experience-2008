@@ -71,7 +71,12 @@ public class DatosPartida {
 		
 	}
 
-	
+	public void Cargar(){
+		
+		//PENDIENTE
+		//cargamos desde un achivo y asignamos
+		this.setUsuario(null);
+	}
 	
 	
 	
