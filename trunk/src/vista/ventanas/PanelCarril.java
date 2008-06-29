@@ -4,6 +4,8 @@
 package vista.ventanas;
 
 import javax.swing.JPanel;
+
+import test.TestImagenTramoDeEscritorio;
 import vista.imagenTramo.*;
 
 import java.awt.image.BufferedImage;
@@ -29,8 +31,10 @@ public class PanelCarril extends JPanel{
 
 	private Graphics2D grafico=null;
 	
-	private long tiempoProximaActualizacion=0;
+	private long tiempoDeActualizacion=0;
 	
+	private Thread hiloDeActualizacion=null;
+
 	private PanelCarril(Dimension dimension, Posicion posicion){
 		this.setDimension(new Dimension(dimension));
 		this.setPosicion(new Posicion(posicion));
@@ -38,7 +42,17 @@ public class PanelCarril extends JPanel{
 		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(), 
 				                         BufferedImage.TYPE_INT_RGB);
 		this.grafico=buffImage.createGraphics();
-		
+		this.hiloDeActualizacion=new Thread(){
+		    public void run(){
+			     super.run();
+			     while(true){
+				   repaint();
+				   try{   
+					  sleep(tiempoDeActualizacion);
+				   }catch(Exception e){};
+			     }
+			}
+		};	
 	}
 	
 	public static PanelCarril createPanelCarrilVistaAutoDesdeAtras(Dimension dimension,Posicion posicion,
@@ -53,16 +67,19 @@ public class PanelCarril extends JPanel{
 		return retorno;
 	}
 	
+	public void actualizarVelocidad(double velocidad){
+		if(velocidad<=0)
+		  this.tiempoDeActualizacion=0;
+		else
+	      this.tiempoDeActualizacion=(int)(velocidad-650)/(-10);
+	}
 	
 	/* (non-Javadoc)
 	 * @see java.awt.Component#repaint()
 	 */
 	@Override
 	public void repaint() {
-      if(System.currentTimeMillis()>=this.tiempoProximaActualizacion){		
-		this.paint(this.getGraphics());
-		this.tiempoProximaActualizacion=System.currentTimeMillis()+Constantes.TIEMPO_DE_ACTUALIZACION;
-	  }
+     	this.paint(this.getGraphics());
 	}
 
 	/* (non-Javadoc)
