@@ -27,6 +27,7 @@ public class VistaVentana {
 	private JFrame ventanaCreditos  = null; 
 	private JFrame ventanaTaller = null;
 	private JFrame ventanaPista = null;
+	private JFrame ventanaOpciones = null;
     
 	
 	/** Constructor de la vista con ventanas */
@@ -37,17 +38,17 @@ public class VistaVentana {
 		VentanaSplash ventanaSplash = new VentanaSplash();
 			
 		crearVentanaPrincipal();
-		ventanaSplash.setProgresoProgressBar(25);
-	
-		crearVentanaTaller();
-		ventanaSplash.setProgresoProgressBar(50);
-		
-		crearVentanaPista();
+		ventanaSplash.setProgresoProgressBar(16);
 		crearVentanaMenu();
-		ventanaSplash.setProgresoProgressBar(75);
-		
+		ventanaSplash.setProgresoProgressBar(32);
+		crearVentanaTaller();
+		ventanaSplash.setProgresoProgressBar(48);
+		crearVentanaPista();
+		ventanaSplash.setProgresoProgressBar(64);
+		crearVentanaOpciones();
+		ventanaSplash.setProgresoProgressBar(80);
 		crearVentanaCreditos();
-		ventanaSplash.setProgresoProgressBar(100);
+		ventanaSplash.setProgresoProgressBar(96);
 		
 		ventanaSplash.setVisible(false);
 		ventanaSplash.dispose();
@@ -143,7 +144,7 @@ public class VistaVentana {
 	
 	private void cerrarVentanaTaller(){
 		ventanaTaller.dispose();
-		ventanaMenu = null;
+		ventanaTaller = null;
 	}		
 	
 	/* VENTANA PISTA *********************************************************************************/
@@ -154,8 +155,21 @@ public class VistaVentana {
 	
 	private void cerrarVentanaPista(){
 		ventanaPista.dispose();
-		ventanaMenu = null;
+		ventanaPista = null;
 	}		
+
+	
+	/* VENTANA OPCIONES *********************************************************************************/
+	private void crearVentanaOpciones(){
+		ventanaOpciones = new VentanaOpciones(this.ventanaMenu);
+		
+	}
+	
+	private void cerrarVentanaOpciones(){
+		ventanaOpciones.dispose();
+		ventanaOpciones = null;
+	}	
+	
 	
 	/* VENTANA CREDITOS *********************************************************************************/
 	private void crearVentanaCreditos(){
@@ -165,7 +179,7 @@ public class VistaVentana {
 	
 	private void cerrarVentanaCreditos(){
 		ventanaCreditos.dispose();
-		ventanaMenu = null;
+		ventanaCreditos = null;
 	}		
 	
 }
