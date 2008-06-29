@@ -17,7 +17,7 @@ import modelo.Auto;
  * @author Usuario
  *
  */
-public class ImagenReloj extends JPanel{
+public class ImagenReloj{
 
 	private double anguloMinimo=0;
 	
@@ -39,6 +39,8 @@ public class ImagenReloj extends JPanel{
 	
     private Posicion posicion=null;
 	
+    private Dimension dimension=null;
+    
     private Posicion posicionCentro=null;
     	
 	private Graphics2D grafico=null;
@@ -46,15 +48,10 @@ public class ImagenReloj extends JPanel{
 	private BufferedImage buffImage=null;
 	
 	private Auto auto=null;
-		
-	private Thread hiloDeActualizacion=null;
-	
-	private long tiempoDeActualizacion=50;
-	
-	public ImagenReloj(Auto auto,String rutaImagen,Posicion posicion, Dimension dimension,
+			
+	protected ImagenReloj(Auto auto,String rutaImagen,Posicion posicion, Dimension dimension,
 					   Color colorDeAguja,double anguloMinimo,double anguloMaximo,
 					   double valorMinimo,double valorMaximo){
-		System.out.println("Aca");
 		this.setAnguloMaximo(anguloMaximo);
 		this.setAnguloMinimo(anguloMinimo);
 		this.setDimension(dimension);
@@ -65,27 +62,12 @@ public class ImagenReloj extends JPanel{
 		this.posicionCentro=new Posicion((int)(dimension.width/2.0),(int)(dimension.height/2.0));
 		this.m=(float)(anguloMinimo-anguloMaximo)/(float)(valorMinimo-valorMaximo);
 		this.b=(float)anguloMinimo-(float)m*anguloMaximo;
-		this.buffImage=new BufferedImage(dimension.width,dimension.height,BufferedImage.TYPE_INT_RGB);
+		this.buffImage=new BufferedImage(dimension.width,dimension.height,BufferedImage.TYPE_INT_ARGB);
 		this.grafico=(Graphics2D)buffImage.createGraphics();
 		this.grafico.setColor(colorDeAguja);
 		this.grafico.setBackground(new Color(0,0,0,0));
 		this.auto=auto;
-		this.largoAguja=this.getDimension().getHeight()*0.85;
-		this.setBackground(new Color(0,0,0,0));
-		this.hiloDeActualizacion=new Thread(){
-		    public void run(){
-			     super.run();
-			     while(true){
-				   repaint();
-				   try{   
-					  this.sleep(tiempoDeActualizacion);
-				   }catch(Exception e){
-					   e.printStackTrace();};
-			     }
-			}
-		};	
-		//this.hiloDeActualizacion.start();
-		//this.setVisible(false);	
+		this.largoAguja=this.getDimension().getWidth()*0.85/2;	
 	}
 		
 	protected void actualizarAngulo(){}
@@ -93,29 +75,16 @@ public class ImagenReloj extends JPanel{
 	/**
 	 * @return the image
 	 */
-	private Image getImage() {
+	public Image getImage() {
+		this.actualizarAngulo();
 		grafico.drawImage(imagenReloj.getImage(),imagenReloj.getPosicion().getX(),
 				          imagenReloj.getPosicion().getY(),imagenReloj.getDimension().width,
 				          imagenReloj.getDimension().height,null);
 		grafico.setStroke(new BasicStroke(4.0f));
 		grafico.drawLine(this.posicionCentro.getX(),posicionCentro.getY(),
 				         (int)(posicionCentro.getX()+largoAguja*Math.cos(this.angulo)),
-				         (int)(posicionCentro.getY()+largoAguja*Math.sin(this.angulo)));
+				         (int)(posicionCentro.getY()-largoAguja*Math.sin(this.angulo)));
 		return buffImage;
-	}
-		
-	public void repaint(){
-		this.actualizarAngulo();
-		this.paint(this.getGraphics());
-	}
-	
-	/* (non-Javadoc)
-	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
-	 */
-	@Override
-	public void paint(Graphics g) {
-		Image auxiliar=this.getImage();
-		g.drawImage(auxiliar,0,0,getWidth(),getHeight(),null);
 	}
 
 	/**
@@ -192,14 +161,14 @@ public class ImagenReloj extends JPanel{
 	 * @return the dimension
 	 */
 	public Dimension getDimension() {
-		return super.getSize();
+		return this.dimension;
 	}
 
 	/**
 	 * @param dimension the dimension to set
 	 */
 	protected void setDimension(Dimension dimension) {
-		setSize(new Dimension(dimension));
+		this.dimension=new Dimension(dimension);
 	}
 
 	/**

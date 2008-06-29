@@ -18,9 +18,8 @@ public class ImagenTacometro extends ImagenReloj {
 	}
 	
 	public static ImagenTacometro createTacometroBlanco(Auto auto,Posicion posicion,Dimension dimension){
-		Color color=Color.RED;
-		String ruta="src//vista//imagenAuto//rpm.png";
-		return new ImagenTacometro(auto,ruta,posicion,dimension,color,1.5*Math.PI,0,0,8000);
+		return new ImagenTacometro(auto,"src//vista//imagenAuto//rpm.png",posicion,dimension,Color.RED,
+				                   1.5*Math.PI,0,0,8000);
 	}
 
 	public static Dimension createDimensionStandar(){
