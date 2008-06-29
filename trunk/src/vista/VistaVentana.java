@@ -42,6 +42,7 @@ public class VistaVentana {
 		crearVentanaTaller();
 		ventanaSplash.setProgresoProgressBar(50);
 		
+		crearVentanaPista();
 		crearVentanaMenu();
 		ventanaSplash.setProgresoProgressBar(75);
 		
@@ -99,6 +100,9 @@ public class VistaVentana {
 	}
 	public void Opciones(){	
 		//dificultad del PC, y el auto del PC
+		//ventanaMenu.setVisible(false);
+		//ventanaOpciones.setVisible(true);
+		//ventanaMenu.setVisible(true);
 	}
 	public void Creditos(){
 		ventanaMenu.setVisible(false);

@@ -13,13 +13,13 @@ import control.Usuario;
 
 public class VentanaPista extends JFrame{
 
-private JFrame ventanaMenu=null;
+	private JFrame ventanaMenu=null;
 	
 	public VentanaPista(JFrame ventanaMenu) {
 		this.ventanaMenu=ventanaMenu;
 		
 		this.setSize(800, 600);
-		this.setTitle("Creditos");
+		this.setTitle("Pista");
 		this.setLocationRelativeTo(null); //centrada
 		
 		this.addWindowListener(new java.awt.event.WindowAdapter() {

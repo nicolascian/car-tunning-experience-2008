@@ -18,7 +18,7 @@ public class VentanaTaller extends JFrame {
 		this.ventanaMenu=ventanaMenu;
 		
 		this.setSize(800, 600);
-		this.setTitle("Creditos");
+		this.setTitle("Taller");
 		this.setLocationRelativeTo(null); //centrada
 		
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
