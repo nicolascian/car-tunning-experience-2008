@@ -77,7 +77,8 @@ public class PanelCarril extends JPanel{
 	 */
 	@Override
 	public void repaint() {
-     	this.paint(this.getGraphics());
+     if(this.tiempoDeActualizacion>0)
+		this.paint(this.getGraphics());
 	}
 
 	/* (non-Javadoc)
