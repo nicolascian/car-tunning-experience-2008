@@ -2,6 +2,9 @@ package modelo;
 
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -43,8 +46,10 @@ public class GestorPersistencia {
           new java.io.FileWriter(nombreArchivo));
         serializer.serialize(doc);
 		
-        
-        System.out.println("GUARDADO (GestorPersistencia)");
+        JOptionPane.showMessageDialog(new JFrame(),
+        	    "Se ha guardado el usuario: " + usuario.getNombre() +'\n'+" satisfactoriamente.", 
+        	    "Informacion de guardado", JOptionPane.INFORMATION_MESSAGE);
+
 	}
 	
 	public modelo.Usuario Cargar(){

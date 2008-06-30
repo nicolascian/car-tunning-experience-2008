@@ -84,7 +84,7 @@ private VistaVentana vistaVentana=null;
 		this.pack();
 		this.setResizable(false);//que no se pueda cambiar de tamaño
 		this.setLocationRelativeTo(null); //centrada	
-		this.setAlwaysOnTop(true);
+		this.setAlwaysOnTop(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	public void pressBotonManejar(){
