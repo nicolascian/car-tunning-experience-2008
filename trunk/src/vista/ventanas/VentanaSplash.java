@@ -30,14 +30,14 @@ public class VentanaSplash extends JWindow {
 		this.setLayout(null);
 		progress = new JProgressBar();
 		this.add(progress);
-		this.setSize(400,250);
+		this.setSize(400,260);
 		this.setLocationRelativeTo(null); //centrada
 		this.setAlwaysOnTop(true);
 		this.setVisible(true);  //mostramos la ventana
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
 		progress.setValue(0);
 		progress.setStringPainted(true);// le pongo numeritos al progressBar
-		progress.setBounds(0,240,400,10);
+		progress.setBounds(0,240,400,20);
 		imagen=new Imagen("src//vista//ventanas//imagenSplash.png",new Dimension(400,240),
 				          new Posicion());
 		JPanel panel=new JPanel(){
