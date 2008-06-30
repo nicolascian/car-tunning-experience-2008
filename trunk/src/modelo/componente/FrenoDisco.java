@@ -8,6 +8,9 @@
 package modelo.componente;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Un freno de disco es un dispositivo cuya función es detener o reducir la 
  * velocidad de rotación de una rueda. Hecho normalmente de acero, está unido a 
@@ -32,6 +35,12 @@ public class FrenoDisco extends Freno{
 		setNombre("Freno de Disco");
 		setPrecio(new AlgoPesos(599,99)); //algo$
 		setPeso(65); // Kg
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("frenodisco");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	@Override

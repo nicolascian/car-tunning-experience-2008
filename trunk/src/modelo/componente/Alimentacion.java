@@ -7,7 +7,6 @@
 
 package modelo.componente;
 
-
 /**
  * La alimentacion de un motor de combustion interna es la encargada
  * de mezclar el aire con el combustible y luego colocarlo en el motor.
@@ -35,6 +34,7 @@ public abstract class Alimentacion extends Componente {
 	public Alimentacion(){
 		setEstado(100);
 	}
+	
 	
 	/* toString */
 	

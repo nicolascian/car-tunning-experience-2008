@@ -8,6 +8,10 @@
 package modelo.componente;
 import modelo.*;
 
+
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Escape es un componenta que
  * se ve afectado por la humedad y presion del clima
@@ -53,13 +57,19 @@ implements AfectablePorClima, AfectablePorSuperficie{
 		this.PresionOptima = PresionOptima;
 		this.setEstado(100);
 	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("escape");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
+	}
+	
 	/**
 	 * El escape se  va desgastando 
 	 * con el correr del tiempo.
 	 * Se desgasta por el clima y 
 	 * por la superficie
 	 */
-	
 	public void desgastar(){
 		//tener en cuenta Humedad, presion y superficie
 		this.setEstado(getEstado() - EfectoClimatico - EfectoSuperficie/100 - 1/1000000000);

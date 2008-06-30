@@ -7,6 +7,9 @@
 
 package modelo.componente;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * @Documentacion: Una instancia de la clase caja Automatica modela una caja automatica de un auto,
  * como tal efectua los cambios en forma automatizada de acuerdo a las revoluciones del motor,
@@ -56,6 +59,12 @@ public class Automatica extends Caja{
 	public Automatica(int cantidadCambios){
 		super(cantidadCambios);
 		setPeso(80);
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("automatica");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 			
 	/**

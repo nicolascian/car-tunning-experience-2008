@@ -19,7 +19,7 @@ public class GestorPersistencia {
 		
 	}
 	
-	public void Guardar(modelo.Usuario usuario)throws IOException, ParserConfigurationException{
+	public void Guardar(modelo.Usuario usuario) throws IOException, ParserConfigurationException{
 		
 		String nombreArchivo = "guardado.xml";
 		
@@ -43,6 +43,8 @@ public class GestorPersistencia {
           new java.io.FileWriter(nombreArchivo));
         serializer.serialize(doc);
 		
+        
+        System.out.println("GUARDADO (GestorPersistencia)");
 	}
 	
 	public modelo.Usuario Cargar(){

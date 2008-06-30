@@ -8,6 +8,9 @@
 package modelo.componente;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * El embrague es un sistema que permite transmitir o no una energía mecánica a 
  * su acción final. En un automóvil, por ejemplo, permite transmitir o no la 
@@ -33,6 +36,12 @@ public class Embrague extends Componente {
 		setNombre("Embrague");
 		setPrecio(new AlgoPesos(1830,00)); //algo$
 		setPeso(4); // Kg
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("embrague");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	/**

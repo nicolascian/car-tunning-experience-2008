@@ -8,6 +8,10 @@
 package modelo.componente;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
+
 /**
  * la suspension es un componente que absorbe 
  * las irregularidades del terreno por el que se circula
@@ -53,6 +57,13 @@ implements AfectablePorSuperficie, AfectablePorClima{
 		this.setNombre("Suspencion estandar");
 		this.setAuto(null);
 	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("suspension");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
+	}
+	
 	/**
 	 * como es un componente, con el pasar del tiempo se
 	 * va desgastando hasta quedar imposible de usar

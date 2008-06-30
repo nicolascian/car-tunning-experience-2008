@@ -8,6 +8,9 @@
 package modelo.componente;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * El ABS (Antilock Brake System). 
  * Consiste en una bomba que se incorpora a los circuitos del líquido de freno 
@@ -39,6 +42,12 @@ public class FrenoABS extends Freno{
 		setNombre("Freno ABS (Antilock Brake System)");
 		setPrecio(new AlgoPesos(1200,00)); //algo$
 		setPeso(8); // Kg
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("frenoabs");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	@Override

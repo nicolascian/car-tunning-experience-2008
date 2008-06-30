@@ -8,6 +8,9 @@
 package modelo.componente;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Frenos de cinta o de banda.
  * Utilizan una banda flexible, las mordazas o zapatas (suelen ser de amianto) 
@@ -34,6 +37,12 @@ public class FrenoCinta extends Freno {
 		setNombre("Freno de Cintao de Banda");
 		setPrecio(new AlgoPesos(370,00)); //algo$
 		setPeso(50); // Kg
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("frenocinta");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	@Override

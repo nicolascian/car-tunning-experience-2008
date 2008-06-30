@@ -10,6 +10,9 @@ import modelo.*;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Esta clase modela la carroceria de un auto. La carroceria se ve afectada por el clima
  * de modo tal que siempre se encuentra a temperatura ambiente, afectando el coeficiente de arrastre
@@ -69,6 +72,12 @@ public class Carroceria extends Componente
 		setCoeficienteDeOxidacionPorHumedad(0);
 		setCoeficienteDeOxidacionPorParticulas(0);
 		setPeso(peso);
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("carroceria");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	/**

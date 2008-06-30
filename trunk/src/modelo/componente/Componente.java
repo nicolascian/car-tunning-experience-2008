@@ -37,7 +37,7 @@ public abstract class Componente extends Observable {
 	protected double estado;
 			
 	/** Peso especifico del componente */
-	protected double peso;
+	protected double peso=0;
 	
 	protected Auto auto;
 	
@@ -63,8 +63,7 @@ public abstract class Componente extends Observable {
 	public abstract double obtenerPotencia();
 	
 	/** toXml, para poder guardar */
-	//public abstract Element toXml(Document doc);
-	public Element toXml(Document doc){return null;} //temporal para que no pinche todo
+	public abstract Element toXml(Document doc);
 	
 	/**
 	 * en funcion de la disposicion del unidades monetarias, y
