@@ -71,7 +71,7 @@ public class DatosPartida {
 			gestor.Guardar(usuario);
 		}
 		catch(Exception e1){
-			//MANEJAR LAS EXCEPTION
+			System.out.println("EXCEPCION en DatosPartida, guardar. ERR: " + e1.getMessage());
 		}
 		
 	}

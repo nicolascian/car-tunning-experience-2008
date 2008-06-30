@@ -10,6 +10,10 @@ package modelo.componente;
 import modelo.componente.neumaticos.*;
 import modelo.fuerzas.*;
 import modelo.*;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Las llantas de un auto estan ligadas al eje del mismo,
  * se afectan directamente por la superficie y la humedad
@@ -56,6 +60,12 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		setPeso(peso);
 		setCoeficienteDeDesgastePorSuperficie(3);
 		setNeumatico(null);
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("llanta");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	/**

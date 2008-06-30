@@ -8,6 +8,9 @@
 package modelo.componente.neumaticos;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Los neumaticos todo terreno son utilizados en las superficies mas
  * exigentes, proporcionando una mayor adherencia y traccion en terrenos
@@ -77,6 +80,13 @@ public class NeumaticoTodoTerreno extends Neumatico
 		this.setAuto(null);
 		this.setLlanta(null);
 	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("neumaticotodoterreno");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
+	}
+	
 	/**
 	 * El desgaste de este neumatico esta dado por la rugosidad de la superficie,
 	 * por las particulas en la misma y por el simple uso.

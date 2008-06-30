@@ -3,6 +3,11 @@ import modelo.Auto;
 import modelo.Clima;
 import modelo.Constantes;
 import modelo.AfectablePorClima;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
+
 /**
  * @Descripcion:
  *  Una instancia de esta clase simula el sistema de refrigeracion del motor de un auto.
@@ -50,6 +55,12 @@ public class SistemaDeRefrigeracion extends Componente implements AfectablePorCl
 		this.setAuto(auto);
 		this.setPeso(15);
 		setEstado(100);
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("sistemaderefrigeracion");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	/**

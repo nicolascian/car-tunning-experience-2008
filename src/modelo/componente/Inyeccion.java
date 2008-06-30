@@ -6,6 +6,9 @@
  ******************************************************************************/
 
 package modelo.componente;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import modelo.*;
 
 /**
@@ -43,6 +46,12 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 		CTE_HUMEDAD_OPTIMA = cte_humedad_optima;
 		CTE_RELACION_POTENCIA = cte_relacion_potencia;
 		cargarDatos();
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("inyeccion");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	private void cargarDatos(){

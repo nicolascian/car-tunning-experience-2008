@@ -8,6 +8,9 @@
 package modelo.componente.neumaticos;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * El neumatico mixto sirve tanto para superficies planas como con relieve,
  * y para secas asi como para humedas, aunque su rendimiento no es el mismo
@@ -84,6 +87,12 @@ public class NeumaticoMixto extends Neumatico implements AfectablePorClima,
 		this.setLlanta(null);
 	}
 
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("neumaticomixto");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
+	}
+	
 	/**
 	 * La adherencia se ve afectada en un 30%por la viscocidad de la superficie,
 	 * en un 30% por la cantidad de agua en la misma, y en hasta un 30% por el 

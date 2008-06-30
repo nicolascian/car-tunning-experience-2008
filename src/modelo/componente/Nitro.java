@@ -8,6 +8,9 @@
 package modelo.componente;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Durante el proceso de la combustión en un encendido, a unos 300 grados Celsios 
  * el Óxido Nitroso simplemente se descompone en Nitrógeno y Oxígeno.
@@ -49,6 +52,13 @@ public class Nitro extends Componente {
 		setPrecio(new AlgoPesos(3200,00)); //algo$
 		setPeso(10); // Kg
 	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("nitro");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
+	}
+
 	
 	/**
 	 * Permite poner al Nitro en estado Activo / Desactivo
@@ -93,5 +103,6 @@ public class Nitro extends Componente {
 	public String toString(){
 		return super.toString();
 	}
+	
 	
 }

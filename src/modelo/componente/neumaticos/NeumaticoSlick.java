@@ -8,6 +8,9 @@
 package modelo.componente.neumaticos;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * El neumatico Slick es un neumatico liso (carece de dibujo en la
  * banda de rodadura). Tiene la mayor superficie posible en contacto
@@ -79,6 +82,13 @@ public class NeumaticoSlick extends Neumatico
 		this.setAuto(null);
 		this.setLlanta(null);
 	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("neumaticoslick");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
+	}
+	
 	/**
 	 * La adherencia se ve comprometida en un 40% por la cantidad de agua en la
 	 * pista, en otro 40% por la visicosidad de la misma, en un 8% si la temperatura

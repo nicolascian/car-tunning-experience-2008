@@ -118,8 +118,8 @@ public class AlgoPesos{
 	
 	public Element toXml(Document doc){
 		Element xmlElement = doc.createElement("capital");
-		xmlElement.setAttribute("entero", String.valueOf(getEntero()));
 		xmlElement.setAttribute("decimal", String.valueOf(getDecimal()));
+		xmlElement.setAttribute("entero", String.valueOf(getEntero()));
 		return xmlElement;
 	}
 	

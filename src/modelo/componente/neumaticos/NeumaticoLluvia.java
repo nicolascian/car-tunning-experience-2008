@@ -8,6 +8,9 @@
 package modelo.componente.neumaticos;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * El neumatico para lluvia esta hecho de forma tal que drena el agua y por
  * lo tanto no lo afecta la cantidad de la misma que se encuentre en la pista.
@@ -67,6 +70,12 @@ public class NeumaticoLluvia extends Neumatico implements AfectablePorSuperficie
 		this.setPrecio(new AlgoPesos(300,0));
 		this.setAuto(null);
 		this.setLlanta(null);
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("neumaticolluvia");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	/**

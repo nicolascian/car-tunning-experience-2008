@@ -7,6 +7,9 @@
 
 package modelo.componente;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Una instancia de esta clase modela una caja manual estandar en la cual se puede pasar de un cambio
  * a otro en forma arbitraria. 
@@ -27,6 +30,12 @@ public class Manual extends Caja{
 		setPeso(85);
 	}
 
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("manual");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
+	}
+	
 	/**
 	 * @Pre: 
 	 * @Post: Se han generado las relaciones de caja correspondientes.

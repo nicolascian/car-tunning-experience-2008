@@ -6,6 +6,9 @@
  ******************************************************************************/
 
 package modelo.componente;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import modelo.*;
 
 /**
@@ -46,6 +49,12 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 		CTE_RELACION_POTENCIA = cte_relacion_potencia;
 		cargarDatos();
 		setPeso(10);
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("carburador");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	private void cargarDatos(){

@@ -8,6 +8,9 @@
 package modelo.componente;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Un turbocompresor o turbocargador es un sistema de sobrealimentación que usa 
  * una turbina para comprimir gases. Este tipo de sistemas se suele utilizar en 
@@ -76,6 +79,13 @@ public class Turbo extends Componente implements AfectablePorClima{
 		this.setAuto(auto);
 		this.setNombre("Turbo Estandar");
 		}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("turbo");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
+	}
+	
 	/**
 	 * con el correr del tiempo,
 	 * los componentes se van desgastando

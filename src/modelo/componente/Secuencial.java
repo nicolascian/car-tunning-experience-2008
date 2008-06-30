@@ -7,6 +7,9 @@
 
 package modelo.componente;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Modela una caja secuencial, en la cual se puede pasar los cambios como su nombre lo dice
  * de manera secuencial, con las primitivas siguiente y anterior.
@@ -28,6 +31,12 @@ public class Secuencial extends Caja{
 		setPeso(85);
 	}
 
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("secuencial");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
+	}
+	
 	/**
 	 * @Pre: La instancia ha sido creada.
 	 * @Post:Se ha subido un cambio. Cada vez que hacemos un Cambio, se altera las 

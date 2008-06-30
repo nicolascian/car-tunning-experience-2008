@@ -7,6 +7,9 @@
 
 package modelo.componente;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Combustible es un componente capaz de 
  * liberar energia cuando se cambia o transforma una 
@@ -33,6 +36,12 @@ public class Combustible extends Componente{
 		setCapacidad(capacidad);
 		setEstado(capacidad);
 		setIndiceDeCombustion(indiceDeCombustion);
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("combustible");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	/**
