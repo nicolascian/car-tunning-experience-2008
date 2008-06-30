@@ -27,7 +27,7 @@ public class VistaVentana {
 	public VistaVentana(ControladorJuego ctrl){
 		controlJuego = ctrl;
 		// decorados
-		JFrame.setDefaultLookAndFeelDecorated(true); //false para Windows estandar
+		JFrame.setDefaultLookAndFeelDecorated(false); //false para Windows estandar
 		VentanaSplash ventanaSplash = new VentanaSplash();
 			
 		crearVentanaPrincipal();
@@ -50,7 +50,7 @@ public class VistaVentana {
 	}
 			
 	public void JuegoNuevo(){
-		String nombre = JOptionPane.showInputDialog("Ingresar Nombre:");
+		String nombre = JOptionPane.showInputDialog("Ingresar Nombre:","Jugador Nuevo");
 		cerrarVentanaPrincipal();
 		controlJuego.crearUsuario(nombre);	
 		ventanaMenu.setVisible(true);

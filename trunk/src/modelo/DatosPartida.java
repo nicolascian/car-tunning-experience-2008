@@ -7,6 +7,9 @@
 
 package modelo;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import control.*;
 
 
@@ -71,7 +74,10 @@ public class DatosPartida {
 			gestor.Guardar(usuario);
 		}
 		catch(Exception e1){
-			System.out.println("EXCEPCION en DatosPartida, guardar. ERR: " + e1.getMessage());
+			JOptionPane.showMessageDialog(new JFrame(),
+	        	    "No se pudo guardar el Juego actual.",
+	        	    "Error al guardar",
+	        	    JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
