@@ -27,7 +27,11 @@ public class ImagenTacometro extends ImagenReloj {
 	}
 	
 	protected void actualizarAngulo() {
-		this.setAngulo(this.getM()*this.getAuto().getMotor().getRPM()+this.getB());
+	  double rpm=this.getAuto().getMotor().getRPM();
+	  if(rpm<=this.getValorMaximo())	
+		this.setAngulo(this.getM()*rpm+this.getB());
+	  else
+		this.setAngulo(0);
 	}
 	
 }
