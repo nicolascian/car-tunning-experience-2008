@@ -7,6 +7,7 @@
 
 package control;
 
+import modelo.Auto;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -90,8 +91,9 @@ public class Intermedio extends Habilidad{
 	 * Constructor de Intermedio
 	 * Crea un Timer
 	 */
-	public Intermedio(){
+	public Intermedio(Auto auto){
 		super();
+		this.auto = auto;
 		//lanzamos el timer
         Timer t = new Timer();
         t.schedule(new Temporizador(), mSecsControl, mSecsControl);

@@ -37,8 +37,8 @@ public class DatosPartida {
 		gestor = new GestorPersistencia();
 		
 		//preparo todo lo del jugador virtual
-		habilidad = new control.Intermedio();
 		autoVirtual = new Auto();
+		habilidad = new control.Intermedio(autoVirtual);
 		controlVirtual = new control.Virtual(habilidad, autoVirtual);
 		virtual = new Virtual(controlVirtual, autoVirtual);
 	

@@ -9,6 +9,7 @@ package control;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import modelo.Auto;
 
 /**
  * Clase Experto
@@ -89,8 +90,9 @@ public class Experto extends Habilidad{
 	 * Constructor de Experto
 	 * Crea un Timer
 	 */
-	public Experto(){
+	public Experto(Auto auto){
 		super();
+		this.auto = auto;
 		//lanzamos el timer
         Timer t = new Timer();
         t.schedule(new Temporizador(), mSecsControl, mSecsControl);

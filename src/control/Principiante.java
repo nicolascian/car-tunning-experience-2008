@@ -9,6 +9,7 @@ package control;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import modelo.Auto;
 
 /**
  * Clase Principiante
@@ -89,8 +90,9 @@ public class Principiante extends Habilidad{
 	 * Constructor de Principiante
 	 * Crea un Timer
 	 */
-	public Principiante(){
+	public Principiante(Auto auto){
 		super();
+		this.auto = auto;
 		//lanzamos el timer
         Timer t = new Timer();
         t.schedule(new Temporizador(), mSecsControl, mSecsControl);
