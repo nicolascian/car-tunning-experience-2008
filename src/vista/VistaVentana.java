@@ -51,9 +51,11 @@ public class VistaVentana {
 			
 	public void JuegoNuevo(){
 		String nombre = JOptionPane.showInputDialog("Ingresar Nombre:","Jugador Nuevo");
-		cerrarVentanaPrincipal();
-		controlJuego.crearUsuario(nombre);	
-		ventanaMenu.setVisible(true);
+		if (nombre != null){
+			cerrarVentanaPrincipal();
+			controlJuego.crearUsuario(nombre);	
+			ventanaMenu.setVisible(true);
+		}
 	}
 	
 	public void CargarJuego(){
