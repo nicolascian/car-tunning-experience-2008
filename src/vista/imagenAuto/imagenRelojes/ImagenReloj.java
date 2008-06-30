@@ -45,6 +45,8 @@ public class ImagenReloj{
     	
 	private Graphics2D grafico=null;
 	
+	private Color colorAguja=null;
+	
 	private BufferedImage buffImage=null;
 	
 	private Auto auto=null;
@@ -52,6 +54,7 @@ public class ImagenReloj{
 	protected ImagenReloj(Auto auto,String rutaImagen,Posicion posicion, Dimension dimension,
 					   Color colorDeAguja,double anguloMinimo,double anguloMaximo,
 					   double valorMinimo,double valorMaximo){
+		this.colorAguja=colorDeAguja;
 		this.setAnguloMaximo(anguloMaximo);
 		this.setAnguloMinimo(anguloMinimo);
 		this.setDimension(dimension);
@@ -239,6 +242,90 @@ public class ImagenReloj{
 	 */
 	protected void setB(double b) {
 		this.b = b;
+	}
+
+	/**
+	 * @return the colorAguja
+	 */
+	public Color getColorAguja() {
+		return colorAguja;
+	}
+
+	/**
+	 * @return the largoAguja
+	 */
+	protected double getLargoAguja() {
+		return largoAguja;
+	}
+
+	/**
+	 * @param largoAguja the largoAguja to set
+	 */
+	protected void setLargoAguja(double largoAguja) {
+		this.largoAguja = largoAguja;
+	}
+
+	/**
+	 * @return the imagenReloj
+	 */
+	protected Imagen getImagenReloj() {
+		return imagenReloj;
+	}
+
+	/**
+	 * @param imagenReloj the imagenReloj to set
+	 */
+	protected void setImagenReloj(Imagen imagenReloj) {
+		this.imagenReloj = imagenReloj;
+	}
+
+	/**
+	 * @return the posicionCentro
+	 */
+	protected Posicion getPosicionCentro() {
+		return posicionCentro;
+	}
+
+	/**
+	 * @param posicionCentro the posicionCentro to set
+	 */
+	protected void setPosicionCentro(Posicion posicionCentro) {
+		this.posicionCentro = posicionCentro;
+	}
+
+	/**
+	 * @return the grafico
+	 */
+	protected Graphics2D getGrafico() {
+		return grafico;
+	}
+
+	/**
+	 * @param grafico the grafico to set
+	 */
+	protected void setGrafico(Graphics2D grafico) {
+		this.grafico = grafico;
+	}
+
+	/**
+	 * @return the buffImage
+	 */
+	protected BufferedImage getBuffImage() {
+		return buffImage;
+	}
+
+	/**
+	 * @param buffImage the buffImage to set
+	 */
+	protected void setBuffImage(BufferedImage buffImage) {
+		this.buffImage = buffImage;
+	}
+
+	/**
+	 * @param colorAguja the colorAguja to set
+	 */
+	protected void setColorAguja(Color colorAguja) {
+		this.colorAguja = colorAguja;
 	}
 	
 }

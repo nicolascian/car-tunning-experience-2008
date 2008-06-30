@@ -13,6 +13,8 @@ import vista.imagenAuto.imagenRelojes.ImagenReloj;
 import vista.imagenAuto.imagenRelojes.ImagenTacometro;
 import vista.imagenAuto.imagenRelojes.ImagenVelocimetro;
 import vista.imagenTramo.Imagen;
+import java.awt.Font;
+import java.awt.Color;
 /**
  * @author Usuario
  *
@@ -25,6 +27,8 @@ public class PanelDeInformacion extends JPanel {
 	
 	private Imagen imagenDeFondo=null;
 	
+	private Imagen imagenPalanca=null;
+	
 	private BufferedImage buffImage=null;
 
 	private Graphics2D grafico=null;
@@ -33,7 +37,12 @@ public class PanelDeInformacion extends JPanel {
 	
 	private Thread hiloDeActualizacion=null;
 	
+	private modelo.Usuario usuario=null;
+	
+	private Posicion posicionNumeroCambio=null;
+	
 	public PanelDeInformacion(Dimension dimension,Posicion posicion,modelo.Usuario usuario){
+		this.usuario=usuario;
 		this.setBounds(posicion.getX(),posicion.getY(),dimension.width,dimension.height);
 		this.setDimension(new Dimension(dimension));
 		this.setSize(dimension);
@@ -46,6 +55,9 @@ public class PanelDeInformacion extends JPanel {
 		this.imagenVelocimetro=ImagenVelocimetro.createVelocimetroBlanco(usuario.getAuto(), 
 			 new Posicion((int)((dimension.width-dimensionReloj.width)/2),
 			 (int)((dimensionReloj.width*1.05)+(dimension.width-dimensionReloj.width)/2)),dimensionReloj);
+		this.imagenPalanca=new Imagen("src//vista//imagenAuto//palanca.png",
+            new Dimension((int)(this.getDimension().width*0.4),(int)(this.getDimension().height*0.17)),
+            new Posicion((int)(this.getDimension().width*0.25),(int)(dimension.height*0.78)));
 		this.imagenDeFondo=new Imagen("src//vista//ventanas//cuadros.JPG",
 				                      this.getDimension(),new Posicion());		
 		this.hiloDeActualizacion=new Thread(){
@@ -59,8 +71,13 @@ public class PanelDeInformacion extends JPanel {
 			     }
 			}
 		};
-		this.hiloDeActualizacion.start();	
-		
+		this.hiloDeActualizacion.start();
+		this.getGrafico().setColor(Color.BLACK);
+		this.getGrafico().setFont(new Font("Arial",Font.ROMAN_BASELINE,40));
+		this.posicionNumeroCambio=new Posicion((int)(this.imagenPalanca.getPosicion().getX()+
+				                               this.imagenPalanca.getDimension().getWidth()*0.42),
+				                               (int)(this.imagenPalanca.getPosicion().getY()+
+				                               this.imagenPalanca.getDimension().getHeight()*0.4));
 	}
 		
 	/* (non-Javadoc)
@@ -88,6 +105,11 @@ public class PanelDeInformacion extends JPanel {
 			grafico.drawImage(imagenAuxiliar.getImage(),imagenAuxiliar.getPosicion().getX(),
 					imagenAuxiliar.getPosicion().getY(),imagenAuxiliar.getDimension().width,
 					imagenAuxiliar.getDimension().height,this);
+			grafico.drawImage(imagenPalanca.getImage(),imagenPalanca.getPosicion().getX(),
+					imagenPalanca.getPosicion().getY(),imagenPalanca.getDimension().width,
+					imagenPalanca.getDimension().height,this);
+			this.getGrafico().drawString(String.valueOf(usuario.getAuto().getCaja().getCambio()),
+					                    this.posicionNumeroCambio.getX(),this.posicionNumeroCambio.getY());
 			((Graphics2D)g).drawImage(buffImage,0 ,0,this.getWidth(),this.getHeight(),this);
 		}catch(Exception e){};
 	}
