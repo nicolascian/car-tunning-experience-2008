@@ -32,9 +32,9 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		
 	protected final static double COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES=2;
 	
-	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO=25.0;//2.0
+	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO=75.0;//2.0
 	
-	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MINIMO=24.0;//1.0
+	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MINIMO=15.0;//1.0
 	
 	protected final static double COEFICIENTE_DE_DESGASTE=2;
 			
@@ -181,7 +181,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 * @Post:Se ha incrementado el coeficiente de incremento de rpm.
 	*/	
 	private void incrementarCoeficienteDeIncrementoRpm(){
-		double coeficiente=coeficienteDeIncrementoRpm+0.001;//0.0002
+		double coeficiente=coeficienteDeIncrementoRpm+=20;//0.001;//0.0002
 		if(coeficiente>COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO)
 			coeficiente=COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO;
 		this.setCoeficienteDeIncrementoRpm(coeficiente);
@@ -192,7 +192,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 * @Post:Se ha decrementado el coeficiente de incremento de rpm.
 	 */
 	private void decrementarCoeficienteDeIncrementoRpm(){
-		double coeficiente=coeficienteDeIncrementoRpm-0.001;//0.0002
+		double coeficiente=coeficienteDeIncrementoRpm--;//0.001;//0.0002
 		if(coeficiente>COEFICIENTE_DE_INCREMENTO_RPM_MINIMO)
 			coeficiente=COEFICIENTE_DE_INCREMENTO_RPM_MINIMO;
 		this.setCoeficienteDeIncrementoRpm(coeficiente);

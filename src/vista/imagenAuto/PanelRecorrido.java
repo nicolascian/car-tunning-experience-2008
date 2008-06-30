@@ -41,7 +41,7 @@ public class PanelRecorrido extends JPanel {
 		progress.setValue(0);
 		progress.setVisible(true);
 		this.setVisible(true);
-		this.m=pista.getLongitud()/100;
+		this.m=100/pista.getLongitud();
 		this.hiloDeActualizacion=new Thread(){
 		    public void run(){
 			     super.run();
