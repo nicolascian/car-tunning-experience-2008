@@ -192,7 +192,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 * @Post:Se ha decrementado el coeficiente de incremento de rpm.
 	 */
 	private void decrementarCoeficienteDeIncrementoRpm(){
-		double coeficiente=coeficienteDeIncrementoRpm--;//0.001;//0.0002
+		double coeficiente=coeficienteDeIncrementoRpm-=20;//0.001;//0.0002
 		if(coeficiente>COEFICIENTE_DE_INCREMENTO_RPM_MINIMO)
 			coeficiente=COEFICIENTE_DE_INCREMENTO_RPM_MINIMO;
 		this.setCoeficienteDeIncrementoRpm(coeficiente);
