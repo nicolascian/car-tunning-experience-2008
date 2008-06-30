@@ -55,7 +55,7 @@ public class DatosPartida {
 	
 	public void Carrera(){
 		//SACAR ESTO DE ACA
-		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(), 100 );
+		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(),3000 );
 		AlgoPesos apuesta = new AlgoPesos(100,00);
 		Carrera carrera = new Carrera(usuario, virtual, pista, apuesta);
 		//carrera.run();
