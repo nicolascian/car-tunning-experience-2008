@@ -12,6 +12,7 @@ import vista.imagenTramo.Posicion;
 import vista.imagenAuto.imagenRelojes.ImagenReloj;
 import vista.imagenAuto.imagenRelojes.ImagenTacometro;
 import vista.imagenAuto.imagenRelojes.ImagenVelocimetro;
+import vista.imagenTramo.Imagen;
 /**
  * @author Usuario
  *
@@ -21,6 +22,8 @@ public class PanelDeInformacion extends JPanel {
 	private ImagenTacometro imagenTacometro=null;
 	
 	private ImagenVelocimetro imagenVelocimetro=null;
+	
+	private Imagen imagenDeFondo=null;
 	
 	private BufferedImage buffImage=null;
 
@@ -33,6 +36,7 @@ public class PanelDeInformacion extends JPanel {
 	public PanelDeInformacion(Dimension dimension,Posicion posicion,modelo.Usuario usuario){
 		this.setBounds(posicion.getX(),posicion.getY(),dimension.width,dimension.height);
 		this.setDimension(new Dimension(dimension));
+		
 		this.setSize(dimension);
 		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(),BufferedImage.TYPE_INT_RGB);
 		this.grafico=buffImage.createGraphics();
@@ -43,8 +47,8 @@ public class PanelDeInformacion extends JPanel {
 		this.imagenVelocimetro=ImagenVelocimetro.createVelocimetroBlanco(usuario.getAuto(), 
 			 new Posicion((int)((dimension.width-dimensionReloj.width)/2),
 			 (int)((dimensionReloj.width*1.05)+(dimension.width-dimensionReloj.width)/2)),dimensionReloj);
-		
-		
+		this.imagenDeFondo=new Imagen("src//vista//ventanas//cuadros.JPG",
+				                      this.getDimension(),new Posicion());		
 		this.hiloDeActualizacion=new Thread(){
 		    public void run(){
 			     super.run();
@@ -74,6 +78,9 @@ public class PanelDeInformacion extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 	  	try{	
+	  		grafico.drawImage(imagenDeFondo.getImage(),imagenDeFondo.getPosicion().getX(),
+	  				imagenDeFondo.getPosicion().getY(),imagenDeFondo.getDimension().width,
+	  				imagenDeFondo.getDimension().height,this);
 			ImagenReloj imagenAuxiliar=imagenTacometro;
 			grafico.drawImage(imagenAuxiliar.getImage(),imagenAuxiliar.getPosicion().getX(),
 					imagenAuxiliar.getPosicion().getY(),imagenAuxiliar.getDimension().width,
