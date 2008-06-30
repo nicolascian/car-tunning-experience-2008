@@ -89,7 +89,7 @@ private VistaVentana vistaVentana=null;
 	}
 	public void pressBotonManejar(){
 	  try{	
-		vistaVentana.Manejar();
+	   vistaVentana.Manejar();
 	  }catch(NullPointerException e){};
 	}
 	public void pressBotonCarrera(){
