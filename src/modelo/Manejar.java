@@ -1,25 +1,82 @@
 package modelo;
 
+import modelo.exceptions.ExceptionFinPista;
 import vista.ventanas.VentanaManejar;
 
 public class Manejar implements Runnable {
 
-	public void run() {
-		// TODO Auto-generated method stub
+	private Pista pista;
+	
+	private VentanaManejar vista;
 		
+	private modelo.Usuario usuario;
+		
+	public Manejar(modelo.Usuario usuario, Pista pista){
+			this.usuario = usuario;
+			this.pista = pista;
+			this.vista =  new VentanaManejar(this.usuario, this.pista);
+	}
+		
+	/**
+	 * Metodo que se encarga de inicializar los atributos para la carrera
+	*/
+	private void incializar(){
+	/* setear posiciones de autos en 0, 
+	 * inicializar controladores
+	 * incializar vistas
+	 * setear los observadores
+	 * etc
+	*/
+	   this.usuario.getAuto().setPosicion(0);
+	   this.vista.addKeyListener(new control.Usuario(usuario.getAuto()));
+	   this.usuario.getAuto().agregarObservador(this.vista);
+	   this.usuario.getAuto().ActualizarObservadores();
+	   this.vista.setVisible(true);
+	}
+		
+	private void finalizar(){
+       //NO SE CIERRA!!!!!!!!!!!!!!!!!!!!!!
+	   this.vista.dispose();
 	}
 	
-	
-	public Manejar(modelo.Usuario usuario, Pista pista){
+	public void run() {
+	   this.incializar();
+	   boolean enCarrera = true;
+	   while(enCarrera){
+    	 try{
+			synchronized (this.usuario.getAuto())
+			{
+    			this.usuario.getAuto().wait(25);
+				this.pista.actualizarPosiciones();
+				this.usuario.getAuto().Desgastar();
+				this.usuario.getAuto().notifyAll();
+			}
+		 }catch (ExceptionFinPista e){
+			enCarrera = false;
+			System.out.println("FIN PRUEBA");
+		 }
+		 catch (InterruptedException e) {
+		     /* el thread fue interrumpido durante la espera */
+		     throw new IllegalStateException("algo interrumpido", e);
+		 }
+		 try{
+			Thread.sleep(50);
+		 }catch (InterruptedException e){}
+		}
+		this.finalizar();
+	}
 		
-		VentanaManejar ventana = new VentanaManejar(usuario, pista);
-		
-		ventana.addKeyListener(new control.Usuario(usuario.getAuto()));
-		
-		usuario.getAuto().addObserver(ventana);
-		
-		usuario.getAuto().ActualizarObservadores();
-		
+	public void correr(){
+			/* dentro de un ciclo:
+			 * 	discretiza tiempos para el control y para el cambio de posiciones?
+			 * 	llamar al desgastar de cada auto
+			 * 	finalizar el ciclo cuando a un auto se le acaba la pista-> 
+			 *  ->atrapa la excepcion, de donde obtiene el numero correspondiente 
+			 *  al auto que finalizo, y dicho numero corresponde tambien al nro de jugador,
+			 *  por lo tanto este sera el ganador
+			 *
+			 * tiene q lanzar un thread para la vista?
+			 */
 	}
 
 }

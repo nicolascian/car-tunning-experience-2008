@@ -1,30 +1,41 @@
 package vista.ventanas;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.*;
-
 import javax.swing.JFrame;
-
 import modelo.Pista;
+import vista.imagenAuto.PanelRecorrido;
 import vista.imagenTramo.Posicion;
 import control.Usuario;
 
 public class VentanaManejar extends JFrame implements Observer{
 
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+	private PanelCarril panel=null;
 		
+	private modelo.Usuario usuario = null;
+		
+	public void update(Observable arg0, Object arg1) {
+		panel.actualizarVelocidad(usuario.getAuto().getVelocidad());
 	}
 
 	public VentanaManejar(modelo.Usuario usuario, Pista pista){
-		this.setSize(800, 600);
-		this.setTitle("Carrera");
+		this.setResizable(false);
+		this.usuario  = usuario;
+		this.setSize(1000, 620);
 		this.setLocationRelativeTo(null); //centrada
-		this.add(PanelCarril.createPanelCarrilVistaAutoDesdeAtras(this.getSize(),new Posicion(), usuario));
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	this.setResizable(false);
+		this.setLayout(null);
+		Dimension dimensionPanel=new Dimension((int)(this.getSize().width*0.8),this.getSize().height);
+		this.panel=PanelCarril.createPanelCarrilVistaAutoDesdeAtras(dimensionPanel,new Posicion(0,20), 
+				                                                    usuario);
+		this.add(panel);
+		this.add(new PanelDeInformacion(new Dimension(200,600),new Posicion(800,0),usuario ));
+		
+		this.add(new PanelRecorrido(usuario.getNombre(),usuario.getAuto(),pista,
+				new Dimension((int)(this.getSize().width*0.8),20),
+				new Posicion(),Color.RED));
 		this.setAlwaysOnTop(true);
-		this.setVisible(false);	
+		this.setVisible(false);
 
 	}
 	

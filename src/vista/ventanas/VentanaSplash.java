@@ -41,7 +41,6 @@ public class VentanaSplash extends JWindow {
 		imagen=new Imagen("src//vista//ventanas//imagenSplash.png",new Dimension(400,240),
 				          new Posicion());
 		JPanel panel=new JPanel(){
-			
 			/* (non-Javadoc)
 			 * @see java.awt.Container#paint(java.awt.Graphics)
 			 */
@@ -70,7 +69,5 @@ public class VentanaSplash extends JWindow {
 	public void paint(Graphics g) {
 		super.paint(g);
 	}
-	
-	
 
 }

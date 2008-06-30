@@ -31,7 +31,7 @@ public class PanelCarril extends JPanel{
 	
 	private Thread hiloDeActualizacion=null;
 	
-	private PanelCarril(Dimension dimension, Posicion posicion,modelo.Usuario usuario){
+	private PanelCarril(Dimension dimension, Posicion posicion,modelo.Jugador jugador){
 		this.setDimension(new Dimension(dimension));
 		this.setPosicion(new Posicion(posicion));
 		this.setBounds(posicion.getX(),posicion.getY(),dimension.width,dimension.height);
@@ -54,16 +54,15 @@ public class PanelCarril extends JPanel{
 	}
 	
 	public static PanelCarril createPanelCarrilVistaAutoDesdeAtras(Dimension dimension,Posicion posicion,
-			                                                       modelo.Usuario usuario){
+			                                                       modelo.Jugador usuario){
 		PanelCarril retorno=new PanelCarril(dimension,posicion,usuario);
 		retorno.setImagenTramo(ImagenTramo.createTramoAsfaltoCespedDiaAlgoNublado(ImagenTramo.createDimensionOptima(),
                                new Posicion()));
-		retorno.setImagenAuto(new ImagenAutoDesdeAtras(usuario.getAuto(),"src//vista//imagenAuto//imagenes//DodgeViper//atras.png",
-				              new Dimension((int)(dimension.getWidth()*0.3375),
-		    (int)(dimension.getWidth()*0.2533)),new Posicion((int)(dimension.getWidth()*0.3125),
-		    (int)(dimension.getWidth()*0.40))));
-		ImagenTacometro imagen=ImagenTacometro.createTacometroBlanco(usuario.getAuto(), posicion,
-				                                     ImagenTacometro.createDimensionStandar());
+		Dimension dimensionAuto=new Dimension((int)(dimension.getWidth()*0.3375),(int)(dimension.getWidth()*0.24));
+		retorno.setImagenAuto(new ImagenAutoDesdeAtras(usuario.getAuto(),
+				              "src//vista//imagenAuto//imagenes//DodgeViper//atras.png",dimensionAuto,
+			                  new Posicion((int)((retorno.getDimension().width-dimensionAuto.getWidth())/2.0),
+					          (int)(dimension.getWidth()*0.35))));
 		return retorno;
 	}
 	
@@ -90,9 +89,8 @@ public class PanelCarril extends JPanel{
 	public void paint(Graphics g) {
 	  	try{	
 			Imagen imagenAuxiliar=imagenTramo.getImagen();
-			grafico.drawImage(imagenAuxiliar.getImage(),imagenAuxiliar.getPosicion().getX(),
-					imagenAuxiliar.getPosicion().getY(),imagenAuxiliar.getDimension().width,
-					imagenAuxiliar.getDimension().height,this);
+			grafico.drawImage(imagenAuxiliar.getImage(),0,0,
+					this.getDimension().width,this.getDimension().height,this);
 			imagenAuto.paint(grafico);
 			((Graphics2D)g).drawImage(buffImage,0 ,0,this.getWidth(),this.getHeight(),this);
 		}catch(Exception e){};

@@ -111,7 +111,13 @@ public class ImagenTramo {
 	}
 	
 	private static ImagenTramo createTramo(String rutaCielo,String rutaCamino,String rutaCampo,
-			                            Dimension dimensionTotal,Posicion posicion){
+			                            Dimension dimension,Posicion posicion){
+		Dimension dimensionTotal=dimension;
+		if((dimension.width>DIMENSION_MAXIMA.width)||(dimension.height>DIMENSION_MAXIMA.height))
+		  dimensionTotal=ImagenTramo.createDimensionMaxima();
+		else
+		  if((dimension.width<DIMENSION_MINIMA.width)||(dimension.height<DIMENSION_MINIMA.height))
+			dimensionTotal=ImagenTramo.createDimensionMinima();	
 		Dimension dimensionCampo=new Dimension(dimensionTotal.width,(int)(dimensionTotal.height*0.6));
 		Shape clipFondo=ImagenTramo.createShapeRuta(dimensionCampo);
 		Dimension dimensionCielo=new Dimension(dimensionTotal.width,
