@@ -55,7 +55,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	private Neumatico neumaticoTraseroDerecho=null;
 	private Neumatico neumaticoTraseroIzquierdo=null;
 	
-	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.0043112;
+	protected final static double CONSTANTE_DE_OBTENCION_DE_VELOCIDAD=0.0123112;
 	
 	/**
 	 *	@Pre:
