@@ -3,11 +3,12 @@ package vista.imagenAuto;
 import java.awt.Dimension;
 import modelo.Auto;
 import modelo.Pista;
-
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import java.awt.Font;
 import java.awt.Color;
-
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import vista.imagenTramo.Posicion;
 public class PanelRecorrido extends JPanel {
 
@@ -19,21 +20,24 @@ public class PanelRecorrido extends JPanel {
 	
 	private Auto auto=null;
 		
-	private double m=0.0;
+	private String nombre=null;
 	
+	private double m=0.0;
+		
 	public PanelRecorrido(String nombre, Auto auto,Pista pista,Dimension dimension,Posicion posicion,
 			              Color colorBarra){
+		this.nombre=nombre;
 		this.auto=auto;
 		this.setLayout(null);
 		this.setSize(dimension);
 		this.setBounds(posicion.getX(),posicion.getY(),dimension.width,dimension.height);
-		this.setBackground(Color.black);
+		this.setBackground(Color.BLACK);
 		this.progress=new JProgressBar();
 		this.progress.setBackground(Color.GRAY);
 		this.progress.setForeground(colorBarra);
 		progress.setStringPainted(false);
-		progress.setBounds((int)(dimension.width*0.1),(int)(dimension.height*0.1),
-				           (int)(dimension.width*0.8),(int)(dimension.height*0.8));
+		progress.setBounds((int)(dimension.width*0.1),(int)(dimension.height*0.5),
+				           (int)(dimension.width*0.8),(int)(dimension.height*0.4));
 		progress.setValue(0);
 		progress.setVisible(true);
 		this.setVisible(true);
@@ -49,7 +53,7 @@ public class PanelRecorrido extends JPanel {
 			     }
 			}
 		};
-		this.add(progress);
+		this.add(progress);	
 		this.hiloDeActualizacion.start();	
 	}
 	
@@ -66,5 +70,14 @@ public class PanelRecorrido extends JPanel {
 	protected void setAuto(Auto auto) {
 		this.auto = auto;
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
+	 */
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		g.setColor(Color.white);
+		//((Graphics2D)g).drawString("nombre",0,0);
+	}	
 }
