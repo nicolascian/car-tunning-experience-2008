@@ -102,12 +102,6 @@ public class Carrera implements Runnable {
 					this.pista.actualizarPosiciones();
 					this.usuario.getAuto().Desgastar();
 					this.virtual.getAuto().Desgastar();
-					System.out.println("Posicion: "+this.usuario.getAuto().getPosicion()+
-							            " metros - Velocidad: " + 
-							            this.usuario.getAuto().getVelocidad()
-							            + " Km/h - RPM: " 
-							            + this.usuario.getAuto().getMotor().getRPM()
-							            +" - Cambio: "+this.usuario.getAuto().getCaja().getCambio());
 					this.virtual.getAuto().notifyAll();
 				}this.usuario.getAuto().notifyAll();
 				}
