@@ -44,19 +44,24 @@ public class VentanaPerfilDeUsuario extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
 		this.setResizable(false);
+		this.setAlwaysOnTop(true);
 		this.setLocationRelativeTo(null); //centrada
 		this.setVisible(false);
 	}
 	
 	public void pressBotonNuevoUsuario(){
 	 try{	
-		vistaVentana.JuegoNuevo();
+		 this.setAlwaysOnTop(false);
+		 vistaVentana.JuegoNuevo();
+		 this.setAlwaysOnTop(true);
 	 }catch(NullPointerException e){};
 	}
 	
 	public void pressBotonCargarUsuario(){
 	  try{	
+		this.setAlwaysOnTop(false);  
 		vistaVentana.CargarJuego();
+		this.setAlwaysOnTop(true);
 	  }catch(NullPointerException e){};
 	}
 	

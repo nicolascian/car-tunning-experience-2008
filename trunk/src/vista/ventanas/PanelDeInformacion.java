@@ -36,7 +36,6 @@ public class PanelDeInformacion extends JPanel {
 	public PanelDeInformacion(Dimension dimension,Posicion posicion,modelo.Usuario usuario){
 		this.setBounds(posicion.getX(),posicion.getY(),dimension.width,dimension.height);
 		this.setDimension(new Dimension(dimension));
-		
 		this.setSize(dimension);
 		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(),BufferedImage.TYPE_INT_RGB);
 		this.grafico=buffImage.createGraphics();

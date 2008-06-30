@@ -5,12 +5,9 @@ package vista.ventanas;
 
 import java.awt.Dimension;
 import java.util.*;
-import java.awt.BorderLayout;
 import modelo.*;
 import javax.swing.JFrame;
 import vista.imagenTramo.Posicion;
-import control.Usuario;
-import javax.swing.JWindow;
 import vista.ventanas.PanelDeInformacion;
 import vista.imagenAuto.PanelRecorrido;
 import java.awt.Color;
@@ -20,32 +17,42 @@ import java.awt.Color;
  */ 
 public class VentanaCarrera extends JFrame implements Observer{
 	
-    private PanelCarril panel=null;
+    private PanelCarril panelUsuario=null;
 	
+    private PanelCarril panelVirtual=null;
+    
     private modelo.Usuario usuario = null;
     
+    private modelo.Virtual virtual=null;
+    
 	public void update(Observable arg0, Object arg1) {
-		panel.actualizarVelocidad(usuario.getAuto().getVelocidad());
+		panelUsuario.actualizarVelocidad(usuario.getAuto().getVelocidad());
 	}
 	
 	public VentanaCarrera(modelo.Usuario usuario, modelo.Virtual virtual, Pista pista){
 		this.setResizable(false);
 		this.usuario  = usuario;
+		this.virtual= virtual;
 		this.setSize(1000, 620);
 		this.setLocationRelativeTo(null); //centrada
 		this.setLayout(null);
-		Dimension dimensionPanel=new Dimension((int)(this.getSize().width*0.8),this.getSize().height);
-		this.panel=PanelCarril.createPanelCarrilVistaAutoDesdeAtras(dimensionPanel,new Posicion(0,20), 
-				                                                    usuario);
-		this.add(panel);
-		this.add(new PanelDeInformacion(new Dimension(200,600),new Posicion(800,0),usuario ));
-		
+		//usuario
+		Dimension dimensionPanel=new Dimension((int)(this.getSize().width*0.8),(int)(this.getSize().height*.846));
+		this.panelUsuario=PanelCarril.createPanelCarrilVistaAutoDesdeAtras(dimensionPanel,
+				               new Posicion(0,(int)(getSize().width*0.06452)),usuario);
+		this.add(panelUsuario);
+		this.add(new PanelDeInformacion(new Dimension((int)(getSize().width*0.2),(int)(getSize().height)),
+				                        new Posicion((int)(getSize().width*0.8),0),
+				                        usuario ));
+		//panel de recorrido
 		this.add(new PanelRecorrido(usuario.getNombre(),usuario.getAuto(),pista,
-				new Dimension((int)(this.getSize().width*0.8),20),
-				new Posicion(),Color.RED));
+				new Dimension((int)(this.getSize().width*0.8),(int)(getSize().width*0.03226)),
+				new Posicion(0,(int)(getSize().width*0.03226)),Color.RED));
+		this.add(new PanelRecorrido(virtual.getNombre(),virtual.getAuto(),pista,
+				new Dimension((int)(this.getSize().width*0.8),(int)(getSize().width*0.03226)),
+				new Posicion(),Color.BLUE));
 		this.setAlwaysOnTop(true);
 		this.setVisible(false);
-		
 	}
 
 }
