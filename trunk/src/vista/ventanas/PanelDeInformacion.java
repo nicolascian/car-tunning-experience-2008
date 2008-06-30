@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import vista.imagenTramo.Posicion;
 import vista.imagenAuto.imagenRelojes.ImagenReloj;
 import vista.imagenAuto.imagenRelojes.ImagenTacometro;
-
+import vista.imagenAuto.imagenRelojes.ImagenVelocimetro;
 /**
  * @author Usuario
  *
@@ -20,7 +20,7 @@ public class PanelDeInformacion extends JPanel {
     
 	private ImagenTacometro imagenTacometro=null;
 	
-	private ImagenReloj imagenVelocimetro=null;
+	private ImagenVelocimetro imagenVelocimetro=null;
 	
 	private BufferedImage buffImage=null;
 
@@ -36,10 +36,15 @@ public class PanelDeInformacion extends JPanel {
 		this.setSize(dimension);
 		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(),BufferedImage.TYPE_INT_RGB);
 		this.grafico=buffImage.createGraphics();
-		Dimension dimensionTacometro=new Dimension((int)(dimension.width*0.8),(int)(dimension.width*0.8));
+		Dimension dimensionReloj=new Dimension((int)(dimension.width*0.8),(int)(dimension.width*0.8));
 		this.imagenTacometro=ImagenTacometro.createTacometroBlanco(usuario.getAuto(), 
-			 new Posicion((int)((dimension.width-dimensionTacometro.width)/2),
-			              (int)((dimension.width-dimensionTacometro.width)/2)),dimensionTacometro);
+			 new Posicion((int)((dimension.width-dimensionReloj.width)/2),
+			              (int)((dimension.width-dimensionReloj.width)/2)),dimensionReloj);
+		this.imagenVelocimetro=ImagenVelocimetro.createVelocimetroBlanco(usuario.getAuto(), 
+			 new Posicion((int)((dimension.width-dimensionReloj.width)/2),
+			 (int)((dimensionReloj.width*1.05)+(dimension.width-dimensionReloj.width)/2)),dimensionReloj);
+		
+		
 		this.hiloDeActualizacion=new Thread(){
 		    public void run(){
 			     super.run();
@@ -70,6 +75,10 @@ public class PanelDeInformacion extends JPanel {
 	public void paint(Graphics g) {
 	  	try{	
 			ImagenReloj imagenAuxiliar=imagenTacometro;
+			grafico.drawImage(imagenAuxiliar.getImage(),imagenAuxiliar.getPosicion().getX(),
+					imagenAuxiliar.getPosicion().getY(),imagenAuxiliar.getDimension().width,
+					imagenAuxiliar.getDimension().height,this);
+			imagenAuxiliar=imagenVelocimetro;
 			grafico.drawImage(imagenAuxiliar.getImage(),imagenAuxiliar.getPosicion().getX(),
 					imagenAuxiliar.getPosicion().getY(),imagenAuxiliar.getDimension().width,
 					imagenAuxiliar.getDimension().height,this);
@@ -108,14 +117,14 @@ public class PanelDeInformacion extends JPanel {
 	/**
 	 * @return the imagenVelocimetro
 	 */
-	protected ImagenReloj getImagenVelocimetro() {
+	protected ImagenVelocimetro getImagenVelocimetro() {
 		return imagenVelocimetro;
 	}
 
 	/**
 	 * @param imagenVelocimetro the imagenVelocimetro to set
 	 */
-	protected void setImagenVelocimetro(ImagenReloj imagenVelocimetro) {
+	protected void setImagenVelocimetro(ImagenVelocimetro imagenVelocimetro) {
 		this.imagenVelocimetro = imagenVelocimetro;
 	}
 
