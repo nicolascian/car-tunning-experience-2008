@@ -10,6 +10,10 @@ import modelo.*;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
 import modelo.fuerzas.RepositorioDeFuerzas;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Esta clase modela el motor de un auto. El motor tiene una cierta potencia
  * maxima dada su cilindrada, cantidad de cilindros y revoluciones maximas que puede alcanzar.
@@ -139,10 +143,15 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		repositorio=new RepositorioDeFuerzas(this);
 	}
 	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("motor");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
+	}
+	
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#liberarFuerzas()
 	 */
-	
 	public void liberarFuerzas() {
 		repositorio.vaciar();
 	}

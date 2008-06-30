@@ -9,6 +9,9 @@ package modelo.componente;
 import modelo.*;
 import modelo.fuerzas.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * Una instancia de esta clase modela el eje delantero o trasero de un vehiculo
  * Un eje gira con una determinada cantidad de revoluciones las cuales afectan el desplazamiento del
@@ -63,6 +66,12 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		this.rpm = 0;
 		this.DesgastePorParticulas = 0 ;
 		this.DesgastePorRugosidad = 0;
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("eje");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
 	}
 	
 	/**
