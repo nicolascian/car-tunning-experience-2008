@@ -60,7 +60,7 @@ public class PanelCarril extends JPanel{
                                new Posicion()));
 		retorno.setImagenAuto(new ImagenAutoDesdeAtras(usuario.getAuto(),"src//vista//imagenAuto//imagenes//DodgeViper//atras.png",
 				              new Dimension((int)(dimension.getWidth()*0.3375),
-		    (int)(dimension.getWidth()*0.2833)),new Posicion((int)(dimension.getWidth()*0.3125),
+		    (int)(dimension.getWidth()*0.2533)),new Posicion((int)(dimension.getWidth()*0.3125),
 		    (int)(dimension.getWidth()*0.40))));
 		ImagenTacometro imagen=ImagenTacometro.createTacometroBlanco(usuario.getAuto(), posicion,
 				                                     ImagenTacometro.createDimensionStandar());

@@ -75,9 +75,13 @@ public class Imagen {
 		boolean retorno=false;
 		if(validarJpg(ruta))
 		   retorno=true;
-		else
+		else{
 		  if(validarPng(ruta))
 		    retorno=true;
+		  else
+		      if(validarGif(ruta))
+			     retorno=true;
+		}
 		return retorno;
 	}
 	
@@ -94,6 +98,13 @@ public class Imagen {
 		   else
 			 return false;
 	}
+	
+	private static boolean validarGif(String ruta){
+		   if(ruta.endsWith("gif")||ruta.endsWith("GIF"))
+			     return true;	  
+			   else
+				 return false;
+		}
 	
 	/**
 	 * @return the image
