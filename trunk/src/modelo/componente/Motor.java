@@ -248,6 +248,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
 		     Fuerza fuerza=new Fuerza(this,getAuto().getCaja(),valorFuerza,true);
 		     getAuto().getCaja().recibirFuerza(fuerza);
+		     //if(this.getRpm)
 		     //obtengo el total de fuerzas sobre el motor
 		     double sumatoria=repositorio.obtenerValorSumatoriaDeFuerzas();
 		     valorFuerza+=sumatoria;
@@ -278,8 +279,8 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	*/
 	private void incrementarRpm(){
 		double rpmFinal=getRPM()+coeficienteDeIncrementoRpm;
-		if(rpmFinal>this.getRevolucionesMaximas())
-		   rpmFinal=getRevolucionesMaximas();
+		if(rpmFinal>=this.getRevolucionesMaximas())
+		   rpmFinal=getRevolucionesMaximas()-this.getCoeficienteDeIncrementoRpm();
 		this.incrementarCoeficienteDeIncrementoRpm();
 		setRPM(rpmFinal);
 	}
@@ -337,15 +338,15 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		}
 		else{
 			if(getRPM()>=getRevolucionesMaximas()){
-			   coeficiente=0.0001;	
+			   coeficiente=0.0000000001;	
 			}
 			else{  
-			  double minimo=potencia*0.00135;
+			  double minimo=potencia*0.0000000001;
 		      if(!isAcelerando()){
-			     coeficiente+=0.0003;
+			     coeficiente+=0.00001;
 		      }
 		      else{
-			     coeficiente-=0.0005;
+			     coeficiente-=0.00335;
 			     if(coeficiente<minimo)
 			        coeficiente=minimo;
 		   
