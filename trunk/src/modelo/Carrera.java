@@ -34,14 +34,11 @@ public class Carrera implements Runnable {
 	 * 	ENFRENTAR LA APUESTA
 	 */
 	public Carrera(Usuario usuario,Virtual virtual, Pista pista, AlgoPesos apuesta){
-		System.out.println("entra al constructor");
 		this.usuario = usuario;
 		this.virtual = virtual;
 		this.pista = pista;
 		this.apuesta = apuesta;
-		System.out.println("antes de la ventana");
-		this.vista =  new VentanaCarrera(this.usuario, this.virtual, this.pista);
-		System.out.println("sale del constructor");
+    	this.vista =  new VentanaCarrera(this.usuario, this.virtual, this.pista);
 	}
 	
 	/**
@@ -54,8 +51,6 @@ public class Carrera implements Runnable {
 		 * setear los observadores
 		 * etc
 		 */
-		
-		System.out.println("entra a inicializar");	
 		this.usuario.getAuto().setPosicion(0);
 		this.virtual.getAuto().setPosicion(0);
 		this.vista.addKeyListener(new control.Usuario(usuario.getAuto()));
@@ -65,7 +60,6 @@ public class Carrera implements Runnable {
 		this.usuario.getAuto().ActualizarObservadores();
 		this.virtual.getAuto().ActualizarObservadores();
 		this.vista.setVisible(true);
-		System.out.println("sale de inicializar");
 	}
 	
 	private void finalizar(){
@@ -90,9 +84,7 @@ public class Carrera implements Runnable {
 		this.incializar();
 		boolean enCarrera = true;
 		while(enCarrera){
-
 			try{
-
 				synchronized (this.usuario.getAuto())
 				{
 				synchronized (this.virtual.getAuto())
@@ -107,7 +99,6 @@ public class Carrera implements Runnable {
 					this.virtual.getAuto().notifyAll();
 				}this.usuario.getAuto().notifyAll();
 				}
-				
 			} catch (ExceptionFinPista e){
 				enCarrera = false;
 				System.out.println("FIN CARRERA");
@@ -117,13 +108,9 @@ public class Carrera implements Runnable {
 	            /* el thread fue interrumpido durante la espera */
 	            throw new IllegalStateException("algo interrumpido", e);
 	        }
-			
-			
 			try{
 			Thread.sleep(50);
 			}catch (InterruptedException e){}
-			
-		
 		}
 		this.finalizar();
 	}
