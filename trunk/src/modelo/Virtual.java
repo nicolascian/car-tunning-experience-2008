@@ -17,6 +17,10 @@ public class Virtual extends Jugador {
 	}
 
 
+	public void jugar(){
+		this.getControl().jugar();
+	}
+	
 
 	public Auto getAuto() {
 		return auto;

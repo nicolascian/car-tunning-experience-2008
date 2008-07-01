@@ -8,8 +8,10 @@
 package control;
 
 import modelo.Auto;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import java.awt.event.*;
+import javax.swing.Timer;
+
 
 /**
  * Clase Intermedio
@@ -28,7 +30,9 @@ public class Intermedio extends Habilidad{
 	private final static double MARGEN_DE_ERROR_INTERMEDIO = 3.5;
 	
 	/** tiempo de reaccion de INTERMEDIO */
-	private static final long mSecsControl = 250; //0.25 segundos
+	private static final int mSecsControl = 250; //0.25 segundos
+	
+	private Timer timer;
 	
 	/**
 	 * Metodo Jugar
@@ -38,6 +42,12 @@ public class Intermedio extends Habilidad{
 	 */
 	public void jugar(){
 		
+		timer.start();
+	}	
+		
+	private void manejar(){
+	
+		System.out.println("intemedio.jugar");
 		/* si el auto esta apagado */
 		if (!auto.isEncendido()){
 			auto.setEncendido(true);
@@ -94,22 +104,19 @@ public class Intermedio extends Habilidad{
 	public Intermedio(Auto auto){
 		super();
 		this.auto = auto;
-		//lanzamos el timer
-        Timer t = new Timer();
-        t.schedule(new Temporizador(), mSecsControl, mSecsControl);
+		
+		//creamos el ActionListener para el timer  
+		ActionListener taskPerformer = new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				
+				manejar();
+  	      	}
+  	  	};
+  	  
+  	  	//creamos el timer
+  	  	timer = new Timer(mSecsControl, taskPerformer);
 	}
 	
-	/**
-	 * Clase interna Temporizador
-	 * Hereda de TimerTask e implementa run();
-	 */
-	private class Temporizador extends TimerTask {
-		
-		public void run() {
-			jugar();
-        }
-        
-	}
 	
 	/* toString */
 	
