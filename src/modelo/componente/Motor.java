@@ -36,9 +36,9 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		
 	protected final static double COEFICIENTE_DE_DESGASTE_POR_EXCESO_DE_REVOLUCIONES=2;
 	
-	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO=75.0;//2.0
 	
-	protected final static double COEFICIENTE_DE_INCREMENTO_RPM_MINIMO=15.0;//1.0
+	
+
 	
 	protected final static double COEFICIENTE_DE_DESGASTE=2;
 			
@@ -74,7 +74,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 												entra en una fatiga intensa, es decir las revoluciones
 												que nomalmente estan pintadas de rojo en el tablero*/
 		
-	private double coeficienteDeIncrementoRpm=COEFICIENTE_DE_INCREMENTO_RPM_MINIMO;
+	private double coeficienteDeIncrementoRpm=0;
 	
 	private double coeficienteDeProduccionDeFuerzaAPartirRpm=0;
 	
@@ -83,6 +83,10 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	private RepositorioDeFuerzas repositorio=null;
 	
 	private double temperaturaExterior=25;
+	
+	private CurvaDeProduccionDeFuerzaAPatirRpm curvaCoefProdFza=null;
+	
+	private  CurvaCoeficienteIncrementoRPM curvaCoefIncrRPM=null;
 	
 	/**
 	 * @Pre: -
@@ -99,8 +103,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		setRevolucionesMaximas(revolucionesMaximas);
 		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 		setRevolucionesUmbralPeligro(getRevolucionesMaximas()*PORCENTAJE_REVOLUCIONES_UMBRAL_PELIGRO);
-	//inicilizacion de coeficientes
-		this.actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
 	//inicializacion de atributos booleanos
 		setEncendido(false);
 		setAcelerando(false);
@@ -111,6 +113,10 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		potenciaMaxima=getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000;
 		potenciaExtra=0;
 		repositorio=new RepositorioDeFuerzas(this);
+	//inicilizacion de coeficientes
+		this.curvaCoefProdFza=new CurvaDeProduccionDeFuerzaAPatirRpm(this.getPotenciaMaxima(),this.revolucionesMaximas);
+		this.actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
+		this.curvaCoefIncrRPM=new CurvaCoeficienteIncrementoRPM(this.getRevolucionesMaximas());
 	}
 		
 	/**
@@ -129,8 +135,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		setRevolucionesMaximas(8000);
 		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 		setRevolucionesUmbralPeligro(getRevolucionesMaximas()*PORCENTAJE_REVOLUCIONES_UMBRAL_PELIGRO);
-	 //inicilizacion de coeficientes
-		this.actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
 	 //inicializacion de atributos booleanos
 		setEncendido(false);
 		setAcelerando(false);
@@ -141,6 +145,10 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		potenciaMaxima=getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000;
 		potenciaExtra=0;
 		repositorio=new RepositorioDeFuerzas(this);
+	  //inicilizacion de coeficientes
+		this.curvaCoefProdFza=new CurvaDeProduccionDeFuerzaAPatirRpm(this.getPotenciaMaxima(),this.revolucionesMaximas);
+		this.actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
+		this.curvaCoefIncrRPM=new CurvaCoeficienteIncrementoRPM(this.getRevolucionesMaximas());
 	}
 	
 	public Element toXml(Document doc) {
@@ -181,7 +189,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		   if(rpmFinal>getRevolucionesMaximas()){
 			     rpmFinal=getRevolucionesMaximas();
 		   }
-		   afectarCoeficienteDeIncrementoRpmPorCambioRpm(rpmFinal);
 		   setRPM(rpmFinal);
 	}
 	
@@ -190,10 +197,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 * @Post:Se ha incrementado el coeficiente de incremento de rpm.
 	*/	
 	private void incrementarCoeficienteDeIncrementoRpm(){
-		double coeficiente=coeficienteDeIncrementoRpm+=20;//0.001;//0.0002
-		if(coeficiente>COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO)
-			coeficiente=COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO;
-		this.setCoeficienteDeIncrementoRpm(coeficiente);
+		this.setCoeficienteDeIncrementoRpm(this.curvaCoefIncrRPM.getValor(this.getRPM()));
 	}
 	
 	/**
@@ -201,26 +205,13 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 * @Post:Se ha decrementado el coeficiente de incremento de rpm.
 	 */
 	private void decrementarCoeficienteDeIncrementoRpm(){
-		double coeficiente=coeficienteDeIncrementoRpm-=20;//0.001;//0.0002
-		if(coeficiente>COEFICIENTE_DE_INCREMENTO_RPM_MINIMO)
-			coeficiente=COEFICIENTE_DE_INCREMENTO_RPM_MINIMO;
-		this.setCoeficienteDeIncrementoRpm(coeficiente);
+		double aux=this.curvaCoefIncrRPM.getValor(this.getRPM());
+		if(aux>0)
+		  this.setCoeficienteDeIncrementoRpm(aux);
+		else
+		  this.setCoeficienteDeIncrementoRpm((-1)*aux);
 	}
-	/**
-	 * @Pre: La instancia se encuentra encendida.
-	 * @Post: Se afecta el coeficiente de incremento de las rpm por una variacion de las rpm. 
-	 * @param rpmFinal
-	 */
-	private void afectarCoeficienteDeIncrementoRpmPorCambioRpm(double rpmFinal){
-		double diferencia=RPM-rpmFinal;
-		double coeficienteFinal=getCoeficienteDeIncrementoRpm()+
-		                        diferencia/getRevolucionesMaximas();
-		if(coeficienteFinal>COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO)
-			coeficienteFinal=COEFICIENTE_DE_INCREMENTO_RPM_MAXIMO;
-		if(coeficienteFinal>COEFICIENTE_DE_INCREMENTO_RPM_MINIMO)
-			coeficienteFinal=COEFICIENTE_DE_INCREMENTO_RPM_MINIMO;
-		this.setCoeficienteDeIncrementoRpm(coeficienteFinal);
-	}
+	
 	
 	/**
 	 *  @Pre: La instancia ha sido creada y se encuentra en estado encendido.
@@ -248,13 +239,6 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
 		     Fuerza fuerza=new Fuerza(this,getAuto().getCaja(),valorFuerza,true);
 		     getAuto().getCaja().recibirFuerza(fuerza);
-		     if(this.getRPM()>this.getRevolucionesUmbralPeligro()){
-		    	this.recibirFuerza(new Fuerza(this,this,valorFuerzaContraMotor*(-0.005),true));
-		    	getAuto().getEjeDelantero().recibirFuerza(new Fuerza(this,getAuto().getEjeDelantero(),
-		    			                                  valorFuerzaContraMotor*(-0.0005),true));
-		    	getAuto().getEjeTrasero().recibirFuerza(new Fuerza(this,getAuto().getEjeTrasero(),
-                                                          valorFuerzaContraMotor*(-0.0005),true));
-		     }
 		     //obtengo el total de fuerzas sobre el motor
 		     double sumatoria=repositorio.obtenerValorSumatoriaDeFuerzas();
 		     valorFuerza+=sumatoria;
@@ -326,40 +310,9 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	 *  de la potencia maxima del motor, y de la potencia extra.    
 	*/
 	private void actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm(){
-		double potencia=getPotenciaMaxima()+getPotenciaExtra();
-		double coeficiente=getCoeficienteDeProduccionDeFuerzaAPartirRpm();
-		if(getRPM()<=getRevolucionesUmbralPeligro()){
-		  if(!isAcelerando()){
-			double maximo=potencia*0.005;
-			coeficiente+=0.0003;//
-			if(coeficiente>maximo)
-			  coeficiente=maximo;
-		  }
-		  else{
-		    double medio=potencia*0.00435;
-			coeficiente-=0.0003;
-			if(coeficiente<medio)
-			  coeficiente=medio;
-		  }
-		}
-		else{
-			if(getRPM()>=getRevolucionesMaximas()){
-			   coeficiente=0.0001;	
-			}
-			else{  
-			  double minimo=potencia*0.0001;
-		      if(!isAcelerando()){
-			     coeficiente+=0.00001;
-		      }
-		      else{
-			     coeficiente-=0.00335;
-			     if(coeficiente<minimo)
-			        coeficiente=minimo;
-		   
-		      }
-			}
-		}
-		setCoeficienteDeProduccionDeFuerzaAPartirRpm(coeficiente);
+		this.setCoeficienteDeProduccionDeFuerzaAPartirRpm(this.curvaCoefProdFza.getValor(this.getRPM())+
+				                                          this.getPotenciaExtra()*0.005);
+		
 	}
 	
 	/**

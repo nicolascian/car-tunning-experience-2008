@@ -30,7 +30,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	private double rpm;//revoluciones a las que gira la instancia.
 	protected final static double COEFICIENTE_INCREMENTO_RPM=0.06228;//0.02335;//0.006999
 	protected final static double COEFICIENTE_DECREMENTO_RPM=0.17521;//0.02219;	
-	
+	private double revolucionesMaximas=90000;
 	/**
 	 * @Pre: 
 	 * @Post: Se ha creado la instaica de la clase Eje inicializandola con la instancia de auto pasada
@@ -48,6 +48,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		this.rpm = 0;
 		this.DesgastePorParticulas = 0 ;
 		this.DesgastePorRugosidad = 0;
+		this.actualizarRevolucionesMaximas();
 	}
 	
 	/**
@@ -66,6 +67,13 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		this.rpm = 0;
 		this.DesgastePorParticulas = 0 ;
 		this.DesgastePorRugosidad = 0;
+		this.actualizarRevolucionesMaximas();
+	}
+	
+	private void actualizarRevolucionesMaximas(){
+		try{
+		  this.revolucionesMaximas=getAuto().getPotenciaTotal()*19450;
+		}catch(NullPointerException e){};
 	}
 	
 	public Element toXml(Document doc) {
@@ -179,8 +187,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 
 	/* (non-Javadoc)
 	 * @see modelo.ReceptorDeFuerzas#recibirFuerza(modelo.Fuerza)
-	 */
-	
+	*/
 	public void recibirFuerza(Fuerza fuerza) {
 	  try{	
 		if(fuerza.getEmisor()==this.getAuto().getCaja()){
@@ -204,10 +211,14 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 			  //obtendo la sumatorio total de fuerzas sobre el eje
 			  valorDeLaFuerza=repositorio.obtenerValorSumatoriaDeFuerzas();
 			  //actualizo las rpm del eje
-			  if(valorDeLaFuerza>0)
-			    setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_INCREMENTO_RPM);
+			  this.actualizarRevolucionesMaximas();
+			  if(valorDeLaFuerza>0){
+			     setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_INCREMENTO_RPM);
+			     if(this.getRpm()>this.revolucionesMaximas)
+			    	this.setRpm(this.revolucionesMaximas);
+			  }
 			  else
-				  setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_DECREMENTO_RPM);  
+				setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_DECREMENTO_RPM);  
 		}else{//viene de la carroceria
 			  if(fuerza.getEmisor()==getAuto().getCarroceria()){
 				Fuerza fuerzaACaja=repositorio.insertarFuerzaRetornarCopia(fuerza);
