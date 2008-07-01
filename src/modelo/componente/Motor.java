@@ -84,7 +84,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 	
 	private double temperaturaExterior=25;
 	
-	private CurvaDeProduccionDeFuerzaAPatirRpm curvaCoefProdFza=null;
+	private CurvaDeProduccionDeFuerzaAPartirRpm curvaCoefProdFza=null;
 	
 	private  CurvaCoeficienteIncrementoRPM curvaCoefIncrRPM=null;
 	
@@ -114,7 +114,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		potenciaExtra=0;
 		repositorio=new RepositorioDeFuerzas(this);
 	//inicilizacion de coeficientes
-		this.curvaCoefProdFza=new CurvaDeProduccionDeFuerzaAPatirRpm(this.getPotenciaMaxima(),this.revolucionesMaximas);
+		this.curvaCoefProdFza=new CurvaDeProduccionDeFuerzaAPartirRpm(this.getPotenciaMaxima(),this.revolucionesMaximas);
 		this.actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
 		this.curvaCoefIncrRPM=new CurvaCoeficienteIncrementoRPM(this.getRevolucionesMaximas());
 	}
@@ -146,7 +146,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		potenciaExtra=0;
 		repositorio=new RepositorioDeFuerzas(this);
 	  //inicilizacion de coeficientes
-		this.curvaCoefProdFza=new CurvaDeProduccionDeFuerzaAPatirRpm(this.getPotenciaMaxima(),this.revolucionesMaximas);
+		this.curvaCoefProdFza=new CurvaDeProduccionDeFuerzaAPartirRpm(this.getPotenciaMaxima(),this.revolucionesMaximas);
 		this.actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
 		this.curvaCoefIncrRPM=new CurvaCoeficienteIncrementoRPM(this.getRevolucionesMaximas());
 	}
