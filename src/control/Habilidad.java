@@ -50,7 +50,7 @@ public abstract class Habilidad{
 	 * 
 	 * es Abstracta, asi que cualquier heredero esta obligado a implementarla
 	 */
-	public abstract void jugar();
+	public abstract void jugar(boolean X);
 	
 	
 	public void setAuto(Auto auto) {

@@ -39,9 +39,10 @@ public class Principiante extends Habilidad{
 	 * este metodo permite desarrollar los cambios durante una carrera,
 	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
 	 */
-	public void jugar(){
+	public void jugar(boolean X){
 		
-		timer.start();
+		if(X){ timer.start();
+		}else { timer.stop(); }
 	}
 	
 	private void manejar(){	
