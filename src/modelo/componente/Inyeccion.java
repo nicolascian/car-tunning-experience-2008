@@ -49,7 +49,8 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 	}
 	
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("inyeccion");
+		Element xmlElement = doc.createElement("alimentacion");
+		xmlElement.setAttribute("tipo", "inyeccion");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}

@@ -34,11 +34,15 @@ public class Usuario extends Jugador {
 		//traigo el atributo nombre
 		this.nombre=xmlElement.getAttribute("nombre");
 		//traigo los sub nodos
-		NodeList nodos =xmlElement.getChildNodes();
-		//levanto dinero, que es el primer subnodo
-		this.dinero = new AlgoPesos((Element)nodos.item(1));
-		//levanto el auto, que es el segundo subnodo
-		this.auto = new Auto((Element)nodos.item(2));
+		
+		//levanto dinero
+		NodeList nodosDinero=xmlElement.getElementsByTagName("dinero");
+		this.dinero = new AlgoPesos((Element)nodosDinero.item(0));
+		
+		//levanto el auto
+		NodeList nodosAuto=xmlElement.getElementsByTagName("auto");
+		this.auto = new Auto((Element)nodosAuto.item(0));
+		
 	}
 	
 	/** 

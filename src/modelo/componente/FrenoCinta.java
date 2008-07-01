@@ -40,7 +40,8 @@ public class FrenoCinta extends Freno {
 	}
 	
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("frenocinta");
+		Element xmlElement = doc.createElement("freno");
+		xmlElement.setAttribute("tipo","cinta");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}

@@ -62,7 +62,8 @@ public class Automatica extends Caja{
 	}
 	
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("automatica");
+		Element xmlElement = doc.createElement("caja");
+		xmlElement.setAttribute("tipo", "automatica");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}

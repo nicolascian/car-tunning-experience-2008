@@ -32,7 +32,8 @@ public class Secuencial extends Caja{
 	}
 
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("secuencial");
+		Element xmlElement = doc.createElement("caja");
+		xmlElement.setAttribute("tipo", "secuencial");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}

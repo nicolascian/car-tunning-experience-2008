@@ -31,7 +31,8 @@ public class Manual extends Caja{
 	}
 
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("manual");
+		Element xmlElement = doc.createElement("caja");
+		xmlElement.setAttribute("tipo", "manual");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}

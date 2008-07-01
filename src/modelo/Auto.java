@@ -16,6 +16,7 @@ import java.util.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 
 /**
  * @Domumentacion: Una instancia de la clase Auto modela un auto, con todos sus componentes,
@@ -157,12 +158,75 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//traigo el atributo nombre
 		this.nombre =xmlElement.getAttribute("nombre");
 		//traigo los sub nodos
-		NodeList nodos =xmlElement.getChildNodes();
-		//Alimentacion es el primer subnodo
-		//setAlimentacion(new Alimentacion((Element)nodos.item(1)));
-		//Caja es el segundo subnodo
-		//setCaja(new Caja((Element)nodos.item(2)));
+		NodeList nodosXX = xmlElement.getElementsByTagName("*");
+		System.out.println(nodosXX.getLength());
 		
+		crearComponentes(xmlElement);
+		
+	}
+	
+	private void crearComponentes(Element xmlElement){
+		//Alimentacion
+		NodeList nodo = xmlElement.getElementsByTagName("alimentacion");
+		String tipo = ((Element)nodo.item(0)).getAttribute("tipo");
+		if (tipo == "carburador"){
+			this.setAlimentacion(new Carburador((Element)nodo.item(0)));
+		}else if(tipo == "inyeccion"){
+			this.setAlimentacion(new Inyeccion((Element)nodo.item(0)));
+		};
+		//Caja
+		nodo = xmlElement.getElementsByTagName("caja");
+		tipo = ((Element)nodo.item(0)).getAttribute("tipo");
+		if (tipo == "automatica"){
+			this.setCaja(new Automatica((Element)nodo.item(0)));
+		}else if(tipo == "secuencial"){
+			this.setCaja(new Secuencial((Element)nodo.item(0)));
+		}else if(tipo == "manual"){
+			this.setCaja(new Manual((Element)nodo.item(0)));
+		};
+		//Embrague
+		nodo = xmlElement.getElementsByTagName("embrague");
+		this.setEmbrague(new Embrague((Element)nodo.item(0)));
+		//Carroceria
+		nodo = xmlElement.getElementsByTagName("carroceria");
+		this.setCarroceria(new Carroceria((Element)nodo.item(0)));
+		//Combustible
+		nodo = xmlElement.getElementsByTagName("combustible");
+		this.setCombustible(new Combustible((Element)nodo.item(0)));
+		//Escape
+		nodo = xmlElement.getElementsByTagName("escape");
+		this.setEscape(new Escape((Element)nodo.item(0)));
+		//Motor
+		nodo = xmlElement.getElementsByTagName("motor");
+		this.setMotor(new Motor((Element)nodo.item(0)));
+		//Suspension
+		nodo = xmlElement.getElementsByTagName("suspension");
+		this.setSuspension(new Suspension((Element)nodo.item(0)));
+		//Turbo
+		nodo = xmlElement.getElementsByTagName("turbo");
+		this.setTurbo(new Turbo((Element)nodo.item(0)));
+		//Nitro
+		nodo = xmlElement.getElementsByTagName("nitro");
+		this.setNitro(new Nitro((Element)nodo.item(0)));
+		//Freno
+		nodo = xmlElement.getElementsByTagName("freno");
+		tipo = ((Element)nodo.item(0)).getAttribute("tipo");
+		if (tipo == "abs"){
+			this.setFreno(new FrenoABS((Element)nodo.item(0)));
+		}else if(tipo == "disco"){
+			this.setFreno(new FrenoDisco((Element)nodo.item(0)));
+		}else if(tipo == "cinta"){
+			this.setFreno(new FrenoCinta((Element)nodo.item(0)));
+		};
+		//SistemaDeRefrigeracion
+		nodo = xmlElement.getElementsByTagName("sistemaderefrigeracion");
+		this.setSistemaDeRefrigeracion(new SistemaDeRefrigeracion((Element)nodo.item(0)));
+		//Eje
+		nodo = xmlElement.getElementsByTagName("eje");
+		this.setEjeDelantero(new Eje((Element)nodo.item(0)));
+		this.setEjeDelantero(new Eje((Element)nodo.item(1)));
+		//Llanta
+		//Neumatico-------
 		
 	}
 	
