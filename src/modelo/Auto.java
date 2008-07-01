@@ -16,7 +16,6 @@ import java.util.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.*;
 
 /**
  * @Domumentacion: Una instancia de la clase Auto modela un auto, con todos sus componentes,
@@ -97,7 +96,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//inicilizacion de otros atributos
 		  setEncendido(false);
 	      this.embragar(false);
-	    motor.setAuto(this);
+	      motor.setAuto(this);
+	      setNombre("Auto generico");
 	}
 	
 	/**
@@ -148,6 +148,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//inicializacion de aceleracion y velocidad
 		this.embragar(false);
 		motor.setAuto(this);
+		setNombre("Auto modificado");
 	}
 	
 	/**
@@ -158,11 +159,10 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//traigo el atributo nombre
 		this.nombre =xmlElement.getAttribute("nombre");
 		//creo los componentes
-		crearComponentes(xmlElement);
-		
+		crearComponentes(xmlElement, this);
 	}
 	
-	private void crearComponentes(Element xmlElement){
+	private void crearComponentes(Element xmlElement, Auto auto){
 		//Alimentacion
 		NodeList nodo = xmlElement.getElementsByTagName("alimentacion");
 		String tipo = ((Element)nodo.item(0)).getAttribute("tipo");
@@ -174,13 +174,13 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//Caja
 		nodo = xmlElement.getElementsByTagName("caja");
 		tipo = ((Element)nodo.item(0)).getAttribute("tipo");
-		if (tipo == "automatica"){
+/*		if (tipo == "automatica"){
 			this.setCaja(new Automatica((Element)nodo.item(0)));
 		}else if(tipo == "secuencial"){
 			this.setCaja(new Secuencial((Element)nodo.item(0)));
 		}else if(tipo == "manual"){
 			this.setCaja(new Manual((Element)nodo.item(0)));
-		};
+		};*/
 		//Embrague
 		nodo = xmlElement.getElementsByTagName("embrague");
 		this.setEmbrague(new Embrague((Element)nodo.item(0)));
@@ -194,8 +194,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		nodo = xmlElement.getElementsByTagName("escape");
 		this.setEscape(new Escape((Element)nodo.item(0)));
 		//Motor
-		nodo = xmlElement.getElementsByTagName("motor");
-		this.setMotor(new Motor((Element)nodo.item(0)));
+/*		nodo = xmlElement.getElementsByTagName("motor");
+		this.setMotor(new Motor((Element)nodo.item(0)));*/
 		//Suspension
 		nodo = xmlElement.getElementsByTagName("suspension");
 		this.setSuspension(new Suspension((Element)nodo.item(0)));
@@ -217,56 +217,56 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		};
 		//SistemaDeRefrigeracion
 		nodo = xmlElement.getElementsByTagName("sistemaderefrigeracion");
-		this.setSistemaDeRefrigeracion(new SistemaDeRefrigeracion((Element)nodo.item(0)));
+		this.setSistemaDeRefrigeracion(new SistemaDeRefrigeracion((Element)nodo.item(0), auto));
 		//Neumatico
 		nodo = xmlElement.getElementsByTagName("neumatico");
 		tipo = ((Element)nodo.item(0)).getAttribute("tipo");
 		if (tipo == "slick"){
-			this.setNeumaticoDelanteroDerecho(new NeumaticoSlick((Element)nodo.item(0)));
+			this.setNeumaticoDelanteroDerecho(new NeumaticoSlick((Element)nodo.item(0), auto));
 		}else if(tipo == "mixto"){
-			this.setNeumaticoDelanteroDerecho(new NeumaticoMixto((Element)nodo.item(0)));
+			this.setNeumaticoDelanteroDerecho(new NeumaticoMixto((Element)nodo.item(0), auto));
 		}else if(tipo == "invierno"){
-			this.setNeumaticoDelanteroDerecho(new NeumaticoInvierno((Element)nodo.item(0)));
+			this.setNeumaticoDelanteroDerecho(new NeumaticoInvierno((Element)nodo.item(0), auto));
 		}else if(tipo == "lluvia"){
-			this.setNeumaticoDelanteroDerecho(new NeumaticoLluvia((Element)nodo.item(0)));
+			this.setNeumaticoDelanteroDerecho(new NeumaticoLluvia((Element)nodo.item(0), auto));
 		}else if(tipo == "todoterreno"){
-			this.setNeumaticoDelanteroDerecho(new NeumaticoTodoTerreno((Element)nodo.item(0)));
+			this.setNeumaticoDelanteroDerecho(new NeumaticoTodoTerreno((Element)nodo.item(0), auto));
 		};
 		tipo = ((Element)nodo.item(1)).getAttribute("tipo");
 		if (tipo == "slick"){
-			this.setNeumaticoDelanteroIzquierdo(new NeumaticoSlick((Element)nodo.item(1)));
+			this.setNeumaticoDelanteroIzquierdo(new NeumaticoSlick((Element)nodo.item(1), auto));
 		}else if(tipo == "mixto"){
-			this.setNeumaticoDelanteroIzquierdo(new NeumaticoMixto((Element)nodo.item(1)));
+			this.setNeumaticoDelanteroIzquierdo(new NeumaticoMixto((Element)nodo.item(1), auto));
 		}else if(tipo == "invierno"){
-			this.setNeumaticoDelanteroIzquierdo(new NeumaticoInvierno((Element)nodo.item(1)));
+			this.setNeumaticoDelanteroIzquierdo(new NeumaticoInvierno((Element)nodo.item(1), auto));
 		}else if(tipo == "lluvia"){
-			this.setNeumaticoDelanteroIzquierdo(new NeumaticoLluvia((Element)nodo.item(1)));
+			this.setNeumaticoDelanteroIzquierdo(new NeumaticoLluvia((Element)nodo.item(1), auto));
 		}else if(tipo == "todoterreno"){
-			this.setNeumaticoDelanteroIzquierdo(new NeumaticoTodoTerreno((Element)nodo.item(1)));
+			this.setNeumaticoDelanteroIzquierdo(new NeumaticoTodoTerreno((Element)nodo.item(1), auto));
 		};
 		tipo = ((Element)nodo.item(2)).getAttribute("tipo");
 		if (tipo == "slick"){
-			this.setNeumaticoTraseroDerecho(new NeumaticoSlick((Element)nodo.item(2)));
+			this.setNeumaticoTraseroDerecho(new NeumaticoSlick((Element)nodo.item(2), auto));
 		}else if(tipo == "mixto"){
-			this.setNeumaticoTraseroDerecho(new NeumaticoMixto((Element)nodo.item(2)));
+			this.setNeumaticoTraseroDerecho(new NeumaticoMixto((Element)nodo.item(2), auto));
 		}else if(tipo == "invierno"){
-			this.setNeumaticoTraseroDerecho(new NeumaticoInvierno((Element)nodo.item(2)));
+			this.setNeumaticoTraseroDerecho(new NeumaticoInvierno((Element)nodo.item(2), auto));
 		}else if(tipo == "lluvia"){
-			this.setNeumaticoTraseroDerecho(new NeumaticoLluvia((Element)nodo.item(2)));
+			this.setNeumaticoTraseroDerecho(new NeumaticoLluvia((Element)nodo.item(2), auto));
 		}else if(tipo == "todoterreno"){
-			this.setNeumaticoTraseroDerecho(new NeumaticoTodoTerreno((Element)nodo.item(2)));
+			this.setNeumaticoTraseroDerecho(new NeumaticoTodoTerreno((Element)nodo.item(2), auto));
 		};
 		tipo = ((Element)nodo.item(3)).getAttribute("tipo");
 		if (tipo == "slick"){
-			this.setNeumaticoTraseroIzquierdo(new NeumaticoSlick((Element)nodo.item(3)));
+			this.setNeumaticoTraseroIzquierdo(new NeumaticoSlick((Element)nodo.item(3), auto));
 		}else if(tipo == "mixto"){
-			this.setNeumaticoTraseroIzquierdo(new NeumaticoMixto((Element)nodo.item(3)));
+			this.setNeumaticoTraseroIzquierdo(new NeumaticoMixto((Element)nodo.item(3), auto));
 		}else if(tipo == "invierno"){
-			this.setNeumaticoTraseroIzquierdo(new NeumaticoInvierno((Element)nodo.item(3)));
+			this.setNeumaticoTraseroIzquierdo(new NeumaticoInvierno((Element)nodo.item(3), auto));
 		}else if(tipo == "lluvia"){
-			this.setNeumaticoTraseroIzquierdo(new NeumaticoLluvia((Element)nodo.item(3)));
+			this.setNeumaticoTraseroIzquierdo(new NeumaticoLluvia((Element)nodo.item(3), auto));
 		}else if(tipo == "todoterreno"){
-			this.setNeumaticoTraseroIzquierdo(new NeumaticoTodoTerreno((Element)nodo.item(3)));
+			this.setNeumaticoTraseroIzquierdo(new NeumaticoTodoTerreno((Element)nodo.item(3), auto));
 		};
 		//Llanta
 		nodo = xmlElement.getElementsByTagName("llanta");
@@ -275,9 +275,9 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		this.setLlantaTraseraDerecha(new Llanta((Element)nodo.item(2)));
 		this.setLlantaTraseraIzquierda(new Llanta((Element)nodo.item(3)));
 		//Eje
-		nodo = xmlElement.getElementsByTagName("eje");
+/*		nodo = xmlElement.getElementsByTagName("eje");
 		this.setEjeDelantero(new Eje((Element)nodo.item(0)));
-		this.setEjeTrasero(new Eje((Element)nodo.item(1)));
+		this.setEjeTrasero(new Eje((Element)nodo.item(1)));*/
 		
 	}
 	

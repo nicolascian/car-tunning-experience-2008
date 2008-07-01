@@ -38,16 +38,29 @@ public class FrenoABS extends Freno{
 	 * coloca el estado de la instancia en 100%
 	 */
 	public FrenoABS(){
-		super();
+		setEstado(100);
 		setNombre("Freno ABS (Antilock Brake System)");
 		setPrecio(new AlgoPesos(1200,00)); //algo$
 		setPeso(8); // Kg
+	}
+	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public FrenoABS(Element xmlElement){
+		//levanto los valores
+		this.EfectoClimatico =( Double.parseDouble(xmlElement.getAttribute("efectoclimatico")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		setNombre(xmlElement.getAttribute("nombre"));
 	}
 	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("freno");
 		xmlElement.setAttribute("tipo","abs");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("efectoclimatico", String.valueOf(this.EfectoClimatico));
+		xmlElement.setAttribute("nombre", this.getNombre());
 		return xmlElement;
 	}
 	

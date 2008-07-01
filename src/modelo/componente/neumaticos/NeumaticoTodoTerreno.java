@@ -81,10 +81,34 @@ public class NeumaticoTodoTerreno extends Neumatico
 		this.setLlanta(null);
 	}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public NeumaticoTodoTerreno(Element xmlElement, Auto auto){
+		//levanto los valores
+		particulasEnSuperficie=( Double.parseDouble(xmlElement.getAttribute("particulassup")) );
+		humedadEnPista=( Double.parseDouble(xmlElement.getAttribute("humedadpista")) );
+		setPotenciaMax(Double.parseDouble(xmlElement.getAttribute("potenciamax")));
+		rugosidadSuperficie =( Double.parseDouble(xmlElement.getAttribute("rugosidadsup")) );
+		viscosidadSuperficie =( Double.parseDouble(xmlElement.getAttribute("viscosidadsup")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		this.setNombre("Neumatico Todo Terreno");
+		this.setPeso(12);//en kilos
+		this.setPrecio(new AlgoPesos(350,0));
+		this.setAuto(auto);
+		this.setLlanta(null);
+	}
+	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("neumatico");
 		xmlElement.setAttribute("tipo", "todoterreno");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("particulassup", String.valueOf(this.particulasEnSuperficie));
+		xmlElement.setAttribute("humedadpista", String.valueOf(this.humedadEnPista));
+		xmlElement.setAttribute("potenciamax", String.valueOf(this.getPotenciaMax()));
+		xmlElement.setAttribute("rugosidadsup", String.valueOf(this.rugosidadSuperficie));
+		xmlElement.setAttribute("viscosidadsup", String.valueOf(this.viscosidadSuperficie));
 		return xmlElement;
 	}
 	

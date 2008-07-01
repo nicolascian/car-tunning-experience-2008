@@ -33,16 +33,29 @@ public class FrenoCinta extends Freno {
 	 *coloca la instancia en estado 100%
 	 */
 	public FrenoCinta(){
-		super();
+		setEstado(100);
 		setNombre("Freno de Cintao de Banda");
 		setPrecio(new AlgoPesos(370,00)); //algo$
 		setPeso(50); // Kg
+	}
+	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public FrenoCinta(Element xmlElement){
+		//levanto los valores
+		this.EfectoClimatico =( Double.parseDouble(xmlElement.getAttribute("efectoclimatico")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		setNombre(xmlElement.getAttribute("nombre"));
 	}
 	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("freno");
 		xmlElement.setAttribute("tipo","cinta");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("efectoclimatico", String.valueOf(this.EfectoClimatico));
+		xmlElement.setAttribute("nombre", this.getNombre());
 		return xmlElement;
 	}
 	

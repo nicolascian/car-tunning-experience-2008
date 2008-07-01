@@ -1,4 +1,5 @@
 package modelo.componente;
+import modelo.AlgoPesos;
 import modelo.Auto;
 import modelo.Clima;
 import modelo.Constantes;
@@ -45,6 +46,7 @@ public class SistemaDeRefrigeracion extends Componente implements AfectablePorCl
 		this.setTemperaturaCorte(temperaturaCorte);
 		this.setTemperaturaEncendido(temperaturaEncendido);
 		this.setPeso(15);
+		this.setPrecio(new AlgoPesos(70,0));
 	}
 	
 	/**
@@ -55,11 +57,30 @@ public class SistemaDeRefrigeracion extends Componente implements AfectablePorCl
 		this.setAuto(auto);
 		this.setPeso(15);
 		setEstado(100);
+		this.setPrecio(new AlgoPesos(70,0));
+	}
+	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public SistemaDeRefrigeracion(Element xmlElement, Auto auto){
+		//levanto los valores
+		temperaturaEncendido=( Double.parseDouble(xmlElement.getAttribute("tempencendido")) );
+		temperaturaCorte=( Double.parseDouble(xmlElement.getAttribute("tempcorte")) );
+		temperaturaPuntoFrio=( Double.parseDouble(xmlElement.getAttribute("tempfrio")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		this.setAuto(auto);
+		this.setPeso(15);
+		this.setPrecio(new AlgoPesos(70,0));
 	}
 	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("sistemaderefrigeracion");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("tempencendido", String.valueOf(this.temperaturaEncendido));
+		xmlElement.setAttribute("tempcorte", String.valueOf(this.temperaturaCorte));
+		xmlElement.setAttribute("tempfrio", String.valueOf(this.temperaturaPuntoFrio));
 		return xmlElement;
 	}
 	

@@ -83,10 +83,34 @@ public class NeumaticoSlick extends Neumatico
 		this.setLlanta(null);
 	}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public NeumaticoSlick(Element xmlElement, Auto auto){
+		//levanto los valores
+		efectoTemperaturaExterna=( Double.parseDouble(xmlElement.getAttribute("eftempexterna")) );
+		humedadEnPista=( Double.parseDouble(xmlElement.getAttribute("humedadpista")) );
+		setPotenciaMax(Double.parseDouble(xmlElement.getAttribute("potenciamax")));
+		relieveSuperficie =( Double.parseDouble(xmlElement.getAttribute("relievesup")) );
+		viscosidadSuperficie =( Double.parseDouble(xmlElement.getAttribute("viscosidadsup")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		this.setNombre("Neumatico Slick");
+		this.setPeso(10);//en kilos
+		this.setPrecio(new AlgoPesos(300,0));
+		this.setAuto(auto);
+		this.setLlanta(null);
+	}
+	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("neumatico");
 		xmlElement.setAttribute("tipo", "slick");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("eftempexterna", String.valueOf(this.efectoTemperaturaExterna));
+		xmlElement.setAttribute("humedadpista", String.valueOf(this.humedadEnPista));
+		xmlElement.setAttribute("potenciamax", String.valueOf(this.getPotenciaMax()));
+		xmlElement.setAttribute("relievesup", String.valueOf(this.relieveSuperficie));
+		xmlElement.setAttribute("viscosidadsup", String.valueOf(this.viscosidadSuperficie));
 		return xmlElement;
 	}
 	

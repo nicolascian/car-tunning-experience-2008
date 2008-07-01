@@ -38,6 +38,18 @@ public class Embrague extends Componente {
 		setPeso(4); // Kg
 	}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Embrague(Element xmlElement){
+		//levanto los valores
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		setNombre("Embrague");
+		setPrecio(new AlgoPesos(3200,00)); //algo$
+		setPeso(4); // Kg
+	}
+	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("embrague");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
