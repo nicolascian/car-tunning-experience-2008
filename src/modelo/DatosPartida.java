@@ -71,7 +71,7 @@ public class DatosPartida {
 	public void Guardar(){
 		
 		try{
-			gestor.Guardar(usuario);
+			gestor.Guardar(usuario, "guardado.xml");
 		}
 		catch(Exception e1){
 			JOptionPane.showMessageDialog(new JFrame(),
@@ -84,9 +84,17 @@ public class DatosPartida {
 
 	public void Cargar(){
 		
-		//PENDIENTE
 		//cargamos desde un achivo y asignamos
-		this.setUsuario(null);
+		try{
+			usuario = gestor.Cargar("guardado.xml");  
+		}
+		catch(Exception e1){
+			JOptionPane.showMessageDialog(new JFrame(),
+	        	    "No se pudo cargar desde archivo.",
+	        	    "Error al cargar",
+	        	    JOptionPane.ERROR_MESSAGE);
+		}
+		
 	}
 	
 	
