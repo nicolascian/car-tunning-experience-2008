@@ -4,10 +4,9 @@
 
 package modelo;
 
-import control.*;
 import vista.ventanas.*;
-import vista.*;
 import modelo.exceptions.*;
+
 
 public class Carrera implements Runnable {
 
@@ -83,6 +82,7 @@ public class Carrera implements Runnable {
 	public void run() {
 		this.incializar();
 		boolean enCarrera = true;
+		this.virtual.jugar(true); //ponemos a manejar al virtual
 		while(enCarrera){
 			try{
 				synchronized (this.usuario.getAuto())
@@ -112,6 +112,7 @@ public class Carrera implements Runnable {
 			Thread.sleep(50);
 			}catch (InterruptedException e){}
 		}
+		this.virtual.jugar(false); //paramos de manejar el virtual
 		this.finalizar();
 	}
 	

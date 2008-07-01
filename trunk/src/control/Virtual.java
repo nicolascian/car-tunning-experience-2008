@@ -66,10 +66,10 @@ public class Virtual extends Jugador{
 	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
 	 * 
 	 */
-	public void jugar(){
+	public void jugar(boolean X){
 		
 		/* le paso la pelota a la habilidad */
-		habilidad.jugar();	
+		habilidad.jugar(X);	
 	}
 		
 	

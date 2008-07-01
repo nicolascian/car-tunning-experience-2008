@@ -1,6 +1,6 @@
 package modelo;
 
-import control.*;
+
 
 public class Virtual extends Jugador {
 
@@ -17,8 +17,8 @@ public class Virtual extends Jugador {
 	}
 
 
-	public void jugar(){
-		this.getControl().jugar();
+	public void jugar(boolean X){
+		this.getControl().jugar(X);
 	}
 	
 
