@@ -26,6 +26,10 @@ public class Usuario extends Jugador {
 		setAuto(auto);
 	}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
 	public Usuario(Element xmlElement){
 		//traigo el atributo nombre
 		this.nombre=xmlElement.getAttribute("nombre");
@@ -34,9 +38,12 @@ public class Usuario extends Jugador {
 		//levanto dinero, que es el primer subnodo
 		this.dinero = new AlgoPesos((Element)nodos.item(1));
 		//levanto el auto, que es el segundo subnodo
-		this.auto = new Auto();
+		this.auto = new Auto((Element)nodos.item(2));
 	}
 	
+	/** 
+	 * Persistencia
+	 */
 	public Element toXml(Document doc){
 		Element xmlElement = doc.createElement("usuario");
 		xmlElement.setAttribute("nombre", getNombre());
