@@ -7,9 +7,11 @@
 
 package control;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import modelo.Auto;
+
+import java.awt.event.*;
+import javax.swing.Timer;
+
 
 /**
  * Clase Principiante
@@ -27,7 +29,9 @@ public class Principiante extends Habilidad{
 	private final static double MARGEN_DE_ERROR_PRINCIPIANTE = 6.0;
 	
 	/** tiempo de reaccion de PRINCIPIANTE */
-	private static final long mSecsControl = 500; //0.5 segundos
+	private static final int mSecsControl = 500; //0.5 segundos
+	
+	private Timer timer;
 	
 	/**
 	 * Metodo Jugar
@@ -36,6 +40,11 @@ public class Principiante extends Habilidad{
 	 * se ejecuta indicando que es el turno de jugar, de dicho jugador.
 	 */
 	public void jugar(){
+		
+		timer.start();
+	}
+	
+	private void manejar(){	
 		
 		/* si el auto esta apagado */
 		if (!auto.isEncendido()){
@@ -93,22 +102,20 @@ public class Principiante extends Habilidad{
 	public Principiante(Auto auto){
 		super();
 		this.auto = auto;
-		//lanzamos el timer
-        Timer t = new Timer();
-        t.schedule(new Temporizador(), mSecsControl, mSecsControl);
+		
+		//creamos el ActionListener para el timer  
+		ActionListener taskPerformer = new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				
+				manejar();
+  	      	}
+  	  	};
+  	  
+  	  	//creamos el timer
+  	  	timer = new Timer(mSecsControl, taskPerformer);
 	}
 	
-	/**
-	 * Clase interna Temporizador
-	 * Hereda de TimerTask e implementa run();
-	 */
-	private class Temporizador extends TimerTask {
-		
-		public void run() {
-			jugar();
-        }
-        
-	}
+
 	
 	/* toString */
 	

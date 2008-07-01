@@ -7,9 +7,10 @@
  
 package control;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import modelo.Auto;
+
+import java.awt.event.*;
+import javax.swing.Timer;
 
 /**
  * Clase Experto
@@ -27,7 +28,9 @@ public class Experto extends Habilidad{
 	private final static double MARGEN_DE_ERROR_EXPERTO = 1.5;
 	
 	/** tiempo de reaccion de EXPERTO */
-	private static final long mSecsControl = 100; //0.1 segundos
+	private static final int mSecsControl = 100; //0.1 segundos
+	
+	private Timer timer;
 	
 	/**
 	 * Metodo Jugar
@@ -37,6 +40,11 @@ public class Experto extends Habilidad{
 	 */
 	public void jugar(){
 		
+		timer.start();
+	}
+	
+	private void manejar(){
+			
 		/* si el auto esta apagado */
 		if (!auto.isEncendido()){
 			auto.setEncendido(true);
@@ -93,22 +101,20 @@ public class Experto extends Habilidad{
 	public Experto(Auto auto){
 		super();
 		this.auto = auto;
-		//lanzamos el timer
-        Timer t = new Timer();
-        t.schedule(new Temporizador(), mSecsControl, mSecsControl);
+
+		//creamos el ActionListener para el timer  
+		ActionListener taskPerformer = new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				
+				manejar();
+  	      	}
+  	  	};
+  	  
+  	  	//creamos el timer
+  	  	timer = new Timer(mSecsControl, taskPerformer);
 	}
 	
-	/**
-	 * Clase interna Temporizador
-	 * Hereda de TimerTask e implementa run();
-	 */
-	private class Temporizador extends TimerTask {
-		
-		public void run() {
-			jugar();
-        }
-        
-	}
+
 	
 	
 	/* toString */
