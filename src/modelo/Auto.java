@@ -174,13 +174,13 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//Caja
 		nodo = xmlElement.getElementsByTagName("caja");
 		tipo = ((Element)nodo.item(0)).getAttribute("tipo");
-/*		if (tipo == "automatica"){
+		if (tipo == "automatica"){
 			this.setCaja(new Automatica((Element)nodo.item(0)));
 		}else if(tipo == "secuencial"){
 			this.setCaja(new Secuencial((Element)nodo.item(0)));
 		}else if(tipo == "manual"){
 			this.setCaja(new Manual((Element)nodo.item(0)));
-		};*/
+		};
 		//Embrague
 		nodo = xmlElement.getElementsByTagName("embrague");
 		this.setEmbrague(new Embrague((Element)nodo.item(0)));
@@ -194,8 +194,8 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		nodo = xmlElement.getElementsByTagName("escape");
 		this.setEscape(new Escape((Element)nodo.item(0)));
 		//Motor
-/*		nodo = xmlElement.getElementsByTagName("motor");
-		this.setMotor(new Motor((Element)nodo.item(0)));*/
+		nodo = xmlElement.getElementsByTagName("motor");
+		this.setMotor(new Motor((Element)nodo.item(0)));
 		//Suspension
 		nodo = xmlElement.getElementsByTagName("suspension");
 		this.setSuspension(new Suspension((Element)nodo.item(0)));
@@ -275,9 +275,9 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		this.setLlantaTraseraDerecha(new Llanta((Element)nodo.item(2)));
 		this.setLlantaTraseraIzquierda(new Llanta((Element)nodo.item(3)));
 		//Eje
-/*		nodo = xmlElement.getElementsByTagName("eje");
-		this.setEjeDelantero(new Eje((Element)nodo.item(0)));
-		this.setEjeTrasero(new Eje((Element)nodo.item(1)));*/
+		nodo = xmlElement.getElementsByTagName("eje");
+		this.setEjeDelantero(new Eje((Element)nodo.item(0), auto, this.llantaDelanteraDerecha, this.llantaDelanteraIzquierda));
+		this.setEjeTrasero(new Eje((Element)nodo.item(1), auto, this.llantaTraseraDerecha, this.llantaTraseraIzquierda));
 		
 	}
 	

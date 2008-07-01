@@ -103,12 +103,14 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		setRevolucionesMaximas(revolucionesMaximas);
 		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 		setRevolucionesUmbralPeligro(getRevolucionesMaximas()*PORCENTAJE_REVOLUCIONES_UMBRAL_PELIGRO);
-	//inicializacion de atributos booleanos
+ 	//inicializacion de atributos booleanos
 		setEncendido(false);
 		setAcelerando(false);
 	//auto y estado
 		setAuto(null);
 		setEstado(100);
+		setPrecio(new AlgoPesos(4000,0));
+		setPeso(190);
 	//inicializacion de potencias 	
 		potenciaMaxima=getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000;
 		potenciaExtra=0;
@@ -135,12 +137,14 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		setRevolucionesMaximas(8000);
 		setRevolucionesMinimasEncendido(getRevolucionesMaximas()*COEFICIENTE_RPM_ENCENDIDO);
 		setRevolucionesUmbralPeligro(getRevolucionesMaximas()*PORCENTAJE_REVOLUCIONES_UMBRAL_PELIGRO);
-	 //inicializacion de atributos booleanos
+	  //inicializacion de atributos booleanos
 		setEncendido(false);
 		setAcelerando(false);
 	  //auto y estado
 		setAuto(null);
 		setEstado(100);
+		setPrecio(new AlgoPesos(4000,0));
+		setPeso(190);
 	  //inicializacion de potencias 	
 		potenciaMaxima=getCilindrada()*getCantidadCilindros()*getRevolucionesMaximas()/640000;
 		potenciaExtra=0;
@@ -151,9 +155,56 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		this.curvaCoefIncrRPM=new CurvaCoeficienteIncrementoRPM(this.getRevolucionesMaximas());
 	}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Motor(Element xmlElement){
+		//levanto los valores
+		
+	  //inicializacion de cilindara y cilindros
+		setCantidadCilindros( Integer.parseInt(xmlElement.getAttribute("cantcilindros")) );
+		setCilindrada( Double.parseDouble(xmlElement.getAttribute("cilindrada")) );
+	  //inicializacion de revoluciones
+		setRevolucionesMaximas( Double.parseDouble(xmlElement.getAttribute("revmaximas")) );
+		setRevolucionesMinimasEncendido( Double.parseDouble(xmlElement.getAttribute("revminimas")) );
+		setRevolucionesUmbralPeligro( Double.parseDouble(xmlElement.getAttribute("revpeligro")) );
+	  //inicializacion de atributos booleanos
+		setEncendido(false);
+		setAcelerando(false);
+	  //auto y estado
+		setAuto(null);
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		setPrecio(new AlgoPesos(4000,0));
+		setPeso(190);
+	  //inicializacion de potencias 	
+		potenciaMaxima=Double.parseDouble(xmlElement.getAttribute("potmaxima"));
+		potenciaExtra=Double.parseDouble(xmlElement.getAttribute("potextra"));
+		repositorio=new RepositorioDeFuerzas(this);
+	  //inicilizacion de coeficientes
+		this.curvaCoefProdFza=new CurvaDeProduccionDeFuerzaAPartirRpm(this.getPotenciaMaxima(),this.revolucionesMaximas);
+		this.actualizarCoeficienteDeProduccionDeFuerzaAPartirRpm();
+		this.curvaCoefIncrRPM=new CurvaCoeficienteIncrementoRPM(this.getRevolucionesMaximas());
+		
+	  //otros datos guardados
+		this.setCoeficienteDeIncrementoRpm( Double.parseDouble(xmlElement.getAttribute("coefincrementorpm")));
+		this.setCoeficienteDeProduccionDeFuerzaAPartirRpm( Double.parseDouble(xmlElement.getAttribute("coefprodfuerza")));
+		this.valorFuerzaContraMotor=( Double.parseDouble(xmlElement.getAttribute("valfuerzamotor")) );
+	}
+	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("motor");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("cantcilindros", String.valueOf(this.getCantidadCilindros() ));
+		xmlElement.setAttribute("cilindrada", String.valueOf(this.getCilindrada() ));
+		xmlElement.setAttribute("revmaximas", String.valueOf(this.getRevolucionesMaximas() ));
+		xmlElement.setAttribute("revminimas", String.valueOf(this.getRevolucionesMinimasEncendido() ));
+		xmlElement.setAttribute("revpeligro", String.valueOf(this.getRevolucionesUmbralPeligro() ));
+		xmlElement.setAttribute("potmaxima", String.valueOf(this.getPotenciaMaxima() ));
+		xmlElement.setAttribute("potextra", String.valueOf(this.getPotenciaExtra() ));
+		xmlElement.setAttribute("coefincrementorpm", String.valueOf(this.getCoeficienteDeIncrementoRpm()));
+		xmlElement.setAttribute("coefprodfuerza", String.valueOf(this.getCoeficienteDeProduccionDeFuerzaAPartirRpm()));
+		xmlElement.setAttribute("valfuerzamotor", String.valueOf(this.valorFuerzaContraMotor));
 		return xmlElement;
 	}
 	

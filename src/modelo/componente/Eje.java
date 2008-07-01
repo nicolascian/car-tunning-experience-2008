@@ -42,6 +42,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		setPeso(50);
 		setAuto(auto);
 		setEstado(100);
+		setPrecio(new AlgoPesos(150,00)); //algo$
 		repositorio=new RepositorioDeFuerzas(this);
 		setLlantaDerecha(null);
 		setLlantaIzquierda(null);
@@ -61,6 +62,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		setPeso(50);
 		setAuto(auto);
 		setEstado(100);
+		setPrecio(new AlgoPesos(150,00)); //algo$
 		repositorio=new RepositorioDeFuerzas(this);
 		setLlantaDerecha(LlantaDer);
 		setLlantaIzquierda(LlantaIzq);
@@ -70,6 +72,36 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 		this.actualizarRevolucionesMaximas();
 	}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Eje(Element xmlElement, Auto auto, Llanta LlantaDer, Llanta LlantaIzq){
+		//levanto los valores
+		this.DesgastePorParticulas =( Double.parseDouble(xmlElement.getAttribute("desgastepart")) );
+		this.DesgastePorRugosidad = ( Double.parseDouble(xmlElement.getAttribute("desgasterug")) );
+		this.revolucionesMaximas=( Double.parseDouble(xmlElement.getAttribute("revmaximas")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		setAuto(auto);
+		setLlantaDerecha(LlantaDer);
+		setLlantaIzquierda(LlantaIzq);
+		repositorio=new RepositorioDeFuerzas(this);
+		setPrecio(new AlgoPesos(150,00)); //algo$
+		setPeso(50); // Kg
+		this.rpm = 0;
+		this.actualizarRevolucionesMaximas();
+	}
+	
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("eje");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("desgastepart", String.valueOf(this.DesgastePorParticulas));
+		xmlElement.setAttribute("desgasterug", String.valueOf(this.DesgastePorRugosidad));
+		xmlElement.setAttribute("revmaximas", String.valueOf(this.revolucionesMaximas));
+		return xmlElement;
+	}
+	
+	
 	private void actualizarRevolucionesMaximas(){
 		try{
 			this.revolucionesMaximas=200*(this.getAuto().getMotor().getPotenciaMaxima()+
@@ -77,12 +109,6 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 			if(this.revolucionesMaximas>19300)
 				this.revolucionesMaximas=19300;		  
 		}catch(NullPointerException e){};
-	}
-	
-	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("eje");
-		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
-		return xmlElement;
 	}
 	
 	/**

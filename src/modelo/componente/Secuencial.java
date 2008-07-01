@@ -7,6 +7,8 @@
 
 package modelo.componente;
 
+import modelo.AlgoPesos;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 
@@ -28,13 +30,35 @@ public class Secuencial extends Caja{
 	 */
 	public Secuencial(int cantidadCambios){
 		super(cantidadCambios);
-		setPeso(85);
+		setPrecio(new AlgoPesos(2100,00)); //algo$
+		setPeso(90);
 	}
 
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Secuencial(Element xmlElement){
+		//levanto los valores
+		super( Integer.parseInt(xmlElement.getAttribute("cantcambios")));
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		setCoefProdFzaAlPasarACambioMayor(Double.parseDouble(xmlElement.getAttribute("coefcambiomayor")));
+		setCoefProdFzaAlPasarACambioMenor(Double.parseDouble(xmlElement.getAttribute("coefcambiomenor")));
+		setRevolucionesMaximasMotorParaCambioActual(Double.parseDouble(xmlElement.getAttribute("revmaximas")));
+		setRevolucionesMinimasMotorParaCambioActual(Double.parseDouble(xmlElement.getAttribute("revminimas")));
+		setPrecio(new AlgoPesos(2100,00)); //algo$
+		setPeso(90);
+	}
+	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("caja");
 		xmlElement.setAttribute("tipo", "secuencial");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("cantcambios", String.valueOf(this.getCantidadCambios()));
+		xmlElement.setAttribute("coefcambiomayor", String.valueOf(this.getCoefProdFzaAlPasarACambioMayor()));
+		xmlElement.setAttribute("coefcambiomenor", String.valueOf(this.getCoefProdFzaAlPasarACambioMenor()));
+		xmlElement.setAttribute("revmaximas", String.valueOf(this.getRevolucionesMaximasMotorParaCambioActual()));
+		xmlElement.setAttribute("revminimas", String.valueOf(this.getRevolucionesMinimasMotorParaCambioActual()));
 		return xmlElement;
 	}
 	
