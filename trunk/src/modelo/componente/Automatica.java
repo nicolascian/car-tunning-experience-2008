@@ -60,6 +60,7 @@ public class Automatica extends Caja{
 		super(cantidadCambios);
 		setPeso(80);
 	}
+
 	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("caja");

@@ -58,9 +58,28 @@ implements AfectablePorSuperficie, AfectablePorClima{
 		this.setAuto(null);
 	}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Suspension(Element xmlElement){
+		//levanto los valores
+		EfectoClimatico = ( Double.parseDouble(xmlElement.getAttribute("efectoclimatico")) );
+		EfectoSuperficie = ( Double.parseDouble(xmlElement.getAttribute("efectosuperficie")) );
+		rigidez = ( Double.parseDouble(xmlElement.getAttribute("rigidez")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		this.setPrecio(new AlgoPesos(800,0));
+		this.setNombre("Suspencion estandar");
+		this.setAuto(null);
+		this.setPeso(56);
+	}
+	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("suspension");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("efectoclimatico", String.valueOf(this.EfectoClimatico));
+		xmlElement.setAttribute("efectosuperficie", String.valueOf(this.EfectoSuperficie));
+		xmlElement.setAttribute("rigidez", String.valueOf(this.rigidez));
 		return xmlElement;
 	}
 	
