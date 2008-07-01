@@ -1,5 +1,6 @@
 package modelo;
 
+//guardar
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
@@ -13,6 +14,9 @@ import org.w3c.dom.Document;
 
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
+//cargar
+import org.xml.sax.SAXException;
+import org.apache.xerces.parsers.DOMParser;
 
 
 public class GestorPersistencia {
@@ -52,8 +56,22 @@ public class GestorPersistencia {
 
 	}
 	
-	public modelo.Usuario Cargar(){
-		return null;
+	public modelo.Usuario Cargar(String nombreArchivo) throws IOException, ClassNotFoundException{
+		
+		DOMParser parser = new DOMParser();
+
+		try {
+		    parser.parse(nombreArchivo);
+
+		} catch (SAXException se) {
+		    se.printStackTrace();
+		} catch (IOException ioe) {
+		    ioe.printStackTrace();
+		}
+
+		Document docXml = parser.getDocument();
+		
+		return new modelo.Usuario(docXml.getDocumentElement());
 	}
 	
 }
