@@ -7,8 +7,6 @@
 
 package modelo;
 
-import java.awt.event.KeyListener;
-import modelo.*;
 
 /**
  * Clase Jugador (es una clase abstracta)
