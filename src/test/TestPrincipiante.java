@@ -6,18 +6,24 @@ import control.*;
 import modelo.componente.*;
 public class TestPrincipiante extends TestCase {
 
+	public void TestPrincipiante(){
+		
+	}
+	
 	public void testJugar() {
 		
-		Habilidad principiante = new Principiante();
+		Auto auto = new Auto();
+		
+		Habilidad principiante = new Principiante(auto);
 		
 		control.Jugador virtual = new control.Virtual(principiante, new Auto());
 		
-		principiante.jugar();
+		principiante.jugar(true);
 		
-		Auto auto = virtual.getAuto();
-		Motor motor = auto.getMotor();
+		Auto auto2 = virtual.getAuto();
+		Motor motor = auto2.getMotor();
 		
-		assertEquals(true, auto.isEncendido());
+		assertEquals(true, auto2.isEncendido());
 		assertEquals(true, motor.isAcelerando());
 		
 	}

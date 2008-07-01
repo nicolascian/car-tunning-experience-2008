@@ -1,14 +1,8 @@
 package vista.ventanas;
 
-import vista.VistaVentana;
-import vista.imagenTramo.Posicion;
-import java.awt.Dimension;
-import java.util.*;
 
 import javax.swing.JFrame;
 
-import modelo.Pista;
-import control.Usuario;
 
 public class VentanaCreditos extends JFrame {
 
