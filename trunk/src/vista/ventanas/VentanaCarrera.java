@@ -32,7 +32,9 @@ public class VentanaCarrera extends JFrame implements Observer{
 	  synchronized(this.virtual.getAuto()){
 	    try{
 		  panelVirtual.actualizarVelocidad(virtual.getAuto().getVelocidad());
-	    }catch(NullPointerException e){};
+	    }catch(NullPointerException e){
+	    	e.printStackTrace();
+	    };
 	  }
 	}
 	
