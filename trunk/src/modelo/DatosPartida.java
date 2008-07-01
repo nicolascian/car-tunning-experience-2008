@@ -49,10 +49,10 @@ public class DatosPartida {
 	}
 
 	public void Manejar(){
-		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(), 100 );
+		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(), 2000 );
 		Manejar manejar = new Manejar(usuario, pista);
-		manejar.run();
-		
+		Thread threadManejar = new Thread(manejar);
+		threadManejar.start();
 	}
 	
 	public void Carrera(){
@@ -60,9 +60,7 @@ public class DatosPartida {
 		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(),3000 );
 		AlgoPesos apuesta = new AlgoPesos(100,00);
 		Carrera carrera = new Carrera(usuario, virtual, pista, apuesta);
-		//carrera.run();
-		
-		Thread threadCarrera = new Thread(carrera);
+	    Thread threadCarrera = new Thread(carrera);
 		threadCarrera.start();
 		
 	}
@@ -123,8 +121,5 @@ public class DatosPartida {
 	public void setUsuario(modelo.Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
-	
-	
+		
 }
