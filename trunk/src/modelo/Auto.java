@@ -15,6 +15,7 @@ import java.util.*;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 /**
  * @Domumentacion: Una instancia de la clase Auto modela un auto, con todos sus componentes,
@@ -146,6 +147,23 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//inicializacion de aceleracion y velocidad
 		this.embragar(false);
 		motor.setAuto(this);
+	}
+	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Auto(Element xmlElement){
+		//traigo el atributo nombre
+		this.nombre =xmlElement.getAttribute("nombre");
+		//traigo los sub nodos
+		NodeList nodos =xmlElement.getChildNodes();
+		//Alimentacion es el primer subnodo
+		//setAlimentacion(new Alimentacion((Element)nodos.item(1)));
+		//Caja es el segundo subnodo
+		//setCaja(new Caja((Element)nodos.item(2)));
+		
+		
 	}
 	
 	/**
@@ -895,7 +913,9 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		return(cadena);
 	}
 	
-	
+	/** 
+	 * Persistencia
+	 */
 	public Element toXml(Document doc){
 		Element xmlElement = doc.createElement("auto");
 		xmlElement.setAttribute("nombre", this.getNombre());

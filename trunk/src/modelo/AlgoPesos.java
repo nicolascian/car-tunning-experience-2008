@@ -34,6 +34,10 @@ public class AlgoPesos{
 		setDecimal(decimal);
 	}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
 	public AlgoPesos(Element xmlElement){
 		//levanto los atributos de Dinero
 		this.entero= Integer.parseInt(xmlElement.getAttribute("entero"));
@@ -122,7 +126,9 @@ public class AlgoPesos{
 	}
 	
 	
-	
+	/** 
+	 * Persistencia
+	 */
 	public Element toXml(Document doc){
 		Element xmlElement = doc.createElement("dinero");
 		xmlElement.setAttribute("decimal", String.valueOf(getDecimal()));
