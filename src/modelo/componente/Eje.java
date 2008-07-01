@@ -29,8 +29,8 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	private RepositorioDeFuerzas repositorio;//donde se almacenan las fuerzas que llegan a la isntancia
 	private double rpm;//revoluciones a las que gira la instancia.
 	protected final static double COEFICIENTE_INCREMENTO_RPM=0.06228;//0.02335;//0.006999
-	protected final static double COEFICIENTE_DECREMENTO_RPM=0.17521;//0.02219;	
-	private double revolucionesMaximas=90000;
+	protected final static double COEFICIENTE_DECREMENTO_RPM=0.27521;//0.02219;	
+	private double revolucionesMaximas=19300;
 	/**
 	 * @Pre: 
 	 * @Post: Se ha creado la instaica de la clase Eje inicializandola con la instancia de auto pasada
@@ -72,7 +72,10 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	
 	private void actualizarRevolucionesMaximas(){
 		try{
-		  this.revolucionesMaximas=getAuto().getPotenciaTotal()*19450;
+			this.revolucionesMaximas=200*(this.getAuto().getMotor().getPotenciaMaxima()+
+					                  this.getAuto().getMotor().getPotenciaExtra());
+			if(this.revolucionesMaximas>19300)
+				this.revolucionesMaximas=19300;		  
 		}catch(NullPointerException e){};
 	}
 	
