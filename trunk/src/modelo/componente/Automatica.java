@@ -7,6 +7,8 @@
 
 package modelo.componente;
 
+import modelo.AlgoPesos;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 
@@ -59,13 +61,34 @@ public class Automatica extends Caja{
 	public Automatica(int cantidadCambios){
 		super(cantidadCambios);
 		setPeso(80);
+		setPrecio(new AlgoPesos(3000,00)); //algo$
 	}
 
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Automatica(Element xmlElement){
+		//levanto los valores
+		super( Integer.parseInt(xmlElement.getAttribute("cantcambios")));
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		setCoefProdFzaAlPasarACambioMayor(Double.parseDouble(xmlElement.getAttribute("coefcambiomayor")));
+		setCoefProdFzaAlPasarACambioMenor(Double.parseDouble(xmlElement.getAttribute("coefcambiomenor")));
+		setRevolucionesMaximasMotorParaCambioActual(Double.parseDouble(xmlElement.getAttribute("revmaximas")));
+		setRevolucionesMinimasMotorParaCambioActual(Double.parseDouble(xmlElement.getAttribute("revminimas")));
+		setPrecio(new AlgoPesos(3000,00)); //algo$
+		setPeso(80);
+	}
 	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("caja");
 		xmlElement.setAttribute("tipo", "automatica");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("cantcambios", String.valueOf(this.getCantidadCambios()));
+		xmlElement.setAttribute("coefcambiomayor", String.valueOf(this.getCoefProdFzaAlPasarACambioMayor()));
+		xmlElement.setAttribute("coefcambiomenor", String.valueOf(this.getCoefProdFzaAlPasarACambioMenor()));
+		xmlElement.setAttribute("revmaximas", String.valueOf(this.getRevolucionesMaximasMotorParaCambioActual()));
+		xmlElement.setAttribute("revminimas", String.valueOf(this.getRevolucionesMinimasMotorParaCambioActual()));
 		return xmlElement;
 	}
 			
