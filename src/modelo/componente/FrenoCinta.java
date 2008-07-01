@@ -34,7 +34,7 @@ public class FrenoCinta extends Freno {
 	 */
 	public FrenoCinta(){
 		setEstado(100);
-		setNombre("Freno de Cintao de Banda");
+		setNombre("Freno de Cinta o de Banda");
 		setPrecio(new AlgoPesos(370,00)); //algo$
 		setPeso(50); // Kg
 	}

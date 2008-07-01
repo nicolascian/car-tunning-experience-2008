@@ -27,7 +27,6 @@ public class DatosPartida {
 
 	
 	private ControladorJuego control;
-	private vista.VistaVentana vista ;
 	
 	private GestorPersistencia gestor = null;
 	
@@ -44,7 +43,7 @@ public class DatosPartida {
 	
 		//mando las ventanas
 		control = new ControladorJuego(this);
-		vista = new vista.VistaVentana(control);
+		new vista.VistaVentana(control);
 		
 		
 	}
@@ -90,13 +89,20 @@ public class DatosPartida {
 		}
 		catch(Exception e1){
 			JOptionPane.showMessageDialog(new JFrame(),
-	        	    "No se pudo cargar desde archivo.",
+	        	    "No se pudo cargar desde archivo." +'\n'+
+	        	    "Se ha generado un Jugador estandar.",
 	        	    "Error al cargar",
 	        	    JOptionPane.ERROR_MESSAGE);
+			//no se ha podido cargar, generamos un estadar
+			crearJuegoNuevo("Jugador");
 		}
 		
 	}
 	
+	
+	public void crearJuegoNuevo(String nombre){
+		setUsuario(new modelo.Usuario(nombre, new AlgoPesos(1000,00), new Auto()));
+	}
 	
 	
 	public Pista getPista() {
