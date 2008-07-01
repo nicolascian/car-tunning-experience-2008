@@ -27,21 +27,14 @@ public class Usuario extends Jugador {
 	}
 	
 	public Usuario(Element xmlElement){
-		//traigo el nombre
+		//traigo el atributo nombre
 		this.nombre=xmlElement.getAttribute("nombre");
-		//busco los atributos de AlgoPesos dinero
-		int entero= Integer.parseInt(xmlElement.getAttribute("entero"));
-		int decimal= Integer.parseInt(xmlElement.getAttribute("decimal"));
-		//levanto dinero
-		this.dinero = new AlgoPesos(entero, decimal);
-		//levanto el auto
-		
-	/*	NodeList nodosDiscos=xmlElement.getElementsByTagName("dinero");
-		
-		
-		for(int ndisco=0;ndisco<nodosDiscos.getLength();ndisco++){
-			this.discos.add(new Disco((Element)nodosDiscos.item(ndisco)));
-		}*/
+		//traigo los sub nodos
+		NodeList nodos =xmlElement.getChildNodes();
+		//levanto dinero, que es el primer subnodo
+		this.dinero = new AlgoPesos((Element)nodos.item(1));
+		//levanto el auto, que es el segundo subnodo
+		this.auto = new Auto();
 	}
 	
 	public Element toXml(Document doc){

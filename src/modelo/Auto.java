@@ -28,6 +28,7 @@ import org.w3c.dom.Document;
  */
 public class Auto extends Observable implements AfectablePorClima, AfectablePorSuperficie{
 	
+	private String nombre="generico"; //nombre para el auto
 	private double Velocidad=0; //velocidad del auto
 	private double Posicion=0; // dstancia recorrida
 	private Motor motor=null;
@@ -904,6 +905,14 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		while (it.hasNext()){ xmlElement.appendChild(it.next().toXml(doc));  }
 		
 		return xmlElement;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	

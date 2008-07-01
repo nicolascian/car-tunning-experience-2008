@@ -9,6 +9,7 @@ package modelo;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  * Es el tipo de dato con el que vamos a trabajar.
@@ -31,6 +32,12 @@ public class AlgoPesos{
 	public AlgoPesos(int entero, int decimal){
 		setEntero(entero);
 		setDecimal(decimal);
+	}
+	
+	public AlgoPesos(Element xmlElement){
+		//levanto los atributos de Dinero
+		this.entero= Integer.parseInt(xmlElement.getAttribute("entero"));
+		this.decimal= Integer.parseInt(xmlElement.getAttribute("decimal"));
 	}
 	
 	/** Suma dos instancias de AlgoPesos
