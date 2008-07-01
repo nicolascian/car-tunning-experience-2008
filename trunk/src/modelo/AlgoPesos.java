@@ -9,7 +9,6 @@ package modelo;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 /**
  * Es el tipo de dato con el que vamos a trabajar.

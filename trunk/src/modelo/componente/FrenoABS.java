@@ -45,7 +45,8 @@ public class FrenoABS extends Freno{
 	}
 	
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("frenoabs");
+		Element xmlElement = doc.createElement("freno");
+		xmlElement.setAttribute("tipo","abs");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}

@@ -38,7 +38,8 @@ public class FrenoDisco extends Freno{
 	}
 	
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("frenodisco");
+		Element xmlElement = doc.createElement("freno");
+		xmlElement.setAttribute("tipo","disco");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}

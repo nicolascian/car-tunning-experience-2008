@@ -49,7 +49,7 @@ public class TestPersistenciaVisual {
 	        	    "Error al cargar",
 	        	    JOptionPane.ERROR_MESSAGE);
 		}
-		
+
 	}
 	
 }

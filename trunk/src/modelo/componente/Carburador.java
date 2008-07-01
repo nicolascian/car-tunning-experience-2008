@@ -52,7 +52,8 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	}
 	
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("carburador");
+		Element xmlElement = doc.createElement("alimentacion");
+		xmlElement.setAttribute("tipo", "carburador");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}
