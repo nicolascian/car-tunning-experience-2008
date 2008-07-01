@@ -99,7 +99,7 @@ public class DatosPartida {
 	
 	
 	public void crearJuegoNuevo(String nombre){
-		setUsuario(new modelo.Usuario(nombre, new AlgoPesos(1000,00), new Auto()));
+		setUsuario(new modelo.Usuario(nombre, new AlgoPesos(9000,00), new Auto()));
 	}
 	
 	
