@@ -84,7 +84,8 @@ public class NeumaticoSlick extends Neumatico
 	}
 	
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("neumaticoslick");
+		Element xmlElement = doc.createElement("neumatico");
+		xmlElement.setAttribute("tipo", "slick");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}

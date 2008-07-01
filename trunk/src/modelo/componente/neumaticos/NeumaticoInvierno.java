@@ -8,6 +8,9 @@
 package modelo.componente.neumaticos;
 import modelo.*;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 /**
  * El neumatico para invierno es un tipo de neumatico que contiene clavos 
  * redondeados en su banda de rodadura. Esto le garantiza un maximo agarre
@@ -59,6 +62,13 @@ public class NeumaticoInvierno extends Neumatico implements	AfectablePorSuperfic
 		this.setLlanta(null);
 	}
 
+	public Element toXml(Document doc) {
+		Element xmlElement = doc.createElement("neumatico");
+		xmlElement.setAttribute("tipo", "invierno");
+		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		return xmlElement;
+	}
+	
 	/**
 	 * La adherencia solo se ve comprometida por el estado del neumatico.
 	 * La relacion no es lineal, sino de una raiz cuadrada.

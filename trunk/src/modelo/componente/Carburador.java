@@ -36,7 +36,6 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 	 */
 	public Carburador(){
 		cargarDatos();
-		setPeso(10);
 	}
 	
 	/**
@@ -48,13 +47,29 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 		CTE_HUMEDAD_OPTIMA = cte_humedad_optima;
 		CTE_RELACION_POTENCIA = cte_relacion_potencia;
 		cargarDatos();
-		setPeso(10);
+	}
+	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Carburador(Element xmlElement){
+		cargarDatos();
+		
+		//levanto los valores
+		EfectoClimatico = ( Double.parseDouble(xmlElement.getAttribute("efectoclimatico")) );
+		CTE_HUMEDAD_OPTIMA =( Double.parseDouble(xmlElement.getAttribute("humedadoptima")) ); 
+		CTE_RELACION_POTENCIA =	( Double.parseDouble(xmlElement.getAttribute("relacionpotencia")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
 	}
 	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("alimentacion");
 		xmlElement.setAttribute("tipo", "carburador");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("efectoclimatico", String.valueOf(this.EfectoClimatico));
+		xmlElement.setAttribute("humedadoptima", String.valueOf(CTE_HUMEDAD_OPTIMA));
+		xmlElement.setAttribute("relacionpotencia", String.valueOf(CTE_RELACION_POTENCIA));
 		return xmlElement;
 	}
 	

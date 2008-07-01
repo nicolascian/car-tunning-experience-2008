@@ -88,7 +88,8 @@ public class NeumaticoMixto extends Neumatico implements AfectablePorClima,
 	}
 
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("neumaticomixto");
+		Element xmlElement = doc.createElement("neumatico");
+		xmlElement.setAttribute("tipo", "mixto");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}
