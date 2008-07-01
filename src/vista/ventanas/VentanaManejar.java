@@ -10,13 +10,13 @@ import vista.imagenTramo.Posicion;
 import control.Usuario;
 
 public class VentanaManejar extends JFrame implements Observer{
-
-	private PanelCarril panel=null;
-		
-	private modelo.Usuario usuario = null;
-		
-	public void update(Observable arg0, Object arg1) {
-		panel.actualizarVelocidad(usuario.getAuto().getVelocidad());
+    
+	private PanelCarril panelUsuario=null;
+	
+    private modelo.Usuario usuario = null;
+    
+    public void update(Observable arg0, Object arg1) {
+		panelUsuario.actualizarVelocidad(usuario.getAuto().getVelocidad());
 	}
 
 	public VentanaManejar(modelo.Usuario usuario, Pista pista){
@@ -25,21 +25,19 @@ public class VentanaManejar extends JFrame implements Observer{
 		this.setSize(1000, 620);
 		this.setLocationRelativeTo(null); //centrada
 		this.setLayout(null);
-		Dimension dimensionPanel=new Dimension((int)(this.getSize().width*0.8),this.getSize().height);
-		this.panel=PanelCarril.createPanelCarrilVistaAutoDesdeAtras(dimensionPanel,new Posicion(0,20), 
-				                                                    usuario);
-		this.add(panel);
-		this.add(new PanelDeInformacion(new Dimension(200,600),new Posicion(800,0),usuario ));
-		
+		//usuario
+		Dimension dimensionPanel=new Dimension((int)(this.getSize().width*0.8),(int)(this.getSize().height*.846));
+		this.panelUsuario=PanelCarril.createPanelCarrilVistaAutoDesdeAtras(dimensionPanel,
+				               new Posicion(0,(int)(getSize().width*0.06452)),usuario);
+		this.add(panelUsuario);
+		this.add(new PanelDeInformacion(new Dimension((int)(getSize().width*0.2),(int)(getSize().height)),
+				                        new Posicion((int)(getSize().width*0.8),0),
+				                        usuario ));
+		//panel de recorrido
 		this.add(new PanelRecorrido(usuario.getNombre(),usuario.getAuto(),pista,
-				new Dimension((int)(this.getSize().width*0.8),20),
-				new Posicion(),Color.RED));
+				new Dimension((int)(this.getSize().width*0.8),(int)(getSize().width*0.03226)),
+				new Posicion(0,(int)(getSize().width*0.03226)),Color.RED));
 		this.setAlwaysOnTop(true);
 		this.setVisible(false);
-
-	}
-	
-	
-	
-	
+	}	
 }

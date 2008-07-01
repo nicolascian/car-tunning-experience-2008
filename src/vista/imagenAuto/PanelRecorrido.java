@@ -46,8 +46,10 @@ public class PanelRecorrido extends JPanel {
 		    public void run(){
 			     super.run();
 			     while(true){
-				   progress.setValue((int)(m*getAuto().getPosicion()));
-				   try{   
+			       synchronized(getAuto()){
+			         progress.setValue((int)(m*getAuto().getPosicion()));
+			       }
+			       try{   
 					  this.sleep(tiempoDeActualizacion);
 				   }catch(Exception e){};
 			     }
@@ -56,7 +58,7 @@ public class PanelRecorrido extends JPanel {
 		this.add(progress);	
 		this.hiloDeActualizacion.start();	
 	}
-	
+		
 	/**
 	 * @return the auto
 	 */

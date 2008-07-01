@@ -44,7 +44,7 @@ public class Manejar implements Runnable {
 	   boolean enCarrera = true;
 	   while(enCarrera){
     	 try{
-			synchronized (this.usuario.getAuto())
+    		synchronized (this.usuario.getAuto())
 			{
     			this.usuario.getAuto().wait(25);
 				this.pista.actualizarPosiciones();

@@ -108,8 +108,14 @@ public class PanelDeInformacion extends JPanel {
 			grafico.drawImage(imagenPalanca.getImage(),imagenPalanca.getPosicion().getX(),
 					imagenPalanca.getPosicion().getY(),imagenPalanca.getDimension().width,
 					imagenPalanca.getDimension().height,this);
-			this.getGrafico().drawString(String.valueOf(usuario.getAuto().getCaja().getCambio()),
+			modelo.componente.Caja caja=null;
+			synchronized (this.usuario.getAuto().getCaja()){
+				caja=this.usuario.getAuto().getCaja();
+			}
+			try{
+			this.getGrafico().drawString(String.valueOf(caja.getCambio()),
 					                    this.posicionNumeroCambio.getX(),this.posicionNumeroCambio.getY());
+			}catch(NullPointerException e){};
 			((Graphics2D)g).drawImage(buffImage,0 ,0,this.getWidth(),this.getHeight(),this);
 		}catch(Exception e){};
 	}
