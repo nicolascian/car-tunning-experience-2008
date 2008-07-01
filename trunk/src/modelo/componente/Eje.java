@@ -29,7 +29,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	private RepositorioDeFuerzas repositorio;//donde se almacenan las fuerzas que llegan a la isntancia
 	private double rpm;//revoluciones a las que gira la instancia.
 	protected final static double COEFICIENTE_INCREMENTO_RPM=0.06228;//0.02335;//0.006999
-	protected final static double COEFICIENTE_DECREMENTO_RPM=0.57521;//0.02219;	
+	protected final static double COEFICIENTE_DECREMENTO_RPM=0.17521;//0.02219;	
 	
 	/**
 	 * @Pre: 
@@ -207,7 +207,7 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 			  if(valorDeLaFuerza>0)
 			    setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_INCREMENTO_RPM);
 			  else
-				  setRpm(getRpm()-valorDeLaFuerza*COEFICIENTE_DECREMENTO_RPM);  
+				  setRpm(getRpm()+valorDeLaFuerza*COEFICIENTE_DECREMENTO_RPM);  
 		}else{//viene de la carroceria
 			  if(fuerza.getEmisor()==getAuto().getCarroceria()){
 				Fuerza fuerzaACaja=repositorio.insertarFuerzaRetornarCopia(fuerza);
