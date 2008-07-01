@@ -233,7 +233,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 			 }	   
 			 else{
 				 decrementarRpm();
-				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm;//valorFuerzaContraMotor;
+				 valorFuerza=valorFuerzaContraMotor;
 		     }
 		     /*Envio una fuerza al eje proporcional a las rpm y 
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
@@ -243,8 +243,10 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		     double sumatoria=repositorio.obtenerValorSumatoriaDeFuerzas();
 		     valorFuerza+=sumatoria;
 		     valorFuerzaContraMotor=sumatoria/(5*getAuto().getCaja().getRelacionDeCambio());
-		     if(valorFuerza<0)
-		       afectarRpmPorFuerza(new Fuerza(this,getAuto().getCaja(),valorFuerza,true));
+		     if(valorFuerza<0){
+		       this.decrementarRpm();
+		       afectarRpmPorFuerza(new Fuerza(this,getAuto().getCaja(),50*valorFuerza,true));
+		     }
 		  }catch (NullPointerException e){}
 	  }
 	}
