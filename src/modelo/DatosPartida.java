@@ -9,7 +9,7 @@ package modelo;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+import vista.ventanas.*;
 import control.*;
 
 
@@ -55,11 +55,11 @@ public class DatosPartida {
 		threadManejar.start();
 	}
 	
-	public void Carrera(){
+	public void Carrera(JFrame ventanaAnterior){
 		//SACAR ESTO DE ACA
 		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(),3000 );
 		AlgoPesos apuesta = new AlgoPesos(100,00);
-		Carrera carrera = new Carrera(usuario, virtual, pista, apuesta);
+		Carrera carrera = new Carrera(usuario, virtual, pista, apuesta, ventanaAnterior);
 	    Thread threadCarrera = new Thread(carrera);
 		threadCarrera.start();
 		

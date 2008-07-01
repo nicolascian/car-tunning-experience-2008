@@ -4,6 +4,7 @@
 
 package modelo;
 
+import javax.swing.*;
 import vista.ventanas.*;
 import modelo.exceptions.*;
 
@@ -11,6 +12,8 @@ import modelo.exceptions.*;
 public class Carrera implements Runnable {
 
 	private Pista pista;
+	
+	private JFrame ventanaAnterior;
 	
 	private VentanaCarrera vista;
 	
@@ -32,7 +35,8 @@ public class Carrera implements Runnable {
 	 * 	TODOS LOS JUGADORES TIENEN QUE TENER DINERO SUFICIENTE PARA
 	 * 	ENFRENTAR LA APUESTA
 	 */
-	public Carrera(Usuario usuario,Virtual virtual, Pista pista, AlgoPesos apuesta){
+	public Carrera(Usuario usuario,Virtual virtual, Pista pista, AlgoPesos apuesta, JFrame ventanaAnterior){
+		this.ventanaAnterior = ventanaAnterior;
 		this.usuario = usuario;
 		this.virtual = virtual;
 		this.pista = pista;
@@ -71,7 +75,7 @@ public class Carrera implements Runnable {
 		
 		//NO SE CIERRA!!!!!!!!!!!!!!!!!!!!!!
 		this.vista.dispose();
-		
+		this.ventanaAnterior.setVisible(true);
 		
 		/* aumentar / disminuir la plata del jugador que gano / perdio
 		 * cerra la vista
