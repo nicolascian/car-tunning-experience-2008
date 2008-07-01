@@ -25,6 +25,10 @@ public class Usuario extends Jugador {
 		setAuto(auto);
 	}
 	
+	public Usuario(Element xmlElement){
+		
+	}
+	
 	public Element toXml(Document doc){
 		Element xmlElement = doc.createElement("usuario");
 		xmlElement.setAttribute("nombre", getNombre());
