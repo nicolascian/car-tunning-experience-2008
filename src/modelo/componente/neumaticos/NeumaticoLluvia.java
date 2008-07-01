@@ -73,7 +73,8 @@ public class NeumaticoLluvia extends Neumatico implements AfectablePorSuperficie
 	}
 	
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("neumaticolluvia");
+		Element xmlElement = doc.createElement("neumatico");
+		xmlElement.setAttribute("tipo", "lluvia");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}

@@ -221,12 +221,66 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		//SistemaDeRefrigeracion
 		nodo = xmlElement.getElementsByTagName("sistemaderefrigeracion");
 		this.setSistemaDeRefrigeracion(new SistemaDeRefrigeracion((Element)nodo.item(0)));
+		//Neumatico
+		nodo = xmlElement.getElementsByTagName("neumatico");
+		tipo = ((Element)nodo.item(0)).getAttribute("tipo");
+		if (tipo == "slick"){
+			this.setNeumaticoDelanteroDerecho(new NeumaticoSlick((Element)nodo.item(0)));
+		}else if(tipo == "mixto"){
+			this.setNeumaticoDelanteroDerecho(new NeumaticoMixto((Element)nodo.item(0)));
+		}else if(tipo == "invierno"){
+			this.setNeumaticoDelanteroDerecho(new NeumaticoInvierno((Element)nodo.item(0)));
+		}else if(tipo == "lluvia"){
+			this.setNeumaticoDelanteroDerecho(new NeumaticoLluvia((Element)nodo.item(0)));
+		}else if(tipo == "todoterreno"){
+			this.setNeumaticoDelanteroDerecho(new NeumaticoTodoTerreno((Element)nodo.item(0)));
+		};
+		tipo = ((Element)nodo.item(1)).getAttribute("tipo");
+		if (tipo == "slick"){
+			this.setNeumaticoDelanteroIzquierdo(new NeumaticoSlick((Element)nodo.item(1)));
+		}else if(tipo == "mixto"){
+			this.setNeumaticoDelanteroIzquierdo(new NeumaticoMixto((Element)nodo.item(1)));
+		}else if(tipo == "invierno"){
+			this.setNeumaticoDelanteroIzquierdo(new NeumaticoInvierno((Element)nodo.item(1)));
+		}else if(tipo == "lluvia"){
+			this.setNeumaticoDelanteroIzquierdo(new NeumaticoLluvia((Element)nodo.item(1)));
+		}else if(tipo == "todoterreno"){
+			this.setNeumaticoDelanteroIzquierdo(new NeumaticoTodoTerreno((Element)nodo.item(1)));
+		};
+		tipo = ((Element)nodo.item(2)).getAttribute("tipo");
+		if (tipo == "slick"){
+			this.setNeumaticoTraseroDerecho(new NeumaticoSlick((Element)nodo.item(2)));
+		}else if(tipo == "mixto"){
+			this.setNeumaticoTraseroDerecho(new NeumaticoMixto((Element)nodo.item(2)));
+		}else if(tipo == "invierno"){
+			this.setNeumaticoTraseroDerecho(new NeumaticoInvierno((Element)nodo.item(2)));
+		}else if(tipo == "lluvia"){
+			this.setNeumaticoTraseroDerecho(new NeumaticoLluvia((Element)nodo.item(2)));
+		}else if(tipo == "todoterreno"){
+			this.setNeumaticoTraseroDerecho(new NeumaticoTodoTerreno((Element)nodo.item(2)));
+		};
+		tipo = ((Element)nodo.item(3)).getAttribute("tipo");
+		if (tipo == "slick"){
+			this.setNeumaticoTraseroIzquierdo(new NeumaticoSlick((Element)nodo.item(3)));
+		}else if(tipo == "mixto"){
+			this.setNeumaticoTraseroIzquierdo(new NeumaticoMixto((Element)nodo.item(3)));
+		}else if(tipo == "invierno"){
+			this.setNeumaticoTraseroIzquierdo(new NeumaticoInvierno((Element)nodo.item(3)));
+		}else if(tipo == "lluvia"){
+			this.setNeumaticoTraseroIzquierdo(new NeumaticoLluvia((Element)nodo.item(3)));
+		}else if(tipo == "todoterreno"){
+			this.setNeumaticoTraseroIzquierdo(new NeumaticoTodoTerreno((Element)nodo.item(3)));
+		};
+		//Llanta
+		nodo = xmlElement.getElementsByTagName("llanta");
+		this.setLlantaDelanteraDerecha(new Llanta((Element)nodo.item(0)));
+		this.setLlantaDelanteraIzquierda(new Llanta((Element)nodo.item(1)));
+		this.setLlantaTraseraDerecha(new Llanta((Element)nodo.item(2)));
+		this.setLlantaTraseraIzquierda(new Llanta((Element)nodo.item(3)));
 		//Eje
 		nodo = xmlElement.getElementsByTagName("eje");
 		this.setEjeDelantero(new Eje((Element)nodo.item(0)));
-		this.setEjeDelantero(new Eje((Element)nodo.item(1)));
-		//Llanta
-		//Neumatico-------
+		this.setEjeTrasero(new Eje((Element)nodo.item(1)));
 		
 	}
 	
@@ -565,15 +619,19 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		lista.add(this.nitro);
 		lista.add(this.freno);
 		lista.add(this.sistemaDeRefrigeracion);
+		//neumaticos
+		lista.add(this.neumaticoDelanteroDerecho); 
+		lista.add(this.neumaticoDelanteroIzquierdo);
+		lista.add(this.neumaticoTraseroDerecho); 
+		lista.add(this.neumaticoTraseroIzquierdo);
+		//llantas
+		lista.add(this.llantaDelanteraDerecha);	
+		lista.add(this.llantaDelanteraIzquierda);
+		lista.add(this.llantaTraseraDerecha);	
+		lista.add(this.llantaTraseraIzquierda);	
 		//ejes
 		lista.add(this.ejeDelantero);
 		lista.add(this.ejeTrasero);
-		//llantas
-		lista.add(this.llantaDelanteraDerecha);	lista.add(this.llantaDelanteraIzquierda);
-		lista.add(this.llantaTraseraDerecha);	lista.add(this.llantaTraseraIzquierda);
-		//neumaticos
-		lista.add(this.neumaticoDelanteroDerecho); lista.add(this.neumaticoDelanteroIzquierdo);
-		lista.add(this.neumaticoTraseroDerecho); lista.add(this.neumaticoTraseroIzquierdo);		
 		return lista;
 	}
 	

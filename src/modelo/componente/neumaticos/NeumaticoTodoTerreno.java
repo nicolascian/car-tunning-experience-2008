@@ -82,7 +82,8 @@ public class NeumaticoTodoTerreno extends Neumatico
 	}
 	
 	public Element toXml(Document doc) {
-		Element xmlElement = doc.createElement("neumaticotodoterreno");
+		Element xmlElement = doc.createElement("neumatico");
+		xmlElement.setAttribute("tipo", "todoterreno");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
 		return xmlElement;
 	}
