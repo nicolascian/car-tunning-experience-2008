@@ -6,8 +6,7 @@
  ******************************************************************************/
 
 import modelo.*;
-import control.*;
-import vista.*;
+
 
 /**
  * Juego es el punto de entrada del programa "Car Tunning Experience 2008"
