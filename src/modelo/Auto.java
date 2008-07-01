@@ -898,6 +898,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	
 	public Element toXml(Document doc){
 		Element xmlElement = doc.createElement("auto");
+		xmlElement.setAttribute("nombre", this.getNombre());
 		
 		LinkedList<Componente> lista= obtenerComponentes();
 		Iterator<Componente> it = lista.iterator();
