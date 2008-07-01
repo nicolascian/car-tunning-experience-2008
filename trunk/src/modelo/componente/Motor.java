@@ -233,7 +233,7 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 			 }	   
 			 else{
 				 decrementarRpm();
-				 valorFuerza=valorFuerzaContraMotor;
+				 valorFuerza=getRPM()*coeficienteDeProduccionDeFuerzaAPartirRpm;//valorFuerzaContraMotor;
 		     }
 		     /*Envio una fuerza al eje proporcional a las rpm y 
 		     al coeficienteDeProduccionDeFuerzaAPartirDeRpm*/
