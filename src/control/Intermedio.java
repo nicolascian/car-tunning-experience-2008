@@ -48,7 +48,6 @@ public class Intermedio extends Habilidad{
 		
 	private void manejar(){
 	
-		System.out.println("intemedio.jugar");
 		/* si el auto esta apagado */
 		if (!auto.isEncendido()){
 			auto.setEncendido(true);

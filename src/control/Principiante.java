@@ -47,7 +47,6 @@ public class Principiante extends Habilidad{
 	
 	private void manejar(){	
 		
-		System.out.println("principiante.jugar");
 		/* si el auto esta apagado */
 		if (!auto.isEncendido()){
 			auto.setEncendido(true);

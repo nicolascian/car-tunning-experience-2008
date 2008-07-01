@@ -46,7 +46,6 @@ public class Experto extends Habilidad{
 	
 	private void manejar(){
 			
-		System.out.println("experto.jugar");
 		/* si el auto esta apagado */
 		if (!auto.isEncendido()){
 			auto.setEncendido(true);

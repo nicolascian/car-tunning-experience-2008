@@ -13,6 +13,7 @@ public class Virtual extends Jugador {
 	public Virtual(control.Virtual control, Auto auto){
 		setControl(control);
 		setAuto(auto);
+		setNombre("Virtual (PC)");
 		
 	}
 
