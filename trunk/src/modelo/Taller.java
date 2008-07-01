@@ -17,7 +17,11 @@ public class Taller {
 	 * 
 	 */
 	public Taller() {
+		this.ventanaTaller=new VentanaTaller()
+	}
 	
+	public void reemplazar(){
+		
 	}
 
 }
