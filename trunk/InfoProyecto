@@ -15,107 +15,37 @@
     -- Eric S. Raymond
     
 
-## COSAS QUE FALTAN HACER / REVISAR ##
-hoy nos quedamos con nico cian un rato desp de q termino a algoritmos para ver que cosas
-faltaban hacer o revisar del tp. aca dejo algunas de las cosas que nos parecio que hay 
-que hacer o revisar:
+#########################################################################################
 
-CUESTIONES DE DISE�O:
-	-si se va a hacer un cambio grande en el dise�o, q involucre a muchas de las clases
-	estaria bueno q primero lo charlemos entre todos y no q uno solo cambie todo el 
-	codigo, asi podemos entender y ver q nos parecen las ideas, y asi depaso desp no
-	qdamos todos re colgados y no podemos avanzar xq no entendemos q se hizo.
-	
-	-faltaria algun diagrama de la relacion de las fuerzas con el resto de las
-	clases
-	
-	-si a alguien se le ocurre una mejor forma de detectar el fin de la carrera, q no
-	sea lanzando una excepcion "fin de pista", que no me parece q sea la mejor.
-	
-	-vi una especie de "composite" en el neumatico y llanta(tienen una referencia a otro componente)
-	q tiene una especie de contenedor o	algo asi, que a mi entender no tendria xq ser asi.
-	nose que paso con el modelo donde el auto tenia una referencia al eje y este a las llantas
-	y neumaticos, pero si en todo caso el eje va a tener solo referencia a la llanta, entonces
-	el neumatico deberia tener una referencia solo a una llanta y no a cualquier componente.
-	lo mismo la llanta q referencie a un eje.
-	
-	- hay q pensar q vamos a hacer con la persistencia, aunq seria bueno primero
-	terminar con todo el modelo y q ande bien.
-	
-	- me llamo la atencion muchas constantes raras en componentes como x ejemplo en el eje
-	q tiene unas constantes "COEFICIENTE_INCREMENTO_RPM=0.0069999999895".
-	me parece q la idea era q el aporte de cada componente era dado por la potencia q entregaba.
-	otra que vi es q Neumatico tiene una constante "GRAVEDAD" que no tiene nada que ver
-	con  el neumatico. en todo caso tendria q estar en la clase constantes.
-	tambien me da la sensacion de que hay muchas constantes estaticas por todos lados, y 
-	no me cierra como se van a distinguir dos componentes (por ejemplo 2 turbos)
-	otra q acabo de ver es  �!�!�!constante tiempo por ciclo adentro de componente?!?!?!?!
-	
-COSAS DE IMPLEMENTACION:
-	-hay q ver en q lugar del codigo se llama al metodo desgastar de todos los componentes,
-	una primera idea era llamar a todos cada vez q el auto cambia de posicion, aunq x ahi
-	no seria la mas correcta.
-	
-	-hay muchos atributos no estaticos a los q se le asigna el valor fuera del constructor
-	(es decir, cuando se declaran). me parece q la idea es que se inicialicen el los
-	constructores. por eso, hay q ver que TODOS LOS CONSTRUCTORES INICIALICEN TODOS LOS
-	ATRIBUTOS. --> recordar setear los precios!
-	
-	-sobran muchos setters y getters, algunos de los cuales no deberian ser publicos.
-	
-	-hay clases q declaran atributos, o metodos q declaran variables que nunca se leen
-	VER LOS WARNINGS.
-	
-	-verificar la visibilidad de los metodos (cuales deberian ser publicos y cuales no)
-	
-	-hay metodos en clases abstractas implementados sin codigo (como por ej "obtenerPotencia"
-	, heredados de alguna clase	base q no deberian estar escritos, sino q se implementan 
-	en alguna clase descendiente. o q si se implementan en una clase abstracta q entonces
-	tenga codigo, sino no tiene sentido.
-	
-	-hay q definir q vamos a hacer cuando un componente se rompe
-	
-	-hay q escribir bien el metodo reparar, teniendo en cuenta el costo, la plata 
-	disponible etc etc
-	
-	-comentar q significan los atributos, rangos de valores validos etc etc.
-	 x ej en suspencion, cuales son los valores validos para la rigidez? y para los efectos
-	 de superficie y clima?
-	
-COSAS QUE NO ANDAN DEL TODO BIEN:
-	- cuando se juega, se supone que se esta usando una caja automatica, y se pueden hacer 
-	  los cambios como tal. pero cuando llega a las rpm optimas hace el cambio solo.
+## Informacion del Proyecto ##
 
-	- hay tests que que muestran errores y no fueron corregidos.
+la pagina oficial del proyecto es:
+http://code.google.com/p/car-tunning-experience-2008/
 
-	- hay q ajustar la rapidez con q aumenta las rpm y la velocidad.
-	
-	- cuando arranca el juego el auto siempre empieza con este estado:
-	Estado: 97.61904761523809
-	
-bueno estas son algunas cosas q charlamos hoy, y otras q se me ocurrieron ami.
-todo lo q vean q falta agreguenlo, y estaria bueno q estemos la mayoria ma�ana asi
-podemos discutir todo esto, mas las correcciones q nos hagan (q seguro son unas cuantas)
-nico m
 
 el Source Level es 6
-los test se hacen en JUnit version 3.X.X
-
-modelo MVC, modelo, vista, control
-#########################################################################################
+usamos modelo MVC, modelo, vista, control
+la persistencia se hace con archivos XML
+estamos usando SVN (Subversion)
+utilizamos la libreria xerces.jar
 
 Juego.java -> "run as" Java Application
 
-hay que ponerse a pensar en Persistencia!
 
-entonces:
-los Jugadores son controles de autos
-la pista tiene Autos
-la Vista observa la pista y los autos
+el repositorio en google es:
+https://car-tunning-experience-2008.googlecode.com/svn
+--->usar trunk
+
+MANUAL para instalar el plugin SUBCLIPSE que necesita el eclipse:
+http://subclipse.tigris.org/install.html
+
+pagina de SUBCLIPSE:
+http://subclipse.tigris.org/
+
+Manual para configurar el SVN en eclipse
+http://blog.msbbc.co.uk/2007/06/using-googles-free-svn-repository-with.html
 
 #########################################################################################
-ObtenerPotencia de los componentes tira MAXIMO 50 HP <----- hacer un IF
-		excepto MOTOR TURBO NITRO que tiran MAS
 
 
 Nico M: 	Neumatico <--------------------------Listo
@@ -185,27 +115,3 @@ Maxi:		Combustible <------------------------
 			
 
 ----------------------------------------------------------------------------------------------------
-
-
-## Informacion del Proyecto ##
-
-la pagina oficial del proyecto es:
-http://code.google.com/p/car-tunning-experience-2008/
-
-estamos usando SVN (Subversion)
-
-el repositorio en google es:
-https://car-tunning-experience-2008.googlecode.com/svn
---->usar trunk
-
-MANUAL para instalar el plugin SUBCLIPSE que necesita el eclipse:
-http://subclipse.tigris.org/install.html
-
-pagina de SUBCLIPSE:
-http://subclipse.tigris.org/
-
-Manual para configurar el SVN en eclipse
-http://blog.msbbc.co.uk/2007/06/using-googles-free-svn-repository-with.html
-
-
-
