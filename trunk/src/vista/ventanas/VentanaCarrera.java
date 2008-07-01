@@ -19,8 +19,6 @@ public class VentanaCarrera extends JFrame implements Observer{
 	
     private PanelCarril panelUsuario=null;
 	
-    private PanelCarril panelVirtual=null;
-    
     private modelo.Usuario usuario = null;
     
     private modelo.Virtual virtual=null;
@@ -28,13 +26,6 @@ public class VentanaCarrera extends JFrame implements Observer{
 	public void update(Observable arg0, Object arg1) {
 	  synchronized(this.usuario.getAuto()){	
 		panelUsuario.actualizarVelocidad(usuario.getAuto().getVelocidad());
-	  }
-	  synchronized(this.virtual.getAuto()){
-	    try{
-		  panelVirtual.actualizarVelocidad(virtual.getAuto().getVelocidad());
-	    }catch(NullPointerException e){
-	    	//e.printStackTrace();
-	    };
 	  }
 	}
 	
