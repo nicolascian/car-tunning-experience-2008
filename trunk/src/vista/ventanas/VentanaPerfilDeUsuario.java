@@ -22,7 +22,7 @@ public class VentanaPerfilDeUsuario extends JFrame {
 	public VentanaPerfilDeUsuario(VistaVentana vistaVentana){
 		JButton botonNuevoUsuario; 
 		JButton botonCargarUsuario;
-		this.setTitle("Perfil De Usuario - Car Tunnning Experience 2008");
+		this.setTitle("Perfil De Usuario");
 		this.vistaVentana=vistaVentana;
 		botonNuevoUsuario = new JButton();
 		botonNuevoUsuario.setText("Crear Usuario");
