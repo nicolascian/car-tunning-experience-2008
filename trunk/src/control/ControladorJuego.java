@@ -1,6 +1,8 @@
 package control;
 
+import javax.swing.*;
 import modelo.*;
+import vista.ventanas.*;
 
 public class ControladorJuego {
 
@@ -29,9 +31,9 @@ public class ControladorJuego {
 
 	}
 
-	public void correrCarrera(){
+	public void correrCarrera(JFrame ventanaMenu){
 		
-		datos.Carrera();
+		datos.Carrera(ventanaMenu);
 	}
 	
 	public void correrSolo(){

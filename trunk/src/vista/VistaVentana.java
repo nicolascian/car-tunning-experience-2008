@@ -71,7 +71,7 @@ public class VistaVentana {
 	
 	public void Carrera(){
 		ventanaMenu.setVisible(false);
-		controlJuego.correrCarrera();
+		controlJuego.correrCarrera(ventanaMenu);
 	}
 	
 	public void Auto(){
