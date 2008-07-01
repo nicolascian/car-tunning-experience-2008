@@ -8,7 +8,6 @@ import java.util.*;
 import javax.swing.JFrame;
 
 import modelo.Pista;
-import vista.imagenTramo.Posicion;
 import control.Usuario;
 
 public class VentanaCreditos extends JFrame {
