@@ -23,6 +23,7 @@ public class VentanaTaller extends JFrame {
 	private JFrame ventanaMenu=null;
 	
 	public VentanaTaller(JFrame ventanaMenu) {
+		JFrame.setDefaultLookAndFeelDecorated(false);
 		this.setLayout(null);
 		this.ventanaMenu=ventanaMenu;
 		this.setSize(800,600);
