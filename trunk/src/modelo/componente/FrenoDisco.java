@@ -31,16 +31,29 @@ public class FrenoDisco extends Freno{
 	 * coloca el estado de la instancia al 100%
 	 */
 	public FrenoDisco(){
-		super();
+		setEstado(100);
 		setNombre("Freno de Disco");
 		setPrecio(new AlgoPesos(599,99)); //algo$
 		setPeso(65); // Kg
+	}
+	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public FrenoDisco(Element xmlElement){
+		//levanto los valores
+		this.EfectoClimatico =( Double.parseDouble(xmlElement.getAttribute("efectoclimatico")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		setNombre(xmlElement.getAttribute("nombre"));
 	}
 	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("freno");
 		xmlElement.setAttribute("tipo","disco");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("efectoclimatico", String.valueOf(this.EfectoClimatico));
+		xmlElement.setAttribute("nombre", this.getNombre());
 		return xmlElement;
 	}
 	

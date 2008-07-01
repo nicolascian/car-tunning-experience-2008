@@ -53,9 +53,22 @@ public class Nitro extends Componente {
 		setPeso(10); // Kg
 	}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Nitro(Element xmlElement){
+		//levanto los valores
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		setNombre(xmlElement.getAttribute("nombre"));
+		setPrecio(new AlgoPesos(3200,00)); //algo$
+		setPeso(10); // Kg
+	}
+	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("nitro");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("nombre", String.valueOf(this.getNombre()));
 		return xmlElement;
 	}
 

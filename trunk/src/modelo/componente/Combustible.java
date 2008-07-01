@@ -7,6 +7,8 @@
 
 package modelo.componente;
 
+import modelo.AlgoPesos;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 
@@ -36,11 +38,27 @@ public class Combustible extends Componente{
 		setCapacidad(capacidad);
 		setEstado(capacidad);
 		setIndiceDeCombustion(indiceDeCombustion);
+		setPrecio(new AlgoPesos(3,5)); //algo$
+	}
+	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Combustible(Element xmlElement){
+		//levanto los valores
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		indiceDeCombustion =( Double.parseDouble(xmlElement.getAttribute("indicecombustion")) );
+		capacidad =( Double.parseDouble(xmlElement.getAttribute("capacidad")) );
+		this.peso=33.75;
+		setPrecio(new AlgoPesos(3,5)); //algo$
 	}
 	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("combustible");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("indicecombustion", String.valueOf(this.indiceDeCombustion));
+		xmlElement.setAttribute("capacidad", String.valueOf(this.capacidad));
 		return xmlElement;
 	}
 	

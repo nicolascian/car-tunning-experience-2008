@@ -61,11 +61,31 @@ public class NeumaticoInvierno extends Neumatico implements	AfectablePorSuperfic
 		this.setAuto(null);
 		this.setLlanta(null);
 	}
+	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public NeumaticoInvierno(Element xmlElement, Auto auto){
+		//levanto los valores
+		setPotenciaMax(Double.parseDouble(xmlElement.getAttribute("potenciamax")));
+		rugosidadSuperficie =( Double.parseDouble(xmlElement.getAttribute("rugosidadsup")) );
+		particulasEnSuperficie =( Double.parseDouble(xmlElement.getAttribute("particulassup")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		this.setNombre("Neumatico para invierno");
+		this.setPeso(15);//en kilos
+		this.setPrecio(new AlgoPesos(400,0));
+		this.setAuto(auto);
+		this.setLlanta(null);
+	}
 
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("neumatico");
 		xmlElement.setAttribute("tipo", "invierno");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("potenciamax", String.valueOf(this.getPotenciaMax()));
+		xmlElement.setAttribute("rugosidadsup", String.valueOf(this.rugosidadSuperficie));
+		xmlElement.setAttribute("particulassup", String.valueOf(this.particulasEnSuperficie));
 		return xmlElement;
 	}
 	

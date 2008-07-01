@@ -62,9 +62,29 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		setNeumatico(null);
 	}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Llanta(Element xmlElement){
+		//levanto los valores
+		potenciaNormal =  ( Double.parseDouble(xmlElement.getAttribute("potencianormal")) );
+		pesoNormal =( Double.parseDouble(xmlElement.getAttribute("pesonormal")) );
+		constanteDeDesgaste =( Double.parseDouble(xmlElement.getAttribute("ctedesgaste")) );
+		coeficienteDeDesgastePorSuperficie = ( Double.parseDouble(xmlElement.getAttribute("coefdesgastesup")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		setAuto(null);
+		this.setPeso(15);
+		setNeumatico(null);
+	}
+	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("llanta");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("potencianormal", String.valueOf(potenciaNormal));
+		xmlElement.setAttribute("pesonormal", String.valueOf(this.pesoNormal));
+		xmlElement.setAttribute("ctedesgaste", String.valueOf(constanteDeDesgaste));
+		xmlElement.setAttribute("coefdesgastesup", String.valueOf(this.coeficienteDeDesgastePorSuperficie));
 		return xmlElement;
 	}
 	

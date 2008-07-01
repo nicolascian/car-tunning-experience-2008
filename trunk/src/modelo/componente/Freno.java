@@ -35,15 +35,7 @@ public abstract class Freno extends Componente implements AfectablePorClima{
 	private boolean frenando = false;
 	
 	protected double EfectoClimatico = 1;
-	
-	/**
-	 * Constructor de Freno sin parametros
-	 * establece el Estado en 100%
-	 */
-	public Freno(){
-		setPeso(6);
-		setEstado(100);
-	}
+
 	
 	/**
 	 * Nos dice si el freno esta en un estado Frenado o no.

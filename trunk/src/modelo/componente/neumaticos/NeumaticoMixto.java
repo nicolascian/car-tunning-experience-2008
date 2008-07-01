@@ -87,10 +87,34 @@ public class NeumaticoMixto extends Neumatico implements AfectablePorClima,
 		this.setLlanta(null);
 	}
 
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public NeumaticoMixto(Element xmlElement, Auto auto){
+		//levanto los valores
+		cantidadSurcos=( Double.parseDouble(xmlElement.getAttribute("cantidadsurcos")) );
+		humedadEnPista=( Double.parseDouble(xmlElement.getAttribute("humedadpista")) );
+		setPotenciaMax(Double.parseDouble(xmlElement.getAttribute("potenciamax")));
+		relieveSuperficie =( Double.parseDouble(xmlElement.getAttribute("relievesup")) );
+		viscosidadSuperficie =( Double.parseDouble(xmlElement.getAttribute("viscosidadsup")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		this.setNombre("Neumatico Estandar");
+		this.setPeso(9);//en kilos
+		this.setPrecio(new AlgoPesos(200,0));
+		this.setAuto(auto);
+		this.setLlanta(null);
+	}
+	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("neumatico");
 		xmlElement.setAttribute("tipo", "mixto");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("cantidadsurcos", String.valueOf(this.cantidadSurcos));
+		xmlElement.setAttribute("humedadpista", String.valueOf(this.humedadEnPista));
+		xmlElement.setAttribute("potenciamax", String.valueOf(this.getPotenciaMax()));
+		xmlElement.setAttribute("relievesup", String.valueOf(this.relieveSuperficie));
+		xmlElement.setAttribute("viscosidadsup", String.valueOf(this.viscosidadSuperficie));
 		return xmlElement;
 	}
 	

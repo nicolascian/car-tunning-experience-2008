@@ -42,6 +42,8 @@ implements AfectablePorClima, AfectablePorSuperficie{
 		HumedadOptima = 50;
 		PresionOptima = 1013;
 		this.setEstado(100);
+		setPrecio(new AlgoPesos(60,0)); //algo$
+		setNombre("Escape generico");
 	}
 	
 	/**
@@ -56,11 +58,34 @@ implements AfectablePorClima, AfectablePorSuperficie{
 		this.HumedadOptima = HumedadOptima;
 		this.PresionOptima = PresionOptima;
 		this.setEstado(100);
+		setPrecio(new AlgoPesos(60,0)); //algo$
+		setNombre("Escape Modificado");
+	}
+	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Escape(Element xmlElement){
+		//levanto los valores
+		setNombre(( xmlElement.getAttribute("nombre") ));
+		EfectoSuperficie= ( Double.parseDouble(xmlElement.getAttribute("efectosuperficie")) );
+		EfectoClimatico= ( Double.parseDouble(xmlElement.getAttribute("efectoclimatico")) );
+		HumedadOptima = ( Double.parseDouble(xmlElement.getAttribute("humedadoptima")) );
+		PresionOptima =( Double.parseDouble(xmlElement.getAttribute("presionoptima")) ); 
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		setPrecio(new AlgoPesos(60,0)); //algo$
+		setPeso(20);
 	}
 	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("escape");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("nombre", String.valueOf(this.getNombre()));
+		xmlElement.setAttribute("efectosuperficie", String.valueOf(this.EfectoSuperficie));
+		xmlElement.setAttribute("efectoclimatico", String.valueOf(this.EfectoClimatico));
+		xmlElement.setAttribute("humedadoptima", String.valueOf(this.HumedadOptima));
+		xmlElement.setAttribute("presionoptima", String.valueOf(this.PresionOptima));
 		return xmlElement;
 	}
 	

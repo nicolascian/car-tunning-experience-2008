@@ -74,9 +74,28 @@ public class Carroceria extends Componente
 		setPeso(peso);
 	}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Carroceria(Element xmlElement){
+		//levanto los valores
+		superficieFrontal= ( Double.parseDouble(xmlElement.getAttribute("supfrontal")) );
+		coeficienteDeOxidacionPorParticulas= ( Double.parseDouble(xmlElement.getAttribute("coefoxparticulas")) );
+		coeficienteDeOxidacionPorHumedad =( Double.parseDouble(xmlElement.getAttribute("coefoxhumedad")) );
+		temperatura =( Double.parseDouble(xmlElement.getAttribute("temperatura")) );
+		setPeso(( Double.parseDouble(xmlElement.getAttribute("peso")) ));
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+	}
+	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("carroceria");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("supfrontal", String.valueOf(this.superficieFrontal));
+		xmlElement.setAttribute("coefoxparticulas", String.valueOf(this.coeficienteDeOxidacionPorParticulas));
+		xmlElement.setAttribute("coefoxhumedad", String.valueOf(this.coeficienteDeOxidacionPorHumedad));
+		xmlElement.setAttribute("temperatura", String.valueOf(this.temperatura));
+		xmlElement.setAttribute("peso", String.valueOf(this.peso));
 		return xmlElement;
 	}
 	
