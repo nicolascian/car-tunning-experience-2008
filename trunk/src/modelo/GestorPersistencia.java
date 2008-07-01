@@ -26,9 +26,7 @@ public class GestorPersistencia {
 		
 	}
 	
-	public void Guardar(modelo.Usuario usuario) throws IOException, ParserConfigurationException{
-		
-		String nombreArchivo = "guardado.xml";
+	public void Guardar(modelo.Usuario usuario, String nombreArchivo) throws IOException, ParserConfigurationException{
 		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	    DocumentBuilder loader = factory.newDocumentBuilder();

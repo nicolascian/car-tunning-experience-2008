@@ -33,7 +33,7 @@ public abstract class Jugador{
 	/** Un jugador tiene nombre */
 	protected String nombre;
 	
-	private AlgoPesos dinero;
+	protected AlgoPesos dinero;
 	
 	/* Constantes de Nombres */
 	
