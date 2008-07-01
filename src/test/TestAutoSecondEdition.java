@@ -17,9 +17,7 @@ public class TestAutoSecondEdition{
 		 auto.setCaja(new Automatica(5));
 		 int cambio=5;
 		 int contador=0;
-	 	 while((auto.getCaja().getCambio()<=cambio)
-			&&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
-			 ){
+	 	 while((auto.getCaja().getCambio()<cambio)){
 			 System.out.println("Iteracion "+contador+
 		    		" Cambio "+auto.getCaja().getCambio()+
 		    		" velocidad "+auto.getVelocidad()+
@@ -44,7 +42,7 @@ public class TestAutoSecondEdition{
 		 }
 		 double velocidad=auto.getVelocidad();
 		 contador=0;
-		 while((contador<6000)){
+		 while((contador<300)){
 				 auto.acelerar(false);
 			     contador++;
 			     System.out.println("Iteracion "+contador+
@@ -66,9 +64,7 @@ public class TestAutoSecondEdition{
 		 }
 		 cambio=5;
 		 contador=0;
-		 while((auto.getCaja().getCambio()<=cambio)
-				&&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
-				 ){
+		 while((auto.getCaja().getCambio()<cambio)){
 				 System.out.println("Iteracion "+contador+
 			    		" Cambio "+auto.getCaja().getCambio()+
 			    		" velocidad "+auto.getVelocidad()+
@@ -94,9 +90,7 @@ public class TestAutoSecondEdition{
 		 auto.setEncendido(true);
 		 cambio=5;
 		 contador=0;
-	 	 while((auto.getCaja().getCambio()<=cambio)
-			&&(auto.getMotor().getRPM()<=(300+auto.getMotor().getRevolucionesUmbralPeligro()))
-			 ){
+	 	 while((auto.getCaja().getCambio()<cambio)){
 			 System.out.println("Iteracion "+contador+
 		    		" Cambio "+auto.getCaja().getCambio()+
 		    		" velocidad "+auto.getVelocidad()+
