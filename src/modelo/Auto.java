@@ -157,10 +157,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public Auto(Element xmlElement){
 		//traigo el atributo nombre
 		this.nombre =xmlElement.getAttribute("nombre");
-		//traigo los sub nodos
-		NodeList nodosXX = xmlElement.getElementsByTagName("*");
-		System.out.println(nodosXX.getLength());
-		
+		//creo los componentes
 		crearComponentes(xmlElement);
 		
 	}

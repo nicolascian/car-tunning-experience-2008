@@ -80,9 +80,30 @@ public class Turbo extends Componente implements AfectablePorClima{
 		this.setNombre("Turbo Estandar");
 		}
 	
+	/**
+	 * Persistencia
+	 * @param xmlElement
+	 */
+	public Turbo(Element xmlElement){
+		//levanto los valores
+		presionInterna =( Double.parseDouble(xmlElement.getAttribute("presioninterna")) );
+		coeficienteDeObtencionDePotencia =( Double.parseDouble(xmlElement.getAttribute("coefobtencionpotencia")) );
+		constanteDeDesgaste =( Double.parseDouble(xmlElement.getAttribute("ctedesgaste")) );
+		coeficienteInicial =( Double.parseDouble(xmlElement.getAttribute("coefinicial")) );
+		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		this.setPeso(15);
+		this.setPrecio(new AlgoPesos(1000,0));
+		this.setAuto(null);
+		this.setNombre("Turbo Estandar");
+	}
+	
 	public Element toXml(Document doc) {
 		Element xmlElement = doc.createElement("turbo");
 		xmlElement.setAttribute("estado", String.valueOf(this.getEstado()));
+		xmlElement.setAttribute("presioninterna",String.valueOf(this.presionInterna));
+		xmlElement.setAttribute("coefobtencionpotencia",String.valueOf(this.coeficienteDeObtencionDePotencia));
+		xmlElement.setAttribute("ctedesgaste",String.valueOf(constanteDeDesgaste));
+		xmlElement.setAttribute("coefinicial",String.valueOf(coeficienteInicial));
 		return xmlElement;
 	}
 	
