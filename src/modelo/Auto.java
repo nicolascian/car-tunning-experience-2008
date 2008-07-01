@@ -291,6 +291,9 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * acelerar ebragar enceder nitroactivar frenar
 	 */
 	public void ActualizarObservadores(){
+		if(!this.isAcelerando())
+			this.getMotor().acelerar(false);
+		this.actualizarVelocidadYPosicion();
 		setChanged();
 		notifyObservers();		
 	}
@@ -306,7 +309,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		Velocidad = getEjeDelantero().getRpm()*CONSTANTE_DE_OBTENCION_DE_VELOCIDAD;
 		Posicion += getVelocidad() * (0.016);
 		//notifico a los observadores
-		ActualizarObservadores();
+		//ActualizarObservadores();
 	}
 
 	/**
