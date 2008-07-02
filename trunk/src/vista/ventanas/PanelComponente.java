@@ -1,7 +1,12 @@
-/**
- * 
- */
+/* ****************************************************************************
+ *                         Car-Tunnig-Experience-2008                         *
+ *                                                                            *
+ *                   Algoritmos y Programacion III - 75.07                    *
+ *            Facultad de Ingenieria - Universidad de Buenos Aires            *
+ ******************************************************************************/
+
 package vista.ventanas;
+
 import modelo.componente.Componente;
 import javax.swing.*;
 import vista.imagenTramo.Imagen;
@@ -10,6 +15,7 @@ import vista.imagenTramo.Posicion;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
 /**
  * @author Usuario
  *
