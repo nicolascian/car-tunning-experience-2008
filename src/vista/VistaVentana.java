@@ -18,7 +18,7 @@ public class VistaVentana {
 	private JFrame ventanaPrincipal  = null; //marco que contendra los controles del primer menu
 	private JFrame ventanaMenu  = null; //marco que contendra los controles del segundo menu
 	private JFrame ventanaCreditos  = null; 
-	private JFrame ventanaTaller = null;
+	private VentanaTaller ventanaTaller = null;
 	private JFrame ventanaPista = null;
 	private JFrame ventanaOpciones = null;
     
@@ -55,6 +55,7 @@ public class VistaVentana {
 			cerrarVentanaPrincipal();
 			controlJuego.crearUsuario(nombre);	
 			ventanaMenu.setVisible(true);
+			this.ventanaTaller.setUsuario(controlJuego.getDatos().getUsuario());
 		}
 	}
 	
@@ -62,6 +63,7 @@ public class VistaVentana {
 		cerrarVentanaPrincipal();
 		controlJuego.cargarUsuario();
 		ventanaMenu.setVisible(true);
+		this.ventanaTaller.setUsuario(controlJuego.getDatos().getUsuario());
 	}
 	
 	public void Manejar(){
