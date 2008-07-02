@@ -46,5 +46,21 @@ public class ControladorJuego {
 		
 		datos.Guardar();
 	}
+
+
+	/**
+	 * @return the datos
+	 */
+	public DatosPartida getDatos() {
+		return datos;
+	}
+
+
+	/**
+	 * @param datos the datos to set
+	 */
+	public void setDatos(DatosPartida datos) {
+		this.datos = datos;
+	}
 	
 }

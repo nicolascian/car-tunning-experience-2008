@@ -85,7 +85,6 @@ public class AdministradorDeImagenesYEtiquetasDeComponentes {
 		listaClases.add(new DatoClase(Turbo.class, "Turbo",
 				DIRECTORIO+"turbo.gif"));
 	}
-	
 	public DatoClase getDatoClase(Class clase){
 		Class claseAux=clase;
 		DatoClase retorno=null;
@@ -103,72 +102,5 @@ public class AdministradorDeImagenesYEtiquetasDeComponentes {
 		return retorno;
 	}
 	
-	public class DatoClase{
-		
-		private String nombre;
-		
-		private String rutaImagen;
-		
-		private Class clase;
 
-		public DatoClase(Class clase,String nombre,String rutaImagen){
-			this.setClase(clase);
-			this.setRutaImagen(rutaImagen);
-			this.setNombre(nombre);
-		}
-
-		/* (non-Javadoc)
-		 * @see java.lang.Object#equals(java.lang.Object)
-		 */
-		@Override
-		public boolean equals(Object obj) {
-			if(((DatoClase)obj).getClase()==this.getClase())
-			  return true;
-			else
-			  return false;
-		}
-
-		/**
-		 * @return the nombre
-		 */
-		protected String getNombre() {
-			return nombre;
-		}
-
-		/**
-		 * @param nombre the nombre to set
-		 */
-		protected void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-
-		/**
-		 * @return the rutaImagen
-		 */
-		protected String getRutaImagen() {
-			return rutaImagen;
-		}
-
-		/**
-		 * @param rutaImagen the rutaImagen to set
-		 */
-		protected void setRutaImagen(String rutaImagen) {
-			this.rutaImagen = rutaImagen;
-		}
-
-		/**
-		 * @return the clase
-		 */
-		protected Class getClase() {
-			return clase;
-		}
-
-		/**
-		 * @param clase the clase to set
-		 */
-		protected void setClase(Class clase) {
-			this.clase = clase;
-		}	
-	}
-	
 }
