@@ -119,6 +119,7 @@ public class VentanaTaller extends JFrame {
 	
 	private void cerrarVentana(){
 		ventanaMenu.setVisible(true);
+		this.panelComponente=null;
 		this.dispose();
 	}
 
