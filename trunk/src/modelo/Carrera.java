@@ -43,6 +43,12 @@ public class Carrera implements Runnable {
 		this.pista = pista;
 		this.apuesta = apuesta;
     	this.vista =  vistaCarrera;
+
+    	this.vista.addWindowListener(new java.awt.event.WindowAdapter() {
+		    public void windowClosing(java.awt.event.WindowEvent e) {
+		    	cerrarVentana();
+		    }
+		});
 	}
 	
 	/**
@@ -90,7 +96,13 @@ public class Carrera implements Runnable {
 				"," + this.usuario.getDinero().getDecimal());
 		
 		
-		//this.vista.setEnabled(false);
+		//cerrar la ventana
+		cerrarVentana();
+		
+	}
+	
+	public void cerrarVentana(){
+//		this.vista.setEnabled(false);
 		this.vista.dispose();
 		this.ventanaAnterior.setVisible(true);
 		/* aumentar / disminuir la plata del jugador que gano / perdio
