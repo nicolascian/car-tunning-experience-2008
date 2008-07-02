@@ -34,6 +34,11 @@ public class TestPersistenciaVisual {
 		//levanto el usuario
 		try{
 			modelo.Usuario usuarioLevantado = gestor.Cargar("guardadoTest.xml");  
+
+			System.out.println();
+			
+			
+			
 			//imprimo de nuevo el usuario
 			System.out.print(usuarioLevantado.toString());
 			//Tienen el mismo contenido pero ¿es la misma colección?
@@ -43,11 +48,12 @@ public class TestPersistenciaVisual {
 				System.out.println("Son usuarios distintos");	
 			
 		}
-		catch(Exception e1){
+		catch(Exception e2){
 			JOptionPane.showMessageDialog(new JFrame(),
 	        	    "No se pudo cargar desde archivo.",
 	        	    "Error al cargar",
 	        	    JOptionPane.ERROR_MESSAGE);
+			System.out.println(e2.getMessage());
 		}
 
 	}
