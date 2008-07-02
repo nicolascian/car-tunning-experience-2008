@@ -48,9 +48,9 @@ public class DatosPartida {
 		
 	}
 
-	public void Manejar(){
+	public void Manejar(JFrame ventanaAnterior){
 		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(), 2000 );
-		Manejar manejar = new Manejar(usuario, pista);
+		Manejar manejar = new Manejar(usuario, pista, ventanaAnterior);
 		Thread threadManejar = new Thread(manejar);
 		threadManejar.start();
 	}

@@ -1,20 +1,31 @@
 package modelo;
 
+import javax.swing.JFrame;
+
 import modelo.exceptions.ExceptionFinPista;
 import vista.ventanas.VentanaManejar;
 
 public class Manejar implements Runnable {
 
+	private JFrame ventanaAnterior;
+	
 	private Pista pista;
 	
 	private VentanaManejar vista;
 		
 	private modelo.Usuario usuario;
 		
-	public Manejar(modelo.Usuario usuario, Pista pista){
+	public Manejar(modelo.Usuario usuario, Pista pista, JFrame ventanaAnterior){
+		this.ventanaAnterior = ventanaAnterior;
 			this.usuario = usuario;
 			this.pista = pista;
 			this.vista =  new VentanaManejar(this.usuario, this.pista);
+			
+			this.vista.addWindowListener(new java.awt.event.WindowAdapter() {
+			    public void windowClosing(java.awt.event.WindowEvent e) {
+			    	finalizar();
+			    }
+			});
 	}
 		
 	/**

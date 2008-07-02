@@ -36,9 +36,9 @@ public class ControladorJuego {
 		datos.Carrera(ventanaMenu);
 	}
 	
-	public void correrSolo(){
+	public void correrSolo(JFrame ventanaMenu){
 		
-		datos.Manejar();
+		datos.Manejar(ventanaMenu);
 	}
 	
 	
