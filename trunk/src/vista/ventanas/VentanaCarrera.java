@@ -34,6 +34,7 @@ public class VentanaCarrera extends JFrame implements Observer{
 		this.usuario  = usuario;
 		this.virtual= virtual;
 		this.setSize(1000, 620);
+		this.setTitle("Carrera - Car Tunnning Experience 2008");
 		this.setLocationRelativeTo(null); //centrada
 		this.setLayout(null);
 		//usuario

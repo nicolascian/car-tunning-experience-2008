@@ -1,8 +1,6 @@
 package vista.ventanas;
 
-
 import javax.swing.JFrame;
-
 
 public class VentanaCreditos extends JFrame {
 
@@ -12,7 +10,7 @@ public class VentanaCreditos extends JFrame {
 		this.ventanaMenu=ventanaMenu;
 		
 		this.setSize(800, 600);
-		this.setTitle("Creditos");
+		this.setTitle("Creditos - Car Tunnning Experience 2008");
 		this.setLocationRelativeTo(null); //centrada
 		
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
