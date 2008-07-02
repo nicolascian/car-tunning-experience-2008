@@ -19,11 +19,8 @@ public class BotonComponente extends JButton {
 		this.ventana=ventana;
 		this.dato=dato;
 		this.componente=componente;
-		ImageIcon icono=new ImageIcon((new Imagen(dato.getRutaImagen(),ventana.getDimensionImagenBoton(),
-				                     new Posicion())).getImage());
-		icono= new ImageIcon(icono.getImage().getScaledInstance(40,40, java.awt.Image.SCALE_DEFAULT));
 		this.setText(dato.getNombre());
-		this.setIcon(icono);
+		this.setIcon(dato.getIcono());
 		this.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				pressBotonComponente();
