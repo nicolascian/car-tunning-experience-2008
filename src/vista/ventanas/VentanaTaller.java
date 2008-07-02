@@ -75,8 +75,10 @@ public class VentanaTaller extends JFrame {
 		while(it.hasNext()){
 		   this.agregarBoton(it.next());
 		}
-		JLabel label=new JLabel(usuario.getAuto().toString(),SwingConstants.RIGHT );
-		panelInfo.add(label);
+		JTextArea texto=new JTextArea(usuario.getAuto().toString());
+		texto.setBackground(new Color(0,0,0,0));
+		texto.setVisible(true);
+		panelInfo.add(texto);
 		
 	}
 	

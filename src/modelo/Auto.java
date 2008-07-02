@@ -1031,7 +1031,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 		              "Revoluciones Maximas: "+this.getMotor().getRevolucionesMaximas()+"RPM"+'\n'+
 		              "Cilindrada: "+this.getMotor().getCilindrada()+" litos"+'\n'+
 		              "Cilindros: "+this.getMotor().getCantidadCilindros()+'\n'+
-		              "Peso "+this.getPeso()+" Caja de "+this.getCaja().getCambio();
+		              "Peso "+this.getPeso()+" Kg  Caja de "+this.getCaja().getCantidadCambios();
 		return(cadena);
 	}
 	
