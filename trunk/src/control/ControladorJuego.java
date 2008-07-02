@@ -1,6 +1,7 @@
 package control;
 
 import javax.swing.*;
+
 import modelo.*;
 import vista.ventanas.*;
 
@@ -33,7 +34,13 @@ public class ControladorJuego {
 
 	public void correrCarrera(JFrame ventanaMenu){
 		
-		datos.Carrera(ventanaMenu);
+		if (datos.getUsuario().getAuto().estaListoParaCarrera()){
+			datos.Carrera(ventanaMenu);
+		}else{
+			JOptionPane.showMessageDialog(ventanaMenu, 
+					" El auto del usuario no esta listo para la carrera ");
+		}
+
 	}
 	
 	public void correrSolo(JFrame ventanaMenu){
