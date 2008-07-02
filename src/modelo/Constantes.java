@@ -13,7 +13,7 @@ package modelo;
  */
 public abstract class Constantes {
 	
-	public final static double tiempoPorCiclo = (0.000000000006);/*multiplicador para
+	public final static double tiempoPorCiclo = (0.00000000006);/*multiplicador para
 									el calculo del desgaste de los componentes*/
 	public final static double GRAVEDAD=9.8;//aceleracion de la gravedad
 	
