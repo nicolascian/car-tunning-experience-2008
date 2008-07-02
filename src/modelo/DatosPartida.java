@@ -22,12 +22,8 @@ public class DatosPartida {
 	private modelo.Auto autoVirtual = null;
 	private control.Virtual controlVirtual;
 	private control.Habilidad habilidad;
-	
 	private Pista pista = null;
-
-	
 	private ControladorJuego control;
-	
 	private GestorPersistencia gestor = null;
 	
 	
@@ -62,7 +58,6 @@ public class DatosPartida {
 		Carrera carrera = new Carrera(usuario, virtual, pista, apuesta, ventanaAnterior, ventanaCarrera);
 	    Thread threadCarrera = new Thread(carrera);
 		threadCarrera.start();
-		
 	}
 	
 	public void Guardar(){
