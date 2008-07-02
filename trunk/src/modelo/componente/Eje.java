@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.LinkedList;
+
 import modelo.*;
 import modelo.fuerzas.*;
 
@@ -308,6 +310,18 @@ public class Eje extends Componente implements AfectablePorSuperficie,ReceptorDe
 	  else
 		rpmFinal=rpm;
 	  this.rpm=rpmFinal;
+	}
+	
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		lista.add(new Eje(null));
+		return lista;
 	}
 	
 }
