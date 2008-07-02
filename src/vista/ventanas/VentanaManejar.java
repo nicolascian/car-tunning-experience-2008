@@ -23,6 +23,7 @@ public class VentanaManejar extends JFrame implements Observer{
 		this.setResizable(false);
 		this.usuario  = usuario;
 		this.setSize(1000, 620);
+		this.setTitle("Manejar - Car Tunnning Experience 2008");
 		this.setLocationRelativeTo(null); //centrada
 		this.setLayout(null);
 		//usuario

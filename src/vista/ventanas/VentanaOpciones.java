@@ -12,7 +12,6 @@ import vista.imagenTramo.Posicion;
 import control.Usuario;
 
 public class VentanaOpciones extends JFrame {
-
 	
 	private JFrame ventanaMenu=null;
 	
@@ -20,7 +19,7 @@ public class VentanaOpciones extends JFrame {
 		this.ventanaMenu=ventanaMenu;
 		
 		this.setSize(800, 600);
-		this.setTitle("Opciones");
+		this.setTitle("Opciones - Car Tunnning Experience 2008");
 		this.setLocationRelativeTo(null); //centrada
 		
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
