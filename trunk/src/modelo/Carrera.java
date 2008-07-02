@@ -35,13 +35,14 @@ public class Carrera implements Runnable {
 	 * 	TODOS LOS JUGADORES TIENEN QUE TENER DINERO SUFICIENTE PARA
 	 * 	ENFRENTAR LA APUESTA
 	 */
-	public Carrera(Usuario usuario,Virtual virtual, Pista pista, AlgoPesos apuesta, JFrame ventanaAnterior){
+	public Carrera(Usuario usuario,Virtual virtual, Pista pista, AlgoPesos apuesta, 
+			JFrame ventanaAnterior, VentanaCarrera vistaCarrera){
 		this.ventanaAnterior = ventanaAnterior;
 		this.usuario = usuario;
 		this.virtual = virtual;
 		this.pista = pista;
 		this.apuesta = apuesta;
-    	this.vista =  new VentanaCarrera(this.usuario, this.virtual, this.pista);
+    	this.vista =  vistaCarrera;
 	}
 	
 	/**

@@ -56,10 +56,11 @@ public class DatosPartida {
 	}
 	
 	public void Carrera(JFrame ventanaAnterior){
-		//SACAR ESTO DE ACA
+
 		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(),3000 );
 		AlgoPesos apuesta = new AlgoPesos(100,00);
-		Carrera carrera = new Carrera(usuario, virtual, pista, apuesta, ventanaAnterior);
+		VentanaCarrera ventanaCarrera = new VentanaCarrera(this.usuario, this.virtual, this.pista);
+		Carrera carrera = new Carrera(usuario, virtual, pista, apuesta, ventanaAnterior, ventanaCarrera);
 	    Thread threadCarrera = new Thread(carrera);
 		threadCarrera.start();
 		
