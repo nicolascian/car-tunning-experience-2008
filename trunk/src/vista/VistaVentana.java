@@ -80,6 +80,8 @@ public class VistaVentana {
 	public void Carrera(){
 		String apuesta = JOptionPane.showInputDialog(ventanaMenu, "Ingresar Apuesta:","100.00");
 		
+		if (apuesta!=null){
+		
 		try{ 
 			double monto = Double.parseDouble(apuesta);
 			if (monto >= 0){
@@ -99,7 +101,7 @@ public class VistaVentana {
 	        	    JOptionPane.ERROR_MESSAGE);
 		}
 		
-		
+		}//fin apuesta no nula
 		
 	}
 	
