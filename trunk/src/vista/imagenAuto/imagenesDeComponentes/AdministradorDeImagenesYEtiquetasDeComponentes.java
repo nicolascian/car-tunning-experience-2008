@@ -103,4 +103,18 @@ public class AdministradorDeImagenesYEtiquetasDeComponentes {
 		return retorno;
 	}
 
+	public LinkedList<DatoClase> listarDatosRamaDeHerencia(Class clase){
+		LinkedList<DatoClase> lista=new LinkedList<DatoClase>();
+		Class claseAux=clase;
+		while(claseAux!=Componente.class){
+			DatoClase datoBuscado=new DatoClase(claseAux,"","");
+			int indice=listaClases.indexOf(datoBuscado);
+			if(indice>=0){
+			  lista.add(listaClases.get(indice));
+			}
+			 claseAux=claseAux.getSuperclass();				  
+		}
+		return lista;
+	}
+	
 }
