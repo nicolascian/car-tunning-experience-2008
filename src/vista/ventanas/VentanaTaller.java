@@ -123,7 +123,6 @@ public class VentanaTaller extends JFrame {
 	private void cerrarVentana(){
 		this.setVisible(false);
 		ventanaMenu.setVisible(true);
-		this.panelComponente=null;
 		this.ventanaMenu.getVistaVentana().cerrarVentanaTaller();
 	}
 
@@ -150,13 +149,9 @@ public class VentanaTaller extends JFrame {
 	 */
 	@Override
 	public void setVisible(boolean b) {
-		if(b){
-		   this.refrescarContenido();
-		}
-		else{
-		   this.administrador=null;	
-		   this.panelVisor=null;
-		}
+		if(b)
+			this.refrescarContenido();
+		this.panelVisor.setVisible(b);
 		super.setVisible(b);
 	}
 	
