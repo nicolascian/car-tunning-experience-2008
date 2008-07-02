@@ -7,7 +7,15 @@
 
 package vista.ventanas;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class VentanaCreditos extends JFrame {
 
@@ -30,6 +38,52 @@ public class VentanaCreditos extends JFrame {
 		this.setAlwaysOnTop(false);
 		this.setVisible(false);	
 	
+		showInfo();
+	}
+	
+	private void showInfo(){
+		JPanel panelInfo= new JPanel();
+		panelInfo.setVisible(true);
+		this.add(panelInfo);
+		JTextArea texto = new JTextArea(800, 600);
+		texto.setText(
+				"<html>\n" +
+				"<ul>\n"+
+				"<b><font size=+3>Car Tunning Experience 2008</font></b>\n"+
+				""+
+				""+
+				"<p>"+
+                "<li>Color and font test:\n" +
+                "<li>" +
+                "<li><font color=red>red</font>\n" +
+                "<li><font color=blue>blue</font>\n" +
+                "<li><font color=green>green</font>\n" +
+                "<li><font size=-2>small</font>\n" +
+                "<li><font size=+2>large</font>\n" +
+                "<li><i>italic</i>\n" +
+                "<li><b>bold</b>\n" +
+                "</ul>\n"
+                );
+		
+		texto.setBackground(new Color(0,0,0,0));
+		texto.setVisible(true);
+		JLabel label = new JLabel("LABEL") {
+            public Dimension getPreferredSize() {
+                return new Dimension(200, 200);
+            }
+            public Dimension getMinimumSize() {
+                return new Dimension(200, 200);
+            }
+            public Dimension getMaximumSize() {
+                return new Dimension(200, 200);
+            }
+        };
+		label.setVisible(true);
+		label.setVerticalAlignment(SwingConstants.CENTER);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setText(texto.getText());
+		panelInfo.add(label);
+		
 	}
 	
 	private void cerrarVentana(){

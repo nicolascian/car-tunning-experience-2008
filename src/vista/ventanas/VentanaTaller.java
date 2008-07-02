@@ -45,7 +45,7 @@ public class VentanaTaller extends JFrame {
 		this.ventanaMenu=ventanaMenu;
 		this.setSize(800,700);
 		this.setBackground(new Color(0,0,0,0));
-		this.setTitle("Taller");
+		this.setTitle("Taller - Car Tunnning Experience 2008");
 		this.setLocationRelativeTo(null); //centrada
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 		    public void windowClosing(java.awt.event.WindowEvent e) {
@@ -57,10 +57,7 @@ public class VentanaTaller extends JFrame {
 		this.setVisible(false);
 		
 	}
-	
-	public void setUsuario(modelo.Usuario usuario){
-		this.usuario=usuario;
-	}
+
 	
 	private void crearPanelVisorDeImagenes(){
 		panelVisor= new PanelVisorDeImagenes(new Dimension((int)(this.getSize().width*0.5),
@@ -139,5 +136,9 @@ public class VentanaTaller extends JFrame {
 		   this.agregarBotones();
 		}
 		super.setVisible(b);
+	}
+	
+	public void setUsuario(modelo.Usuario usuario){
+		this.usuario=usuario;
 	}
 }
