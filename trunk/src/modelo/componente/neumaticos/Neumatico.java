@@ -7,6 +7,8 @@
 
 package modelo.componente.neumaticos;
 
+import java.util.LinkedList;
+
 import modelo.*;
 import modelo.componente.*;
 import modelo.fuerzas.*;
@@ -93,4 +95,13 @@ public abstract class Neumatico extends Componente implements ReceptorDeFuerzas{
 		}catch(NullPointerException e){}
 	}
 
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		return null;
+	}
 }
