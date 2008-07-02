@@ -62,24 +62,33 @@ public class VentanaCreditos extends JFrame {
                 "<li><font size=+2>large</font>\n" +
                 "<li><i>italic</i>\n" +
                 "<li><b>bold</b>\n" +
+                "\n"+
+                "http://code.google.com/p/car-tunning-experience-2008/   \n"+
                 "</ul>\n"
                 );
 		
+		/*
+	
+		  
+		  
+		  
+		 */
+	
 		texto.setBackground(new Color(0,0,0,0));
 		texto.setVisible(true);
 		JLabel label = new JLabel("LABEL") {
             public Dimension getPreferredSize() {
-                return new Dimension(200, 200);
+                return new Dimension(800, 600);
             }
             public Dimension getMinimumSize() {
-                return new Dimension(200, 200);
+                return new Dimension(700, 500);
             }
             public Dimension getMaximumSize() {
-                return new Dimension(200, 200);
+                return new Dimension(900, 700);
             }
         };
 		label.setVisible(true);
-		label.setVerticalAlignment(SwingConstants.CENTER);
+		label.setVerticalAlignment(SwingConstants.TOP);
         label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setText(texto.getText());
 		panelInfo.add(label);
