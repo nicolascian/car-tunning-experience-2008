@@ -14,7 +14,7 @@ public class TestIntermedio extends TestCase {
 		
 		modelo.Virtual virtual = new modelo.Virtual(ctrlVirtual, auto);
 		
-		virtual.jugar();
+		virtual.jugar(true);
 		
 		
 		
