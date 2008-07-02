@@ -85,29 +85,19 @@ public class AlgoPesos{
 	//ESTE METODO ESTA MAAAAAAAAAAAAAAAAAAAAL
 	public AlgoPesos restar( AlgoPesos otro){
 		AlgoPesos aux = new AlgoPesos(0,0);	
-		if (this.getEntero()> otro.getEntero()){ 
-				if(this.getDecimal()> otro.getDecimal()){
-					aux.setEntero(this.getEntero()- otro.getEntero());
-					aux.setDecimal(this.getDecimal()- otro.getDecimal());
-				}
-				if (this.getDecimal()< otro.getDecimal()){
-					aux.setEntero((this.getEntero()- otro.getEntero())-1);
-					
-				}
-					}
-		if (this.getEntero()< otro.getEntero()){
-				if(this.getDecimal()> otro.getDecimal()){
-					aux.setEntero(this.getEntero()- otro.getEntero());
-					aux.setDecimal(this.getDecimal()- otro.getDecimal());
-				}
-				if (this.getDecimal()< otro.getDecimal()){
-					aux.setEntero((this.getEntero()- otro.getEntero())-1);
-					
-				}
-			aux.setEntero(aux.getEntero()*-1);
+		
+		aux.setEntero(this.getEntero() - otro.getEntero());
+		aux.setDecimal(this.getDecimal() - otro.getDecimal());
+		if (Math.abs(aux.getDecimal())>99){
+			if(aux.getDecimal()>0){
+				aux.setEntero(aux.getEntero()+1);
+				aux.setDecimal(aux.getDecimal() - 100);
+			}else{
+			aux.setEntero(aux.getEntero()-1);
+			aux.setDecimal(aux.getDecimal() + 100);
+		}
 		}
 		return aux;
-		
 	}
 	
 	/**
