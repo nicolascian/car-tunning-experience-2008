@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.LinkedList;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -155,5 +157,19 @@ public class Inyeccion extends Alimentacion implements AfectablePorClima{
 
 		return(cadena);
 	}
-	
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		Inyeccion inyeccion;
+		for(int cursor=0;cursor<=5;cursor++){
+			inyeccion=new Inyeccion(40+cursor,92+cursor);
+			lista.add(inyeccion);
+		}				
+		return lista;
+	}
 }

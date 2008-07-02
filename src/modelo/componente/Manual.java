@@ -7,6 +7,8 @@
 
 package modelo.componente;
 
+import java.util.LinkedList;
+
 import modelo.AlgoPesos;
 
 import org.w3c.dom.Element;
@@ -83,4 +85,19 @@ public class Manual extends Caja{
 		super.setCambio(cambio);
 	}
 
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		for(int cursor=4;cursor<=6;cursor++){
+		   Manual manual=new Manual(cursor);
+		   manual.setPrecio(new AlgoPesos(600*cursor,00));
+		   lista.add(manual);
+		}
+		return lista;
+	}
 }
