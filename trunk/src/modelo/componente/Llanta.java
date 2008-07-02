@@ -7,6 +7,8 @@
 
 package modelo.componente;
 
+import java.util.LinkedList;
+
 import modelo.componente.neumaticos.*;
 import modelo.fuerzas.*;
 import modelo.*;
@@ -257,4 +259,20 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		}catch(NullPointerException e){}
 	}
 
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		Llanta llanta;
+		for(int cursor=0;cursor<=5;cursor++){
+			llanta=new Llanta(20+cursor);
+			lista.add(llanta);
+		}				
+		return lista;
+	}
+	
 }
