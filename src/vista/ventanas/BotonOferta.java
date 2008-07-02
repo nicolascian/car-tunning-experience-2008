@@ -16,7 +16,7 @@ import vista.imagenTramo.Posicion;
  */
 public class BotonOferta extends JButton {
 
-DatoClase dato=null;
+    DatoClase dato=null;
 	
 	Componente componente=null;
 
