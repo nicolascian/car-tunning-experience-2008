@@ -29,7 +29,6 @@ public class VistaVentana {
 		// decorados
 		JFrame.setDefaultLookAndFeelDecorated(false); //false para Windows estandar
 		VentanaSplash ventanaSplash = new VentanaSplash();
-			
 		crearVentanaPrincipal();
 		ventanaSplash.setProgresoProgressBar(16);
 		crearVentanaMenu();
@@ -42,7 +41,6 @@ public class VistaVentana {
 		ventanaSplash.setProgresoProgressBar(80);
 		crearVentanaCreditos();
 		ventanaSplash.setProgresoProgressBar(96);
-		
 		ventanaSplash.setVisible(false);
 		ventanaSplash.dispose();
 		ventanaPrincipal.setVisible(true);
@@ -111,6 +109,7 @@ public class VistaVentana {
 	public void Auto(){
 		//Taller
 		ventanaMenu.setVisible(false);
+		this.crearVentanaTaller();
 		ventanaTaller.setVisible(true);
 	}
 	public void Pista(){
@@ -155,8 +154,7 @@ public class VistaVentana {
 		ventanaMenu.setVisible(false);
 		ventanaCreditos.setVisible(true);
 	}
-	
-	
+		
 	public void cambiarHabilidad(){
 		
 		Object[] possibilities = {"Principiante", "Intermedio", "Experto"};
