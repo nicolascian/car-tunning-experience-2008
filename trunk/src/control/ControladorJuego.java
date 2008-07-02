@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import modelo.*;
 import vista.ventanas.*;
+import control.*;
 
 public class ControladorJuego {
 
@@ -32,8 +33,8 @@ public class ControladorJuego {
 
 	}
 
-	public void correrCarrera(JFrame ventanaMenu){
-		
+	public void correrCarrera(JFrame ventanaMenu, AlgoPesos apuesta, control.Habilidad dificultad ){
+	
 		if (datos.getUsuario().getAuto().estaListoParaCarrera()){
 			datos.Carrera(ventanaMenu);
 		}else{
