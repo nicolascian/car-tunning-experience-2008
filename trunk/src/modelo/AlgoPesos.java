@@ -83,11 +83,31 @@ public class AlgoPesos{
 	 * @return
 	 */
 	//ESTE METODO ESTA MAAAAAAAAAAAAAAAAAAAAL
-	public AlgoPesos restar(int entero1, int decimal1){
+	public AlgoPesos restar( AlgoPesos otro){
+		AlgoPesos aux = new AlgoPesos(0,0);	
+		if (this.getEntero()> otro.getEntero()){ 
+				if(this.getDecimal()> otro.getDecimal()){
+					aux.setEntero(this.getEntero()- otro.getEntero());
+					aux.setDecimal(this.getDecimal()- otro.getDecimal());
+				}
+				if (this.getDecimal()< otro.getDecimal()){
+					aux.setEntero((this.getEntero()- otro.getEntero())-1);
+					
+				}
+					}
+		if (this.getEntero()< otro.getEntero()){
+				if(this.getDecimal()> otro.getDecimal()){
+					aux.setEntero(this.getEntero()- otro.getEntero());
+					aux.setDecimal(this.getDecimal()- otro.getDecimal());
+				}
+				if (this.getDecimal()< otro.getDecimal()){
+					aux.setEntero((this.getEntero()- otro.getEntero())-1);
+					
+				}
+			aux.setEntero(aux.getEntero()*-1);
+		}
+		return aux;
 		
-		int parteEntera= (this.getEntero()- entero1);
-		int parteDecimal=Math.abs((this.getDecimal()- decimal1));
-		return new AlgoPesos(parteEntera, parteDecimal);
 	}
 	
 	/**
