@@ -6,7 +6,10 @@
  ******************************************************************************/
 
 package modelo.componente.neumaticos;
+import java.util.LinkedList;
+
 import modelo.*;
+import modelo.componente.Componente;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
@@ -194,5 +197,19 @@ public class NeumaticoMixto extends Neumatico implements AfectablePorClima,
 	private void setViscosidadSuperficie(double viscosidadSuperficie) {
 		this.viscosidadSuperficie = viscosidadSuperficie;
 	}
-	
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		for(int cursor=30;cursor<=100;cursor+=10){
+		   NeumaticoMixto mixto=new NeumaticoMixto(null,cursor);
+		   mixto.setPrecio(new AlgoPesos(150+cursor,0));
+		   lista.add(mixto);
+		}
+		return lista;
+	}
 }

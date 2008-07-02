@@ -6,7 +6,10 @@
  ******************************************************************************/
 
 package modelo.componente.neumaticos;
+import java.util.LinkedList;
+
 import modelo.*;
+import modelo.componente.Componente;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
@@ -196,5 +199,15 @@ public class NeumaticoSlick extends Neumatico
 	private void setEfectoTemperaturaExterna(double temperaturaExterna) {
 		this.efectoTemperaturaExterna = temperaturaExterna;
 	}
-	
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		lista.add(new NeumaticoSlick());
+		return lista;
+	}
 }
