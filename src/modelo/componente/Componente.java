@@ -175,8 +175,13 @@ public abstract class Componente extends Observable {
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-	
-	public static LinkedList<Componente> generarVariosComponentesDistintos(){
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
 		return null;
 	}
 	
