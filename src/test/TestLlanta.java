@@ -29,7 +29,7 @@ public class TestLlanta extends TestCase{
 		llanta.setEstado(100);
 		llanta.desgastar();
 		
-		assertEquals(99.99999999999999, llanta.getEstado());
+		assertEquals(99.9999999999999999, llanta.getEstado());
 	}
 
 	public void testObtenerPotencia(){
