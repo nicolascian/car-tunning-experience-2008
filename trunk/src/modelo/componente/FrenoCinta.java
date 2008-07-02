@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.LinkedList;
+
 import modelo.*;
 
 import org.w3c.dom.Element;
@@ -80,4 +82,16 @@ public class FrenoCinta extends Freno {
 		return getNombre();
 	}
 
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		Freno freno=new FrenoCinta();
+		lista.add(freno);
+		return lista;
+	}
 }

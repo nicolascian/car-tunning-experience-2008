@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.LinkedList;
+
 import modelo.*;
 
 /**
@@ -68,5 +70,14 @@ public abstract class Freno extends Componente implements AfectablePorClima{
 		return 0;
 	}
 	
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		return null;
+	}
 	
 }
