@@ -55,10 +55,9 @@ public class DatosPartida {
 		threadManejar.start();
 	}
 	
-	public void Carrera(JFrame ventanaAnterior){
+	public void Carrera(JFrame ventanaAnterior, AlgoPesos apuesta){
 
 		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(),3000 );
-		AlgoPesos apuesta = new AlgoPesos(100,00);
 		VentanaCarrera ventanaCarrera = new VentanaCarrera(this.usuario, this.virtual, this.pista);
 		Carrera carrera = new Carrera(usuario, virtual, pista, apuesta, ventanaAnterior, ventanaCarrera);
 	    Thread threadCarrera = new Thread(carrera);

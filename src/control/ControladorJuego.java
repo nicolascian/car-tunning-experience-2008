@@ -34,19 +34,22 @@ public class ControladorJuego {
 	}
 
 	public void correrCarrera(JFrame ventanaMenu, double apuestaD){
+
 	AlgoPesos apuesta = new AlgoPesos((int) apuestaD,(int) (apuestaD - (double)((int)apuestaD)));
 		if (datos.getUsuario().getDinero().restar(apuesta.getEntero(),apuesta.getDecimal()).getEntero()
 			>=0 
 			&& datos.getUsuario().getDinero().restar(apuesta.getEntero(),apuesta.getDecimal()).getDecimal() >= 0 ){
 			if (datos.getUsuario().getAuto().estaListoParaCarrera()){
-				datos.Carrera(ventanaMenu);
+				datos.Carrera(ventanaMenu, apuesta);
 			}else{
 				JOptionPane.showMessageDialog(ventanaMenu, 
 						" El auto del usuario no esta listo para la carrera ");
+				ventanaMenu.setVisible(true);
 			}
 		}else{
 			JOptionPane.showMessageDialog(ventanaMenu, 
 					" No tiene suficiente dinero para afrontar la apuesta ");
+			ventanaMenu.setVisible(true);
 		}
 		
 
