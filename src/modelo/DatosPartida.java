@@ -71,7 +71,8 @@ public class DatosPartida {
 			gestor.Guardar(usuario, "guardado.xml");
 			
 			JOptionPane.showMessageDialog(new JFrame(),
-	        	    "Se ha guardado el usuario: " + usuario.getNombre() +'\n'+" satisfactoriamente.", 
+	        	    "Se ha guardado el usuario: ' " + usuario.getNombre() +" '"+'\n'+
+	        	    "de forma satisfactoria.", 
 	        	    "Informacion de guardado", JOptionPane.INFORMATION_MESSAGE);
 			
 		}
