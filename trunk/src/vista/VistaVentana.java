@@ -51,7 +51,7 @@ public class VistaVentana {
 			
 	public void JuegoNuevo(){
 		String nombre = JOptionPane.showInputDialog(ventanaPrincipal, "Ingresar Nombre:","Jugador Nuevo");
-		if ((nombre != null)&&(!nombre.equalsIgnoreCase(""))){
+		if (!nombre.equalsIgnoreCase("")){
 			cerrarVentanaPrincipal();
 			controlJuego.crearUsuario(nombre);	
 			ventanaMenu.setVisible(true);
@@ -78,17 +78,29 @@ public class VistaVentana {
 	}
 	
 	public void Carrera(){
-		String apuesta = JOptionPane.showInputDialog(ventanaMenu, "Ingresar Apuesta:","100,00");
-		double monto = Double.parseDouble(apuesta);
-		if (monto >= 0){
-			ventanaMenu.setVisible(false);
-			controlJuego.correrCarrera(ventanaMenu, monto );
-		}else{
+		String apuesta = JOptionPane.showInputDialog(ventanaMenu, "Ingresar Apuesta:","100.00");
+		
+		try{ 
+			double monto = Double.parseDouble(apuesta);
+			if (monto >= 0){
+				ventanaMenu.setVisible(false);
+				controlJuego.correrCarrera(ventanaMenu, monto );
+			}else{
+				JOptionPane.showMessageDialog(ventanaMenu,
+		        	    "Por favor ingrese un valor positivo.",
+		        	    "Error, apuesta no valida",
+		        	    JOptionPane.ERROR_MESSAGE);
+			}
+			
+		}catch(Exception e){
 			JOptionPane.showMessageDialog(ventanaMenu,
-	        	    "Por favor ingrese un valor positivo.",
+	        	    "Los decimales se separan con -punto-",
 	        	    "Error, apuesta no valida",
 	        	    JOptionPane.ERROR_MESSAGE);
 		}
+		
+		
+		
 	}
 	
 	public void Auto(){
