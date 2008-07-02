@@ -104,11 +104,12 @@ public class Carrera implements Runnable {
 	public void cerrarVentana(){
 //		this.vista.setEnabled(false);
 		this.vista.dispose();
+		this.vista=null;
 		this.ventanaAnterior.setVisible(true);
 		/* aumentar / disminuir la plata del jugador que gano / perdio
 		 * cerra la vista
 		 * terminar los controles
-		 */
+		*/
 	}
 	
 	public void run() {
