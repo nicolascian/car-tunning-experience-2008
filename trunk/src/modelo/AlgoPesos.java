@@ -88,6 +88,10 @@ public class AlgoPesos{
 		
 		aux.setEntero(this.getEntero() - otro.getEntero());
 		aux.setDecimal(this.getDecimal() - otro.getDecimal());
+		if (aux.getDecimal() < 0){
+			aux.setEntero(aux.getEntero() - 1);
+			aux.setDecimal(aux.getDecimal() + 100);
+		}
 		if (Math.abs(aux.getDecimal())>99){
 			if(aux.getDecimal()>0){
 				aux.setEntero(aux.getEntero()+1);
