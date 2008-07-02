@@ -176,4 +176,8 @@ public abstract class Componente extends Observable {
 		this.peso = peso;
 	}
 	
+	public static LinkedList<Componente> generarVariosComponentesDistintos(){
+		return null;
+	}
+	
 }
