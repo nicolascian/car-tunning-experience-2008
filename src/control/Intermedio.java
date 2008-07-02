@@ -48,6 +48,7 @@ public class Intermedio extends Habilidad{
 		
 	private void manejar(){
 	
+		System.out.println("manejando- encendido: "+auto.isEncendido()+" acelerando: "+auto.isAcelerando() + " cambio: " +auto.getCaja().getCambio() + " rpm: "+auto.getMotor().getRPM());
 		/* si el auto esta apagado */
 		if (!auto.isEncendido()){
 			auto.setEncendido(true);
