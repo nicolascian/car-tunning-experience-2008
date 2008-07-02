@@ -11,9 +11,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import vista.ventanas.*;
 import control.*;
+import java.util.*;
 
 
-public class DatosPartida {
+public class DatosPartida extends Observable{
 
 	
 	private modelo.Usuario usuario = null;
@@ -39,7 +40,8 @@ public class DatosPartida {
 		pista = null;
 		//mando las ventanas
 		control = new ControladorJuego(this);
-		new vista.VistaVentana(control);
+		vista.VistaVentana vistaVentana = new vista.VistaVentana(control);
+		this.addObserver(vistaVentana);
 		
 		
 	}

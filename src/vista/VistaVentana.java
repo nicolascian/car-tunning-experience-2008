@@ -8,11 +8,13 @@
 package vista;
 
 import control.*;
+import java.util.*;
+
 import vista.ventanas.*;
 import javax.swing.*;
 
 
-public class VistaVentana {
+public class VistaVentana implements Observer{
 
 	private ControladorJuego controlJuego;
 	private JFrame ventanaPrincipal  = null; //marco que contendra los controles del primer menu
@@ -175,6 +177,12 @@ public class VistaVentana {
 		this.setVisible(valor);
 	}
 	
+	
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	/* VENTANA PRINCIPAL *****************************************************************************/
 	private void crearVentanaPrincipal(){
