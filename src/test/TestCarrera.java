@@ -16,6 +16,8 @@ public class TestCarrera extends TestCase {
 	
 	JFrame menu;
 	
+	VentanaCarrera ventanaCarrera;
+	
 	Pista pista;
 	
 	public void setUp(){
@@ -30,7 +32,9 @@ public class TestCarrera extends TestCase {
 		
 		pista = new Pista(usuario.getAuto(), virtual.getAuto(), 100);
 		
-		carrera = new Carrera(usuario, virtual, pista, new AlgoPesos(100 , 0) , menu);
+		ventanaCarrera = new VentanaCarrera(this.usuario, this.virtual, this.pista);
+		
+		carrera = new Carrera(usuario, virtual, pista, new AlgoPesos(100 , 0) , menu, ventanaCarrera);
 	}
 	
 	public void testHayOponente(){
