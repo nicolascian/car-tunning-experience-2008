@@ -154,6 +154,5 @@ public class Carrera implements Runnable {
 		this.virtual.jugar(false); //paramos de manejar el virtual
 		this.finalizar();
 	}
-	
 
 }

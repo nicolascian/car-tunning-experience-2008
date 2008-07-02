@@ -21,8 +21,7 @@ public class VistaVentana {
 	private VentanaTaller ventanaTaller = null;
 	private JFrame ventanaPista = null;
 	private JFrame ventanaOpciones = null;
-    
-	
+    	
 	/** Constructor de la vista con ventanas */
 	public VistaVentana(ControladorJuego ctrl){
 		controlJuego = ctrl;
@@ -32,8 +31,6 @@ public class VistaVentana {
 		crearVentanaPrincipal();
 		ventanaSplash.setProgresoProgressBar(16);
 		crearVentanaMenu();
-		ventanaSplash.setProgresoProgressBar(32);
-		//crearVentanaTaller();
 		ventanaSplash.setProgresoProgressBar(48);
 		crearVentanaPista();
 		ventanaSplash.setProgresoProgressBar(64);
@@ -66,7 +63,6 @@ public class VistaVentana {
 		cerrarVentanaPrincipal();
 		controlJuego.cargarUsuario();
 		ventanaMenu.setVisible(true);
-		this.ventanaTaller.setUsuario(controlJuego.getDatos().getUsuario());
 	}
 	
 	public void Manejar(){
@@ -75,6 +71,7 @@ public class VistaVentana {
 	}
 	
 	public void Carrera(){
+		
 		String apuesta = JOptionPane.showInputDialog(ventanaMenu, "Ingresar Apuesta:","100.00");
 		
 		if (apuesta!=null){
@@ -173,7 +170,6 @@ public class VistaVentana {
 		}
 		//null/empty.
 	}
-	
 
 	public void setVisible(boolean valor){
 		this.setVisible(valor);
