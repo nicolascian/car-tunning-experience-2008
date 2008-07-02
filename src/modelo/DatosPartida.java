@@ -109,6 +109,21 @@ public class DatosPartida {
 		
 	}
 	
+	public void cambiarHabilidad(String habilidad){
+		String habilidadActual = virtual.getControl().getHabilidad().toString();
+		//si no es la misma, lo cambianos
+		if (!habilidadActual.equalsIgnoreCase(habilidad)){
+			if (habilidad.equalsIgnoreCase("Principiante")){
+				virtual.getControl().setHabilidad(new Principiante(virtual.getAuto()));
+			} 
+			if (habilidad.equalsIgnoreCase("Intermedio")){
+				virtual.getControl().setHabilidad(new Intermedio(virtual.getAuto()));
+			}
+			if (habilidad.equalsIgnoreCase("Experto")){
+				virtual.getControl().setHabilidad(new Experto(virtual.getAuto()));
+			}
+		}
+	}
 	
 	public void crearJuegoNuevo(String nombre){
 		setUsuario(new modelo.Usuario(nombre, new AlgoPesos(9000,00), new Auto()));

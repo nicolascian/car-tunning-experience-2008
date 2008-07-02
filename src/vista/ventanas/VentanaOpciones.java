@@ -13,6 +13,9 @@ import java.awt.Dimension;
 import java.util.*;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JButton;
 
 import modelo.Pista;
 import vista.imagenTramo.Posicion;
@@ -20,10 +23,10 @@ import control.Usuario;
 
 public class VentanaOpciones extends JFrame {
 	
-	private JFrame ventanaMenu=null;
+	private VistaVentana ventana=null;
 	
-	public VentanaOpciones(JFrame ventanaMenu) {
-		this.ventanaMenu=ventanaMenu;
+	public VentanaOpciones(VistaVentana ventana) {
+		this.ventana=ventana;
 		
 		this.setSize(800, 600);
 		this.setTitle("Opciones - Car Tunnning Experience 2008");
@@ -38,11 +41,26 @@ public class VentanaOpciones extends JFrame {
     	this.setResizable(false);
 		this.setAlwaysOnTop(false);
 		this.setVisible(false);	
+		
+		JPanel panelBotones = new JPanel();
+		this.add(panelBotones);
+		JButton botonHabilidad = new JButton("Cambiar dificultad");
+		panelBotones.add(botonHabilidad);
+		botonHabilidad.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				cambiarHabilidad();
+				
+			}});
+		
+		panelBotones.setVisible(true);
+	}
 	
+	public void cambiarHabilidad(){
+		ventana.cambiarHabilidad();
 	}
 	
 	private void cerrarVentana(){
-		ventanaMenu.setVisible(true);
+		ventana.getVentanaMenu().setVisible(true);
 		this.dispose();
 	}
 	

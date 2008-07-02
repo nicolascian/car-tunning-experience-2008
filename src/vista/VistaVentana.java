@@ -125,7 +125,7 @@ public class VistaVentana {
 	
 	public void Opciones(){	
 		
-		Object[] possibilities = {"Principiante", "Intermedio", "Experto"};
+		/*Object[] possibilities = {"Principiante", "Intermedio", "Experto"};
 		String habilidad = (String)JOptionPane.showInputDialog(
 		                    ventanaMenu,
 		                    "Seleccione la dificultad:",
@@ -141,14 +141,14 @@ public class VistaVentana {
 			controlJuego.cambiarHabilidad(habilidad);
 		}
 
-		//null/empty.
+		//null/empty.*/
 		
 		
 		
 		//ESTO PARA USAR LA VENTANA
 		//dificultad del PC, y el auto del PC
-		//ventanaMenu.setVisible(false);
-		//ventanaOpciones.setVisible(true);
+		ventanaMenu.setVisible(false);
+		ventanaOpciones.setVisible(true);
 	}
 	
 	public void Creditos(){
@@ -157,7 +157,32 @@ public class VistaVentana {
 	}
 	
 	
+	public void cambiarHabilidad(){
+		
+		Object[] possibilities = {"Principiante", "Intermedio", "Experto"};
+		String habilidad = (String)JOptionPane.showInputDialog(
+		                    ventanaMenu,
+		                    "Seleccione la dificultad:",
+		                    "Cambiar dificultad",
+		                    JOptionPane.PLAIN_MESSAGE,
+		                    null,
+		                    possibilities,
+		                    "Intermedio");
 
+		//si hay un string
+		if ((habilidad != null) && (habilidad.length() > 0)) {
+			
+			controlJuego.cambiarHabilidad(habilidad);
+		}
+		//null/empty.
+	}
+	
+
+	public void setVisible(boolean valor){
+		this.setVisible(valor);
+	}
+	
+	
 	/* VENTANA PRINCIPAL *****************************************************************************/
 	private void crearVentanaPrincipal(){
 		ventanaPrincipal = new VentanaPerfilDeUsuario(this);
@@ -190,7 +215,7 @@ public class VistaVentana {
 	
 	/* VENTANA OPCIONES *********************************************************************************/
 	private void crearVentanaOpciones(){
-		ventanaOpciones = new VentanaOpciones(this.ventanaMenu);
+		ventanaOpciones = new VentanaOpciones(this);
 		
 	}
 	
@@ -199,6 +224,10 @@ public class VistaVentana {
 	private void crearVentanaCreditos(){
 		ventanaCreditos = new VentanaCreditos(this.ventanaMenu);
 		
+	}
+
+	public JFrame getVentanaMenu() {
+		return ventanaMenu;
 	}
 	
 	
