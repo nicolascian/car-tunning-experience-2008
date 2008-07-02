@@ -96,9 +96,12 @@ public class VistaVentana {
 			
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(ventanaMenu,
-	        	    "Los decimales se separan con -punto-",
+	        	    "Datos invalidos!. Los decimales" + '\n'+ 
+	        	    "se separan con ' . ' (punto) ",
 	        	    "Error, apuesta no valida",
 	        	    JOptionPane.ERROR_MESSAGE);
+			//muestro la ventana de apues nuevamente
+			Carrera();
 		}
 		
 		}//fin apuesta no nula
