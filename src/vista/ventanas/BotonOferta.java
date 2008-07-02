@@ -37,7 +37,7 @@ public class BotonOferta extends JButton {
    }
 
 	public void pressBotonComponente(){
-		ventana.pressBotonComponente(componente, dato);
+		ventana.pressBotonOferta(componente, dato);
 	}
 	
 }
