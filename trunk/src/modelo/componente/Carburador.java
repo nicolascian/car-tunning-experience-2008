@@ -170,6 +170,8 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 		for(int cursor=0;cursor<=12;cursor++){
 		   Carburador carburador=new Carburador(Carburador.CTE_HUMEDAD_OPTIMA+cursor,
 				                                Carburador.CTE_RELACION_POTENCIA-cursor);
+		   carburador.setPrecio(new AlgoPesos(400+cursor*3,00));
+		   lista.add(carburador);
 		}
 		return lista;
 	}
