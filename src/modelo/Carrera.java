@@ -65,6 +65,11 @@ public class Carrera implements Runnable {
 		this.vista.setVisible(true);
 	}
 	
+	/**
+	 * Metodo que se encarga de aumentar / decrementar el dinero del usuario segun
+	 * el resultado de la carrera, setea las posiciones de los autos nuevamente en 0,
+	 * cierra la vista de la carrera y muestra la vista anterior a la carrera
+	 */
 	private void finalizar(){
 		
 		if (this.usuario.getAuto().getPosicion() < this.virtual.getAuto().getPosicion()){
@@ -72,11 +77,12 @@ public class Carrera implements Runnable {
 		}else {
 			this.usuario.setDinero(this.usuario.getDinero().sumar(this.apuesta));
 		}
-		
-		//NO SE CIERRA!!!!!!!!!!!!!!!!!!!!!!
+		this.virtual.getAuto().setPosicion(0);
+		this.usuario.getAuto().setPosicion(0);
+
+		this.vista.setEnabled(false);
 		this.vista.dispose();
 		this.ventanaAnterior.setVisible(true);
-		
 		/* aumentar / disminuir la plata del jugador que gano / perdio
 		 * cerra la vista
 		 * terminar los controles
@@ -105,7 +111,6 @@ public class Carrera implements Runnable {
 				}
 			} catch (ExceptionFinPista e){
 				enCarrera = false;
-				System.out.println("FIN CARRERA");
 			}
 			catch (InterruptedException e) {
 		        
