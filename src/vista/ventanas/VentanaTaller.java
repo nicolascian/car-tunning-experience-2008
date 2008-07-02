@@ -1,7 +1,9 @@
 package vista.ventanas;
-
+import java.util.LinkedList;
+import java.util.Iterator;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
+import javax.swing.ImageIcon;
 import modelo.componente.Componente;
 import vista.imagenTramo.Imagen;
 import vista.imagenTramo.Posicion;
@@ -16,8 +18,6 @@ public class VentanaTaller extends JFrame {
 
 	private modelo.Usuario usuario=null;
 	
-	private Imagen imagenDeFondo=null;
-	
 	private JPanel panelVisor=null;
 	
 	private JPanel panelBotones=null;
@@ -26,15 +26,16 @@ public class VentanaTaller extends JFrame {
 	
 	private JFrame ventanaMenu=null;
 	
+	private Dimension dimensionImagenBoton=new Dimension(10,10);
+	
 	private AdministradorDeImagenesYEtiquetasDeComponentes administrador=new AdministradorDeImagenesYEtiquetasDeComponentes();
 	
 	public VentanaTaller(JFrame ventanaMenu) {
 		JFrame.setDefaultLookAndFeelDecorated(false);
 		this.setLayout(null);
 		this.ventanaMenu=ventanaMenu;
-		this.setSize(800,600);
+		this.setSize(800,700);
 		this.setBackground(new Color(0,0,0,0));
-		this.imagenDeFondo=new Imagen("src//vista//ventanas//cuadros.JPG",this.getSize(),new Posicion());
 		this.setTitle("Taller");
 		this.setLocationRelativeTo(null); //centrada
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -45,41 +46,37 @@ public class VentanaTaller extends JFrame {
     	this.setResizable(false);
 		this.setAlwaysOnTop(false);
 		this.setVisible(false);
-		this.crearPaneles();
+		
 	}
 	
 	public void setUsuario(modelo.Usuario usuario){
 		this.usuario=usuario;
-		this.agregarBotones();
 	}
 	
 	private void crearPaneles(){
 		panelVisor= new PanelVisorDeImagenes(new Dimension((int)(this.getSize().width*0.5),
-				                            (int)(this.getSize().height*0.45)),new Posicion(),
+				                            (int)(this.getSize().height*0.40)),new Posicion(),
 				                            "src//vista//imagenAuto//imagenes//DodgeViper");
 		this.add(panelVisor);
 		panelInfo= new JPanel();
 		panelInfo.setBounds(panelVisor.getWidth(),0,panelVisor.getWidth(),panelVisor.getHeight());
 		panelInfo.setVisible(true);
 		this.add(panelInfo);
-		
-		this.panelBotones=new JPanel(){
-			public void paint(Graphics g) {
-				g.drawImage(imagenDeFondo.getImage(),imagenDeFondo.getPosicion().getX(),
-		  				imagenDeFondo.getPosicion().getY(),imagenDeFondo.getDimension().width,
-		  				imagenDeFondo.getDimension().height,this);
-				this.paintComponents(g);
-			}		
-		};
-		panelBotones.setBounds(0,panelVisor.getHeight(),this.getWidth(),(int)(this.getHeight()*0.55));
-		panelBotones.setVisible(true);
-		panelBotones.setLayout(new GridLayout());
 	}
 	
 	private void agregarBotones(){
-		this.usuario.getAuto()
+		this.panelBotones=new JPanel();
+		panelBotones.setBounds(0,panelVisor.getHeight(),this.getWidth(),(int)(this.getHeight()*0.55));
+		panelBotones.setVisible(true);
+		panelBotones.setLayout(new GridLayout(6,6));
+		LinkedList<Componente> lista=this.usuario.getAuto().obtenerComponentes();
 		this.add(panelBotones);	
-		this.agregarBoton(usuario.getAuto().getCaja());
+		Iterator<Componente> it=lista.iterator();
+		while(it.hasNext()){
+		   this.agregarBoton(it.next());
+		}
+		panelInfo.add(new JLabel(usuario.getAuto().toString()));
+		panelInfo.setBackground(Color.CYAN.brighter());
 	}
 	
 	private void cerrarVentana(){
@@ -89,46 +86,22 @@ public class VentanaTaller extends JFrame {
 
 	private void agregarBoton(Componente componente){
 		DatoClase dato=administrador.getDatoClase(componente.getClass());
-		JButton boton=new JButton();
-		boton.setText(dato.getNombre());
+		ImageIcon icono=new ImageIcon((new Imagen(dato.getRutaImagen(),
+                                dimensionImagenBoton,new Posicion())).getImage());
+		icono= new ImageIcon(icono.getImage().getScaledInstance(40,40, java.awt.Image.SCALE_DEFAULT));
+		JButton boton=new JButton(dato.getNombre(),icono);
 		boton.addActionListener(new java.awt.event.ActionListener() {
+			
 			private Componente componente=null;
 			
 			private DatoClase dato=null;
 			
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				pressBotonComponente(componente,dato);
-			}
-
-			/**
-			 * @return the componente
-			 */
-			public Componente getComponente() {
-				return componente;
-			}
-
-			/**
-			 * @param componente the componente to set
-			 */
-			public void setComponente(Componente componente) {
-				this.componente = componente;
-			}
-
-			/**
-			 * @return the dato
-			 */
-			public DatoClase getDato() {
-				return dato;
-			}
-
-			/**
-			 * @param dato the dato to set
-			 */
-			public void setDato(DatoClase dato) {
-				this.dato = dato;
-			}
-			
+			}			
 		});
+		boton.setVerticalTextPosition(AbstractButton.CENTER);
+	    boton.setHorizontalTextPosition(AbstractButton.LEFT);
 		boton.setVisible(true);
 		this.panelBotones.add(boton);
 	}
@@ -145,9 +118,10 @@ public class VentanaTaller extends JFrame {
 		try{
 			this.panelVisor.setVisible(b);
 		}catch(NullPointerException e){}
+		if((b)&&(this.panelBotones==null)){
+		   this.crearPaneles();
+		   this.agregarBotones();
+		}
 		super.setVisible(b);
 	}
-	
-	
-	
 }
