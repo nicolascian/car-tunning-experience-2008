@@ -92,7 +92,6 @@ public class Carrera implements Runnable {
 			ganador = this.usuario.getNombre();
 		}
 
-
 		JOptionPane.showMessageDialog(this.vista, " Fin de la carrera.\n Ganador: " +
 				ganador + "\n Ud tiene $" + this.usuario.getDinero().getEntero() +
 				"," + this.usuario.getDinero().getDecimal());
