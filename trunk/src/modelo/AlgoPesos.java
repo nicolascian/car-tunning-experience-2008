@@ -76,11 +76,13 @@ public class AlgoPesos{
 	}
 	
 	/** Resta dos instancias de AlgoPesos
-	 * 
+	 * HAY QUE COREGIR!!!!!!!!!!
+	 * !!!!!!!!!!!!!!!!!!!!!!!!
 	 * @param entero1
 	 * @param decimal1
 	 * @return
 	 */
+	//ESTE METODO ESTA MAAAAAAAAAAAAAAAAAAAAL
 	public AlgoPesos restar(int entero1, int decimal1){
 		
 		int parteEntera= (this.getEntero()- entero1);
