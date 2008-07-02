@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.LinkedList;
+
 import modelo.*;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
@@ -364,5 +366,14 @@ public abstract class Caja extends Componente implements ReceptorDeFuerzas{
 	*/
 	public void setCoefProdFzaAlPasarACambioMenor(double coefProdFzaAlPasarACambioMenor) {
 		this.coefProdFzaAlPasarACambioMenor = coefProdFzaAlPasarACambioMenor;
+	}
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		return null;
 	}
 }
