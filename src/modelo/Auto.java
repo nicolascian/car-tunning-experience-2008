@@ -338,7 +338,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Post: Se han desgastado todos los componentes de la instancia.
 	 * @return
 	*/
-	public void Desgastar(){
+	public synchronized void Desgastar(){
 		LinkedList<Componente> lista= this.obtenerComponentes();
 		Iterator<Componente> it =lista.iterator();
 		while (it.hasNext()){
@@ -553,7 +553,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * instancia. 
 	 * @return
 	*/
-	public double getPosicion() {
+	public synchronized double getPosicion() {
 		return Posicion;
 	}
 	
@@ -561,7 +561,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * @Pre: Se ha creado la instancia de la clase Auto.
 	 * @Post: Se ha seteado la posicion del auto en la pista.
 	*/
-	public void setPosicion(double posicion) {
+	public synchronized void setPosicion(double posicion) {
 		Posicion = posicion;
 	}
 
@@ -570,7 +570,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * creada.
 	 * @Post: Se afecta a la instancia y a todos sus componentes por el clima pasado por parametro.
 	*/
-	public void afectar(Clima clima){
+	public synchronized void afectar(Clima clima){
 		Iterator<AfectablePorClima> it = this.obtenerAfectablesPorClima().iterator();
 		while (it.hasNext()){
 			it.next().afectar(clima);
@@ -582,7 +582,7 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	 * creada.
 	 * @Post: Se afecta a la instancia y a todos sus componentes por la supericie pasada por parametro.
 	*/
-	public void afectar(Superficie superficie){
+	public synchronized void afectar(Superficie superficie){
 		Iterator<AfectablePorSuperficie> it = this.obtenerAfectablesPorSup().iterator();
 		while (it.hasNext()){
 			it.next().afectar(superficie);
