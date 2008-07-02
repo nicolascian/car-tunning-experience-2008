@@ -96,12 +96,12 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 * 
 	 */
 	public void desgastar(){
-		/*
-		this.setEstado(this.getEstado()- (this.getCoeficienteDeDesgastePorSuperficie()*Constantes.tiempoPorCiclo*constanteDeDesgaste*0.00001));
+		
+		this.setEstado(this.getEstado()- (this.getCoeficienteDeDesgastePorSuperficie()*Constantes.tiempoPorCiclo*constanteDeDesgaste)/10000);
 		try{
 			this.getNeumatico().desgastar();
 		}catch(NullPointerException e){}
-		*/
+		
 	}
 	
 	/**
