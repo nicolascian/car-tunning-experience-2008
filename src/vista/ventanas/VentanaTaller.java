@@ -53,22 +53,26 @@ public class VentanaTaller extends JFrame {
 		this.usuario=usuario;
 	}
 	
-	private void crearPaneles(){
+	private void crearPanelVisorDeImagenes(){
 		panelVisor= new PanelVisorDeImagenes(new Dimension((int)(this.getSize().width*0.5),
-				                            (int)(this.getSize().height*0.40)),new Posicion(),
-				                            "src//vista//imagenAuto//imagenes//DodgeViper");
-		this.add(panelVisor);
+                (int)(this.getSize().height*0.40)),new Posicion(),
+                "src//vista//imagenAuto//imagenes//DodgeViper");
+        this.add(panelVisor);
+	}
+	
+	private void crearPaneles(){
+		this.crearPanelVisorDeImagenes();
 		panelInfo= new JPanel();
 		panelInfo.setBounds(panelVisor.getWidth(),0,panelVisor.getWidth(),panelVisor.getHeight());
 		panelInfo.setVisible(true);
 		this.add(panelInfo);
-	}
-	
-	private void agregarBotones(){
 		this.panelBotones=new JPanel();
 		panelBotones.setBounds(0,panelVisor.getHeight(),this.getWidth(),(int)(this.getHeight()*0.55));
 		panelBotones.setVisible(true);
 		panelBotones.setLayout(new GridLayout(6,6));
+	}
+	
+	private void agregarBotones(){
 		LinkedList<Componente> lista=this.usuario.getAuto().obtenerComponentes();
 		this.add(panelBotones);	
 		Iterator<Componente> it=lista.iterator();
@@ -110,7 +114,7 @@ public class VentanaTaller extends JFrame {
 	}
 	
 	private void pressBotonComponente(Componente componente,DatoClase dato){
-		
+		this.panelBotones.setVisible(false);
 	}
 
 	/* (non-Javadoc)
