@@ -34,7 +34,7 @@ public class VistaVentana {
 		ventanaSplash.setProgresoProgressBar(16);
 		crearVentanaMenu();
 		ventanaSplash.setProgresoProgressBar(32);
-		crearVentanaTaller();
+		//crearVentanaTaller();
 		ventanaSplash.setProgresoProgressBar(48);
 		crearVentanaPista();
 		ventanaSplash.setProgresoProgressBar(64);
