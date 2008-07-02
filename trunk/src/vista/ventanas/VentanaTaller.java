@@ -9,7 +9,6 @@ package vista.ventanas;
 import modelo.Taller;
 import java.util.LinkedList;
 import java.util.Iterator;
-import javax.swing.JButton;
 import javax.swing.*;
 import modelo.componente.Componente;
 import vista.imagenTramo.Imagen;
@@ -146,6 +145,10 @@ public class VentanaTaller extends JFrame {
 		panelComponente.setVisible(true);
 	}
 
+	public void pressBotonOferta(Componente componente,DatoClase dato){
+		
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.awt.Window#setVisible(boolean)
 	 */
