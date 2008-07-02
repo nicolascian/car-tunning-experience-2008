@@ -135,16 +135,5 @@ public class Carrera implements Runnable {
 		this.finalizar();
 	}
 	
-	public void correr(){
-		/* dentro de un ciclo:
-		 * 	discretiza tiempos para el control y para el cambio de posiciones?
-		 * 	llamar al desgastar de cada auto
-		 * 	finalizar el ciclo cuando a un auto se le acaba la pista-> 
-		 *  ->atrapa la excepcion, de donde obtiene el numero correspondiente 
-		 *  al auto que finalizo, y dicho numero corresponde tambien al nro de jugador,
-		 *  por lo tanto este sera el ganador
-		 *
-		 * tiene q lanzar un thread para la vista?
-		 */
-	}
+
 }
