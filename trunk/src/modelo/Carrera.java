@@ -72,14 +72,23 @@ public class Carrera implements Runnable {
 	 */
 	private void finalizar(){
 		
+		String ganador = null;
+		
 		if (this.usuario.getAuto().getPosicion() < this.virtual.getAuto().getPosicion()){
 			this.usuario.setDinero(this.usuario.getDinero().restar(this.apuesta.getEntero(), this.apuesta.getDecimal()));
+			ganador = this.virtual.getNombre();
 		}else {
 			this.usuario.setDinero(this.usuario.getDinero().sumar(this.apuesta));
+			ganador = this.usuario.getNombre();
 		}
 		this.virtual.getAuto().setPosicion(0);
 		this.usuario.getAuto().setPosicion(0);
 
+		JOptionPane.showMessageDialog(this.vista, " Fin de la carrera.\n Ganador: " +
+				ganador + "\n Ud tiene $" + this.usuario.getDinero().getEntero() +
+				"," + this.usuario.getDinero().getDecimal());
+		
+		
 		//this.vista.setEnabled(false);
 		this.vista.dispose();
 		this.ventanaAnterior.setVisible(true);
