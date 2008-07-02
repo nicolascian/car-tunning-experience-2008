@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.LinkedList;
+
 import modelo.*;
 
 
@@ -143,5 +145,19 @@ implements AfectablePorClima, AfectablePorSuperficie{
 		PresionOptima = presionOptima;
 	}
 	
-	
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		Escape escape;
+		for(int cursor=0;cursor<=5;cursor++){
+			escape=new Escape(50+cursor,1013+cursor);
+			lista.add(escape);
+		}				
+		return lista;
+	}
 }
