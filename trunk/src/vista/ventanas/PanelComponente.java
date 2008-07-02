@@ -58,7 +58,7 @@ public class PanelComponente extends JPanel {
 		this.infoComponente.setForeground(Color.white);
 		this.infoComponente.setEditable(false);
 		this.infoComponente.setVisible(true);
-		this.infoComponente.setBounds(200,100,250,150);
+		this.infoComponente.setBounds(200,100,200,150);
 		this.add(this.infoComponente);
 		this.actualizarComponente();
 		this.agregarBotones();
@@ -89,11 +89,17 @@ public class PanelComponente extends JPanel {
 		panelBotones.add(botonReparar);
 		panelBotones.setVisible(true);
 		this.add(panelBotones);
+		
+		this.panelOfertas=new JPanel();
+		panelOfertas.setLayout(new GridLayout());
+		panelOfertas.setBounds(400,0,400,400);
+		panelOfertas.setBackground(Color.black);
+		this.add(panelOfertas);
 	}
 	
 	private void actualizarComponente(){
-		imagenComponente=new Imagen(dato.getRutaImagen(),new Dimension(200,150),
-                new Posicion(0,70));
+		imagenComponente=dato.getImagen();
+		imagenComponente.setPosicion(new Posicion(0,80));
 		this.actualizaTextolInfoComponente();
 	}
 	
@@ -106,6 +112,10 @@ public class PanelComponente extends JPanel {
 				                    "Precio: "+precio+" AlgoPesos "+'\n'+
 				                    "Peso: "+componente.getPeso()+" Kg"+'\n'+
 				                    "Estado: "+String.valueOf(componente.getEstado()));
+	}
+	
+	private void pressBotonOferta(){
+		
 	}
 	
 	private void pressBotonReparar(){

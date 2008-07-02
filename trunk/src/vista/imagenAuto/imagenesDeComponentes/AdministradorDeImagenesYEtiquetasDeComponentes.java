@@ -85,6 +85,7 @@ public class AdministradorDeImagenesYEtiquetasDeComponentes {
 		listaClases.add(new DatoClase(Turbo.class, "Turbo",
 				DIRECTORIO+"turbo.gif"));
 	}
+	
 	public DatoClase getDatoClase(Class clase){
 		Class claseAux=clase;
 		DatoClase retorno=null;
@@ -101,6 +102,5 @@ public class AdministradorDeImagenesYEtiquetasDeComponentes {
 		}
 		return retorno;
 	}
-	
 
 }
