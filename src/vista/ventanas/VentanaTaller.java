@@ -61,6 +61,8 @@ public class VentanaTaller extends JFrame {
 		this.setAlwaysOnTop(false);
 		this.setVisible(false);
 		this.crearPaneles();
+		this.refrescarContenido();
+		this.setVisible(true);
 	}
 	
 	public void refrescarPanelVisorDeImagenes(){
@@ -149,9 +151,6 @@ public class VentanaTaller extends JFrame {
 	 */
 	@Override
 	public void setVisible(boolean b) {
-		if(b)
-			this.refrescarContenido();
-		this.panelVisor.setVisible(b);
 		super.setVisible(b);
 	}
 	

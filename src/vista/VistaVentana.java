@@ -44,7 +44,6 @@ public class VistaVentana {
 		ventanaSplash.setVisible(false);
 		ventanaSplash.dispose();
 		ventanaPrincipal.setVisible(true);
-		
 	}
 			
 	public void JuegoNuevo(){
