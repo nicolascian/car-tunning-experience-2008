@@ -40,7 +40,7 @@ public class DatosPartida {
 		habilidad = new control.Intermedio(autoVirtual);
 		controlVirtual = new control.Virtual(habilidad, autoVirtual);
 		virtual = new Virtual(controlVirtual, autoVirtual);
-		pista = new Pista(usuario.getAuto(), virtual.getAuto(),3000 );
+		pista = null;
 		//mando las ventanas
 		control = new ControladorJuego(this);
 		new vista.VistaVentana(control);
