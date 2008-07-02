@@ -1,4 +1,6 @@
 package modelo.componente;
+import java.util.LinkedList;
+
 import modelo.AlgoPesos;
 import modelo.Auto;
 import modelo.Clima;
@@ -190,5 +192,24 @@ public class SistemaDeRefrigeracion extends Componente implements AfectablePorCl
 		this.setTemperaturaPuntoFrio(clima.getTemperatura());
 	  }catch(NullPointerException e){}	
 	}
-
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		
+	    SistemaDeRefrigeracion sistema=new SistemaDeRefrigeracion(null,80.0,100.0);
+		sistema.setPrecio(new AlgoPesos(70,00));
+		lista.add(sistema);
+		sistema=new SistemaDeRefrigeracion(null,75.0,90.0);
+		sistema.setPrecio(new AlgoPesos(170,00));
+		lista.add(sistema);
+		sistema=new SistemaDeRefrigeracion(null,70.0,85.0);
+		sistema.setPrecio(new AlgoPesos(250,00));
+		lista.add(sistema);
+		return lista;
+	}
 }

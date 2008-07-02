@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.LinkedList;
+
 import modelo.*;
 
 import org.w3c.dom.Element;
@@ -140,6 +142,24 @@ implements AfectablePorSuperficie, AfectablePorClima{
 	public void setEfectoSuperficie(double efectoSuperficie) {
 		EfectoSuperficie = efectoSuperficie;
 	}
-
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	 public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		
+	    Suspension suspension=new Suspension(0.8);
+		suspension.setPrecio(new AlgoPesos(800,00));
+		lista.add(suspension);
+		suspension=new Suspension(0.6);
+		suspension.setPrecio(new AlgoPesos(1800,00));
+		lista.add(suspension);
+		suspension=new Suspension();
+		lista.add(suspension);
+		return lista;
+	}
 	
 }
