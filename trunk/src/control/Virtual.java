@@ -81,6 +81,7 @@ public class Virtual extends Jugador{
 	 * el cual esta compitiendo Virtual.
 	 */
 	public void setHabilidad(Habilidad habilidad) {
+		System.out.println(habilidad);
 		this.habilidad = habilidad;
 		this.habilidad.setAuto(auto);
 	}
