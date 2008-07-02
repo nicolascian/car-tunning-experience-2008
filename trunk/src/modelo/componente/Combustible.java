@@ -68,7 +68,7 @@ public class Combustible extends Componente{
 	 */
 	public void desgastar(){
 		
-		this.setEstado(this.getEstado() - (( this.getAuto().getAlimentacion().CombustibleAConsumir())/this.getCapacidad())*(Constantes.tiempoPorCiclo*10000) ); 
+		this.setEstado(this.getEstado() - (( this.getAuto().getAlimentacion().CombustibleAConsumir())/this.getCapacidad())*(Constantes.tiempoPorCiclo*100000) ); 
 	}
 	
 	/**
