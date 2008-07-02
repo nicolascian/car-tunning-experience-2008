@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vista.ventanas;
+package vista.imagenAuto.imagenesDeComponentes;
 import java.util.*;
 import modelo.componente.*;
 import modelo.componente.neumaticos.*;
