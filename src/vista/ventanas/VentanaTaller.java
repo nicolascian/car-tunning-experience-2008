@@ -40,7 +40,7 @@ public class VentanaTaller extends JFrame {
 	
 	private Taller taller=null;
 	
-	private AdministradorDeImagenesYEtiquetasDeComponentes administrador=new AdministradorDeImagenesYEtiquetasDeComponentes();
+	private AdministradorDeImagenesYEtiquetasDeComponentes administrador=null;
 	
 	public VentanaTaller(JFrame ventanaMenu) {
 		JFrame.setDefaultLookAndFeelDecorated(false);
@@ -87,6 +87,7 @@ public class VentanaTaller extends JFrame {
 	}
 	
 	public void refrescarContenido(){
+		this.administrador=new AdministradorDeImagenesYEtiquetasDeComponentes();
 		this.refrescarPanelVisorDeImagenes();
 		this.refrescarPanelInfo();
 		this.refrescarPanelBotones();
@@ -150,6 +151,7 @@ public class VentanaTaller extends JFrame {
 		   this.refrescarContenido();
 		}
 		else{
+		   this.administrador=null;	
 		   this.panelVisor=null;
 		}
 		super.setVisible(b);
