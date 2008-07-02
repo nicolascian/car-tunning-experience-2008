@@ -134,18 +134,4 @@ public class PanelVisorDeImagenes extends JPanel {
 			 return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.JComponent#setVisible(boolean)
-	 */
-	@Override
-	public void setVisible(boolean flag) {
-		if(flag)
-		  this.hiloDeActualizacion.resume();
-		else
-		  this.hiloDeActualizacion.suspend();
-		super.setVisible(flag);
-	}
-
-	
-	
 }
