@@ -18,7 +18,7 @@ public class Carrera implements Runnable {
 	private VentanaCarrera vista;
 	
 	/*
-	 * la apuesta corresponde a la cantidad de dinero que cada jugador debera
+	 * La apuesta corresponde a la cantidad de dinero que cada jugador debera
 	 * pagar en caso de perder la carrera
 	 */ 
 	private AlgoPesos apuesta;
@@ -28,13 +28,6 @@ public class Carrera implements Runnable {
 	private modelo.Virtual virtual;
 	
 	
-	/*
-	 * 	ANTES DE CONSTRUIR LA CARRERA SE DEBE CHEQUEAR QUE EL AUTO
-	 * 	TENGA TODOS SUS COMPONENTES EN UN ESTADO VALIDO, SI NO
-	 * 	AL INTENTAR INICIALIZAR SE SALDRA DELA EJECUCION.
-	 * 	TODOS LOS JUGADORES TIENEN QUE TENER DINERO SUFICIENTE PARA
-	 * 	ENFRENTAR LA APUESTA
-	 */
 	public Carrera(Usuario usuario,Virtual virtual, Pista pista, AlgoPesos apuesta, 
 			JFrame ventanaAnterior, VentanaCarrera vistaCarrera){
 		this.ventanaAnterior = ventanaAnterior;
@@ -55,12 +48,7 @@ public class Carrera implements Runnable {
 	 * Metodo que se encarga de inicializar los atributos para la carrera
 	 */
 	private void incializar(){
-		/* setear posiciones de autos en 0, 
-		 * inicializar controladores
-		 * incializar vistas
-		 * setear los observadores
-		 * etc
-		 */
+
 		this.usuario.getAuto().setPosicion(0);
 		this.virtual.getAuto().setPosicion(0);
 		this.vista.addKeyListener(new control.Usuario(usuario.getAuto()));
@@ -110,10 +98,7 @@ public class Carrera implements Runnable {
 		this.ventanaAnterior.setVisible(true);
 		vista=null;
 		System.gc();
-		/* aumentar / disminuir la plata del jugador que gano / perdio
-		 * cerra la vista
-		 * terminar los controles
-		 */
+
 	}
 	
 	public void run() {
