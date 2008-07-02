@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.LinkedList;
+
 import modelo.*;
 
 import org.w3c.dom.Element;
@@ -117,5 +119,20 @@ public class Nitro extends Componente {
 		return super.toString();
 	}
 	
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		for(int cursor=50;cursor<=100;cursor+=10){
+		    Nitro nitro=new Nitro(cursor);
+		    nitro.setPrecio(new AlgoPesos(2000+cursor*20,0));
+		    lista.add(nitro);
+		}
+		return lista;
+	}
 	
 }

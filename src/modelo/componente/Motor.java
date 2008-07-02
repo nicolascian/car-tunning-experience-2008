@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.LinkedList;
+
 import modelo.*;
 import modelo.fuerzas.Fuerza;
 import modelo.fuerzas.ReceptorDeFuerzas;
@@ -661,4 +663,22 @@ public class Motor extends Componente implements AfectablePorClima, ReceptorDeFu
 		this.temperaturaExterior = temperaturaExterior;
 	}
 	
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		Motor motor=new Motor();
+		lista.add(motor);
+		motor=new Motor(6,2000,8000);
+		motor.setPrecio(new AlgoPesos(6000,00));
+		lista.add(motor);
+		motor=new Motor(8,2500,8000);
+		motor.setPrecio(new AlgoPesos(8000,00));
+		lista.add(motor);
+		return lista;
+	}
 }
