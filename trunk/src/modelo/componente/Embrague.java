@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.LinkedList;
+
 import modelo.*;
 
 import org.w3c.dom.Element;
@@ -98,4 +100,16 @@ public class Embrague extends Componente {
 		return super.toString();
 	}
 
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		lista.add(new Embrague());
+		return lista;
+	}
+	
 }
