@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 package modelo.componente;
+import java.util.LinkedList;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -156,5 +158,19 @@ public class Carburador extends Alimentacion implements AfectablePorClima{
 		            + "      Humedad optima: " + CTE_HUMEDAD_OPTIMA +"%";
 
 		return(cadena);
+	}
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		for(int cursor=0;cursor<=12;cursor++){
+		   Carburador carburador=new Carburador(Carburador.CTE_HUMEDAD_OPTIMA+cursor,
+				                                Carburador.CTE_RELACION_POTENCIA-cursor);
+		}
+		return lista;
 	}
 }
