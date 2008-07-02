@@ -125,5 +125,19 @@ private VistaVentana vistaVentana=null;
 	  try{
 		vistaVentana.Creditos();
 	  }catch(NullPointerException e){};
+	}
+	/**
+	 * @return the vistaVentana
+	 */
+	public VistaVentana getVistaVentana() {
+		return vistaVentana;
+	}
+	/**
+	 * @param vistaVentana the vistaVentana to set
+	 */
+	public void setVistaVentana(VistaVentana vistaVentana) {
+		this.vistaVentana = vistaVentana;
 	}	
+	
+	
 }
