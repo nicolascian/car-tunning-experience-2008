@@ -69,6 +69,11 @@ public class DatosPartida {
 		
 		try{
 			gestor.Guardar(usuario, "guardado.xml");
+			
+			JOptionPane.showMessageDialog(new JFrame(),
+	        	    "Se ha guardado el usuario: " + usuario.getNombre() +'\n'+" satisfactoriamente.", 
+	        	    "Informacion de guardado", JOptionPane.INFORMATION_MESSAGE);
+			
 		}
 		catch(Exception e1){
 			JOptionPane.showMessageDialog(new JFrame(),
@@ -84,6 +89,11 @@ public class DatosPartida {
 		//cargamos desde un achivo y asignamos
 		try{
 			usuario = gestor.Cargar("guardado.xml");  
+			
+			JOptionPane.showMessageDialog(new JFrame(),
+	        	    "Se ha cargado el usuario: " + usuario.getNombre() +'\n'+" satisfactoriamente.", 
+	        	    "Informacion de carga", JOptionPane.INFORMATION_MESSAGE);
+			
 		}
 		catch(Exception e1){
 			JOptionPane.showMessageDialog(new JFrame(),

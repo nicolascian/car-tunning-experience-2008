@@ -47,10 +47,6 @@ public class GestorPersistencia {
         serializer.setOutputCharStream(
           new java.io.FileWriter(nombreArchivo));
         serializer.serialize(doc);
-		
-        JOptionPane.showMessageDialog(new JFrame(),
-        	    "Se ha guardado el usuario: " + usuario.getNombre() +'\n'+" satisfactoriamente.", 
-        	    "Informacion de guardado", JOptionPane.INFORMATION_MESSAGE);
 
 	}
 	
