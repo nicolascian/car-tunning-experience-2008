@@ -16,7 +16,7 @@ public class Taller {
 	/**
 	 * 
 	 */
-	public Taller() {
+	public Taller(JFrame ) {
 		this.ventanaTaller=new VentanaTaller()
 	}
 	

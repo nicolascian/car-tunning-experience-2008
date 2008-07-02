@@ -72,4 +72,6 @@ public class VentanaTaller extends JFrame {
 		this.dispose();
 	}
 
+	
+	
 }
