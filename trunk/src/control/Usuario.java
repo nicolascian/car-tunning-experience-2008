@@ -59,7 +59,9 @@ public class Usuario extends Jugador {
     	switch (e.getKeyCode()){
     	case 70 : {
     		//System.out.println("F: Acelerador -> auto.acelerar(true) ");
+    		if (auto.getCombustible().getEstado() > 0){
     		auto.acelerar(true);
+    		}
     	} break;
     	case 68 : {
     		//System.out.println("D: Frenando -> auto.frenar(true) ");

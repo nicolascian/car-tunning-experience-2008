@@ -156,12 +156,12 @@ public abstract class Componente extends Observable {
 		this.nombre = nombre;
 	}
 	
-	public double getEstado(){
+	public synchronized double getEstado(){
 		return estado;
 	}
 	
 	/* Valor minimo de estado posible es 0 */
-	public void setEstado(double estado) {
+	public synchronized void setEstado(double estado) {
 		if(estado<0)
 		  this.estado = 0;
 		else

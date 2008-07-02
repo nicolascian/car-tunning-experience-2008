@@ -36,7 +36,7 @@ public class Combustible extends Componente{
 	public Combustible(double capacidad, double indiceDeCombustion){
 		setPeso(33.75);
 		setCapacidad(capacidad);
-		setEstado(capacidad);
+		setEstado(100);
 		setIndiceDeCombustion(indiceDeCombustion);
 		setPrecio(new AlgoPesos(3,5)); //algo$
 	}
@@ -68,7 +68,7 @@ public class Combustible extends Componente{
 	 */
 	public void desgastar(){
 		
-		this.setEstado(this.getEstado() - ( this.getAuto().getAlimentacion().CombustibleAConsumir())/this.getCapacidad()*Constantes.tiempoPorCiclo ); 
+		this.setEstado(this.getEstado() - (( this.getAuto().getAlimentacion().CombustibleAConsumir())/this.getCapacidad())*(Constantes.tiempoPorCiclo*10000) ); 
 	}
 	
 	/**

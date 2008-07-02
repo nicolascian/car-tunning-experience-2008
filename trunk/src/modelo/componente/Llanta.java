@@ -42,6 +42,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 */
 	
 	public Llanta(){
+		this.setPrecio(new AlgoPesos(500,0));
 		setAuto(null);
 		setEstado(100);
 		this.setPeso(15);
