@@ -17,7 +17,6 @@ import modelo.componente.Carburador;
 public class TestPersistencia extends TestCase{
 
 	Auto auto = new Auto();
-	Constantes cte;
 	
 	public void testPersistencia() {
 		
@@ -57,9 +56,7 @@ public class TestPersistencia extends TestCase{
 			assertEquals( USRguardado.getAuto().getEjeTrasero() , USRlevantado.getAuto().getEjeTrasero() );
 			
 			assertEquals( USRguardado.getAuto().getNeumaticoTraseroDerecho() , USRlevantado.getAuto().getNeumaticoTraseroDerecho() );
-			
-			
-			
+		
 		}
 		catch(Exception e2){
 			System.out.println( e2.getMessage() );
@@ -68,5 +65,56 @@ public class TestPersistencia extends TestCase{
 				
 	}
 
+	
+	public static void main(String[] args) {
+		
+		//me hago un gestor
+		GestorPersistencia gestor = new GestorPersistencia();
+		//creo un usuario
+		modelo.Usuario USRguardado = new modelo.Usuario("Test de Persistencia", new AlgoPesos(89,77), new Auto());
+
+		//ahora guardo el usuario
+		try{	
+			gestor.Guardar(USRguardado, "guardadoTest.xml");
+		}
+		catch(Exception e1){
+			System.out.println( e1.getMessage() );
+		}
+		
+		//levanto el usuario
+		try{
+			modelo.Usuario USRlevantado = gestor.Cargar("guardadoTest.xml"); 	
+
+			System.out.println("guardado, listo para carrera: "+USRguardado.getAuto().estaListoParaCarrera());
+			System.out.println("levantado, listo para carrera: "+USRlevantado.getAuto().estaListoParaCarrera());
+			
+			
+			System.out.println( USRlevantado.getAuto() );
+			System.out.println( USRlevantado.getAuto().getEstado());
+/*			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );
+			System.out.println( USRlevantado );*/
+			
+		}
+		catch(Exception e2){
+			System.out.println( e2.getMessage() );
+		}
+		
+		
+		
+	}
+	
 	
 }

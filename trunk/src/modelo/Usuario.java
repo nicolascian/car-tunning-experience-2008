@@ -42,7 +42,6 @@ public class Usuario extends Jugador {
 		//levanto el auto
 		NodeList nodosAuto=xmlElement.getElementsByTagName("auto");
 		this.auto = new Auto((Element)nodosAuto.item(0));
-		
 	}
 	
 	/** 
