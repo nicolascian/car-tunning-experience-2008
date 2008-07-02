@@ -80,7 +80,7 @@ public class Carrera implements Runnable {
 		this.virtual.getAuto().setPosicion(0);
 		this.usuario.getAuto().setPosicion(0);
 
-		this.vista.setEnabled(false);
+		//this.vista.setEnabled(false);
 		this.vista.dispose();
 		this.ventanaAnterior.setVisible(true);
 		/* aumentar / disminuir la plata del jugador que gano / perdio
