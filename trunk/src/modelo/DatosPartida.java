@@ -92,7 +92,8 @@ public class DatosPartida {
 			usuario = gestor.Cargar("guardado.xml");  
 			
 			JOptionPane.showMessageDialog(new JFrame(),
-	        	    "Se ha cargado el usuario: " + usuario.getNombre() +'\n'+" satisfactoriamente.", 
+	        	    "Se ha cargado el usuario: ' " + usuario.getNombre()+ " '" +'\n'+
+	        	    "de forma satisfactoria.", 
 	        	    "Informacion de carga", JOptionPane.INFORMATION_MESSAGE);
 			
 		}
