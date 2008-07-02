@@ -201,8 +201,13 @@ public class VistaVentana {
 	
 	/* VENTANA TALLER *********************************************************************************/
 	private void crearVentanaTaller(){
-		ventanaTaller = new VentanaTaller(this.ventanaMenu);
+		ventanaTaller = new VentanaTaller(this.ventanaMenu,
+				                          this.controlJuego.getDatos().getUsuario());
 		
+	}
+	
+	public void cerrarVentanaTaller(){
+		this.ventanaTaller=null;
 	}
 	
 	
