@@ -46,8 +46,9 @@ public class Manejar implements Runnable {
 	}
 		
 	private void finalizar(){
-       //NO SE CIERRA!!!!!!!!!!!!!!!!!!!!!!
+      //cambiar al menu
 	   this.vista.dispose();
+	   this.ventanaAnterior.setVisible(true);
 	}
 	
 	public void run() {
