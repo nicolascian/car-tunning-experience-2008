@@ -122,18 +122,18 @@ public class VistaVentana {
 	public void Guardar(){
 		controlJuego.Guardar();
 	}
+	
 	public void Opciones(){	
 		//dificultad del PC, y el auto del PC
 		ventanaMenu.setVisible(false);
 		ventanaOpciones.setVisible(true);
 	}
+	
 	public void Creditos(){
 		ventanaMenu.setVisible(false);
 		ventanaCreditos.setVisible(true);
 	}
 	
-	
-	/* de aca para abajo pura GUI (embole mal!) */
 	
 
 	/* VENTANA PRINCIPAL *****************************************************************************/

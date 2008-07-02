@@ -1,4 +1,12 @@
+/* ****************************************************************************
+ *                         Car-Tunnig-Experience-2008                         *
+ *                                                                            *
+ *                   Algoritmos y Programacion III - 75.07                    *
+ *            Facultad de Ingenieria - Universidad de Buenos Aires            *
+ ******************************************************************************/
+
 package vista.ventanas;
+
 import java.util.LinkedList;
 import java.util.Iterator;
 import javax.swing.JButton;
@@ -14,6 +22,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import vista.visorDeImagenes.PanelVisorDeImagenes;
 import vista.imagenAuto.imagenesDeComponentes.*;
+
 public class VentanaTaller extends JFrame {
 
 	private modelo.Usuario usuario=null;
