@@ -34,7 +34,7 @@ public class VentanaTaller extends JFrame {
 	
 	private JPanel panelInfo=null;
 	
-	private JFrame ventanaMenu=null;
+	private VentanaMenuPrincipal ventanaMenu=null;
 	
 	private Dimension dimensionImagenBoton=new Dimension(10,10);
 	
@@ -42,10 +42,12 @@ public class VentanaTaller extends JFrame {
 	
 	private AdministradorDeImagenesYEtiquetasDeComponentes administrador=null;
 	
-	public VentanaTaller(JFrame ventanaMenu) {
+	public VentanaTaller(JFrame ventanaMenu,modelo.Usuario usuario) {
 		JFrame.setDefaultLookAndFeelDecorated(false);
+		this.setUsuario(usuario);
+		this.taller=new Taller(this.usuario);
 		this.setLayout(null);
-		this.ventanaMenu=ventanaMenu;
+		this.ventanaMenu=(VentanaMenuPrincipal)ventanaMenu;
 		this.setSize(800,700);
 		this.setBackground(Color.black);
 		this.setTitle("Taller - Car Tunnning Experience 2008");
@@ -119,9 +121,10 @@ public class VentanaTaller extends JFrame {
 	}
 	
 	private void cerrarVentana(){
+		this.setVisible(false);
 		ventanaMenu.setVisible(true);
 		this.panelComponente=null;
-		this.dispose();
+		this.ventanaMenu.getVistaVentana().cerrarVentanaTaller();
 	}
 
 	private void agregarBoton(Componente componente){
@@ -159,7 +162,6 @@ public class VentanaTaller extends JFrame {
 	
 	public void setUsuario(modelo.Usuario usuario){
 		this.usuario=usuario;
-		this.taller=new Taller(this.usuario);
 	}
 
 	/**
@@ -200,7 +202,7 @@ public class VentanaTaller extends JFrame {
 	/**
 	 * @param ventanaMenu the ventanaMenu to set
 	 */
-	public void setVentanaMenu(JFrame ventanaMenu) {
+	public void setVentanaMenu(VentanaMenuPrincipal ventanaMenu) {
 		this.ventanaMenu = ventanaMenu;
 	}
 
