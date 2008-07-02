@@ -97,7 +97,7 @@ implements AfectablePorClima, AfectablePorSuperficie{
 	 */
 	public void desgastar(){
 		//tener en cuenta Humedad, presion y superficie
-		this.setEstado(getEstado() - EfectoClimatico - EfectoSuperficie/100 - 1/1000000000);
+		this.setEstado(getEstado() - (EfectoClimatico - EfectoSuperficie/100 - 1/1000000000)*Constantes.tiempoPorCiclo);
 	}
 	
 	/**
