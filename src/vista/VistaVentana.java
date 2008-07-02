@@ -68,7 +68,7 @@ public class VistaVentana {
 	
 	public void Manejar(){
 		ventanaMenu.setVisible(false);
-		controlJuego.correrSolo();
+		controlJuego.correrSolo(ventanaMenu);
 	}
 	
 	public void Carrera(){
