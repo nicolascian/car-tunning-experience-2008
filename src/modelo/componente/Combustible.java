@@ -7,7 +7,7 @@
 
 package modelo.componente;
 
-import modelo.AlgoPesos;
+import modelo.*;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
@@ -68,7 +68,7 @@ public class Combustible extends Componente{
 	 */
 	public void desgastar(){
 		
-		this.setEstado(this.getEstado() - ( this.getAuto().getAlimentacion().CombustibleAConsumir())/this.getCapacidad() ); 
+		this.setEstado(this.getEstado() - ( this.getAuto().getAlimentacion().CombustibleAConsumir())/this.getCapacidad()*Constantes.tiempoPorCiclo ); 
 	}
 	
 	/**
