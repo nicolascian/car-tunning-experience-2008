@@ -7,6 +7,8 @@
 
 package modelo.componente;
 
+import java.util.LinkedList;
+
 import modelo.*;
 
 import org.w3c.dom.Element;
@@ -118,6 +120,22 @@ public class Combustible extends Componente{
 	 */
 	public double getIndiceDeCombustion() {
 		return indiceDeCombustion;
+	}
+	
+	/**
+	 * @Pre:-
+	 * @Post: Se genera una lista con varias instancias de componentes de la misma 
+	 * clase con atributos diferentes.
+	 * @return
+	 */
+	public static LinkedList<Componente> createVariosComponentesDistintos(){
+		LinkedList<Componente> lista=new LinkedList<Componente>();
+		for(int cursor=4;cursor<=6;cursor++){
+		   Combustible combustible=new Combustible(cursor);
+		   automatica.setPrecio(new AlgoPesos(600*cursor,00));
+		   lista.add(automatica);
+		}
+		return lista;
 	}
 	
 }
