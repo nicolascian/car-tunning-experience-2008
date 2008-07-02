@@ -46,7 +46,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		setAuto(null);
 		setEstado(100);
 		this.setPeso(15);
-		this.setCoeficienteDeDesgastePorSuperficie(3);
+		this.setCoeficienteDeDesgastePorSuperficie(1);
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		this.setAuto(null);
 		this.setEstado(100);
 		this.setPeso(peso);
-		this.setCoeficienteDeDesgastePorSuperficie(3);
+		this.setCoeficienteDeDesgastePorSuperficie(1);
 		this.setNeumatico(null);
 	}
 	
@@ -97,7 +97,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 */
 	public void desgastar(){
 		
-		this.setEstado(this.getEstado()- (this.getCoeficienteDeDesgastePorSuperficie()*Constantes.tiempoPorCiclo*constanteDeDesgaste)/10000);
+		this.setEstado(this.getEstado()- (this.getCoeficienteDeDesgastePorSuperficie()*Constantes.tiempoPorCiclo*constanteDeDesgaste)/1000000);
 		try{
 			this.getNeumatico().desgastar();
 		}catch(NullPointerException e){}
