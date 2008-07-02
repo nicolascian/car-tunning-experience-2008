@@ -9,13 +9,17 @@ package vista.ventanas;
 
 import modelo.componente.Componente;
 import javax.swing.*;
+
 import vista.imagenTramo.Imagen;
 import vista.imagenAuto.imagenesDeComponentes.*;
 import vista.imagenTramo.Posicion;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
+import java.awt.Color;
+import modelo.Taller;
+import java.awt.GridLayout;
+import javax.swing.*;
 /**
  * @author Usuario
  *
@@ -28,36 +32,110 @@ public class PanelComponente extends JPanel {
 	
 	private VentanaTaller ventana=null;
 	
+	private Componente componente=null;
+	
+	private JTextArea infoComponente=null;
+	
+	private Taller taller=null;
+	
+	private JPanel panelBotones=null;
+	
+	private JPanel panelOfertas=null;
+	
 	public PanelComponente(Componente componente,DatoClase dato,Dimension dimension,
 			               VentanaTaller ventana){
-		this.setSize(dimension);
+		this.setLayout(null);
 		this.dato=dato;
-		this.setVisible(true);
+		this.componente=componente;
 		this.ventana=ventana;
-	}
-
-	private void actualizarComponente(){
-		imagenComponente=new Imagen(dato.getRutaImagen(),new Dimension(100,100),
-                new Posicion());
+		this.repaint();
+		this.setBackground(Color.black);
+		this.setSize(dimension);
+		this.setBounds(0,ventana.getPanelVisor().getHeight(),ventana.getWidth(),
+				      (int)(ventana.getHeight()*0.55));
+		this.infoComponente=new JTextArea();
+		this.infoComponente.setBackground(Color.black);
+		this.infoComponente.setForeground(Color.white);
+		this.infoComponente.setEditable(false);
+		this.infoComponente.setVisible(true);
+		this.infoComponente.setBounds(200,100,250,150);
+		this.add(this.infoComponente);
+		this.actualizarComponente();
+		this.agregarBotones();
 	}
 	
+	private void agregarBotones(){
+		this.panelBotones=new JPanel();
+		panelBotones.setLayout(new GridLayout());
+		panelBotones.setBounds(0,300,400,100);
+		JButton botonVolver=new JButton("Volver");
+		botonVolver.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				try{
+				  this.wait();
+				}catch(Exception exception){};
+				cerrar();
+		    }
+		});
+		botonVolver.setVisible(true);
+		panelBotones.add(botonVolver);
+		JButton botonReparar=new JButton("Reparar");
+		botonReparar.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				pressBotonReparar();
+		    }
+		});
+		botonReparar.setVisible(true);
+		panelBotones.add(botonReparar);
+		panelBotones.setVisible(true);
+		this.add(panelBotones);
+	}
+	
+	private void actualizarComponente(){
+		imagenComponente=new Imagen(dato.getRutaImagen(),new Dimension(200,150),
+                new Posicion(0,70));
+		this.actualizaTextolInfoComponente();
+	}
+	
+	private void actualizaTextolInfoComponente(){
+		String precio="";
+		try{
+			precio=String.valueOf(componente.getPrecio());
+		}catch(NullPointerException e){}
+		this.infoComponente.setText(dato.getNombre()+'\n'+
+				                    "Precio: "+precio+" AlgoPesos "+'\n'+
+				                    "Peso: "+componente.getPeso()+" Kg"+'\n'+
+				                    "Estado: "+String.valueOf(componente.getEstado()));
+	}
+	
+	private void pressBotonReparar(){
+		if(ventana.getTaller().reparar(componente))
+		   this.actualizaTextolInfoComponente();
+		
+	}
+
 	/* (non-Javadoc)
 	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
 	 */
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
+		try{
 		g.drawImage(imagenComponente.getImage(),imagenComponente.getPosicion().getX(),
 				    imagenComponente.getPosicion().getY(),
 				    (int)imagenComponente.getDimension().getWidth(),
 				    (int)imagenComponente.getDimension().getHeight(),null);
+		}catch(NullPointerException e){};
 	}
 
 	public void repaint() {
 		paint(this.getGraphics());
 	}
 		
-	public void cerar(){
-		
+	public void cerrar(){
+		this.setVisible(false);
+		this.ventana.refrescarPanelBotones();
+		this.ventana.refrescarPanelInfo();
+		this.ventana.getPanelBotones().setVisible(true);
 	}
 }
