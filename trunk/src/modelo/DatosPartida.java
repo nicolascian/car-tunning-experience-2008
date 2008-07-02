@@ -27,7 +27,6 @@ public class DatosPartida extends Observable{
 	private ControladorJuego control;
 	private GestorPersistencia gestor = null;
 	
-	
 	public DatosPartida(){
 		//creo un gestor de guardado
 		gestor = new GestorPersistencia();
@@ -42,8 +41,6 @@ public class DatosPartida extends Observable{
 		control = new ControladorJuego(this);
 		vista.VistaVentana vistaVentana = new vista.VistaVentana(control);
 		this.addObserver(vistaVentana);
-		
-		
 	}
 
 	public void Manejar(JFrame ventanaAnterior){
