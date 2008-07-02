@@ -51,11 +51,17 @@ public class VistaVentana {
 			
 	public void JuegoNuevo(){
 		String nombre = JOptionPane.showInputDialog("Ingresar Nombre:","Jugador Nuevo");
-		if (nombre != null){
+		if ((nombre != null)&&(!nombre.equalsIgnoreCase(""))){
 			cerrarVentanaPrincipal();
 			controlJuego.crearUsuario(nombre);	
 			ventanaMenu.setVisible(true);
 			this.ventanaTaller.setUsuario(controlJuego.getDatos().getUsuario());
+		}else{
+			JOptionPane.showMessageDialog(new JFrame(),
+	        	    "Por favor ingrese un nombre" + '\n' + 
+	        	    "de usuario valido.",
+	        	    "Error, nombre no valido",
+	        	    JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -72,8 +78,18 @@ public class VistaVentana {
 	}
 	
 	public void Carrera(){
-		ventanaMenu.setVisible(false);
-		controlJuego.correrCarrera(ventanaMenu);
+		String apuesta = JOptionPane.showInputDialog("Ingresar Apuesta:","100,00");
+		Double monto = Double.parseDouble(apuesta);
+		if (monto >= 0){
+			ventanaMenu.setVisible(false);
+			controlJuego.correrCarrera(ventanaMenu, monto );
+		}else{
+			JOptionPane.showMessageDialog(new JFrame(),
+	        	    "Por favor ingrese un valor positivo.",
+	        	    "Error, apuesta no valida",
+	        	    JOptionPane.ERROR_MESSAGE);
+		}
+		
 	}
 	
 	public void Auto(){
