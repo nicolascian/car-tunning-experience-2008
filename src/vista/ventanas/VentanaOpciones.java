@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 import modelo.Pista;
 import vista.imagenTramo.Posicion;
@@ -42,6 +43,8 @@ public class VentanaOpciones extends JFrame {
 		this.setAlwaysOnTop(false);
 		this.setVisible(false);	
 		
+		JLabel label= new JLabel("Cambiar Habilidad: ");
+		this.add(label);
 		JPanel panelBotones = new JPanel();
 		this.add(panelBotones);
 		JButton botonHabilidad = new JButton("Cambiar dificultad");
