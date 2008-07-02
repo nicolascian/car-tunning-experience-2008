@@ -131,12 +131,12 @@ public class Combustible extends Componente{
 	public static LinkedList<Componente> createVariosComponentesDistintos(){
 		
 		LinkedList<Componente> lista=new LinkedList<Componente>();
-		/*
-		for(int cursor=4;cursor<=6;cursor++){
-		   Combustible combustible=new Combustible(cursor);
-		   automatica.setPrecio(new AlgoPesos(600*cursor,00));
-		   lista.add(automatica);
-		}*/
+		
+		for(int cursor=0;cursor<=5;cursor++){
+		   Combustible combustible=new Combustible(50.0+cursor*2,0.4+cursor/3);
+		   combustible.setPrecio(new AlgoPesos(3+cursor/2,0));
+		   lista.add(combustible);
+		}
 		return lista;
 	}
 	
