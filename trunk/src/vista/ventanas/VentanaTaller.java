@@ -1,7 +1,8 @@
 package vista.ventanas;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
-
+import modelo.componente.Componente;
 import vista.imagenTramo.Imagen;
 import vista.imagenTramo.Posicion;
 import java.awt.Dimension;
@@ -72,6 +73,18 @@ public class VentanaTaller extends JFrame {
 		this.dispose();
 	}
 
+	private void agregarBoton(Componente componente){
+		JButton boton=new JButton();
+		boton.setText("");
+		boton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				pressBotonComponente();
+			}
+		});
+	}
 	
+	private void pressBotonComponente(Componente componente){
+		
+	}
 	
 }
