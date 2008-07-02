@@ -79,6 +79,9 @@ public class Carrera implements Runnable {
 	 */
 	private void finalizar(){
 		
+		//Si la vista de la carrera no fue cerrada, entonces se busca al ganador
+		if (this.vista.isEnabled()){
+		
 		String ganador = null;
 		
 		if (this.usuario.getAuto().getPosicion() < this.virtual.getAuto().getPosicion()){
@@ -88,13 +91,14 @@ public class Carrera implements Runnable {
 			this.usuario.setDinero(this.usuario.getDinero().sumar(this.apuesta));
 			ganador = this.usuario.getNombre();
 		}
-		this.virtual.getAuto().setPosicion(0);
-		this.usuario.getAuto().setPosicion(0);
+
 
 		JOptionPane.showMessageDialog(this.vista, " Fin de la carrera.\n Ganador: " +
 				ganador + "\n Ud tiene $" + this.usuario.getDinero().getEntero() +
 				"," + this.usuario.getDinero().getDecimal());
-		
+		}
+		this.virtual.getAuto().setPosicion(0);
+		this.usuario.getAuto().setPosicion(0);
 		
 		//cerrar la ventana
 		cerrarVentana();
@@ -102,14 +106,13 @@ public class Carrera implements Runnable {
 	}
 	
 	public void cerrarVentana(){
-//		this.vista.setEnabled(false);
+		this.vista.setEnabled(false);
 		this.vista.dispose();
-		this.vista=null;
 		this.ventanaAnterior.setVisible(true);
 		/* aumentar / disminuir la plata del jugador que gano / perdio
 		 * cerra la vista
 		 * terminar los controles
-		*/
+		 */
 	}
 	
 	public void run() {
@@ -143,6 +146,10 @@ public class Carrera implements Runnable {
 			try{
 			Thread.sleep(50);
 			}catch (InterruptedException e){}
+			//Si la venta de la carrera se cerro, se da por finalizada la carrera
+			if (!this.vista.isEnabled()){
+				enCarrera = false;
+			}
 		}
 		this.virtual.jugar(false); //paramos de manejar el virtual
 		this.finalizar();
