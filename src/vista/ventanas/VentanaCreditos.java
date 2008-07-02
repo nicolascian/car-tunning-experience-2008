@@ -63,7 +63,8 @@ public class VentanaCreditos extends JFrame {
                 "<li><i>italic</i>\n" +
                 "<li><b>bold</b>\n" +
                 "\n"+
-                "http://code.google.com/p/car-tunning-experience-2008/   \n"+
+                "<a href=\"http://code.google.com/p/car-tunning-experience-2008/\">Sitio web oficial</a>\n"+
+                "<li>http://code.google.com/p/car-tunning-experience-2008/\n"+
                 "</ul>\n"
                 );
 		

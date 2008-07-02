@@ -124,9 +124,31 @@ public class VistaVentana {
 	}
 	
 	public void Opciones(){	
+		
+		Object[] possibilities = {"Principiante", "Intermedio", "Experto"};
+		String habilidad = (String)JOptionPane.showInputDialog(
+		                    ventanaMenu,
+		                    "Seleccione la dificultad:",
+		                    "Cambiar dificultad",
+		                    JOptionPane.PLAIN_MESSAGE,
+		                    null,
+		                    possibilities,
+		                    "Intermedio");
+
+		//si hay un string
+		if ((habilidad != null) && (habilidad.length() > 0)) {
+			
+			controlJuego.cambiarHabilidad(habilidad);
+		}
+
+		//null/empty.
+		
+		
+		
+		//ESTO PARA USAR LA VENTANA
 		//dificultad del PC, y el auto del PC
-		ventanaMenu.setVisible(false);
-		ventanaOpciones.setVisible(true);
+		//ventanaMenu.setVisible(false);
+		//ventanaOpciones.setVisible(true);
 	}
 	
 	public void Creditos(){

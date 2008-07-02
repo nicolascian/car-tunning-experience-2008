@@ -67,6 +67,16 @@ public class ControladorJuego {
 	}
 
 
+	public void cambiarHabilidad(String strg){
+		
+		//creamos parte del modelo
+		//creo un usuario nuevo con cosas por defecto
+
+		//datos.actualizarHabilidad(nombre);
+
+	}
+	
+	
 	/**
 	 * @return the datos
 	 */
