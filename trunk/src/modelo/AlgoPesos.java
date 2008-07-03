@@ -29,8 +29,19 @@ public class AlgoPesos{
 	 * @param decimal
 	 */
 	public AlgoPesos(int entero, int decimal){
-		setEntero(entero);
-		setDecimal(decimal);
+	 	if(decimal<100){
+			setEntero(Math.abs(entero));
+			setDecimal(decimal);
+		}
+		else{
+		    Double auxiliar=new Double(Math.abs(decimal/100.0));
+		    setEntero(Math.abs(entero)+auxiliar.intValue());
+			setDecimal(Math.abs(decimal)-(100*(auxiliar.intValue())));
+		}
+		if((decimal<0)||(entero<0)){
+			this.setDecimal(this.getDecimal()*(-1));
+			this.setEntero(this.getEntero()*(-1));
+		}	  	
 	}
 	
 	/**
@@ -43,67 +54,67 @@ public class AlgoPesos{
 		this.decimal= Integer.parseInt(xmlElement.getAttribute("decimal"));
 	}
 	
-	/** Suma dos instancias de AlgoPesos
+	/** Suma una instancia de AlgoPesos a la instancia
 	 * 
-	 * @param entero1
-	 * @param entero2
-	 * @param decimal1
-	 * @param decimal2
-	 * @return
-	 */
-	
-	public AlgoPesos sumar(AlgoPesos otro){
-		AlgoPesos aux = new AlgoPesos(0,0);
-		
-		if ((otro.getDecimal() + this.getDecimal()) >99){
-			aux.setEntero(aux.getEntero()+1);
-			aux.setDecimal(this.getDecimal() + otro.getDecimal() - 100);
-		}else aux.setDecimal(this.getDecimal() + otro.getDecimal());
-		aux.setEntero(aux.getEntero() + this.getEntero() + otro.getEntero());
-		
-		return aux;
+	*/
+	public void sumar(AlgoPesos otro){
+		AlgoPesos auxiliar=AlgoPesos.toAlgoPesos(this.toDouble()+otro.toDouble());
+		this.setDecimal(auxiliar.getDecimal());
+		this.setEntero(auxiliar.getEntero());
 	}
 	
-	public AlgoPesos sumar(int entero1, int decimal1){
-	
-		int parteEntera=(this.getEntero()+ entero1); 
-		int parteDecimal= (this.getDecimal()+ decimal1);
-		if (parteDecimal>99){
-			parteEntera++;
-			parteDecimal= parteDecimal -100;
-		}
-		return new AlgoPesos(parteEntera,parteDecimal);
+	public void restar(AlgoPesos otro){
+		AlgoPesos auxiliar=AlgoPesos.toAlgoPesos(this.toDouble()-otro.toDouble());
+		this.setDecimal(auxiliar.getDecimal());
+		this.setEntero(auxiliar.getEntero());
 	}
-	
-	/** Resta dos instancias de AlgoPesos
-	 * HAY QUE COREGIR!!!!!!!!!!
-	 * !!!!!!!!!!!!!!!!!!!!!!!!
-	 * @param entero1
-	 * @param decimal1
-	 * @return
-	 */
-	//ESTE METODO ESTA MAAAAAAAAAAAAAAAAAAAAL
-	public AlgoPesos restar( AlgoPesos otro){
-		AlgoPesos aux = new AlgoPesos(0,0);	
 		
-		aux.setEntero(this.getEntero() - otro.getEntero());
-		aux.setDecimal(this.getDecimal() - otro.getDecimal());
-		if (aux.getDecimal() < 0){
-			aux.setEntero(aux.getEntero() - 1);
-			aux.setDecimal(aux.getDecimal() + 100);
-		}
-		if (Math.abs(aux.getDecimal())>99){
-			if(aux.getDecimal()>0){
-				aux.setEntero(aux.getEntero()+1);
-				aux.setDecimal(aux.getDecimal() - 100);
-			}else{
-			aux.setEntero(aux.getEntero()-1);
-			aux.setDecimal(aux.getDecimal() + 100);
-		}
-		}
-		return aux;
+	public static AlgoPesos sumar(AlgoPesos algo1,AlgoPesos algo2){
+		return(toAlgoPesos(algo1.toDouble()+algo2.toDouble()));
 	}
 	
+	public static AlgoPesos restar(AlgoPesos algo1,AlgoPesos algo2){
+		return(toAlgoPesos(algo1.toDouble()-algo2.toDouble()));
+	}
+	
+	public static AlgoPesos dividir(AlgoPesos algo1,AlgoPesos algo2){
+	  try{	
+		return(toAlgoPesos(algo1.toDouble()/algo2.toDouble()));
+	  }catch(Exception e){
+		return(toAlgoPesos(0.0));
+	  }
+	}
+	
+	public static AlgoPesos multiplicar(AlgoPesos algo1,AlgoPesos algo2){
+		return(toAlgoPesos(algo1.toDouble()*algo2.toDouble()));
+	}
+	
+	public static AlgoPesos obtenerXPorcentaje(AlgoPesos algo1,double porcentaje){
+		try{	
+			return(toAlgoPesos(algo1.toDouble()*porcentaje/100.0));
+		}catch(Exception e){
+			return(toAlgoPesos(0.0));
+		}
+	}
+	
+	public void multiplicar(double numero){
+		AlgoPesos aux=AlgoPesos.multiplicar(this,AlgoPesos.toAlgoPesos(numero));
+		this.setDecimal(aux.getDecimal());
+		this.setEntero(aux.getEntero());
+	}
+	
+	public void dividir(double numero){
+		AlgoPesos aux=AlgoPesos.dividir(this,AlgoPesos.toAlgoPesos(numero));
+		this.setDecimal(aux.getDecimal());
+		this.setEntero(aux.getEntero());
+	}
+	
+	public void obtenerXPorcentaje(double porcentaje){
+		AlgoPesos aux=AlgoPesos.multiplicar(this,AlgoPesos.toAlgoPesos(porcentaje/100));
+		this.setDecimal(aux.getDecimal());
+		this.setEntero(aux.getEntero());
+	}
+		
 	/**
 	 * Asigna la parte Entera
 	 * 
@@ -153,8 +164,42 @@ public class AlgoPesos{
 	
 	
 	public String toString() {
-		return "capital: " + getEntero() + "," + getDecimal();
+		return getEntero() + "," + getDecimal();
 
 	}
 	
+	public String toStringConUnidades(){
+		return getEntero() + "," + getDecimal()+" AlgoPesos";
+	}
+		
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		
+		return super.equals(obj);
+	}
+
+	public int compareTo(AlgoPesos algoPesos){
+		double instancia=this.toDouble();
+		double parametro=algoPesos.toDouble();
+		if(instancia==parametro)
+		  return(0);
+		else
+			if(instancia>parametro)
+				return(1);
+			else
+				return(-1);
+	}
+			
+	public double toDouble(){
+		return(this.getEntero()+this.getDecimal()/100.0);
+	}
+	
+	public static AlgoPesos toAlgoPesos(double numero){	
+		Double auxiliar=new Double(numero);
+		return new AlgoPesos(auxiliar.intValue(),(int)((numero-(float)auxiliar.intValue())*100));
+	}
+		
 }

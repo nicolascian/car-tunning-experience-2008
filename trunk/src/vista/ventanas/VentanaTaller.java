@@ -114,6 +114,7 @@ public class VentanaTaller extends JFrame {
 	
 	public void refrescarPanelBotones(){
 		panelBotones.removeAll();
+		System.gc();
 		panelBotones.setBounds(0,panelVisor.getHeight(),this.getWidth(),(int)(this.getHeight()*0.55));
 		panelBotones.setVisible(true);
 		panelBotones.setLayout(new GridLayout(6,6));
@@ -125,10 +126,6 @@ public class VentanaTaller extends JFrame {
 	}
 	
 	private void cerrarVentana(){
-		this.panelBotones=null;
-		this.panelVisor=null;
-		this.taller=null;
-		this.administrador=null;
 		this.ventanaMenu.getVistaVentana().cerrarVentanaTaller();
 	}
 
@@ -142,6 +139,9 @@ public class VentanaTaller extends JFrame {
 	public void pressBotonComponente(Componente componente,DatoClase dato){
 		try{
 		   this.remove(this.panelComponente);
+		   panelComponente.removeAll();
+		   panelComponente=null;
+		   System.gc();
 		}catch(NullPointerException e){};
 		Dimension dimension=new Dimension(this.panelBotones.getSize());
 		this.panelBotones.setVisible(false);
