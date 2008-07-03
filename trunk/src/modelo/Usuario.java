@@ -63,10 +63,6 @@ public class Usuario extends Jugador {
 		return str;
 	}
 	
-	
-	
-	
-	
 	public Auto getAuto() {
 		return auto;
 	}

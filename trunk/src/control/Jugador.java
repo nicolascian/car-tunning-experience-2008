@@ -99,5 +99,9 @@ public abstract class Jugador  implements KeyListener{
 		else
 			return AlgoPesos.toAlgoPesos(0.0);
 	}
-	
+	public void entragarDineroAJugador(AlgoPesos importe){
+		if(importe.compareTo(AlgoPesos.toAlgoPesos(0.0))>=0)
+			this.dinero.sumar(importe);
+			
+	}
 }

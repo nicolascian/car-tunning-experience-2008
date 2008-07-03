@@ -16,9 +16,15 @@ import modelo.componente.Componente;
  */
 public class VentanaReparacion extends JFrame {
 	private JProgressBar progress = new JProgressBar();
+	
 	private JSlider deslizadora = new JSlider( JSlider.HORIZONTAL,0,100,60 );
-    private VentanaTaller ventanaTaller=null;
-	  
+    
+	private VentanaTaller ventanaTaller=null;
+	
+	private JButton botonReparar=null;
+	
+	private Componente componente=null;
+	
     public VentanaReparacion(Componente componente,VentanaTaller ventana) {
 		this.setTitle("Ventana Reparacion");
     	JFrame.setDefaultLookAndFeelDecorated(false);
@@ -31,7 +37,8 @@ public class VentanaReparacion extends JFrame {
 			}
 		});
 		this.ventanaTaller=ventana;
-	    setLayout( new GridLayout(2,1) );
+	    this.componente=componente;
+		setLayout( new GridLayout(2,1) );
 	    add( progress );
 	    deslizadora.setValue((int)componente.getEstado());
 	    deslizadora.setPaintTicks( true );
@@ -46,6 +53,22 @@ public class VentanaReparacion extends JFrame {
 	    add( deslizadora );
 	    deslizadora.setMinimum((int)componente.getEstado());
 	    deslizadora.setValue(deslizadora.getMinimum());
-        progress.setStringPainted(true);	    
+        progress.setStringPainted(true);
+        this.botonReparar=new JButton("Reparar");
+        botonReparar.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				pressBotonReparar();
+			}});
+        botonReparar.setVisible(true);
+        this.add(botonReparar);
 	  }	
+      
+      public void pressBotonReparar(){
+    	 this.ventanaTaller.getTaller().reparar(componente,(int)(deslizadora.getValue()-
+    			                                   componente.getEstado()));
+    	 this.ventanaTaller.getPanelComponente().actualizarComponente();	 
+    	 this.ventanaTaller.setVisible(true);
+    	 this.dispose();
+      }
+    
 }
