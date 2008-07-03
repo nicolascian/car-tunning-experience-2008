@@ -26,7 +26,6 @@ public class Taller {
 	}
 	
 	public void repararacion(Componente componente){
-		componente.setEstado(50);
 		VentanaReparacion ventana=new VentanaReparacion(componente, this.ventanaTaller);
 	    ventanaTaller.setVisible(false);
 		ventana.setVisible(true);
@@ -34,7 +33,8 @@ public class Taller {
 	
 	public boolean reparar(Componente componente,double porcentaje){
 		AlgoPesos importe=Componente.calcularCostoReparacion(componente, porcentaje);
-		if(importe.compareTo(usuario.cobrarDineroAJugador(importe))<=0){
+		AlgoPesos cobrado=usuario.cobrarDineroAJugador(importe);
+		if(importe.compareTo(cobrado)<=0){
 			componente.reparar(porcentaje);
 			return true;
 		}
