@@ -32,6 +32,8 @@ public class VentanaTaller extends JFrame {
 	
 	private JPanel panelBotones=null;
 	
+	private JScrollPane panelInfoInferior=null;
+	
 	private JTextArea textoInferior=null;
 	
 	private JTextArea textoInfoSuperior=null;
@@ -97,19 +99,22 @@ public class VentanaTaller extends JFrame {
 		this.textoInferior.setBackground(Color.black);
 		textoInferior.setForeground(Color.white);
 		textoInferior.setEditable(false);
-		this.add(this.textoInferior);
-		textoInferior.setBounds(400,100,dimensionInfo.width,175);
+		textoInferior.setBounds(400,100,dimensionInfo.width,300);
 		textoInferior.setVisible(true);
+		this.panelInfoInferior=new JScrollPane(textoInferior);
+		panelInfoInferior.setBounds(400,100,dimensionInfo.width,175);
+		panelInfoInferior.setVisible(true);
+		this.add(this.panelInfoInferior);
 	}
 	
 	public void refrescarContenido(){
 		this.administrador=new AdministradorDeImagenesYEtiquetasDeComponentes();
 		this.refrescarPanelVisorDeImagenes();
-		this.refrescarPanelInfo();
+		this.refrescarInfo();
 		this.refrescarPanelBotones();
 	}
 	
-	public void refrescarPanelInfo(){
+	public void refrescarInfo(){
 		this.textoInfoSuperior.setText(usuario.getAuto().toString()+'\n'+"Dinero Jugador: "+
 				                      usuario.getDinero().toStringConUnidades());
 	}
@@ -349,6 +354,20 @@ public class VentanaTaller extends JFrame {
 	 */
 	public void setTextoInfoSuperior(JTextArea textoInfoSuperior) {
 		this.textoInfoSuperior = textoInfoSuperior;
+	}
+
+	/**
+	 * @return the panelInfoInferior
+	 */
+	public JScrollPane getPanelInfoInferior() {
+		return panelInfoInferior;
+	}
+
+	/**
+	 * @param panelInfoInferior the panelInfoInferior to set
+	 */
+	public void setPanelInfoInferior(JScrollPane panelInfoInferior) {
+		this.panelInfoInferior = panelInfoInferior;
 	}
 	
 }
