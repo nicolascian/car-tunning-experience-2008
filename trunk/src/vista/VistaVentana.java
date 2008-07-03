@@ -103,13 +103,14 @@ public class VistaVentana implements Observer{
 		}//fin apuesta no nula
 		
 	}
-	
+		
 	public void Auto(){
 		//Taller
 		ventanaMenu.setVisible(false);
 		this.crearVentanaTaller();
 		ventanaTaller.setVisible(true);
 	}
+	
 	public void Pista(){
 		//se pude elegir una pista
 		ventanaMenu.setVisible(false);
@@ -208,7 +209,10 @@ public class VistaVentana implements Observer{
 	}
 	
 	public void cerrarVentanaTaller(){
+		ventanaTaller.setVisible(false);
 		this.ventanaTaller=null;
+		this.ventanaMenu.setVisible(true);
+		System.gc();
 	}
 	
 	

@@ -94,13 +94,15 @@ public class Carrera implements Runnable {
 	
 	public void cerrarVentana(){
 		this.vista.setEnabled(false);
-		this.vista.dispose();
-		this.ventanaAnterior.setVisible(true);
+		this.vista.setVisible(false);
 		vista=null;
-		System.gc();
-
+		try{  
+		   this.vista.dispose();
+		}catch(NullPointerException e){};
+		this.ventanaAnterior.setVisible(true);
+     	System.gc();
 	}
-	
+
 	public void run() {
 		this.incializar();
 		boolean enCarrera = true;
@@ -132,10 +134,12 @@ public class Carrera implements Runnable {
 			try{
 			Thread.sleep(50);
 			}catch (InterruptedException e){}
-			//Si la venta de la carrera se cerro, se da por finalizada la carrera
-			if (!this.vista.isEnabled()){
+			try{
+			  //Si la venta de la carrera se cerro, se da por finalizada la carrera
+			  if (!this.vista.isEnabled()){
 				enCarrera = false;
-			}
+			  }
+			}catch(NullPointerException e){};
 		}
 		this.virtual.jugar(false); //paramos de manejar el virtual
 		this.finalizar();
