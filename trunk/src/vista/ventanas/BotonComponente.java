@@ -1,16 +1,11 @@
 package vista.ventanas;
 import java.awt.Color;
 import javax.swing.AbstractButton;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import modelo.componente.Componente;
 import vista.imagenAuto.imagenesDeComponentes.*;
-import vista.imagenTramo.Imagen;
-import vista.imagenTramo.Posicion;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 public class BotonComponente extends JButton {
 
 	DatoClase dato=null;
