@@ -162,8 +162,25 @@ public class PanelCarril extends JPanel{
 	@Override
 	public void setVisible(boolean arg0) {
 		if(!arg0)
+		try{
 			this.hiloDeActualizacion.stop();
+		}catch(NullPointerException e){};
 		    this.hiloDeActualizacion=null;
 		super.setVisible(arg0);
+	}
+
+	/**
+	 * @return the hiloDeActualizacion
+	 */
+	public Thread getHiloDeActualizacion() {
+		return hiloDeActualizacion;
+	}
+
+	/**
+	 * @param hiloDeActualizacion the hiloDeActualizacion to set
+	 */
+	public void setHiloDeActualizacion(Thread hiloDeActualizacion) {
+		this.hiloDeActualizacion = hiloDeActualizacion;
 	}	
+	
 }

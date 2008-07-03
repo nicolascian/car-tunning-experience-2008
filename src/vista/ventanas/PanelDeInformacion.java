@@ -221,6 +221,18 @@ public class PanelDeInformacion extends JPanel {
 	protected void setHiloDeActualizacion(Thread hiloDeActualizacion) {
 		this.hiloDeActualizacion = hiloDeActualizacion;
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#setVisible(boolean)
+	 */
+	@Override
+	public void setVisible(boolean flag) {
+		if(!flag)
+		try{
+			this.hiloDeActualizacion.stop();
+			this.hiloDeActualizacion=null;
+		}catch(NullPointerException e){};
+		super.setVisible(flag);
+	}
 	
 }
