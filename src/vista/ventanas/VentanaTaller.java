@@ -156,8 +156,8 @@ public class VentanaTaller extends JFrame {
 		panelComponente.setVisible(true);
 	}
 
-	public void pressBotonOferta(Componente componente,DatoClase dato){
-		
+	public void pressBotonOferta(Componente componenteActual,Componente componenteNuevo){
+		this.taller.reemplazo(componenteActual,componenteNuevo);
 	}
 		
 	public void setUsuario(modelo.Usuario usuario){

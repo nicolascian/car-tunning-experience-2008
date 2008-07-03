@@ -147,4 +147,19 @@ public class PanelComponente extends JPanel {
 		this.ventana.refrescarPanelInfo();
 		this.ventana.getPanelBotones().setVisible(true);
 	}
+
+	/**
+	 * @return the componente
+	 */
+	public Componente getComponente() {
+		return componente;
+	}
+
+	/**
+	 * @param componente the componente to set
+	 */
+	public void setComponente(Componente componente) {
+		this.componente = componente;
+	}
+	
 }
