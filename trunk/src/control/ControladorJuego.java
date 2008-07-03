@@ -36,9 +36,7 @@ public class ControladorJuego {
 	public void correrCarrera(JFrame ventanaMenu, double apuestaD){
 
 	AlgoPesos apuesta = new AlgoPesos((int) apuestaD,(int) (apuestaD - (double)((int)apuestaD)));
-		if (datos.getUsuario().getDinero().restar(apuesta).getEntero()
-			>=0 
-			&& datos.getUsuario().getDinero().restar(apuesta).getDecimal() >= 0 ){
+		if (datos.getUsuario().getDinero().compareTo(apuesta)>=0){
 			if (datos.getUsuario().getAuto().estaListoParaCarrera()){
 				datos.Carrera(ventanaMenu, apuesta);
 			}else{
