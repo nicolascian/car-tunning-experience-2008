@@ -9,7 +9,6 @@ package vista.ventanas;
 
 import modelo.componente.Componente;
 import javax.swing.*;
-
 import vista.imagenTramo.Imagen;
 import vista.imagenAuto.imagenesDeComponentes.*;
 import vista.imagenTramo.Posicion;
@@ -56,18 +55,11 @@ public class PanelComponente extends JPanel {
 		this.infoComponente.setForeground(Color.white);
 		this.infoComponente.setEditable(false);
 		this.infoComponente.setVisible(true);
-		this.infoComponente.setBounds(200,100,200,150);
+		this.infoComponente.setBounds(200,0,200,150);
 		this.add(this.infoComponente);
 		this.actualizarComponente();
 		this.agregarBotones();
 		this.setVisible(true);
-		this.ventana.setInfoComponente(new JTextArea());
-		this.ventana.getInfoComponente().setBackground(Color.black);
-		this.ventana.getInfoComponente().setForeground(Color.white);
-		this.ventana.getInfoComponente().setEditable(false);
-		this.ventana.getInfoComponente().setVisible(true);
-		this.ventana.getInfoComponente().setBounds(200,100,200,150);
-		this.ventana.add(this.ventana.getInfoComponente());
 	}
 	
 	private void agregarBotones(){
@@ -95,9 +87,7 @@ public class PanelComponente extends JPanel {
 		panelBotones.add(botonReparar);
 		panelBotones.setVisible(true);
 		this.add(panelBotones);
-		
 		this.panelOfertas=new JPanel();
-		
 		panelOfertas.setLayout(new GridLayout(6,6));
 		panelOfertas.setBounds(400,0,400,400);
 		panelOfertas.setBackground(Color.black);
@@ -109,7 +99,7 @@ public class PanelComponente extends JPanel {
 	
 	public void actualizarComponente(){
 		imagenComponente=dato.getImagen();
-		imagenComponente.setPosicion(new Posicion(0,80));
+		imagenComponente.setPosicion(new Posicion(0,0));
 		this.actualizaTextolInfoComponente();
 	}
 	
@@ -123,6 +113,7 @@ public class PanelComponente extends JPanel {
 				                    "Peso: "+componente.getPeso()+" Kg"+'\n'+
 				                    "Estado: "+String.valueOf(componente.getEstado()));
 	}
+	
 	
 	private void pressBotonOferta(){
 		

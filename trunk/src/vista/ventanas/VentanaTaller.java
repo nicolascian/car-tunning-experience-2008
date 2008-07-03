@@ -32,9 +32,9 @@ public class VentanaTaller extends JFrame {
 	
 	private JPanel panelBotones=null;
 	
-	private JPanel panelInfo=null;
+	private JTextArea textoInferior=null;
 	
-	private JTextArea infoComponente=null;
+	private JTextArea textoInfoSuperior=null;
 	
 	private VentanaMenuPrincipal ventanaMenu=null;
 	
@@ -49,6 +49,7 @@ public class VentanaTaller extends JFrame {
 	public VentanaTaller(JFrame ventanaMenu,modelo.Usuario usuario) {
 		JFrame.setDefaultLookAndFeelDecorated(false);
 		this.setUsuario(usuario);
+		this.getContentPane().setBackground(Color.black);
 		this.taller=new Taller(this.usuario,this);
 		this.setLayout(null);
 		this.ventanaMenu=(VentanaMenuPrincipal)ventanaMenu;
@@ -81,18 +82,24 @@ public class VentanaTaller extends JFrame {
 	}
 	
 	public void crearPaneles(){
-		try{
-			panelInfo.removeAll();
-		}catch(NullPointerException e){};
-		panelInfo= new JPanel();
-		panelInfo.setBackground(Color.black);
-		this.add(panelInfo);
+		this.textoInfoSuperior= new JTextArea();
+		this.textoInfoSuperior.setBackground(Color.black);
+		textoInfoSuperior.setForeground(Color.white);
+		textoInfoSuperior.setEditable(false);
+		this.add(this.textoInfoSuperior);
+		Dimension dimensionInfo=new Dimension((int)(this.getSize().width*0.5),100);
+		textoInfoSuperior.setBounds(dimensionInfo.width,0,dimensionInfo.width,dimensionInfo.height);
+		textoInfoSuperior.setVisible(true);
 		this.panelBotones=new JPanel();
 		panelBotones.setBackground(Color.black);
 		this.add(panelBotones);
-		Dimension dimensionPanelInfo=new Dimension((int)(this.getSize().width*0.5),
-                                                    (int)(this.getSize().height*0.40));
-		panelInfo.setBounds(dimensionPanelInfo.width,0,dimensionPanelInfo.width,dimensionPanelInfo.height);
+		this.textoInferior= new JTextArea();
+		this.textoInferior.setBackground(Color.black);
+		textoInferior.setForeground(Color.white);
+		textoInferior.setEditable(false);
+		this.add(this.textoInferior);
+		textoInferior.setBounds(400,100,dimensionInfo.width,175);
+		textoInferior.setVisible(true);
 	}
 	
 	public void refrescarContenido(){
@@ -103,17 +110,8 @@ public class VentanaTaller extends JFrame {
 	}
 	
 	public void refrescarPanelInfo(){
-		try{
-			panelInfo.removeAll();
-		}catch(NullPointerException e){};
-		JTextArea texto=new JTextArea(usuario.getAuto().toString()+'\n'+'\n'+"Dinero Jugador: "+
+		this.textoInfoSuperior.setText(usuario.getAuto().toString()+'\n'+"Dinero Jugador: "+
 				                      usuario.getDinero().toStringConUnidades());
-		texto.setBackground(new Color(0,0,0,0));
-		texto.setForeground(Color.white);
-		texto.setEditable(false);
-		texto.setVisible(true);
-		panelInfo.add(texto);
-		panelInfo.setVisible(true);
 	}
 	
 	public void refrescarPanelBotones(){
@@ -127,6 +125,10 @@ public class VentanaTaller extends JFrame {
 		while(it.hasNext()){
 		   this.agregarBoton(it.next());
 		}
+	}
+
+	public void actualizarTextoInferior(String cadena){
+		this.textoInferior.setText(cadena);
 	}
 	
 	private void cerrarVentana(){
@@ -319,27 +321,34 @@ public class VentanaTaller extends JFrame {
 			this.agregarListaDeComponentesEnOferta(NeumaticoLluvia.createVariosComponentesDistintos());
 			this.agregarListaDeComponentesEnOferta(NeumaticoSlick.createVariosComponentesDistintos());
 			this.agregarListaDeComponentesEnOferta(NeumaticoTodoTerreno.createVariosComponentesDistintos());
-		}
-
-	/**
-	 * @return the panelInfo
-	 */
-	public JPanel getPanelInfo() {
-		return panelInfo;
 	}
 
 	/**
-	 * @return the infoComponente
+	 * @return the textoInferior
 	 */
-	public JTextArea getInfoComponente() {
-		return infoComponente;
+	public JTextArea getTextoInferior() {
+		return textoInferior;
 	}
 
 	/**
-	 * @param infoComponente the infoComponente to set
+	 * @param textoInferior the textoInferior to set
 	 */
-	public void setInfoComponente(JTextArea infoComponente) {
-		this.infoComponente = infoComponente;
+	public void setTextoInferior(JTextArea textoInferior) {
+		this.textoInferior = textoInferior;
+	}
+
+	/**
+	 * @return the textoInfoSuperior
+	 */
+	public JTextArea getTextoInfoSuperior() {
+		return textoInfoSuperior;
+	}
+
+	/**
+	 * @param textoInfoSuperior the textoInfoSuperior to set
+	 */
+	public void setTextoInfoSuperior(JTextArea textoInfoSuperior) {
+		this.textoInfoSuperior = textoInfoSuperior;
 	}
 	
 }
