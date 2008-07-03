@@ -15,11 +15,9 @@ import vista.imagenAuto.imagenesDeComponentes.*;
 import vista.imagenTramo.Posicion;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.Color;
 import modelo.Taller;
 import java.awt.GridLayout;
-import javax.swing.*;
 /**
  * @author Usuario
  *
@@ -63,6 +61,13 @@ public class PanelComponente extends JPanel {
 		this.actualizarComponente();
 		this.agregarBotones();
 		this.setVisible(true);
+		this.ventana.setInfoComponente(new JTextArea());
+		this.ventana.getInfoComponente().setBackground(Color.black);
+		this.ventana.getInfoComponente().setForeground(Color.white);
+		this.ventana.getInfoComponente().setEditable(false);
+		this.ventana.getInfoComponente().setVisible(true);
+		this.ventana.getInfoComponente().setBounds(200,100,200,150);
+		this.ventana.add(this.ventana.getInfoComponente());
 	}
 	
 	private void agregarBotones(){

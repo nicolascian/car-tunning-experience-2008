@@ -80,7 +80,8 @@ public class VentanaReparacion extends JFrame {
       public void pressBotonReparar(){
     	 this.ventanaTaller.getTaller().reparar(componente,(int)Math.round(deslizadora.getValue()-
     			                                   componente.getEstado()));
-    	 this.ventanaTaller.getPanelComponente().actualizarComponente();	 
+    	 this.ventanaTaller.getPanelComponente().actualizarComponente();
+    	 this.ventanaTaller.refrescarPanelInfo();
     	 this.ventanaTaller.setVisible(true);
     	 this.dispose();
       }
