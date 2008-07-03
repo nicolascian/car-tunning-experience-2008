@@ -62,6 +62,7 @@ public class PanelComponente extends JPanel {
 		this.add(this.infoComponente);
 		this.actualizarComponente();
 		this.agregarBotones();
+		this.setVisible(true);
 	}
 	
 	private void agregarBotones(){
@@ -91,10 +92,14 @@ public class PanelComponente extends JPanel {
 		this.add(panelBotones);
 		
 		this.panelOfertas=new JPanel();
-		panelOfertas.setLayout(new GridLayout());
+		
+		panelOfertas.setLayout(new GridLayout(6,6));
 		panelOfertas.setBounds(400,0,400,400);
 		panelOfertas.setBackground(Color.black);
+		BotonOferta.agregarBotonesComponentesCompatiblesAPanel(componente,panelOfertas,
+				                                ventana.getAdministrador(), ventana);
 		this.add(panelOfertas);
+		panelOfertas.setVisible(true);	
 	}
 	
 	private void actualizarComponente(){
