@@ -42,7 +42,7 @@ public class VentanaSplash extends JWindow {
 		progress.setValue(0);
 		progress.setStringPainted(true);// le pongo numeritos al progressBar
 		progress.setBounds(0,240,400,20);
-		imagen=new Imagen("src//vista//ventanas//luigi.jpg",new Dimension(400,240),
+		imagen=new Imagen("src//vista//ventanas//imagenSplash.png",new Dimension(400,240),
 				          new Posicion());
 		JPanel panel=new JPanel(){
 			/* (non-Javadoc)
