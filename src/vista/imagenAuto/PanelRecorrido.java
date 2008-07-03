@@ -94,6 +94,20 @@ public class PanelRecorrido extends JPanel {
 			this.hiloDeActualizacion=null;
 		}catch(NullPointerException e){}
 		super.setVisible(flag);
+	}
+
+	/**
+	 * @return the hiloDeActualizacion
+	 */
+	public Thread getHiloDeActualizacion() {
+		return hiloDeActualizacion;
+	}
+
+	/**
+	 * @param hiloDeActualizacion the hiloDeActualizacion to set
+	 */
+	public void setHiloDeActualizacion(Thread hiloDeActualizacion) {
+		this.hiloDeActualizacion = hiloDeActualizacion;
 	}	
 	
 	
