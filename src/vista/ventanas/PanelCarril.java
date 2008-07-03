@@ -155,5 +155,15 @@ public class PanelCarril extends JPanel{
 	public void setImagenAuto(ImagenAuto imagenAuto) {
 		this.imagenAuto = imagenAuto;
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#setVisible(boolean)
+	 */
+	@Override
+	public void setVisible(boolean arg0) {
+		if(!arg0)
+			this.hiloDeActualizacion.stop();
+		    this.hiloDeActualizacion=null;
+		super.setVisible(arg0);
+	}	
 }

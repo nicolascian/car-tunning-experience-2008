@@ -93,6 +93,14 @@ public class Carrera implements Runnable {
 	}
 	
 	public void cerrarVentana(){
+		this.vista.removeAll();
+		this.usuario.getAuto().setEncendido(false);
+		this.virtual.getAuto().setEncendido(false);
+		this.usuario.getAuto().deleteObservers();
+		this.virtual.getAuto().deleteObservers();
+		this.virtual.getAuto().setPosicion(0);
+		this.usuario.getAuto().setPosicion(0);
+		pista.deleteObservers();
 		this.vista.setEnabled(false);
 		this.vista.setVisible(false);
 		vista=null;
@@ -100,8 +108,11 @@ public class Carrera implements Runnable {
 		   this.vista.dispose();
 		}catch(NullPointerException e){};
 		this.ventanaAnterior.setVisible(true);
-     	System.gc();
-     	this.usuario.getAuto().deleteObservers();
+     	try{
+		   this.finalize();
+     	}catch(Throwable e){};
+		System.gc();
+     	
 	}
 
 	public void run() {

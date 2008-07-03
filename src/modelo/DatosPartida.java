@@ -18,7 +18,6 @@ public class DatosPartida extends Observable{
 
 	
 	private modelo.Usuario usuario = null;
-	
 	private modelo.Virtual virtual = null;
 	private modelo.Auto autoVirtual = null;
 	private control.Virtual controlVirtual;
