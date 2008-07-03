@@ -55,8 +55,9 @@ public class BotonOferta extends JButton {
 		  Iterator<DatoClase> it=listaDatoClases.iterator();
 		  while(it.hasNext()){
 			  DatoClase dato=it.next();
-			  if(dato.getClase()==comp.getClass()){
-				  panel.add(new BotonOferta(comp,dato,ventana));
+			  if((dato.getClase()).isInstance(comp)){
+				  panel.add(new BotonOferta(comp,administrador.getDatoClase(comp.getClass()),
+						    ventana));
 			  } 
 		  }
 	  }
