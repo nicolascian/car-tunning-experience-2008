@@ -24,20 +24,45 @@ public class Taller {
 	}
 	
 	public void reemplazo(Componente componenteActual,Componente componenteNuevo){
-		if( JOptionPane.showConfirmDialog(null,"Desea reemplazar el componente?",
-			"Reemplazo De Componente",
+		AlgoPesos importe=componenteNuevo.getPrecio();
+		try{
+		if( JOptionPane.showConfirmDialog(null,"Desea reemplazar el componente?"+'\n'+
+			    importe.toStringConUnidades()+" menos el costo de su componente "+
+			    componenteActual.getPrecio().toStringConUnidades(),"Reemplazo De Componente",
 			JOptionPane.YES_NO_OPTION)==JOptionPane.OK_OPTION){
 			this.reemplazar(componenteActual,componenteNuevo);
+				
 		};
+		}catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null,"No se ha podido reemplazar el componente."+'\n'+
+					"Intentelo en otro momento. Muchas gracias","Reemplazo de componente."
+					,JOptionPane.ERROR_MESSAGE);	  
+			
+		}
 	}
+	
 	public boolean reemplazar(Componente componenteActual,Componente componenteNuevo){
-		return false;
-	}
+		try{
+		  AlgoPesos importe=componenteNuevo.getPrecio();
+		  AlgoPesos cobrado=usuario.cobrarDineroAJugador(importe);
+		  if(importe.compareTo(cobrado)<=0){
+			//----reemplazo de componente
+			return true;
+		  }
+		  else{
+		    JOptionPane.showMessageDialog(null,"No se ha podido reemplazar el componente."+'\n'+
+		    		"cuesta "+importe.toStringConUnidades()+" usted pago "+cobrado.toStringConUnidades(),
+	                    "Reemplazo de componente",JOptionPane.ERROR_MESSAGE);	  
+			usuario.entregarDineroAJugador(cobrado);
 	
-	public boolean vender(Componente componente){
-	    return false;
+			return false;
+		  }
+		 }catch(NullPointerException e){
+			e.printStackTrace();
+			return false;
+		 }
 	}
-	
+		
 	public void repararacion(Componente componente){
 		VentanaReparacion ventana=new VentanaReparacion(componente, this.ventanaTaller);
 	    ventanaTaller.setVisible(false);
@@ -51,8 +76,10 @@ public class Taller {
 			componente.reparar(porcentaje);
 			return true;
 		}
-		else
+		else{
+			usuario.entregarDineroAJugador(cobrado);
 			return false;
+		}
 	}
 		
 }
