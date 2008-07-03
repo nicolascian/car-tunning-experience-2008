@@ -39,7 +39,6 @@ public class PanelCarril extends JPanel{
 		this.setDimension(new Dimension(dimension));
 		this.setPosicion(new Posicion(posicion));
 		this.setBounds(posicion.getX(),posicion.getY(),dimension.width,dimension.height);
-		
 		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(),BufferedImage.TYPE_INT_RGB);
 		this.grafico=buffImage.createGraphics();
 		this.hiloDeActualizacion=new Thread(){
