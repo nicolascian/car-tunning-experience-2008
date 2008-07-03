@@ -13,10 +13,8 @@ import java.util.LinkedList;
 import java.util.Iterator;
 import javax.swing.*;
 import modelo.componente.Componente;
-import vista.imagenTramo.Imagen;
 import vista.imagenTramo.Posicion;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -43,7 +41,7 @@ public class VentanaTaller extends JFrame {
 	
 	private AdministradorDeImagenesYEtiquetasDeComponentes administrador=null;
 	
-	private LinkedList<Componente> componentesEnOfeta=null;
+	private LinkedList<Componente> componentesEnOferta=null;
 	
 	public VentanaTaller(JFrame ventanaMenu,modelo.Usuario usuario) {
 		JFrame.setDefaultLookAndFeelDecorated(false);
@@ -68,9 +66,7 @@ public class VentanaTaller extends JFrame {
 		this.crearComponentesEnOferta();
 		this.setVisible(true);
 	}
-	
-	
-	
+		
 	public void refrescarPanelVisorDeImagenes(){
 		try{
 			this.remove(panelVisor);
@@ -129,8 +125,10 @@ public class VentanaTaller extends JFrame {
 	}
 	
 	private void cerrarVentana(){
-		this.setVisible(false);
-		ventanaMenu.setVisible(true);
+		this.panelBotones=null;
+		this.panelVisor=null;
+		this.taller=null;
+		this.administrador=null;
 		this.ventanaMenu.getVistaVentana().cerrarVentanaTaller();
 	}
 
@@ -278,14 +276,14 @@ public class VentanaTaller extends JFrame {
 	 * @return the componentesEnOfeta
 	 */
 	public LinkedList<Componente> getComponentesEnOfeta() {
-		return componentesEnOfeta;
+		return componentesEnOferta;
 	}
 
 	/**
 	 * @param componentesEnOfeta the componentesEnOfeta to set
 	 */
 	public void setComponentesEnOfeta(LinkedList<Componente> componentesEnOfeta) {
-		this.componentesEnOfeta = componentesEnOfeta;
+		this.componentesEnOferta = componentesEnOfeta;
 	}
 	
 	private void agregarListaDeComponentesEnOferta(LinkedList<Componente> lista){
@@ -293,13 +291,13 @@ public class VentanaTaller extends JFrame {
 		Iterator<Componente> it=lista.iterator();
 		while(it.hasNext())
 			try{
-				this.componentesEnOfeta.add(it.next());
+				this.componentesEnOferta.add(it.next());
 			}catch(NullPointerException e){};
 	  }catch(NullPointerException e){};
 	}
 	
 	private void crearComponentesEnOferta(){
-		  	this.componentesEnOfeta=new LinkedList<Componente>();
+		  	this.componentesEnOferta=new LinkedList<Componente>();
 		    this.agregarListaDeComponentesEnOferta(Automatica.createVariosComponentesDistintos());
 			this.agregarListaDeComponentesEnOferta(Carburador.createVariosComponentesDistintos());
 			this.agregarListaDeComponentesEnOferta(Carroceria.createVariosComponentesDistintos());
