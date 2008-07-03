@@ -7,6 +7,8 @@
 
 package vista.ventanas;
 import modelo.Taller;
+import modelo.componente.neumaticos.*;
+import modelo.componente.*;
 import java.util.LinkedList;
 import java.util.Iterator;
 import javax.swing.*;
@@ -41,6 +43,8 @@ public class VentanaTaller extends JFrame {
 	
 	private AdministradorDeImagenesYEtiquetasDeComponentes administrador=null;
 	
+	private LinkedList<Componente> componentesEnOfeta=null;
+	
 	public VentanaTaller(JFrame ventanaMenu,modelo.Usuario usuario) {
 		JFrame.setDefaultLookAndFeelDecorated(false);
 		this.setUsuario(usuario);
@@ -61,8 +65,11 @@ public class VentanaTaller extends JFrame {
 		this.setVisible(false);
 		this.crearPaneles();
 		this.refrescarContenido();
+		this.crearComponentesEnOferta();
 		this.setVisible(true);
 	}
+	
+	
 	
 	public void refrescarPanelVisorDeImagenes(){
 		try{
@@ -266,5 +273,57 @@ public class VentanaTaller extends JFrame {
 	public void setTaller(Taller taller) {
 		this.taller = taller;
 	}
+
+	/**
+	 * @return the componentesEnOfeta
+	 */
+	public LinkedList<Componente> getComponentesEnOfeta() {
+		return componentesEnOfeta;
+	}
+
+	/**
+	 * @param componentesEnOfeta the componentesEnOfeta to set
+	 */
+	public void setComponentesEnOfeta(LinkedList<Componente> componentesEnOfeta) {
+		this.componentesEnOfeta = componentesEnOfeta;
+	}
 	
+	private void agregarListaDeComponentesEnOferta(LinkedList<Componente> lista){
+	  try{	
+		Iterator<Componente> it=lista.iterator();
+		while(it.hasNext())
+			try{
+				this.componentesEnOfeta.add(it.next());
+			}catch(NullPointerException e){};
+	  }catch(NullPointerException e){};
+	}
+	
+	private void crearComponentesEnOferta(){
+		  	this.componentesEnOfeta=new LinkedList<Componente>();
+		    this.agregarListaDeComponentesEnOferta(Automatica.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Carburador.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Carroceria.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Combustible.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Eje.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Embrague.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Escape.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Freno.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(FrenoABS.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(FrenoCinta.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(FrenoDisco.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Inyeccion.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Llanta.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Manual.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Motor.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Nitro.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Secuencial.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(SistemaDeRefrigeracion.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(Suspension.createVariosComponentesDistintos());	
+			this.agregarListaDeComponentesEnOferta(Turbo.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(NeumaticoInvierno.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(NeumaticoMixto.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(NeumaticoLluvia.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(NeumaticoSlick.createVariosComponentesDistintos());
+			this.agregarListaDeComponentesEnOferta(NeumaticoTodoTerreno.createVariosComponentesDistintos());
+		}
 }
