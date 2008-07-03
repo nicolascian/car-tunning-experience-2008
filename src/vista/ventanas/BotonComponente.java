@@ -1,5 +1,5 @@
 package vista.ventanas;
-
+import java.awt.Color;
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,6 +27,8 @@ public class BotonComponente extends JButton {
 			}});
 		this.setVerticalTextPosition(AbstractButton.CENTER);
 	    this.setHorizontalTextPosition(AbstractButton.LEFT);
+	    if(componente.getEstado()<=0)
+	    	this.setBackground(Color.red);
    }
 
 	public void pressBotonComponente(){
