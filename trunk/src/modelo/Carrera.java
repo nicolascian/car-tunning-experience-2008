@@ -101,6 +101,7 @@ public class Carrera implements Runnable {
 		}catch(NullPointerException e){};
 		this.ventanaAnterior.setVisible(true);
      	System.gc();
+     	this.usuario.getAuto().deleteObservers();
 	}
 
 	public void run() {
