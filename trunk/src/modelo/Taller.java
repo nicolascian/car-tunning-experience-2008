@@ -39,6 +39,7 @@ public class Taller {
 					,JOptionPane.ERROR_MESSAGE);	  
 			
 		}
+		this.ventanaTaller.refrescarInfo();
 	}
 	
 	public boolean reemplazar(Componente componenteActual,Componente componenteNuevo){
@@ -65,8 +66,8 @@ public class Taller {
 		
 	public void repararacion(Componente componente){
 		VentanaReparacion ventana=new VentanaReparacion(componente, this.ventanaTaller);
-	    ventanaTaller.setVisible(false);
-		ventana.setVisible(true);
+	   	ventana.setVisible(true);
+	   	this.ventanaTaller.refrescarInfo();
 	}
 	
 	public boolean reparar(Componente componente,double porcentaje){

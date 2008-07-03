@@ -6,6 +6,8 @@ import modelo.componente.Componente;
 import vista.imagenAuto.imagenesDeComponentes.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 public class BotonComponente extends JButton {
 
 	DatoClase dato=null;
@@ -67,7 +69,7 @@ public class BotonComponente extends JButton {
 			 */
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				getVentana().actualizarTextoInferior("");
+				
 			}
 			
 		});

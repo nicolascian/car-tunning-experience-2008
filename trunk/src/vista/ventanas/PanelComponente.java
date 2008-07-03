@@ -144,7 +144,7 @@ public class PanelComponente extends JPanel {
 	public void cerrar(){
 		this.setVisible(false);
 		this.ventana.refrescarPanelBotones();
-		this.ventana.refrescarPanelInfo();
+		this.ventana.refrescarInfo();
 		this.ventana.getPanelBotones().setVisible(true);
 	}
 

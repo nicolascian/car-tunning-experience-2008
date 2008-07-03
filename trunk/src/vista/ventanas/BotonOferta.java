@@ -82,7 +82,7 @@ public class BotonOferta extends JButton {
 			 */
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				getVentana().actualizarTextoInferior("");
+			
 			}
 			
 		});
