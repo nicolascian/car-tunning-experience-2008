@@ -124,8 +124,8 @@ public class PanelComponente extends JPanel {
 	}
 	
 	private void pressBotonReparar(){
-		if(ventana.getTaller().reparar(componente))
-		   this.actualizaTextolInfoComponente();
+		ventana.getTaller().reparar(componente);
+		this.actualizaTextolInfoComponente();
 		
 	}
 

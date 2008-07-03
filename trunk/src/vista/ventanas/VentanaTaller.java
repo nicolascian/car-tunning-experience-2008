@@ -46,7 +46,7 @@ public class VentanaTaller extends JFrame {
 	public VentanaTaller(JFrame ventanaMenu,modelo.Usuario usuario) {
 		JFrame.setDefaultLookAndFeelDecorated(false);
 		this.setUsuario(usuario);
-		this.taller=new Taller(this.usuario);
+		this.taller=new Taller(this.usuario,this);
 		this.setLayout(null);
 		this.ventanaMenu=(VentanaMenuPrincipal)ventanaMenu;
 		this.setSize(800,700);
@@ -153,15 +153,7 @@ public class VentanaTaller extends JFrame {
 	public void pressBotonOferta(Componente componente,DatoClase dato){
 		
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.awt.Window#setVisible(boolean)
-	 */
-	@Override
-	public void setVisible(boolean b) {
-		super.setVisible(b);
-	}
-	
+		
 	public void setUsuario(modelo.Usuario usuario){
 		this.usuario=usuario;
 	}
