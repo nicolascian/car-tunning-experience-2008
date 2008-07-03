@@ -51,7 +51,7 @@ public class VentanaTaller extends JFrame {
 		this.ventanaMenu=(VentanaMenuPrincipal)ventanaMenu;
 		this.setSize(800,700);
 		this.setBackground(Color.black);
-		this.setTitle("Taller - Car Tunnning Experience 2008");
+		this.setTitle("Taller - Car Tunnning Experience 2008 "+usuario.getNombre());
 		this.setLocationRelativeTo(null); //centrada
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 		    public void windowClosing(java.awt.event.WindowEvent e) {
@@ -103,7 +103,8 @@ public class VentanaTaller extends JFrame {
 		try{
 			panelInfo.removeAll();
 		}catch(NullPointerException e){};
-		JTextArea texto=new JTextArea(usuario.getAuto().toString());
+		JTextArea texto=new JTextArea(usuario.getAuto().toString()+'\n'+'\n'+"Dinero Jugador: "+
+				                      usuario.getDinero().toStringConUnidades());
 		texto.setBackground(new Color(0,0,0,0));
 		texto.setForeground(Color.white);
 		texto.setEditable(false);
@@ -316,4 +317,11 @@ public class VentanaTaller extends JFrame {
 			this.agregarListaDeComponentesEnOferta(NeumaticoSlick.createVariosComponentesDistintos());
 			this.agregarListaDeComponentesEnOferta(NeumaticoTodoTerreno.createVariosComponentesDistintos());
 		}
+
+	/**
+	 * @return the panelInfo
+	 */
+	public JPanel getPanelInfo() {
+		return panelInfo;
+	}
 }
