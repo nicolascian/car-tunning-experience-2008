@@ -12,6 +12,7 @@ import modelo.componente.*;
 import java.util.LinkedList;
 import java.util.Iterator;
 import javax.swing.*;
+
 import modelo.componente.Componente;
 import vista.imagenTramo.Posicion;
 import java.awt.Dimension;
@@ -32,6 +33,8 @@ public class VentanaTaller extends JFrame {
 	private JPanel panelBotones=null;
 	
 	private JPanel panelInfo=null;
+	
+	private JTextArea infoComponente=null;
 	
 	private VentanaMenuPrincipal ventanaMenu=null;
 	
@@ -324,4 +327,19 @@ public class VentanaTaller extends JFrame {
 	public JPanel getPanelInfo() {
 		return panelInfo;
 	}
+
+	/**
+	 * @return the infoComponente
+	 */
+	public JTextArea getInfoComponente() {
+		return infoComponente;
+	}
+
+	/**
+	 * @param infoComponente the infoComponente to set
+	 */
+	public void setInfoComponente(JTextArea infoComponente) {
+		this.infoComponente = infoComponente;
+	}
+	
 }
