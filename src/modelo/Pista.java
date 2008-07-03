@@ -26,6 +26,12 @@ public class Pista  extends Observable{
 	
 	private int cantAutos;
 	
+	private String rutaAparienciaCielo="src//vista//imagenTramo//cieloSemiNublado";
+	
+	private String rutaAparienciaCamino="src//vista//imagenTramo//carretera2";
+	
+	private String rutaAparienciaEntorno="src//vista//imagenTramo//pasto";
+	
 	/**
 	 * La pista esta compuesta por una serie de tramos, cada uno con 
 	 * distintas caracteristicas (superficie, clima) cuya longitud suma
@@ -216,6 +222,48 @@ public class Pista  extends Observable{
 
 	public void setCantAutos(int cantAutos) {
 		this.cantAutos = cantAutos;
+	}
+
+	/**
+	 * @return the rutaAparienciaCielo
+	 */
+	public String getRutaAparienciaCielo() {
+		return rutaAparienciaCielo;
+	}
+
+	/**
+	 * @param rutaAparienciaCielo the rutaAparienciaCielo to set
+	 */
+	public void setRutaAparienciaCielo(String rutaAparienciaCielo) {
+		this.rutaAparienciaCielo = rutaAparienciaCielo;
+	}
+
+	/**
+	 * @return the rutaAparienciaCamino
+	 */
+	public String getRutaAparienciaCamino() {
+		return rutaAparienciaCamino;
+	}
+
+	/**
+	 * @param rutaAparienciaCamino the rutaAparienciaCamino to set
+	 */
+	public void setRutaAparienciaCamino(String rutaAparienciaCamino) {
+		this.rutaAparienciaCamino = rutaAparienciaCamino;
+	}
+
+	/**
+	 * @return the rutaAparienciaEntorno
+	 */
+	public String getRutaAparienciaEntorno() {
+		return rutaAparienciaEntorno;
+	}
+
+	/**
+	 * @param rutaAparienciaEntorno the rutaAparienciaEntorno to set
+	 */
+	public void setRutaAparienciaEntorno(String rutaAparienciaEntorno) {
+		this.rutaAparienciaEntorno = rutaAparienciaEntorno;
 	}
 	
 
