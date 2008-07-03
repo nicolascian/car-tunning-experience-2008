@@ -25,8 +25,10 @@ public class Taller {
 	}
 	
 	public boolean reparar(Componente componente){
-		componente.reparar(100);
-		return true;
+		if(componente.getEstado()<100){
+		   componente.reparar(100);
+		   return true;
+		}return false;
 	}
 	
 	public boolean vender(Componente componente){

@@ -23,8 +23,7 @@ public class VistaVentana implements Observer{
 	private VentanaTaller ventanaTaller = null;
 	private JFrame ventanaPista = null;
 	private JFrame ventanaOpciones = null;
-    	
-	/** Constructor de la vista con ventanas */
+    /** Constructor de la vista con ventanas */
 	public VistaVentana(ControladorJuego ctrl){
 		controlJuego = ctrl;
 		// decorados
