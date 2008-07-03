@@ -185,4 +185,17 @@ public abstract class Componente extends Observable {
 		return null;
 	}
 	
+	public static AlgoPesos calcularCostoReparacion(Componente componente,
+			                                        double porcentaje){
+		try{
+		if(componente.getPeso()>800){
+		   return AlgoPesos.toAlgoPesos(componente.getPeso()*porcentaje*0.033);
+		}
+		else
+		   return AlgoPesos.toAlgoPesos(componente.getPeso()*porcentaje*0.075);	
+		}catch(NullPointerException e){
+		   return AlgoPesos.toAlgoPesos(0.0);
+		}
+	}
+	
 }
