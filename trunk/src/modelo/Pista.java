@@ -23,6 +23,7 @@ public class Pista  extends Observable{
 	 * que se encuentran compitiendo en ella
 	 */	
 	private Auto[] auto;
+	
 	private int cantAutos;
 	
 	/**
