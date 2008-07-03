@@ -92,14 +92,15 @@ public abstract class Jugador  implements KeyListener{
 	}
 	
 	public AlgoPesos cobrarDineroAJugador(AlgoPesos importe){
-		if(importe.compareTo(this.getDinero())>=0){
+		if(importe.compareTo(this.getDinero())<=0){
 			this.dinero.restar(importe);
 			return(AlgoPesos.toAlgoPesos(importe.toDouble()));
 		}
 		else
 			return AlgoPesos.toAlgoPesos(0.0);
 	}
-	public void entragarDineroAJugador(AlgoPesos importe){
+	
+	public void entregarDineroAJugador(AlgoPesos importe){
 		if(importe.compareTo(AlgoPesos.toAlgoPesos(0.0))>=0)
 			this.dinero.sumar(importe);
 			

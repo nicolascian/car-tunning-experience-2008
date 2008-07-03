@@ -90,14 +90,13 @@ public abstract class Jugador{
 	public void setDinero(AlgoPesos dinero) {
 		this.dinero = dinero;
 	}
-	
+		
 	public AlgoPesos cobrarDineroAJugador(AlgoPesos importe){
-		if(importe.compareTo(this.getDinero())>=0){
+		if(importe.compareTo(this.getDinero())<=0){
 			this.dinero.restar(importe);
 			return(AlgoPesos.toAlgoPesos(importe.toDouble()));
 		}
 		else
 			return AlgoPesos.toAlgoPesos(0.0);
 	}
-	
 }
