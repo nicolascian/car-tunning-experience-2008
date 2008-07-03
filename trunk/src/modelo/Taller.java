@@ -5,6 +5,7 @@ package modelo;
 import vista.ventanas.VentanaTaller;
 import modelo.componente.Componente;
 import vista.ventanas.VentanaReparacion;
+import javax.swing.JOptionPane;
 /**
  * @author Usuario
  *
@@ -12,6 +13,7 @@ import vista.ventanas.VentanaReparacion;
 public class Taller {
 	
 	private modelo.Usuario usuario=null;
+	
 	private VentanaTaller ventanaTaller=null;
 	/**
 	 * 
@@ -21,8 +23,19 @@ public class Taller {
 		this.ventanaTaller=ventanaTaller;
 	}
 	
-	public boolean reemplazar(Componente componente){
+	public void reemplazo(Componente componenteActual,Componente componenteNuevo){
+		if( JOptionPane.showConfirmDialog(null,"Desea reemplazar el componente?",
+			"Reemplazo De Componente",
+			JOptionPane.YES_NO_OPTION)==JOptionPane.OK_OPTION){
+			this.reemplazar(componenteActual,componenteNuevo);
+		};
+	}
+	public boolean reemplazar(Componente componenteActual,Componente componenteNuevo){
 		return false;
+	}
+	
+	public boolean vender(Componente componente){
+	    return false;
 	}
 	
 	public void repararacion(Componente componente){
@@ -41,9 +54,5 @@ public class Taller {
 		else
 			return false;
 	}
-	
-	public boolean vender(Componente componente){
-	    return false;
-	}
-	
+		
 }

@@ -92,7 +92,8 @@ public class BotonOferta extends JButton {
    }
 
 	public void pressBotonComponente(){
-		ventana.pressBotonOferta(componente, dato);
+		ventana.pressBotonOferta(this.ventana.getPanelComponente().getComponente(),
+				                 componente);
 	}
 	
 	public static void agregarBotonesComponentesCompatiblesAPanel(Componente componente,JPanel panel,
