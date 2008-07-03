@@ -27,8 +27,7 @@ public class Taller {
 	
 	public void repararacion(Componente componente){
 		componente.setEstado(50);
-		VentanaReparacion ventana=new VentanaReparacion(componente,
-				                                        this.ventanaTaller);
+		VentanaReparacion ventana=new VentanaReparacion(componente, this.ventanaTaller);
 	    ventanaTaller.setVisible(false);
 		ventana.setVisible(true);
 	}
