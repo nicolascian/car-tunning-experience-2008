@@ -81,5 +81,20 @@ public class PanelRecorrido extends JPanel {
 		super.paint(g);
 		g.setColor(Color.white);
 		//((Graphics2D)g).drawString("nombre",0,0);
+	}
+
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#setVisible(boolean)
+	 */
+	@Override
+	public void setVisible(boolean flag) {
+		if(!flag)
+		try{
+			this.hiloDeActualizacion.stop();
+			this.hiloDeActualizacion=null;
+		}catch(NullPointerException e){}
+		super.setVisible(flag);
 	}	
+	
+	
 }

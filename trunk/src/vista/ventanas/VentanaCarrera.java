@@ -57,6 +57,16 @@ public class VentanaCarrera extends JFrame implements Observer{
 				new Dimension((int)(this.getSize().width*0.8),(int)(getSize().width*0.03226)),
 				new Posicion(),Color.BLUE));
 		this.setAlwaysOnTop(true);
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+		    public void windowClosing(java.awt.event.WindowEvent e) {
+		    	try{
+		    		panelUsuario.getHiloDeActualizacion().stop();
+		    	}catch(NullPointerException exception){};
+		    	panelUsuario.setVisible(false);
+		    	panelUsuario=null;
+		    	
+		    }
+		});
 		this.setVisible(false);
 	}
 
