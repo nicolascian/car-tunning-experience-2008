@@ -1057,6 +1057,16 @@ public class Auto extends Observable implements AfectablePorClima, AfectablePorS
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see java.util.Observable#deleteObservers()
+	 */
+	@Override
+	public synchronized void deleteObservers() {
+		Iterator<Componente> it=this.obtenerComponentes().iterator();
+		while(it.hasNext())
+			it.next().deleteObservers();
+		super.deleteObservers();
+	}
 	
 }
