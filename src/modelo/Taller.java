@@ -34,7 +34,7 @@ public class Taller {
 	}
 	
 	public boolean reparar(Componente componente,double porcentaje){
-		AlgoPesos importe=componente.calcularCostoReparacion(componente, porcentaje);
+		AlgoPesos importe=Componente.calcularCostoReparacion(componente, porcentaje);
 		if(importe.compareTo(usuario.cobrarDineroAJugador(importe))<=0){
 			componente.reparar(porcentaje);
 			return true;

@@ -102,7 +102,7 @@ public class PanelComponente extends JPanel {
 		panelOfertas.setVisible(true);	
 	}
 	
-	private void actualizarComponente(){
+	public void actualizarComponente(){
 		imagenComponente=dato.getImagen();
 		imagenComponente.setPosicion(new Posicion(0,80));
 		this.actualizaTextolInfoComponente();
@@ -125,7 +125,6 @@ public class PanelComponente extends JPanel {
 	
 	private void pressBotonReparar(){
 		ventana.getTaller().repararacion(componente);
-		this.actualizaTextolInfoComponente();
 	}
 
 	/* (non-Javadoc)
