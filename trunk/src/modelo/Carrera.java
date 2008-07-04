@@ -107,23 +107,21 @@ public class Carrera implements Runnable {
 		   this.vista.dispose();
 		}catch(NullPointerException e){};
 		this.ventanaAnterior.setVisible(true);
-     	try{
-		   this.finalize();
-     	}catch(Throwable e){};
-		System.gc();
-     	
 	}
 
 	public void run() {
 		this.incializar();
 		boolean enCarrera = true;
-		this.virtual.jugar(true); //ponemos a manejar al virtual
+		//ponemos a manejar al virtual
+		this.virtual.getAuto().setEncendido(true);
+		this.virtual.jugar(true); 
 		while(enCarrera){
 			try{
 				synchronized (this.usuario.getAuto())
 				{
 				synchronized (this.virtual.getAuto())
 				{
+				
 					this.usuario.getAuto().ActualizarObservadores();
 					this.virtual.getAuto().ActualizarObservadores();
 					this.usuario.getAuto().wait(25);
