@@ -20,7 +20,6 @@ public class VistaVentana implements Observer{
 	private JFrame ventanaPrincipal  = null; //marco que contendra los controles del primer menu
 	private JFrame ventanaMenu  = null; //marco que contendra los controles del segundo menu
 	private JFrame ventanaCreditos  = null; 
-	private VentanaTaller ventanaTaller = null;
 	private JFrame ventanaPista = null;
 	private JFrame ventanaOpciones = null;
     /** Constructor de la vista con ventanas */
@@ -50,7 +49,6 @@ public class VistaVentana implements Observer{
 			cerrarVentanaPrincipal();
 			controlJuego.crearUsuario(nombre);	
 			ventanaMenu.setVisible(true);
-			this.ventanaTaller.setUsuario(controlJuego.getDatos().getUsuario());
 		}else{
 			JOptionPane.showMessageDialog(ventanaPrincipal,
 	        	    "Por favor ingrese un nombre" + '\n' + 
@@ -104,10 +102,8 @@ public class VistaVentana implements Observer{
 	}
 		
 	public void Auto(){
-		//Taller
-		ventanaMenu.setVisible(false);
-		this.crearVentanaTaller();
-		ventanaTaller.setVisible(true);
+		this.ventanaMenu.setVisible(false);
+		VentanaTaller ventanaTaller = new VentanaTaller(this.ventanaMenu,this.controlJuego.getDatos().getUsuario());
 	}
 	
 	public void Pista(){
@@ -199,21 +195,6 @@ public class VistaVentana implements Observer{
 		ventanaMenu = new VentanaMenuPrincipal(this);	
 	}
 		
-	
-	/* VENTANA TALLER *********************************************************************************/
-	private void crearVentanaTaller(){
-		ventanaTaller = new VentanaTaller(this.ventanaMenu,
-				                          this.controlJuego.getDatos().getUsuario());
-		
-	}
-	
-	public void cerrarVentanaTaller(){
-		ventanaTaller.setVisible(false);
-		this.ventanaTaller=null;
-		this.ventanaMenu.setVisible(true);
-		System.gc();
-	}
-	
 	
 	/* VENTANA PISTA *********************************************************************************/
 	private void crearVentanaPista(){
