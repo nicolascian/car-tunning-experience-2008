@@ -118,6 +118,7 @@ public class Carrera implements Runnable {
 		long tiempo=System.currentTimeMillis()+5000;
 		while(System.currentTimeMillis()<tiempo);
 		this.vista.getPanelInfoUsuario().setCorriendo(true);
+		this.usuario.getAuto().setEncendido(true);
 		while(enCarrera){
 			try{
 				synchronized (this.usuario.getAuto())
