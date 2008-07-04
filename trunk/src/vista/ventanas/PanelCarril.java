@@ -14,7 +14,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import vista.imagenAuto.*;
-
+import modelo.Pista;
 /**
  * @author Usuario
  *
@@ -67,6 +67,19 @@ public class PanelCarril extends JPanel{
 			                  new Posicion((int)((retorno.getDimension().width-dimensionAuto.getWidth())/2.0),
 					          (int)(dimension.getWidth()*0.35))));
 		return retorno;
+	}
+	
+	public static PanelCarril createPanelCarrilVistaAutoDesdeAtras(Dimension dimension,Posicion posicion,
+            modelo.Jugador usuario,Pista pista){
+		PanelCarril retorno=new PanelCarril(dimension,posicion,usuario);
+		retorno.setImagenTramo(ImagenTramo.createTramo(pista.getRutaAparienciaCielo(),pista.getRutaAparienciaCamino(),
+				               pista.getRutaAparienciaEntorno(),ImagenTramo.createDimensionOptima(),new Posicion()));
+		Dimension dimensionAuto=new Dimension((int)(dimension.getWidth()*0.3375),(int)(dimension.getWidth()*0.24));
+		retorno.setImagenAuto(new ImagenAutoDesdeAtras(usuario.getAuto(),
+				"src//vista//imagenAuto//imagenes//DodgeViper//atras.png",dimensionAuto,
+				new Posicion((int)((retorno.getDimension().width-dimensionAuto.getWidth())/2.0),
+						(int)(dimension.getWidth()*0.35))));
+		return retorno;	
 	}
 	
 	public void actualizarVelocidad(double velocidad){

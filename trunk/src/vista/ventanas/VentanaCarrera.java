@@ -48,7 +48,7 @@ public class VentanaCarrera extends JFrame implements Observer{
 		//usuario
 		Dimension dimensionPanel=new Dimension((int)(this.getSize().width*0.8),(int)(this.getSize().height*.846));
 		this.panelUsuario=PanelCarril.createPanelCarrilVistaAutoDesdeAtras(dimensionPanel,
-				               new Posicion(0,(int)(getSize().width*0.06452)),usuario);
+				               new Posicion(0,(int)(getSize().width*0.06452)),usuario,pista);
 		this.add(panelUsuario);
 		this.add(new PanelDeInformacion(new Dimension((int)(getSize().width*0.2),(int)(getSize().height)),
 				                        new Posicion((int)(getSize().width*0.8),0),
