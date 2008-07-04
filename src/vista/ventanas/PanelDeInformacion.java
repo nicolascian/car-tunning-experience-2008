@@ -50,7 +50,7 @@ public class PanelDeInformacion extends JPanel {
 		this.setBounds(posicion.getX(),posicion.getY(),dimension.width,dimension.height);
 		this.setDimension(new Dimension(dimension));
 		this.setSize(dimension);
-		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(),BufferedImage.TYPE_INT_RGB);
+		this.buffImage=new BufferedImage(this.getWidth(),this.getHeight(),BufferedImage.TYPE_INT_BGR);
 		this.grafico=buffImage.createGraphics();
 		Dimension dimensionReloj=new Dimension((int)(dimension.width*0.8),(int)(dimension.width*0.8));
 		this.imagenTacometro=ImagenTacometro.createTacometroBlanco(usuario.getAuto(), 
