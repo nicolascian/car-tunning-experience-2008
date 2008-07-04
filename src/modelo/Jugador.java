@@ -50,7 +50,9 @@ public abstract class Jugador{
 		setNombre(nombre);
 	}
 	
-	public Jugador(){}
+	public Jugador(){
+		setNombre(USER_DEFAULT_NAME);
+	}
 	
 	
 	/* setters y getters */
