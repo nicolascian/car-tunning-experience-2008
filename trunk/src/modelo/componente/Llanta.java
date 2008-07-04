@@ -30,9 +30,9 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	//expresado en kg
 	private double pesoNormal=25;
 	
-	private static double constanteDeDesgaste=1;
+	private static double constanteDeDesgaste=0.00001;
 	
-	private double coeficienteDeDesgastePorSuperficie=1;
+	private double coeficienteDeDesgastePorSuperficie=0.00000001;
 	
 	private Eje eje=null;
 	
@@ -101,7 +101,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	 */
 	public void desgastar(){
 		
-		this.setEstado(this.getEstado()- (this.getCoeficienteDeDesgastePorSuperficie()*Constantes.tiempoPorCiclo*constanteDeDesgaste)/1000000);
+		this.setEstado(this.getEstado()- (this.getCoeficienteDeDesgastePorSuperficie()*Constantes.tiempoPorCiclo*constanteDeDesgaste)/1000000000);
 		try{
 			this.getNeumatico().desgastar();
 		}catch(NullPointerException e){}
