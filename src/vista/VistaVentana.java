@@ -233,5 +233,4 @@ public class VistaVentana implements Observer{
 		this.controlJuego = controlJuego;
 	}
 	
-	
 }

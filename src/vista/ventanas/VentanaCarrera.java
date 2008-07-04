@@ -33,7 +33,9 @@ public class VentanaCarrera extends JFrame implements Observer{
     
 	public void update(Observable arg0, Object arg1) {
 	  synchronized(this.usuario.getAuto()){	
-		panelUsuario.actualizarVelocidad(usuario.getAuto().getVelocidad());
+		try{
+		  panelUsuario.actualizarVelocidad(usuario.getAuto().getVelocidad());
+		}catch(NullPointerException e){};
 	  }
 	}
 	
