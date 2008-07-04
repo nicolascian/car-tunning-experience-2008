@@ -17,12 +17,21 @@ public class Virtual extends Jugador {
 		
 	}
 
-
+	/**
+	 * para que maneje hasta que se le diga
+	 * lo contrario
+	 */
 	public void jugar(boolean X){
 		this.getControl().jugar(X);
 	}
 	
-
+	/**
+	 * para que cumpla un solo turno
+	 */
+	public void manejar(){
+		this.getControl().manejar();
+	}
+	
 	public Auto getAuto() {
 		return auto;
 	}

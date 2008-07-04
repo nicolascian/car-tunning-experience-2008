@@ -45,7 +45,7 @@ public class Principiante extends Habilidad{
 		}else { timer.stop(); }
 	}
 	
-	private void manejar(){	
+	public void manejar(){	
 		
 		/* si el auto esta apagado */
 		if (!auto.isEncendido()){

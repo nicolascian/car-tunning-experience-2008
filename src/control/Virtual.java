@@ -73,6 +73,16 @@ public class Virtual extends Jugador{
 	}
 		
 	
+	/**
+	 * para que solo lo haga una vez durante un turno
+	 */
+	public void manejar(){
+		
+		/* le paso la pelota a la habilidad */
+		habilidad.manejar();	
+	}
+	
+	
 	/* getters y setters */
 
 	/**
