@@ -96,8 +96,14 @@ public class ImagenTramo {
 		this.setRuta(ruta);
 		this.setDimension(new Dimension(dimension));
 		this.setPosicion(new Posicion(posicion));
-		this.imagenBuffer=new BufferedImage(dimension.width,dimension.height,
+		try{
+		   this.imagenBuffer=new BufferedImage(dimension.width,dimension.height,
 				                            BufferedImage.TYPE_INT_RGB);
+		}catch(Exception e){
+			System.gc();
+			this.imagenBuffer=new BufferedImage(dimension.width,dimension.height,
+                    BufferedImage.TYPE_INT_RGB);
+		}
 		this.grafico=(Graphics2D)imagenBuffer.createGraphics();
 	}
 
@@ -116,7 +122,7 @@ public class ImagenTramo {
 		if((dimension.width>DIMENSION_MAXIMA.width)||(dimension.height>DIMENSION_MAXIMA.height))
 		  dimensionTotal=ImagenTramo.createDimensionMaxima();
 		else
-		  if((dimension.width<DIMENSION_MINIMA.width)||(dimension.height<DIMENSION_MINIMA.height))
+		    if((dimension.width<DIMENSION_MINIMA.width)||(dimension.height<DIMENSION_MINIMA.height))
 			dimensionTotal=ImagenTramo.createDimensionMinima();	
 		Dimension dimensionCampo=new Dimension(dimensionTotal.width,(int)(dimensionTotal.height*0.6));
 		Shape clipFondo=ImagenTramo.createShapeRuta(dimensionCampo);
