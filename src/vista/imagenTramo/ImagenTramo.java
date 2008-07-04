@@ -110,7 +110,7 @@ public class ImagenTramo {
 		return (poligono);
 	}
 	
-	private static ImagenTramo createTramo(String rutaCielo,String rutaCamino,String rutaCampo,
+	public static ImagenTramo createTramo(String rutaCielo,String rutaCamino,String rutaCampo,
 			                            Dimension dimension,Posicion posicion){
 		Dimension dimensionTotal=dimension;
 		if((dimension.width>DIMENSION_MAXIMA.width)||(dimension.height>DIMENSION_MAXIMA.height))
