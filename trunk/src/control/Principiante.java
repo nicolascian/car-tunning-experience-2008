@@ -31,7 +31,7 @@ public class Principiante extends Habilidad{
 	/** tiempo de reaccion de PRINCIPIANTE */
 	private static final int mSecsControl = 500; //0.5 segundos
 	
-	private Timer timer;
+	private Timer timer=null;
 	
 	/**
 	 * Metodo Jugar
