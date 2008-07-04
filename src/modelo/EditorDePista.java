@@ -59,17 +59,30 @@ public class EditorDePista {
 		this.listaAparienciaEntorno.add(this.ENTORNO_TIERRA_NEGRA);
 	}
 
-	public Pista createPistaAutodromoBuenosAires(Auto auto1,Auto auto2){
+	public Pista createPistaAutodromo(Auto auto1,Auto auto2){
 		return new Pista(auto1,auto2,3600.0,this.getCIELO_DIA_SEMI_NUBLADO().getRuta(),
 			this.getCAMINO_DE_ASFALTO().getRuta(),this.getENTORNO_PASTISAL().getRuta());
 	}
 	
 	public Pista createPistaCaminoDesertico(Auto auto1,Auto auto2){
-		return new Pista(auto1,auto2,3600.0,this.getCIELO_DIA_SEMI_NUBLADO().getRuta(),
+		return new Pista(auto1,auto2,4000.0,this.getCIELO_DIA_SEMI_NUBLADO().getRuta(),
 			this.getCAMINO_TIERRA_COLORADA().getRuta(),this.getENTORNO_TIERRA_NEGRA().getRuta());
 	}
 	
-	public Pista createPistaCaminoRural
+	public Pista createPistaCaminoRural(Auto auto1,Auto auto2){
+		return new Pista(auto1,auto2,5000.0,this.getCIELO_NOCTURNO().getRuta(),
+			this.getCAMINO_TIERRA_COLORADA().getRuta(),this.getENTORNO_TIERRA_NEGRA().getRuta());
+	}
+	
+	public Pista createPuenteRio(Auto auto1,Auto auto2){
+		return new Pista(auto1,auto2,4535.0,this.getCIELO_NOCTURNO().getRuta(),
+				this.getCAMINO_DE_ASFALTO().getRuta(),this.getENTORNO_RIO().getRuta());
+	}
+	
+	public Pista createPistaTerraplen(Auto auto1,Auto auto2){
+		return new Pista(auto1,auto2,4535.0,this.getCIELO_DIA_SEMI_NUBLADO().getRuta(),
+			this.getCAMINO_TIERRA_COLORADA().getRuta(),this.getENTORNO_RIO().getRuta());
+	}
 	
 	public void setearCielo(Pista pista,DatoApariencia dato){
 		pista.setRutaAparienciaCielo(dato.getRuta());

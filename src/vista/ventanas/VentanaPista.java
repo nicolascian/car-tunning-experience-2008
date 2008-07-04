@@ -8,15 +8,17 @@
 package vista.ventanas;
 
 import vista.VistaVentana;
+import vista.imagenTramo.Imagen;
 import vista.imagenTramo.Posicion;
 import java.awt.Dimension;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.JFrame;
+
 import java.awt.Color;
 import modelo.Pista;
 import vista.imagenTramo.Posicion;
 import control.Usuario;
+import java.awt.GridLayout;
 
 public class VentanaPista extends JFrame{
 
@@ -24,11 +26,13 @@ public class VentanaPista extends JFrame{
 	
 	private Pista pista=null;
 	
+	private JPanel panelPistas=null;
+	
 	private modelo.EditorDePista editor=null;
 	
 	public VentanaPista(VentanaMenuPrincipal ventanaMenu) {
 		this.ventanaMenu=ventanaMenu;
-		
+		this.setLayout(null);
 		this.setSize(800, 600);
 		this.setTitle("Pista");
 		this.setLocationRelativeTo(null); //centrada
@@ -45,9 +49,34 @@ public class VentanaPista extends JFrame{
 		this.getContentPane().setBackground(Color.black);
 		this.setVisible(false);	
 		this.editor=new modelo.EditorDePista();
+		this.agregarBotones();
 	}	
 	
 	private void agregarBotones(){
+		panelPistas=new JPanel();
+		panelPistas.setLayout(new GridLayout());
+		this.setBackground(Color.black);
+		this.add(panelPistas);
+		panelPistas.setBounds(0,0,300,300);
+		//subPaneles
+		JButton boton=new JButton("Autodromo de Buenos Aires");
+		boton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+			 try{	
+				ventanaMenu.getVistaVentana().getControlJuego().getDatos()
+				.setPista(getEditor().createPistaAutodromo(pista.getAuto(0),pista.getAuto(1)));
+				
+			 }catch(NullPointerException exception){};
+		    }
+		});
+		ImageIcon icono=new ImageIcon((new Imagen("src//vista//fotosDePistas//autodromo_buenos_aires.jpg",
+				new Dimension(20,20),new Posicion()).getImage().getScaledInstance(40,40, java.awt.Image.SCALE_DEFAULT)));
+		
+		boton.setIcon(icono);
+		panelPistas.add(boton);
+		
+		
+		panelPistas.setVisible(true);
 		
 	}
 	
@@ -58,6 +87,62 @@ public class VentanaPista extends JFrame{
 	private void cerrarVentana(){
 		ventanaMenu.setVisible(true);
 		this.dispose();
+	}
+
+	/**
+	 * @return the ventanaMenu
+	 */
+	public VentanaMenuPrincipal getVentanaMenu() {
+		return ventanaMenu;
+	}
+
+	/**
+	 * @param ventanaMenu the ventanaMenu to set
+	 */
+	public void setVentanaMenu(VentanaMenuPrincipal ventanaMenu) {
+		this.ventanaMenu = ventanaMenu;
+	}
+
+	/**
+	 * @return the pista
+	 */
+	public Pista getPista() {
+		return pista;
+	}
+
+	/**
+	 * @param pista the pista to set
+	 */
+	public void setPista(Pista pista) {
+		this.pista = pista;
+	}
+
+	/**
+	 * @return the panelPistas
+	 */
+	public JPanel getPanelPistas() {
+		return panelPistas;
+	}
+
+	/**
+	 * @param panelPistas the panelPistas to set
+	 */
+	public void setPanelPistas(JPanel panelPistas) {
+		this.panelPistas = panelPistas;
+	}
+
+	/**
+	 * @return the editor
+	 */
+	public modelo.EditorDePista getEditor() {
+		return editor;
+	}
+
+	/**
+	 * @param editor the editor to set
+	 */
+	public void setEditor(modelo.EditorDePista editor) {
+		this.editor = editor;
 	}
 	
 }
