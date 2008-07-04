@@ -11,18 +11,22 @@ import vista.VistaVentana;
 import vista.imagenTramo.Posicion;
 import java.awt.Dimension;
 import java.util.*;
-
+import javax.swing.*;
 import javax.swing.JFrame;
-
+import java.awt.Color;
 import modelo.Pista;
 import vista.imagenTramo.Posicion;
 import control.Usuario;
 
 public class VentanaPista extends JFrame{
 
-	private JFrame ventanaMenu=null;
+	private VentanaMenuPrincipal ventanaMenu=null;
 	
-	public VentanaPista(JFrame ventanaMenu) {
+	private Pista pista=null;
+	
+	private modelo.EditorDePista editor=null;
+	
+	public VentanaPista(VentanaMenuPrincipal ventanaMenu) {
 		this.ventanaMenu=ventanaMenu;
 		
 		this.setSize(800, 600);
@@ -34,19 +38,25 @@ public class VentanaPista extends JFrame{
 		    	cerrarVentana();
 		    }
 		});
-
+		pista=ventanaMenu.getVistaVentana().getControlJuego().getDatos().getPista();
     	this.setResizable(false);
 		this.setAlwaysOnTop(false);
+		this.setBackground(Color.black);
 		this.setVisible(false);	
+		this.editor=new modelo.EditorDePista();
+	}	
 	
+	private void agregarBotones(){
+		
+	}
+	
+	private void aplicarCambios(){
+		
 	}
 	
 	private void cerrarVentana(){
 		ventanaMenu.setVisible(true);
 		this.dispose();
 	}
-	
-	
-	
 	
 }

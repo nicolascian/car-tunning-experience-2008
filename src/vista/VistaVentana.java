@@ -217,7 +217,7 @@ public class VistaVentana implements Observer{
 	
 	/* VENTANA PISTA *********************************************************************************/
 	private void crearVentanaPista(){
-		ventanaPista = new VentanaPista(this.ventanaMenu);
+		ventanaPista = new VentanaPista((VentanaMenuPrincipal)this.ventanaMenu);
 		
 	}		
 
@@ -237,6 +237,20 @@ public class VistaVentana implements Observer{
 
 	public JFrame getVentanaMenu() {
 		return ventanaMenu;
+	}
+
+	/**
+	 * @return the controlJuego
+	 */
+	public ControladorJuego getControlJuego() {
+		return controlJuego;
+	}
+
+	/**
+	 * @param controlJuego the controlJuego to set
+	 */
+	public void setControlJuego(ControladorJuego controlJuego) {
+		this.controlJuego = controlJuego;
 	}
 	
 	
