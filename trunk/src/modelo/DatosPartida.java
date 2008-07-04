@@ -50,8 +50,15 @@ public class DatosPartida extends Observable{
 	}
 	
 	public void Carrera(JFrame ventanaAnterior, AlgoPesos apuesta){
-
-		this.pista = new Pista(usuario.getAuto(), virtual.getAuto(),3000 );
+        if(this.pista==null){
+		   this.pista = new Pista(usuario.getAuto(), virtual.getAuto(),3000 );
+        }
+        else{
+        	usuario.getAuto().deleteObservers();
+        	virtual.getAuto().deleteObservers();
+        	pista.setAuto(usuario.getAuto(),0);
+        	pista.setAuto(virtual.getAuto(),1);
+        }
 		VentanaCarrera ventanaCarrera = new VentanaCarrera(this.usuario, this.virtual, this.pista);
 		Carrera carrera = new Carrera(usuario, virtual, pista, apuesta, ventanaAnterior, ventanaCarrera);
 	    Thread threadCarrera = new Thread(carrera);

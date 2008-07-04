@@ -14,6 +14,7 @@ import java.util.Iterator;
 import javax.swing.*;
 
 import modelo.componente.Componente;
+import vista.imagenTramo.Imagen;
 import vista.imagenTramo.Posicion;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -130,6 +131,18 @@ public class VentanaTaller extends JFrame {
 		while(it.hasNext()){
 		   this.agregarBoton(it.next());
 		}
+		
+		JButton boton=new JButton("Menu Principal");
+		boton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+			 try{	
+				cerrarVentana();
+			 }catch(NullPointerException exception){};
+		    }
+		});
+		boton.setBackground(Color.LIGHT_GRAY);
+		this.panelBotones.add(boton);
+		
 	}
 
 	public void actualizarTextoInferior(String cadena){
