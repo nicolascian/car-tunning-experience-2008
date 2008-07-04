@@ -103,6 +103,13 @@ public class PanelComponente extends JPanel {
 		this.actualizaTextolInfoComponente();
 	}
 	
+	public void actualizarComponente(Componente componente){
+		this.setComponente(componente);
+		dato=this.ventana.getAdministrador().getDatoClase(componente.getClass());
+		this.actualizarComponente();
+		this.paint(this.getGraphics());
+	}
+	
 	private void actualizaTextolInfoComponente(){
 		String precio="";
 		try{
@@ -114,11 +121,11 @@ public class PanelComponente extends JPanel {
 				                    "Estado: "+String.valueOf(componente.getEstado()));
 	}
 	
-	
+	/*
 	private void pressBotonOferta(){
 		
 	}
-	
+	*/
 	private void pressBotonReparar(){
 		ventana.getTaller().repararacion(componente);
 	}
@@ -130,6 +137,9 @@ public class PanelComponente extends JPanel {
 	public void paint(Graphics g) {
 		super.paint(g);
 		try{
+		g.setColor(Color.BLACK);
+		g.fillRect(0,0, (int)imagenComponente.getDimension().getWidth(),
+				    (int)imagenComponente.getDimension().getHeight());
 		g.drawImage(imagenComponente.getImage(),imagenComponente.getPosicion().getX(),
 				    imagenComponente.getPosicion().getY(),
 				    (int)imagenComponente.getDimension().getWidth(),

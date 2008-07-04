@@ -57,6 +57,7 @@ public class Carroceria extends Componente
 		setCoeficienteDeOxidacionPorHumedad(0);
 		setCoeficienteDeOxidacionPorParticulas(0);
 		setPeso(905);
+		this.setPrecio(AlgoPesos.toAlgoPesos(6000.0));
 	}
 	
 	/**
@@ -74,6 +75,7 @@ public class Carroceria extends Componente
 		setCoeficienteDeOxidacionPorHumedad(0);
 		setCoeficienteDeOxidacionPorParticulas(0);
 		setPeso(peso);
+		this.setPrecio(AlgoPesos.toAlgoPesos(6000.0));
 	}
 	
 	/**
@@ -88,6 +90,7 @@ public class Carroceria extends Componente
 		temperatura =( Double.parseDouble(xmlElement.getAttribute("temperatura")) );
 		setPeso(( Double.parseDouble(xmlElement.getAttribute("peso")) ));
 		this.estado=( Double.parseDouble(xmlElement.getAttribute("estado")) );
+		this.setPrecio(AlgoPesos.toAlgoPesos(6000.0));
 	}
 	
 	public Element toXml(Document doc) {

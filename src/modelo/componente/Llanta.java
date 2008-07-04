@@ -63,6 +63,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		this.setPeso(peso);
 		this.setCoeficienteDeDesgastePorSuperficie(1);
 		this.setNeumatico(null);
+		this.setPrecio(new AlgoPesos(500,0));
 	}
 	
 	/**
@@ -79,6 +80,7 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 		setAuto(null);
 		this.setPeso(15);
 		setNeumatico(null);
+		this.setPrecio(new AlgoPesos(500,0));
 	}
 	
 	public Element toXml(Document doc) {

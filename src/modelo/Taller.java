@@ -30,11 +30,10 @@ public class Taller {
 		AlgoPesos importe=componenteNuevo.getPrecio();
 		try{
 		if( JOptionPane.showConfirmDialog(null,"Desea reemplazar el componente?"+'\n'+
-			    importe.toStringConUnidades()+" menos el costo de su componente "+
-			    componenteActual.getPrecio().toStringConUnidades(),"Reemplazo De Componente",
-			JOptionPane.YES_NO_OPTION)==JOptionPane.OK_OPTION){
-			this.reemplazar(componenteActual,componenteNuevo);
-				
+			    importe.toStringConUnidades()+" menos un descuento segun el estado de su componente viejo ",
+			    "Reemplazo De Componente",JOptionPane.YES_NO_OPTION)==JOptionPane.OK_OPTION){
+			if(this.reemplazar(componenteActual,componenteNuevo));
+			  this.ventanaTaller.getPanelComponente().actualizarComponente(componenteNuevo);	
 		};
 		}catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null,"No se ha podido reemplazar el componente."+'\n'+
@@ -48,8 +47,13 @@ public class Taller {
 	public boolean reemplazar(Componente componenteActual,Componente componenteNuevo){
 		try{
 		  AlgoPesos importe=componenteNuevo.getPrecio();
-		  AlgoPesos cobrado=usuario.cobrarDineroAJugador(importe);
-		  if(importe.compareTo(cobrado)<=0){
+		  double descuento=componenteActual.getEstado()*0.60;
+		  AlgoPesos importeConDescuento=AlgoPesos.restar(importe,AlgoPesos.multiplicar(componenteActual.getPrecio(),
+				                        AlgoPesos.toAlgoPesos(descuento)));
+		  if(importeConDescuento.compareTo(AlgoPesos.multiplicar(componenteNuevo.getPrecio(),AlgoPesos.toAlgoPesos(0.5)))<0)
+			  importeConDescuento=AlgoPesos.multiplicar(importe,AlgoPesos.toAlgoPesos(0.5));
+		  AlgoPesos cobrado=usuario.cobrarDineroAJugador(importeConDescuento);
+		  if(importeConDescuento.compareTo(cobrado)<=0){
 			Method[] metodos=Auto.class.getMethods();
 			LinkedList<Method> listaMetodosSet=new LinkedList<Method>();
 			LinkedList<Method> listaMetodosGet=new LinkedList<Method>();
