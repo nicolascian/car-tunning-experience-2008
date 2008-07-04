@@ -5,11 +5,14 @@ import modelo.Auto;
 import modelo.Pista;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JTextArea;
+import java.awt.GridLayout;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import vista.imagenTramo.Posicion;
+import javax.swing.*;
 public class PanelRecorrido extends JPanel {
 
     private long tiempoDeActualizacion=50;
@@ -21,6 +24,8 @@ public class PanelRecorrido extends JPanel {
 	private Auto auto=null;
 		
 	private String nombre=null;
+	
+	private JLabel jugador=null;
 	
 	private double m=0.0;
 		
@@ -36,8 +41,8 @@ public class PanelRecorrido extends JPanel {
 		this.progress.setBackground(Color.GRAY);
 		this.progress.setForeground(colorBarra);
 		progress.setStringPainted(false);
-		progress.setBounds((int)(dimension.width*0.1),(int)(dimension.height*0.5),
-				           (int)(dimension.width*0.8),(int)(dimension.height*0.4));
+		progress.setBounds(0,(int)(dimension.height*0.5),
+				           (int)(dimension.width*0.6),(int)(dimension.height*0.4));
 		progress.setValue(0);
 		progress.setVisible(true);
 		this.setVisible(true);
@@ -55,6 +60,15 @@ public class PanelRecorrido extends JPanel {
 			     }
 			}
 		};
+		try{    
+		    this.jugador= new JLabel();
+			jugador.setText(nombre);
+		    this.jugador.setBackground(Color.black);
+		    jugador.setBounds(progress.getWidth(),0,(int)(dimension.width*0.4),(int)(dimension.height*0.8));
+		    jugador.setForeground(colorBarra);
+		    this.add(jugador);
+		    jugador.setVisible(true);
+		}catch(NullPointerException e){};
 		this.add(progress);	
 		this.hiloDeActualizacion.start();	
 	}
