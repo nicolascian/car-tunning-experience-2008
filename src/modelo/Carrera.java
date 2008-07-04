@@ -115,6 +115,9 @@ public class Carrera implements Runnable {
 		//ponemos a manejar al virtual
 		this.virtual.getAuto().setEncendido(true);
 		this.virtual.jugar(true); 
+		long tiempo=System.currentTimeMillis()+5000;
+		while(System.currentTimeMillis()<tiempo);
+		this.vista.getPanelInfoUsuario().setCorriendo(true);
 		while(enCarrera){
 			try{
 				synchronized (this.usuario.getAuto())

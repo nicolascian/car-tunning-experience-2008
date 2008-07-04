@@ -26,7 +26,7 @@ public class PanelCarril extends JPanel{
 	private ImagenTramo imagenTramo=null;
 	
 	private ImagenAuto imagenAuto=null;
-	
+		
 	private BufferedImage buffImage=null;
 
 	private Graphics2D grafico=null;

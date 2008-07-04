@@ -45,6 +45,12 @@ public class PanelDeInformacion extends JPanel {
 	
 	private Posicion posicionNumeroCambio=null;
 	
+	private Imagen rojo=null;
+	
+	private Imagen verde=null;
+	
+	private boolean corriendo=false;
+	
 	public PanelDeInformacion(Dimension dimension,Posicion posicion,modelo.Usuario usuario){
 		this.usuario=usuario;
 		this.setBounds(posicion.getX(),posicion.getY(),dimension.width,dimension.height);
@@ -82,6 +88,11 @@ public class PanelDeInformacion extends JPanel {
 				                               this.imagenPalanca.getDimension().getWidth()*0.42),
 				                               (int)(this.imagenPalanca.getPosicion().getY()+
 				                               this.imagenPalanca.getDimension().getHeight()*0.4));
+		this.rojo=new Imagen("src//vista//imagenAuto//semaforos//rojo.png",new Dimension(50,100),
+				             new Posicion(65,365));
+		
+		this.verde=new Imagen("src//vista//imagenAuto//semaforos//verde.png",new Dimension(50,100),
+	                          new Posicion(65,365));
 	}
 		
 	/* (non-Javadoc)
@@ -113,6 +124,14 @@ public class PanelDeInformacion extends JPanel {
 					imagenPalanca.getPosicion().getY(),imagenPalanca.getDimension().width,
 					imagenPalanca.getDimension().height,this);
 			modelo.componente.Caja caja=null;
+			if(!corriendo)
+				grafico.drawImage(rojo.getImage(),rojo.getPosicion().getX(),
+						rojo.getPosicion().getY(),rojo.getDimension().width,
+						rojo.getDimension().height,this);
+			else
+				grafico.drawImage(verde.getImage(),verde.getPosicion().getX(),
+						verde.getPosicion().getY(),verde.getDimension().width,
+						verde.getDimension().height,this);
 			synchronized (this.usuario.getAuto().getCaja()){
 				caja=this.usuario.getAuto().getCaja();
 			}
@@ -233,6 +252,20 @@ public class PanelDeInformacion extends JPanel {
 			this.hiloDeActualizacion=null;
 		}catch(NullPointerException e){};
 		super.setVisible(flag);
+	}
+
+	/**
+	 * @return the corriendo
+	 */
+	public boolean isCorriendo() {
+		return corriendo;
+	}
+
+	/**
+	 * @param corriendo the corriendo to set
+	 */
+	public void setCorriendo(boolean corriendo) {
+		this.corriendo = corriendo;
 	}
 	
 }
