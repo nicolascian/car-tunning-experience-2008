@@ -114,10 +114,12 @@ public class Pista  extends Observable{
 		tramoActual[0]= tramos.get(0);
 		tramoActual[1]= tramos.get(0);
 		cantAutos = 2;
+		try{
 		for (int i = 0; i<cantAutos; i++){
 			auto[i].afectar(tramoActual[i].getClima());
 			auto[i].afectar(tramoActual[i].getSuperficie());
 		}
+		}catch(NullPointerException e){};
 		this.setRutaAparienciaCamino(rutaAparienciaCamino);
 		this.setRutaAparienciaCielo(rutaAparienciaCielo);
 		this.setRutaAparienciaEntorno(rutaAparienciaEntorno);

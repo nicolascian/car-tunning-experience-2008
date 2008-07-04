@@ -65,7 +65,10 @@ public class VentanaPista extends JFrame{
 			 try{	
 				ventanaMenu.getVistaVentana().getControlJuego().getDatos()
 				.setPista(getEditor().createPistaAutodromo(pista.getAuto(0),pista.getAuto(1)));	
-			 }catch(NullPointerException exception){};
+			
+			 }catch(NullPointerException exception){
+				 ventanaMenu.getVistaVentana().getControlJuego().getDatos()
+					.setPista(getEditor().createPuenteRio(null,null));};
 		    }
 		});
 		ImageIcon icono=new ImageIcon((new Imagen("src//vista//fotosDePistas//autodromo_buenos_aires.jpg",
@@ -80,7 +83,11 @@ public class VentanaPista extends JFrame{
 			 try{	
 				ventanaMenu.getVistaVentana().getControlJuego().getDatos()
 				.setPista(getEditor().createPistaCaminoDesertico(pista.getAuto(0),pista.getAuto(1)));	
-			 }catch(NullPointerException exception){};
+			 }catch(NullPointerException exception){
+
+				 ventanaMenu.getVistaVentana().getControlJuego().getDatos()
+					.setPista(getEditor().createPuenteRio(null,null));
+			 };
 		    }
 		});
 		icono=new ImageIcon((new Imagen("src//vista//fotosDePistas//camino_desertico.jpg",
@@ -95,7 +102,11 @@ public class VentanaPista extends JFrame{
 			 try{	
 				ventanaMenu.getVistaVentana().getControlJuego().getDatos()
 				.setPista(getEditor().createPistaCaminoRural(pista.getAuto(0),pista.getAuto(1)));
-			 }catch(NullPointerException exception){};
+			 }catch(NullPointerException exception){
+
+				 ventanaMenu.getVistaVentana().getControlJuego().getDatos()
+					.setPista(getEditor().createPuenteRio(null,null));
+			 };
 		    }
 		});
 		icono=new ImageIcon((new Imagen("src//vista//fotosDePistas//camino_rural.jpg",
@@ -107,10 +118,13 @@ public class VentanaPista extends JFrame{
 		boton=new JButton("Puente Rio Salado");
 		boton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-			 try{	
-				ventanaMenu.getVistaVentana().getControlJuego().getDatos()
+			 try{
+				 ventanaMenu.getVistaVentana().getControlJuego().getDatos()
 				.setPista(getEditor().createPuenteRio(pista.getAuto(0),pista.getAuto(1)));	
-			 }catch(NullPointerException exception){};
+			 }catch(NullPointerException exception){
+				 ventanaMenu.getVistaVentana().getControlJuego().getDatos()
+					.setPista(getEditor().createPuenteRio(null,null));
+			 };
 		    }
 		});
 		icono=new ImageIcon((new Imagen("src//vista//fotosDePistas//puente_rio_salado_ruta2.jpg",
@@ -125,7 +139,10 @@ public class VentanaPista extends JFrame{
 			 try{	
 				ventanaMenu.getVistaVentana().getControlJuego().getDatos()
 				.setPista(getEditor().createPistaTerraplen(pista.getAuto(0),pista.getAuto(1)));	
-			 }catch(NullPointerException exception){};
+			 }catch(NullPointerException exception){
+				 ventanaMenu.getVistaVentana().getControlJuego().getDatos()
+					.setPista(getEditor().createPistaTerraplen(pista.getAuto(0),pista.getAuto(1)));	
+			 };
 		    }
 		});
 		icono=new ImageIcon((new Imagen("src//vista//fotosDePistas//terraplen_laguna.jpg",
@@ -141,7 +158,7 @@ public class VentanaPista extends JFrame{
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 			 try{	
 				cerrarVentana();
-			 }catch(NullPointerException exception){};
+			 }catch(NullPointerException exception){exception.printStackTrace();};
 		    }
 		});
 		boton.setBackground(Color.LIGHT_GRAY);
