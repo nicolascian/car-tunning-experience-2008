@@ -51,13 +51,8 @@ public class Principiante extends Habilidad{
 		if (!auto.isEncendido()){
 			auto.setEncendido(true);
 		}
-		
-		/* si el auto no esta acelerando */
-		if (!auto.isAcelerando()){
-			/* ACELERAR */
-			auto.acelerar(true);
-		}
-		
+		auto.acelerar(true);
+		auto.acelerar(true);				
 		/* si la caja no es automatica */
 		if (!auto.isAutomatica()){
 			pasarCambios();
