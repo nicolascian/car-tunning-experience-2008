@@ -91,6 +91,68 @@ public class Pista  extends Observable{
 		}
 	}
 	
+	/*---------Metodos---------*/
+	/**
+	 * Constructor que recibe como parametros dos jugadores y la longitud
+	 * Genera un solo tramo con condiciones por defecto. 
+	 * pre:-
+	 * post: Queda creada una instacia de Pista.
+	 */
+	public Pista(Auto A1,Auto A2, double largo,String rutaAparienciaCielo,
+		                                       String rutaAparienciaCamino,
+		                                       String rutaAparienciaEntorno){
+		longitud = largo;
+		tramos = new ArrayList<Tramo>();
+		tramos.add(new Tramo(longitud));
+		auto = new Auto[2];
+		auto[0]=A1;
+		auto[1]=A2;
+		iterador = new Iterator[2];
+		iterador[0]= tramos.iterator();
+		iterador[1]= tramos.iterator();
+		tramoActual = new Tramo[2];
+		tramoActual[0]= tramos.get(0);
+		tramoActual[1]= tramos.get(0);
+		cantAutos = 2;
+		for (int i = 0; i<cantAutos; i++){
+			auto[i].afectar(tramoActual[i].getClima());
+			auto[i].afectar(tramoActual[i].getSuperficie());
+		}
+		this.setRutaAparienciaCamino(rutaAparienciaCamino);
+		this.setRutaAparienciaCielo(rutaAparienciaCielo);
+		this.setRutaAparienciaEntorno(rutaAparienciaEntorno);
+	}
+	
+	/**
+	 * Constructor con parametrosSystem.out.print("Finaliz� la carrera");
+	 * pre: La lista "tramos" debe estar ordenada, y el principio de cada
+	 * tramo debe coincidir con el final del anterior.
+	 * post: Queda creada una instancia de Pista.
+	 */
+	public Pista(Auto[] autos,ArrayList<Tramo> Tramos,String rutaAparienciaCielo,
+													  String rutaAparienciaCamino,
+                                                      String rutaAparienciaEntorno){
+		tramos = Tramos;
+		auto = autos;
+		cantAutos = autos.length;
+		iterador = new Iterator[cantAutos];
+		tramoActual = new Tramo[cantAutos];
+		for (int i=0;i<cantAutos;i++){
+			iterador[i]= Tramos.iterator();
+			tramoActual[i] = Tramos.get(0);
+			auto[i].afectar(tramoActual[i].getClima());
+			auto[i].afectar(tramoActual[i].getSuperficie());
+		}
+		longitud = 0;
+		Iterator<Tramo> it = Tramos.iterator();
+		while(it.hasNext()){
+			longitud = it.next().getPosFinal();
+		}
+		this.setRutaAparienciaCamino(rutaAparienciaCamino);
+		this.setRutaAparienciaCielo(rutaAparienciaCielo);
+		this.setRutaAparienciaEntorno(rutaAparienciaEntorno);
+	}
+	
 	/**
 	 * Constructor con parametrosSystem.out.print("Finaliz� la carrera");
 	 * pre: La lista "tramos" debe estar ordenada, y el principio de cada
