@@ -42,6 +42,7 @@ public class VentanaPista extends JFrame{
     	this.setResizable(false);
 		this.setAlwaysOnTop(false);
 		this.setBackground(Color.black);
+		this.getContentPane().setBackground(Color.black);
 		this.setVisible(false);	
 		this.editor=new modelo.EditorDePista();
 	}	
