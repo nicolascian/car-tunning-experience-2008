@@ -81,7 +81,7 @@ public class VentanaReparacion extends JFrame {
     	 this.ventanaTaller.getTaller().reparar(componente,(int)Math.round(deslizadora.getValue()-
     			                                   componente.getEstado()));
     	 this.ventanaTaller.getPanelComponente().actualizarComponente();
-    	 this.ventanaTaller.refrescarPanelInfo();
+    	 this.ventanaTaller.refrescarInfo();
     	 this.ventanaTaller.setVisible(true);
     	 this.dispose();
       }
