@@ -43,7 +43,7 @@ public class Intermedio extends Habilidad{
 	public void jugar(boolean X){
 		
 		if(X){ timer.start();
-		}else { timer.stop(); }
+		}else { timer.stop();timer=null; }
 	}	
 		
 	public void manejar(){
