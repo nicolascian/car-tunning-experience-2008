@@ -121,7 +121,7 @@ public class Carrera implements Runnable {
 				{
 				synchronized (this.virtual.getAuto())
 				{
-					
+					this.virtual.manejar();
 					this.usuario.getAuto().ActualizarObservadores();
 					this.virtual.getAuto().ActualizarObservadores();
 					this.usuario.getAuto().wait(25);

@@ -53,13 +53,8 @@ public class Intermedio extends Habilidad{
 		if (!auto.isEncendido()){
 			auto.setEncendido(true);
 		}
-		
-		/* si el auto no esta acelerando */
-		if (!auto.isAcelerando()){
-			/* ACELERAR */
-			auto.acelerar(true);
-		}
-		
+		auto.acelerar(true);
+		auto.acelerar(true);
 		/* si la caja no es automatica */
 		if (!auto.isAutomatica()){
 			pasarCambios();
@@ -81,8 +76,6 @@ public class Intermedio extends Habilidad{
         /* numero entre 0 y 250 tomando x e y */
         MARGEN_DE_ERROR_RND_MINIMAS = ((x + y) - (x + y)/2) *100;
         
-		
-		
 		if(auto.isAcelerando()){
 			if(rpm >= (auto.getCaja().getRevolucionesMaximasMotorParaCambioActual()+ MARGEN_DE_ERROR_RND_MAXIMAS) ){
 				auto.embragar(true);
