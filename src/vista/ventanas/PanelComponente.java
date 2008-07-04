@@ -127,6 +127,7 @@ public class PanelComponente extends JPanel {
 	}
 	*/
 	private void pressBotonReparar(){
+		this.ventana.setVisible(false);
 		ventana.getTaller().repararacion(componente);
 	}
 

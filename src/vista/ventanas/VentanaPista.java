@@ -54,27 +54,85 @@ public class VentanaPista extends JFrame{
 	
 	private void agregarBotones(){
 		panelPistas=new JPanel();
-		panelPistas.setLayout(new GridLayout());
+		panelPistas.setLayout(new GridLayout(4,4));
 		this.setBackground(Color.black);
 		this.add(panelPistas);
-		panelPistas.setBounds(0,0,300,300);
-		//subPaneles
+		panelPistas.setBounds(0,0,this.getWidth(),this.getHeight());
+		
 		JButton boton=new JButton("Autodromo de Buenos Aires");
 		boton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 			 try{	
 				ventanaMenu.getVistaVentana().getControlJuego().getDatos()
-				.setPista(getEditor().createPistaAutodromo(pista.getAuto(0),pista.getAuto(1)));
-				
+				.setPista(getEditor().createPistaAutodromo(pista.getAuto(0),pista.getAuto(1)));	
 			 }catch(NullPointerException exception){};
 		    }
 		});
 		ImageIcon icono=new ImageIcon((new Imagen("src//vista//fotosDePistas//autodromo_buenos_aires.jpg",
-				new Dimension(20,20),new Posicion()).getImage().getScaledInstance(40,40, java.awt.Image.SCALE_DEFAULT)));
-		
+				new Dimension((int)(panelPistas.getWidth()*0.05),(int)(panelPistas.getHeight()*0.05)),
+				new Posicion()).getImage()).getScaledInstance(80,80, java.awt.Image.SCALE_DEFAULT));
 		boton.setIcon(icono);
 		panelPistas.add(boton);
 		
+		boton=new JButton("Zona Desertica");
+		boton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+			 try{	
+				ventanaMenu.getVistaVentana().getControlJuego().getDatos()
+				.setPista(getEditor().createPistaCaminoDesertico(pista.getAuto(0),pista.getAuto(1)));	
+			 }catch(NullPointerException exception){};
+		    }
+		});
+		icono=new ImageIcon((new Imagen("src//vista//fotosDePistas//camino_desertico.jpg",
+				new Dimension(10,10),new Posicion()).getImage()).
+				getScaledInstance(80,80, java.awt.Image.SCALE_DEFAULT));
+		boton.setIcon(icono);
+		panelPistas.add(boton);
+		
+		boton=new JButton("Camino Rural");
+		boton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+			 try{	
+				ventanaMenu.getVistaVentana().getControlJuego().getDatos()
+				.setPista(getEditor().createPistaCaminoRural(pista.getAuto(0),pista.getAuto(1)));
+			 }catch(NullPointerException exception){};
+		    }
+		});
+		icono=new ImageIcon((new Imagen("src//vista//fotosDePistas//camino_rural.jpg",
+				new Dimension(10,10),new Posicion()).getImage()).
+				getScaledInstance(80,80, java.awt.Image.SCALE_DEFAULT));
+		boton.setIcon(icono);
+		panelPistas.add(boton);
+		
+		boton=new JButton("Puente Rio Salado");
+		boton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+			 try{	
+				ventanaMenu.getVistaVentana().getControlJuego().getDatos()
+				.setPista(getEditor().createPuenteRio(pista.getAuto(0),pista.getAuto(1)));	
+			 }catch(NullPointerException exception){};
+		    }
+		});
+		icono=new ImageIcon((new Imagen("src//vista//fotosDePistas//puente_rio_salado_ruta2.jpg",
+				new Dimension(10,10),new Posicion()).getImage()).
+				getScaledInstance(80,80, java.awt.Image.SCALE_DEFAULT));
+		boton.setIcon(icono);
+		panelPistas.add(boton);
+		
+		boton=new JButton("Terraplen Laguna De Chascomus");
+		boton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+			 try{	
+				ventanaMenu.getVistaVentana().getControlJuego().getDatos()
+				.setPista(getEditor().createPistaTerraplen(pista.getAuto(0),pista.getAuto(1)));	
+			 }catch(NullPointerException exception){};
+		    }
+		});
+		icono=new ImageIcon((new Imagen("src//vista//fotosDePistas//terraplen_laguna.jpg",
+				new Dimension(10,10),new Posicion()).getImage()).
+				getScaledInstance(80,80, java.awt.Image.SCALE_DEFAULT));
+		boton.setIcon(icono);
+		panelPistas.add(boton);
 		
 		panelPistas.setVisible(true);
 		
