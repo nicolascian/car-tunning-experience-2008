@@ -98,11 +98,11 @@ public class ImagenTramo {
 		this.setPosicion(new Posicion(posicion));
 		try{
 		   this.imagenBuffer=new BufferedImage(dimension.width,dimension.height,
-				                            BufferedImage.TYPE_INT_RGB);
+				                            BufferedImage.TYPE_INT_BGR);
 		}catch(Exception e){
 			System.gc();
 			this.imagenBuffer=new BufferedImage(dimension.width,dimension.height,
-                    BufferedImage.TYPE_INT_RGB);
+                    BufferedImage.TYPE_INT_BGR);
 		}
 		this.grafico=(Graphics2D)imagenBuffer.createGraphics();
 	}

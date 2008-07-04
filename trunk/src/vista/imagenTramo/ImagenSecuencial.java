@@ -85,7 +85,7 @@ public class ImagenSecuencial{
 		   this.vectorImagenesSalida=new Imagen[imagenFondo.getVectorImagenesSalida().length];
 		for(int cursor=0;cursor<vectorImagenesSalida.length;cursor++){
 			BufferedImage buffImagen=new BufferedImage(getDimension().width,getDimension().height,
-	                BufferedImage.TYPE_INT_RGB);
+	                BufferedImage.TYPE_BYTE_INDEXED);
 	        Graphics2D g=buffImagen.createGraphics();
 			Imagen imagenAux=imagenFondo.getImagen();
         	g.drawImage(imagenAux.getImage(),0,0,imagenAux.getDimension().width,
@@ -206,7 +206,7 @@ public class ImagenSecuencial{
 	 */
 	protected Imagen generarImagenSalida(Dimension[] vectorDimensiones,Posicion[] vectorPosiciones){
 		BufferedImage buffImagen=new BufferedImage(getDimension().width,getDimension().height,
-				                               BufferedImage.TYPE_INT_RGB);
+				                               BufferedImage.TYPE_INT_BGR);
 		Graphics2D g=buffImagen.createGraphics();
 		for(int cursor=0;cursor<vectorPosiciones.length;cursor++){
 			g.drawImage(vectorImagenes[cursor].getImage(),
