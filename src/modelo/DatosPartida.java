@@ -27,8 +27,6 @@ public class DatosPartida extends Observable{
 	private GestorPersistencia gestor = null;
 	
 	public DatosPartida(){
-		//creo un gestor de guardado
-		gestor = new GestorPersistencia();
 		
 		//preparo todo lo del jugador virtual
 		autoVirtual = new Auto();
@@ -67,6 +65,10 @@ public class DatosPartida extends Observable{
 	
 	public void Guardar(){
 		
+		//vemos si tenemos gestor
+		if (gestor==null){ //creo un gestor de guardado
+			gestor = new GestorPersistencia(); }
+		
 		try{
 			gestor.Guardar(usuario, "guardado.xml");
 			
@@ -86,6 +88,10 @@ public class DatosPartida extends Observable{
 	}
 
 	public void Cargar(){
+		
+		//vemos si tenemos gestor
+		if (gestor==null){ //creo un gestor de guardado
+			gestor = new GestorPersistencia(); }
 		
 		//cargamos desde un achivo y asignamos
 		try{
