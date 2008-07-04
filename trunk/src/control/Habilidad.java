@@ -52,6 +52,12 @@ public abstract class Habilidad{
 	 */
 	public abstract void jugar(boolean X);
 	
+	/**
+	 * en caso de querer que solo
+	 * cumpla con un turno
+	 */
+	public abstract void manejar();
+	
 	
 	public void setAuto(Auto auto) {
 		this.auto = auto;
