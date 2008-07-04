@@ -62,7 +62,8 @@ public class VentanaTaller extends JFrame {
 		this.setLocationRelativeTo(null); //centrada
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 		    public void windowClosing(java.awt.event.WindowEvent e) {
-		    	cerrarVentana();
+		    	getVentanaMenu().setVisible(true);
+		    	dispose();
 		    }
 		});
     	this.setResizable(false);
@@ -136,7 +137,8 @@ public class VentanaTaller extends JFrame {
 		boton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 			 try{	
-				cerrarVentana();
+				 getVentanaMenu().setVisible(true);
+				 dispose();
 			 }catch(NullPointerException exception){};
 		    }
 		});
@@ -149,10 +151,6 @@ public class VentanaTaller extends JFrame {
 		this.textoInferior.setText(cadena);
 	}
 	
-	private void cerrarVentana(){
-		this.ventanaMenu.getVistaVentana().cerrarVentanaTaller();
-	}
-
 	private void agregarBoton(Componente componente){
 		DatoClase dato=administrador.getDatoClase(componente.getClass());
 		BotonComponente boton=new BotonComponente(componente,dato,this);
