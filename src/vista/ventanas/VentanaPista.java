@@ -136,6 +136,16 @@ public class VentanaPista extends JFrame{
 		
 		panelPistas.setVisible(true);
 		
+		boton=new JButton("Menu Principal");
+		boton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+			 try{	
+				cerrarVentana();
+			 }catch(NullPointerException exception){};
+		    }
+		});
+		boton.setBackground(Color.LIGHT_GRAY);
+		this.panelPistas.add(boton);
 	}
 	
 	private void aplicarCambios(){

@@ -120,9 +120,15 @@ public class Taller {
 	}
 		
 	public void repararacion(Componente componente){
-		VentanaReparacion ventana=new VentanaReparacion(componente, this.ventanaTaller);
-	   	ventana.setVisible(true);
-	   	this.ventanaTaller.refrescarInfo();
+		if(componente.getEstado()<=99){
+		    VentanaReparacion ventana=new VentanaReparacion(componente, this.ventanaTaller);
+	   	    ventana.setVisible(true);
+	   	    this.ventanaTaller.refrescarInfo();
+		}else{
+			JOptionPane.showMessageDialog(null,"Desgaste muy pequeño para ser reparado.",
+	                    "Reparacion de componente",JOptionPane.ERROR_MESSAGE);
+			this.ventanaTaller.setVisible(true);
+		}
 	}
 	
 	public boolean reparar(Componente componente,double porcentaje){
