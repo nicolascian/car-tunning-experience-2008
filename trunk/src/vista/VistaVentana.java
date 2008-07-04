@@ -208,8 +208,7 @@ public class VistaVentana implements Observer{
 		ventanaOpciones = new VentanaOpciones(this);
 		
 	}
-	
-		
+			
 	/* VENTANA CREDITOS *********************************************************************************/
 	private void crearVentanaCreditos(){
 		ventanaCreditos = new VentanaCreditos(this.ventanaMenu);
