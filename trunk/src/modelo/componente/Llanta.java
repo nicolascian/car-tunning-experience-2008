@@ -30,9 +30,9 @@ public class Llanta extends Componente implements AfectablePorSuperficie, Recept
 	//expresado en kg
 	private double pesoNormal=25;
 	
-	private static double constanteDeDesgaste=0.00001;
+	private static double constanteDeDesgaste=0.0000000001;
 	
-	private double coeficienteDeDesgastePorSuperficie=0.00000001;
+	private double coeficienteDeDesgastePorSuperficie=0.0000000001;
 	
 	private Eje eje=null;
 	
