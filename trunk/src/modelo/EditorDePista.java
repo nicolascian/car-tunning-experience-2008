@@ -40,7 +40,7 @@ public class EditorDePista {
 	
 	private LinkedList<DatoApariencia> listaAparienciaEntorno=null;
 		
-	public EditorDePista(Pista pista){
+	public EditorDePista(){
 		this.listaAparienciaCielo=new LinkedList<DatoApariencia>();
 		this.listaAparienciaCamino=new LinkedList<DatoApariencia>();
 		this.listaAparienciaEntorno=new LinkedList<DatoApariencia>();
