@@ -6,6 +6,9 @@ import vista.ventanas.VentanaTaller;
 import modelo.componente.Componente;
 import vista.ventanas.VentanaReparacion;
 import javax.swing.JOptionPane;
+import java.lang.reflect.*;
+import java.util.LinkedList;
+import java.util.Iterator;
 /**
  * @author Usuario
  *
@@ -47,7 +50,55 @@ public class Taller {
 		  AlgoPesos importe=componenteNuevo.getPrecio();
 		  AlgoPesos cobrado=usuario.cobrarDineroAJugador(importe);
 		  if(importe.compareTo(cobrado)<=0){
-			//----reemplazo de componente
+			Method[] metodos=Auto.class.getMethods();
+			LinkedList<Method> listaMetodosSet=new LinkedList<Method>();
+			LinkedList<Method> listaMetodosGet=new LinkedList<Method>();
+			int cursor=-1;
+			while(cursor<metodos.length-1){
+			   cursor++;
+			   if((metodos[cursor].getName().startsWith("set"))&&
+				  (metodos[cursor].getName().substring(3).toLowerCase().
+				  startsWith(componenteActual.getClass().getSimpleName().toLowerCase())||
+				  (metodos[cursor].getName().substring(3).toLowerCase().
+				  startsWith(componenteActual.getClass().getSuperclass().getSimpleName().toLowerCase()))	   
+			     
+			     )){
+				 listaMetodosSet.add(metodos[cursor]); 	  
+			   }
+			   else
+				  if((metodos[cursor].getName().startsWith("get"))&&
+					  (metodos[cursor].getName().substring(3).toLowerCase().
+					  startsWith(componenteActual.getClass().getSimpleName().toLowerCase())||
+					 (metodos[cursor].getName().substring(3).toLowerCase().
+					  startsWith(componenteActual.getClass().getSuperclass().getSimpleName().toLowerCase()))	   
+							     
+					)){
+					listaMetodosGet.add(metodos[cursor]); 	  
+				  }
+			}
+			Iterator<Method> itGet=listaMetodosGet.iterator();
+			while(itGet.hasNext()){
+				Method metodo=itGet.next();
+				Object[] object=new Object[1];
+				object[0]=null;
+				try{   
+				   if(metodo.invoke(this.usuario.getAuto(),object)!=componenteActual)
+					  itGet.remove();
+				}catch(Exception e){};
+			}
+			Iterator<Method> itSet=listaMetodosSet.iterator();
+			while((itSet.hasNext())&&(!listaMetodosGet.isEmpty())){
+				int indice=listaMetodosSet.getFirst().getName().indexOf("Set");
+				Method metodoFinal=itSet.next();
+				if(listaMetodosGet.getFirst().getName().substring(indice+3).
+				    equals(metodoFinal.getName().substring(indice+3)))
+					try{
+						Object[] object=new Object[1];
+						object[0]=componenteNuevo;
+						metodoFinal.invoke(usuario.getAuto(),object);
+					}catch(Exception e){}
+					componenteActual.deleteObservers();
+			}
 			return true;
 		  }
 		  else{
