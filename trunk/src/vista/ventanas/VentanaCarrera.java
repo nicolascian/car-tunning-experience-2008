@@ -31,6 +31,9 @@ public class VentanaCarrera extends JFrame implements Observer{
     
     private PanelRecorrido panelRecorridoUsuario=null;
     
+    private PanelDeInformacion panelInfoUsuario=null;
+    
+    
 	public void update(Observable arg0, Object arg1) {
 	  synchronized(this.usuario.getAuto()){	
 		try{
@@ -52,9 +55,10 @@ public class VentanaCarrera extends JFrame implements Observer{
 		this.panelUsuario=PanelCarril.createPanelCarrilVistaAutoDesdeAtras(dimensionPanel,
 				               new Posicion(0,(int)(getSize().width*0.06452)),usuario,pista);
 		this.add(panelUsuario);
-		this.add(new PanelDeInformacion(new Dimension((int)(getSize().width*0.2),(int)(getSize().height)),
+		this.panelInfoUsuario=new PanelDeInformacion(new Dimension((int)(getSize().width*0.2),(int)(getSize().height)),
 				                        new Posicion((int)(getSize().width*0.8),0),
-				                        usuario ));
+				                        usuario );
+		add(panelInfoUsuario);
 		//panel de recorrido
 		this.panelRecorridoUsuario=new PanelRecorrido(usuario.getNombre(),usuario.getAuto(),pista,
 				new Dimension((int)(this.getSize().width*0.8),(int)(getSize().width*0.03226)),
@@ -91,4 +95,32 @@ public class VentanaCarrera extends JFrame implements Observer{
 		this.setVisible(false);
 	}
 
+	/**
+	 * @return the panelUsuario
+	 */
+	public PanelCarril getPanelUsuario() {
+		return panelUsuario;
+	}
+
+	/**
+	 * @param panelUsuario the panelUsuario to set
+	 */
+	public void setPanelUsuario(PanelCarril panelUsuario) {
+		this.panelUsuario = panelUsuario;
+	}
+
+	/**
+	 * @return the panelInfoUsuario
+	 */
+	public PanelDeInformacion getPanelInfoUsuario() {
+		return panelInfoUsuario;
+	}
+
+	/**
+	 * @param panelInfoUsuario the panelInfoUsuario to set
+	 */
+	public void setPanelInfoUsuario(PanelDeInformacion panelInfoUsuario) {
+		this.panelInfoUsuario = panelInfoUsuario;
+	}
+	
 }
