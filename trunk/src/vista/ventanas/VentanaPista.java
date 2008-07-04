@@ -141,7 +141,7 @@ public class VentanaPista extends JFrame{
 				.setPista(getEditor().createPistaTerraplen(pista.getAuto(0),pista.getAuto(1)));	
 			 }catch(NullPointerException exception){
 				 ventanaMenu.getVistaVentana().getControlJuego().getDatos()
-					.setPista(getEditor().createPistaTerraplen(pista.getAuto(0),pista.getAuto(1)));	
+					.setPista(getEditor().createPistaTerraplen(null,null));	
 			 };
 		    }
 		});
