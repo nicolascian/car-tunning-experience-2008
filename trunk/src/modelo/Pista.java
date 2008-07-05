@@ -26,11 +26,11 @@ public class Pista  extends Observable{
 	
 	private int cantAutos;
 	
-	private String rutaAparienciaCielo="src//vista//imagenTramo//cieloSemiNublado";
+	private String rutaAparienciaCielo="src//vista//imagenTramo//CieloNocturno";
 	
 	private String rutaAparienciaCamino="src//vista//imagenTramo//carretera2";
 	
-	private String rutaAparienciaEntorno="src//vista//imagenTramo//pasto";
+	private String rutaAparienciaEntorno="src//vista//imagenTramo//rio";
 	
 	/**
 	 * La pista esta compuesta por una serie de tramos, cada uno con 
